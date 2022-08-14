@@ -37,7 +37,7 @@ public class Sample_SoundManager : MonoBehaviour
             //Không nên lưu các Sound không loop vào danh sách
             //lg_SoundClone_Cur.Add(g_SoundClone); 
 
-            g_SoundClone.GetComponent<Sample_SoundClone>().Set_PlaySound_2D(au_Sound, false);
+            g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_2D(au_Sound, false);
         }
         else
         if (Input.GetKeyDown(KeyCode.X)) //Loop
@@ -47,14 +47,14 @@ public class Sample_SoundManager : MonoBehaviour
             //Nên lưu các Sound có loop vào danh sách để điều chỉnh trong quá trình chơi
             lg_SoundClone_Cur.Add(g_SoundClone);
 
-            g_SoundClone.GetComponent<Sample_SoundClone>().Set_PlaySound_2D(au_Sound_Loop, true);
+            g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_2D(au_Sound_Loop, true);
         }
         else
         if (Input.GetKeyDown(KeyCode.M)) //Mute - UnMute
         {
             for (int i = 0; i < lg_SoundClone_Cur.Count; i++) 
             {
-                lg_SoundClone_Cur[i].GetComponent<Sample_SoundClone>().Set_Sound_Mute(!lg_SoundClone_Cur[i].GetComponent<Sample_SoundClone>().Get_Sound_Mute());
+                lg_SoundClone_Cur[i].GetComponent<SoundClone>().Set_Sound_Mute(!lg_SoundClone_Cur[i].GetComponent<SoundClone>().Get_Sound_isMute());
             }
         }
         else

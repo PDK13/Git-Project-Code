@@ -1,16 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class Sample_SoundClone : MonoBehaviour
+//[RequireComponent(typeof(AudioSource))]
+public class SoundClone : MonoBehaviour
 {
     private AudioSource com_AudioSource;
 
-    private void Start()
-    {
-        Set_Component();
-    }
-
-    private void Set_Component()
+    private void Set_Component_Add()
     {
         if (GetComponent<AudioSource>() == null)
         {
@@ -24,7 +20,7 @@ public class Sample_SoundClone : MonoBehaviour
 
     public void Set_PlaySound_3D(AudioClip au_Clip, bool b_Loop, Vector2 v2_Pos, float f_Distance)
     {
-        Set_Component();
+        Set_Component_Add();
 
         transform.position = v2_Pos;
 
@@ -40,13 +36,13 @@ public class Sample_SoundClone : MonoBehaviour
 
         if (!b_Loop)
         {
-            StartCoroutine(WaitComplete());
+            StartCoroutine(Set_Sound_WhenStop());
         }  
     }
 
     public void Set_PlaySound_2D(AudioClip au_Clip, bool b_Loop)
     {
-        Set_Component();
+        Set_Component_Add();
 
         com_AudioSource.spatialBlend = 0;
 
@@ -58,11 +54,11 @@ public class Sample_SoundClone : MonoBehaviour
 
         if (!b_Loop)
         {
-            StartCoroutine(WaitComplete());
+            StartCoroutine(Set_Sound_WhenStop());
         }  
     }
 
-    IEnumerator WaitComplete()
+    private IEnumerator Set_Sound_WhenStop()
     {
         yield return new WaitUntil(() => Get_Sound_isStop() == true);
 
@@ -73,9 +69,9 @@ public class Sample_SoundClone : MonoBehaviour
 
     #region Set
 
-    public void Set_Sound_Mute(bool b_Mute)
+    public void Set_Sound_Mute(bool b_isMute)
     {
-        com_AudioSource.mute = b_Mute;
+        com_AudioSource.mute = b_isMute;
     }
 
     public void Set_Sound_Stop()
@@ -87,7 +83,7 @@ public class Sample_SoundClone : MonoBehaviour
 
     #region Get
 
-    public bool Get_Sound_Mute()
+    public bool Get_Sound_isMute()
     {
         return com_AudioSource.mute;
     }
