@@ -30,7 +30,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     [SerializeField] private float f_SpeedChance = 10f;
 
-    [SerializeField] private float f_SpeedCur;
+    private float f_SpeedCur;
 
     [Header("Rotate")]
 
@@ -57,7 +57,7 @@ public class RigidbodyRotation : MonoBehaviour
             return;
         }
 
-        Set_Control_Main_MoveButton();
+        Set_Control_Main_Keyboard();
     }
 
     private void OnDrawGizmos()
@@ -76,7 +76,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     #region Control Main
 
-    private void Set_Control_Main_MoveButton()
+    private void Set_Control_Main_Keyboard()
     {
         f_SpeedCur = (Input.GetKey(k_SpeedChance)) ? f_SpeedChance : f_SpeedNormal;
 
@@ -110,7 +110,7 @@ public class RigidbodyRotation : MonoBehaviour
             Set_Control_Move_Stop();
         }
 
-        Set_Control_Move_SlowStop();
+        Set_Control_Move_Slow();
     }
 
     private void Set_Control_Move(int i_MoveDir)
@@ -131,12 +131,6 @@ public class RigidbodyRotation : MonoBehaviour
     {
         cs_Rigid.Set_StopX_Velocity(f_SpeedSlow);
         cs_Rigid.Set_StopZ_Velocity(f_SpeedSlow);
-    }
-
-    private void Set_Control_Move_SlowStop()
-    {
-        cs_Rigid.Set_StopX_Velocity(f_SpeedStop);
-        cs_Rigid.Set_StopZ_Velocity(f_SpeedStop);
     }
 
     private void Set_Control_Rotate(int i_RotationDir)

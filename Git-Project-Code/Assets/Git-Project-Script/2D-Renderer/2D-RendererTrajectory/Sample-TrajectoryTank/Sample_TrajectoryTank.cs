@@ -36,9 +36,6 @@ public class Sample_TrajectoryTank : MonoBehaviour
 
         if (GetComponent<RigidbodyRotation>() == null) gameObject.AddComponent<RigidbodyRotation>();
         cs_RigidbodyRotation = GetComponent<RigidbodyRotation>();
-
-        //if (GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
-        //com_Rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
