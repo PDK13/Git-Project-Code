@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/SampleScene.unity
+- path: Assets/Git-Project-Script/2D-Renderer/2D-RendererTrajectory/Sample-RendererTrajectory.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

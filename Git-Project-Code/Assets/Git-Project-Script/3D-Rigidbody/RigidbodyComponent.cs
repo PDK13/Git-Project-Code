@@ -131,13 +131,16 @@ public class RigidbodyComponent : MonoBehaviour
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         r_Rigidbody.isKinematic = b_Kinematic;
         r_Rigidbody.useGravity = false;
-        if (b_LockRot && !b_LockPos)
+
+        if (b_LockRot)
+        {
             r_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        else
-        if (!b_LockRot && b_LockPos)
+        }
+
+        if (b_LockPos)
+        {
             r_Rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-        else
-            r_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
     /// <summary>

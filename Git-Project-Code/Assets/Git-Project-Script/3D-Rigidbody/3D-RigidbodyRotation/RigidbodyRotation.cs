@@ -9,48 +9,41 @@ public class RigidbodyRotation : MonoBehaviour
     private RigidbodyComponent cs_Rigid;
 
     [Header("Keyboard")]
-    public KeyCode k_MoveUp = KeyCode.UpArrow;
-    //Control Move Up (Forward)
 
-    public KeyCode k_MoveDown = KeyCode.DownArrow;
-    //Control Move Down (Backward)
+    [SerializeField] private bool b_LockControl = false;
 
-    public KeyCode k_TurnLeft = KeyCode.LeftArrow;
-    //Control Turn Left
+    [SerializeField] private KeyCode k_MoveForward = KeyCode.UpArrow;
 
-    public KeyCode k_TurnRight = KeyCode.RightArrow;
-    //Control Turn Right
+    [SerializeField] private KeyCode k_MoveBackward = KeyCode.DownArrow;
 
-    public bool b_MutiButton = true;
-    //Muti Button Dir
+    [SerializeField] private KeyCode k_TurnLeft = KeyCode.LeftArrow;
 
-    public KeyCode k_SpeedChance = KeyCode.LeftShift;
-    //Control Speed Chance
+    [SerializeField] private KeyCode k_TurnRight = KeyCode.RightArrow;
+
+    [SerializeField] private bool b_MutiButton = true;
+
+    [SerializeField] private KeyCode k_SpeedChance = KeyCode.LeftShift;
 
     [Header("Move")]
-    public float f_SpeedNormal = 7f;
-    //Normal Speed Move (Need More Power, because Script always Slow Move)
 
-    public float f_SpeedChance = 10f;
-    //Chance Speed Move
-    private float f_SpeedCur;
-    //Current Speed Move
+    [SerializeField] private float f_SpeedNormal = 7f;
+
+    [SerializeField] private float f_SpeedChance = 10f;
+
+    [SerializeField] private float f_SpeedCur;
+
+    [Header("Rotate")]
 
     [Range(0.1f,5f)]
-    public float f_SpeedRotate = 1f;
-    //Speed Rotation Chance
+    [SerializeField] private float f_SpeedRotate = 1f;
 
-    public bool b_StopRightAway = false;
-    //Control Stop without Speed Stop Velocity
+    [SerializeField] private bool b_StopRightAway = false;
 
-    public float f_SpeedStop = 3f;
-    //Speed Stop (Chance Dir Move when Turn)
+    [SerializeField] private float f_SpeedStop = 3f;
 
-    public bool b_SlowWhenTurn = true;
-    //Slow Speed When Turn
+    [SerializeField] private bool b_SlowWhenTurn = true;
 
-    public float f_SpeedSlow = 5f;
-    //Slow Speed
+    [SerializeField] private float f_SpeedSlow = 5f;
 
     void Awake()
     {
@@ -59,73 +52,12 @@ public class RigidbodyRotation : MonoBehaviour
 
     private void Update()
     {
-        Set_SpeedChance();
-        Set_MoveButton();
-    }
-
-    public void Set_MoveButton()
-    //Control Move by Button
-    {
-        if (Input.GetKey(k_TurnLeft) && Input.GetKey(k_TurnRight) || 
-            Input.GetKey(k_MoveUp) && Input.GetKey(k_MoveDown))
-            //
-            return;
-
-        if (Input.GetKey(k_TurnLeft))
-            Set_RotationChance(-1);
-        else
-        if (Input.GetKey(k_TurnRight))
-            Set_RotationChance(1);
-
-        if (Input.GetKey(k_MoveUp))
-            Set_Move(1);
-        else
-        if (Input.GetKey(k_MoveDown))
-            Set_Move(-1);
-        else
-            Set_Stop();
-
-        Set_SlowStop();
-    }
-
-    public void Set_SpeedChance()
-    //Control Speed Chance
-    {
-        f_SpeedCur = (Input.GetKey(k_SpeedChance)) ? f_SpeedChance : f_SpeedNormal;
-    }
-
-    public void Set_RotationChance(int i_RotationDir)
-    {
-        if (b_SlowWhenTurn)
-            Set_Slow();
-
-        cs_Rigid.Set_RotationChance_XZ(f_SpeedRotate * i_RotationDir);
-    }
-
-    public void Set_Move(int i_MoveDir)
-    {
-        cs_Rigid.Set_MoveRotation_XZ(cs_Rigid.Get_Rotation_XZ(), f_SpeedCur * i_MoveDir);
-    }
-
-    public void Set_Stop()
-    {
-        if (b_StopRightAway)
+        if (b_LockControl)
         {
-            cs_Rigid.Set_StopX_Velocity();
-            cs_Rigid.Set_StopZ_Velocity();
+            return;
         }
-    }
 
-    public void Set_Slow()
-    {
-        cs_Rigid.Set_StopX_Velocity(f_SpeedSlow);
-        cs_Rigid.Set_StopZ_Velocity(f_SpeedSlow);
-    }
-
-    public void Set_SlowStop()
-    {
-        cs_Rigid.Set_StopX_Velocity(f_SpeedStop);
-        cs_Rigid.Set_StopZ_Velocity(f_SpeedStop);
+        Set_Control_Main_MoveButton();
     }
 
     private void OnDrawGizmos()
@@ -141,4 +73,95 @@ public class RigidbodyRotation : MonoBehaviour
             transform.position + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ(), 1f),
             0.1f);
     }
+
+    #region Control Main
+
+    private void Set_Control_Main_MoveButton()
+    {
+        f_SpeedCur = (Input.GetKey(k_SpeedChance)) ? f_SpeedChance : f_SpeedNormal;
+
+        if (Input.GetKey(k_TurnLeft) && Input.GetKey(k_TurnRight) || 
+            Input.GetKey(k_MoveForward) && Input.GetKey(k_MoveBackward))
+            //
+            return;
+
+        if (Input.GetKey(k_TurnLeft))
+        {
+            Set_Control_Rotate(-1);
+        }
+        else
+        if (Input.GetKey(k_TurnRight))
+        {
+            Set_Control_Rotate(1);
+        }
+
+        if (Input.GetKey(k_MoveForward))
+        {
+            Set_Control_Move(1);
+        }
+            
+        else
+        if (Input.GetKey(k_MoveBackward))
+        {
+            Set_Control_Move(-1);
+        }
+        else
+        {
+            Set_Control_Move_Stop();
+        }
+
+        Set_Control_Move_SlowStop();
+    }
+
+    private void Set_Control_Move(int i_MoveDir)
+    {
+        cs_Rigid.Set_MoveRotation_XZ(cs_Rigid.Get_Rotation_XZ(), f_SpeedCur * i_MoveDir);
+    }
+
+    private void Set_Control_Move_Stop()
+    {
+        if (b_StopRightAway)
+        {
+            cs_Rigid.Set_StopX_Velocity();
+            cs_Rigid.Set_StopZ_Velocity();
+        }
+    }
+
+    private void Set_Control_Move_Slow()
+    {
+        cs_Rigid.Set_StopX_Velocity(f_SpeedSlow);
+        cs_Rigid.Set_StopZ_Velocity(f_SpeedSlow);
+    }
+
+    private void Set_Control_Move_SlowStop()
+    {
+        cs_Rigid.Set_StopX_Velocity(f_SpeedStop);
+        cs_Rigid.Set_StopZ_Velocity(f_SpeedStop);
+    }
+
+    private void Set_Control_Rotate(int i_RotationDir)
+    {
+        if (b_SlowWhenTurn)
+        {
+            Set_Control_Move_Slow();
+        }
+
+        cs_Rigid.Set_RotationChance_XZ(f_SpeedRotate * i_RotationDir);
+    }
+
+    #endregion
+
+    #region Control is Lock
+
+    public void Set_Control_isLock(bool b_LockControl)
+    {
+        this.b_LockControl = b_LockControl;
+    }
+
+    public bool Get_Control_isLock()
+    {
+        return this.b_LockControl;
+    }
+
+    #endregion
 }

@@ -149,13 +149,13 @@ public class Class_Vector
     /// <summary>
     /// Receive Offset Rotate Between 2 Vector Dir
     /// </summary>
-    /// <param name="v3_VecStart"></param>
-    /// <param name="v3_DirEnd"></param>
+    /// <param name="v3_Start"></param>
+    /// <param name="v3_End"></param>
     /// <returns></returns>
-    public static float Get_DirToDeg_XZ(Vector3 v3_VecStart, Vector3 v3_DirEnd)
+    public static float Get_DirToDeg_XZ(Vector3 v3_Start, Vector3 v3_End)
     {
-        Vector2 v2_DirStart = new Vector2(v3_VecStart.x, v3_VecStart.z);
-        Vector2 v2_DirEnd = new Vector2(v3_DirEnd.x, v3_DirEnd.z);
+        Vector2 v2_DirStart = new Vector2(v3_Start.x, v3_Start.z);
+        Vector2 v2_DirEnd = new Vector2(v3_End.x, v3_End.z);
         return Vector2.Angle(v2_DirStart, v2_DirEnd);
     }
 
