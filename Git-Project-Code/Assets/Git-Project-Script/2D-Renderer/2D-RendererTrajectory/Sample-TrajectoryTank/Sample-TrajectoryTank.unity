@@ -266,7 +266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &331033472
 AudioListener:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1076665669
 Transform:
   m_ObjectHideFlags: 0
@@ -1459,7 +1459,6 @@ MonoBehaviour:
   k_SpeedChance: 304
   f_SpeedNormal: 7
   f_SpeedChance: 10
-  f_SpeedCur: 0
   f_SpeedRotate: 1
   b_StopRightAway: 0
   f_SpeedStop: 3
