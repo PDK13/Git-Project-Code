@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45140058, g: 0.5008928, b: 0.5723174, a: 1}
+  m_IndirectSpecularColor: {r: 0.451401, g: 0.5008933, b: 0.57231814, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1251,6 +1251,7 @@ GameObject:
   - component: {fileID: 1777945608}
   - component: {fileID: 1777945605}
   - component: {fileID: 1777945598}
+  - component: {fileID: 1777945607}
   m_Layer: 2
   m_Name: MainController-Body
   m_TagString: Untagged
@@ -1270,12 +1271,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e963b83ec8c3943a219777c24f1941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  g_Bullet: {fileID: 6954624917171776671, guid: cbe747319af76574bb979be366e03ef9,
-    type: 3}
+  g_Bullet: {fileID: 6954624917171776671, guid: cbe747319af76574bb979be366e03ef9, type: 3}
   com_TransformPoint_Start: {fileID: 134893077}
   com_TransformPoint_Next: {fileID: 751521555}
-  ma_Material_LineRenderer: {fileID: 2100000, guid: 7504f5c23f1b0894fab6171b2dac24dc,
-    type: 2}
+  ma_Material_LineRenderer: {fileID: 2100000, guid: 7504f5c23f1b0894fab6171b2dac24dc, type: 2}
 --- !u!114 &1777945599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1285,7 +1284,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1777945597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2237d766f4d78564fa2c3a31f1644b99, type: 3}
+  m_Script: {fileID: 11500000, guid: 56eed0a6490c72f45af88516a456c7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   b_UseScriptStart: 1
@@ -1294,13 +1293,13 @@ MonoBehaviour:
   b_LockPos: 0
   l_GroundCheck:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   b_FootDebug: 1
   v3_FootCast: {x: 1, y: 0.1, z: 1}
-  f_FootCast: 0.5
+  f_FootCast: 1
   b_UseScriptGravity: 1
   f_GravityFall: 20
-  b_HeadDebug: 0
+  b_HeadDebug: 1
   v3_HeadCast: {x: 1, y: 0.1, z: 1}
   f_HeadCast: 1
   b_UseScriptBounce: 1
@@ -1438,6 +1437,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   f_Gravity_Scale: 1
   f_Gravity_Global: -9.81
+--- !u!114 &1777945607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777945597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eed0a6490c72f45af88516a456c7d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  b_UseScriptStart: 1
+  b_Kinematic: 0
+  b_LockRot: 1
+  b_LockPos: 0
+  l_GroundCheck:
+    serializedVersion: 2
+    m_Bits: 0
+  b_FootDebug: 1
+  v3_FootCast: {x: 1, y: 0.1, z: 1}
+  f_FootCast: 1
+  b_UseScriptGravity: 1
+  f_GravityFall: 20
+  b_HeadDebug: 1
+  v3_HeadCast: {x: 1, y: 0.1, z: 1}
+  f_HeadCast: 1
+  b_UseScriptBounce: 1
+  f_HeadBounce: 10
 --- !u!114 &1777945608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,7 +1487,6 @@ MonoBehaviour:
   k_SpeedChance: 304
   f_SpeedNormal: 7
   f_SpeedChance: 10
-  f_SpeedCur: 0
   f_SpeedRotate: 1
   b_StopRightAway: 0
   f_SpeedStop: 3

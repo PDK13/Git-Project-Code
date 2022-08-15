@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 400309808}
   - component: {fileID: 400309807}
   - component: {fileID: 400309806}
+  - component: {fileID: 400309813}
   m_Layer: 2
   m_Name: MainController-Body
   m_TagString: Untagged
@@ -252,7 +253,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 400309805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2237d766f4d78564fa2c3a31f1644b99, type: 3}
+  m_Script: {fileID: 11500000, guid: 56eed0a6490c72f45af88516a456c7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   b_UseScriptStart: 1
@@ -261,13 +262,13 @@ MonoBehaviour:
   b_LockPos: 0
   l_GroundCheck:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   b_FootDebug: 1
   v3_FootCast: {x: 1, y: 0.1, z: 1}
-  f_FootCast: 0.5
+  f_FootCast: 1
   b_UseScriptGravity: 1
   f_GravityFall: 20
-  b_HeadDebug: 0
+  b_HeadDebug: 1
   v3_HeadCast: {x: 1, y: 0.1, z: 1}
   f_HeadCast: 1
   b_UseScriptBounce: 1
@@ -366,6 +367,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &400309813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400309805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eed0a6490c72f45af88516a456c7d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  b_UseScriptStart: 1
+  b_Kinematic: 0
+  b_LockRot: 1
+  b_LockPos: 0
+  l_GroundCheck:
+    serializedVersion: 2
+    m_Bits: 0
+  b_FootDebug: 1
+  v3_FootCast: {x: 1, y: 0.1, z: 1}
+  f_FootCast: 1
+  b_UseScriptGravity: 1
+  f_GravityFall: 20
+  b_HeadDebug: 1
+  v3_HeadCast: {x: 1, y: 0.1, z: 1}
+  f_HeadCast: 1
+  b_UseScriptBounce: 1
+  f_HeadBounce: 10
 --- !u!1 &743869504
 GameObject:
   m_ObjectHideFlags: 0
