@@ -43,57 +43,9 @@ public class RendererTrajectory : MonoBehaviour
         cs_RigidbodyGravity = GetComponent<RigidbodyGravity>();
     }
 
-    #region Set Rigidbody Velocity with Trajectory
+    #region Trajectory Value
 
-    public void Set_Trajectory_toRigidbody(Rigidbody com_Rigidbody, Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next)
-    {
-        Vector3 v3_Trajectory_Dir = (v3_Trajectory_Next - v3_Trajectory_Start) * f_Trajectory_Power;
-
-        com_Rigidbody.velocity = v3_Trajectory_Dir;
-    }
-
-    #endregion
-
-    #region Set Line Renderer with Trajectory
-
-    public void Set_Trajectory_toLineRenderer(LineRenderer com_LineRenderer, Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next, float f_LineRenderer_Width = 0.2f, Material m_Trajectory_Material = null)
-    {
-        if (m_Trajectory_Material != null)
-        {
-            com_LineRenderer.material = m_Trajectory_Material;
-        }
-
-        com_LineRenderer.startWidth = f_LineRenderer_Width;
-        com_LineRenderer.endWidth = f_LineRenderer_Width;
-
-        Vector3 v3_Trajectory_Dir = (v3_Trajectory_Next - v3_Trajectory_Start) * f_Trajectory_Power;
-
-        Vector3[] trajectory = Get_Trajectory_Points(
-            com_Rigidbody,
-            v3_Trajectory_Start,
-            v3_Trajectory_Dir, 
-            Get_Trajectory_Step());
-
-        com_LineRenderer.positionCount = trajectory.Length;
-        Vector3[] position = new Vector3[trajectory.Length];
-
-        for (int i = 0; i < position.Length; i++)
-        {
-            position[i] = trajectory[i];
-        }
-
-        com_LineRenderer.SetPositions(position);
-    }
-
-    public void Set_Trajectory_toLineRenderer_Clear(LineRenderer com_LineRenderer)
-    {
-        com_LineRenderer.positionCount = 0;
-        com_LineRenderer.SetPositions(new Vector3[0]);
-    }
-
-    #endregion
-
-    #region Set Trajectory Start Point and Next Point
+    #region Trajectory Start Point and Next Point
 
     public void Set_Trajectory_Start_isThis(bool b_Trajectory_Start_isThis)
     {
@@ -110,14 +62,54 @@ public class RendererTrajectory : MonoBehaviour
         this.v3_Trajectory_Next = v3_Trajectory_Next;
     }
 
+    public bool Get_Trajectory_Start_isThis()
+    {
+        return b_Trajectory_Start_isThis;
+    }
+
+    public Vector3 Get_Trajectory_Start()
+    {
+        return v3_Trajectory_Start;
+    }
+
+    public Vector3 Get_Trajectory_Next()
+    {
+        return v3_Trajectory_Next;
+    }
+
     #endregion
 
-    #region Get Trajectory
+    #region Trajectory Power
 
-    public Vector3 Get_Trajectory_Dir(Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next, float f_Trajectory_Power)
+    public void Set_Trajectory_Power(float f_Trajectory_Power)
     {
-        return (v3_Trajectory_Next - v3_Trajectory_Start) * f_Trajectory_Power;
+        this.f_Trajectory_Power = f_Trajectory_Power;
     }
+
+    public float Get_Trajectory_Power()
+    {
+        return this.f_Trajectory_Power;
+    }
+
+    #endregion
+
+    #region Trajectory Step
+
+    public void Set_Trajectory_Step(int i_Trajectory_Step)
+    {
+        this.i_Trajectory_Step = i_Trajectory_Step;
+    }
+
+    public int Get_Trajectory_Step()
+    {
+        return this.i_Trajectory_Step;
+    }
+
+    #endregion
+
+    #endregion
+
+    #region Trajectory
 
     public Vector3[] Get_Trajectory_Points(Rigidbody com_Rigidbody, Vector3 v3_Pos_Start, Vector3 v3_Trajectory_Dir, int i_Trajectory_Step = 500)
     {
@@ -166,46 +158,60 @@ public class RendererTrajectory : MonoBehaviour
         return v3_Trajectory_Result;
     }
 
-    #endregion
-
-    #region Get Trajectory Value
-
-    #region Get Trajectory Value Main
-
-    public float Get_Trajectory_Power()
+    private Vector3 Get_Trajectory_Dir(Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next, float f_Trajectory_Power)
     {
-        return this.f_Trajectory_Power;
-    }
-
-    public int Get_Trajectory_Step()
-    {
-        return this.i_Trajectory_Step;
+        return (v3_Trajectory_Next - v3_Trajectory_Start) * f_Trajectory_Power;
     }
 
     #endregion
 
-    #region Get Trajectory Value Start Point
+    #region Rigidbody Velocity with Trajectory
 
-    public bool Get_Trajectory_Start_isThis()
+    public void Set_Trajectory_toRigidbody(Rigidbody com_Rigidbody, Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next)
     {
-        return b_Trajectory_Start_isThis;
-    }
+        Vector3 v3_Trajectory_Dir = (v3_Trajectory_Next - v3_Trajectory_Start) * f_Trajectory_Power;
 
-    public Vector3 Get_Trajectory_Start()
-    {
-        return v3_Trajectory_Start;
+        com_Rigidbody.velocity = v3_Trajectory_Dir;
     }
 
     #endregion
 
-    #region Get Trajectory Value End Point
+    #region Line Renderer with Trajectory
 
-    public Vector3 Get_Trajectory_Next()
+    public void Set_Trajectory_toLineRenderer(LineRenderer com_LineRenderer, Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next, float f_LineRenderer_Width = 0.2f, Material m_Trajectory_Material = null)
     {
-        return v3_Trajectory_Next;
+        if (m_Trajectory_Material != null)
+        {
+            com_LineRenderer.material = m_Trajectory_Material;
+        }
+
+        com_LineRenderer.startWidth = f_LineRenderer_Width;
+        com_LineRenderer.endWidth = f_LineRenderer_Width;
+
+        Vector3 v3_Trajectory_Dir = (v3_Trajectory_Next - v3_Trajectory_Start) * f_Trajectory_Power;
+
+        Vector3[] trajectory = Get_Trajectory_Points(
+            com_Rigidbody,
+            v3_Trajectory_Start,
+            v3_Trajectory_Dir,
+            Get_Trajectory_Step());
+
+        com_LineRenderer.positionCount = trajectory.Length;
+        Vector3[] position = new Vector3[trajectory.Length];
+
+        for (int i = 0; i < position.Length; i++)
+        {
+            position[i] = trajectory[i];
+        }
+
+        com_LineRenderer.SetPositions(position);
     }
 
-    #endregion
+    public void Set_Trajectory_toLineRenderer_Clear(LineRenderer com_LineRenderer)
+    {
+        com_LineRenderer.positionCount = 0;
+        com_LineRenderer.SetPositions(new Vector3[0]);
+    }
 
     #endregion
 }
