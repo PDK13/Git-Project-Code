@@ -158,7 +158,7 @@ public class RendererTrajectory : MonoBehaviour
         return v3_Trajectory_Result;
     }
 
-    private Vector3 Get_Trajectory_Dir(Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next, float f_Trajectory_Power)
+    public Vector3 Get_Trajectory_Dir(Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next, float f_Trajectory_Power)
     {
         return (v3_Trajectory_Next - v3_Trajectory_Start) * f_Trajectory_Power;
     }
