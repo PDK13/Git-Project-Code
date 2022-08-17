@@ -6,6 +6,8 @@ public class RigidbodyRotate : MonoBehaviour
 {
     [SerializeField] private bool b_Rigidbody_isForward = true;
 
+    [SerializeField] private bool b_Forward_XZ = true;
+
     private Rigidbody com_Rigidbody;
 
     private void Awake()
@@ -18,7 +20,14 @@ public class RigidbodyRotate : MonoBehaviour
     {
         if (b_Rigidbody_isForward)
         {
-            this.transform.forward = com_Rigidbody.velocity;
+            if (b_Forward_XZ)
+            {
+                this.transform.forward = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
+            }
+            else
+            {
+                this.transform.right = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
+            }
         }
     }
 
