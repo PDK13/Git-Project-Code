@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   b_Rigidbody_isForward: 1
-  b_Forward_XZ: 0
 --- !u!114 &9211147906921235626
 MonoBehaviour:
   m_ObjectHideFlags: 0

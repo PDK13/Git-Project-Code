@@ -51,6 +51,6 @@ public class Sample_TrajectoryBall : MonoBehaviour
 
     private void FixedUpdate()
     {
-        cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, v2_MouseDrag_Start, v2_MouseDrag_Next);
+        cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_Rigidbody, com_LineRenderer, v2_MouseDrag_Start, v2_MouseDrag_Next);
     }
 }

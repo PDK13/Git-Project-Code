@@ -43,6 +43,7 @@ public class Sample_TrajectoryTank : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             cs_RendererTrajectory.Set_Trajectory_toLineRenderer(
+                com_Rigidbody,
                 com_LineRenderer,
                 com_TransformPoint_Start.transform.position,
                 com_TransformPoint_Next.transform.position,
