@@ -210,6 +210,9 @@ public class RendererTrajectory : MonoBehaviour
 
     public void Set_Trajectory_toRigidbody(Rigidbody com_Rigidbody, Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next)
     {
+        if (com_Rigidbody.GetComponent<RigidbodyGravity>() == null) com_Rigidbody.gameObject.AddComponent<RigidbodyGravity>();
+        com_Rigidbody.GetComponent<RigidbodyGravity>().Set_Gravity_Scale(cs_RigidbodyGravity.Get_Gravity_Scale());
+
         Vector3 v3_Trajectory_Dir = (v3_Trajectory_Next - v3_Trajectory_Start) * f_Trajectory_Power;
 
         com_Rigidbody.velocity = v3_Trajectory_Dir;

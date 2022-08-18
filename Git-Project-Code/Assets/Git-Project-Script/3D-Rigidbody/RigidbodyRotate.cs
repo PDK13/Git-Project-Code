@@ -8,17 +8,41 @@ public class RigidbodyRotate : MonoBehaviour
 
     private Rigidbody com_Rigidbody;
 
+    private Rigidbody2D com_Rigidbody2D;
+
     private void Awake()
     {
-        if (GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
-        com_Rigidbody = GetComponent<Rigidbody>();
+        if (GetComponent<Rigidbody>() != null)
+        {
+            com_Rigidbody = GetComponent<Rigidbody>();
+        }
+        else
+        if (GetComponent<Rigidbody2D>() != null)
+        {
+            com_Rigidbody2D = GetComponent<Rigidbody2D>();
+        }
+        else
+        {
+            Debug.LogError("RigidbodyRotate: Require Componenet Rigidbody or Rigidbody2D.");
+        }
     }
 
     private void FixedUpdate()
     {
-        if (b_Rigidbody_isForward)
+        if (com_Rigidbody != null)
         {
-            this.transform.right = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
+            if (b_Rigidbody_isForward)
+            {
+                this.transform.right = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
+            }
+        }
+        else
+        if (com_Rigidbody2D != null)
+        {
+            if (b_Rigidbody_isForward)
+            {
+                this.transform.right = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
+            }
         }
     }
 
