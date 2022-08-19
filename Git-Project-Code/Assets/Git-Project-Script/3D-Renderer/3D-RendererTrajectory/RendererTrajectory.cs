@@ -189,9 +189,9 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Angle for hit Trajectory
 
-    public float? Get_Trajectory_Angle_toDeg(Vector3 v3_Pos_Main, Vector3 v3_Pos_Tarket, bool b_Angle_High)
+    public float? Get_Trajectory_Angle_toDeg(Vector3 v3_Pos_Start, Vector3 v3_Pos_Tarket, bool b_Angle_High)
     {
-        Vector3 v3_Tarket_Dir = v3_Pos_Tarket - v3_Pos_Main;
+        Vector3 v3_Tarket_Dir = v3_Pos_Tarket - v3_Pos_Start;
 
         float f_Y_High = v3_Tarket_Dir.y;
 
