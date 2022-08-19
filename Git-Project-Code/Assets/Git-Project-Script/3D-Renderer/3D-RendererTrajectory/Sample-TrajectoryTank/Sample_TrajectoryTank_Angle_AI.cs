@@ -61,6 +61,7 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject g_Bullet_Clone = Class_Object.Set_Prepab_Create(g_Bullet);
+            g_Bullet_Clone.GetComponent<Sample_TrajectoryBullet>().Set_Tarket(com_Tarket.gameObject);
             g_Bullet_Clone.transform.position = cs_RendererTrajectory.Get_Trajectory_Start();
             g_Bullet_Clone.SetActive(true);
 
@@ -77,7 +78,10 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
     {
         try
         {
-            f_Deg_Cur = (float)cs_RendererTrajectory.Get_Trajectory_Angle_toDeg(cs_RendererTrajectory.Get_Trajectory_Start_toTransform().position, com_Tarket.transform.position, b_Deg_High);
+            f_Deg_Cur = (float)cs_RendererTrajectory.Get_Trajectory_Angle_toDeg(
+                cs_RendererTrajectory.Get_Trajectory_Start_toTransform().position, 
+                com_Tarket.transform.position, 
+                b_Deg_High);
         }
         catch
         {

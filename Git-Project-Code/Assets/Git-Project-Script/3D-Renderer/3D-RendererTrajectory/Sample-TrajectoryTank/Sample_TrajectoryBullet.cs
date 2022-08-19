@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Sample_TrajectoryBullet : MonoBehaviour
 {
+    private GameObject g_Tarket;
+
     [Header("No hit")]
 
     [SerializeField] private Material m_Material_NotHit;
@@ -35,6 +37,11 @@ public class Sample_TrajectoryBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.Equals(g_Tarket))
+        {
+            Debug.Log("Hit Tarket!");
+        }
+
         com_MessRenderer.material = m_Material_Hit;
 
         cs_RigidbodyRotate.Set_Rigidbody_isForward(false);
@@ -47,5 +54,10 @@ public class Sample_TrajectoryBullet : MonoBehaviour
         yield return new WaitForSeconds(f_Destory_AfterTime);
 
         Destroy(this.gameObject);
+    }
+
+    public void Set_Tarket(GameObject g_Tarket)
+    {
+        this.g_Tarket = g_Tarket;
     }
 }
