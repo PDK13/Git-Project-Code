@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   f_Gravity_Scale: 1
-  f_Gravity_Global: -9.81
+  f_Gravity_Global: 9.81
 --- !u!114 &2120378584
 MonoBehaviour:
   m_ObjectHideFlags: 0

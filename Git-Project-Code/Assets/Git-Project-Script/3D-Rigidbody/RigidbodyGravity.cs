@@ -6,7 +6,7 @@ public class RigidbodyGravity : MonoBehaviour
 {
     [SerializeField] private float f_Gravity_Scale = 1.0f;
 
-    [SerializeField] private float f_Gravity_Global = -9.81f;
+    [SerializeField] private float f_Gravity_Global = 9.81f;
 
     private Rigidbody com_Rigidbody;
 
@@ -27,7 +27,7 @@ public class RigidbodyGravity : MonoBehaviour
             return;
         }
 
-        Vector3 v3_Gravity = f_Gravity_Global * f_Gravity_Scale * Vector3.up;
+        Vector3 v3_Gravity = Get_Gravity_Global_toVector() * Get_Gravity_Scale();
         com_Rigidbody.AddForce(v3_Gravity, ForceMode.Acceleration);
     }
 
@@ -52,9 +52,14 @@ public class RigidbodyGravity : MonoBehaviour
         return this.f_Gravity_Scale;
     }
 
-    public float Get_Gravity_Global()
+    public float Get_Gravity_Global_toFloat()
     {
         return this.f_Gravity_Global;
+    }
+
+    public Vector3 Get_Gravity_Global_toVector()
+    {
+        return Get_Gravity_Global_toFloat() * Vector3.down;
     }
 
     #endregion
