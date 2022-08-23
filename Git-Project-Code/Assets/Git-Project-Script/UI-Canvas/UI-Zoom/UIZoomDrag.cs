@@ -51,6 +51,5 @@ public class UIZoomDrag : MonoBehaviour, IPointerDownHandler, IDragHandler
         {
             Camera.main.fieldOfView = Camera.main.fieldOfView - f_Increment;
         }
-        
     }
 }
