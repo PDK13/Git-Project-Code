@@ -14,9 +14,9 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     [Header("Lock")]
 
-    [SerializeField] private bool b_JoyStick_Lock_X = false;
+    [SerializeField] private bool b_Lock_X = false;
 
-    [SerializeField] private bool b_JoyStick_Lock_Y = false;
+    [SerializeField] private bool b_Lock_Y = false;
 
     private Vector2 v2_JoyStick_Touch;
 
@@ -79,12 +79,12 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
         v2_JoyStick_Touch = (eventData.position - v2_JoyStick_Limit_Pos) / (v2_JoyStick_Limit_Radius * com_Canvas.scaleFactor);
 
-        if (b_JoyStick_Lock_X)
+        if (b_Lock_X)
         {
             v2_JoyStick_Touch.x = 0;
         }
 
-        if (b_JoyStick_Lock_Y)
+        if (b_Lock_Y)
         {
             v2_JoyStick_Touch.y = 0;
         }
@@ -107,6 +107,20 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     public void OnPointerUp(PointerEventData eventData)
     {
         com_JoyStick_Button.anchoredPosition = Vector2.zero;
+    }
+
+    #endregion
+
+    #region Lock JoyStick
+
+    public void Set_Lock_X(bool b_Lock_X)
+    {
+        this.b_Lock_X = b_Lock_X;
+    }
+
+    public void Set_Lock_Y(bool b_Lock_Y)
+    {
+        this.b_Lock_Y = b_Lock_Y;
     }
 
     #endregion
