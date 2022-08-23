@@ -12,6 +12,12 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     [SerializeField] private RectTransform com_JoyStick_Button;
 
+    [Header("Lock")]
+
+    [SerializeField] private bool b_JoyStick_Lock_X = false;
+
+    [SerializeField] private bool b_JoyStick_Lock_Y = false;
+
     private Vector2 v2_JoyStick_Touch;
 
     private Canvas com_Canvas;
@@ -72,6 +78,16 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Vector2 v2_JoyStick_Limit_Radius = com_JoyStick_Limit.sizeDelta / 2;
 
         v2_JoyStick_Touch = (eventData.position - v2_JoyStick_Limit_Pos) / (v2_JoyStick_Limit_Radius * com_Canvas.scaleFactor);
+
+        if (b_JoyStick_Lock_X)
+        {
+            v2_JoyStick_Touch.x = 0;
+        }
+
+        if (b_JoyStick_Lock_Y)
+        {
+            v2_JoyStick_Touch.y = 0;
+        }
 
         if (v2_JoyStick_Touch.magnitude > 0)
         {
