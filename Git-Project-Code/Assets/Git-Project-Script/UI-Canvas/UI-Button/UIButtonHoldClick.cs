@@ -200,7 +200,6 @@ public class UIButtonHoldClick : MonoBehaviour,
 			Event_HoldState.Invoke();
 	}
 
-
 	private void Set_Event_Invoke_PointerEnter()
 	{
 		if (Event_PointerEnter != null)
