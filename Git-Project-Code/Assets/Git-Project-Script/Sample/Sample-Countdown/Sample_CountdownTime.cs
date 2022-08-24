@@ -33,7 +33,7 @@ public class Sample_CountdownTime : MonoBehaviour
 
             com_Text.text = cs_CountdownTime.Get_TimeOut_Cur() + " / " + cs_CountdownTime.Get_Time();
 
-            yield return new WaitForSecondsRealtime(Time.fixedDeltaTime);
+            yield return new WaitForSeconds(Time.deltaTime);
         }
         while (!cs_CountdownTime.Get_TimeOut());
 
