@@ -2,13 +2,14 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-*/[Ll]ibrary/
-*/[Tt]emp/
-*/[Oo]bj/
-*/[Bb]uild/
-*/[Bb]uilds/
-*/[Ll]ogs/
-*/[Uu]ser[Ss]ettings/
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Bb]uild/
+**/[Bb]uilds/
+**/[Ll]ogs/
+**/[Uu]ser[Ss]ettings/
+/[Pp]roject[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -70,23 +71,3 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-
-Git-Project-Code/Library/ArtifactDB
-Git-Project-Code/Library/ArtifactDB-lock
-Git-Project-Code/Library/CurrentLayout-default.dwlt
-Git-Project-Code/Library/EditorOnlyScriptingSettings.json
-Git-Project-Code/Library/InspectorExpandedItems.asset
-Git-Project-Code/Library/LastSceneManagerSetup.txt
-Git-Project-Code/Library/SceneVisibilityState.asset
-Git-Project-Code/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll
-Git-Project-Code/Library/ScriptAssemblies/Unity.Rider.Editor.dll
-Git-Project-Code/Library/ScriptAssemblies/Unity.TextMeshPro.dll
-Git-Project-Code/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
-Git-Project-Code/Library/ScriptAssemblies/Unity.VSCode.Editor.dll
-Git-Project-Code/Library/ScriptAssemblies/UnityEditor.TestRunner.dll
-Git-Project-Code/Library/ScriptAssemblies/UnityEditor.UI.dll
-Git-Project-Code/Library/ScriptAssemblies/UnityEngine.TestRunner.dll
-Git-Project-Code/Library/ScriptAssemblies/UnityEngine.UI.dll
-Git-Project-Code/Library/ShaderCache/EditorEncounteredVariants
-Git-Project-Code/Library/SourceAssetDB
-Git-Project-Code/Library/SourceAssetDB-lock

@@ -5,6 +5,9 @@
 + Call when GameObject created (before Start).
 + Can use to set varible(s) as default.
 
+- OnEnable():
++ Can use for Action +
+
 - Start(): 
 + Call before first Frame start.
 + Call after GameObject created and before Update.
@@ -20,6 +23,9 @@
 - FixedUpdate(): 
 + Call more than about fer Frame (0.02 second fer called).
 + Use to "Physical Control" by Rigidbody.
+
+- OnDisable():
++ Can use for Action -
 
 * To Create a Button:
 
