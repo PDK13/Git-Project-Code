@@ -41,16 +41,13 @@ public class Sample_TrajectoryBall : MonoBehaviour
             v2_MouseDrag_Next = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             cs_RendererTrajectory.Set_Trajectory_Next(v2_MouseDrag_Next);
+
+            cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             cs_RendererTrajectory.Set_Trajectory_toRigidbody(com_Rigidbody, v2_MouseDrag_Start, v2_MouseDrag_Next);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag);
     }
 }
