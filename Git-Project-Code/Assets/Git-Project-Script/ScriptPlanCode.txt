@@ -27,6 +27,9 @@
 - OnDisable():
 + Can use for Action -
 
+- OnPointerExit() / OnPointerExit():
+- Use bestest for smart Phone.
+
 * To Create a Button:
 
 - Just use Unity Button.
