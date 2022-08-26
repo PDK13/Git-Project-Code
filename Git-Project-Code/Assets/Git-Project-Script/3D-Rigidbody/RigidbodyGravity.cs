@@ -12,11 +12,17 @@ public class RigidbodyGravity : MonoBehaviour
 
     private void Awake()
     {
-        if (GetComponent<Rigidbody2D>() == null)
+        try
         {
+            if (GetComponent<Rigidbody2D>() != null) return;
             if (GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
             com_Rigidbody = GetComponent<Rigidbody>();
             com_Rigidbody.useGravity = false;
+            com_Rigidbody.mass = 1;
+        }
+        catch
+        {
+
         }
     }
 
@@ -28,6 +34,7 @@ public class RigidbodyGravity : MonoBehaviour
         }
 
         Vector3 v3_Gravity = Get_Gravity_Global_toVector() * Get_Gravity_Scale();
+
         com_Rigidbody.AddForce(v3_Gravity, ForceMode.Acceleration);
     }
 
