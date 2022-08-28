@@ -135,7 +135,7 @@ public class RendererTrajectory : MonoBehaviour
 
         float f_Drag = 1f - f_TimeStep * f_Rigidbody_Drag;
 
-        Vector3 v3_Trajectory_Dir = Get_Trajectory_Dir();
+        Vector3 v3_Trajectory_Dir = Get_Trajectory_Dir_Primary();
 
         Vector3 v3_MoveStep = v3_Trajectory_Dir * f_TimeStep;
 
@@ -177,7 +177,7 @@ public class RendererTrajectory : MonoBehaviour
 
     public Vector3 Get_Trajectory_Dir_Primary()
     {
-        return Get_Trajectory_Next() - Get_Trajectory_Start();
+        return (Get_Trajectory_Next() - Get_Trajectory_Start()).normalized * f_Trajectory_Power;
     }
 
     public Vector3 Get_Trajectory_Dir()
@@ -236,6 +236,15 @@ public class RendererTrajectory : MonoBehaviour
         Vector3 v3_Trajectory_Dir = (v3_Trajectory_Next - v3_Trajectory_Start) * Get_Trajectory_Power();
 
         com_Rigidbody.velocity = v3_Trajectory_Dir;
+    }
+
+    public void Set_Trajectory_toRigidbody(Rigidbody2D com_Rigidbody2D, Vector2 v2_Trajectory_Start, Vector2 v2_Trajectory_Next)
+    {
+        Vector2 v2_Trajectory_Dir = (v2_Trajectory_Next - v2_Trajectory_Start) * Get_Trajectory_Power();
+
+        com_Rigidbody2D.mass = 0;
+        com_Rigidbody2D.gravityScale = cs_RigidbodyGravity.Get_Gravity_Scale();
+        com_Rigidbody2D.velocity = v2_Trajectory_Dir;
     }
 
     #endregion
