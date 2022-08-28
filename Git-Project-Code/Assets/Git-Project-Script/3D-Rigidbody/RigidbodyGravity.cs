@@ -18,7 +18,6 @@ public class RigidbodyGravity : MonoBehaviour
             if (GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
             com_Rigidbody = GetComponent<Rigidbody>();
             com_Rigidbody.useGravity = false;
-            com_Rigidbody.mass = 1;
         }
         catch
         {
@@ -50,6 +49,11 @@ public class RigidbodyGravity : MonoBehaviour
         this.f_Gravity_Global = f_Gravity_Global;
     }
 
+    public void Set_Rigidbody_Drag(float f_Gravity_Drag)
+    {
+        this.com_Rigidbody.drag = f_Gravity_Drag;
+    }
+
     #endregion
 
     #region Get
@@ -67,6 +71,11 @@ public class RigidbodyGravity : MonoBehaviour
     public Vector3 Get_Gravity_Global_toVector()
     {
         return Get_Gravity_Global_toFloat() * Vector3.down;
+    }
+
+    public float Get_Rigidbody_Drag()
+    {
+        return com_Rigidbody.drag;
     }
 
     #endregion

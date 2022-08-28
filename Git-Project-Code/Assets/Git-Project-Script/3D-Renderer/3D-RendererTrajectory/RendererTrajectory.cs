@@ -232,6 +232,7 @@ public class RendererTrajectory : MonoBehaviour
     {
         if (com_Rigidbody.GetComponent<RigidbodyGravity>() == null) com_Rigidbody.gameObject.AddComponent<RigidbodyGravity>();
         com_Rigidbody.GetComponent<RigidbodyGravity>().Set_Gravity_Scale(cs_RigidbodyGravity.Get_Gravity_Scale());
+        com_Rigidbody.GetComponent<RigidbodyGravity>().Set_Rigidbody_Drag(cs_RigidbodyGravity.Get_Rigidbody_Drag());
 
         Vector3 v3_Trajectory_Dir = (v3_Trajectory_Next - v3_Trajectory_Start) * Get_Trajectory_Power();
 
@@ -242,6 +243,7 @@ public class RendererTrajectory : MonoBehaviour
     {
         Vector2 v2_Trajectory_Dir = (v2_Trajectory_Next - v2_Trajectory_Start) * Get_Trajectory_Power();
 
+        //com_Rigidbody2D.drag = cs_RigidbodyGravity.Get_Rigidbody_Drag();
         com_Rigidbody2D.mass = 0;
         com_Rigidbody2D.gravityScale = cs_RigidbodyGravity.Get_Gravity_Scale();
         com_Rigidbody2D.velocity = v2_Trajectory_Dir;
