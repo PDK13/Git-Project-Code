@@ -30,7 +30,7 @@ public class Sample_TrajectoryBullet : MonoBehaviour
 
         if (GetComponent<RigidbodyVelocity>() == null) gameObject.AddComponent<RigidbodyVelocity>();
         cs_RigidbodyRotate = GetComponent<RigidbodyVelocity>();
-        cs_RigidbodyRotate.Set_Rigidbody_isForward(true);
+        cs_RigidbodyRotate.Set_Rigidbody_X(true);
 
         StartCoroutine(Set_Bullet_Destroy(f_Coroutine_Destroy_NoHit));
     }
@@ -44,7 +44,7 @@ public class Sample_TrajectoryBullet : MonoBehaviour
 
         com_MessRenderer.material = m_Material_Hit;
 
-        cs_RigidbodyRotate.Set_Rigidbody_isForward(false);
+        cs_RigidbodyRotate.Set_Rigidbody_X(false);
 
         StartCoroutine(Set_Bullet_Destroy(f_Coroutine_Destroy_Hit));
     }
