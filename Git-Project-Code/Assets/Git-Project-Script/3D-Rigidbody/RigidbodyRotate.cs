@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RigidbodyRotate : MonoBehaviour
+public class RigidbodyVelocity : MonoBehaviour
 {
     [SerializeField] private bool b_Rigidbody_isForward = true;
 

@@ -20,7 +20,7 @@ public class Sample_TrajectoryBullet : MonoBehaviour
 
     private MeshRenderer com_MessRenderer;
 
-    private RigidbodyRotate cs_RigidbodyRotate;
+    private RigidbodyVelocity cs_RigidbodyRotate;
 
     private void Awake()
     {
@@ -28,8 +28,8 @@ public class Sample_TrajectoryBullet : MonoBehaviour
         com_MessRenderer = GetComponent<MeshRenderer>();
         com_MessRenderer.material = m_Material_NotHit;
 
-        if (GetComponent<RigidbodyRotate>() == null) gameObject.AddComponent<RigidbodyRotate>();
-        cs_RigidbodyRotate = GetComponent<RigidbodyRotate>();
+        if (GetComponent<RigidbodyVelocity>() == null) gameObject.AddComponent<RigidbodyVelocity>();
+        cs_RigidbodyRotate = GetComponent<RigidbodyVelocity>();
         cs_RigidbodyRotate.Set_Rigidbody_isForward(true);
 
         StartCoroutine(Set_Bullet_Destroy(f_Coroutine_Destroy_NoHit));
