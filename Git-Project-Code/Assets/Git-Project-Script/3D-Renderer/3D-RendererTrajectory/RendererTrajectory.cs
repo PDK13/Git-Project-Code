@@ -81,7 +81,7 @@ public class RendererTrajectory : MonoBehaviour
 
     public float Get_Trajectory_Duration()
     {
-        return Get_Trajectory_Dir_Primary().magnitude;
+        return Get_Trajectory_Dir_Primary(false).magnitude;
     }
 
     #endregion
@@ -123,7 +123,7 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Trajectory
 
-    public Vector3[] Get_Trajectory_Points(float f_Rigidbody_Drag)
+    public Vector3[] Get_Trajectory_Points(float f_Rigidbody_Drag, bool b_Dir_Normalized)
     {
         Vector3[] v3_Trajectory_Result;
 
@@ -135,7 +135,7 @@ public class RendererTrajectory : MonoBehaviour
 
         float f_Drag = 1f - f_TimeStep * f_Rigidbody_Drag;
 
-        Vector3 v3_Trajectory_Dir = Get_Trajectory_Dir_Primary();
+        Vector3 v3_Trajectory_Dir = Get_Trajectory_Dir_Primary(b_Dir_Normalized);
 
         Vector3 v3_MoveStep = v3_Trajectory_Dir * f_TimeStep;
 
@@ -175,9 +175,14 @@ public class RendererTrajectory : MonoBehaviour
         return v3_Trajectory_Result;
     }
 
-    public Vector3 Get_Trajectory_Dir_Primary()
+    public Vector3 Get_Trajectory_Dir_Primary(bool b_Dir_Normalized)
     {
-        return (Get_Trajectory_Next() - Get_Trajectory_Start()).normalized * f_Trajectory_Power;
+        if (b_Dir_Normalized)
+        {
+            return (Get_Trajectory_Next() - Get_Trajectory_Start()).normalized * f_Trajectory_Power;
+        }
+
+        return (Get_Trajectory_Next() - Get_Trajectory_Start()) * f_Trajectory_Power;
     }
 
     public Vector3 Get_Trajectory_Dir()
@@ -232,6 +237,7 @@ public class RendererTrajectory : MonoBehaviour
     {
         if (com_Rigidbody.GetComponent<RigidbodyGravity>() == null) com_Rigidbody.gameObject.AddComponent<RigidbodyGravity>();
         com_Rigidbody.GetComponent<RigidbodyGravity>().Set_Gravity_Scale(cs_RigidbodyGravity.Get_Gravity_Scale());
+        com_Rigidbody.GetComponent<RigidbodyGravity>().Set_Rigidbody_Drag(cs_RigidbodyGravity.Get_Rigidbody_Drag());
 
         Vector3 v3_Trajectory_Dir = (v3_Trajectory_Next - v3_Trajectory_Start) * Get_Trajectory_Power();
 
@@ -242,6 +248,7 @@ public class RendererTrajectory : MonoBehaviour
     {
         Vector2 v2_Trajectory_Dir = (v2_Trajectory_Next - v2_Trajectory_Start) * Get_Trajectory_Power();
 
+        //com_Rigidbody2D.drag = cs_RigidbodyGravity.Get_Rigidbody_Drag();
         com_Rigidbody2D.mass = 0;
         com_Rigidbody2D.gravityScale = cs_RigidbodyGravity.Get_Gravity_Scale();
         com_Rigidbody2D.velocity = v2_Trajectory_Dir;
@@ -251,9 +258,9 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Line Renderer with Trajectory
 
-    public void Set_Trajectory_toLineRenderer(LineRenderer com_LineRenderer, float f_Rigidbody_Drag)
+    public void Set_Trajectory_toLineRenderer(LineRenderer com_LineRenderer, float f_Rigidbody_Drag, bool b_Dir_Normalized)
     {
-        Vector3[] trajectory = Get_Trajectory_Points(f_Rigidbody_Drag);
+        Vector3[] trajectory = Get_Trajectory_Points(f_Rigidbody_Drag, b_Dir_Normalized);
 
         com_LineRenderer.positionCount = trajectory.Length;
         Vector3[] position = new Vector3[trajectory.Length];
