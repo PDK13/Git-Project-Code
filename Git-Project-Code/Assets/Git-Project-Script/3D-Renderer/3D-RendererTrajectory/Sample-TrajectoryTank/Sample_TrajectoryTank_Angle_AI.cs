@@ -88,7 +88,7 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
 
         }
 
-        com_Gun.rotation = Class_Vector.Get_Rot_VectorToTransform(new Vector3(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, f_Deg_Cur));
+        com_Gun.rotation = Class_Vector.Get_Rot_EulerToQuaternion(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, f_Deg_Cur);
 
         cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag, true);
     }

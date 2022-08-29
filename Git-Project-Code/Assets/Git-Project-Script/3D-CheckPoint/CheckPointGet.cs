@@ -24,7 +24,7 @@ public class CheckPointGet : MonoBehaviour
 
     public float Get_OffsetRotate()
     {
-        return Class_Vector.Get_DirToDeg_XZ_RotateFromTransform(this.transform, t_Next.transform);
+        return Class_Vector.Get_DirToDeg_XZ_MainToCheck(this.transform, t_Next.transform);
     }
 
     /// <summary>

@@ -293,7 +293,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <returns></returns>
     public float Get_Rotation_XY()
     {
-        return Class_Vector.Get_Exchance_Rotate_Unity(Class_Vector.Get_Rot_TransformToVector(transform.rotation).z);
+        return Class_Vector.Get_Exchance_Rotate_Unity(Class_Vector.Get_Rot_QuaternionToEuler(transform.rotation).z);
     }
 
     /// <summary>
@@ -302,7 +302,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <returns>Degree</returns>
     public float Get_Rotation_XZ()
     {
-        return Class_Vector.Get_Exchance_Rotate_Unity(Class_Vector.Get_Rot_TransformToVector(transform.rotation).y);
+        return Class_Vector.Get_Exchance_Rotate_Unity(Class_Vector.Get_Rot_QuaternionToEuler(transform.rotation).y);
     }
 
     /// <summary>
@@ -311,7 +311,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="f_Rotation"></param>
     public void Set_Rotation_XY(float f_Rotation)
     {
-        transform.rotation = Class_Vector.Get_Rot_VectorToTransform(new Vector3(0, 0, f_Rotation));
+        transform.rotation = Class_Vector.Get_Rot_EulerToQuaternion(0, 0, f_Rotation);
     }
 
     /// <summary>
@@ -320,7 +320,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="f_Rotation"></param>
     public void Set_Rotation_XZ(float f_Rotation)
     {
-        transform.rotation = Class_Vector.Get_Rot_VectorToTransform(new Vector3(0, f_Rotation, 0));
+        transform.rotation = Class_Vector.Get_Rot_EulerToQuaternion(new Vector3(0, f_Rotation, 0));
     }
 
     /// <summary>
@@ -401,7 +401,7 @@ public class RigidbodyComponent : MonoBehaviour
             transform.position,
             v3_FootCast,
             Vector3.down,
-            Class_Vector.Get_Rot_TransformToVector(transform.rotation),
+            Class_Vector.Get_Rot_QuaternionToEuler(transform.rotation),
             f_FootCast,
             l_GroundCheck);
     }
@@ -418,7 +418,7 @@ public class RigidbodyComponent : MonoBehaviour
             transform.position,
             v3_HeadCast,
             Vector3.up,
-            Class_Vector.Get_Rot_TransformToVector(transform.rotation),
+            Class_Vector.Get_Rot_QuaternionToEuler(transform.rotation),
             f_HeadCast,
             l_GroundCheck);
     }

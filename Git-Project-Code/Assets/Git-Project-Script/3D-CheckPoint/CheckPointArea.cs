@@ -37,7 +37,7 @@ public class CheckPointArea : MonoBehaviour
             Physics.OverlapBox(
             transform.position,
             v3_Size / 2f,
-            Class_Vector.Get_Rot_VectorToTransform(0, 0, 0),
+            Class_Vector.Get_Rot_EulerToQuaternion(0, 0, 0),
             l_Tarket);
     }
 
@@ -48,7 +48,7 @@ public class CheckPointArea : MonoBehaviour
         if (Physics.OverlapBox(
             transform.position,
             v3_Size / 2f,
-            Class_Vector.Get_Rot_VectorToTransform(0, 0, 0),
+            Class_Vector.Get_Rot_EulerToQuaternion(0, 0, 0),
             l_Tarket).Length > 0) 
             Gizmos.color = Color.red;
         else

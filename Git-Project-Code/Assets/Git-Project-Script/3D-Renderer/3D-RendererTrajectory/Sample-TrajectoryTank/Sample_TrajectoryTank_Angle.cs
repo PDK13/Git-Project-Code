@@ -49,7 +49,7 @@ public class Sample_TrajectoryTank_Angle : MonoBehaviour
             f_Deg_Cur -= 1f;
         }
 
-        com_Gun.rotation = Class_Vector.Get_Rot_VectorToTransform(new Vector3(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, f_Deg_Cur));
+        com_Gun.rotation = Class_Vector.Get_Rot_EulerToQuaternion(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, f_Deg_Cur);
 
         //Power by X
         if (Input.GetKey(KeyCode.D))
