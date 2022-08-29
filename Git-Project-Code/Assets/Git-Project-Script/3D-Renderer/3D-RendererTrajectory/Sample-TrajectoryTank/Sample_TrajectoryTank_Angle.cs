@@ -79,6 +79,6 @@ public class Sample_TrajectoryTank_Angle : MonoBehaviour
 
     private void FixedUpdate()
     {
-        cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag);
+        cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag, true);
     }
 }

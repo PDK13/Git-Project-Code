@@ -42,7 +42,7 @@ public class Sample_TrajectoryBall : MonoBehaviour
 
             cs_RendererTrajectory.Set_Trajectory_Next(v2_MouseDrag_Next);
 
-            cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag);
+            cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag, false);
         }
 
         if (Input.GetMouseButtonUp(0))
