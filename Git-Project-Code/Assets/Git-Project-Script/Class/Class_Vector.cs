@@ -202,4 +202,18 @@ public class Class_Vector
     }
 
     #endregion
+
+    #region Vector
+
+    public static Vector3 Get_Vector(float f_X, float f_Y, float f_Z)
+    {
+        return new Vector3(f_X, f_Y, f_Z);
+    }
+
+    public static Vector2 Get_Vector(float f_X, float f_Y)
+    {
+        return new Vector2(f_X, f_Y);
+    }
+
+    #endregion
 }
