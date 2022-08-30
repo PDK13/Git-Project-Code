@@ -273,7 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d01ba4ae7b1c14ca351492ae56a389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_MovingFast: 1
+  b_Collision_PassingThrough: 1
+  b_Rigidbody_MovingFast: 0
 --- !u!1 &830213521
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d01ba4ae7b1c14ca351492ae56a389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_MovingFast: 1
+  b_Collision_PassingThrough: 1
+  b_Rigidbody_MovingFast: 0
 --- !u!1 &1527950337
 GameObject:
   m_ObjectHideFlags: 0
