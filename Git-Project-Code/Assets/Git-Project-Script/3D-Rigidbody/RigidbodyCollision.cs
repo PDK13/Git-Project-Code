@@ -19,14 +19,14 @@ public class RigidbodyCollision : MonoBehaviour
         {
             com_Rigidbody = GetComponent<Rigidbody>();
 
-            Set_Rigidbody_Component_2D();
+            Set_Rigidbody_Component_3D();
         }
         else
         if (GetComponent<Rigidbody2D>() != null)
         {
             com_Rigidbody2D = GetComponent<Rigidbody2D>();
 
-            Set_Rigidbody_Component_3D();
+            Set_Rigidbody_Component_2D();
         }
         else
         {

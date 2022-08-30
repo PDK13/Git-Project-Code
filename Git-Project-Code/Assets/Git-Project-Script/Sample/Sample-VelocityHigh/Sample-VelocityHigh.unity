@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   b_Collision_PassingThrough: 1
-  b_Rigidbody_MovingFast: 0
+  b_Rigidbody_MovingFast: 1
 --- !u!1 &830213521
 GameObject:
   m_ObjectHideFlags: 0
