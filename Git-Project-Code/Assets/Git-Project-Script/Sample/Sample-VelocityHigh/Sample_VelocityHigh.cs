@@ -29,6 +29,8 @@ public class Sample_VelocityHigh : MonoBehaviour
 
     private void FixedUpdate()
     {
+        com_Rigidbody2D.AddForce(Vector3.right * 50f);
+
         RaycastHit2D ray_Raycast = Physics2D.CircleCast(
             (Vector2)this.transform.position + com_Rigidbody2D.velocity.normalized * (this.com_CircleCollider2D.radius * 2 + 0.2f),
             this.com_CircleCollider2D.radius,

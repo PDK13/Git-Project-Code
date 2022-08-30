@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody Rotate")]
 public class RigidbodyRotate : MonoBehaviour
 {
     [SerializeField] [Tooltip("Vector Right - Red Axis")] private bool b_Follow_Right = true;
@@ -27,7 +28,7 @@ public class RigidbodyRotate : MonoBehaviour
         }
         else
         {
-            Debug.LogError("RigidbodyRotate: Require Componenet Rigidbody or Rigidbody2D.");
+            Debug.LogErrorFormat("{0}: Require Componenet Rigidbody or Rigidbody2D.", name);
         }
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody Gravity")]
 public class RigidbodyGravity : MonoBehaviour
 {
     [SerializeField] private float f_Gravity_Scale = 1.0f;
