@@ -38,10 +38,10 @@ public class Class_Object
     //Get Sprite(s) from Resource in Project (Assetes/resources) or in Application
     public static List<Sprite> Get_Sprite_fromResources(string s_Path_Folder)
     {
-        Sprite[] l_Prefab_Array = Resources.LoadAll<Sprite>(Class_String.Get_String_Replace_Resources(s_Path_Folder));
-        List<Sprite> l_Prefab_List = new List<Sprite>();
-        l_Prefab_List.AddRange(l_Prefab_Array);
-        return l_Prefab_List;
+        Sprite[] l_Sprite_Array = Resources.LoadAll<Sprite>(Class_String.Get_String_Replace_Resources(s_Path_Folder));
+        List<Sprite> l_Sprite_List = new List<Sprite>();
+        l_Sprite_List.AddRange(l_Sprite_Array);
+        return l_Sprite_List;
     }
 
     //Get Prefab from Resource in Project (Assetes/resources) or in Application
