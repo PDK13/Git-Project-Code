@@ -27,7 +27,7 @@ public class Class_Object
     #region Prefab(s) Get from Resource 
 
     //Get Prefab(s) from Resource in Project (Assetes/resources) or in Application
-    public static List<GameObject> Get_Data_Application_Resource_List(string s_Path_Folder)
+    public static List<GameObject> Get_Prefab_fromResources(string s_Path_Folder)
     {
         GameObject[] l_Prefab_Array = Resources.LoadAll<GameObject>(Class_String.Get_String_Replace_Resources(s_Path_Folder));
         List<GameObject> l_Prefab_List = new List<GameObject>();
@@ -35,11 +35,20 @@ public class Class_Object
         return l_Prefab_List;
     }
 
-    //Get Prefab from Resource in Project (Assetes/resources) or in Application
-    public static GameObject Get_Data_Application_Resource_Single(string s_Path_Folder, string s_File_Name)
+    //Get Sprite(s) from Resource in Project (Assetes/resources) or in Application
+    public static List<Sprite> Get_Sprite_fromResources(string s_Path_Folder)
     {
-        return (GameObject)Resources.Load(Class_String.Get_String_Replace_Resources(s_Path_Folder) + @"\" + s_File_Name, typeof(GameObject));
+        Sprite[] l_Prefab_Array = Resources.LoadAll<Sprite>(Class_String.Get_String_Replace_Resources(s_Path_Folder));
+        List<Sprite> l_Prefab_List = new List<Sprite>();
+        l_Prefab_List.AddRange(l_Prefab_Array);
+        return l_Prefab_List;
     }
+
+    //Get Prefab from Resource in Project (Assetes/resources) or in Application
+    //public static GameObject Get_Data_Application_Resource_Single(string s_Path_Folder, string s_File_Name)
+    //{
+    //    return (GameObject)Resources.Load(Class_String.Get_String_Replace_Resources(s_Path_Folder) + @"\" + s_File_Name, typeof(GameObject));
+    //}
 
     #endregion
 
