@@ -1,8 +1,8 @@
-using System.Collections;
+#if UNITY_EDITOR
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UnityEngine.UIElements;
 
 public class UnityToolPlayerRef : EditorWindow
 {
@@ -152,3 +152,5 @@ public class UnityToolPlayerRef : EditorWindow
         }
     }
 }
+
+#endif
