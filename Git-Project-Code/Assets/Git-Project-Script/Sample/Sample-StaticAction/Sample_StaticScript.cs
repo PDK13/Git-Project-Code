@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Sample_StaticScript : MonoBehaviour
 {
-    private static Sample_StaticScript cl_This; //Dùng để khẳng định chỉ được xuất hiện duy nhất 1 Script này trong Scene và có thể dùng Script này cho toàn bộ hệ thống mà không cần khai báo
+    private static Sample_StaticScript cl_This; 
+    //Dùng để khẳng định chỉ được xuất hiện duy nhất 1 Script này trong Scene và có thể dùng Script này cho toàn bộ hệ thống mà không cần khai báo
 
     [SerializeField] private string s_MyString = "Sample_StaticScript";
 
