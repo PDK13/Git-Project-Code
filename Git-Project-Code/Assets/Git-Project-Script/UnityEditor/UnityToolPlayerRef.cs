@@ -14,7 +14,7 @@ public class UnityToolPlayerRef : EditorWindow
 
     private string s_Choice = "String";
 
-    private const int i_Button_Horizontal_Count = 4;
+    private const float f_Button_Horizontal_Count = 2f;
 
     [MenuItem("Git-Project-Script Tools/Player-Ref Tool")]
     public static void Init()
@@ -43,6 +43,10 @@ public class UnityToolPlayerRef : EditorWindow
         Set_GUI_Button_Set();
 
         Set_GUI_Button_Get();
+
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
 
         Set_GUI_Button_Clear();
 
@@ -79,7 +83,7 @@ public class UnityToolPlayerRef : EditorWindow
 
     private void Set_GUI_Button_Set()
     {
-        if (GUILayout.Button("Set", GUILayout.Width(position.width / i_Button_Horizontal_Count), GUILayout.Height(50f)))
+        if (GUILayout.Button("Set", GUILayout.Width(position.width / f_Button_Horizontal_Count), GUILayout.Height(50f)))
         {
             if (s_Name.Equals(""))
             {
@@ -110,7 +114,7 @@ public class UnityToolPlayerRef : EditorWindow
 
     private void Set_GUI_Button_Get()
     {
-        if (GUILayout.Button("Get", GUILayout.Width(position.width / i_Button_Horizontal_Count), GUILayout.Height(50f)))
+        if (GUILayout.Button("Get", GUILayout.Width(position.width / f_Button_Horizontal_Count), GUILayout.Height(50f)))
         {
             if (s_Name.Equals(""))
             {
@@ -160,7 +164,7 @@ public class UnityToolPlayerRef : EditorWindow
 
     public void Set_GUI_Button_Clear()
     {
-        if (GUILayout.Button("Clear", GUILayout.Width(position.width / i_Button_Horizontal_Count), GUILayout.Height(50f)))
+        if (GUILayout.Button("Clear", GUILayout.Width(position.width / f_Button_Horizontal_Count), GUILayout.Height(50f)))
         {
             Debug.LogWarningFormat("Tool: Clear {0} = {1} Value!", s_Name, s_Value);
 
@@ -173,7 +177,7 @@ public class UnityToolPlayerRef : EditorWindow
 
     public void Set_GUI_Button_Clear_All()
     {
-        if (GUILayout.Button("Clear All", GUILayout.Width(position.width / i_Button_Horizontal_Count), GUILayout.Height(50f)))
+        if (GUILayout.Button("Clear All", GUILayout.Width(position.width / f_Button_Horizontal_Count), GUILayout.Height(50f)))
         {
             Debug.LogWarning("Tool: Clear all Value!");
 
