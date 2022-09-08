@@ -86,7 +86,7 @@ public class Class_String
 
     #region String Data Main
 
-    #region  String Data Main Encypt
+    #region String Data Main Encypt
 
     public static string Get_Data_Encypt(List<string> l_DataList, char c_Key)
     {
@@ -94,12 +94,14 @@ public class Class_String
 
         for (int i = 0; i < l_DataList.Count; i++)
         {
-            s_Data += (l_DataList[i]);
+            //s_Data += (l_DataList[i]);
 
-            if (i < l_DataList.Count - 1)
-            {
-                s_Data += c_Key;
-            }
+            //if (i < l_DataList.Count - 1)
+            //{
+            //    s_Data += c_Key;
+            //}
+
+            s_Data = Get_Data_Encypt_Add(s_Data, l_DataList[i], c_Key);
         }
 
         return s_Data;
@@ -111,12 +113,14 @@ public class Class_String
 
         for (int i = 0; i < l_DataList.Count; i++)
         {
-            s_Data += (l_DataList[i].ToString());
+            //s_Data += (l_DataList[i].ToString());
 
-            if (i < l_DataList.Count - 1)
-            {
-                s_Data += c_Key;
-            }
+            //if (i < l_DataList.Count - 1)
+            //{
+            //    s_Data += c_Key;
+            //}
+
+            s_Data = Get_Data_Encypt_Add(s_Data, l_DataList[i], c_Key);
         }
 
         return s_Data;
@@ -128,12 +132,14 @@ public class Class_String
 
         for (int i = 0; i < l_DataList.Count; i++)
         {
-            s_Data += (l_DataList[i].ToString());
+            //s_Data += (l_DataList[i].ToString());
 
-            if (i < l_DataList.Count - 1)
-            {
-                s_Data += c_Key;
-            }
+            //if (i < l_DataList.Count - 1)
+            //{
+            //    s_Data += c_Key;
+            //}
+
+            s_Data = Get_Data_Encypt_Add(s_Data, l_DataList[i], c_Key);
         }
 
         return s_Data;
@@ -145,15 +151,41 @@ public class Class_String
 
         for (int i = 0; i < l_DataList.Count; i++)
         {
-            s_Data += ((l_DataList[i]) ? "1" : "0");
+            //s_Data += ((l_DataList[i]) ? "1" : "0");
 
-            if (i < l_DataList.Count - 1)
-            {
-                s_Data += c_Key;
-            }
+            //if (i < l_DataList.Count - 1)
+            //{
+            //    s_Data += c_Key;
+            //}
+
+            s_Data = Get_Data_Encypt_Add(s_Data, l_DataList[i], c_Key);
         }
 
         return s_Data;
+    }
+
+    #endregion
+
+    #region String Data Main Add Encypt
+
+    public static string Get_Data_Encypt_Add(string s_Data, string s_Data_Add, char c_Key)
+    {
+        return s_Data + ((s_Data.Length != 0) ? c_Key.ToString() : "") + s_Data_Add;
+    }
+
+    public static string Get_Data_Encypt_Add(string s_Data, int i_Data_Add, char c_Key)
+    {
+        return s_Data + ((s_Data.Length != 0) ? c_Key.ToString() : "") + i_Data_Add.ToString();
+    }
+
+    public static string Get_Data_Encypt_Add(string s_Data, float f_Data_Add, char c_Key)
+    {
+        return s_Data + ((s_Data.Length != 0) ? c_Key.ToString() : "") + f_Data_Add.ToString();
+    }
+
+    public static string Get_Data_Encypt_Add(string s_Data, bool b_Data_Add, char c_Key)
+    {
+        return s_Data + ((s_Data.Length != 0) ? c_Key.ToString() : "") + ((b_Data_Add) ? "1" : "0");
     }
 
     #endregion
