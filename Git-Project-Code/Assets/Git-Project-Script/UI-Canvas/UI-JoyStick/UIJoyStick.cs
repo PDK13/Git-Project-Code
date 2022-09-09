@@ -8,7 +8,13 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 {
     [Header("UI")]
 
+    [SerializeField] private bool b_Lock_Position = true;
+
+    [SerializeField] private bool b_Auto_Reset = true;
+
     [SerializeField] private RectTransform com_JoyStick_Limit;
+
+    private Vector2 v2_JoyStick_Limit_Position_Primary;
 
     [SerializeField] private RectTransform com_JoyStick_Button;
 
@@ -17,6 +23,8 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     [SerializeField] private bool b_Lock_X = false;
 
     [SerializeField] private bool b_Lock_Y = false;
+
+    private Vector2 v2_JoyStick_Limit;
 
     private Vector2 v2_JoyStick_Touch;
 
@@ -32,6 +40,8 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         com_JoyStick_Button.anchorMax = center;
         com_JoyStick_Button.pivot = center;
         com_JoyStick_Button.anchoredPosition = Vector2.zero;
+
+        v2_JoyStick_Limit_Position_Primary = com_JoyStick_Limit.GetComponent<RectTransform>().anchoredPosition;
 
         if (com_Canvas == null)
         {
@@ -62,6 +72,14 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!b_Lock_Position)
+        {
+            Vector2 v2_JoyStick_Limit_Pos = RectTransformUtility.WorldToScreenPoint(com_Camera, com_JoyStick_Limit.position);
+            Vector2 v2_JoyStick_Limit = (eventData.position - v2_JoyStick_Limit_Pos) / com_Canvas.scaleFactor;
+
+            com_JoyStick_Limit.anchoredPosition = com_JoyStick_Limit.anchoredPosition + v2_JoyStick_Limit;
+        }
+
         OnDrag(eventData);
     }
 
@@ -107,6 +125,11 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     public void OnPointerUp(PointerEventData eventData)
     {
         com_JoyStick_Button.anchoredPosition = Vector2.zero;
+
+        if (b_Auto_Reset)
+        {
+            com_JoyStick_Limit.anchoredPosition = v2_JoyStick_Limit_Position_Primary;
+        }
     }
 
     #endregion
