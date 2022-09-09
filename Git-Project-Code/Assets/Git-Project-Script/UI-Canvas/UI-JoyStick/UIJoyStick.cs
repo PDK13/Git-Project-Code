@@ -24,8 +24,6 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     [SerializeField] private bool b_Lock_Y = false;
 
-    private Vector2 v2_JoyStick_Limit;
-
     private Vector2 v2_JoyStick_Touch;
 
     private Canvas com_Canvas;
