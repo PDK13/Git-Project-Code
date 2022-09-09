@@ -72,6 +72,11 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (com_Canvas.renderMode == RenderMode.ScreenSpaceCamera)
+        {
+            com_Camera = com_Canvas.worldCamera;
+        }
+
         if (!b_Lock_Position)
         {
             Vector2 v2_JoyStick_Limit_Pos = RectTransformUtility.WorldToScreenPoint(com_Camera, com_JoyStick_Limit.position);
@@ -85,13 +90,6 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void OnDrag(PointerEventData eventData)
     {
-        com_Camera = null;
-
-        if (com_Canvas.renderMode == RenderMode.ScreenSpaceCamera)
-        {
-            com_Camera = com_Canvas.worldCamera;
-        }
-
         Vector2 v2_JoyStick_Limit_Pos = RectTransformUtility.WorldToScreenPoint(com_Camera, com_JoyStick_Limit.position);
         Vector2 v2_JoyStick_Limit_Radius = com_JoyStick_Limit.sizeDelta / 2;
 
