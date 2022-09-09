@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a0f992f6e1f2b4b82a70e985d91ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_Lock_Position: 1
+  b_Lock_Position: 0
   b_Auto_Reset: 1
   com_JoyStick_Limit: {fileID: 117577773}
   com_JoyStick_Button: {fileID: 313645455}
