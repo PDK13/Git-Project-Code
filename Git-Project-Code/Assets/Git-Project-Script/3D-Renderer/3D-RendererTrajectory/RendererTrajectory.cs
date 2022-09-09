@@ -39,6 +39,11 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Trajectory Start Point and Next Point
 
+    public void Set_Trajectory_Start(Transform com_Trajectory_Start)
+    {
+        this.com_Trajectory_Start = com_Trajectory_Start;
+    }
+
     public void Set_Trajectory_Start(Vector3 v3_Trajectory_Start)
     {
         com_Trajectory_Start.position = v3_Trajectory_Start;
@@ -47,6 +52,11 @@ public class RendererTrajectory : MonoBehaviour
     public void Set_Trajectory_Start_Chance(Vector3 v3_Trajectory_Start_Chance)
     {
         Set_Trajectory_Start(Get_Trajectory_Start() + v3_Trajectory_Start_Chance);
+    }
+
+    public void Set_Trajectory_Next(Transform com_Trajectory_Next)
+    {
+        this.com_Trajectory_Next = com_Trajectory_Next;
     }
 
     public void Set_Trajectory_Next(Vector3 v3_Trajectory_Next)
