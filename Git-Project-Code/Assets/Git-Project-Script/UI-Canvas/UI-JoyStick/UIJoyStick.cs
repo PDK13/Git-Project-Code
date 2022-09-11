@@ -24,7 +24,9 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     [SerializeField] private bool b_Lock_Y = false;
 
-    private Vector2 v2_JoyStick_Touch;
+    private Vector2 v2_JoyStick_Value_Primary;
+
+    private Vector2 v2_JoyStick_Value_Fixed;
 
     private Canvas com_Canvas;
 
@@ -47,21 +49,31 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
             if (com_Canvas == null)
             {
-                Debug.LogErrorFormat("UIJoyStick: {0}'s parent doesn't is Canvas.");
+                Debug.LogErrorFormat("{0}: This parent doesn't is Canvas.", name);
             }
         }
     }
 
     #region Input Value
 
-    public float Get_JoyStick_X()
+    public float Get_JoyStick_X_Fixed()
     {
-        return v2_JoyStick_Touch.x;
+        return v2_JoyStick_Value_Fixed.x;
     }
 
-    public float Get_JoyStick_Y()
+    public float Get_JoyStick_Y_Fixed()
     {
-        return v2_JoyStick_Touch.y;
+        return v2_JoyStick_Value_Fixed.y;
+    }
+
+    public float Get_JoyStick_X_Primary()
+    {
+        return v2_JoyStick_Value_Primary.x;
+    }
+
+    public float Get_JoyStick_Y_Primary()
+    {
+        return v2_JoyStick_Value_Primary.y;
     }
 
     #endregion
@@ -91,31 +103,33 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Vector2 v2_JoyStick_Limit_Pos = RectTransformUtility.WorldToScreenPoint(com_Camera, com_JoyStick_Limit.position);
         Vector2 v2_JoyStick_Limit_Radius = com_JoyStick_Limit.sizeDelta / 2;
 
-        v2_JoyStick_Touch = (eventData.position - v2_JoyStick_Limit_Pos) / (v2_JoyStick_Limit_Radius * com_Canvas.scaleFactor);
+        v2_JoyStick_Value_Primary = (eventData.position - v2_JoyStick_Limit_Pos) / (v2_JoyStick_Limit_Radius * com_Canvas.scaleFactor);
 
         if (b_Lock_X)
         {
-            v2_JoyStick_Touch.x = 0;
+            v2_JoyStick_Value_Primary.x = 0;
         }
 
         if (b_Lock_Y)
         {
-            v2_JoyStick_Touch.y = 0;
+            v2_JoyStick_Value_Primary.y = 0;
         }
 
-        if (v2_JoyStick_Touch.magnitude > 0)
+        v2_JoyStick_Value_Fixed = v2_JoyStick_Value_Primary;
+
+        if (v2_JoyStick_Value_Fixed.magnitude > 0)
         {
-            if (v2_JoyStick_Touch.magnitude > 1)
+            if (v2_JoyStick_Value_Fixed.magnitude > 1)
             {
-                v2_JoyStick_Touch = v2_JoyStick_Touch.normalized;
+                v2_JoyStick_Value_Fixed = v2_JoyStick_Value_Fixed.normalized;
             }
         }
         else
         {
-            v2_JoyStick_Touch = Vector2.zero;
+            v2_JoyStick_Value_Fixed = Vector2.zero;
         }
 
-        com_JoyStick_Button.anchoredPosition = v2_JoyStick_Touch * v2_JoyStick_Limit_Radius * 1;
+        com_JoyStick_Button.anchoredPosition = v2_JoyStick_Value_Fixed * v2_JoyStick_Limit_Radius * 1;
     }
 
     public void OnPointerUp(PointerEventData eventData)
