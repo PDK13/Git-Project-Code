@@ -8,6 +8,41 @@ public class Class_Time
     {
         Time.timeScale = f_Time_Scale;
     }
+
+    public static int Get_Time_Compare(Class_Time_Value cs_Time_From, Class_Time_Value cs_Time_To)
+    {
+        if (cs_Time_From.Get_Time_Hour() > cs_Time_To.Get_Time_Hour())
+        {
+            return 1;
+        }
+        else
+        if (cs_Time_From.Get_Time_Hour() < cs_Time_To.Get_Time_Hour())
+        {
+            return -1;
+        }
+
+        if (cs_Time_From.Get_Time_Minute() > cs_Time_To.Get_Time_Minute())
+        {
+            return 1;
+        }
+        else
+        if (cs_Time_From.Get_Time_Minute() < cs_Time_To.Get_Time_Minute())
+        {
+            return -1;
+        }
+
+        if (cs_Time_From.Get_Time_Second() > cs_Time_To.Get_Time_Second())
+        {
+            return 1;
+        }
+        else
+        if (cs_Time_From.Get_Time_Second() < cs_Time_To.Get_Time_Second())
+        {
+            return -1;
+        }
+
+        return 0;
+    }
 }
 
 [System.Serializable]
@@ -18,6 +53,25 @@ public class Class_Time_Value
     [SerializeField] private int i_Minute = 0;
 
     [SerializeField] private int i_Second = 0;
+
+    public Class_Time_Value()
+    {
+        this.i_Hour = 0;
+        this.i_Minute = 0;
+        this.i_Second = 0;
+    }
+
+    public Class_Time_Value(Class_Time_Value cs_Class_Time_Value)
+    {
+        this.i_Hour = cs_Class_Time_Value.Get_Time_Hour();
+        this.i_Minute = cs_Class_Time_Value.Get_Time_Minute();
+        this.i_Second = cs_Class_Time_Value.Get_Time_Second();
+    }
+
+    public bool Get_Time_Zero()
+    {
+        return Get_Time_Second() == 0 && Get_Time_Minute() == 0 && Get_Time_Hour() == 0;
+    }
 
     #region Hour
 

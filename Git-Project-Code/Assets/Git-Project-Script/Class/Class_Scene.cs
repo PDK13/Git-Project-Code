@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Working on PlayerPrebs and Scene for Window or Android
-/// </summary>
 public class Class_Scene
 {
-    public static void Set_ChanceScene(string s_SceneName)
+    public static void Set_ChanceScene(string s_SceneName, LoadSceneMode enum_LoadSceneMode = LoadSceneMode.Single)
     {
-        SceneManager.LoadScene(s_SceneName);
+        SceneManager.LoadScene(s_SceneName, enum_LoadSceneMode);
     }
 
     public static int Get_SceneBuildIndex()

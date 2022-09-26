@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
@@ -56,24 +53,34 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     #region Input Value
 
-    public float Get_JoyStick_X_Fixed()
+    public Vector2 Get_JoyStick_Fixed()
     {
-        return v2_JoyStick_Value_Fixed.x;
+        return v2_JoyStick_Value_Fixed;
     }
 
-    public float Get_JoyStick_Y_Fixed()
+    public float Get_JoyStick_Fixed_X()
     {
-        return v2_JoyStick_Value_Fixed.y;
+        return Get_JoyStick_Fixed().x;
     }
 
-    public float Get_JoyStick_X_Primary()
+    public float Get_JoyStick_Fixed_Y()
     {
-        return v2_JoyStick_Value_Primary.x;
+        return Get_JoyStick_Fixed().y;
     }
 
-    public float Get_JoyStick_Y_Primary()
+    public Vector2 Get_JoyStick_Primary()
     {
-        return v2_JoyStick_Value_Primary.y;
+        return v2_JoyStick_Value_Primary;
+    }
+
+    public float Get_JoyStick_Primary_X()
+    {
+        return Get_JoyStick_Primary().x;
+    }
+
+    public float Get_JoyStick_PrimaryY_()
+    {
+        return Get_JoyStick_Primary().y;
     }
 
     #endregion
@@ -158,37 +165,3 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     #endregion
 }
-
-//[System.Serializable]
-//public class UnityEventPointer_JoyStick
-//{
-//    [Tooltip("Unity Hold-State Event Handle")]
-//    [Space]
-//    [SerializeField]
-//    private UnityEvent Event_DragState;
-
-//    [Tooltip("Unity Hold-State Event Handle")]
-//    [Space]
-//    [SerializeField]
-//    private UnityEvent Event_HoldState;
-
-//    [Tooltip("Unity Pointer Down Event Handle")]
-//    [Space]
-//    [SerializeField]
-//    private UnityEvent Event_PointerDown;
-
-//    [Tooltip("Unity Pointer Up Event Handle")]
-//    [Space]
-//    [SerializeField]
-//    private UnityEvent Event_PointerUp;
-
-//    [Tooltip("Unity Pointer Enter Event Handle")]
-//    [Space]
-//    [SerializeField]
-//    private UnityEvent Event_PointerEnter;
-
-//    [Tooltip("Unity Pointer Exit Event Handle")]
-//    [Space]
-//    [SerializeField]
-//    private UnityEvent Event_PointerExit;
-//}
