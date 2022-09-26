@@ -17,13 +17,19 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     [Header("Lock")]
 
-    [SerializeField] private bool b_Lock_X = false;
+    [SerializeField] private bool b_Lock_X_L = false;
 
-    [SerializeField] private bool b_Lock_Y = false;
+    [SerializeField] private bool b_Lock_X_R = false;
 
-    private Vector2 v2_JoyStick_Value_Primary;
+    [SerializeField] private bool b_Lock_Y_U = false;
 
-    private Vector2 v2_JoyStick_Value_Fixed;
+    [SerializeField] private bool b_Lock_Y_D = false;
+
+    [Header("Value")]
+
+    [SerializeField] private Vector2 v2_JoyStick_Value_Primary;
+
+    [SerializeField] private Vector2 v2_JoyStick_Value_Fixed;
 
     private Canvas com_Canvas;
 
@@ -112,12 +118,32 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
         v2_JoyStick_Value_Primary = (eventData.position - v2_JoyStick_Limit_Pos) / (v2_JoyStick_Limit_Radius * com_Canvas.scaleFactor);
 
-        if (b_Lock_X)
+        //if (b_Lock_X)
+        //{
+        //    v2_JoyStick_Value_Primary.x = 0f;
+        //}
+
+        //if (b_Lock_Y)
+        //{
+        //    v2_JoyStick_Value_Primary.y = 0f;
+        //}
+
+        if (b_Lock_X_L && v2_JoyStick_Value_Primary.x < 0)
+        {
+            v2_JoyStick_Value_Primary.x = 0;
+        }
+        else
+        if (b_Lock_X_R && v2_JoyStick_Value_Primary.x > 0)
         {
             v2_JoyStick_Value_Primary.x = 0;
         }
 
-        if (b_Lock_Y)
+        if (b_Lock_Y_U && v2_JoyStick_Value_Primary.y > 0)
+        {
+            v2_JoyStick_Value_Primary.y = 0;
+        }
+        else
+        if (b_Lock_Y_D && v2_JoyStick_Value_Primary.y < 0)
         {
             v2_JoyStick_Value_Primary.y = 0;
         }
@@ -153,14 +179,44 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     #region Lock JoyStick
 
-    public void Set_Lock_X(bool b_Lock_X)
+    public void Set_Lock_X_L(bool b_Lock_X_L)
     {
-        this.b_Lock_X = b_Lock_X;
+        this.b_Lock_X_L = b_Lock_X_L;
     }
 
-    public void Set_Lock_Y(bool b_Lock_Y)
+    public void Set_Lock_X_R(bool b_Lock_X_R)
     {
-        this.b_Lock_Y = b_Lock_Y;
+        this.b_Lock_X_R = b_Lock_X_R;
+    }
+
+    public void Set_Lock_Y_U(bool b_Lock_Y_U)
+    {
+        this.b_Lock_Y_U = b_Lock_Y_U;
+    }
+
+    public void Set_Lock_Y_D(bool b_Lock_Y_D)
+    {
+        this.b_Lock_Y_D = b_Lock_Y_D;
+    }
+
+    public bool Get_Lock_X_L()
+    {
+        return this.b_Lock_X_L;
+    }
+
+    public bool Get_Lock_X_R()
+    {
+        return this.b_Lock_X_R;
+    }
+
+    public bool Get_Lock_Y_U()
+    {
+        return this.b_Lock_Y_U;
+    }
+
+    public bool Get_Lock_Y_D()
+    {
+        return this.b_Lock_Y_D;
     }
 
     #endregion

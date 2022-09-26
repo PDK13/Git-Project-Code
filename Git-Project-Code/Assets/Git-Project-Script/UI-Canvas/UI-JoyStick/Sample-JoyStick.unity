@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -578,8 +578,12 @@ MonoBehaviour:
   b_Auto_Reset: 1
   com_JoyStick_Limit: {fileID: 117577773}
   com_JoyStick_Button: {fileID: 313645455}
-  b_Lock_X: 0
-  b_Lock_Y: 0
+  b_Lock_X_L: 0
+  b_Lock_X_R: 0
+  b_Lock_Y_U: 0
+  b_Lock_Y_D: 0
+  v2_JoyStick_Value_Primary: {x: 0, y: 0}
+  v2_JoyStick_Value_Fixed: {x: 0, y: 0}
 --- !u!114 &1674810504
 MonoBehaviour:
   m_ObjectHideFlags: 0
