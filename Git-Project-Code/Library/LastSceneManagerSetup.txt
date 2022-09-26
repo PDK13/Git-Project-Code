@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Git-Project-Script/2D-Isometric/Iso-Editor/Iso-Editor.unity
+- path: Assets/Git-Project-Script/Simple-C#/Simple-Singleton/Simple-Singleton.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
