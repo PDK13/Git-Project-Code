@@ -29,21 +29,21 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void Set_Music(AudioClip au_Clip)
+    public static void Set_Music(AudioClip au_Clip)
     {
-        if (g_SoundClone_Music != null)
+        if (cs_This.g_SoundClone_Music != null)
         {
             //If Music not emty, Stop Old and Start New Music!
-            Destroy(g_SoundClone_Music);
+            Destroy(cs_This.g_SoundClone_Music);
         }
 
         //Start new Music!
-        g_SoundClone_Music = Set_Sound_2D(au_Clip, true);
+        cs_This.g_SoundClone_Music = Set_Sound_2D(au_Clip, true);
     }
 
-    public GameObject Set_Sound_3D(AudioClip au_Clip, bool b_Loop, Vector2 v2_Pos, float f_Distance)
+    public static GameObject Set_Sound_3D(AudioClip au_Clip, bool b_Loop, Vector2 v2_Pos, float f_Distance)
     {
-        GameObject g_SoundClone = Class_Object.Set_Prepab_Create(this.g_SoundClone, this.transform);
+        GameObject g_SoundClone = Class_Object.Set_Prepab_Create(cs_This.g_SoundClone);
 
         g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_3D(au_Clip, b_Loop, v2_Pos, f_Distance);
 
@@ -51,15 +51,15 @@ public class SoundManager : MonoBehaviour
 
         if (b_Loop)
         {
-            lg_SoundClone_Cur.Add(g_SoundClone);
+            cs_This.lg_SoundClone_Cur.Add(g_SoundClone);
         }
 
         return g_SoundClone;
     }
 
-    public GameObject Set_Sound_2D(AudioClip au_Clip, bool b_Loop)
+    public static GameObject Set_Sound_2D(AudioClip au_Clip, bool b_Loop)
     {
-        GameObject g_SoundClone = Class_Object.Set_Prepab_Create(this.g_SoundClone, this.transform);
+        GameObject g_SoundClone = Class_Object.Set_Prepab_Create(cs_This.g_SoundClone);
 
         g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_2D(au_Clip, b_Loop);
 
@@ -67,42 +67,42 @@ public class SoundManager : MonoBehaviour
 
         if (b_Loop)
         {
-            lg_SoundClone_Cur.Add(g_SoundClone);
+            cs_This.lg_SoundClone_Cur.Add(g_SoundClone);
         }
 
         return g_SoundClone;
     }
 
-    public void Set_Sound_Mute(bool b_Sound_isMute)
+    public static void Set_Sound_Mute(bool b_Sound_isMute)
     {
-        for (int i = 0; i < lg_SoundClone_Cur.Count; i++)
+        for (int i = 0; i < cs_This.lg_SoundClone_Cur.Count; i++)
         {
-            lg_SoundClone_Cur[i].GetComponent<SoundClone>().Set_Sound_Mute(b_Sound_isMute);
+            cs_This.lg_SoundClone_Cur[i].GetComponent<SoundClone>().Set_Sound_Mute(b_Sound_isMute);
         }
     }
 
-    public bool Get_Sound_isMute()
+    public static bool Get_Sound_isMute()
     {
-        return b_Sound_isMute;
+        return cs_This.b_Sound_isMute;
     }
 
-    public void Set_Sound_Stop()
+    public static void Set_Sound_Stop()
     {
-        int i_List_Count = lg_SoundClone_Cur.Count;
+        int i_List_Count = cs_This.lg_SoundClone_Cur.Count;
 
         for (int i = 0; i < i_List_Count; i++)
         {
-            Destroy(lg_SoundClone_Cur[i]);
+            Destroy(cs_This.lg_SoundClone_Cur[i]);
         }
 
         for (int i = 0; i < i_List_Count; i++)
         {
-            lg_SoundClone_Cur.RemoveAt(0);
+            cs_This.lg_SoundClone_Cur.RemoveAt(0);
         }
     }
 
-    public bool Get_Sound_isExist()
+    public static bool Get_Sound_isExist()
     {
-        return lg_SoundClone_Cur.Count > 0;
+        return cs_This.lg_SoundClone_Cur.Count > 0;
     }
 }
