@@ -13,9 +13,11 @@ public class SoundManager : MonoBehaviour
 
     private GameObject g_SoundClone_Music;
 
+    private bool b_Sound_isMute = false;
+
     [Header("Sound List")]
 
-    private List<GameObject> lg_SoundClone_Cur = new List<GameObject>();
+    [SerializeField] private List<GameObject> lg_SoundClone_Cur = new List<GameObject>();
 
     private void Awake()
     {
@@ -45,6 +47,8 @@ public class SoundManager : MonoBehaviour
 
         g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_3D(au_Clip, b_Loop, v2_Pos, f_Distance);
 
+        g_SoundClone.GetComponent<SoundClone>().Set_Sound_Mute(Get_Sound_isMute());
+
         if (b_Loop)
         {
             lg_SoundClone_Cur.Add(g_SoundClone);
@@ -58,6 +62,8 @@ public class SoundManager : MonoBehaviour
         GameObject g_SoundClone = Class_Object.Set_Prepab_Create(this.g_SoundClone, this.transform);
 
         g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_2D(au_Clip, b_Loop);
+
+        g_SoundClone.GetComponent<SoundClone>().Set_Sound_Mute(Get_Sound_isMute());
 
         if (b_Loop)
         {
@@ -75,6 +81,11 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public bool Get_Sound_isMute()
+    {
+        return b_Sound_isMute;
+    }
+
     public void Set_Sound_Stop()
     {
         int i_List_Count = lg_SoundClone_Cur.Count;
@@ -88,5 +99,10 @@ public class SoundManager : MonoBehaviour
         {
             lg_SoundClone_Cur.RemoveAt(0);
         }
+    }
+
+    public bool Get_Sound_isExist()
+    {
+        return lg_SoundClone_Cur.Count > 0;
     }
 }
