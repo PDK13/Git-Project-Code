@@ -22,7 +22,7 @@ public class Class_FileIO
         Set_Data_Read_Clear();
     }
 
-    #region Primary Path 
+    #region ================================================================== File Path 
 
     public static string Get_Path_Disk(char c_Path_Disk)
     {
@@ -43,7 +43,7 @@ public class Class_FileIO
 
     #endregion
 
-    #region Resource Data Path 
+    #region Resource Data Path (Access Read / Write in Editor, but just Access Read in Application)
 
     public static string Get_Path_Application_ProjectData()
     {
@@ -62,7 +62,7 @@ public class Class_FileIO
 
     #endregion
 
-    #region Persistent Data Path 
+    #region Persistent Data Path (Access to Project or Application)
 
     public static string Get_Path_Application_Persistent()
     {
@@ -78,39 +78,28 @@ public class Class_FileIO
 
     #endregion
 
-    #region Check File Exist
+    #region ================================================================== File Exist
 
-    /// <summary>
-    /// Check Path of File Exist
-    /// </summary>
-    /// <param name="s_Path"></param>
-    /// <returns></returns>
     public static bool Get_File_isExist(string s_Path)
     {
         return File.Exists(s_Path);
     }
 
-    public static bool Get_File_Application_Persistent_isExist(string s_Path_Folder, string s_File_Name)
-    {
-        //Debug.Log("Get_File_Application_Persistent_isExist: " + Get_Path_Application_Persistent_File(s_Path_Folder, s_File_Name));
-
-        return Get_File_isExist(Get_Path_Application_Persistent_File(s_Path_Folder, s_File_Name));
-    }
-
-    /// <summary>
-    /// Check Path of File Exist
-    /// </summary>
-    /// <param name="s_Path_Folder"></param>
-    /// <param name="s_File_Name"></param>
-    /// <returns></returns>
     public static bool Get_File_Application_Resources_isExist(string s_Path_Folder, string s_File_Name)
     {
         return Get_File_isExist(Get_Path_Application_Resources_File(s_Path_Folder, s_File_Name));
     }
 
+    public static bool Get_File_Application_Persistent_isExist(string s_Path_Folder, string s_File_Name)
+    {
+        return Get_File_isExist(Get_Path_Application_Persistent_File(s_Path_Folder, s_File_Name));
+    }
+
     #endregion
 
-    #region Write File 
+    #region ================================================================== File Custom
+
+    #region File Custom Write 
 
     private string s_TextWrite = "";
 
@@ -119,29 +108,27 @@ public class Class_FileIO
         s_TextWrite = "";
     }
 
-    #region Write File Start
+    #region File Custom Write Start
 
-    public void Set_Data_Write_Start(string s_Path)
+    public static void Set_Data_Write_toFile(string s_Path, string s_Data)
     {
-        //Debug.Log("Set_Data_Write_Start: " + s_Path);
-
         using (FileStream myFile = File.Create(s_Path))
         {
             try
             {
-                byte[] b_Info = new UTF8Encoding(true).GetBytes(s_TextWrite);
+                byte[] b_Info = new UTF8Encoding(true).GetBytes(s_Data);
                 myFile.Write(b_Info, 0, b_Info.Length);
             }
             catch
             {
-                Debug.LogError("Set_Data_Write_Start(" + s_Path + ")");
+                Debug.LogErrorFormat("[Error] File Write Fail: {0}", s_Path);
             }
         }
     }
 
-    public void Set_Data_Write_Persistent_Start(string s_Path_Folder, string s_File_Name)
+    public void Set_Data_Write_Start(string s_Path)
     {
-        Set_Data_Write_Start(Get_Path_Application_Persistent_File(s_Path_Folder, s_File_Name));
+        Set_Data_Write_toFile(s_Path, Get_Data_Write_String());
     }
 
     public void Set_Data_Write_Resource_Start(string s_Path_Folder, string s_File_Name)
@@ -149,9 +136,14 @@ public class Class_FileIO
         Set_Data_Write_Start(Get_Path_Application_Resources_File(s_Path_Folder, s_File_Name));
     }
 
+    public void Set_Data_Write_Persistent_Start(string s_Path_Folder, string s_File_Name)
+    {
+        Set_Data_Write_Start(Get_Path_Application_Persistent_File(s_Path_Folder, s_File_Name));
+    }
+
     #endregion
 
-    #region Write File Set Data
+    #region File Custom Write Set Data
 
     public void Set_Data_Write_Add(string s_Add)
     {
@@ -210,7 +202,7 @@ public class Class_FileIO
 
     #endregion
 
-    #region Write File Get String
+    #region File Custom Write Get String
 
     public string Get_Data_Write_String()
     {
@@ -221,7 +213,7 @@ public class Class_FileIO
 
     #endregion
 
-    #region Read File 
+    #region File Custom Read 
 
     private List<string> ls_TextRead = new List<string>();
     private int i_ReadRun = -1;
@@ -232,15 +224,14 @@ public class Class_FileIO
         i_ReadRun = -1;
     }
 
-    #region Read File Start
+    #region File Custom Read Start
 
-    public void Set_Data_Read_Start(string s_Path)
+    public static List<string> Get_Data_Read_fromFile(string s_Path)
     {
-        //Debug.Log("Set_Data_Read_Start: " + s_Path);
+        List<string> ls_TextRead = new List<string>();
 
         try
         {
-            // Open the stream and read it back.
             using (StreamReader sr = File.OpenText(s_Path))
             {
                 string s_ReadRun = "";
@@ -249,11 +240,20 @@ public class Class_FileIO
                     ls_TextRead.Add(s_ReadRun);
                 }
             }
+
+            return ls_TextRead;
         }
         catch
         {
-            Debug.LogError("Set_Data_Read_Start(" + s_Path + ")");
+            Debug.LogErrorFormat("[Error] File Read Fail: {0}", s_Path);
+
+            return null;
         }
+    }
+
+    public void Set_Data_Read_Start(string s_Path)
+    {
+        ls_TextRead = Get_Data_Read_fromFile(s_Path);
     }
 
     public void Set_Data_Read_Persistent_Start(string s_Path_Folder, string s_File_Name)
@@ -274,7 +274,7 @@ public class Class_FileIO
 
     #endregion
 
-    #region Read File Get Data
+    #region File Custom Read Get Data
 
     public string Get_Data_Read_Auto_String()
     {
@@ -342,7 +342,7 @@ public class Class_FileIO
 
     #endregion
 
-    #region Read File Get List
+    #region File Custom Read Get List
 
     public List<string> Get_Data_Read_List()
     {
@@ -350,6 +350,27 @@ public class Class_FileIO
     }
 
     #endregion
+
+    #endregion
+
+    #endregion
+
+    #region ================================================================== File JSON
+
+    public static object Get_Data_fromJSON(TextAsset file_JSON_Data_TextDocument)
+    {
+        return JsonUtility.FromJson<object>(file_JSON_Data_TextDocument.text);
+    }
+
+    public static string Get_Data_toJSON(object obj_JSON_Data_Class)
+    {
+        return JsonUtility.ToJson(obj_JSON_Data_Class);
+    }
+
+    public static void Set_Data_JSON_toFile(string s_Path, object obj_JSON_Data_Class)
+    {
+        Set_Data_Write_toFile(s_Path, Get_Data_toJSON(obj_JSON_Data_Class));
+    }
 
     #endregion
 }
