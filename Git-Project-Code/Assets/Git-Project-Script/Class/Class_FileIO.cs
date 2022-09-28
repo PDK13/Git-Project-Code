@@ -362,6 +362,16 @@ public class Class_FileIO
         return JsonUtility.FromJson<object>(file_JSON_Data_TextDocument.text);
     }
 
+    /// <summary>
+    /// Use this Methode with code: Type obj = Class_FileIO.Get_Data_fromJSON(Data) as Type;
+    /// </summary>
+    /// <param name="s_JSON_Data"></param>
+    /// <returns></returns>
+    public static object Get_Data_fromJSON(string s_JSON_Data)
+    {
+        return JsonUtility.FromJson<object>(s_JSON_Data);
+    }
+
     public static string Get_Data_toJSON(object obj_JSON_Data_Class)
     {
         return JsonUtility.ToJson(obj_JSON_Data_Class);
