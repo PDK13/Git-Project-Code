@@ -59,7 +59,7 @@ public class UIVerticalList : MonoBehaviour
         //    return;
         //}
 
-        GameObject g_GameObject_Create = Class_Object.Set_Prepab_Create(g_Clone, t_Content);
+        GameObject g_GameObject_Create = Class_Object.Set_GameObject_Create(g_Clone, t_Content);
 
         g_GameObject_Create.GetComponent<UIVerticalClone>().Set_Clone(this, l_Vertical.Count);
 
@@ -87,7 +87,7 @@ public class UIVerticalList : MonoBehaviour
         }
 
         //Remove Clone at Index
-        Class_Object.Set_Destroy_GameObject(l_Vertical[i_Index]);
+        Class_Object.Set_GameObject_Destroy(l_Vertical[i_Index]);
         l_Vertical.RemoveAt(i_Index);
 
         //Fix Index other Clone
@@ -117,7 +117,7 @@ public class UIVerticalList : MonoBehaviour
 
         for (int i = 0; i < l_Vertical.Count; i++)
         {
-            Class_Object.Set_Destroy_GameObject(l_Vertical[i]);
+            Class_Object.Set_GameObject_Destroy(l_Vertical[i]);
         }
 
         l_Vertical = new List<GameObject>();

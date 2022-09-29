@@ -520,7 +520,7 @@ public class IsoWorld : MonoBehaviour
 
     private void Set_Remove_GameObject(GameObject g_GameObject)
     {
-        Class_Object.Set_Destroy_GameObject(g_GameObject);
+        Class_Object.Set_GameObject_Destroy(g_GameObject);
     }
 
     #endregion
@@ -740,7 +740,7 @@ public class IsoWorld : MonoBehaviour
         }
 
         //Create new Block GameObject
-        GameObject g_Block_Primary = Class_Object.Set_Prepab_Create(
+        GameObject g_Block_Primary = Class_Object.Set_GameObject_Create(
             cl_WorldRenderer.Get_Combine(s_Block_Or_Character_Name),
             this.transform);
         

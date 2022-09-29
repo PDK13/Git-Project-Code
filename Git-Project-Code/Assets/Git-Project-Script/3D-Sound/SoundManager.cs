@@ -34,7 +34,7 @@ public class SoundManager : MonoBehaviour
     {
         Set_Background_Music_Stop();
 
-        GameObject g_SoundClone = Class_Object.Set_Prepab_Create(cs_This.g_SoundClone);
+        GameObject g_SoundClone = Class_Object.Set_GameObject_Create(cs_This.g_SoundClone);
 
         if (g_SoundClone.GetComponent<SoundClone>() == null) g_SoundClone.AddComponent<SoundClone>();
 
@@ -63,7 +63,7 @@ public class SoundManager : MonoBehaviour
 
     public static GameObject Set_Sound_3D(AudioClip au_Clip, bool b_Loop, float f_Volumn_Primary, Vector2 v2_Pos, float f_Distance)
     {
-        GameObject g_SoundClone = Class_Object.Set_Prepab_Create(cs_This.g_SoundClone);
+        GameObject g_SoundClone = Class_Object.Set_GameObject_Create(cs_This.g_SoundClone);
 
         if (g_SoundClone.GetComponent<SoundClone>() == null) g_SoundClone.AddComponent<SoundClone>();
 
@@ -81,7 +81,7 @@ public class SoundManager : MonoBehaviour
 
     public static GameObject Set_Sound_2D(AudioClip au_Clip, bool b_Loop, float f_Volumn_Primary)
     {
-        GameObject g_SoundClone = Class_Object.Set_Prepab_Create(cs_This.g_SoundClone);
+        GameObject g_SoundClone = Class_Object.Set_GameObject_Create(cs_This.g_SoundClone);
 
         if (g_SoundClone.GetComponent<SoundClone>() == null) g_SoundClone.AddComponent<SoundClone>();
 

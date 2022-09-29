@@ -6,11 +6,11 @@ using UnityEngine;
 /// </summary>
 public class Class_Object
 {
-    #region Prefab 
+    #region GameObject 
 
-    #region Prefab Set to Scene 
+    #region Create
 
-    public static GameObject Set_Prepab_Create(GameObject g_Prepab, Transform t_Parent = null)
+    public static GameObject Set_GameObject_Create(GameObject g_Prepab, Transform t_Parent = null)
     {
         if (t_Parent == null)
         {
@@ -24,7 +24,19 @@ public class Class_Object
 
     #endregion
 
-    #region Prefab(s) Get from Resource 
+    #region Destroy
+
+    public static void Set_GameObject_Destroy(GameObject g_GameObject)
+    {
+        if (g_GameObject != null)
+        {
+            MonoBehaviour.Destroy(g_GameObject);
+        }
+    }
+
+    #endregion
+
+    #region Get
 
     //NOTE:
     //Folder(s) "Resources" can be created everywhere from root "Assests/*", that can be access by Unity or Application
@@ -32,7 +44,7 @@ public class Class_Object
     //BEWARD:
     //All content(s) in folder(s) "Resources" will be builded to Application, even they mightn't be used in Build-Game Application
 
-    public static List<GameObject> Get_Prefab_fromResources(string s_Path_Folder)
+    public static List<GameObject> Get_Resources_Prefab(string s_Path_Folder)
     {
         GameObject[] l_Prefab_Array = Resources.LoadAll<GameObject>(Class_String.Get_String_Replace_Resources(s_Path_Folder));
         List<GameObject> l_Prefab_List = new List<GameObject>();
@@ -40,7 +52,7 @@ public class Class_Object
         return l_Prefab_List;
     }
 
-    public static List<Sprite> Get_Sprite_fromResources(string s_Path_Folder)
+    public static List<Sprite> Get_Resources_Sprite(string s_Path_Folder)
     {
         Sprite[] l_Sprite_Array = Resources.LoadAll<Sprite>(Class_String.Get_String_Replace_Resources(s_Path_Folder));
         List<Sprite> l_Sprite_List = new List<Sprite>();
@@ -49,18 +61,6 @@ public class Class_Object
     }
 
     #endregion
-
-    #endregion
-
-    #region Clone & GameObject 
-
-    public static void Set_Destroy_GameObject(GameObject g_GameObject)
-    {
-        if (g_GameObject != null)
-        {
-            MonoBehaviour.Destroy(g_GameObject);
-        }
-    }
 
     #endregion
 }

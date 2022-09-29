@@ -64,7 +64,7 @@ public class Sample_TrajectoryTank_Angle : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject g_Bullet_Clone = Class_Object.Set_Prepab_Create(g_Bullet);
+            GameObject g_Bullet_Clone = Class_Object.Set_GameObject_Create(g_Bullet);
             g_Bullet_Clone.transform.position = cs_RendererTrajectory.Get_Trajectory_Start();
             g_Bullet_Clone.SetActive(true);
 

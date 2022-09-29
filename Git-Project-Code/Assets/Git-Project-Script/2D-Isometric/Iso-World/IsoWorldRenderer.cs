@@ -81,7 +81,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Block_Ground.Add(new List<GameObject>());
             lg_Block_Ground[i] = 
-                Class_Object.Get_Prefab_fromResources(ls_Block_Ground[i]);
+                Class_Object.Get_Resources_Prefab(ls_Block_Ground[i]);
         }
 
         lg_Block_Object = new List<List<GameObject>>();
@@ -89,7 +89,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Block_Object.Add(new List<GameObject>());
             lg_Block_Object[i] =
-                Class_Object.Get_Prefab_fromResources(ls_Block_Object[i]);
+                Class_Object.Get_Resources_Prefab(ls_Block_Object[i]);
         }
 
         lg_Block_Item = new List<List<GameObject>>();
@@ -97,7 +97,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Block_Item.Add(new List<GameObject>());
             lg_Block_Item[i] =
-                Class_Object.Get_Prefab_fromResources(ls_Block_Item[i]);
+                Class_Object.Get_Resources_Prefab(ls_Block_Item[i]);
         }
 
         //Block Stair
@@ -107,7 +107,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Block_StairUD.Add(new List<GameObject>());
             lg_Block_StairUD[i] =
-                Class_Object.Get_Prefab_fromResources(ls_Block_StairUD[i]);
+                Class_Object.Get_Resources_Prefab(ls_Block_StairUD[i]);
         }
 
         lg_Block_StairLR = new List<List<GameObject>>();
@@ -115,7 +115,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Block_StairLR.Add(new List<GameObject>());
             lg_Block_StairLR[i] =
-                Class_Object.Get_Prefab_fromResources(ls_Block_StairLR[i]);
+                Class_Object.Get_Resources_Prefab(ls_Block_StairLR[i]);
         }
 
         //Character
@@ -125,7 +125,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Character_Player.Add(new List<GameObject>());
             lg_Character_Player[i] =
-                Class_Object.Get_Prefab_fromResources(ls_Character_Player[i]);
+                Class_Object.Get_Resources_Prefab(ls_Character_Player[i]);
         }
 
         lg_Character_Good = new List<List<GameObject>>();
@@ -133,7 +133,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Character_Good.Add(new List<GameObject>());
             lg_Character_Good[i] =
-                Class_Object.Get_Prefab_fromResources(ls_Character_Good[i]);
+                Class_Object.Get_Resources_Prefab(ls_Character_Good[i]);
         }
 
         lg_Character_Neutral = new List<List<GameObject>>();
@@ -141,7 +141,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Character_Neutral.Add(new List<GameObject>());
             lg_Character_Neutral[i] =
-                Class_Object.Get_Prefab_fromResources(ls_Character_Neutral[i]);
+                Class_Object.Get_Resources_Prefab(ls_Character_Neutral[i]);
         }
 
         lg_Character_Bad = new List<List<GameObject>>();
@@ -149,7 +149,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Character_Bad.Add(new List<GameObject>());
             lg_Character_Bad[i] =
-                Class_Object.Get_Prefab_fromResources(ls_Character_Bad[i]);
+                Class_Object.Get_Resources_Prefab(ls_Character_Bad[i]);
         }
     }
 
