@@ -24,11 +24,21 @@ public class UnityToolPlayerRef : EditorWindow
 
     private void OnGUI()
     {
-        GUILayout.Space(5f);
+        var style = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontStyle = FontStyle.Bold
+        };
+
+        GUILayout.Space(10);
+        GUILayout.Label("------ TYPE ------", style);
+        GUILayout.Space(10);
 
         Set_GUI_Button_Type();
 
-        GUILayout.Space(5f);
+        GUILayout.Space(10);
+        GUILayout.Label("------ REF ------", style);
+        GUILayout.Space(10);
 
         s_Name = EditorGUILayout.TextField("Name", s_Name);
 
@@ -36,7 +46,9 @@ public class UnityToolPlayerRef : EditorWindow
 
         s_Value = EditorGUILayout.TextField("Value", s_Value);
 
-        GUILayout.Space(5f);
+        GUILayout.Space(10);
+        GUILayout.Label("------ OPPTION ------", style);
+        GUILayout.Space(10);
 
         GUILayout.BeginHorizontal();
 
