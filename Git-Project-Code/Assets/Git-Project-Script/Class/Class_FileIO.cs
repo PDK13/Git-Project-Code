@@ -357,16 +357,20 @@ public class Class_FileIO
 
     #region ================================================================== File JSON
 
-    //Example Use: ClassData myData = Class_FileIO.Get_Data_fromJSON<ClassData>(file_JSON_Data_TextDocument);
+    //NOTE:
+    //Type "TextAsset" is a "Text Document" File or "*.txt" File
 
-    public static T Get_Data_fromJSON<T>(TextAsset file_JSON_Data_TextDocument)
+    //SAMPLE:
+    //ClassData myData = Class_FileIO.Get_Data_fromJSON<ClassData>(file_JSON_Data_TextDocument);
+
+    public static ClassData Get_Data_fromJSON<ClassData>(TextAsset file_JSON_Data_TextDocument)
     {
-        return Get_Data_fromJSON<T>(file_JSON_Data_TextDocument.text);
+        return Get_Data_fromJSON<ClassData>(file_JSON_Data_TextDocument.text);
     }
 
-    public static T Get_Data_fromJSON<T>(string s_JSON_Data)
+    public static ClassData Get_Data_fromJSON<ClassData>(string s_JSON_Data)
     {
-        return JsonUtility.FromJson<T>(s_JSON_Data);
+        return JsonUtility.FromJson<ClassData>(s_JSON_Data);
     }
 
     public static string Get_Data_toJSON(object obj_JSON_Data_Class)
