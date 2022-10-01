@@ -12,10 +12,10 @@ public class SoundClone : MonoBehaviour
     {
         if (GetComponent<AudioSource>() == null)
         {
-            this.gameObject.AddComponent<AudioSource>();
+            gameObject.AddComponent<AudioSource>();
         }
 
-        this.com_AudioSource = GetComponent<AudioSource>();
+        com_AudioSource = GetComponent<AudioSource>();
     }
 
     #region Play
@@ -41,7 +41,7 @@ public class SoundClone : MonoBehaviour
         if (!cs_SoundCloneData.Get_Loop())
         {
             StartCoroutine(Set_Sound_WhenStop());
-        }  
+        }
     }
 
     public void Set_PlaySound_2D(SoundCloneData cs_SoundCloneData)
@@ -61,14 +61,14 @@ public class SoundClone : MonoBehaviour
         if (!cs_SoundCloneData.Get_Loop())
         {
             StartCoroutine(Set_Sound_WhenStop());
-        }  
+        }
     }
 
     private IEnumerator Set_Sound_WhenStop()
     {
         yield return new WaitUntil(() => Get_Sound_isStop() == true);
 
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     #endregion
@@ -132,9 +132,9 @@ public class SoundClone : MonoBehaviour
 [System.Serializable]
 public class SoundCloneData
 {
-    private AudioClip au_Clip;
-    private bool b_Loop;
-    private float f_Volumn_Primary;
+    private readonly AudioClip au_Clip;
+    private readonly bool b_Loop;
+    private readonly float f_Volumn_Primary;
 
     public SoundCloneData(AudioClip au_Clip, bool b_Loop, float f_Volumn_Primary)
     {

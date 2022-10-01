@@ -21,7 +21,9 @@ public class Control3DSticky : MonoBehaviour
     private void Awake()
     {
         if (t_Tarket == null)
+        {
             return;
+        }
 
         if (b_Lock_Sca)
         {
@@ -32,7 +34,9 @@ public class Control3DSticky : MonoBehaviour
     private void Update()
     {
         if (t_Tarket == null)
+        {
             return;
+        }
 
         Auto_Follow();
         Auto_Scale();
@@ -41,25 +45,31 @@ public class Control3DSticky : MonoBehaviour
     private void Auto_Follow()
     {
         if (!b_Lock_Pos)
+        {
             return;
+        }
+
         transform.position = t_Tarket.transform.position + v_Lock_Pos;
     }
 
     private void Auto_Scale()
     {
         if (!b_Lock_Sca)
+        {
             return;
+        }
+
         Vector2 v_Lock_Cur = new Vector2(t_Tarket.localScale.x, t_Tarket.localScale.y);
         if (v_Lock_Cur.x > 0 && v_Lock_Scale.x < 0 || v_Lock_Cur.x < 0 && v_Lock_Scale.x > 0)
         {
             v_Lock_Scale.x = v_Lock_Cur.x;
-            transform.localScale = 
+            transform.localScale =
                 new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
-        if(v_Lock_Cur.y > 0 && v_Lock_Scale.y < 0 || v_Lock_Cur.y < 0 && v_Lock_Scale.y > 0)
+        if (v_Lock_Cur.y > 0 && v_Lock_Scale.y < 0 || v_Lock_Cur.y < 0 && v_Lock_Scale.y > 0)
         {
             v_Lock_Scale.y = v_Lock_Cur.y;
-            transform.localScale = 
+            transform.localScale =
                 new Vector3(transform.localScale.x, transform.localScale.y * -1, transform.localScale.z);
         }
     }

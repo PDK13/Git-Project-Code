@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -354,20 +353,28 @@ public class Class_String
     {
         //Check SPACE
         if (s_EmailCheck.Contains(" "))
+        {
             return false;
+        }
 
         //Check @
         bool b_Exist_AA = false;
         for (int i = 0; i < s_EmailCheck.Length; i++)
         {
             if (!b_Exist_AA && s_EmailCheck[i] == '@')
+            {
                 b_Exist_AA = true;
+            }
             else
             if (b_Exist_AA && s_EmailCheck[i] == '@')
+            {
                 return false;
+            }
         }
         if (!b_Exist_AA)
+        {
             return false;
+        }
 
         //All Check Done
         return true;
@@ -382,7 +389,9 @@ public class Class_String
     {
         //Check Not Invalid
         if (!Get_CheckEmail_NotInvalid(s_EmailCheck))
+        {
             return false;
+        }
 
         //Lower MAIL
         s_EmailCheck = s_EmailCheck.ToLower();
@@ -413,7 +422,9 @@ public class Class_String
                 for (int i = 1; i < s_EmailCheck.Length; i++)
                 {
                     if (s_EmailCheck[i] == '@')
+                    {
                         break;
+                    }
 
                     if (ba_Ascii[i] >= 48 && ba_Ascii[i] <= 57 ||
                         ba_Ascii[i] >= 97 && ba_Ascii[i] <= 122 ||
@@ -422,11 +433,15 @@ public class Class_String
 
                     }
                     else
+                    {
                         return false;
+                    }
                 }
             }
             else
+            {
                 return false;
+            }
         }
 
         //All Check Done
@@ -453,7 +468,9 @@ public class Class_String
                 for (int i = 1; i < s_EmailCheck.Length; i++)
                 {
                     if (s_EmailCheck[i] == '@')
+                    {
                         break;
+                    }
 
                     if (ba_Ascii[i] >= 48 && ba_Ascii[i] <= 57 ||
                         ba_Ascii[i] >= 97 && ba_Ascii[i] <= 122 ||
@@ -463,11 +480,15 @@ public class Class_String
 
                     }
                     else
+                    {
                         return false;
+                    }
                 }
             }
             else
+            {
                 return false;
+            }
         }
 
         //All Check Done

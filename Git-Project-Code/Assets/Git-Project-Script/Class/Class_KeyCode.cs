@@ -22,7 +22,9 @@ public class Class_KeyCode
         foreach (KeyCode k_KeyCode in Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKeyDown(k_KeyCode))
+            {
                 return k_KeyCode;
+            }
         }
         return KeyCode.None;
     }
@@ -36,7 +38,9 @@ public class Class_KeyCode
         foreach (KeyCode k_KeyCode in Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKeyUp(k_KeyCode))
+            {
                 return k_KeyCode;
+            }
         }
         return KeyCode.None;
     }
@@ -50,7 +54,9 @@ public class Class_KeyCode
         foreach (KeyCode k_KeyCode in Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKey(k_KeyCode))
+            {
                 return k_KeyCode;
+            }
         }
         return KeyCode.None;
     }
@@ -265,43 +271,85 @@ public class Class_KeyCode
     {
         //Key [ ]
         if (k_Key == KeyCode.LeftBracket)
+        {
             return "[";
+        }
+
         if (k_Key == KeyCode.RightBracket)
+        {
             return "]";
+        }
         //Key { }
         if (k_Key == KeyCode.LeftCurlyBracket)
+        {
             return "{";
+        }
+
         if (k_Key == KeyCode.RightCurlyBracket)
+        {
             return "}";
+        }
         //Key ( )
         if (k_Key == KeyCode.LeftParen)
+        {
             return "(";
+        }
+
         if (k_Key == KeyCode.RightParen)
+        {
             return ")";
+        }
         //Key Shift
         if (k_Key == KeyCode.LeftShift)
+        {
             return "L-Shift";
+        }
+
         if (k_Key == KeyCode.RightShift)
+        {
             return "R-Shift";
+        }
         //Key Alt
         if (k_Key == KeyCode.LeftAlt)
+        {
             return "L-Alt";
+        }
+
         if (k_Key == KeyCode.RightAlt)
+        {
             return "R-Alt";
+        }
         //Key Page
         if (k_Key == KeyCode.PageUp)
+        {
             return "Page-U";
+        }
+
         if (k_Key == KeyCode.PageDown)
+        {
             return "Page-D";
+        }
         //Key Another
         if (k_Key == KeyCode.Escape)
+        {
             return "Esc";
+        }
+
         if (k_Key == KeyCode.Return)
+        {
             return "Enter";
+        }
+
         if (k_Key == KeyCode.Delete)
+        {
             return "Del";
+        }
+
         if (k_Key == KeyCode.Backspace)
+        {
             return "B-Space";
+        }
+
         return k_Key.ToString();
     }
 

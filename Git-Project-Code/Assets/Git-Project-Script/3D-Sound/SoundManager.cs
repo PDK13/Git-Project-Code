@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -11,7 +10,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private GameObject g_SoundClone;
 
-    private bool b_Sound_isMute = false;
+    private readonly bool b_Sound_isMute = false;
 
     [Header("Sound List")]
 
@@ -20,7 +19,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
 
         if (cs_This == null)
         {
@@ -36,7 +35,10 @@ public class SoundManager : MonoBehaviour
 
         GameObject g_SoundClone = Class_Object.Set_GameObject_Create(cs_This.g_SoundClone);
 
-        if (g_SoundClone.GetComponent<SoundClone>() == null) g_SoundClone.AddComponent<SoundClone>();
+        if (g_SoundClone.GetComponent<SoundClone>() == null)
+        {
+            g_SoundClone.AddComponent<SoundClone>();
+        }
 
         g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_2D(new SoundCloneData(au_Clip, true, f_Volumn_Primary));
 
@@ -65,7 +67,10 @@ public class SoundManager : MonoBehaviour
     {
         GameObject g_SoundClone = Class_Object.Set_GameObject_Create(cs_This.g_SoundClone);
 
-        if (g_SoundClone.GetComponent<SoundClone>() == null) g_SoundClone.AddComponent<SoundClone>();
+        if (g_SoundClone.GetComponent<SoundClone>() == null)
+        {
+            g_SoundClone.AddComponent<SoundClone>();
+        }
 
         g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_3D(new SoundCloneData(au_Clip, b_Loop, f_Volumn_Primary), v2_Pos, f_Distance);
 
@@ -83,7 +88,10 @@ public class SoundManager : MonoBehaviour
     {
         GameObject g_SoundClone = Class_Object.Set_GameObject_Create(cs_This.g_SoundClone);
 
-        if (g_SoundClone.GetComponent<SoundClone>() == null) g_SoundClone.AddComponent<SoundClone>();
+        if (g_SoundClone.GetComponent<SoundClone>() == null)
+        {
+            g_SoundClone.AddComponent<SoundClone>();
+        }
 
         g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_2D(new SoundCloneData(au_Clip, b_Loop, f_Volumn_Primary));
 

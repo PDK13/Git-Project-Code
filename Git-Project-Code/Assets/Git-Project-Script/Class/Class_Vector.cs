@@ -14,13 +14,12 @@ public class Class_Vector
     /// <returns></returns>
     public static Vector2 Get_Pos_MouseOnCanvas(Canvas c_Canvas)
     {
-        Vector2 v3_MousePosOnCanvas;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             c_Canvas.transform as RectTransform,
             Input.mousePosition,
             c_Canvas.worldCamera,
-            out v3_MousePosOnCanvas);
+            out Vector2 v3_MousePosOnCanvas);
 
         return v3_MousePosOnCanvas;
     }
@@ -62,20 +61,30 @@ public class Class_Vector
     public static float Get_Exchance_Rotate_Script(float f_DegNeedExchance)
     {
         if (f_DegNeedExchance >= 360)
+        {
             return f_DegNeedExchance - 360 * (f_DegNeedExchance / 360);
+        }
         else
         if (f_DegNeedExchance <= 0)
+        {
             return 360 * (Mathf.Abs(f_DegNeedExchance) / 360 + 1) + f_DegNeedExchance;
+        }
+
         return f_DegNeedExchance;
     }
 
     public static float Get_Exchance_Rotate_Unity(float f_DegNeedExchance)
     {
         if (f_DegNeedExchance <= -180)
+        {
             return 360 + f_DegNeedExchance;
+        }
         else
         if (f_DegNeedExchance >= 180)
+        {
             return (360 - f_DegNeedExchance) * -1;
+        }
+
         return f_DegNeedExchance;
     }
 
@@ -193,12 +202,12 @@ public class Class_Vector
 
     public static Vector2 Get_Vector(Vector2Int v2_Vector)
     {
-        return new Vector2((float)v2_Vector.x, (float)v2_Vector.y);
+        return new Vector2(v2_Vector.x, v2_Vector.y);
     }
 
     public static Vector3 Get_Vector(Vector3Int v3_Vector)
     {
-        return new Vector3((float)v3_Vector.x, (float)v3_Vector.y, (float)v3_Vector.z);
+        return new Vector3(v3_Vector.x, v3_Vector.y, v3_Vector.z);
     }
 
     #endregion

@@ -34,7 +34,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     [Header("Rotate")]
 
-    [Range(0.1f,5f)]
+    [Range(0.1f, 5f)]
     [SerializeField] private float f_SpeedRotate = 1f;
 
     [SerializeField] private bool b_StopRightAway = false;
@@ -45,7 +45,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     [SerializeField] private float f_SpeedSlow = 5f;
 
-    void Awake()
+    private void Awake()
     {
         cs_Rigid = GetComponent<RigidbodyComponent>();
     }
@@ -80,10 +80,12 @@ public class RigidbodyRotation : MonoBehaviour
     {
         f_SpeedCur = (Input.GetKey(k_SpeedChance)) ? f_SpeedChance : f_SpeedNormal;
 
-        if (Input.GetKey(k_TurnLeft) && Input.GetKey(k_TurnRight) || 
+        if (Input.GetKey(k_TurnLeft) && Input.GetKey(k_TurnRight) ||
             Input.GetKey(k_MoveForward) && Input.GetKey(k_MoveBackward))
+        {
             //
             return;
+        }
 
         if (Input.GetKey(k_TurnLeft))
         {
@@ -99,7 +101,7 @@ public class RigidbodyRotation : MonoBehaviour
         {
             Set_Control_Move(1);
         }
-            
+
         else
         if (Input.GetKey(k_MoveBackward))
         {
@@ -154,7 +156,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     public bool Get_Control_isLock()
     {
-        return this.b_LockControl;
+        return b_LockControl;
     }
 
     #endregion

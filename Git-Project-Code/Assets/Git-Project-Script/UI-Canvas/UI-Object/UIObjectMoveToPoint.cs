@@ -43,17 +43,17 @@ public class UIObjectMoveToPoint : MonoBehaviour
     {
         if (c_ParentCanvas == null)
         {
-            c_ParentCanvas = this.GetComponentInParent<Canvas>();
+            c_ParentCanvas = GetComponentInParent<Canvas>();
         }
 
-        rec_Transform = this.GetComponent<RectTransform>();
+        rec_Transform = GetComponent<RectTransform>();
     }
 
     private void Update()
     {
-        if (this.rec_MoveTo != null)
+        if (rec_MoveTo != null)
         {
-            Set_UI_MoveTo(this.rec_MoveTo.anchoredPosition3D);
+            Set_UI_MoveTo(rec_MoveTo.anchoredPosition3D);
         }
 
         Vector2 v2_MoveTo = new Vector2(v3_MoveTo.x, v3_MoveTo.y);
@@ -62,7 +62,7 @@ public class UIObjectMoveToPoint : MonoBehaviour
 
         if (b_Move_Done && f_Distance > 1f)
         {
-            f_Speed = f_Distance / this.f_Move_Time;
+            f_Speed = f_Distance / f_Move_Time;
 
             b_Move_Done = false;
         }
@@ -90,7 +90,7 @@ public class UIObjectMoveToPoint : MonoBehaviour
             rec_Transform.anchoredPosition3D = new Vector3(
                 rec_Transform.anchoredPosition3D.x,
                 rec_Transform.anchoredPosition3D.y,
-                this.v3_MoveTo.z);
+                v3_MoveTo.z);
         }
     }
 

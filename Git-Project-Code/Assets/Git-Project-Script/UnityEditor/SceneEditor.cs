@@ -1,23 +1,20 @@
 ﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
 
 //[CHECK] Cần chỉnh sửa lại!!!
 
-class SceneEditor : EditorWindow
+internal class SceneEditor : EditorWindow
 {
     // Scenes
-    List<string> _scene;
+    private readonly List<string> _scene;
 
     // Screenshot
-    int startNumber;
-    string path = "Assets/Game/Screenshot";
-
-    GUIStyle _guiStyle;
+    private int startNumber;
+    private string path = "Assets/Game/Screenshot";
+    private readonly GUIStyle _guiStyle;
 
     [MenuItem("Tools/Scene Manager")]
     public static void ShowWindow()
@@ -25,7 +22,7 @@ class SceneEditor : EditorWindow
         EditorWindow.GetWindow(typeof(SceneEditor));
     }
     #region Function
-    static public void StartGame()
+    public static void StartGame()
     {
         if (!UnityEngine.Application.isPlaying)
         {
@@ -35,23 +32,25 @@ class SceneEditor : EditorWindow
                 EditorApplication.ExecuteMenuItem("Edit/Play");
             }
         }
-        else EditorApplication.ExecuteMenuItem("Edit/Play");
-
+        else
+        {
+            EditorApplication.ExecuteMenuItem("Edit/Play");
+        }
     }
 
-    static public void PLay()
+    public static void PLay()
     {
         EditorApplication.ExecuteMenuItem("Edit/Play");
     }
 
-    static public void PlayScene()
+    public static void PlayScene()
     {
         if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
         {
             EditorSceneManager.OpenScene("Assets/Game/Scenes/InGame.unity");
         }
     }
-    static public void HomeScene()
+    public static void HomeScene()
     {
         if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
         {
@@ -59,7 +58,7 @@ class SceneEditor : EditorWindow
         }
     }
 
-    static public void LoadingScene()
+    public static void LoadingScene()
     {
         if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
         {
@@ -67,7 +66,7 @@ class SceneEditor : EditorWindow
         }
     }
 
-    static public void LoadScene(string scenename)
+    public static void LoadScene(string scenename)
     {
         if (!EditorApplication.isPlayingOrWillChangePlaymode)
         {
@@ -104,7 +103,7 @@ class SceneEditor : EditorWindow
         return temp.ToArray();
     }
 
-    static public void ClearAllData()
+    public static void ClearAllData()
     {
         //DataManager.ClearData();
         PlayerPrefs.DeleteAll();
@@ -128,14 +127,14 @@ class SceneEditor : EditorWindow
     }
 
     //string txtAUto = "start Auto";
-    Vector2 scrollPos;
+    private Vector2 scrollPos;
     //string gold;
     #endregion
 
     private void OnGUI()
     {
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
-        var style = new GUIStyle(GUI.skin.label)
+        GUIStyle style = new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
             fontStyle = FontStyle.Bold
@@ -157,13 +156,13 @@ class SceneEditor : EditorWindow
 
         //
         // Data
- /*       GUILayout.Space(10);
-        GUILayout.Label("------ DATA ------", style);
-        GUILayout.Space(10);
-        if (GUILayout.Button("Clear Data"))
-        {
-            ClearAllData();
-        }*/
+        /*       GUILayout.Space(10);
+               GUILayout.Label("------ DATA ------", style);
+               GUILayout.Space(10);
+               if (GUILayout.Button("Clear Data"))
+               {
+                   ClearAllData();
+               }*/
 
         //
         //  Scenes
@@ -171,7 +170,7 @@ class SceneEditor : EditorWindow
         GUILayout.Label("------ SCENES ------", style);
         GUILayout.Space(10);
         EditorGUILayout.BeginVertical();
-        var allscene = ReadNames();
+        string[] allscene = ReadNames();
         for (int i = 0; i < allscene.Length; i++)
         {
             if (GUILayout.Button(allscene[i]))

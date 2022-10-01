@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(RendererTrajectory))]
@@ -17,13 +15,25 @@ public class Sample_TrajectoryBall : MonoBehaviour
 
     private void Awake()
     {
-        if (GetComponent<RendererTrajectory>() == null) gameObject.AddComponent<RendererTrajectory>();
+        if (GetComponent<RendererTrajectory>() == null)
+        {
+            gameObject.AddComponent<RendererTrajectory>();
+        }
+
         cs_RendererTrajectory = GetComponent<RendererTrajectory>();
 
-        if (GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
+        if (GetComponent<Rigidbody>() == null)
+        {
+            gameObject.AddComponent<Rigidbody>();
+        }
+
         com_Rigidbody = GetComponent<Rigidbody>();
 
-        if (GetComponent<LineRenderer>() == null) gameObject.AddComponent<LineRenderer>();
+        if (GetComponent<LineRenderer>() == null)
+        {
+            gameObject.AddComponent<LineRenderer>();
+        }
+
         com_LineRenderer = GetComponent<LineRenderer>();
     }
 
@@ -31,7 +41,7 @@ public class Sample_TrajectoryBall : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            v2_MouseDrag_Start = this.transform.position;
+            v2_MouseDrag_Start = transform.position;
 
             cs_RendererTrajectory.Set_Trajectory_Start(v2_MouseDrag_Start);
         }

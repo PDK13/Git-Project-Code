@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 [RequireComponent(typeof(RendererGeometryPoint))]
@@ -37,7 +35,7 @@ public class RendererGeometry : MonoBehaviour
         Vector2 v_Vector2;
         Vector3 v_Vector3;
 
-        for(int i = 0; i < i_PointCount; i++)
+        for (int i = 0; i < i_PointCount; i++)
         {
             v_Vector2 = cs_Point.Receive_PointList()[i];
             v_Vector3 = new Vector3(v_Vector2.x, v_Vector2.y, 0) + transform.position;

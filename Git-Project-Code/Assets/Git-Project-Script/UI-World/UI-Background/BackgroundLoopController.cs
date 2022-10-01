@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -100,37 +99,37 @@ public class BackgroundLoopLayer
 
     public void Set_Layer_Speed_X(float f_Background_Layer_Speed_X)
     {
-        this.f_Layer_Speed_X = f_Background_Layer_Speed_X;
+        f_Layer_Speed_X = f_Background_Layer_Speed_X;
     }
 
     public float Get_Layer_Speed_X()
     {
-        return this.f_Layer_Speed_X;
+        return f_Layer_Speed_X;
     }
 
     public void Set_Layer_PosStart_X(float f_Background_Layer_PosStart_X)
     {
-        this.f_Layer_PosStart_X = f_Background_Layer_PosStart_X;
+        f_Layer_PosStart_X = f_Background_Layer_PosStart_X;
     }
 
     public void Set_Layer_PosStart_X_Chance(float f_Background_Layer_PosStart_X_Chance)
     {
-        this.f_Layer_PosStart_X += f_Background_Layer_PosStart_X_Chance;
+        f_Layer_PosStart_X += f_Background_Layer_PosStart_X_Chance;
     }
 
     public float Get_Layer_PosStart_X()
     {
-        return this.f_Layer_PosStart_X;
+        return f_Layer_PosStart_X;
     }
 
     public void Set_Layer_Follow_Y(bool b_Background_Layer_Follow_Y)
     {
-        this.b_Layer_Follow_Y = b_Background_Layer_Follow_Y;
+        b_Layer_Follow_Y = b_Background_Layer_Follow_Y;
     }
 
     public bool Get_Layer_Follow_Y()
     {
-        return this.b_Layer_Follow_Y;
+        return b_Layer_Follow_Y;
     }
 
     #endregion

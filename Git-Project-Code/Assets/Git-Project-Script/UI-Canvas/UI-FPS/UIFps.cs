@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-using TMPro;
 
 public class UIFps : MonoBehaviour
 {
@@ -38,7 +36,7 @@ public class UIFps : MonoBehaviour
             {
                 GetComponent<TextMeshProUGUI>().text = "FPS: " + ((int)f_Fps).ToString();
             }
-            
+
             if (b_Time_Delay)
             {
                 yield return null;

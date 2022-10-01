@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Canvas_Camera : MonoBehaviour
 {
     [Header("Camera")]
-    public KeyCode k_Next = KeyCode.RightBracket; 
+    public KeyCode k_Next = KeyCode.RightBracket;
     //Keycode: ]
     public KeyCode k_Back = KeyCode.LeftBracket;
     //Keycode: [
@@ -32,7 +30,10 @@ public class Canvas_Camera : MonoBehaviour
         {
             i_Camera++;
             if (i_Camera > l1_Camera.Count - 1)
+            {
                 i_Camera = 0;
+            }
+
             Set_CameraEnable();
         }
         else
@@ -40,7 +41,10 @@ public class Canvas_Camera : MonoBehaviour
         {
             i_Camera--;
             if (i_Camera < 0)
+            {
                 i_Camera = l1_Camera.Count - 1;
+            }
+
             Set_CameraEnable();
         }
     }
@@ -52,7 +56,7 @@ public class Canvas_Camera : MonoBehaviour
 
         for (int i = 0; i < l1_Camera.Count; i++)
         {
-            if (i != i_Camera) 
+            if (i != i_Camera)
             {
                 l1_Camera[i].SetActive(false);
             }

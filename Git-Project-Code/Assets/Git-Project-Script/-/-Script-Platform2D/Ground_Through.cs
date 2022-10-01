@@ -33,11 +33,15 @@ public class Ground_Through : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D c_Col)
     {
         if (Input.GetKey(KeyCode.DownArrow))
+        {
             f_ThroughTime_Cur = f_ThroughTime;
+        }
     }
     private void OnCollisionStay2D(Collision2D c_Col)
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
             f_ThroughTime_Cur = f_ThroughTime;
+        }
     }
 }

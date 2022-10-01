@@ -104,19 +104,25 @@ public class UIObjectDragSlot : MonoBehaviour,
     private void Set_Event_Invoke_PointerEnter()
     {
         if (Event_PointerEnter != null)
+        {
             Event_PointerEnter.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_PointerExit()
     {
         if (Event_PointerExit != null)
+        {
             Event_PointerExit.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_OnDrop()
     {
         if (Event_OnDrop != null)
+        {
             Event_OnDrop.Invoke();
+        }
     }
 
     #endregion
@@ -193,7 +199,7 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     public void Set_Button_Lock(bool b_Lock_Status)
     {
-        this.b_UI_Lock = b_Lock_Status;
+        b_UI_Lock = b_Lock_Status;
     }
 
     public void Set_Button_Lock_True()

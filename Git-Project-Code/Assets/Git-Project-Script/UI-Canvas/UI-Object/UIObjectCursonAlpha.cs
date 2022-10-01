@@ -51,7 +51,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     {
         if (GetComponent<CanvasGroup>() == null)
         {
-            this.gameObject.AddComponent<CanvasGroup>();
+            gameObject.AddComponent<CanvasGroup>();
         }
 
         c_CanvasGroup = GetComponent<CanvasGroup>();
@@ -97,13 +97,17 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     private void Set_Event_Invoke_PointerEnter()
     {
         if (Event_PointerEnter != null)
+        {
             Event_PointerEnter.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_PointerExit()
     {
         if (Event_PointerExit != null)
+        {
             Event_PointerExit.Invoke();
+        }
     }
 
     #endregion
@@ -207,7 +211,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// <returns></returns>
     public float Get_UI_Canvas_Alpha_Enter()
     {
-        return this.f_Canvas_Alpha_Enter;
+        return f_Canvas_Alpha_Enter;
     }
 
     #endregion
@@ -241,7 +245,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// <returns></returns>
     public float Get_UI_Canvas_Alpha_Exit()
     {
-        return this.f_Canvas_Alpha_Exit;
+        return f_Canvas_Alpha_Exit;
     }
 
     #endregion

@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))] 
+[RequireComponent(typeof(Collider2D))]
 //Yêu cầu một Collider bất kì (vuông, tròn, ovan,...) có bật IsTrigger
 
 public class Eye2D_Focus : MonoBehaviour
@@ -18,32 +17,36 @@ public class Eye2D_Focus : MonoBehaviour
     public KeyCode k_AfterTarket = KeyCode.E;
     public KeyCode k_ClosestTarket = KeyCode.F;
 
-    public GameObject g_Mask;                   
+    public GameObject g_Mask;
     //Gán Prefab "Hồng tâm" hoặc "Mũi tên" vào đây, có gán Obj2d_Stick.cs
-    public Vector2 v_Mask = new Vector2(0, 1);  
+    public Vector2 v_Mask = new Vector2(0, 1);
     //Vị trí mà g_Mask sẽ trị vì trên mục tiêu được chọn
-    private GameObject g_MaskClone;             
+    private GameObject g_MaskClone;
     //Clone g_Mask
 
-    private List<GameObject> l_List = new List<GameObject>();
-    private int i_Tarket = 0;                   
+    private readonly List<GameObject> l_List = new List<GameObject>();
+    private int i_Tarket = 0;
     //Chỉ số mục tiêu trong danh sách
 
     private void Update()
     {
-        GetComponent<Collider2D>().isTrigger = true;    
+        GetComponent<Collider2D>().isTrigger = true;
 
         if (g_Mask != null)
         //Nếu có gán Prefab g_Mask thì mục tiêu được chọn sẽ hiển thị trên Gameplay
         {
             Active_Choice();
 
-            if (l_List.Count == 0)    
+            if (l_List.Count == 0)
+            {
                 //Nếu không có mục tiêu nào trong danh sách
                 Active_Destroy();
-            else                      
+            }
+            else
+            {
                 //Nếu còn mục tiêu trong danh sách
                 Active_Mask();
+            }
         }
     }
 
@@ -60,35 +63,45 @@ public class Eye2D_Focus : MonoBehaviour
         //Chọn mục tiêu trước
         {
             if (i_Tarket <= 0)
+            {
                 i_Tarket = l_List.Count - 1;
+            }
             else
+            {
                 i_Tarket--;
+            }
         }
         else
             if (Input.GetKeyDown(k_AfterTarket))
         //Chọn mục tiêu tiếp theo
         {
             if (i_Tarket >= l_List.Count - 1)
+            {
                 i_Tarket = 0;
+            }
             else
+            {
                 i_Tarket++;
+            }
         }
         else
-            if (Input.GetKeyDown(k_ClosestTarket)) 
+            if (Input.GetKeyDown(k_ClosestTarket))
+        {
             //Chọn mục tiêu gần nhất
             i_Tarket = Tarket_Closed();
+        }
     }
 
-    private int Tarket_Closed() 
+    private int Tarket_Closed()
     //Chọn mục tiêu gần nhất
     {
-        int i_Closed = 0; 
+        int i_Closed = 0;
         //Lưu vị trí thoả đầu tiên
-        float f_Closed = Vector2.Distance((Vector2)transform.position, (Vector2)l_List[0].transform.position);
+        float f_Closed = Vector2.Distance(transform.position, l_List[0].transform.position);
 
         for (int i = 1; i < l_List.Count; i++)
         {
-            float f_ClosedCheck = Vector2.Distance((Vector2)transform.position, (Vector2)l_List[i].transform.position);
+            float f_ClosedCheck = Vector2.Distance(transform.position, l_List[i].transform.position);
 
             if (f_ClosedCheck < f_Closed)
             {
@@ -99,7 +112,7 @@ public class Eye2D_Focus : MonoBehaviour
         return i_Closed;
     }
 
-    private void Active_Mask() 
+    private void Active_Mask()
     //Tạo mới hoặc thuyên chuyển Clone
     {
         //if (g_MaskClone == null)                            
@@ -142,9 +155,13 @@ public class Eye2D_Focus : MonoBehaviour
         if (l_List.IndexOf(c_Col.gameObject) <= i_Tarket)
         {
             if (i_Tarket == 0)
+            {
                 i_Tarket = 0;
+            }
             else
+            {
                 i_Tarket--;
+            }
         }
         l_List.Remove(c_Col.gameObject);
     }
@@ -153,7 +170,9 @@ public class Eye2D_Focus : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         if (!b_Debug)
+        {
             return;
+        }
 
         Vector2 v_Centre = new Vector2(transform.position.x, transform.position.y);
 
@@ -179,18 +198,18 @@ public class Eye2D_Focus : MonoBehaviour
 
             Gizmos.DrawLine(
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x - (b_BoxCollider.size.x / 2), 
+                    transform.position.x + b_BoxCollider.offset.x - (b_BoxCollider.size.x / 2),
                     transform.position.y + b_BoxCollider.offset.y - (b_BoxCollider.size.y / 2)),
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x - (b_BoxCollider.size.x / 2), 
+                    transform.position.x + b_BoxCollider.offset.x - (b_BoxCollider.size.x / 2),
                     transform.position.y + b_BoxCollider.offset.y + (b_BoxCollider.size.y / 2)));
 
             Gizmos.DrawLine(
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x + (b_BoxCollider.size.x / 2), 
+                    transform.position.x + b_BoxCollider.offset.x + (b_BoxCollider.size.x / 2),
                     transform.position.y + b_BoxCollider.offset.y - (b_BoxCollider.size.y / 2)),
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x + (b_BoxCollider.size.x / 2), 
+                    transform.position.x + b_BoxCollider.offset.x + (b_BoxCollider.size.x / 2),
                     transform.position.y + b_BoxCollider.offset.y + (b_BoxCollider.size.y / 2)));
         }
         else
@@ -205,23 +224,29 @@ public class Eye2D_Focus : MonoBehaviour
     }
 
     //-----------------------------------------------------------
-    public GameObject Receive_Tarket()                  
+    public GameObject Receive_Tarket()
     //Trả về mục tiêu hiện tại
     {
         if (l_List.Count == 0)
+        {
             return null;
+        }
+
         return l_List[i_Tarket].gameObject;
     }
 
-    public List<GameObject> Receive_List()              
+    public List<GameObject> Receive_List()
     //Trả về danh sách mục tiêu trong tầm ngắm
     {
         if (l_List.Count == 0)
+        {
             return null;
+        }
+
         return l_List;
     }
 
-    public int Receive_Count()                          
+    public int Receive_Count()
     //Trả về số lượng mục tiêu hiện có trong danh sách
     {
         return l_List.Count;

@@ -153,9 +153,13 @@ public class RigidbodySurface : MonoBehaviour
         else
         {
             if (b_StopRightAway)
+            {
                 cs_Rigid.Set_StopX_Velocity();
+            }
             else
+            {
                 cs_Rigid.Set_StopX_Velocity(f_SpeedStop);
+            }
         }
 
         if (i_ButtonMove_Z_Forward != 0)
@@ -165,9 +169,13 @@ public class RigidbodySurface : MonoBehaviour
         else
         {
             if (b_StopRightAway)
+            {
                 cs_Rigid.Set_StopZ_Velocity();
+            }
             else
+            {
                 cs_Rigid.Set_StopZ_Velocity(f_SpeedStop);
+            }
         }
     }
 
@@ -182,7 +190,7 @@ public class RigidbodySurface : MonoBehaviour
 
     public bool Get_Control_isLock()
     {
-        return this.b_LockControl;
+        return b_LockControl;
     }
 
     #endregion

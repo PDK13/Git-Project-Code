@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sample_TrajectoryTank_Primary : MonoBehaviour
@@ -16,19 +14,35 @@ public class Sample_TrajectoryTank_Primary : MonoBehaviour
 
     private void Awake()
     {
-        if (GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
+        if (GetComponent<Rigidbody>() == null)
+        {
+            gameObject.AddComponent<Rigidbody>();
+        }
+
         com_Rigidbody = GetComponent<Rigidbody>();
 
-        if (GetComponent<LineRenderer>() == null) gameObject.AddComponent<LineRenderer>();
+        if (GetComponent<LineRenderer>() == null)
+        {
+            gameObject.AddComponent<LineRenderer>();
+        }
+
         com_LineRenderer = GetComponent<LineRenderer>();
         com_LineRenderer.startWidth = 0.2f;
         com_LineRenderer.endWidth = 0.2f;
 
-        if (GetComponent<RendererTrajectory>() == null) gameObject.AddComponent<RendererTrajectory>();
+        if (GetComponent<RendererTrajectory>() == null)
+        {
+            gameObject.AddComponent<RendererTrajectory>();
+        }
+
         cs_RendererTrajectory = GetComponent<RendererTrajectory>();
         cs_RendererTrajectory.Set_Trajectory_toLineRenderer_Clear(com_LineRenderer);
 
-        if (GetComponent<RigidbodyRotation>() == null) gameObject.AddComponent<RigidbodyRotation>();
+        if (GetComponent<RigidbodyRotation>() == null)
+        {
+            gameObject.AddComponent<RigidbodyRotation>();
+        }
+
         cs_RigidbodyRotation = GetComponent<RigidbodyRotation>();
     }
 

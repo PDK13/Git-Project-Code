@@ -14,11 +14,11 @@ public class Class_Object
     {
         if (t_Parent == null)
         {
-            return MonoBehaviour.Instantiate(g_Prepab) as GameObject;
+            return MonoBehaviour.Instantiate(g_Prepab);
         }
         else
         {
-            return MonoBehaviour.Instantiate(g_Prepab, t_Parent) as GameObject;
+            return MonoBehaviour.Instantiate(g_Prepab, t_Parent);
         }
     }
 

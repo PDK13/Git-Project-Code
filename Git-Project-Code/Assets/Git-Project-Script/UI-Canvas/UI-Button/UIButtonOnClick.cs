@@ -178,31 +178,41 @@ public class UIButtonOnClick : MonoBehaviour,
     private void Set_Event_Invoke_PointerEnter()
     {
         if (Event_PointerEnter != null)
+        {
             Event_PointerEnter.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_PointerExit()
     {
         if (Event_PointerExit != null)
+        {
             Event_PointerExit.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_PointerDown()
     {
         if (Event_PointerDown != null)
+        {
             Event_PointerDown.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_PointerUp()
     {
         if (Event_PointerUp != null)
+        {
             Event_PointerUp.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_ActiveState()
     {
         if (Event_ActiveState != null)
+        {
             Event_ActiveState.Invoke();
+        }
     }
 
     #endregion
@@ -291,7 +301,7 @@ public class UIButtonOnClick : MonoBehaviour,
 
     public void Set_Button_Keycode(KeyCode k_Button_Keycode)
     {
-        this.k_Button_Keyboard = k_Button_Keycode;
+        k_Button_Keyboard = k_Button_Keycode;
     }
 
     public KeyCode Get_Button_Keycode()
@@ -309,12 +319,12 @@ public class UIButtonOnClick : MonoBehaviour,
 
     public void Set_Button_Active_Chance()
     {
-        this.b_Button_Active = !this.b_Button_Active;
+        b_Button_Active = !b_Button_Active;
     }
 
     public void Set_Button_Active(bool b_Active_State)
     {
-        this.b_Button_Active = b_Active_State;
+        b_Button_Active = b_Active_State;
     }
 
     public void Set_Button_Active_True()
@@ -333,12 +343,12 @@ public class UIButtonOnClick : MonoBehaviour,
 
     public void Set_Button_Lock_Chance()
     {
-        this.b_Button_Lock = !this.b_Button_Lock;
+        b_Button_Lock = !b_Button_Lock;
     }
 
     public void Set_Button_Lock(bool b_Lock_State)
     {
-        this.b_Button_Lock = b_Lock_State;
+        b_Button_Lock = b_Lock_State;
     }
 
     public void Set_Button_Lock_True()
@@ -430,7 +440,7 @@ public class UIButtonOnClick : MonoBehaviour,
         }
         else
         {
-            this.gameObject.AddComponent<Image>();
+            gameObject.AddComponent<Image>();
             GetComponent<Image>().color = c_Color;
         }
     }

@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Simple_Singleton
+﻿public class Simple_Singleton
 {
     //Xác nhận chỉ 1 lớp này tồn tại trong hệ thống
-    private static Simple_Singleton instance = new Simple_Singleton();
+    private static readonly Simple_Singleton instance = new Simple_Singleton();
 
     private int i_Number = 2;
 

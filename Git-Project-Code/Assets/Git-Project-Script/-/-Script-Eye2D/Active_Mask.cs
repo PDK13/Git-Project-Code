@@ -22,11 +22,15 @@ public class Active_Mask : MonoBehaviour
         //Nếu cho phép kích hoạt hiển thị
         {
             if (g_Mask_Clone == null)
+            {
                 //Nếu chưa có thì tạo mới và gán vị trí cho nó
-                g_Mask_Clone = Instantiate(g_Mask, this.transform.position + v_PosMask, transform.rotation) as GameObject;
+                g_Mask_Clone = Instantiate(g_Mask, transform.position + v_PosMask, transform.rotation);
+            }
             else
+            {
                 //Thay đổi vị trí cho nó nếu đã có
-                g_Mask_Clone.transform.position = this.transform.position + v_PosMask;
+                g_Mask_Clone.transform.position = transform.position + v_PosMask;
+            }
         }
         else
         //Nếu không cho phép kích hoạt hiển thị
@@ -43,7 +47,7 @@ public class Active_Mask : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(this.transform.position + v_PosMask, 0.1f);
+        Gizmos.DrawWireSphere(transform.position + v_PosMask, 0.1f);
     }
 
     //--------------------------------------------------------------------------------

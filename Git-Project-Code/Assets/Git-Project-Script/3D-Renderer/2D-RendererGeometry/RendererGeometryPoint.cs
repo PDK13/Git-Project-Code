@@ -8,12 +8,12 @@ public class RendererGeometryPoint : MonoBehaviour
 
     public float f_Duration = 2;
 
-    [Range(0,360)]
+    [Range(0, 360)]
     public float f_DegStart = 0;
 
     //Số lượng điểm quyết định hình dạng của hình vẽ (Tam giác đều, Tứ giác đều, Lục giác đều,...)
     //Khi số lượng điểm đạt tối đa, sẽ vẽ được Hình tròn (Không được vượt quá 36 điểm để tránh vị lỗi)
-    [Range(3,36)]
+    [Range(3, 36)]
     public int i_PointCount = 3;
 
     #region Renderer
@@ -49,7 +49,7 @@ public class RendererGeometryPoint : MonoBehaviour
     //Hàm này trả nhanh về danh sách các điểm dựa theo thông số hiện có
     public List<Vector2> Receive_PointList()
     {
-        return Active_CreatePoint(this.f_Duration,this.f_DegStart,this.i_PointCount);
+        return Active_CreatePoint(f_Duration, f_DegStart, i_PointCount);
     }
 
     #endregion
@@ -60,20 +60,27 @@ public class RendererGeometryPoint : MonoBehaviour
         //Đường vẽ màu "Vàng" là giữa điểm Kết thúc và Bắt đầu
 
         if (!b_Debug)
+        {
             return;
+        }
 
         Gizmos.color = Color.gray;
         Gizmos.DrawWireSphere((Vector2)transform.position, f_Duration);
 
         //Sử dụng danh sách điểm từ hàm phía dưới
-        List<Vector2> l_PointDebug = Active_CreatePoint(this.f_Duration, this.f_DegStart, this.i_PointCount);
+        List<Vector2> l_PointDebug = Active_CreatePoint(f_Duration, f_DegStart, i_PointCount);
 
         for (int i = 1; i < l_PointDebug.Count; i++)
         {
             if (i % 2 == 0)
+            {
                 Gizmos.color = Color.white;
+            }
             else
+            {
                 Gizmos.color = Color.black;
+            }
+
             Gizmos.DrawLine(
                 (Vector2)transform.position + l_PointDebug[i - 1],
                 (Vector2)transform.position + l_PointDebug[i]);

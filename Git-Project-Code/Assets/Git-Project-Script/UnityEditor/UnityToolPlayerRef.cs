@@ -1,8 +1,8 @@
 #if UNITY_EDITOR
 
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 public class UnityToolPlayerRef : EditorWindow
 {
@@ -10,7 +10,7 @@ public class UnityToolPlayerRef : EditorWindow
 
     private string m_Value = "";
 
-    private List<string> m_Choice = new List<string>() { "String", "Int", "Float" };
+    private readonly List<string> m_Choice = new List<string>() { "String", "Int", "Float" };
 
     private string m_Choice_Cur = "String";
 
@@ -24,7 +24,7 @@ public class UnityToolPlayerRef : EditorWindow
 
     private void OnGUI()
     {
-        var m_Style = new GUIStyle(GUI.skin.label)
+        GUIStyle m_Style = new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
             fontStyle = FontStyle.Bold

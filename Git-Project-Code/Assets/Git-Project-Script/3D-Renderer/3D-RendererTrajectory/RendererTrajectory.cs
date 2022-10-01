@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +30,11 @@ public class RendererTrajectory : MonoBehaviour
 
     private void Awake()
     {
-        if (GetComponent<RigidbodyGravity>() == null) gameObject.AddComponent<RigidbodyGravity>();
+        if (GetComponent<RigidbodyGravity>() == null)
+        {
+            gameObject.AddComponent<RigidbodyGravity>();
+        }
+
         cs_RigidbodyGravity = GetComponent<RigidbodyGravity>();
     }
 
@@ -105,12 +108,12 @@ public class RendererTrajectory : MonoBehaviour
 
     public void Set_Trajectory_Power_Chance(float f_Trajectory_Power_Chance)
     {
-        this.f_Trajectory_Power += f_Trajectory_Power_Chance;
+        f_Trajectory_Power += f_Trajectory_Power_Chance;
     }
 
     public float Get_Trajectory_Power()
     {
-        return this.f_Trajectory_Power;
+        return f_Trajectory_Power;
     }
 
     #endregion
@@ -124,7 +127,7 @@ public class RendererTrajectory : MonoBehaviour
 
     public int Get_Trajectory_Step()
     {
-        return this.i_Trajectory_Step;
+        return i_Trajectory_Step;
     }
 
     #endregion
@@ -245,7 +248,11 @@ public class RendererTrajectory : MonoBehaviour
 
     public void Set_Trajectory_toRigidbody(Rigidbody com_Rigidbody, Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next)
     {
-        if (com_Rigidbody.GetComponent<RigidbodyGravity>() == null) com_Rigidbody.gameObject.AddComponent<RigidbodyGravity>();
+        if (com_Rigidbody.GetComponent<RigidbodyGravity>() == null)
+        {
+            com_Rigidbody.gameObject.AddComponent<RigidbodyGravity>();
+        }
+
         com_Rigidbody.GetComponent<RigidbodyGravity>().Set_Gravity_Scale(cs_RigidbodyGravity.Get_Gravity_Scale());
         com_Rigidbody.GetComponent<RigidbodyGravity>().Set_Rigidbody_Drag(cs_RigidbodyGravity.Get_Rigidbody_Drag());
 

@@ -106,7 +106,9 @@ public class RaycastTwoPoint : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (i_Cast == 0 || t_Start == null || t_End == null)
+        {
             return;
+        }
 
         Class_Eye cs_Eye = new Class_Eye();
 

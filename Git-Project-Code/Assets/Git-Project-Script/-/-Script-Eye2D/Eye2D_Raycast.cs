@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -79,18 +78,24 @@ public class Eye2D_Raycast : MonoBehaviour
                 //Layer hiện đang xét
 
                 if (b_EyeThrough)
+                {
                     //Nếu cho phép nhìn xuyên vật thể
                     l_Through = 0;
+                }
                 else
+                {
                     l_Through = l_Tarket - (int)Mathf.Pow(2, c_Circle[i].gameObject.layer);
+                }
                 //Các Layer Mask tính theo luỹ thừa của 2 (2^n)
 
                 float f_DisTarket = Vector2.Distance(v_PosTarket + c_Tarket.offset, v_PosCur);
                 //Khoảng cách đến mục tiêu cần xét (đến Collider của mục tiêu cần xét)
 
                 if (!Physics2D.Raycast(v_PosCur, v_DirTarket, f_DisTarket, l_Barrier + l_Through))
+                {
                     //Nếu bắn RayCast trong một khoảng giới hạn DisTarket mà không va chạm bất kì vật cản nào
                     lg_Vision.Add(c_Circle[i].gameObject);
+                }
             }
         }
 
@@ -104,8 +109,8 @@ public class Eye2D_Raycast : MonoBehaviour
                 {
                     for (int j = i + 1; j < lg_Vision.Count; j++)
                     {
-                        float f_DistanceA = Vector2.Distance((Vector2)transform.position, (Vector2)lg_Vision[i].transform.position);
-                        float f_DistanceB = Vector2.Distance((Vector2)transform.position, (Vector2)lg_Vision[j].transform.position);
+                        float f_DistanceA = Vector2.Distance(transform.position, lg_Vision[i].transform.position);
+                        float f_DistanceB = Vector2.Distance(transform.position, lg_Vision[j].transform.position);
                         //Tính khoảng cách hiện tại
                         if (f_DistanceA > f_DistanceB)
                         {
@@ -137,11 +142,11 @@ public class Eye2D_Raycast : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Vector2 v_PosCur = (Vector2)transform.position;
+        Vector2 v_PosCur = transform.position;
         v_PosCur.x = v_PosCur.x + v_CircleEye.x;
         v_PosCur.y = v_PosCur.y + v_CircleEye.y;
 
-        if(b_GizmosVision)
+        if (b_GizmosVision)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(
@@ -178,7 +183,7 @@ public class Eye2D_Raycast : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Vector2 v_PosCur = (Vector2)transform.position;
+        Vector2 v_PosCur = transform.position;
         v_PosCur.x = v_PosCur.x + v_CircleEye.x;
         v_PosCur.y = v_PosCur.y + v_CircleEye.y;
 
@@ -205,7 +210,7 @@ public class Eye2D_Raycast : MonoBehaviour
     //Trả về kết quả có luôn phải sắp xếp danh sách tầm nhìn theo khoảng cách gần nhất hay không
     public bool Get_ClosedSorted()
     {
-        return this.b_ClosedSorted;
+        return b_ClosedSorted;
     }
 
     public int Get_Count()
@@ -224,15 +229,17 @@ public class Eye2D_Raycast : MonoBehaviour
     //Trả về mục tiêu có khoảng cách gần nhất
     {
         if (lg_TarketInVision.Count == 0)
+        {
             return null;
+        }
 
         int i_Closed = 0;
-        float f_Closed = Vector2.Distance((Vector2)transform.position, lg_TarketInVision[0].transform.position);
+        float f_Closed = Vector2.Distance(transform.position, lg_TarketInVision[0].transform.position);
 
         for (int i = 1; i < lg_TarketInVision.Count; i++)
         {
             float f_ClosedCheck =
-                Vector2.Distance((Vector2)transform.position, (Vector2)lg_TarketInVision[i].transform.position);
+                Vector2.Distance(transform.position, lg_TarketInVision[i].transform.position);
             //Tính khoảng cách hiện tại
 
             if (f_ClosedCheck < f_Closed)
@@ -258,13 +265,15 @@ public class Eye2D_Raycast : MonoBehaviour
     public List<float> Get_Distance()
     {
         if (lg_TarketInVision.Count == 0)
+        {
             return null;
+        }
 
         List<float> l_Distance = new List<float>();
 
         for (int i = 0; i < lg_TarketInVision.Count; i++)
         {
-            l_Distance.Add(Vector2.Distance((Vector2)gameObject.transform.position, (Vector2)lg_TarketInVision[i].transform.position));
+            l_Distance.Add(Vector2.Distance(gameObject.transform.position, lg_TarketInVision[i].transform.position));
         }
 
         return l_Distance;
@@ -274,7 +283,9 @@ public class Eye2D_Raycast : MonoBehaviour
     public List<float> Get_Distance_X()
     {
         if (lg_TarketInVision.Count == 0)
+        {
             return null;
+        }
 
         List<float> l_Distance = new List<float>();
 
@@ -290,7 +301,9 @@ public class Eye2D_Raycast : MonoBehaviour
     public List<float> Get_Distance_Y()
     {
         if (lg_TarketInVision.Count == 0)
+        {
             return null;
+        }
 
         List<float> l_Distance = new List<float>();
 
@@ -306,7 +319,9 @@ public class Eye2D_Raycast : MonoBehaviour
     public List<float> Get_Distance_Z()
     {
         if (lg_TarketInVision.Count == 0)
+        {
             return null;
+        }
 
         List<float> l_Distance = new List<float>();
 

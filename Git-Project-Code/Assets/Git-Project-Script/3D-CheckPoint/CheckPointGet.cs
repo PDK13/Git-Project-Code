@@ -1,49 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CheckPointGet : MonoBehaviour
 {
     [Header("Check Point(s)")]
-    public Transform t_First;
 
-    public float f_DegCheck = 90;
+    [SerializeField] private Transform m_CheckPointFirst;
+
+    [SerializeField] private float m_DegCheck = 90;
 
     [Header("Debug")]
-    public Transform t_Next;
+
+    [SerializeField] private Transform m_CheckPointNext;
 
     private void Start()
     {
-        t_Next = t_First;
+        m_CheckPointNext = m_CheckPointFirst;
     }
 
-    public void Set_Next(Transform t_NewNext)
+    public void SetCheckPointNext(Transform m_CheckPointNext)
     {
-        this.t_Next = t_NewNext;
+        this.m_CheckPointNext = m_CheckPointNext;
     }
 
-    public float Get_OffsetRotate()
+    public float GetCheckPointNextOffsetRotate()
     {
-        return Class_Vector.Get_DirToDeg_XZ_MainToCheck(this.transform, t_Next.transform);
+        return Class_Vector.Get_DirToDeg_XZ_MainToCheck(transform, m_CheckPointNext.transform);
     }
 
-    /// <summary>
-    /// Check if this Object Turn Ron way
-    /// </summary>
-    /// <param name="f_AngleHigher">Require 30 Deg to check</param>
-    /// <returns></returns>
-    public bool Get_RonWay(float f_AngleHigher)
+    public bool GetCheckPointNextRonDirection(float m_CheckPointOffsetAngleHigher)
     {
-        return Get_OffsetRotate() >= f_AngleHigher;
+        return GetCheckPointNextOffsetRotate() >= m_CheckPointOffsetAngleHigher;
     }
 
-    /// <summary>
-    /// Check if this Object Turn Right way
-    /// </summary>
-    /// <param name="f_AngleLower"></param>
-    /// <returns></returns>
-    public bool Get_RightWay(float f_AngleLower)
+    public bool GetCheckPointNextRightDirection(float m_CheckPointOffsetAngleLower)
     {
-        return Get_OffsetRotate() <= f_AngleLower;
+        return GetCheckPointNextOffsetRotate() <= m_CheckPointOffsetAngleLower;
     }
 }

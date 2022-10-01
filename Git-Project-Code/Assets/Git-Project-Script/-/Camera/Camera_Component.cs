@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
 
@@ -34,7 +32,9 @@ public class Camera_Component : MonoBehaviour
     private void LateUpdate()
     {
         if (t_Follow != null)
+        {
             Control_Follow();
+        }
     }
 
     //Điều khiển Camera
@@ -118,12 +118,12 @@ public class Camera_Component : MonoBehaviour
     //Thiết đặt mục tiêu di chuyển theo
     public void Set_Follow(Transform t_FollowNew)
     {
-        this.t_Follow = t_FollowNew;
+        t_Follow = t_FollowNew;
     }
 
     public void Set_Follow_InstanceFollow(Transform t_FollowNew)
     {
-        this.t_Follow = t_FollowNew;
+        t_Follow = t_FollowNew;
 
         Set_CameraPosition(t_Follow.position.x + v3_Follow.x, t_Follow.position.y + v3_Follow.y, t_Follow.position.z + v3_Follow.z);
     }
@@ -132,14 +132,18 @@ public class Camera_Component : MonoBehaviour
     public void Set_CameraNonDepth(float f_CameraSize)
     {
         if (GetComponent<Camera>() != null)
+        {
             GetComponent<Camera>().orthographicSize = f_CameraSize;
+        }
     }
 
     //Thiết đặt Camera kiểu 3D (tức có chiều sâu)
     public void Set_CameraWithDepth(float f_CameraView)
     {
         if (GetComponent<Camera>() != null)
+        {
             GetComponent<Camera>().fieldOfView = f_CameraView;
+        }
     }
 
     //Di chuyển Camera

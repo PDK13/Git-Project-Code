@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class UIObjectDragDrop : MonoBehaviour,
     IPointerEnterHandler, IPointerExitHandler,
-    IPointerDownHandler, IPointerUpHandler, 
+    IPointerDownHandler, IPointerUpHandler,
     IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
     [Header("Parent Canvas")]
@@ -40,7 +40,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     [Tooltip("Canvas Alpha when Drag")]
     [SerializeField]
-    [Range(0f,1f)]
+    [Range(0f, 1f)]
     private float f_Canvas_Alpha_Drag = 0.6f;
 
     [Header("Event")]
@@ -100,7 +100,7 @@ public class UIObjectDragDrop : MonoBehaviour,
     {
         if (c_ParentCanvas == null)
         {
-            c_ParentCanvas = this.GetComponentInParent<Canvas>();
+            c_ParentCanvas = GetComponentInParent<Canvas>();
         }
 
         r_RectTransform = GetComponent<RectTransform>();
@@ -111,7 +111,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         if (GetComponent<CanvasGroup>() == null)
         {
-            this.gameObject.AddComponent<CanvasGroup>();
+            gameObject.AddComponent<CanvasGroup>();
         }
 
         c_CanvasGroup = GetComponent<CanvasGroup>();
@@ -195,43 +195,57 @@ public class UIObjectDragDrop : MonoBehaviour,
     private void Set_Event_Invoke_PointerEnter()
     {
         if (Event_PointerEnter != null)
+        {
             Event_PointerEnter.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_PointerExit()
     {
         if (Event_PointerExit != null)
+        {
             Event_PointerExit.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_PointerDown()
     {
         if (Event_PointerDown != null)
+        {
             Event_PointerDown.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_PointerUp()
     {
         if (Event_PointerUp != null)
+        {
             Event_PointerUp.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_OnBeginDrag()
     {
         if (Event_OnBeginDrag != null)
+        {
             Event_OnBeginDrag.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_OnDrag()
     {
         if (Event_OnDrag != null)
+        {
             Event_OnDrag.Invoke();
+        }
     }
 
     private void Set_Event_Invoke_OnEndDrag()
     {
         if (Event_OnEndDrag != null)
+        {
             Event_OnEndDrag.Invoke();
+        }
     }
 
     #endregion
@@ -269,7 +283,7 @@ public class UIObjectDragDrop : MonoBehaviour,
             return;
         }
 
-        this.b_UI_Hold = true;
+        b_UI_Hold = true;
 
         Set_Event_Invoke_PointerDown();
     }
@@ -281,7 +295,7 @@ public class UIObjectDragDrop : MonoBehaviour,
             return;
         }
 
-        this.b_UI_Hold = false;
+        b_UI_Hold = false;
 
         Set_Event_Invoke_PointerUp();
     }
@@ -384,7 +398,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     public void Set_UI_Canvas_Lock(bool b_Lock_Status)
     {
-        this.b_Canvas_Lock = b_Lock_Status;
+        b_Canvas_Lock = b_Lock_Status;
     }
 
     public void Set_UI_Canvas_Lock_True()
@@ -403,12 +417,12 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     public bool Get_UI_Canvas_Drag()
     {
-        return this.b_UI_Drag;
+        return b_UI_Drag;
     }
 
     public bool Get_UI_Canvas_Hold()
     {
-        return this.b_UI_Hold;
+        return b_UI_Hold;
     }
 
     public bool Get_UI_Canvas_Ready()
@@ -456,7 +470,7 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <returns></returns>
     public float Get_UI_Canvas_Alpha_Normal()
     {
-        return this.f_Canvas_Alpha_Normal;
+        return f_Canvas_Alpha_Normal;
     }
 
     #endregion
@@ -490,7 +504,7 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <returns></returns>
     public float Get_UI_Canvas_Alpha_Drag()
     {
-        return this.f_Canvas_Alpha_Drag;
+        return f_Canvas_Alpha_Drag;
     }
 
     #endregion

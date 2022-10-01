@@ -103,7 +103,9 @@ public class RigidbodyComponent : MonoBehaviour
     private void Awake()
     {
         if (b_UseScriptStart)
+        {
             Set_Rigid();
+        }
     }
 
     private void FixedUpdate()
@@ -111,15 +113,19 @@ public class RigidbodyComponent : MonoBehaviour
         if (b_UseScriptBounce)
         {
             if (Get_CheckHead() && !Get_CheckFoot())
+            {
                 //If Jump but Head touch Top >> Set Fall Down
                 Set_MoveY_Fall(f_HeadBounce);
+            }
         }
 
         if (b_UseScriptGravity)
         {
             if (!Get_CheckFoot())
+            {
                 //If not Stand on Ground >> Gravity Set
                 Set_MoveY_Gravity(f_GravityFall);
+            }
         }
     }
 
@@ -155,12 +161,18 @@ public class RigidbodyComponent : MonoBehaviour
         r_Rigidbody.isKinematic = b_Kinematic;
         r_Rigidbody.useGravity = false;
         if (b_LockRot && !b_LockPos)
+        {
             r_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        }
         else
         if (!b_LockRot && b_LockPos)
+        {
             r_Rigidbody.constraints = RigidbodyConstraints.FreezePosition;
+        }
         else
+        {
             r_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
     /// <summary>
@@ -186,7 +198,9 @@ public class RigidbodyComponent : MonoBehaviour
         int i_Dir = (i_DirMoveRight > 0) ? 1 : (i_DirMoveRight < 0) ? -1 : 0;
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         if (Mathf.Abs(r_Rigidbody.velocity.x) <= f_VelocityMoveMax)
+        {
             r_Rigidbody.AddForce(Vector3.right * f_VelocityMove * i_Dir);
+        }
     }
 
     /// <summary>
@@ -197,9 +211,13 @@ public class RigidbodyComponent : MonoBehaviour
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         if (f_VelocityStop != 0)
+        {
             r_Rigidbody.AddForce(Vector3.left * r_Rigidbody.velocity.x * f_VelocityStop);
+        }
         else
+        {
             r_Rigidbody.AddForce(Vector3.left * r_Rigidbody.velocity.x);
+        }
     }
 
     /// <summary>
@@ -235,7 +253,9 @@ public class RigidbodyComponent : MonoBehaviour
         int i_Dir = (i_DirMoveForward > 0) ? 1 : (i_DirMoveForward < 0) ? -1 : 0;
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         if (Mathf.Abs(r_Rigidbody.velocity.z) <= f_VelocityMoveMax)
+        {
             r_Rigidbody.AddForce(Vector3.forward * f_VelocityMove * i_Dir);
+        }
     }
 
     /// <summary>
@@ -246,9 +266,13 @@ public class RigidbodyComponent : MonoBehaviour
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         if (f_VelocityStop != 0)
+        {
             r_Rigidbody.AddForce(Vector3.back * r_Rigidbody.velocity.z * f_VelocityStop);
+        }
         else
+        {
             r_Rigidbody.AddForce(Vector3.back * r_Rigidbody.velocity.z);
+        }
     }
 
     /// <summary>
@@ -431,9 +455,13 @@ public class RigidbodyComponent : MonoBehaviour
         {
             //Foot Check
             if (Get_CheckFoot())
+            {
                 Gizmos.color = Color.red;
+            }
             else
+            {
                 Gizmos.color = Color.white;
+            }
 
             Gizmos.DrawLine(transform.position, transform.position + Vector3.down * f_FootCast);
             Gizmos.DrawWireCube(transform.position + Vector3.down * f_FootCast, v3_FootCast);
@@ -443,9 +471,13 @@ public class RigidbodyComponent : MonoBehaviour
         {
             //Head Check
             if (Get_CheckHead())
+            {
                 Gizmos.color = Color.red;
+            }
             else
+            {
                 Gizmos.color = Color.white;
+            }
 
             Gizmos.DrawLine(transform.position, transform.position + Vector3.up * f_HeadCast);
             Gizmos.DrawWireCube(transform.position + Vector3.up * f_HeadCast, v3_HeadCast);

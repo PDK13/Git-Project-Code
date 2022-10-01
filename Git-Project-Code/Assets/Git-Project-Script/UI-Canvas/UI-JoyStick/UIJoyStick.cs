@@ -201,22 +201,22 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public bool Get_Lock_X_L()
     {
-        return this.b_Lock_X_L;
+        return b_Lock_X_L;
     }
 
     public bool Get_Lock_X_R()
     {
-        return this.b_Lock_X_R;
+        return b_Lock_X_R;
     }
 
     public bool Get_Lock_Y_U()
     {
-        return this.b_Lock_Y_U;
+        return b_Lock_Y_U;
     }
 
     public bool Get_Lock_Y_D()
     {
-        return this.b_Lock_Y_D;
+        return b_Lock_Y_D;
     }
 
     #endregion

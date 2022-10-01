@@ -49,19 +49,27 @@ public class RigidbodyPlatform : MonoBehaviour
     //Control Move by Keyboard
     {
         if (Input.GetKey(k_MoveLeft) && Input.GetKey(k_MoveRight))
+        {
             //Press "Left" & "Right" same time >> Not Move
             Set_Stop();
+        }
         else
             if (Input.GetKey(k_MoveLeft))
+        {
             //Left
             Set_Move(-1);
+        }
         else
             if (Input.GetKey(k_MoveRight))
+        {
             //Right
             Set_Move(1);
+        }
         else
+        {
             //Not Press
             Set_Stop();
+        }
     }
 
     private void Set_Move(int i_ButtonMove)
@@ -74,14 +82,18 @@ public class RigidbodyPlatform : MonoBehaviour
     //Control Stop
     {
         if (b_StopRightAway)
+        {
             cs_Rigid.Set_StopX_Velocity();
+        }
         else
+        {
             cs_Rigid.Set_StopX_Velocity(f_SpeedStop);
+        }
     }
 
     public void Set_SpeedChance()
     //Control Speed Chance
     {
-        f_SpeedCur = (Input.GetKey(k_SpeedChance))? f_SpeedChance : f_SpeedNormal;
+        f_SpeedCur = (Input.GetKey(k_SpeedChance)) ? f_SpeedChance : f_SpeedNormal;
     }
 }

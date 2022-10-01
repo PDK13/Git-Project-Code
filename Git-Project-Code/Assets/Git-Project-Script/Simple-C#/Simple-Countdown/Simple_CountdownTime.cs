@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
 public class Simple_CountdownTime : MonoBehaviour
 {
@@ -65,20 +64,20 @@ public class Sample_CountdownTime_Class
     public Sample_CountdownTime_Class(float f_Time)
     {
         this.f_Time = f_Time;
-        this.f_Time_Cur = f_Time;
+        f_Time_Cur = f_Time;
     }
 
     public Sample_CountdownTime_Class(float f_Time, string s_Message)
     {
         this.f_Time = f_Time;
-        this.f_Time_Cur = f_Time;
+        f_Time_Cur = f_Time;
 
         this.s_Message = s_Message;
     }
 
     public void Set_TimeOut(float f_Time_Passed)
     {
-        this.f_Time_Cur -= f_Time_Passed;
+        f_Time_Cur -= f_Time_Passed;
     }
 
     public float Get_Time()

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,7 +63,7 @@ public class UIVerticalClone : MonoBehaviour
     /// </summary>
     public void Set_Clone_Remove()
     {
-        cl_List.Set_ListVertical_Remove(this.i_Index);
+        cl_List.Set_ListVertical_Remove(i_Index);
     }
 
     /// <summary>

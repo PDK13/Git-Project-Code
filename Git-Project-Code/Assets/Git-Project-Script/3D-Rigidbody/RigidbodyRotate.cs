@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody Rotate")]
@@ -38,17 +36,17 @@ public class RigidbodyRotate : MonoBehaviour
         {
             if (b_Follow_Right)
             {
-                this.transform.right = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
+                transform.right = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
             }
 
             if (b_Follow_Up)
             {
-                this.transform.up = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
+                transform.up = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
             }
 
             if (b_Follow_Forward)
             {
-                this.transform.forward = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
+                transform.forward = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
             }
         }
         else
@@ -56,17 +54,17 @@ public class RigidbodyRotate : MonoBehaviour
         {
             if (b_Follow_Right)
             {
-                this.transform.right = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
+                transform.right = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
             }
 
             if (b_Follow_Up)
             {
-                this.transform.up = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
+                transform.up = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
             }
 
             if (b_Follow_Forward)
             {
-                this.transform.forward = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
+                transform.forward = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
             }
         }
     }
@@ -78,7 +76,7 @@ public class RigidbodyRotate : MonoBehaviour
 
     public bool Get_Follow_Right()
     {
-        return this.b_Follow_Right;
+        return b_Follow_Right;
     }
 
     public void Set_Follow_Up(bool b_Follow_Up)
@@ -88,7 +86,7 @@ public class RigidbodyRotate : MonoBehaviour
 
     public bool Get_Follow_Up()
     {
-        return this.b_Follow_Up;
+        return b_Follow_Up;
     }
 
     public void Set_Follow_Forward(bool b_Follow_Forward)
@@ -98,6 +96,6 @@ public class RigidbodyRotate : MonoBehaviour
 
     public bool Get_Follow_Forward()
     {
-        return this.b_Follow_Forward;
+        return b_Follow_Forward;
     }
 }

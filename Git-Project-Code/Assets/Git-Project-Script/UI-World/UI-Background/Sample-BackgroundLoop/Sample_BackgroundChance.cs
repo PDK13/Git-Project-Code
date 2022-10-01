@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sample_BackgroundChance : MonoBehaviour
@@ -12,27 +10,39 @@ public class Sample_BackgroundChance : MonoBehaviour
     [Header("BackgroundNum 0 -> 3")]
     public int backgroundNum;
     public Sprite[] Layer_Sprites;
-    private GameObject[] Layer_Object = new GameObject[5];
-    private int max_backgroundNum = 3;
-    void Start()
+    private readonly GameObject[] Layer_Object = new GameObject[5];
+    private readonly int max_backgroundNum = 3;
+
+    private void Start()
     {
-        for (int i = 0; i < Layer_Object.Length; i++){
+        for (int i = 0; i < Layer_Object.Length; i++)
+        {
             Layer_Object[i] = GameObject.Find("Layer_" + i);
         }
-        
+
         ChangeSprite();
     }
 
-    void Update() {
+    private void Update()
+    {
         //for presentation without UIs
-        if (Input.GetKeyDown(k_Background_Next)) NextBG();
-        if (Input.GetKeyDown(k_Background_Prev)) BackBG();
+        if (Input.GetKeyDown(k_Background_Next))
+        {
+            NextBG();
+        }
+
+        if (Input.GetKeyDown(k_Background_Prev))
+        {
+            BackBG();
+        }
     }
 
-    void ChangeSprite(){
-        Layer_Object[0].GetComponent<SpriteRenderer>().sprite = Layer_Sprites[backgroundNum*5];
-        for (int i = 1; i < Layer_Object.Length; i++){
-            Sprite changeSprite = Layer_Sprites[backgroundNum*5 + i];
+    private void ChangeSprite()
+    {
+        Layer_Object[0].GetComponent<SpriteRenderer>().sprite = Layer_Sprites[backgroundNum * 5];
+        for (int i = 1; i < Layer_Object.Length; i++)
+        {
+            Sprite changeSprite = Layer_Sprites[backgroundNum * 5 + i];
             //Change Layer_1->7
             Layer_Object[i].GetComponent<SpriteRenderer>().sprite = changeSprite;
             //Change "Layer_(*)x" sprites in children of Layer_1->7
@@ -41,14 +51,24 @@ public class Sample_BackgroundChance : MonoBehaviour
         }
     }
 
-    public void NextBG(){
+    public void NextBG()
+    {
         backgroundNum = backgroundNum + 1;
-        if (backgroundNum > max_backgroundNum) backgroundNum = 0;
+        if (backgroundNum > max_backgroundNum)
+        {
+            backgroundNum = 0;
+        }
+
         ChangeSprite();
     }
-    public void BackBG(){
+    public void BackBG()
+    {
         backgroundNum = backgroundNum - 1;
-        if (backgroundNum < 0) backgroundNum = max_backgroundNum;
+        if (backgroundNum < 0)
+        {
+            backgroundNum = max_backgroundNum;
+        }
+
         ChangeSprite();
     }
 }

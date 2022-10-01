@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sample_TrajectoryBullet : MonoBehaviour
@@ -24,11 +23,19 @@ public class Sample_TrajectoryBullet : MonoBehaviour
 
     private void Awake()
     {
-        if (GetComponent<MeshRenderer>() == null) gameObject.AddComponent<MeshRenderer>();
+        if (GetComponent<MeshRenderer>() == null)
+        {
+            gameObject.AddComponent<MeshRenderer>();
+        }
+
         com_MessRenderer = GetComponent<MeshRenderer>();
         com_MessRenderer.material = m_Material_NotHit;
 
-        if (GetComponent<RigidbodyRotate>() == null) gameObject.AddComponent<RigidbodyRotate>();
+        if (GetComponent<RigidbodyRotate>() == null)
+        {
+            gameObject.AddComponent<RigidbodyRotate>();
+        }
+
         cs_RigidbodyRotate = GetComponent<RigidbodyRotate>();
         cs_RigidbodyRotate.Set_Follow_Right(true);
 
@@ -53,7 +60,7 @@ public class Sample_TrajectoryBullet : MonoBehaviour
     {
         yield return new WaitForSeconds(f_Destory_AfterTime);
 
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     public void Set_Tarket(GameObject g_Tarket)

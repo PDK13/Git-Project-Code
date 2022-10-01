@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sample_VelocityHigh : MonoBehaviour
@@ -32,8 +30,8 @@ public class Sample_VelocityHigh : MonoBehaviour
         com_Rigidbody2D.AddForce(Vector3.right * 50f);
 
         RaycastHit2D ray_Raycast = Physics2D.CircleCast(
-            (Vector2)this.transform.position + com_Rigidbody2D.velocity.normalized * (this.com_CircleCollider2D.radius * 2 + 0.2f),
-            this.com_CircleCollider2D.radius,
+            (Vector2)transform.position + com_Rigidbody2D.velocity.normalized * (com_CircleCollider2D.radius * 2 + 0.2f),
+            com_CircleCollider2D.radius,
             com_Rigidbody2D.velocity.normalized,
             com_Rigidbody2D.velocity.magnitude);
 
@@ -41,7 +39,7 @@ public class Sample_VelocityHigh : MonoBehaviour
         {
             com_Rigidbody2D.bodyType = RigidbodyType2D.Static;
 
-            this.transform.position = (Vector3)v2_Pos_Drop;
+            transform.position = (Vector3)v2_Pos_Drop;
         }
         else
         if (ray_Raycast.collider != null)
@@ -55,7 +53,7 @@ public class Sample_VelocityHigh : MonoBehaviour
             {
                 if (com_Rigidbody2D.bodyType != RigidbodyType2D.Static)
                 {
-                    v2_Pos_Drop = ray_Raycast.collider.ClosestPoint((Vector2)this.transform.position + com_Rigidbody2D.velocity.normalized * (this.com_CircleCollider2D.radius * 2 + 0.2f) + (Vector2)Class_Vector.Get_Vector(com_Rigidbody2D.velocity.x, 0, 0) * Time.fixedDeltaTime);
+                    v2_Pos_Drop = ray_Raycast.collider.ClosestPoint((Vector2)transform.position + com_Rigidbody2D.velocity.normalized * (com_CircleCollider2D.radius * 2 + 0.2f) + (Vector2)Class_Vector.Get_Vector(com_Rigidbody2D.velocity.x, 0, 0) * Time.fixedDeltaTime);
                 }
             }
         }
@@ -65,7 +63,7 @@ public class Sample_VelocityHigh : MonoBehaviour
     {
         Gizmos.color = Color.green;
 
-        Gizmos.DrawWireSphere(this.transform.position, GetComponent<CircleCollider2D>().radius);
+        Gizmos.DrawWireSphere(transform.position, GetComponent<CircleCollider2D>().radius);
 
         if (com_Tarket_Ground != null)
         {
@@ -73,14 +71,14 @@ public class Sample_VelocityHigh : MonoBehaviour
 
             Gizmos.color = Color.gray;
 
-            Gizmos.DrawLine(com_Tarket_Ground.transform.position, this.transform.position);
+            Gizmos.DrawLine(com_Tarket_Ground.transform.position, transform.position);
         }
 
         Gizmos.color = Color.red;
 
         if (v2_Pos_Drop != null)
         {
-            Gizmos.DrawLine(this.transform.position, (Vector2)v2_Pos_Drop);
+            Gizmos.DrawLine(transform.position, (Vector2)v2_Pos_Drop);
 
             Gizmos.DrawWireSphere((Vector2)v2_Pos_Drop, GetComponent<CircleCollider2D>().radius);
         }

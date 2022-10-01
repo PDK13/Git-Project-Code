@@ -226,7 +226,7 @@ public class UIVerticalList : MonoBehaviour
     public void Set_Clone_Emty()
     {
         //b_Component = false;
-        this.g_Clone = null;
+        g_Clone = null;
     }
 
     /// <summary>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -92,7 +91,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// IP on this Device or this Server
     /// </summary>
-    private string s_LocalHost = "localhost";
+    private readonly string s_LocalHost = "localhost";
 
     /// <summary>
     /// Socket Connect OK?
@@ -295,11 +294,11 @@ public class Socket_ClientManager : MonoBehaviour
 
                 Debug.LogWarning("Set_Socket_Start: Socket Start!");
 
-                for (int i = 0; i < lt_SocketMessage.Count; i++) 
+                for (int i = 0; i < lt_SocketMessage.Count; i++)
                 {
                     lt_SocketMessage[i].text = s_ConnectSuccess;
                 }
-                
+
             }
             catch (Exception e)
             {
@@ -333,8 +332,11 @@ public class Socket_ClientManager : MonoBehaviour
     public void Set_Socket_Write(string s_Data)
     {
         if (!Get_Socket_Start())
+        {
             return;
-        String foo = s_Data + "\r\n";
+        }
+
+        string foo = s_Data + "\r\n";
         st_Writer.Write(foo);
         st_Writer.Flush();
 
@@ -405,7 +407,10 @@ public class Socket_ClientManager : MonoBehaviour
     public void Set_Socket_Close()
     {
         if (!Get_Socket_Start())
+        {
             return;
+        }
+
         Set_Socket_Write("Exit");
         st_Writer.Close();
         st_Reader.Close();

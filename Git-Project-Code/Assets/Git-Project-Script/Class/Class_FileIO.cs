@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
-
-using System.Runtime.Serialization.Formatters.Binary;
 
 /// <summary>
 /// Working on IO FILE
@@ -148,35 +145,50 @@ public class Class_FileIO
     public void Set_Data_Write_Add(string s_Add)
     {
         if (s_TextWrite.Length != 0)
+        {
             s_TextWrite += "\n";
+        }
+
         s_TextWrite += s_Add;
     }
 
     public void Set_Data_Write_Add(int s_Add)
     {
         if (s_TextWrite.Length != 0)
+        {
             s_TextWrite += "\n";
+        }
+
         s_TextWrite += s_Add.ToString();
     }
 
     public void Set_Data_Write_Add(float s_Add)
     {
         if (s_TextWrite.Length != 0)
+        {
             s_TextWrite += "\n";
+        }
+
         s_TextWrite += s_Add.ToString();
     }
 
     public void Set_Data_Write_Add(double s_Add)
     {
         if (s_TextWrite.Length != 0)
+        {
             s_TextWrite += "\n";
+        }
+
         s_TextWrite += s_Add.ToString();
     }
 
     public void Set_Data_Write_Add(bool b_Add)
     {
         if (s_TextWrite.Length != 0)
+        {
             s_TextWrite += "\n";
+        }
+
         s_TextWrite += ((b_Add) ? "True" : "False");
     }
 

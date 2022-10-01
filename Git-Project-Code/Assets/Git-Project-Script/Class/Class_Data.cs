@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -38,8 +37,11 @@ public class Class_Data
 
         if (s_ValueCheck == Get_String_Data_NotFound() || s_Value == null || s_ValueCheck == "")
         {
-            if(b_Debug)
+            if (b_Debug)
+            {
                 Debug.LogError("Get_Exchance_Int: \"s_Value\" To (INT)\"0\"");
+            }
+
             return 0;
         }
         return int.Parse(s_ValueCheck);
@@ -57,7 +59,10 @@ public class Class_Data
         if (s_ValueCheck == Get_String_Data_NotFound() || s_Value == null || s_ValueCheck == "")
         {
             if (b_Debug)
+            {
                 Debug.LogError("Get_Exchance_Float: \"s_Value\" To (FLOAT)\"0.0\"");
+            }
+
             return 0.0f;
         }
         return float.Parse(s_ValueCheck);
@@ -75,7 +80,10 @@ public class Class_Data
         if (s_ValueCheck == Get_String_Data_NotFound() || s_Value == null || s_ValueCheck == "")
         {
             if (b_Debug)
+            {
                 Debug.LogError("Get_Exchance_Bool: \"s_Value\" To (BOOL)\"FALSE\"");
+            }
+
             return false;
         }
         return bool.Parse(s_ValueCheck);
@@ -99,12 +107,12 @@ public class Class_Data
     /// <summary>
     /// Data Name to Access
     /// </summary>
-    private List<string> l_Data_Name = new List<string>();
+    private readonly List<string> l_Data_Name = new List<string>();
 
     /// <summary>
     /// Data Value (INT, FLOAT, BOOL, STRING) saved at STRING
     /// </summary>
-    private List<object> l_Data_Value = new List<object>();
+    private readonly List<object> l_Data_Value = new List<object>();
 
     /// <summary>
     /// Get List of Data Name
@@ -131,7 +139,7 @@ public class Class_Data
     /// </summary>
     public void Set_Index_Restart()
     {
-        this.i_Index_Auto = -1;
+        i_Index_Auto = -1;
     }
 
     /// <summary>
@@ -139,7 +147,7 @@ public class Class_Data
     /// </summary>
     public void Set_Index_Plus()
     {
-        this.i_Index_Auto++;
+        i_Index_Auto++;
     }
 
     /// <summary>
@@ -165,7 +173,9 @@ public class Class_Data
         for (int i = 0; i < l_Data_Name.Count; i++)
         {
             if (l_Data_Name[i] == s_DataName)
+            {
                 return i;
+            }
         }
         return -1;
     }
@@ -182,30 +192,46 @@ public class Class_Data
         if (Index != -1)
         {
             if (b_Debug)
+            {
                 Debug.Log("Set_Data: " + "\"" + s_DataName + "\"" + " Updated " + "\"" + o_DataValue + "\"");
+            }
 
             if (o_DataValue == null)
+            {
                 l_Data_Value[Index] = Get_String_Data_NULL();
+            }
             else
             if (o_DataValue.GetType() == typeof(int))
+            {
                 l_Data_Value[Index] = o_DataValue.ToString();
+            }
             else
             if (o_DataValue.GetType() == typeof(float))
+            {
                 l_Data_Value[Index] = o_DataValue.ToString();
+            }
             else
             if (o_DataValue.GetType() == typeof(bool))
+            {
                 l_Data_Value[Index] = o_DataValue.ToString();
+            }
             else
             if (o_DataValue.GetType() == typeof(string))
+            {
                 l_Data_Value[Index] = o_DataValue.ToString();
+            }
             else
-            if(b_Debug)
+            if (b_Debug)
+            {
                 Debug.LogError("Set_Data: " + s_DataName + " not support Updated TYPE");
+            }
         }
         else
         {
             if (b_Debug)
+            {
                 Debug.Log("Set_Data: " + "\"" + s_DataName + "\"" + " Added " + "\"" + o_DataValue + "\"");
+            }
 
             if (o_DataValue == null)
             {
@@ -238,7 +264,9 @@ public class Class_Data
             }
             else
             if (b_Debug)
+            {
                 Debug.LogError("Set_Data: " + s_DataName + " not support Added TYPE");
+            }
         }
     }
 
@@ -257,7 +285,10 @@ public class Class_Data
             }
         }
         if (b_Debug)
+        {
             Debug.LogError("Get_Data: " + "\"" + s_DataName + "\" Not found");
+        }
+
         return "@NotFound";
     }
 
@@ -327,7 +358,10 @@ public class Class_Data
     {
         string s_DataCheck = s_DataName + "_Count";
         if (Get_Convert_String(Get_Data(s_DataCheck)) == Get_String_Data_NotFound())
+        {
             return -1;
+        }
+
         return Get_Convert_Int(Get_Data(s_DataCheck).ToString());
     }
 

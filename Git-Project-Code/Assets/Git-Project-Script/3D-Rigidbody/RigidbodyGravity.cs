@@ -57,7 +57,7 @@ public class RigidbodyGravity : MonoBehaviour
 
     public void Set_Rigidbody_Drag(float f_Gravity_Drag)
     {
-        this.com_Rigidbody.drag = f_Gravity_Drag;
+        com_Rigidbody.drag = f_Gravity_Drag;
     }
 
     #endregion
@@ -66,12 +66,12 @@ public class RigidbodyGravity : MonoBehaviour
 
     public float Get_Gravity_Scale()
     {
-        return this.f_Gravity_Scale;
+        return f_Gravity_Scale;
     }
 
     public float Get_Gravity_Global_toFloat()
     {
-        return this.f_Gravity_Global;
+        return f_Gravity_Global;
     }
 
     public Vector3 Get_Gravity_Global_toVector()

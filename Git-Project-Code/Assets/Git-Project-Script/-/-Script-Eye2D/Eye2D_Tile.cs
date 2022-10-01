@@ -100,9 +100,9 @@ public class Eye2D_Tile : MonoBehaviour
     private Vector3 Get_Pos(float x, float y)
     {
         return new Vector3(
-            this.transform.position.x + (x * f_Square_Dist) + v_MatrixEye.x,
-            this.transform.position.y + (y * -f_Square_Dist) + v_MatrixEye.y,
-            this.transform.position.z);
+            transform.position.x + (x * f_Square_Dist) + v_MatrixEye.x,
+            transform.position.y + (y * -f_Square_Dist) + v_MatrixEye.y,
+            transform.position.z);
     }
 
     //Nhận Vector Size để xử lý
@@ -118,27 +118,37 @@ public class Eye2D_Tile : MonoBehaviour
             for (int x = -i_Left; x <= i_Right; x++)
             {
                 if (l2_Matrix[y + i_Up][x + i_Left] == "N")
+                {
                     //Nếu là Normal ("N") >> Màu xanh
                     Gizmos.color = Color.green;
+                }
                 else
                 {
                     if (l2_Matrix[y + i_Up][x + i_Left] == "D")
+                    {
                         //Nếu là Danger ("D") >> Màu đỏ
                         Gizmos.color = Color.red;
+                    }
                     else
                     {
                         if (l2_Matrix[y + i_Up][x + i_Left] == "M")
+                        {
                             //Nếu là Tâm ("M") >> Màu xanh dương
                             Gizmos.color = Color.blue;
+                        }
                         else
                         {
                             if (l2_Matrix[y + i_Up][x + i_Left] == "E")
                             {
                                 //Nếu là Emty ("E") >> Black
                                 if (b_Debug_Emty)
+                                {
                                     Gizmos.color = Color.gray;
+                                }
                                 else
+                                {
                                     Gizmos.color = Color.clear;
+                                }
                             }
                         }
                     }
@@ -156,7 +166,9 @@ public class Eye2D_Tile : MonoBehaviour
     public List<string> Get_List_TileMatrix_Str()
     {
         if (l2_Matrix == null)
+        {
             return null;
+        }
 
         List<string> l_TileList = new List<string>();
 
@@ -175,7 +187,9 @@ public class Eye2D_Tile : MonoBehaviour
     public List<int> Get_List_TileMatrix_Int()
     {
         if (l2_Matrix == null)
+        {
             return null;
+        }
 
         List<int> l_TileList = new List<int>();
 
@@ -197,7 +211,9 @@ public class Eye2D_Tile : MonoBehaviour
     public List<float> Get_List_TileMatrix_Float()
     {
         if (l2_Matrix == null)
+        {
             return null;
+        }
 
         List<float> l_TileList = new List<float>();
 
@@ -228,7 +244,7 @@ public class Eye2D_Tile : MonoBehaviour
     {
         int i_Full = i_Up * (i_Left + i_Right + 1);
         int i_Check = 0;
-        for (int y = -i_Up; y <= -1; y++) 
+        for (int y = -i_Up; y <= -1; y++)
         {
             //Up >> 0
             for (int x = -i_Left; x <= i_Right; x++)
@@ -239,7 +255,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -261,7 +279,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -283,7 +303,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -305,7 +327,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -327,7 +351,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -349,7 +375,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -371,7 +399,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -393,7 +423,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -415,7 +447,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -437,7 +471,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -459,7 +495,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;
@@ -481,7 +519,9 @@ public class Eye2D_Tile : MonoBehaviour
                     b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
                     b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
+                {
                     i_Check++;
+                }
             }
         }
         return 1.0f * i_Check / i_Full;

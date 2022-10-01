@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Class_Time
@@ -56,16 +54,16 @@ public class Class_Time_Value
 
     public Class_Time_Value()
     {
-        this.i_Hour = 0;
-        this.i_Minute = 0;
-        this.i_Second = 0;
+        i_Hour = 0;
+        i_Minute = 0;
+        i_Second = 0;
     }
 
     public Class_Time_Value(Class_Time_Value cs_Class_Time_Value)
     {
-        this.i_Hour = cs_Class_Time_Value.Get_Time_Hour();
-        this.i_Minute = cs_Class_Time_Value.Get_Time_Minute();
-        this.i_Second = cs_Class_Time_Value.Get_Time_Second();
+        i_Hour = cs_Class_Time_Value.Get_Time_Hour();
+        i_Minute = cs_Class_Time_Value.Get_Time_Minute();
+        i_Second = cs_Class_Time_Value.Get_Time_Second();
     }
 
     public bool Get_Time_Zero()
@@ -91,11 +89,11 @@ public class Class_Time_Value
     {
         if (i_Hour + i_Hour_Chance < 0)
         {
-            this.i_Hour = 0;
+            i_Hour = 0;
         }
         else
         {
-            this.i_Hour += i_Hour_Chance;
+            i_Hour += i_Hour_Chance;
         }
     }
 
@@ -124,11 +122,11 @@ public class Class_Time_Value
     {
         if (i_Minute + i_Minute_Chance < 0)
         {
-            this.i_Minute = 0;
+            i_Minute = 0;
         }
         else
         {
-            this.i_Minute += i_Minute_Chance;
+            i_Minute += i_Minute_Chance;
         }
     }
 
@@ -157,11 +155,11 @@ public class Class_Time_Value
     {
         if (i_Second + i_Second_Chance < 0)
         {
-            this.i_Second = 0;
+            i_Second = 0;
         }
         else
         {
-            this.i_Second += i_Second_Chance;
+            i_Second += i_Second_Chance;
         }
     }
 

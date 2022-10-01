@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sample_BackgroundMove : MonoBehaviour
@@ -12,16 +10,16 @@ public class Sample_BackgroundMove : MonoBehaviour
 
     [Header("Keyboard")]
 
-    [SerializeField] KeyCode k_Move_U = KeyCode.W;
-    [SerializeField] KeyCode k_Move_D = KeyCode.S;
-    [SerializeField] KeyCode k_Move_L = KeyCode.A;
-    [SerializeField] KeyCode k_Move_R = KeyCode.D;
+    [SerializeField] private KeyCode k_Move_U = KeyCode.W;
+    [SerializeField] private KeyCode k_Move_D = KeyCode.S;
+    [SerializeField] private KeyCode k_Move_L = KeyCode.A;
+    [SerializeField] private KeyCode k_Move_R = KeyCode.D;
 
     [Header("Speed")]
 
-    [SerializeField] float f_Move_Speed = 0.01f;
+    [SerializeField] private float f_Move_Speed = 0.01f;
 
-    [SerializeField] float f_Move_Speed_Max = 1f;
+    [SerializeField] private float f_Move_Speed_Max = 1f;
 
     private void Start()
     {

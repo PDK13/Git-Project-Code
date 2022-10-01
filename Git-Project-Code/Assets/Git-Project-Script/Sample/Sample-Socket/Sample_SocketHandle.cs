@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -68,9 +67,9 @@ public class Sample_SocketHandle : MonoBehaviour
 
     private bool Get_Exist_ID(string s_IDCheck)
     {
-        for(int i = 0; i < l_ID.Count; i++)
+        for (int i = 0; i < l_ID.Count; i++)
         {
-            if(l_ID[i] == s_IDCheck)
+            if (l_ID[i] == s_IDCheck)
             {
                 return true;
             }

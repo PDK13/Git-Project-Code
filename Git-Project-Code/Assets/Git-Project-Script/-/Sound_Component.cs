@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 
@@ -10,22 +8,31 @@ public class Sound_Component : MonoBehaviour
     public void Set_3DSound()
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
+        {
             return;
+        }
+
         GetComponent<AudioSource>().spatialBlend = 1f;
     }
 
     public void Set_2DSound()
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
+        {
             return;
+        }
+
         GetComponent<AudioSource>().spatialBlend = 0f;
     }
 
     public void Set_PlaySound(AudioClip a_Sound, float f_Volumn, bool b_Loop) //Gọi hàm khi cần phát âm thanh
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
+        {
             return;
-        if(GetComponent<AudioSource>().clip != a_Sound)
+        }
+
+        if (GetComponent<AudioSource>().clip != a_Sound)
         {
             GetComponent<AudioSource>().clip = a_Sound;
             GetComponent<AudioSource>().volume = f_Volumn;
@@ -43,18 +50,26 @@ public class Sound_Component : MonoBehaviour
     public void Set_PlaySound(AudioClip a_Sound, float f_Volumn, bool b_Loop, bool b_Continue) //Gọi hàm khi cần phát âm thanh
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
+        {
             return;
+        }
+
         GetComponent<AudioSource>().clip = a_Sound;
         GetComponent<AudioSource>().volume = f_Volumn;
         GetComponent<AudioSource>().loop = b_Loop;
         if (!b_Continue)
+        {
             GetComponent<AudioSource>().Play();
+        }
     }
 
     public void Set_MuteSound(bool b_MuteSound)
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
+        {
             return;
+        }
+
         GetComponent<AudioSource>().mute = b_MuteSound;
     }
 }

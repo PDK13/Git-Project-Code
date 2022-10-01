@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
 {
     [SerializeField] private GameObject g_Bullet;
 
-    [SerializeField] Transform com_Gun;
+    [SerializeField] private Transform com_Gun;
 
-    [SerializeField] Transform com_Tarket;
+    [SerializeField] private Transform com_Tarket;
 
     private RendererTrajectory cs_RendererTrajectory;
 
@@ -24,19 +22,35 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
 
     private void Awake()
     {
-        if (GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
+        if (GetComponent<Rigidbody>() == null)
+        {
+            gameObject.AddComponent<Rigidbody>();
+        }
+
         com_Rigidbody = GetComponent<Rigidbody>();
 
-        if (GetComponent<LineRenderer>() == null) gameObject.AddComponent<LineRenderer>();
+        if (GetComponent<LineRenderer>() == null)
+        {
+            gameObject.AddComponent<LineRenderer>();
+        }
+
         com_LineRenderer = GetComponent<LineRenderer>();
         com_LineRenderer.startWidth = 0.2f;
         com_LineRenderer.endWidth = 0.2f;
 
-        if (GetComponent<RendererTrajectory>() == null) gameObject.AddComponent<RendererTrajectory>();
+        if (GetComponent<RendererTrajectory>() == null)
+        {
+            gameObject.AddComponent<RendererTrajectory>();
+        }
+
         cs_RendererTrajectory = GetComponent<RendererTrajectory>();
         cs_RendererTrajectory.Set_Trajectory_toLineRenderer_Clear(com_LineRenderer);
 
-        if (GetComponent<RigidbodyRotation>() == null) gameObject.AddComponent<RigidbodyRotation>();
+        if (GetComponent<RigidbodyRotation>() == null)
+        {
+            gameObject.AddComponent<RigidbodyRotation>();
+        }
+
         cs_RigidbodyRotation = GetComponent<RigidbodyRotation>();
     }
 
@@ -79,8 +93,8 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
         try
         {
             f_Deg_Cur = (float)cs_RendererTrajectory.Get_Trajectory_Angle_toDeg(
-                cs_RendererTrajectory.Get_Trajectory_Start_toTransform().position, 
-                com_Tarket.transform.position, 
+                cs_RendererTrajectory.Get_Trajectory_Start_toTransform().position,
+                com_Tarket.transform.position,
                 b_Deg_High);
         }
         catch

@@ -1,81 +1,67 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CheckPointArea : MonoBehaviour
 {
-    public Transform t_Next;
-    //CheckPoint tiếp theo (nếu có) để gán CheckPoint mục tiêu cho GameObject chứa "CheckPoint3D_Get.cs"
+    //Next Check-Point (If got) to attach to Tarket GameObject with CheckPoint3DGet.cs
+    [SerializeField] private Transform m_CheckPointNext;
 
-    public Vector3 v3_Size = new Vector3(1f, 1f, 1f);
-    //Kích thước CheckPoint Cube
+    //Size of Check-Point Cube
+    [SerializeField] private Vector3 m_CheckPointSize = new Vector3(1f, 1f, 1f);
 
-    public LayerMask l_Tarket;
-    //LayerMask sẽ nhận CheckPoint
+    //Layer-Mask to check Tarket GameObject with Cast
+    [SerializeField] private LayerMask m_CheckPointLayer;
 
     private void Update()
     {
-        Set_Message();
+        SetCheckPoint();
     }
 
-    private void Set_Message()
+    private void SetCheckPoint()
     {
-        Collider[] c_Collide = Get_Collide();
+        Collider[] m_Collide = Physics.OverlapBox(transform.position, m_CheckPointSize / 2f, Class_Vector.Get_Rot_EulerToQuaternion(0, 0, 0), m_CheckPointLayer);
 
-        for (int i = 0; i < c_Collide.Length; i++) 
+        for (int i = 0; i < m_Collide.Length; i++)
         {
-            if(c_Collide[i].gameObject.GetComponent<CheckPointGet>() != null)
+            if (m_Collide[i].gameObject.GetComponent<CheckPointGet>() != null)
             {
-                c_Collide[i].gameObject.GetComponent<CheckPointGet>().Set_Next(this.t_Next);
+                m_Collide[i].gameObject.GetComponent<CheckPointGet>().SetCheckPointNext(m_CheckPointNext);
             }
         }
     }
 
-    private Collider[] Get_Collide()
+    public Transform GetCheckPointNext()
     {
-        return
-            Physics.OverlapBox(
-            transform.position,
-            v3_Size / 2f,
-            Class_Vector.Get_Rot_EulerToQuaternion(0, 0, 0),
-            l_Tarket);
+        return m_CheckPointNext;
+    }
+
+    public Vector3 GetCheckPointSize()
+    {
+        return m_CheckPointSize;
+    }
+
+    public LayerMask GetCheckPointLayer()
+    {
+        return m_CheckPointLayer;
     }
 
     private void OnDrawGizmos()
     {
-        Class_Vector cl_Vector = new Class_Vector();
-
-        if (Physics.OverlapBox(
-            transform.position,
-            v3_Size / 2f,
-            Class_Vector.Get_Rot_EulerToQuaternion(0, 0, 0),
-            l_Tarket).Length > 0) 
+        if (Physics.OverlapBox(transform.position, m_CheckPointSize / 2f, Class_Vector.Get_Rot_EulerToQuaternion(0, 0, 0), m_CheckPointLayer).Length > 0)
+        {
             Gizmos.color = Color.red;
+        }
         else
+        {
             Gizmos.color = Color.green;
+        }
 
-        Gizmos.DrawWireCube(transform.position, v3_Size);
+        Gizmos.DrawWireCube(transform.position, m_CheckPointSize);
 
         Gizmos.color = Color.white;
 
-        //if (t_Next != null)
-        //{
-        //    Gizmos.DrawLine(
-        //        transform.position,
-        //        transform.position - new Vector3(transform.position.x - t_Next.transform.position.x, 0f, 0f));
-
-        //    Gizmos.DrawLine(
-        //        transform.position - new Vector3(transform.position.x - t_Next.transform.position.x, 0f, 0f),
-        //        transform.position - new Vector3(transform.position.x - t_Next.transform.position.x, transform.position.y - t_Next.transform.position.y, 0f));
-
-        //    Gizmos.DrawLine(
-        //        transform.position - new Vector3(transform.position.x - t_Next.transform.position.x, transform.position.y - t_Next.transform.position.y, 0f),
-        //        transform.position - new Vector3(transform.position.x - t_Next.transform.position.x, transform.position.y - t_Next.transform.position.y, transform.position.z - t_Next.transform.position.z));
-        //}
-
-        if (t_Next!=null)
+        if (m_CheckPointNext != null)
         {
-            Gizmos.DrawLine(transform.position, t_Next.position);
+            Gizmos.DrawLine(transform.position, m_CheckPointNext.position);
         }
     }
 }

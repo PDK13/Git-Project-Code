@@ -8,7 +8,7 @@ public class RaycastFan : MonoBehaviour
 //Eye Fan Cast
 //Distance 0 mean not Cast (Even "INSIDE" other GameObject)
 {
-    [Header("Fan in 'XZ' or 'XY'?")] 
+    [Header("Fan in 'XZ' or 'XY'?")]
     public bool b_XZ = true;
     //World
 
@@ -87,7 +87,7 @@ public class RaycastFan : MonoBehaviour
             }
             //BoxCast
             else
-            if (i_Cast == 3) 
+            if (i_Cast == 3)
             {
                 if (cs_Eye.Get_BoxCast_Vec_Check(
                     transform.position + v3_OffPos,
@@ -183,7 +183,7 @@ public class RaycastFan : MonoBehaviour
             }
             //SphereCast
             else
-            if (i_Cast == 4) 
+            if (i_Cast == 4)
             {
                 if (cs_Eye.Get_SphereCast_Vec_Check(
                     transform.position + v3_OffPos,
@@ -209,10 +209,12 @@ public class RaycastFan : MonoBehaviour
     public List<RaycastHit> Get_List()
     //Get List EyeCast (0:Centre; %2!=0: Top; %2==0: Bot)
     {
-        List<RaycastHit> l_RaycastHit = new List<RaycastHit>();
+        List<RaycastHit> l_RaycastHit = new List<RaycastHit>
+        {
 
-        //Centre
-        l_RaycastHit.Add(Get_Eye(0));
+            //Centre
+            Get_Eye(0)
+        };
 
         for (int i = 1; i <= i_Fan; i++)
         {
@@ -232,12 +234,16 @@ public class RaycastFan : MonoBehaviour
 
         List<float> l1_Distance = new List<float>();
 
-        for(int i = 0; i< l1_Ray.Count; i++)
+        for (int i = 0; i < l1_Ray.Count; i++)
         {
-            if(l1_Ray[i].collider == null)
+            if (l1_Ray[i].collider == null)
+            {
                 l1_Distance.Add(-1f);
+            }
             else
+            {
                 l1_Distance.Add(l1_Ray[i].distance / i_Minimize);
+            }
         }
         return l1_Distance;
     }
@@ -252,9 +258,13 @@ public class RaycastFan : MonoBehaviour
         for (int i = 0; i < l1_Ray.Count; i++)
         {
             if (l1_Ray[i].collider == null)
+            {
                 l1_Distance.Add(-1f);
+            }
             else
+            {
                 l1_Distance.Add(l1_Ray[i].distance);
+            }
         }
         return l1_Distance;
     }
@@ -391,7 +401,7 @@ public class RaycastFan : MonoBehaviour
             }
             //SphereCast
             else
-            if (i_Cast == 4) 
+            if (i_Cast == 4)
             {
                 if (cs_Eye.Get_SphereCast_Vec_Check(
                     transform.position + v3_OffPos,
@@ -521,7 +531,7 @@ public class RaycastFan : MonoBehaviour
             }
             //SphereCast
             else
-            if (i_Cast == 4) 
+            if (i_Cast == 4)
             {
                 if (cs_Eye.Get_SphereCast_Vec_Check(
                     transform.position + v3_OffPos,

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sample_2DSimplePlatform : MonoBehaviour
@@ -8,7 +6,7 @@ public class Sample_2DSimplePlatform : MonoBehaviour
 
     private int i_Move_Dir = 1;
 
-    private float f_Time_Chance = 5f;
+    private readonly float f_Time_Chance = 5f;
 
     private float f_Time_Chance_Cur = 0f;
 
@@ -30,9 +28,9 @@ public class Sample_2DSimplePlatform : MonoBehaviour
             f_Time_Chance_Cur = f_Time_Chance;
         }
 
-        Vector2 v2_Pos = Vector2.MoveTowards(this.transform.position, this.transform.position + Vector3.right * i_Move_Dir, f_Speed);
+        Vector2 v2_Pos = Vector2.MoveTowards(transform.position, transform.position + Vector3.right * i_Move_Dir, f_Speed);
 
-        this.transform.position = v2_Pos;
+        transform.position = v2_Pos;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,15 +41,19 @@ public class Sample_2DSimplePlatform : MonoBehaviour
         }
     }
 
-    void DoPlayerEnter(Collider2D collider)
+    private void DoPlayerEnter(Collider2D collider)
     {
         Sample_2DSimplePlayer cl_Player = collider.GetComponent<Sample_2DSimplePlayer>();
 
         if (cl_Player == null)
+        {
             return;
+        }
 
         if (collider.transform.parent != cl_Player.Get_Primary_Parent())
+        {
             return;
+        }
 
         collider.transform.SetParent(transform, true);
 
@@ -66,15 +68,19 @@ public class Sample_2DSimplePlatform : MonoBehaviour
         }
     }
 
-    void DoPlayerExit(Collider2D collider)
+    private void DoPlayerExit(Collider2D collider)
     {
         Sample_2DSimplePlayer cl_Player = collider.GetComponent<Sample_2DSimplePlayer>();
 
         if (cl_Player == null)
+        {
             return;
+        }
 
         if (collider.transform.parent != transform)
+        {
             return;
+        }
 
         cl_Player.Reset();
     }

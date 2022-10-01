@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Sample_2DSimplePlayer : MonoBehaviour
@@ -20,7 +18,7 @@ public class Sample_2DSimplePlayer : MonoBehaviour
     {
         r_Rigidbody2D = GetComponent<Rigidbody2D>();
 
-        t_Parent = this.transform.parent;
+        t_Parent = transform.parent;
 
         r_Rigidbody2D.gravityScale = f_Gravity;
         r_Rigidbody2D.angularVelocity = f_Angular;
