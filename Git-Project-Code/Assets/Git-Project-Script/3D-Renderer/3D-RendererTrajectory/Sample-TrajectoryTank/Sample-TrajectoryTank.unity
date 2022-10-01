@@ -1874,7 +1874,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df9d38ea204d33d44b19ee058933da98, type: 2}
+  - {fileID: 2100000, guid: 0baad34e122d94640b89f4a6fabc10bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2083,6 +2083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1140bebfdd551429e2429e6fcb369e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b_Rigidbody_Add: 1
   f_Gravity_Scale: 1
   f_Gravity_Global: 9.81
 --- !u!114 &1777945607
@@ -2367,6 +2368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1140bebfdd551429e2429e6fcb369e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b_Rigidbody_Add: 1
   f_Gravity_Scale: 1
   f_Gravity_Global: 9.81
 --- !u!54 &1961774541
@@ -2485,7 +2487,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df9d38ea204d33d44b19ee058933da98, type: 2}
+  - {fileID: 2100000, guid: 0baad34e122d94640b89f4a6fabc10bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2723,6 +2725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1140bebfdd551429e2429e6fcb369e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b_Rigidbody_Add: 1
   f_Gravity_Scale: 1
   f_Gravity_Global: 9.81
 --- !u!54 &2137279812
@@ -2774,7 +2777,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df9d38ea204d33d44b19ee058933da98, type: 2}
+  - {fileID: 2100000, guid: 0baad34e122d94640b89f4a6fabc10bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

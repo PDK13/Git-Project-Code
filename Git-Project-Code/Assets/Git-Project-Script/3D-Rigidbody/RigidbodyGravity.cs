@@ -1,32 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody Gravity")]
 public class RigidbodyGravity : MonoBehaviour
 {
-    [SerializeField] [Tooltip("Auto Add Rigidbody Component")] private bool b_Rigidbody_Add = true;
-
     [SerializeField] private float f_Gravity_Scale = 1.0f;
 
     [SerializeField] private float f_Gravity_Global = 9.81f;
 
     private Rigidbody com_Rigidbody;
 
+    private void Awake()
+    {
+        if (GetComponent<Rigidbody2D>() == null)
+        {
+            if (GetComponent<Rigidbody>() == null)
+            {
+                gameObject.AddComponent<Rigidbody>();
+            }
+        }
+        else
+        {
+            Debug.LogErrorFormat("{0}: Detect Rigidbody2D Component, please remove it!", name);
+        }
+
+        com_Rigidbody = GetComponent<Rigidbody>();
+    }
+
     private void Start()
     {
-        if (b_Rigidbody_Add)
-        {
-            if (GetComponent<Rigidbody2D>() != null)
-            {
-                Debug.LogErrorFormat("{0}: Can't use with Rigidbody2D component!");
-                return;
-            }
-
-            if (GetComponent<Rigidbody>() == null) gameObject.AddComponent<Rigidbody>();
-            com_Rigidbody = GetComponent<Rigidbody>();
-            com_Rigidbody.useGravity = false;
-        }
+        com_Rigidbody.useGravity = false;
     }
 
     private void FixedUpdate()
