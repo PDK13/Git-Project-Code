@@ -17,14 +17,14 @@ public class RigidbodyCollision : MonoBehaviour
         {
             com_Rigidbody = GetComponent<Rigidbody>();
 
-            Set_Rigidbody_Component_3D();
+            SetRigidbody_Component_3D();
         }
         else
         if (GetComponent<Rigidbody2D>() != null)
         {
             com_Rigidbody2D = GetComponent<Rigidbody2D>();
 
-            Set_Rigidbody_Component_2D();
+            SetRigidbody_Component_2D();
         }
         else
         {
@@ -32,7 +32,7 @@ public class RigidbodyCollision : MonoBehaviour
         }
     }
 
-    private void Set_Rigidbody_Component_3D()
+    private void SetRigidbody_Component_3D()
     {
         if (m_Collision_PassingThrough && m_Rigidbody_MovingFast)
         {
@@ -49,7 +49,7 @@ public class RigidbodyCollision : MonoBehaviour
         }
     }
 
-    private void Set_Rigidbody_Component_2D()
+    private void SetRigidbody_Component_2D()
     {
         if (m_Collision_PassingThrough && m_Rigidbody_MovingFast)
         {

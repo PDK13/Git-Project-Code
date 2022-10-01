@@ -6,7 +6,7 @@
 //    /// <summary>
 //    /// FIREBASE
 //    /// </summary>
-//    private Class_Firebase cl_Firebase;
+//    private Clasm_Firebase cl_Firebase;
 
 //    /// <summary>
 //    /// Input Field EMAIL
@@ -38,11 +38,11 @@
 //    /// <summary>
 //    /// Scene START
 //    /// </summary>
-//    public string s_SceneBack = "Android_FirebaseStart";
+//    public string m_SceneBack = "Android_FirebaseStart";
 
 //    private void Start()
 //    {
-//        cl_Firebase = new Class_Firebase();
+//        cl_Firebase = new Clasm_Firebase();
 
 //        m_Password.inputType = InputField.InputType.Password;
 //        m_Password_Re.inputType = InputField.InputType.Password;
@@ -67,7 +67,7 @@
 //        if (cl_Firebase.GetFirebaseAuth_Register_Done())
 //        {
 //            t_Info.text = cl_Firebase.GetFirebaseAuth_Message();
-//            cl_Firebase.Set_FirebaseAuth_Register_Done(false);
+//            cl_Firebase.SetFirebaseAuth_Register_Done(false);
 //        } 
 //    }
 
@@ -83,10 +83,10 @@
 //    /// </summary>
 //    public void Button_Create()
 //    {
-//        //cl_Firebase.Set_FirebaseAuth_SignOut();
+//        //cl_Firebase.SetFirebaseAuth_SignOut();
 //        //Sign out User Auth from Firebase
 
-//        cl_Firebase.Set_FirebaseAuth_Message_Clear();
+//        cl_Firebase.SetFirebaseAuth_Message_Clear();
 
 //        if(m_Email.text == "")
 //        {
@@ -121,7 +121,7 @@
 //        m_DisplayName.text = m_DisplayName.text.ToUpper();
 
 //        StartCoroutine(
-//            cl_Firebase.Set_FirebaseAuth_Register_IEnumerator(
+//            cl_Firebase.SetFirebaseAuth_Register_IEnumerator(
 //                m_Email.text,
 //                m_Password.text,
 //                m_Password_Re.text,
@@ -140,7 +140,7 @@
 //    /// </summary>
 //    public void Button_Cancel()
 //    {
-//        Class_Scene cl_Scene = new Class_Scene(s_SceneBack);
+//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneBack);
 //        //Chance Scene to "Back"
 //    }
 

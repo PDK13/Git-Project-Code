@@ -12,7 +12,7 @@
         return instance;
     }
 
-    public static void Set_Number(int m_Number)
+    public static void SetNumber(int m_Number)
     {
         GetInstance().m_Number = m_Number;
     }

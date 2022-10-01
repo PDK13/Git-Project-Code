@@ -8,7 +8,7 @@
 //    /// <summary>
 //    /// FIREBASE
 //    /// </summary>
-//    private Class_Firebase cl_Firebase;
+//    private Clasm_Firebase cl_Firebase;
 
 //    /// <summary>
 //    /// Text EMAIL Auth
@@ -32,7 +32,7 @@
 
 //    private void Start()
 //    {
-//        cl_Firebase = new Class_Firebase();
+//        cl_Firebase = new Clasm_Firebase();
 
 //        g_StartButton.SetActive(false);
 //        g_ButtonLogOut.SetActive(false);
@@ -91,14 +91,14 @@
 //    /// <summary>
 //    /// Scene CREATE AUTH
 //    /// </summary>
-//    public string s_SceneCreate = "Android_FirebaseCreate";
+//    public string m_SceneCreate = "Android_FirebaseCreate";
 
 //    /// <summary>
 //    /// Button CREATE
 //    /// </summary>
 //    public void Button_Create()
 //    {
-//        Class_Scene cl_Scene = new Class_Scene(s_SceneCreate);
+//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneCreate);
 //        //Chance Scene to "Create"
 //    }
 
@@ -107,14 +107,14 @@
 //    /// <summary>
 //    /// Scene LOGIN Auth
 //    /// </summary>
-//    public string s_SceneLogin = "Android_FirebaseLogin";
+//    public string m_SceneLogin = "Android_FirebaseLogin";
 
 //    /// <summary>
 //    /// Button LOGIN
 //    /// </summary>
 //    public void Button_Login()
 //    {
-//        Class_Scene cl_Scene = new Class_Scene(s_SceneLogin);
+//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneLogin);
 //        //Chance Scene to "Login"
 //    }
 
@@ -125,7 +125,7 @@
 //    /// </summary>
 //    public void Button_LogOut()
 //    {
-//        cl_Firebase.Set_FirebaseAuth_SignOut();
+//        cl_Firebase.SetFirebaseAuth_SignOut();
 //        //Sign out User Auth from Firebase
 //    }
 
@@ -134,14 +134,14 @@
 //    /// <summary>
 //    /// Scene INFO
 //    /// </summary>
-//    public string s_SceneInfo = "Android_FirebaseInfo";
+//    public string m_SceneInfo = "Android_FirebaseInfo";
 
 //    /// <summary>
 //    /// Button INFO
 //    /// </summary>
 //    public void Button_Info()
 //    {
-//        Class_Scene cl_Scene = new Class_Scene(s_SceneInfo);
+//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneInfo);
 //        //Chance Scene to "Login"
 //    }
 
@@ -150,14 +150,14 @@
 //    /// <summary>
 //    /// Button START
 //    /// </summary>
-//    public string s_SceneStart = "";
+//    public string m_SceneStart = "";
 
 //    /// <summary>
 //    /// Button START
 //    /// </summary>
 //    public void Button_Start()
 //    {
-//        Class_Scene cl_Scene = new Class_Scene(s_SceneStart);
+//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneStart);
 //        //Chance Scene to "Login"
 //    }
 
@@ -168,7 +168,7 @@
 //    /// </summary>
 //    public void Button_Exit()
 //    {
-//        cl_Firebase.Set_FirebaseAuth_SignOut();
+//        cl_Firebase.SetFirebaseAuth_SignOut();
 //        //Sign out User Auth from Firebase
 
 //        Application.Quit();

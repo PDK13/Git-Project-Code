@@ -19,7 +19,7 @@ public class Sample_TrajectoryBullet : MonoBehaviour
 
     private MeshRenderer com_MessRenderer;
 
-    private RigidbodyRotate cs_RigidbodyRotate;
+    private RigidbodyRotate cm_RigidbodyRotate;
 
     private void Awake()
     {
@@ -36,10 +36,10 @@ public class Sample_TrajectoryBullet : MonoBehaviour
             gameObject.AddComponent<RigidbodyRotate>();
         }
 
-        cs_RigidbodyRotate = GetComponent<RigidbodyRotate>();
-        cs_RigidbodyRotate.Set_Follow_Right(true);
+        cm_RigidbodyRotate = GetComponent<RigidbodyRotate>();
+        cm_RigidbodyRotate.SetFollow_Right(true);
 
-        StartCoroutine(Set_Bullet_Destroy(m_Coroutine_Destroy_NoHit));
+        StartCoroutine(SetBullet_Destroy(m_Coroutine_Destroy_NoHit));
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -51,19 +51,19 @@ public class Sample_TrajectoryBullet : MonoBehaviour
 
         com_MessRenderer.material = m_Material_Hit;
 
-        cs_RigidbodyRotate.Set_Follow_Right(false);
+        cm_RigidbodyRotate.SetFollow_Right(false);
 
-        StartCoroutine(Set_Bullet_Destroy(m_Coroutine_Destroy_Hit));
+        StartCoroutine(SetBullet_Destroy(m_Coroutine_Destroy_Hit));
     }
 
-    private IEnumerator Set_Bullet_Destroy(float m_Destory_AfterTime)
+    private IEnumerator SetBullet_Destroy(float m_Destory_AfterTime)
     {
         yield return new WaitForSeconds(m_Destory_AfterTime);
 
         Destroy(gameObject);
     }
 
-    public void Set_Tarket(GameObject g_Tarket)
+    public void SetTarket(GameObject g_Tarket)
     {
         this.g_Tarket = g_Tarket;
     }

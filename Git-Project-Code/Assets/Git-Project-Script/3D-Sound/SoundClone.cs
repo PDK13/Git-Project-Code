@@ -8,7 +8,7 @@ public class SoundClone : MonoBehaviour
 
     private float m_Volumn_Primary = 1f;
 
-    private void Set_Component_Add()
+    private void SetComponent_Add()
     {
         if (GetComponent<AudioSource>() == null)
         {
@@ -20,15 +20,15 @@ public class SoundClone : MonoBehaviour
 
     #region Play
 
-    public void Set_PlaySound_3D(SoundCloneData cs_SoundCloneData, Vector2 v2_Pos, float m_Distance)
+    public void SetPlaySound_3D(SoundCloneData cm_SoundCloneData, Vector2 v2_Pos, float m_Distance)
     {
-        Set_Component_Add();
+        SetComponent_Add();
 
-        com_AudioSource.clip = cs_SoundCloneData.GetClip();
+        com_AudioSource.clip = cm_SoundCloneData.GetClip();
 
-        com_AudioSource.loop = cs_SoundCloneData.GetLoop();
+        com_AudioSource.loop = cm_SoundCloneData.GetLoop();
 
-        m_Volumn_Primary = cs_SoundCloneData.GetVolumn_Primary();
+        m_Volumn_Primary = cm_SoundCloneData.GetVolumn_Primary();
 
         com_AudioSource.spatialBlend = 1;
 
@@ -38,33 +38,33 @@ public class SoundClone : MonoBehaviour
 
         com_AudioSource.Play();
 
-        if (!cs_SoundCloneData.GetLoop())
+        if (!cm_SoundCloneData.GetLoop())
         {
-            StartCoroutine(Set_Sound_WhenStop());
+            StartCoroutine(SetSound_WhenStop());
         }
     }
 
-    public void Set_PlaySound_2D(SoundCloneData cs_SoundCloneData)
+    public void SetPlaySound_2D(SoundCloneData cm_SoundCloneData)
     {
-        Set_Component_Add();
+        SetComponent_Add();
 
-        com_AudioSource.clip = cs_SoundCloneData.GetClip();
+        com_AudioSource.clip = cm_SoundCloneData.GetClip();
 
-        com_AudioSource.loop = cs_SoundCloneData.GetLoop();
+        com_AudioSource.loop = cm_SoundCloneData.GetLoop();
 
-        m_Volumn_Primary = cs_SoundCloneData.GetVolumn_Primary();
+        m_Volumn_Primary = cm_SoundCloneData.GetVolumn_Primary();
 
         com_AudioSource.spatialBlend = 0;
 
         com_AudioSource.Play();
 
-        if (!cs_SoundCloneData.GetLoop())
+        if (!cm_SoundCloneData.GetLoop())
         {
-            StartCoroutine(Set_Sound_WhenStop());
+            StartCoroutine(SetSound_WhenStop());
         }
     }
 
-    private IEnumerator Set_Sound_WhenStop()
+    private IEnumerator SetSound_WhenStop()
     {
         yield return new WaitUntil(() => GetSoundIsStop() == true);
 
@@ -75,7 +75,7 @@ public class SoundClone : MonoBehaviour
 
     #region Set
 
-    public void Set_Sound_Volumn(float m_Volumn)
+    public void SetSound_Volumn(float m_Volumn)
     {
         if (m_Volumn_Primary * m_Volumn > 1f)
         {
@@ -92,12 +92,12 @@ public class SoundClone : MonoBehaviour
         }
     }
 
-    public void Set_Sound_Mute(bool bIsMute)
+    public void SetSound_Mute(bool bIsMute)
     {
         com_AudioSource.mute = bIsMute;
     }
 
-    public void Set_Sound_Stop()
+    public void SetSound_Stop()
     {
         com_AudioSource.Stop();
     }

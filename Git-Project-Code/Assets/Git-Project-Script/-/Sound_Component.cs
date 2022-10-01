@@ -5,7 +5,7 @@
 public class Sound_Component : MonoBehaviour
 //Nếu m_uốn GameObject phát ra âm thanh, gán hàm này và tự lập trình sử dụng hàm dưới trong các Script khác
 {
-    public void Set_3DSound()
+    public void Set3DSound()
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
         {
@@ -15,7 +15,7 @@ public class Sound_Component : MonoBehaviour
         GetComponent<AudioSource>().spatialBlend = 1f;
     }
 
-    public void Set_2DSound()
+    public void Set2DSound()
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
         {
@@ -25,7 +25,7 @@ public class Sound_Component : MonoBehaviour
         GetComponent<AudioSource>().spatialBlend = 0f;
     }
 
-    public void Set_PlaySound(AudioClip a_Sound, float m_Volumn, bool m_Loop) //Gọi hàm khi cần phát âm thanh
+    public void SetPlaySound(AudioClip a_Sound, float m_Volumn, bool m_Loop) //Gọi hàm khi cần phát âm thanh
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
         {
@@ -47,7 +47,7 @@ public class Sound_Component : MonoBehaviour
         //GetComponent<AudioSource>().PlayOneShot(a_Sound, m_Volumn);
     }
 
-    public void Set_PlaySound(AudioClip a_Sound, float m_Volumn, bool m_Loop, bool m_Continue) //Gọi hàm khi cần phát âm thanh
+    public void SetPlaySound(AudioClip a_Sound, float m_Volumn, bool m_Loop, bool m_Continue) //Gọi hàm khi cần phát âm thanh
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
         {
@@ -63,7 +63,7 @@ public class Sound_Component : MonoBehaviour
         }
     }
 
-    public void Set_MuteSound(bool m_MuteSound)
+    public void SetMuteSound(bool m_MuteSound)
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
         {

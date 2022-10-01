@@ -8,7 +8,7 @@ public class Simple_Singleton_GetData : MonoBehaviour
 
         Debug.LogFormat("{0}: Get {1}", name, Simple_Singleton.GetNumber());
 
-        Simple_Singleton.Set_Number(3);
+        Simple_Singleton.SetNumber(3);
 
         Debug.LogFormat("{0}: Get {1}", name, Simple_Singleton.GetNumber());
     }

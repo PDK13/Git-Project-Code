@@ -104,7 +104,7 @@ public class RigidbodyComponent : MonoBehaviour
     {
         if (m_UseScriptStart)
         {
-            Set_Rigid();
+            SetRigid();
         }
     }
 
@@ -115,7 +115,7 @@ public class RigidbodyComponent : MonoBehaviour
             if (GetCheckHead() && !GetCheckFoot())
             {
                 //If Jump but Head touch Top >> Set Fall Down
-                Set_MoveY_Fall(m_HeadBounce);
+                SetMoveY_Fall(m_HeadBounce);
             }
         }
 
@@ -124,7 +124,7 @@ public class RigidbodyComponent : MonoBehaviour
             if (!GetCheckFoot())
             {
                 //If not Stand on Ground >> Gravity Set
-                Set_MoveY_Gravity(m_GravityFall);
+                SetMoveY_Gravity(m_GravityFall);
             }
         }
     }
@@ -132,7 +132,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <summary>
     /// Set Rigid by EDITOR
     /// </summary>
-    public void Set_Rigid()
+    public void SetRigid()
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         r_Rigidbody.isKinematic = m_Kinematic;
@@ -155,7 +155,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="m_Kinematic"></param>
     /// <param name="m_LockRot">No Rotation</param>
     /// <param name="m_LockPos">No Move</param>
-    public void Set_Rigid(bool m_Kinematic, bool m_LockRot, bool m_LockPos)
+    public void SetRigid(bool m_Kinematic, bool m_LockRot, bool m_LockPos)
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         r_Rigidbody.isKinematic = m_Kinematic;
@@ -179,7 +179,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Move by Velocity
     /// </summary>
     /// <param name="v3_Velocity"></param>
-    public void Set_Rigidbody_Velocity(Vector3 v3_Velocity)
+    public void SetRigidbody_Velocity(Vector3 v3_Velocity)
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         r_Rigidbody.velocity = v3_Velocity;
@@ -193,7 +193,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="m_DirMoveRight"></param>
     /// <param name="m_VelocityMove"></param>
     /// <param name="m_VelocityMoveMax"></param>
-    public void Set_MoveX_Velocity(int m_DirMoveRight, float m_VelocityMove, float m_VelocityMoveMax)
+    public void SetMoveX_Velocity(int m_DirMoveRight, float m_VelocityMove, float m_VelocityMoveMax)
     {
         int m_Dir = (m_DirMoveRight > 0) ? 1 : (m_DirMoveRight < 0) ? -1 : 0;
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
@@ -207,7 +207,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Stop X by Rigid
     /// </summary>
     /// <param name="m_VelocityStop"></param>
-    public void Set_StopX_Velocity(float m_VelocityStop)
+    public void SetStopX_Velocity(float m_VelocityStop)
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         if (m_VelocityStop != 0)
@@ -223,7 +223,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <summary>
     /// Stop X by Rigid Instanly
     /// </summary>
-    public void Set_StopX_Velocity()
+    public void SetStopX_Velocity()
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         r_Rigidbody.velocity = new Vector3(0, r_Rigidbody.velocity.y, r_Rigidbody.velocity.z);
@@ -234,7 +234,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// </summary>
     /// <param name="m_DirMoveRight"></param>
     /// <param name="m_VelocityMove"></param>
-    public void Set_MoveX_NotVelocity(int m_DirMoveRight, float m_VelocityMove)
+    public void SetMoveX_NotVelocity(int m_DirMoveRight, float m_VelocityMove)
     {
         int m_Dir = (m_DirMoveRight > 0) ? 1 : (m_DirMoveRight < 0) ? -1 : 0;
         transform.Translate(Vector3.right * m_VelocityMove * m_Dir * Time.fixedDeltaTime);
@@ -248,7 +248,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="m_DirMoveForward"></param>
     /// <param name="m_VelocityMove"></param>
     /// <param name="m_VelocityMoveMax"></param>
-    public void Set_MoveZ_Velocity(int m_DirMoveForward, float m_VelocityMove, float m_VelocityMoveMax)
+    public void SetMoveZ_Velocity(int m_DirMoveForward, float m_VelocityMove, float m_VelocityMoveMax)
     {
         int m_Dir = (m_DirMoveForward > 0) ? 1 : (m_DirMoveForward < 0) ? -1 : 0;
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
@@ -262,7 +262,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Stop Z by Velocity
     /// </summary>
     /// <param name="m_VelocityStop"></param>
-    public void Set_StopZ_Velocity(float m_VelocityStop)
+    public void SetStopZ_Velocity(float m_VelocityStop)
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         if (m_VelocityStop != 0)
@@ -278,7 +278,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <summary>
     /// Stop Z by Velocity
     /// </summary>
-    public void Set_StopZ_Velocity()
+    public void SetStopZ_Velocity()
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         r_Rigidbody.velocity = new Vector3(r_Rigidbody.velocity.x, r_Rigidbody.velocity.y, 0);
@@ -291,7 +291,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// </summary>
     /// <param name="v_PosMoveTo"></param>
     /// <param name="m_VelocityMove"></param>
-    public void Set_Move_NotVelocity_MoveTowards(Vector3 v_PosMoveTo, float m_VelocityMove)
+    public void SetMove_NotVelocity_MoveTowards(Vector3 v_PosMoveTo, float m_VelocityMove)
     {
         transform.position = Vector3.MoveTowards(
             transform.position,
@@ -304,7 +304,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// </summary>
     /// <param name="v_DirMove">"Vector3.Up" or "(0; 1; 0)" or etc</param>
     /// <param name="m_VelocityMove"></param>
-    public void Set_Move_NotVelocity_Translate(Vector3 v_DirMove, float m_VelocityMove)
+    public void SetMove_NotVelocity_Translate(Vector3 v_DirMove, float m_VelocityMove)
     {
         transform.Translate(v_DirMove * m_VelocityMove * Time.fixedDeltaTime);
     }
@@ -333,7 +333,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Set Rotation XY
     /// </summary>
     /// <param name="m_Rotation"></param>
-    public void Set_Rotation_XY(float m_Rotation)
+    public void SetRotation_XY(float m_Rotation)
     {
         transform.rotation = ClassVector.GetRotationEulerToQuaternion(0, 0, m_Rotation);
     }
@@ -342,7 +342,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Set Rotation XZ
     /// </summary>
     /// <param name="m_Rotation"></param>
-    public void Set_Rotation_XZ(float m_Rotation)
+    public void SetRotation_XZ(float m_Rotation)
     {
         transform.rotation = ClassVector.GetRotationEulerToQuaternion(new Vector3(0, m_Rotation, 0));
     }
@@ -351,18 +351,18 @@ public class RigidbodyComponent : MonoBehaviour
     /// Set Rotation Chance XY
     /// </summary>
     /// <param name="m_RotationChance"></param>
-    public void Set_RotationChance_XY(float m_RotationChance)
+    public void SetRotationChance_XY(float m_RotationChance)
     {
-        Set_Rotation_XY(GetRotation_XZ() + m_RotationChance);
+        SetRotation_XY(GetRotation_XZ() + m_RotationChance);
     }
 
     /// <summary>
     /// Set Rotation Chance XZ
     /// </summary>
     /// <param name="m_RotationChance"></param>
-    public void Set_RotationChance_XZ(float m_RotationChance)
+    public void SetRotationChance_XZ(float m_RotationChance)
     {
-        Set_Rotation_XZ(GetRotation_XZ() + m_RotationChance);
+        SetRotation_XZ(GetRotation_XZ() + m_RotationChance);
     }
 
     /// <summary>
@@ -370,7 +370,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// </summary>
     /// <param name="m_Rotation"></param>
     /// <param name="m_VelocityMove"></param>
-    public void Set_MoveRotation_XZ(float m_Rotation, float m_VelocityMove)
+    public void SetMoveRotation_XZ(float m_Rotation, float m_VelocityMove)
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
 
@@ -385,7 +385,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Set Jump
     /// </summary>
     /// <param name="m_VelocityJump"></param>
-    public void Set_MoveY_Jump(float m_VelocityJump)
+    public void SetMoveY_Jump(float m_VelocityJump)
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         r_Rigidbody.velocity = new Vector3(r_Rigidbody.velocity.x, m_VelocityJump, r_Rigidbody.velocity.z);
@@ -395,7 +395,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Set Gravity
     /// </summary>
     /// <param name="m_VelocityGravity"></param>
-    public void Set_MoveY_Gravity(float m_VelocityGravity)
+    public void SetMoveY_Gravity(float m_VelocityGravity)
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         r_Rigidbody.AddForce(Vector3.down * m_VelocityGravity);
@@ -405,7 +405,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Set Fall
     /// </summary>
     /// <param name="m_VelocityFall"></param>
-    public void Set_MoveY_Fall(float m_VelocityFall)
+    public void SetMoveY_Fall(float m_VelocityFall)
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
         r_Rigidbody.velocity = new Vector3(r_Rigidbody.velocity.x, -m_VelocityFall, r_Rigidbody.velocity.z);
@@ -419,9 +419,9 @@ public class RigidbodyComponent : MonoBehaviour
     /// <returns></returns>
     public bool GetCheckFoot()
     {
-        Class_Eye cs_Eye = new Class_Eye();
+        Clasm_Eye cm_Eye = new Clasm_Eye();
 
-        return cs_Eye.GetBoxCast_Dir_Check(
+        return cm_Eye.GetBoxCast_Dir_Check(
             transform.position,
             v3_FootCast,
             Vector3.down,
@@ -436,9 +436,9 @@ public class RigidbodyComponent : MonoBehaviour
     /// <returns></returns>
     public bool GetCheckHead()
     {
-        Class_Eye cs_Eye = new Class_Eye();
+        Clasm_Eye cm_Eye = new Clasm_Eye();
 
-        return cs_Eye.GetBoxCast_Dir_Check(
+        return cm_Eye.GetBoxCast_Dir_Check(
             transform.position,
             v3_HeadCast,
             Vector3.up,

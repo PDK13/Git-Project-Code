@@ -69,7 +69,7 @@ public class RigidbodyRotate : MonoBehaviour
         }
     }
 
-    public void Set_Follow_Right(bool m_Follow_Right)
+    public void SetFollow_Right(bool m_Follow_Right)
     {
         this.m_Follow_Right = m_Follow_Right;
     }
@@ -79,7 +79,7 @@ public class RigidbodyRotate : MonoBehaviour
         return m_Follow_Right;
     }
 
-    public void Set_Follow_Up(bool m_Follow_Up)
+    public void SetFollow_Up(bool m_Follow_Up)
     {
         this.m_Follow_Up = m_Follow_Up;
     }
@@ -89,7 +89,7 @@ public class RigidbodyRotate : MonoBehaviour
         return m_Follow_Up;
     }
 
-    public void Set_Follow_Forward(bool m_Follow_Forward)
+    public void SetFollow_Forward(bool m_Follow_Forward)
     {
         this.m_Follow_Forward = m_Follow_Forward;
     }

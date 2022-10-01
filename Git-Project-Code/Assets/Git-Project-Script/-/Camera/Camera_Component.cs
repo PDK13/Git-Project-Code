@@ -90,12 +90,12 @@ public class Camera_Component : MonoBehaviour
 
         //Vector.SmoothDamp càng gia tăng tốc độ khi m_ục tiêu càng ở xa hơn
 
-        Set_CameraPosition(m_PosX, m_PosY, m_PosZ);
+        SetCameraPosition(m_PosX, m_PosY, m_PosZ);
         //Chú ý: Không rút gọn đoạn code này vì sẽ gây ra lỗi hoạt động
     }
 
 
-    //private void Set_Renderer_Rotation(float m_DegX_Chance, float m_DegY_Chance, float m_DegZ_Chance)
+    //private void SetRenderer_Rotation(float m_DegX_Chance, float m_DegY_Chance, float m_DegZ_Chance)
     //{
     //    Vector3 v3_RotationVector = new Vector3(m_DegX_Chance, m_DegY_Chance, m_DegZ_Chance);
     //    Quaternion q_Rotation = Quaternion.Euler(v3_RotationVector);
@@ -108,7 +108,7 @@ public class Camera_Component : MonoBehaviour
         {
             //Nếu đang trong Edit Mode của Unity >> Thực hiện Debug
 
-            Set_CameraRotation(v3_Rotation.x, v3_Rotation.y, v3_Rotation.z);
+            SetCameraRotation(v3_Rotation.x, v3_Rotation.y, v3_Rotation.z);
             //Xoay Camera
         }
     }
@@ -116,20 +116,20 @@ public class Camera_Component : MonoBehaviour
     //-------------------------------------------------------
 
     //Thiết đặt m_ục tiêu di chuyển theo
-    public void Set_Follow(Transform t_FollowNew)
+    public void SetFollow(Transform t_FollowNew)
     {
         t_Follow = t_FollowNew;
     }
 
-    public void Set_Follow_InstanceFollow(Transform t_FollowNew)
+    public void SetFollow_InstanceFollow(Transform t_FollowNew)
     {
         t_Follow = t_FollowNew;
 
-        Set_CameraPosition(t_Follow.position.x + v3_Follow.x, t_Follow.position.y + v3_Follow.y, t_Follow.position.z + v3_Follow.z);
+        SetCameraPosition(t_Follow.position.x + v3_Follow.x, t_Follow.position.y + v3_Follow.y, t_Follow.position.z + v3_Follow.z);
     }
 
     //Thiết đặt Camera kiểu 2D và 2.5D (tức không có chiều sâu)
-    public void Set_CameraNonDepth(float m_CameraSize)
+    public void SetCameraNonDepth(float m_CameraSize)
     {
         if (GetComponent<Camera>() != null)
         {
@@ -138,7 +138,7 @@ public class Camera_Component : MonoBehaviour
     }
 
     //Thiết đặt Camera kiểu 3D (tức có chiều sâu)
-    public void Set_CameraWithDepth(float m_CameraView)
+    public void SetCameraWithDepth(float m_CameraView)
     {
         if (GetComponent<Camera>() != null)
         {
@@ -147,19 +147,19 @@ public class Camera_Component : MonoBehaviour
     }
 
     //Di chuyển Camera
-    public void Set_CameraPosition(float m_PosX_Chance, float m_PosY_Chance, float m_PosZ_Chance)
+    public void SetCameraPosition(float m_PosX_Chance, float m_PosY_Chance, float m_PosZ_Chance)
     {
         transform.position = new Vector3(m_PosX_Chance, m_PosY_Chance, m_PosZ_Chance);
     }
 
     //Di chuyển Camera
-    public void Set_CameraPosition(Vector3 v3_Pos_Chance)
+    public void SetCameraPosition(Vector3 v3_Pom_Chance)
     {
-        transform.position = v3_Pos_Chance;
+        transform.position = v3_Pom_Chance;
     }
 
     //Xoay Camera
-    public void Set_CameraRotation(float m_DegX_Chance, float m_DegY_Chance, float m_DegZ_Chance)
+    public void SetCameraRotation(float m_DegX_Chance, float m_DegY_Chance, float m_DegZ_Chance)
     {
         Vector3 v3_RotationVector = new Vector3(m_DegX_Chance, m_DegY_Chance, m_DegZ_Chance);
         Quaternion q_Rotation = Quaternion.Euler(v3_RotationVector);
@@ -167,38 +167,38 @@ public class Camera_Component : MonoBehaviour
     }
 
     //Xoay Camera hướng Lên theo trục X
-    public void Set_CameraRotation_Up(float m_Deg_Up_Chance)
+    public void SetCameraRotation_Up(float m_Deg_Up_Chance)
     {
-        Set_CameraRotation(-Mathf.Abs(m_Deg_Up_Chance), transform.rotation.y, transform.rotation.z);
+        SetCameraRotation(-Mathf.Abs(m_Deg_Up_Chance), transform.rotation.y, transform.rotation.z);
     }
 
     //Xoay Camera hướng Xuống theo trục X
-    public void Set_CameraRotation_Down(float m_Deg_Down_Chance)
+    public void SetCameraRotation_Down(float m_Deg_Down_Chance)
     {
-        Set_CameraRotation(Mathf.Abs(m_Deg_Down_Chance), transform.rotation.y, transform.rotation.z);
+        SetCameraRotation(Mathf.Abs(m_Deg_Down_Chance), transform.rotation.y, transform.rotation.z);
     }
 
     //Xoay Camera hướng Xuống theo trục Y
-    public void Set_CameraRotation_Left(float m_Deg_Left_Chance)
+    public void SetCameraRotation_Left(float m_Deg_Left_Chance)
     {
-        Set_CameraRotation(transform.rotation.x, -Mathf.Abs(m_Deg_Left_Chance), transform.rotation.z);
+        SetCameraRotation(transform.rotation.x, -Mathf.Abs(m_Deg_Left_Chance), transform.rotation.z);
     }
 
     //Xoay Camera hướng Xuống theo trục Y
-    public void Set_CameraRotation_Right(float m_Deg_Right_Chance)
+    public void SetCameraRotation_Right(float m_Deg_Right_Chance)
     {
-        Set_CameraRotation(transform.rotation.x, Mathf.Abs(m_Deg_Right_Chance), transform.rotation.z);
+        SetCameraRotation(transform.rotation.x, Mathf.Abs(m_Deg_Right_Chance), transform.rotation.z);
     }
 
     //Xoay Camera hướng vòng Trái theo trục Z
-    public void Set_CameraRotation_ClockLeft(float m_Deg_ClockLeft_Chance)
+    public void SetCameraRotation_ClockLeft(float m_Deg_ClockLeft_Chance)
     {
-        Set_CameraRotation(transform.rotation.x, transform.rotation.y, -Mathf.Abs(m_Deg_ClockLeft_Chance));
+        SetCameraRotation(transform.rotation.x, transform.rotation.y, -Mathf.Abs(m_Deg_ClockLeft_Chance));
     }
 
     //Xoay Camera hướng vòng Trái theo trục Z
-    public void Set_CameraRotation_ClockRight(float m_Deg_ClockRight_Chance)
+    public void SetCameraRotation_ClockRight(float m_Deg_ClockRight_Chance)
     {
-        Set_CameraRotation(transform.rotation.x, transform.rotation.y, Mathf.Abs(m_Deg_ClockRight_Chance));
+        SetCameraRotation(transform.rotation.x, transform.rotation.y, Mathf.Abs(m_Deg_ClockRight_Chance));
     }
 }

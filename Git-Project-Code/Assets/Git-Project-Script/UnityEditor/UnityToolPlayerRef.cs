@@ -38,7 +38,7 @@ public class UnityToolPlayerRef : EditorWindow
         GUILayout.Label(m_Choice_Cur.ToUpper(), m_Style);
         GUILayout.Space(10);
 
-        Set_GUI_Button_Type();
+        SetGUI_Button_Type();
 
         GUILayout.Space(10);
         GUILayout.Label("------ REF ------", m_Style);
@@ -60,9 +60,9 @@ public class UnityToolPlayerRef : EditorWindow
 
         GUILayout.BeginHorizontal();
 
-        Set_GUI_Button_Set();
+        SetGUI_Button_Set();
 
-        Set_GUI_Button_Get();
+        SetGUI_Button_Get();
 
         GUILayout.EndHorizontal();
 
@@ -72,16 +72,16 @@ public class UnityToolPlayerRef : EditorWindow
 
         GUILayout.BeginHorizontal();
 
-        Set_GUI_Button_Clear();
+        SetGUI_Button_Clear();
 
-        Set_GUI_Button_Clear_All();
+        SetGUI_Button_Clear_All();
 
         GUILayout.EndHorizontal();
 
         GUILayout.Space(5f);
     }
 
-    private void Set_GUI_Button_Type()
+    private void SetGUI_Button_Type()
     {
         GUILayout.BeginHorizontal();
 
@@ -89,9 +89,9 @@ public class UnityToolPlayerRef : EditorWindow
         {
             if (m_Choice[i].Equals(m_Choice_Cur))
             {
-                string s_Button_Text = "[ " + m_Choice[i] + " ]";
+                string m_Button_Text = "[ " + m_Choice[i] + " ]";
 
-                GUILayout.Button(s_Button_Text, GUILayout.Width(position.width / m_Choice.Count), GUILayout.Height(50f));
+                GUILayout.Button(m_Button_Text, GUILayout.Width(position.width / m_Choice.Count), GUILayout.Height(50f));
             }
             else
             {
@@ -105,7 +105,7 @@ public class UnityToolPlayerRef : EditorWindow
         GUILayout.EndHorizontal();
     }
 
-    private void Set_GUI_Button_Set()
+    private void SetGUI_Button_Set()
     {
         if (GUILayout.Button("Set", GUILayout.Width(position.width / m_Button_HorizontalCount), GUILayout.Height(50f)))
         {
@@ -121,22 +121,22 @@ public class UnityToolPlayerRef : EditorWindow
             else
             if (m_Choice_Cur == m_Choice[0])
             {
-                Class_Scene.Set_PlayerPrefs(mName, m_Value);
+                ClassScene.SetPlayerPrefs(mName, m_Value);
             }
             else
                 if (m_Choice_Cur == m_Choice[1])
             {
-                Class_Scene.Set_PlayerPrefs(mName, int.Parse(m_Value));
+                ClassScene.SetPlayerPrefs(mName, int.Parse(m_Value));
             }
             else
                 if (m_Choice_Cur == m_Choice[2])
             {
-                Class_Scene.Set_PlayerPrefs(mName, float.Parse(m_Value));
+                ClassScene.SetPlayerPrefs(mName, float.Parse(m_Value));
             }
         }
     }
 
-    private void Set_GUI_Button_Get()
+    private void SetGUI_Button_Get()
     {
         if (GUILayout.Button("Get", GUILayout.Width(position.width / m_Button_HorizontalCount), GUILayout.Height(50f)))
         {
@@ -147,9 +147,9 @@ public class UnityToolPlayerRef : EditorWindow
             else
             if (m_Choice_Cur == m_Choice[0])
             {
-                if (Class_Scene.GetPlayerPrefsIsExist(mName))
+                if (ClassScene.GetPlayerPrefsIsExist(mName))
                 {
-                    m_Value = Class_Scene.GetPlayerPrefs_String(mName);
+                    m_Value = ClassScene.GetPlayerPrefString(mName);
                 }
                 else
                 {
@@ -160,9 +160,9 @@ public class UnityToolPlayerRef : EditorWindow
             else
             if (m_Choice_Cur == m_Choice[1])
             {
-                if (Class_Scene.GetPlayerPrefsIsExist(mName))
+                if (ClassScene.GetPlayerPrefsIsExist(mName))
                 {
-                    m_Value = Class_Scene.GetPlayerPrefs_Int(mName).ToString();
+                    m_Value = ClassScene.GetPlayerPrefInt(mName).ToString();
                 }
                 else
                 {
@@ -173,9 +173,9 @@ public class UnityToolPlayerRef : EditorWindow
             else
             if (m_Choice_Cur == m_Choice[2])
             {
-                if (Class_Scene.GetPlayerPrefsIsExist(mName))
+                if (ClassScene.GetPlayerPrefsIsExist(mName))
                 {
-                    m_Value = Class_Scene.GetPlayerPrefs_Float(mName).ToString();
+                    m_Value = ClassScene.GetPlayerPrefFloat(mName).ToString();
                 }
                 else
                 {
@@ -186,26 +186,26 @@ public class UnityToolPlayerRef : EditorWindow
         }
     }
 
-    public void Set_GUI_Button_Clear()
+    public void SetGUI_Button_Clear()
     {
         if (GUILayout.Button("Clear", GUILayout.Width(position.width / m_Button_HorizontalCount), GUILayout.Height(50f)))
         {
             Debug.LogWarningFormat("Tool: Clear {0} = {1} Value!", mName, m_Value);
 
-            Class_Scene.Set_PlayerPrefs_Clear(mName);
+            ClassScene.SetPlayerPrefm_Clear(mName);
 
             mName = "";
             m_Value = "";
         }
     }
 
-    public void Set_GUI_Button_Clear_All()
+    public void SetGUI_Button_Clear_All()
     {
         if (GUILayout.Button("Clear All", GUILayout.Width(position.width / m_Button_HorizontalCount), GUILayout.Height(50f)))
         {
             Debug.LogWarning("Tool: Clear all Value!");
 
-            Class_Scene.Set_PlayerPrefs_Clear_All();
+            ClassScene.SetPlayerPrefm_Clear_All();
 
             mName = "";
             m_Value = "";

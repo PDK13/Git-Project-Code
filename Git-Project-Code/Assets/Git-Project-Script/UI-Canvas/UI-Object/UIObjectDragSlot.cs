@@ -72,7 +72,7 @@ public class UIObjectDragSlot : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_PointerEnter(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerEnter(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_PointerEnter, ua_Methode);
     }
@@ -81,7 +81,7 @@ public class UIObjectDragSlot : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_PointerExit(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerExit(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_PointerExit, ua_Methode);
     }
@@ -90,7 +90,7 @@ public class UIObjectDragSlot : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_OnDrop(UnityAction ua_Methode)
+    public void SetEvent_Add_OnDrop(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_OnDrop, ua_Methode);
     }
@@ -101,7 +101,7 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     #region Set Event Invoke
 
-    private void Set_Event_Invoke_PointerEnter()
+    private void SetEvent_Invoke_PointerEnter()
     {
         if (Event_PointerEnter != null)
         {
@@ -109,7 +109,7 @@ public class UIObjectDragSlot : MonoBehaviour,
         }
     }
 
-    private void Set_Event_Invoke_PointerExit()
+    private void SetEvent_Invoke_PointerExit()
     {
         if (Event_PointerExit != null)
         {
@@ -117,7 +117,7 @@ public class UIObjectDragSlot : MonoBehaviour,
         }
     }
 
-    private void Set_Event_Invoke_OnDrop()
+    private void SetEvent_Invoke_OnDrop()
     {
         if (Event_OnDrop != null)
         {
@@ -129,7 +129,7 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     #region Set Event Button
 
-    private void Set_Event_PointerEnter()
+    private void SetEvent_PointerEnter()
     {
         if (m_UI_Lock)
         {
@@ -138,10 +138,10 @@ public class UIObjectDragSlot : MonoBehaviour,
 
         m_UI_Ready = true;
 
-        Set_Event_Invoke_PointerEnter();
+        SetEvent_Invoke_PointerEnter();
     }
 
-    private void Set_Event_PointerExit()
+    private void SetEvent_PointerExit()
     {
         if (m_UI_Lock)
         {
@@ -150,10 +150,10 @@ public class UIObjectDragSlot : MonoBehaviour,
 
         m_UI_Ready = false;
 
-        Set_Event_Invoke_PointerExit();
+        SetEvent_Invoke_PointerExit();
     }
 
-    private void Set_Event_OnDrop(PointerEventData eventData)
+    private void SetEvent_OnDrop(PointerEventData eventData)
     {
         if (m_UI_Lock)
         {
@@ -169,7 +169,7 @@ public class UIObjectDragSlot : MonoBehaviour,
             m_UI_Drop_Status = true;
         }
 
-        Set_Event_Invoke_OnDrop();
+        SetEvent_Invoke_OnDrop();
     }
 
     #endregion
@@ -178,17 +178,17 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        Set_Event_PointerEnter();
+        SetEvent_PointerEnter();
     }
 
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        Set_Event_PointerExit();
+        SetEvent_PointerExit();
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        Set_Event_OnDrop(eventData);
+        SetEvent_OnDrop(eventData);
     }
 
     #endregion
@@ -197,19 +197,19 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     #region UI Status Set
 
-    public void Set_Button_Lock(bool m_Lock_Status)
+    public void SetButton_Lock(bool m_Lock_Status)
     {
         m_UI_Lock = m_Lock_Status;
     }
 
-    public void Set_Button_Lock_True()
+    public void SetButton_Lock_True()
     {
-        Set_Button_Lock(true);
+        SetButton_Lock(true);
     }
 
-    public void Set_Button_Lock_False()
+    public void SetButton_Lock_False()
     {
-        Set_Button_Lock(false);
+        SetButton_Lock(false);
     }
 
     #endregion

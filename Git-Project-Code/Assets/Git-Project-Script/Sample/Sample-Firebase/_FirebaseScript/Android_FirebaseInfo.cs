@@ -7,14 +7,14 @@
 //    /// <summary>
 //    /// Scene START
 //    /// </summary>
-//    public string s_SceneBack = "Android_FirebaseStart";
+//    public string m_SceneBack = "Android_FirebaseStart";
 
 //    /// <summary>
 //    /// Button BACK
 //    /// </summary>
 //    public void Button_Back()
 //    {
-//        Class_Scene cl_Scene = new Class_Scene(s_SceneBack);
+//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneBack);
 //        //Chance Scene to "Menu"
 //    }
 

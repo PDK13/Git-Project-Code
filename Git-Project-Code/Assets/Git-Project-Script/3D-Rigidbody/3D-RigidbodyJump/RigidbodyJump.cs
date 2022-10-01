@@ -42,36 +42,36 @@ public class RigidbodyJump : MonoBehaviour
     /// <summary>
     /// Control Velocity GameObject in 3D
     /// </summary>
-    private RigidbodyComponent cs_Rigid;
+    private RigidbodyComponent cm_Rigid;
 
     #endregion
 
     private void Start()
     {
-        cs_Rigid = GetComponent<RigidbodyComponent>();
+        cm_Rigid = GetComponent<RigidbodyComponent>();
     }
 
     private void Update()
     {
         if (m_UseScriptControl)
         {
-            Set_JumpButton();
+            SetJumpButton();
         }
     }
 
     /// <summary>
     /// Set Jump by Keyboard
     /// </summary>
-    public void Set_JumpButton()
+    public void SetJumpButton()
     {
         if (!m_HoldJump && Input.GetKeyDown(k_Jump))
         {
-            Set_Jump();
+            SetJump();
         }
         else
         if (m_HoldJump && Input.GetKey(k_Jump))
         {
-            Set_Jump();
+            SetJump();
         }
     }
 
@@ -79,22 +79,22 @@ public class RigidbodyJump : MonoBehaviour
     /// Set Jump Auto
     /// </summary>
     /// <param name="m_JumpHold"></param>
-    public void Set_JumpAuto(bool m_JumpHold)
+    public void SetJumpAuto(bool m_JumpHold)
     {
         if (m_JumpHold)
         {
-            Set_Jump();
+            SetJump();
         }
     }
 
     /// <summary>
     /// Set Jump
     /// </summary>
-    public void Set_Jump()
+    public void SetJump()
     {
-        if (cs_Rigid.GetCheckFoot())
+        if (cm_Rigid.GetCheckFoot())
         {
-            cs_Rigid.Set_MoveY_Jump(m_JumpVelocity);
+            cm_Rigid.SetMoveY_Jump(m_JumpVelocity);
         }
     }
 }

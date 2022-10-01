@@ -4,9 +4,9 @@ using UnityEngine;
 /// <summary>
 /// Working on Keyboard Improve
 /// </summary>
-public class Class_KeyCode
+public class Clasm_KeyCode
 {
-    public Class_KeyCode()
+    public Clasm_KeyCode()
     {
 
     }
@@ -65,7 +65,7 @@ public class Class_KeyCode
 
     #region Mouse
 
-    public static void Set_Mouse_Visible(bool m_Mouse_Visble)
+    public static void SetMouse_Visible(bool m_Mouse_Visble)
     {
         Cursor.visible = m_Mouse_Visble;
     }

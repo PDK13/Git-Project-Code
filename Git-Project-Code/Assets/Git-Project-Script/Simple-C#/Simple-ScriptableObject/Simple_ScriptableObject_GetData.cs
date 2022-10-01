@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Simple_ScriptableObject_GetData : MonoBehaviour
 {
-    [SerializeField] private Simple_ScriptableObject cs_Simple_ScriptableObject;
+    [SerializeField] private Simple_ScriptableObject cm_Simple_ScriptableObject;
 
     private void Awake()
     {
@@ -11,10 +11,10 @@ public class Simple_ScriptableObject_GetData : MonoBehaviour
 
     private void Start()
     {
-        Debug.LogFormat("{0}: Data: {1}", name, cs_Simple_ScriptableObject.GetMyString());
+        Debug.LogFormat("{0}: Data: {1}", name, cm_Simple_ScriptableObject.GetMyString());
 
-        cs_Simple_ScriptableObject.Set_MyString("Good bye!");
+        cm_Simple_ScriptableObject.SetMyString("Good bye!");
 
-        Debug.LogFormat("{0}: Data after chance: {1}", name, cs_Simple_ScriptableObject.GetMyString());
+        Debug.LogFormat("{0}: Data after chance: {1}", name, cm_Simple_ScriptableObject.GetMyString());
     }
 }

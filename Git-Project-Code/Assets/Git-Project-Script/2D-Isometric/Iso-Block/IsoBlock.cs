@@ -15,12 +15,12 @@ public class IsoBlock : MonoBehaviour
     [Tooltip("Round to Upper on Matrix")]
     [SerializeField]
     [Range(0.5f, 0.6f)]
-    private float m_Pos_Matrix_Max = 0.55f;
+    private float m_Pom_Matrix_Max = 0.55f;
 
     [Tooltip("Round to Lower on Matrix")]
     [SerializeField]
     [Range(0.4f, 0.5f)]
-    private float m_Pos_Matrix_Min = 0.45f;
+    private float m_Pom_Matrix_Min = 0.45f;
 
     [Tooltip("Pos Primary on Matrix")]
     private Vector3Int v3_PosOnMatrix_Primary = new Vector3Int();
@@ -54,14 +54,14 @@ public class IsoBlock : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Set_Pos_Transform();
+        SetPom_Transform();
     }
 
     #region Pos 
 
     #region Pos Main 
 
-    private void Set_Pos_Transform()
+    private void SetPom_Transform()
     {
         //if (cl_World != null)
         //{
@@ -69,75 +69,75 @@ public class IsoBlock : MonoBehaviour
         //    v3_Square = cl_World.GetFix_Square();
         //}
 
-        Vector3 v3_Pos_Transform = GetPos_OnScene(v3_Pos);
+        Vector3 v3_Pom_Transform = GetPom_OnScene(v3_Pos);
 
-        v3_Pos_Transform.x *= v3_Square.x;
-        v3_Pos_Transform.y *= v3_Square.y;
-        v3_Pos_Transform.z *= v3_Square.z;
+        v3_Pom_Transform.x *= v3_Square.x;
+        v3_Pom_Transform.y *= v3_Square.y;
+        v3_Pom_Transform.z *= v3_Square.z;
 
-        v3_Pos_Transform += v3_Offset;
+        v3_Pom_Transform += v3_Offset;
 
-        v3_Pos_Transform += v3_Fix;
+        v3_Pom_Transform += v3_Fix;
 
-        transform.position = v3_Pos_Transform;
+        transform.position = v3_Pom_Transform;
 
-        Set_Pos_onMatrix();
+        SetPom_onMatrix();
     }
 
-    private void Set_Pos_onMatrix()
+    private void SetPom_onMatrix()
     {
         float m_Check_X = (Mathf.Abs((int)v3_Pos.x - v3_Pos.x));
 
-        if (m_Check_X > m_Pos_Matrix_Max)
+        if (m_Check_X > m_Pom_Matrix_Max)
         {
             v3_PosOnMatrix.x = (int)v3_Pos.x + 1;
         }
         else
-        if (m_Check_X < m_Pos_Matrix_Min)
+        if (m_Check_X < m_Pom_Matrix_Min)
         {
             v3_PosOnMatrix.x = (int)v3_Pos.x;
         }
 
         float m_Check_Y = (Mathf.Abs((int)v3_Pos.y - v3_Pos.y));
 
-        if (m_Check_Y > m_Pos_Matrix_Max)
+        if (m_Check_Y > m_Pom_Matrix_Max)
         {
             v3_PosOnMatrix.y = (int)v3_Pos.y + 1;
         }
         else
-        if (m_Check_Y < m_Pos_Matrix_Min)
+        if (m_Check_Y < m_Pom_Matrix_Min)
         {
             v3_PosOnMatrix.y = (int)v3_Pos.y;
         }
 
         float m_Check_High = (Mathf.Abs((int)v3_Pos.z - v3_Pos.z));
 
-        if (m_Check_High > m_Pos_Matrix_Max)
+        if (m_Check_High > m_Pom_Matrix_Max)
         {
             v3_PosOnMatrix.z = (int)v3_Pos.z + 1;
         }
         else
-        if (m_Check_High < m_Pos_Matrix_Min)
+        if (m_Check_High < m_Pom_Matrix_Min)
         {
             v3_PosOnMatrix.z = (int)v3_Pos.z;
         }
     }
 
-    public static Vector3 GetPos_OnScene(Vector3 v3_Pos_OnWorld)
+    public static Vector3 GetPom_OnScene(Vector3 v3_Pom_OnWorld)
     {
         Vector3 v3_FixTransform = new Vector3(
-            v3_Pos_OnWorld.x + v3_Pos_OnWorld.y,
-            0.5f * (v3_Pos_OnWorld.y - v3_Pos_OnWorld.x) + v3_Pos_OnWorld.z,
-            (v3_Pos_OnWorld.y - v3_Pos_OnWorld.x) - v3_Pos_OnWorld.z);
+            v3_Pom_OnWorld.x + v3_Pom_OnWorld.y,
+            0.5f * (v3_Pom_OnWorld.y - v3_Pom_OnWorld.x) + v3_Pom_OnWorld.z,
+            (v3_Pom_OnWorld.y - v3_Pom_OnWorld.x) - v3_Pom_OnWorld.z);
 
         return v3_FixTransform;
     }
 
-    public static Vector2 GetPos_OnWorld(Vector2 v3_Pos_OnScene)
+    public static Vector2 GetPom_OnWorld(Vector2 v3_Pom_OnScene)
     {
-        float m_Y_OnWorld = v3_Pos_OnScene.y + v3_Pos_OnScene.x / 2;
+        float m_Y_OnWorld = v3_Pom_OnScene.y + v3_Pom_OnScene.x / 2;
 
-        float m_X_OnWorld = v3_Pos_OnScene.x - m_Y_OnWorld;
+        float m_X_OnWorld = v3_Pom_OnScene.x - m_Y_OnWorld;
 
         return new Vector3(m_X_OnWorld, m_Y_OnWorld, 0);
     }
@@ -148,96 +148,96 @@ public class IsoBlock : MonoBehaviour
 
     #region Set Pos 
 
-    public void Set_Pos(Vector3 v3_Pos)
+    public void SetPos(Vector3 v3_Pos)
     {
         this.v3_Pos = v3_Pos;
 
-        Set_Pos_Transform();
+        SetPom_Transform();
     }
 
-    public void Set_Pos(float m_X, float m_Y, float m_High)
+    public void SetPos(float m_X, float m_Y, float m_High)
     {
-        Set_Pos(new Vector3(m_X, m_Y, m_High));
+        SetPos(new Vector3(m_X, m_Y, m_High));
     }
 
-    public void Set_Pos_X(float m_X)
+    public void SetPom_X(float m_X)
     {
         v3_Pos.x = m_X;
 
-        Set_Pos_Transform();
+        SetPom_Transform();
     }
 
-    public void Set_Pos_Y(float m_Y)
+    public void SetPom_Y(float m_Y)
     {
         v3_Pos.y = m_Y;
 
-        Set_Pos_Transform();
+        SetPom_Transform();
     }
 
-    public void Set_Pos_High(float m_High)
+    public void SetPom_High(float m_High)
     {
         v3_Pos.z = m_High;
 
-        Set_Pos_Transform();
+        SetPom_Transform();
     }
 
     #endregion
 
     #region Set Pos Add 
 
-    public void Set_Pos_Add(Vector3 v3_Pos_Add)
+    public void SetPom_Add(Vector3 v3_Pom_Add)
     {
-        Set_Pos(GetPos_Current() + v3_Pos_Add);
+        SetPos(GetPom_Current() + v3_Pom_Add);
     }
 
-    public void Set_Pos_Add(float m_X_Add, float m_Y_Add, float m_High_Add)
+    public void SetPom_Add(float m_X_Add, float m_Y_Add, float m_High_Add)
     {
-        Set_Pos_Add(new Vector3(m_X_Add, m_Y_Add, m_High_Add));
+        SetPom_Add(new Vector3(m_X_Add, m_Y_Add, m_High_Add));
     }
 
-    public void Set_Pos_Add_X(float m_X_Add)
+    public void SetPom_Add_X(float m_X_Add)
     {
         v3_Pos.x += m_X_Add;
 
-        Set_Pos_Transform();
+        SetPom_Transform();
     }
 
-    public void Set_Pos_Add_Y(float m_Y_Add)
+    public void SetPom_Add_Y(float m_Y_Add)
     {
         v3_Pos.y += m_Y_Add;
 
-        Set_Pos_Transform();
+        SetPom_Transform();
     }
 
-    public void Set_Pos_Add_High(float m_High_Add)
+    public void SetPom_Add_High(float m_High_Add)
     {
         v3_Pos.z += m_High_Add;
 
-        Set_Pos_Transform();
+        SetPom_Transform();
     }
 
     #endregion
 
     #region Get Pos 
 
-    public Vector3 GetPos_Current()
+    public Vector3 GetPom_Current()
     {
         return v3_Pos;
     }
 
-    public float GetPos_Current_X()
+    public float GetPom_Current_X()
     {
-        return GetPos_Current().x;
+        return GetPom_Current().x;
     }
 
-    public float GetPos_Current_Y()
+    public float GetPom_Current_Y()
     {
-        return GetPos_Current().y;
+        return GetPom_Current().y;
     }
 
-    public float GetPos_Current_High()
+    public float GetPom_Current_High()
     {
-        return GetPos_Current().z;
+        return GetPom_Current().z;
     }
 
     #endregion
@@ -253,7 +253,7 @@ public class IsoBlock : MonoBehaviour
 
     #region Pos on Matrix Primary 
 
-    public void Set_PosOnMatrix_Primary(Vector3Int v3_Pos)
+    public void SetPosOnMatrix_Primary(Vector3Int v3_Pos)
     {
         v3_PosOnMatrix_Primary = v3_Pos;
     }
@@ -275,16 +275,16 @@ public class IsoBlock : MonoBehaviour
     /// <summary>
     /// Reset Pos Current to Pos on Matrix Primary
     /// </summary>
-    public void Set_PosOnMatrix_ResetToPrimary()
+    public void SetPosOnMatrix_ResetToPrimary()
     {
-        Set_Pos(GetPosOnMatrix_Primary());
+        SetPos(GetPosOnMatrix_Primary());
     }
 
     #endregion
 
     #endregion
 
-    public void Set_Fix(Vector3 v3_Fix)
+    public void SetFix(Vector3 v3_Fix)
     {
         this.v3_Fix = v3_Fix;
     }
@@ -308,7 +308,7 @@ public class IsoBlock : MonoBehaviour
 
     #region Type and Dir Set 
 
-    public void Set_Imformation(IsoClassBlock cl_Imformation_Block)
+    public void SetImformation(IsoClassBlock cl_Imformation_Block)
     {
         cl_Block = cl_Imformation_Block;
     }
@@ -332,32 +332,32 @@ public class IsoBlock : MonoBehaviour
 
     public bool GetBlock_Check()
     {
-        return cl_Block.GetType_Main().Equals(IsoClassBlock.s_Block);
+        return cl_Block.GetType_Main().Equals(IsoClassBlock.m_Block);
     }
 
     public bool GetBlock_Check_Ground()
     {
-        return cl_Block.GetType().Equals(IsoClassBlock.s_Block_Ground);
+        return cl_Block.GetType().Equals(IsoClassBlock.m_Block_Ground);
     }
 
     public bool GetBlock_Check_Object()
     {
-        return cl_Block.GetType().Equals(IsoClassBlock.s_Block_Object);
+        return cl_Block.GetType().Equals(IsoClassBlock.m_Block_Object);
     }
 
     public bool GetBlock_Check_Stair()
     {
-        return cl_Block.GetType().Equals(IsoClassBlock.s_Block_Stair);
+        return cl_Block.GetType().Equals(IsoClassBlock.m_Block_Stair);
     }
 
     public bool GetBlock_Check_StairUD()
     {
-        return cl_Block.GetType().Equals(IsoClassBlock.s_Block_StairUD);
+        return cl_Block.GetType().Equals(IsoClassBlock.m_Block_StairUD);
     }
 
     public bool GetBlock_Check_StairLR()
     {
-        return cl_Block.GetType().Equals(IsoClassBlock.s_Block_StairLR);
+        return cl_Block.GetType().Equals(IsoClassBlock.m_Block_StairLR);
     }
 
     #endregion
@@ -368,27 +368,27 @@ public class IsoBlock : MonoBehaviour
 
     public bool GetCharacter_Check()
     {
-        return cl_Block.GetType_Main().Equals(IsoClassBlock.s_Character);
+        return cl_Block.GetType_Main().Equals(IsoClassBlock.m_Character);
     }
 
     public bool GetCharacter_Check_Player()
     {
-        return cl_Block.GetType().Equals(IsoClassBlock.s_Character_Player);
+        return cl_Block.GetType().Equals(IsoClassBlock.m_Character_Player);
     }
 
     public bool GetCharacter_Check_Good()
     {
-        return cl_Block.GetType().Equals(IsoClassBlock.s_Character_Good);
+        return cl_Block.GetType().Equals(IsoClassBlock.m_Character_Good);
     }
 
     public bool GetCharacter_Check_Neutral()
     {
-        return cl_Block.GetType().Equals(IsoClassBlock.s_Character_Neutral);
+        return cl_Block.GetType().Equals(IsoClassBlock.m_Character_Neutral);
     }
 
     public bool GetCharacter_Check_Bad()
     {
-        return cl_Block.GetType().Equals(IsoClassBlock.s_Character_Bad);
+        return cl_Block.GetType().Equals(IsoClassBlock.m_Character_Bad);
     }
 
     #endregion

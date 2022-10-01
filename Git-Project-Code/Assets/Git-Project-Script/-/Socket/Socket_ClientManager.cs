@@ -26,7 +26,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// </summary>
     [Header("Network Host Server")]
     [SerializeField]
-    private string s_Tag_Host = "SocketHost";
+    private string m_Tag_Host = "SocketHost";
 
     /// <summary>
     /// Host to Connect
@@ -39,7 +39,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// </summary>
     [Header("Network Port Server")]
     [SerializeField]
-    private string s_Tag_Port = "SocketPort";
+    private string m_Tag_Port = "SocketPort";
 
     /// <summary>
     /// Port for Connect to Host
@@ -58,13 +58,13 @@ public class Socket_ClientManager : MonoBehaviour
     /// Host to Connect or Connected
     /// </summary>
     [SerializeField]
-    private string s_HostConnect = "192.168.100.38";
+    private string m_HostConnect = "192.168.100.38";
 
     /// <summary>
     /// Port to Connect or Connected
     /// </summary>
     [SerializeField]
-    private string s_PortConnect = "5000";
+    private string m_PortConnect = "5000";
 
     /// <summary>
     /// Auto Read by Thread
@@ -77,10 +77,10 @@ public class Socket_ClientManager : MonoBehaviour
     private List<Text> lt_SocketMessage;
 
     [SerializeField]
-    private string s_ConnectSuccess = "Connect Success!";
+    private string m_ConnectSuccess = "Connect Success!";
 
     [SerializeField]
-    private string s_ConnectFailed = "Connect Failed!";
+    private string m_ConnectFailed = "Connect Failed!";
 
     #endregion
 
@@ -91,7 +91,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// IP on this Device or this Server
     /// </summary>
-    private readonly string s_LocalHost = "localhost";
+    private readonly string m_LocalHost = "localhost";
 
     /// <summary>
     /// Socket Connect OK?
@@ -122,25 +122,25 @@ public class Socket_ClientManager : MonoBehaviour
     {
         if (inp_Host == null)
         {
-            inp_Host = GameObject.FindGameObjectWithTag(s_Tag_Host).GetComponent<InputField>();
+            inp_Host = GameObject.FindGameObjectWithTag(m_Tag_Host).GetComponent<InputField>();
         }
         if (inp_Host != null)
         {
             if (inp_Host.text == "")
             {
-                inp_Host.text = s_HostConnect;
+                inp_Host.text = m_HostConnect;
             }
         }
 
         if (inp_Port == null)
         {
-            inp_Port = GameObject.FindGameObjectWithTag(s_Tag_Port).GetComponent<InputField>();
+            inp_Port = GameObject.FindGameObjectWithTag(m_Tag_Port).GetComponent<InputField>();
         }
         if (inp_Port != null)
         {
             if (inp_Port.text == "")
             {
-                inp_Port.text = s_PortConnect;
+                inp_Port.text = m_PortConnect;
             }
         }
 
@@ -148,26 +148,26 @@ public class Socket_ClientManager : MonoBehaviour
 
         if (m_AutoConnect)
         {
-            Set_Socket_Start();
+            SetSocket_Start();
         }
 
         if (m_AutoRead)
         {
-            Set_SocketThread_Read(true);
+            SetSocketThread_Read(true);
         }
 
-        th_GetData = new Thread(Set_SocketThread_AutoRead);
+        th_GetData = new Thread(SetSocketThread_AutoRead);
         th_GetData.Start();
     }
 
     private void OnDestroy()
     {
-        Set_CloseApplication();
+        SetCloseApplication();
     }
 
     private void OnApplicationQuit()
     {
-        Set_CloseApplication();
+        SetCloseApplication();
     }
 
     private void OnApplicationPause(bool m_OnPause)
@@ -175,15 +175,15 @@ public class Socket_ClientManager : MonoBehaviour
         //Android Event onResume() and onPause()
         if (m_OnPause)
         {
-            Set_CloseApplication();
+            SetCloseApplication();
         }
         else
         {
-            Set_Socket_Start();
+            SetSocket_Start();
         }
     }
 
-    private void Set_CloseApplication()
+    private void SetCloseApplication()
     {
         if (th_GetData != null)
         {
@@ -193,7 +193,7 @@ public class Socket_ClientManager : MonoBehaviour
             }
         }
 
-        Set_Socket_Close();
+        SetSocket_Close();
     }
 
     #region Thread Read Data
@@ -201,7 +201,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// Auto Read Data for Debug
     /// </summary>
-    private void Set_SocketThread_AutoRead()
+    private void SetSocketThread_AutoRead()
     {
         while (true)
         {
@@ -211,11 +211,11 @@ public class Socket_ClientManager : MonoBehaviour
                 if (m_SocketRead)
                 //If Socket Read
                 {
-                    string s_DataGet = GetSocketData_Read();
-                    if (s_DataGet != "")
+                    string m_DataGet = GetSocketData_Read();
+                    if (m_DataGet != "")
                     {
-                        //Debug.Log("Set_Thread_AutoRead: " + s_DataGet);
-                        l_DataQueue.Add(s_DataGet);
+                        //Debug.Log("SetThread_AutoRead: " + m_DataGet);
+                        l_DataQueue.Add(m_DataGet);
                     }
                 }
             }
@@ -226,7 +226,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// Set Socket Read by Thread
     /// </summary>
     /// <param name="m_SocketRead"></param>
-    public void Set_SocketThread_Read(bool m_SocketRead)
+    public void SetSocketThread_Read(bool m_SocketRead)
     {
         this.m_SocketRead = m_SocketRead;
     }
@@ -247,7 +247,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// Set Socket Ready
     /// </summary>
-    public void Set_Socket_Start()
+    public void SetSocket_Start()
     {
         if (!GetSocket_Start())
         {
@@ -257,27 +257,27 @@ public class Socket_ClientManager : MonoBehaviour
 
                 if (inp_Port == null || inp_Port == null)
                 {
-                    Debug.LogError("Set_Socket_Start: Require Input Field!");
+                    Debug.LogError("SetSocket_Start: Require Input Field!");
                     return;
                 }
                 else
                 {
                     if (inp_Port.text == "")
                     {
-                        Debug.LogWarning("Set_Socket_Start: Port Require!");
+                        Debug.LogWarning("SetSocket_Start: Port Require!");
                         return;
                     }
 
                     if (inp_Host.text == "")
                     {
-                        Debug.LogWarning("Set_Socket_Start: Local Host Instead!");
-                        Debug.LogWarning("Set_Socket_Start: Device " + SystemInfo.deviceUniqueIdentifier);
-                        tcp_Socket.Connect(s_LocalHost, int.Parse(inp_Port.text));
+                        Debug.LogWarning("SetSocket_Start: Local Host Instead!");
+                        Debug.LogWarning("SetSocket_Start: Device " + SystemInfo.deviceUniqueIdentifier);
+                        tcp_Socket.Connect(m_LocalHost, int.Parse(inp_Port.text));
                     }
                     else
                     {
-                        Debug.LogWarning("Set_Socket_Start: Host " + inp_Host.text);
-                        Debug.LogWarning("Set_Socket_Start: Device " + SystemInfo.deviceUniqueIdentifier);
+                        Debug.LogWarning("SetSocket_Start: Host " + inp_Host.text);
+                        Debug.LogWarning("SetSocket_Start: Device " + SystemInfo.deviceUniqueIdentifier);
                         tcp_Socket.Connect(inp_Host.text, int.Parse(inp_Port.text));
                     }
                 }
@@ -287,26 +287,26 @@ public class Socket_ClientManager : MonoBehaviour
                 st_Writer = new StreamWriter(net_Stream);
                 st_Reader = new StreamReader(net_Stream);
 
-                s_HostConnect = inp_Host.text;
-                s_PortConnect = inp_Port.text;
+                m_HostConnect = inp_Host.text;
+                m_PortConnect = inp_Port.text;
 
                 m_SocketStart = true;
 
-                Debug.LogWarning("Set_Socket_Start: Socket Start!");
+                Debug.LogWarning("SetSocket_Start: Socket Start!");
 
                 for (int i = 0; i < lt_SocketMessage.Count; i++)
                 {
-                    lt_SocketMessage[i].text = s_ConnectSuccess;
+                    lt_SocketMessage[i].text = m_ConnectSuccess;
                 }
 
             }
             catch (Exception e)
             {
-                Debug.LogError("Set_Socket_Start: Socket error '" + e + "'");
+                Debug.LogError("SetSocket_Start: Socket error '" + e + "'");
 
                 for (int i = 0; i < lt_SocketMessage.Count; i++)
                 {
-                    lt_SocketMessage[i].text = s_ConnectFailed;
+                    lt_SocketMessage[i].text = m_ConnectFailed;
                 }
             }
         }
@@ -328,19 +328,19 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// Sent Data to Server
     /// </summary>
-    /// <param name="s_Data"></param>
-    public void Set_Socket_Write(string s_Data)
+    /// <param name="m_Data"></param>
+    public void SetSocket_Write(string m_Data)
     {
         if (!GetSocket_Start())
         {
             return;
         }
 
-        string foo = s_Data + "\r\n";
+        string foo = m_Data + "\r\n";
         st_Writer.Write(foo);
         st_Writer.Flush();
 
-        Debug.Log("Set_Socket_Write: " + s_Data);
+        Debug.Log("SetSocket_Write: " + m_Data);
     }
 
     #endregion
@@ -364,9 +364,9 @@ public class Socket_ClientManager : MonoBehaviour
         }
         if (net_Stream.DataAvailable)
         {
-            string s_ReadData = st_Reader.ReadLine();
-            Debug.Log("GetSocket_Read: " + s_ReadData);
-            return s_ReadData;
+            string m_ReadData = st_Reader.ReadLine();
+            Debug.Log("GetSocket_Read: " + m_ReadData);
+            return m_ReadData;
         }
         return "";
     }
@@ -383,9 +383,9 @@ public class Socket_ClientManager : MonoBehaviour
         {
             return "";
         }
-        string s_DataGet = l_DataQueue[0];
+        string m_DataGet = l_DataQueue[0];
         l_DataQueue.RemoveAt(0);
-        return s_DataGet;
+        return m_DataGet;
     }
 
     /// <summary>
@@ -404,20 +404,20 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// Close Connect to Server
     /// </summary>
-    public void Set_Socket_Close()
+    public void SetSocket_Close()
     {
         if (!GetSocket_Start())
         {
             return;
         }
 
-        Set_Socket_Write("Exit");
+        SetSocket_Write("Exit");
         st_Writer.Close();
         st_Reader.Close();
         tcp_Socket.Close();
         m_SocketStart = false;
 
-        Debug.LogWarning("Set_Socket_Close: Called!");
+        Debug.LogWarning("SetSocket_Close: Called!");
     }
 
     #endregion

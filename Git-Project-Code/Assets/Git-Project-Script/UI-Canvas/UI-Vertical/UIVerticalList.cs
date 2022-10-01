@@ -52,14 +52,14 @@ public class UIVerticalList : MonoBehaviour
     /// <summary>
     /// Add Clone to List Vertical
     /// </summary>
-    public void Set_ListVertical_Add()
+    public void SetListVertical_Add()
     {
         //if (!m_Component)
         //{
         //    return;
         //}
 
-        GameObject g_GameObject_Create = Class_Object.Set_GameObject_Create(gClone, t_Content);
+        GameObject g_GameObject_Create = Clasm_Object.SetGameObject_Create(gClone, t_Content);
 
         g_GameObject_Create.GetComponent<UIVerticalClone>().SetClone(this, l_Vertical.Count);
 
@@ -74,7 +74,7 @@ public class UIVerticalList : MonoBehaviour
     /// Remove Clone in List Vertical
     /// </summary>
     /// <param name="m_Index"></param>
-    public void Set_ListVertical_Remove(int m_Index)
+    public void SetListVertical_Remove(int m_Index)
     {
         //if (!m_Component)
         //{
@@ -87,7 +87,7 @@ public class UIVerticalList : MonoBehaviour
         }
 
         //Remove Clone at Index
-        Class_Object.Set_GameObject_Destroy(l_Vertical[m_Index]);
+        Clasm_Object.SetGameObject_Destroy(l_Vertical[m_Index]);
         l_Vertical.RemoveAt(m_Index);
 
         //Fix Index other Clone
@@ -100,15 +100,15 @@ public class UIVerticalList : MonoBehaviour
     /// <summary>
     /// Remove Clone Lastest in List Vertical
     /// </summary>
-    public void Set_ListVertical_Remove_Lastest()
+    public void SetListVertical_Remove_Lastest()
     {
-        Set_ListVertical_Remove(l_Vertical.Count - 1);
+        SetListVertical_Remove(l_Vertical.Count - 1);
     }
 
     /// <summary>
     /// Remove All Clone(s) in List Vertical
     /// </summary>
-    public void Set_ListVertical_Remove_All()
+    public void SetListVertical_Remove_All()
     {
         //if (!m_Component)
         //{
@@ -117,7 +117,7 @@ public class UIVerticalList : MonoBehaviour
 
         for (int i = 0; i < l_Vertical.Count; i++)
         {
-            Class_Object.Set_GameObject_Destroy(l_Vertical[i]);
+            Clasm_Object.SetGameObject_Destroy(l_Vertical[i]);
         }
 
         l_Vertical = new List<GameObject>();

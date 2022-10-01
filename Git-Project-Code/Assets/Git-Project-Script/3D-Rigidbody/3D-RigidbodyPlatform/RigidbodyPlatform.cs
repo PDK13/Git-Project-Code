@@ -6,7 +6,7 @@
 public class RigidbodyPlatform : MonoBehaviour
 //Move Control Platform (X)
 {
-    private RigidbodyComponent cs_Rigid;
+    private RigidbodyComponent cm_Rigid;
     //Use "Move" of this Script
 
     [Header("Keyboard")]
@@ -36,62 +36,62 @@ public class RigidbodyPlatform : MonoBehaviour
 
     private void Awake()
     {
-        cs_Rigid = GetComponent<RigidbodyComponent>();
+        cm_Rigid = GetComponent<RigidbodyComponent>();
     }
 
     private void Update()
     {
-        Set_SpeedChance();
-        Set_MoveButton();
+        SetSpeedChance();
+        SetMoveButton();
     }
 
-    public void Set_MoveButton()
+    public void SetMoveButton()
     //Control Move by Keyboard
     {
         if (Input.GetKey(k_MoveLeft) && Input.GetKey(k_MoveRight))
         {
             //Press "Left" & "Right" same time >> Not Move
-            Set_Stop();
+            SetStop();
         }
         else
             if (Input.GetKey(k_MoveLeft))
         {
             //Left
-            Set_Move(-1);
+            SetMove(-1);
         }
         else
             if (Input.GetKey(k_MoveRight))
         {
             //Right
-            Set_Move(1);
+            SetMove(1);
         }
         else
         {
             //Not Press
-            Set_Stop();
+            SetStop();
         }
     }
 
-    private void Set_Move(int m_ButtonMove)
+    private void SetMove(int m_ButtonMove)
     //Control Move
     {
-        cs_Rigid.Set_MoveX_Velocity(m_ButtonMove, m_SpeedCur, m_SpeedCur);
+        cm_Rigid.SetMoveX_Velocity(m_ButtonMove, m_SpeedCur, m_SpeedCur);
     }
 
-    private void Set_Stop()
+    private void SetStop()
     //Control Stop
     {
         if (m_StopRightAway)
         {
-            cs_Rigid.Set_StopX_Velocity();
+            cm_Rigid.SetStopX_Velocity();
         }
         else
         {
-            cs_Rigid.Set_StopX_Velocity(m_SpeedStop);
+            cm_Rigid.SetStopX_Velocity(m_SpeedStop);
         }
     }
 
-    public void Set_SpeedChance()
+    public void SetSpeedChance()
     //Control Speed Chance
     {
         m_SpeedCur = (Input.GetKey(k_SpeedChance)) ? m_SpeedChance : m_SpeedNormal;

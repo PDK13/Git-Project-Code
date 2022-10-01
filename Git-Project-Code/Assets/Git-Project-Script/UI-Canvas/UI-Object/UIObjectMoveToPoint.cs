@@ -53,7 +53,7 @@ public class UIObjectMoveToPoint : MonoBehaviour
     {
         if (rec_MoveTo != null)
         {
-            Set_UI_MoveTo(rec_MoveTo.anchoredPosition3D);
+            SetUI_MoveTo(rec_MoveTo.anchoredPosition3D);
         }
 
         Vector2 v2_MoveTo = new Vector2(v3_MoveTo.x, v3_MoveTo.y);
@@ -94,12 +94,12 @@ public class UIObjectMoveToPoint : MonoBehaviour
         }
     }
 
-    public void Set_UI_MoveTo(RectTransform rec_MoveTo)
+    public void SetUI_MoveTo(RectTransform rec_MoveTo)
     {
         this.rec_MoveTo = rec_MoveTo;
     }
 
-    public void Set_UI_MoveTo(Vector3 v3_MoveTo)
+    public void SetUI_MoveTo(Vector3 v3_MoveTo)
     {
         this.v3_MoveTo = v3_MoveTo;
 
@@ -109,12 +109,12 @@ public class UIObjectMoveToPoint : MonoBehaviour
             v3_MoveTo.z);
     }
 
-    public void Set_UI_MoveTo_Time(float m_Move_Time)
+    public void SetUI_MoveTo_Time(float m_Move_Time)
     {
         this.m_Move_Time = m_Move_Time;
     }
 
-    public void Set_UI_MoveTo_Offset(Vector2 v2_MoveTo_Offset)
+    public void SetUI_MoveTo_Offset(Vector2 v2_MoveTo_Offset)
     {
         this.v2_MoveTo_Offset = v2_MoveTo_Offset;
     }

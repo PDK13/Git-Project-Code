@@ -30,31 +30,31 @@ public class Sample_SocketHandle : MonoBehaviour
     {
         //if (cl_SocketManager.GetSocket_Queue_ReadIsExist())
         //{
-        //    string s_SocketGet = cl_SocketManager.GetSocket_Queue_Read();
-        //    Debug.Log("Debug:" + s_SocketGet);
-        //    //List<string> l_Data = cl_SocketManager.GetSocketData(s_SocketGet);
-        //    string[] l_Data = s_SocketGet.Split(':');
+        //    string m_SocketGet = cl_SocketManager.GetSocket_Queue_Read();
+        //    Debug.Log("Debug:" + m_SocketGet);
+        //    //List<string> l_Data = cl_SocketManager.GetSocketData(m_SocketGet);
+        //    string[] l_Data = m_SocketGet.Split(':');
 
-        //    string s_ID = l_Data[0];
-        //    string s_Command = l_Data[1];
-        //    Debug.Log("Debug: " + s_ID + "||" + s_Command);
+        //    string m_ID = l_Data[0];
+        //    string m_Command = l_Data[1];
+        //    Debug.Log("Debug: " + m_ID + "||" + m_Command);
 
-        //    if (GetExist_ID(s_ID))
+        //    if (GetExist_ID(m_ID))
         //    {
-        //        int m_Index = GetExist_ID_Index(s_ID);
-        //        l_Message[m_Index] = s_Command;
+        //        int m_Index = GetExist_ID_Index(m_ID);
+        //        l_Message[m_Index] = m_Command;
         //    }
         //    else
         //    {
-        //        l_ID.Add(s_ID);
-        //        l_Message.Add(s_Command);
-        //        //cl_SocketManager.Set_Get(l_ID.Count);
+        //        l_ID.Add(m_ID);
+        //        l_Message.Add(m_Command);
+        //        //cl_SocketManager.SetGet(l_ID.Count);
         //    }
 
-        //    string s_Debug = "";
+        //    string m_Debug = "";
         //    for(int i = 0; i < l_ID.Count; i++)
         //    {
-        //        s_Debug += l_ID[i] + ":" + l_Message[i] + "\n";
+        //        m_Debug += l_ID[i] + ":" + l_Message[i] + "\n";
         //    }
         //}
     }
@@ -62,14 +62,14 @@ public class Sample_SocketHandle : MonoBehaviour
     public void Button_SendDeviceID()
     {
         m_Plus++;
-        cl_SocketManager.Set_Socket_Write(cl_SocketManager.GetDeviceID() + ":" + m_Plus.ToString());
+        cl_SocketManager.SetSocket_Write(cl_SocketManager.GetDeviceID() + ":" + m_Plus.ToString());
     }
 
-    private bool GetExist_ID(string s_IDCheck)
+    private bool GetExist_ID(string m_IDCheck)
     {
         for (int i = 0; i < l_ID.Count; i++)
         {
-            if (l_ID[i] == s_IDCheck)
+            if (l_ID[i] == m_IDCheck)
             {
                 return true;
             }
@@ -77,11 +77,11 @@ public class Sample_SocketHandle : MonoBehaviour
         return false;
     }
 
-    private int GetExist_ID_Index(string s_IDCheck)
+    private int GetExist_ID_Index(string m_IDCheck)
     {
         for (int i = 0; i < l_ID.Count; i++)
         {
-            if (l_ID[i] == s_IDCheck)
+            if (l_ID[i] == m_IDCheck)
             {
                 return i;
             }

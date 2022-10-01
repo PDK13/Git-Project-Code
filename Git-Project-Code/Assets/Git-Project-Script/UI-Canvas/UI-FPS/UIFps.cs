@@ -14,10 +14,10 @@ public class UIFps : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Set_Test());
+        StartCoroutine(SetTest());
     }
 
-    private IEnumerator Set_Test()
+    private IEnumerator SetTest()
     {
         yield return null;
 

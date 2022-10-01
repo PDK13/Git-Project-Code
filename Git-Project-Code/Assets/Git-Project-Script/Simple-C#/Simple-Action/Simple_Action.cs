@@ -9,16 +9,16 @@ public class Simple_Action : MonoBehaviour
 
     private void Start()
     {
-        act_Action_01 += Set_Action_01;
-        act_Action_02 += Set_Action_02;
-        act_Action_03 += Set_Action_03;
+        act_Action_01 += SetAction_01;
+        act_Action_02 += SetAction_02;
+        act_Action_03 += SetAction_03;
     }
 
     private void OnDestroy()
     {
-        act_Action_01 -= Set_Action_01;
-        act_Action_02 -= Set_Action_02;
-        act_Action_03 -= Set_Action_03;
+        act_Action_01 -= SetAction_01;
+        act_Action_02 -= SetAction_02;
+        act_Action_03 -= SetAction_03;
     }
 
     private void Update()
@@ -39,18 +39,18 @@ public class Simple_Action : MonoBehaviour
         }
     }
 
-    private void Set_Action_01()
+    private void SetAction_01()
     {
         Debug.LogFormat("{0}: Action 01!", name);
     }
 
-    private void Set_Action_02(string s_MyString)
+    private void SetAction_02(string m_MyString)
     {
-        Debug.LogFormat("{0}: Action 02: {1}!", name, s_MyString);
+        Debug.LogFormat("{0}: Action 02: {1}!", name, m_MyString);
     }
 
-    private void Set_Action_03(string s_MyString, int m_MyInt)
+    private void SetAction_03(string m_MyString, int m_MyInt)
     {
-        Debug.LogFormat("{0}: Action 02: {1} {2}!", name, s_MyString, m_MyInt);
+        Debug.LogFormat("{0}: Action 02: {1} {2}!", name, m_MyString, m_MyInt);
     }
 }

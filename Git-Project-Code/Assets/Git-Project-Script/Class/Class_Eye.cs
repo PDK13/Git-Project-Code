@@ -3,9 +3,9 @@ using UnityEngine;
 /// <summary>
 /// Working on Cast
 /// </summary>
-public class Class_Eye
+public class Clasm_Eye
 {
-    public Class_Eye()
+    public Clasm_Eye()
     {
 
     }

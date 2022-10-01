@@ -45,17 +45,17 @@ public class RigidbodyGravity : MonoBehaviour
 
     #region Set
 
-    public void Set_Gravity_Scale(float m_Gravity_Scale)
+    public void SetGravity_Scale(float m_Gravity_Scale)
     {
         this.m_Gravity_Scale = m_Gravity_Scale;
     }
 
-    public void Set_Gravity_Global(float m_Gravity_Global)
+    public void SetGravity_Global(float m_Gravity_Global)
     {
         this.m_Gravity_Global = m_Gravity_Global;
     }
 
-    public void Set_Rigidbody_Drag(float m_Gravity_Drag)
+    public void SetRigidbody_Drag(float m_Gravity_Drag)
     {
         com_Rigidbody.drag = m_Gravity_Drag;
     }

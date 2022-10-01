@@ -83,14 +83,14 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     private void Update()
     {
-        Set_Event_Keyboard();
+        SetEvent_Keyboard();
 
-        Set_Event_Active();
+        SetEvent_Active();
 
-        Set_Button_Color();
+        SetButton_Color();
     }
 
-    private void Set_Event_Keyboard()
+    private void SetEvent_Keyboard()
     {
         if (m_Button_Lock)
         {
@@ -99,16 +99,16 @@ public class UIButtonHoldClick : MonoBehaviour,
 
         if (Input.GetKeyDown(k_Button_Keyboard))
         {
-            Set_Event_PointerDown();
+            SetEvent_PointerDown();
         }
 
         if (Input.GetKeyUp(k_Button_Keyboard))
         {
-            Set_Event_PointerUp();
+            SetEvent_PointerUp();
         }
     }
 
-    private void Set_Event_Active()
+    private void SetEvent_Active()
     {
         if (m_Button_Lock)
         {
@@ -126,13 +126,13 @@ public class UIButtonHoldClick : MonoBehaviour,
                 if (m_HoldTime_Remain < 0)
                 //If out of Time Hold >> Do Event
                 {
-                    Set_Event_Invoke_HoldState();
+                    SetEvent_Invoke_HoldState();
                 }
             }
             else
             //If NOT Need Time to do Event >> Do Event Right away
             {
-                Set_Event_Invoke_HoldState();
+                SetEvent_Invoke_HoldState();
             }
         }
     }
@@ -147,7 +147,7 @@ public class UIButtonHoldClick : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_HoldState(UnityAction ua_Methode)
+    public void SetEvent_Add_HoldState(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_HoldState, ua_Methode);
     }
@@ -156,7 +156,7 @@ public class UIButtonHoldClick : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_PointerEnter(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerEnter(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_PointerEnter, ua_Methode);
     }
@@ -165,7 +165,7 @@ public class UIButtonHoldClick : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_PointerExit(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerExit(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_PointerExit, ua_Methode);
     }
@@ -174,7 +174,7 @@ public class UIButtonHoldClick : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_PointerDown(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerDown(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_PointerDown, ua_Methode);
     }
@@ -183,7 +183,7 @@ public class UIButtonHoldClick : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_PointerUp(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerUp(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_PointerUp, ua_Methode);
     }
@@ -194,7 +194,7 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     #region Set Event Invoke
 
-    private void Set_Event_Invoke_HoldState()
+    private void SetEvent_Invoke_HoldState()
     {
         if (Event_HoldState != null)
         {
@@ -202,7 +202,7 @@ public class UIButtonHoldClick : MonoBehaviour,
         }
     }
 
-    private void Set_Event_Invoke_PointerEnter()
+    private void SetEvent_Invoke_PointerEnter()
     {
         if (Event_PointerEnter != null)
         {
@@ -210,7 +210,7 @@ public class UIButtonHoldClick : MonoBehaviour,
         }
     }
 
-    private void Set_Event_Invoke_PointerExit()
+    private void SetEvent_Invoke_PointerExit()
     {
         if (Event_PointerExit != null)
         {
@@ -218,7 +218,7 @@ public class UIButtonHoldClick : MonoBehaviour,
         }
     }
 
-    private void Set_Event_Invoke_PointerDown()
+    private void SetEvent_Invoke_PointerDown()
     {
         if (Event_PointerDown != null)
         {
@@ -226,7 +226,7 @@ public class UIButtonHoldClick : MonoBehaviour,
         }
     }
 
-    private void Set_Event_Invoke_PointerUp()
+    private void SetEvent_Invoke_PointerUp()
     {
         if (Event_PointerUp != null)
         {
@@ -240,7 +240,7 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     #region Set Event Button
 
-    private void Set_Event_PointerEnter()
+    private void SetEvent_PointerEnter()
     {
         if (m_Button_Lock)
         {
@@ -249,10 +249,10 @@ public class UIButtonHoldClick : MonoBehaviour,
 
         m_Button_Ready = true;
 
-        Set_Event_Invoke_PointerEnter();
+        SetEvent_Invoke_PointerEnter();
     }
 
-    private void Set_Event_PointerExit()
+    private void SetEvent_PointerExit()
     {
         if (m_Button_Lock)
         {
@@ -261,10 +261,10 @@ public class UIButtonHoldClick : MonoBehaviour,
 
         m_Button_Ready = false;
 
-        Set_Event_Invoke_PointerExit();
+        SetEvent_Invoke_PointerExit();
     }
 
-    private void Set_Event_PointerDown()
+    private void SetEvent_PointerDown()
     {
         if (m_Button_Lock)
         {
@@ -273,10 +273,10 @@ public class UIButtonHoldClick : MonoBehaviour,
 
         m_Button_Hold = true;
 
-        Set_Event_Invoke_PointerDown();
+        SetEvent_Invoke_PointerDown();
     }
 
-    private void Set_Event_PointerUp()
+    private void SetEvent_PointerUp()
     {
         if (m_Button_Lock)
         {
@@ -286,7 +286,7 @@ public class UIButtonHoldClick : MonoBehaviour,
         m_Button_Hold = false;
         m_HoldTime_Remain = m_HoldTime;
 
-        Set_Event_Invoke_PointerUp();
+        SetEvent_Invoke_PointerUp();
     }
 
     #endregion
@@ -295,29 +295,29 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        Set_Event_PointerEnter();
+        SetEvent_PointerEnter();
     }
 
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        Set_Event_PointerExit();
+        SetEvent_PointerExit();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Set_Event_PointerDown();
+        SetEvent_PointerDown();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Set_Event_PointerUp();
+        SetEvent_PointerUp();
     }
 
     #endregion
 
     #region Button Keyboard
 
-    public void Set_Button_Keyboard(KeyCode k_Button_Keyboard)
+    public void SetButton_Keyboard(KeyCode k_Button_Keyboard)
     {
         this.k_Button_Keyboard = k_Button_Keyboard;
     }
@@ -333,24 +333,24 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     #region Button Status Set
 
-    public void Set_Button_Lock_Chance()
+    public void SetButton_Lock_Chance()
     {
         m_Button_Lock = !m_Button_Lock;
     }
 
-    public void Set_Button_Lock(bool m_Lock_State)
+    public void SetButton_Lock(bool m_Lock_State)
     {
         m_Button_Lock = m_Lock_State;
     }
 
-    public void Set_Button_Lock_True()
+    public void SetButton_Lock_True()
     {
-        Set_Button_Lock(true);
+        SetButton_Lock(true);
     }
 
-    public void Set_Button_Lock_False()
+    public void SetButton_Lock_False()
     {
-        Set_Button_Lock(false);
+        SetButton_Lock(false);
     }
 
     #endregion
@@ -386,7 +386,7 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     #region Color Button Event
 
-    private void Set_Button_Color()
+    private void SetButton_Color()
     {
         if (m_Button_Lock)
         {
@@ -402,29 +402,29 @@ public class UIButtonHoldClick : MonoBehaviour,
                 if (m_HoldTime_Remain < 0)
                 //If out of Time Hold >> Do Event
                 {
-                    Set_Button_Color(c_Color_Hold);
+                    SetButton_Color(c_Color_Hold);
                 }
             }
             else
             //If NOT Need Time to do Event >> Do Event Right away
             {
-                Set_Button_Color(c_Color_Hold);
+                SetButton_Color(c_Color_Hold);
             }
         }
         else
         if (m_Button_Ready)
         //If Ready Pressed >> Do...
         {
-            Set_Button_Color(c_Color_Ready);
+            SetButton_Color(c_Color_Ready);
         }
         else
         //If Not Hold Pressed >> Do...
         {
-            Set_Button_Color(c_Color_Normal);
+            SetButton_Color(c_Color_Normal);
         }
     }
 
-    private void Set_Button_Color(Color c_Color)
+    private void SetButton_Color(Color c_Color)
     {
         if (GetComponent<Image>() != null)
         {
@@ -446,22 +446,22 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     #region Color Button Set
 
-    public void Set_Button_Color_Normal(Color c_Color_Normal)
+    public void SetButton_Color_Normal(Color c_Color_Normal)
     {
         this.c_Color_Normal = c_Color_Normal;
     }
 
-    public void Set_Button_Color_Ready(Color c_Color_Ready)
+    public void SetButton_Color_Ready(Color c_Color_Ready)
     {
         this.c_Color_Ready = c_Color_Ready;
     }
 
-    public void Set_Button_Color_Hold(Color c_Color_Hold)
+    public void SetButton_Color_Hold(Color c_Color_Hold)
     {
         this.c_Color_Hold = c_Color_Hold;
     }
 
-    public void Set_Button_Color_Lock(Color c_Color_Lock)
+    public void SetButton_Color_Lock(Color c_Color_Lock)
     {
         this.c_Color_Lock = c_Color_Lock;
     }

@@ -7,14 +7,14 @@ public class Simple_Coroutine : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Set_Coroutne_1());
-        StartCoroutine(Set_Coroutne_2());
-        StartCoroutine(Set_Coroutne_3());
+        StartCoroutine(SetCoroutne_1());
+        StartCoroutine(SetCoroutne_2());
+        StartCoroutine(SetCoroutne_3());
 
-        m_Coroutine = StartCoroutine(Set_Coroutine_Final());
+        m_Coroutine = StartCoroutine(SetCoroutine_Final());
     }
 
-    private IEnumerator Set_Coroutne_1()
+    private IEnumerator SetCoroutne_1()
     {
         //Skip 1 frame
         yield return null;
@@ -22,7 +22,7 @@ public class Simple_Coroutine : MonoBehaviour
         Debug.LogFormat("{0}: Coroutine 1 Done!", name);
     }
 
-    private IEnumerator Set_Coroutne_2()
+    private IEnumerator SetCoroutne_2()
     {
         yield return null;
         yield return null;
@@ -30,7 +30,7 @@ public class Simple_Coroutine : MonoBehaviour
         Debug.LogFormat("{0}: Coroutine 2 Done!", name);
     }
 
-    private IEnumerator Set_Coroutne_3()
+    private IEnumerator SetCoroutne_3()
     {
         yield return null;
         yield return null;
@@ -43,7 +43,7 @@ public class Simple_Coroutine : MonoBehaviour
         Debug.LogFormat("{0}: All Coroutine End!", name);
     }
 
-    private IEnumerator Set_Coroutine_Final()
+    private IEnumerator SetCoroutine_Final()
     {
         yield return null;
         yield return null;

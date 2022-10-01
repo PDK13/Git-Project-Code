@@ -179,22 +179,22 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     #region Lock JoyStick
 
-    public void Set_Lock_X_L(bool m_Lock_X_L)
+    public void SetLock_X_L(bool m_Lock_X_L)
     {
         this.m_Lock_X_L = m_Lock_X_L;
     }
 
-    public void Set_Lock_X_R(bool m_Lock_X_R)
+    public void SetLock_X_R(bool m_Lock_X_R)
     {
         this.m_Lock_X_R = m_Lock_X_R;
     }
 
-    public void Set_Lock_Y_U(bool m_Lock_Y_U)
+    public void SetLock_Y_U(bool m_Lock_Y_U)
     {
         this.m_Lock_Y_U = m_Lock_Y_U;
     }
 
-    public void Set_Lock_Y_D(bool m_Lock_Y_D)
+    public void SetLock_Y_D(bool m_Lock_Y_D)
     {
         this.m_Lock_Y_D = m_Lock_Y_D;
     }

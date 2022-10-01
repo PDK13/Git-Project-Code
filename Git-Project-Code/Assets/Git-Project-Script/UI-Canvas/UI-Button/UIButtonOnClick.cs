@@ -79,14 +79,14 @@ public class UIButtonOnClick : MonoBehaviour,
 
     private void Update()
     {
-        Set_Event_Keyboard();
+        SetEvent_Keyboard();
 
-        Set_Event_Active();
+        SetEvent_Active();
 
-        Set_Button_Color();
+        SetButton_Color();
     }
 
-    private void Set_Event_Keyboard()
+    private void SetEvent_Keyboard()
     {
         if (m_Button_Lock)
         {
@@ -95,16 +95,16 @@ public class UIButtonOnClick : MonoBehaviour,
 
         if (Input.GetKeyDown(k_Button_Keyboard))
         {
-            Set_Event_PointerDown();
+            SetEvent_PointerDown();
         }
 
         if (Input.GetKeyUp(k_Button_Keyboard))
         {
-            Set_Event_PointerUp();
+            SetEvent_PointerUp();
         }
     }
 
-    private void Set_Event_Active()
+    private void SetEvent_Active()
     {
         if (m_Button_Lock)
         {
@@ -114,7 +114,7 @@ public class UIButtonOnClick : MonoBehaviour,
         if (m_Button_Active)
         //If Active Pressed >> Do...
         {
-            Set_Event_Invoke_ActiveState();
+            SetEvent_Invoke_ActiveState();
         }
     }
 
@@ -128,7 +128,7 @@ public class UIButtonOnClick : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_PointerEnter(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerEnter(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_PointerEnter, ua_Methode);
     }
@@ -137,7 +137,7 @@ public class UIButtonOnClick : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_PointerExit(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerExit(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_PointerExit, ua_Methode);
     }
@@ -146,7 +146,7 @@ public class UIButtonOnClick : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_PointerDown(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerDown(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_PointerDown, ua_Methode);
     }
@@ -155,7 +155,7 @@ public class UIButtonOnClick : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_PointerUp(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerUp(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_PointerUp, ua_Methode);
     }
@@ -164,7 +164,7 @@ public class UIButtonOnClick : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void Set_Event_Add_ActiveState(UnityAction ua_Methode)
+    public void SetEvent_Add_ActiveState(UnityAction ua_Methode)
     {
         UnityEventTools.AddPersistentListener(Event_ActiveState, ua_Methode);
     }
@@ -175,7 +175,7 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Set Event Invoke
 
-    private void Set_Event_Invoke_PointerEnter()
+    private void SetEvent_Invoke_PointerEnter()
     {
         if (Event_PointerEnter != null)
         {
@@ -183,7 +183,7 @@ public class UIButtonOnClick : MonoBehaviour,
         }
     }
 
-    private void Set_Event_Invoke_PointerExit()
+    private void SetEvent_Invoke_PointerExit()
     {
         if (Event_PointerExit != null)
         {
@@ -191,7 +191,7 @@ public class UIButtonOnClick : MonoBehaviour,
         }
     }
 
-    private void Set_Event_Invoke_PointerDown()
+    private void SetEvent_Invoke_PointerDown()
     {
         if (Event_PointerDown != null)
         {
@@ -199,7 +199,7 @@ public class UIButtonOnClick : MonoBehaviour,
         }
     }
 
-    private void Set_Event_Invoke_PointerUp()
+    private void SetEvent_Invoke_PointerUp()
     {
         if (Event_PointerUp != null)
         {
@@ -207,7 +207,7 @@ public class UIButtonOnClick : MonoBehaviour,
         }
     }
 
-    private void Set_Event_Invoke_ActiveState()
+    private void SetEvent_Invoke_ActiveState()
     {
         if (Event_ActiveState != null)
         {
@@ -219,7 +219,7 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Set Event Button
 
-    private void Set_Event_PointerEnter()
+    private void SetEvent_PointerEnter()
     {
         if (m_Button_Lock)
         {
@@ -228,10 +228,10 @@ public class UIButtonOnClick : MonoBehaviour,
 
         m_Button_Ready = true;
 
-        Set_Event_Invoke_PointerEnter();
+        SetEvent_Invoke_PointerEnter();
     }
 
-    private void Set_Event_PointerExit()
+    private void SetEvent_PointerExit()
     {
         if (m_Button_Lock)
         {
@@ -240,10 +240,10 @@ public class UIButtonOnClick : MonoBehaviour,
 
         m_Button_Ready = false;
 
-        Set_Event_Invoke_PointerExit();
+        SetEvent_Invoke_PointerExit();
     }
 
-    private void Set_Event_PointerDown()
+    private void SetEvent_PointerDown()
     {
         if (m_Button_Lock)
         {
@@ -254,10 +254,10 @@ public class UIButtonOnClick : MonoBehaviour,
 
         m_Button_Hold = true;
 
-        Set_Event_Invoke_PointerDown();
+        SetEvent_Invoke_PointerDown();
     }
 
-    private void Set_Event_PointerUp()
+    private void SetEvent_PointerUp()
     {
         if (m_Button_Lock)
         {
@@ -266,7 +266,7 @@ public class UIButtonOnClick : MonoBehaviour,
 
         m_Button_Hold = false;
 
-        Set_Event_Invoke_PointerUp();
+        SetEvent_Invoke_PointerUp();
     }
 
     #endregion
@@ -277,29 +277,29 @@ public class UIButtonOnClick : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        Set_Event_PointerEnter();
+        SetEvent_PointerEnter();
     }
 
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        Set_Event_PointerExit();
+        SetEvent_PointerExit();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Set_Event_PointerDown();
+        SetEvent_PointerDown();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Set_Event_PointerUp();
+        SetEvent_PointerUp();
     }
 
     #endregion
 
     #region Button Keyboard
 
-    public void Set_Button_Keycode(KeyCode k_Button_Keycode)
+    public void SetButton_Keycode(KeyCode k_Button_Keycode)
     {
         k_Button_Keyboard = k_Button_Keycode;
     }
@@ -317,48 +317,48 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Button Status Active
 
-    public void Set_Button_Active_Chance()
+    public void SetButton_Active_Chance()
     {
         m_Button_Active = !m_Button_Active;
     }
 
-    public void Set_Button_Active(bool m_Active_State)
+    public void SetButton_Active(bool m_Active_State)
     {
         m_Button_Active = m_Active_State;
     }
 
-    public void Set_Button_Active_True()
+    public void SetButton_Active_True()
     {
-        Set_Button_Active(true);
+        SetButton_Active(true);
     }
 
-    public void Set_Button_Active_False()
+    public void SetButton_Active_False()
     {
-        Set_Button_Active(false);
+        SetButton_Active(false);
     }
 
     #endregion
 
     #region Button Status Lock
 
-    public void Set_Button_Lock_Chance()
+    public void SetButton_Lock_Chance()
     {
         m_Button_Lock = !m_Button_Lock;
     }
 
-    public void Set_Button_Lock(bool m_Lock_State)
+    public void SetButton_Lock(bool m_Lock_State)
     {
         m_Button_Lock = m_Lock_State;
     }
 
-    public void Set_Button_Lock_True()
+    public void SetButton_Lock_True()
     {
-        Set_Button_Lock(true);
+        SetButton_Lock(true);
     }
 
-    public void Set_Button_Lock_False()
+    public void SetButton_Lock_False()
     {
-        Set_Button_Lock(false);
+        SetButton_Lock(false);
     }
 
     #endregion
@@ -395,39 +395,39 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Color Button Event
 
-    private void Set_Button_Color()
+    private void SetButton_Color()
     {
         if (m_Button_Lock)
         //If Lock Pressed >> Do...
         {
-            Set_Button_Color(c_Color_Lock);
+            SetButton_Color(c_Color_Lock);
         }
         else
         if (m_Button_Hold)
         //If Hold Pressed >> Do...
         {
-            Set_Button_Color(c_Color_Hold);
+            SetButton_Color(c_Color_Hold);
         }
         else
         if (m_Button_Ready)
         //If Ready Pressed >> Do...
         {
-            Set_Button_Color(c_Color_Ready);
+            SetButton_Color(c_Color_Ready);
         }
         else
         if (m_Button_Active)
         //If Active Pressed >> Do...
         {
-            Set_Button_Color(c_Color_Active);
+            SetButton_Color(c_Color_Active);
         }
         else
         //If Not Active Pressed >> Do...
         {
-            Set_Button_Color(c_Color_Normal);
+            SetButton_Color(c_Color_Normal);
         }
     }
 
-    private void Set_Button_Color(Color c_Color)
+    private void SetButton_Color(Color c_Color)
     {
         if (GetComponent<Image>() != null)
         {
@@ -449,27 +449,27 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Color Button Set
 
-    public void Set_Button_Color_Normal(Color c_Color_Normal)
+    public void SetButton_Color_Normal(Color c_Color_Normal)
     {
         this.c_Color_Normal = c_Color_Normal;
     }
 
-    public void Set_Button_Color_Ready(Color c_Color_Ready)
+    public void SetButton_Color_Ready(Color c_Color_Ready)
     {
         this.c_Color_Ready = c_Color_Ready;
     }
 
-    public void Set_Button_Color_Hold(Color c_Color_Hold)
+    public void SetButton_Color_Hold(Color c_Color_Hold)
     {
         this.c_Color_Hold = c_Color_Hold;
     }
 
-    public void Set_Button_Color_Active(Color c_Color_Active)
+    public void SetButton_Color_Active(Color c_Color_Active)
     {
         this.c_Color_Active = c_Color_Active;
     }
 
-    public void Set_Button_Color_Lock(Color c_Color_Lock)
+    public void SetButton_Color_Lock(Color c_Color_Lock)
     {
         this.c_Color_Lock = c_Color_Lock;
     }

@@ -26,7 +26,7 @@ public class RendererTrajectory : MonoBehaviour
 
     [SerializeField] private float m_Trajectory_Raycast = 0.5f;
 
-    private RigidbodyGravity cs_RigidbodyGravity;
+    private RigidbodyGravity cm_RigidbodyGravity;
 
     private void Awake()
     {
@@ -35,41 +35,41 @@ public class RendererTrajectory : MonoBehaviour
             gameObject.AddComponent<RigidbodyGravity>();
         }
 
-        cs_RigidbodyGravity = GetComponent<RigidbodyGravity>();
+        cm_RigidbodyGravity = GetComponent<RigidbodyGravity>();
     }
 
     #region Trajectory Value
 
     #region Trajectory Start Point and Next Point
 
-    public void Set_Trajectory_Start(Transform com_Trajectory_Start)
+    public void SetTrajectory_Start(Transform com_Trajectory_Start)
     {
         this.com_Trajectory_Start = com_Trajectory_Start;
     }
 
-    public void Set_Trajectory_Start(Vector3 v3_Trajectory_Start)
+    public void SetTrajectory_Start(Vector3 v3_Trajectory_Start)
     {
         com_Trajectory_Start.position = v3_Trajectory_Start;
     }
 
-    public void Set_Trajectory_Start_Chance(Vector3 v3_Trajectory_Start_Chance)
+    public void SetTrajectory_Start_Chance(Vector3 v3_Trajectory_Start_Chance)
     {
-        Set_Trajectory_Start(GetTrajectory_Start() + v3_Trajectory_Start_Chance);
+        SetTrajectory_Start(GetTrajectory_Start() + v3_Trajectory_Start_Chance);
     }
 
-    public void Set_Trajectory_Next(Transform com_Trajectory_Next)
+    public void SetTrajectory_Next(Transform com_Trajectory_Next)
     {
         this.com_Trajectory_Next = com_Trajectory_Next;
     }
 
-    public void Set_Trajectory_Next(Vector3 v3_Trajectory_Next)
+    public void SetTrajectory_Next(Vector3 v3_Trajectory_Next)
     {
         com_Trajectory_Next.position = v3_Trajectory_Next;
     }
 
-    public void Set_Trajectory_Next_Chance(Vector3 v3_Trajectory_Next_Chance)
+    public void SetTrajectory_Next_Chance(Vector3 v3_Trajectory_Next_Chance)
     {
-        Set_Trajectory_Next(GetTrajectory_Next() + v3_Trajectory_Next_Chance);
+        SetTrajectory_Next(GetTrajectory_Next() + v3_Trajectory_Next_Chance);
     }
 
     public Transform GetTrajectory_Start_toTransform()
@@ -101,12 +101,12 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Trajectory Power
 
-    public void Set_Trajectory_Power(float m_Trajectory_Power)
+    public void SetTrajectory_Power(float m_Trajectory_Power)
     {
         this.m_Trajectory_Power = m_Trajectory_Power;
     }
 
-    public void Set_Trajectory_Power_Chance(float m_Trajectory_Power_Chance)
+    public void SetTrajectory_Power_Chance(float m_Trajectory_Power_Chance)
     {
         m_Trajectory_Power += m_Trajectory_Power_Chance;
     }
@@ -120,7 +120,7 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Trajectory Step
 
-    public void Set_Trajectory_Step(int m_Trajectory_Step)
+    public void SetTrajectory_Step(int m_Trajectory_Step)
     {
         this.m_Trajectory_Step = m_Trajectory_Step;
     }
@@ -144,7 +144,7 @@ public class RendererTrajectory : MonoBehaviour
 
         float m_TimeStep = Time.fixedDeltaTime / Physics.defaultSolverVelocityIterations;
 
-        Vector3 v3_Gravity_Accel = cs_RigidbodyGravity.GetGravity_Global_toVector() * cs_RigidbodyGravity.GetGravity_Scale() * m_TimeStep * m_TimeStep;
+        Vector3 v3_Gravity_Accel = cm_RigidbodyGravity.GetGravity_Global_toVector() * cm_RigidbodyGravity.GetGravity_Scale() * m_TimeStep * m_TimeStep;
 
         float m_Drag = 1f - m_TimeStep * m_Rigidbody_Drag;
 
@@ -152,7 +152,7 @@ public class RendererTrajectory : MonoBehaviour
 
         Vector3 v3_MoveStep = v3_Trajectory_Dir * m_TimeStep;
 
-        Vector3 v3_Pos_Point = GetTrajectory_Start();
+        Vector3 v3_Pom_Point = GetTrajectory_Start();
 
         for (int i = 0; i < m_Trajectory_Step; i++)
         {
@@ -160,11 +160,11 @@ public class RendererTrajectory : MonoBehaviour
 
             v3_MoveStep *= m_Drag;
 
-            v3_Pos_Point += v3_MoveStep;
+            v3_Pom_Point += v3_MoveStep;
 
             if (m_TrajectoryRaycastIsAllow)
             {
-                bool ray_Raycast = Physics.Linecast(v3_Pos_Point + Vector3.down * m_Trajectory_Raycast, v3_Pos_Point - Vector3.down * m_Trajectory_Raycast, l_Trajectory_Raycast);
+                bool ray_Raycast = Physics.Linecast(v3_Pom_Point + Vector3.down * m_Trajectory_Raycast, v3_Pom_Point - Vector3.down * m_Trajectory_Raycast, l_Trajectory_Raycast);
 
                 if (ray_Raycast)
                 {
@@ -174,12 +174,12 @@ public class RendererTrajectory : MonoBehaviour
                 }
                 else
                 {
-                    m_Trajectory_Result_List.Add(v3_Pos_Point);
+                    m_Trajectory_Result_List.Add(v3_Pom_Point);
                 }
             }
             else
             {
-                m_Trajectory_Result_List.Add(v3_Pos_Point);
+                m_Trajectory_Result_List.Add(v3_Pom_Point);
             }
         }
 
@@ -207,9 +207,9 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Angle for hit Trajectory
 
-    public float? GetTrajectory_Angle_toDeg(Vector3 v3_Pos_Start, Vector3 v3_Pos_Tarket, bool m_AngleHighIsAllow)
+    public float? GetTrajectory_Angle_toDeg(Vector3 v3_Pom_Start, Vector3 v3_Pom_Tarket, bool m_AngleHighIsAllow)
     {
-        Vector3 v3_Tarket_Dir = v3_Pos_Tarket - v3_Pos_Start;
+        Vector3 v3_Tarket_Dir = v3_Pom_Tarket - v3_Pom_Start;
 
         float m_Y_High = v3_Tarket_Dir.y;
 
@@ -217,7 +217,7 @@ public class RendererTrajectory : MonoBehaviour
 
         float m_X_Duration = v3_Tarket_Dir.magnitude;
 
-        float m_Gravity = cs_RigidbodyGravity.GetGravity_Global_toFloat() * cs_RigidbodyGravity.GetGravity_Scale();
+        float m_Gravity = cm_RigidbodyGravity.GetGravity_Global_toFloat() * cm_RigidbodyGravity.GetGravity_Scale();
 
         float m_Speed_SQR = m_Trajectory_Power * m_Trajectory_Power;
 
@@ -246,28 +246,28 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Rigidbody Velocity with Trajectory
 
-    public void Set_Trajectory_toRigidbody(Rigidbody com_Rigidbody, Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next)
+    public void SetTrajectory_toRigidbody(Rigidbody com_Rigidbody, Vector3 v3_Trajectory_Start, Vector3 v3_Trajectory_Next)
     {
         if (com_Rigidbody.GetComponent<RigidbodyGravity>() == null)
         {
             com_Rigidbody.gameObject.AddComponent<RigidbodyGravity>();
         }
 
-        com_Rigidbody.GetComponent<RigidbodyGravity>().Set_Gravity_Scale(cs_RigidbodyGravity.GetGravity_Scale());
-        com_Rigidbody.GetComponent<RigidbodyGravity>().Set_Rigidbody_Drag(cs_RigidbodyGravity.GetRigidbody_Drag());
+        com_Rigidbody.GetComponent<RigidbodyGravity>().SetGravity_Scale(cm_RigidbodyGravity.GetGravity_Scale());
+        com_Rigidbody.GetComponent<RigidbodyGravity>().SetRigidbody_Drag(cm_RigidbodyGravity.GetRigidbody_Drag());
 
         Vector3 v3_Trajectory_Dir = (v3_Trajectory_Next - v3_Trajectory_Start) * GetTrajectory_Power();
 
         com_Rigidbody.velocity = v3_Trajectory_Dir;
     }
 
-    public void Set_Trajectory_toRigidbody(Rigidbody2D com_Rigidbody2D, Vector2 v2_Trajectory_Start, Vector2 v2_Trajectory_Next)
+    public void SetTrajectory_toRigidbody(Rigidbody2D com_Rigidbody2D, Vector2 v2_Trajectory_Start, Vector2 v2_Trajectory_Next)
     {
         Vector2 v2_Trajectory_Dir = (v2_Trajectory_Next - v2_Trajectory_Start) * GetTrajectory_Power();
 
-        //com_Rigidbody2D.drag = cs_RigidbodyGravity.GetRigidbody_Drag();
+        //com_Rigidbody2D.drag = cm_RigidbodyGravity.GetRigidbody_Drag();
         com_Rigidbody2D.mass = 0;
-        com_Rigidbody2D.gravityScale = cs_RigidbodyGravity.GetGravity_Scale();
+        com_Rigidbody2D.gravityScale = cm_RigidbodyGravity.GetGravity_Scale();
         com_Rigidbody2D.velocity = v2_Trajectory_Dir;
     }
 
@@ -275,7 +275,7 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Line Renderer with Trajectory
 
-    public void Set_Trajectory_toLineRenderer(LineRenderer com_LineRenderer, float m_Rigidbody_Drag, bool m_Dir_Normalized)
+    public void SetTrajectory_toLineRenderer(LineRenderer com_LineRenderer, float m_Rigidbody_Drag, bool m_Dir_Normalized)
     {
         Vector3[] trajectory = GetTrajectory_Points(m_Rigidbody_Drag, m_Dir_Normalized);
 
@@ -290,7 +290,7 @@ public class RendererTrajectory : MonoBehaviour
         com_LineRenderer.SetPositions(position);
     }
 
-    public void Set_Trajectory_toLineRenderer_Clear(LineRenderer com_LineRenderer)
+    public void SetTrajectory_toLineRenderer_Clear(LineRenderer com_LineRenderer)
     {
         com_LineRenderer.positionCount = 0;
         com_LineRenderer.SetPositions(new Vector3[0]);

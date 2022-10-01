@@ -8,13 +8,13 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
 
     [SerializeField] private Transform com_Tarket;
 
-    private RendererTrajectory cs_RendererTrajectory;
+    private RendererTrajectory cm_RendererTrajectory;
 
     private LineRenderer com_LineRenderer;
 
     private Rigidbody com_Rigidbody;
 
-    private RigidbodyRotation cs_RigidbodyRotation;
+    private RigidbodyRotation cm_RigidbodyRotation;
 
     [SerializeField] private float m_Deg_Cur = 0;
 
@@ -43,15 +43,15 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
             gameObject.AddComponent<RendererTrajectory>();
         }
 
-        cs_RendererTrajectory = GetComponent<RendererTrajectory>();
-        cs_RendererTrajectory.Set_Trajectory_toLineRenderer_Clear(com_LineRenderer);
+        cm_RendererTrajectory = GetComponent<RendererTrajectory>();
+        cm_RendererTrajectory.SetTrajectory_toLineRenderer_Clear(com_LineRenderer);
 
         if (GetComponent<RigidbodyRotation>() == null)
         {
             gameObject.AddComponent<RigidbodyRotation>();
         }
 
-        cs_RigidbodyRotation = GetComponent<RigidbodyRotation>();
+        cm_RigidbodyRotation = GetComponent<RigidbodyRotation>();
     }
 
     private void Update()
@@ -59,12 +59,12 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
         //Power by X
         if (Input.GetKey(KeyCode.D))
         {
-            cs_RendererTrajectory.Set_Trajectory_Power_Chance(0.1f);
+            cm_RendererTrajectory.SetTrajectory_Power_Chance(0.1f);
         }
         else
         if (Input.GetKey(KeyCode.A))
         {
-            cs_RendererTrajectory.Set_Trajectory_Power_Chance(-0.1f);
+            cm_RendererTrajectory.SetTrajectory_Power_Chance(-0.1f);
         }
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -74,17 +74,17 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject g_BulletClone = Class_Object.Set_GameObject_Create(g_Bullet);
-            g_BulletClone.GetComponent<Sample_TrajectoryBullet>().Set_Tarket(com_Tarket.gameObject);
-            g_BulletClone.transform.position = cs_RendererTrajectory.GetTrajectory_Start();
+            GameObject g_BulletClone = Clasm_Object.SetGameObject_Create(g_Bullet);
+            g_BulletClone.GetComponent<Sample_TrajectoryBullet>().SetTarket(com_Tarket.gameObject);
+            g_BulletClone.transform.position = cm_RendererTrajectory.GetTrajectory_Start();
             g_BulletClone.SetActive(true);
 
-            cs_RendererTrajectory.Set_Trajectory_toRigidbody(
+            cm_RendererTrajectory.SetTrajectory_toRigidbody(
                 g_BulletClone.GetComponent<Rigidbody>(),
-                cs_RendererTrajectory.GetTrajectory_Start(),
-                cs_RendererTrajectory.GetTrajectory_Next());
+                cm_RendererTrajectory.GetTrajectory_Start(),
+                cm_RendererTrajectory.GetTrajectory_Next());
 
-            cs_RigidbodyRotation.Set_ControlIsLock(false);
+            cm_RigidbodyRotation.SetControlIsLock(false);
         }
     }
 
@@ -92,8 +92,8 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
     {
         try
         {
-            m_Deg_Cur = (float)cs_RendererTrajectory.GetTrajectory_Angle_toDeg(
-                cs_RendererTrajectory.GetTrajectory_Start_toTransform().position,
+            m_Deg_Cur = (float)cm_RendererTrajectory.GetTrajectory_Angle_toDeg(
+                cm_RendererTrajectory.GetTrajectory_Start_toTransform().position,
                 com_Tarket.transform.position,
                 m_Deg_High);
         }
@@ -104,6 +104,6 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
 
         com_Gun.rotation = ClassVector.GetRotationEulerToQuaternion(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, m_Deg_Cur);
 
-        cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag, true);
+        cm_RendererTrajectory.SetTrajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag, true);
     }
 }

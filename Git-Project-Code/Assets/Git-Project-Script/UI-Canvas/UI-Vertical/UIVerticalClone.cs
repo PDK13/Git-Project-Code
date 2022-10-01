@@ -13,7 +13,7 @@ public class UIVerticalClone : MonoBehaviour
     /// Text Numberic Format
     /// </summary>
     [Tooltip("Remember to add \"{0}\" in this Format string")]
-    public string s_Format = "- {0} -";
+    public string m_Format = "- {0} -";
 
     /// <summary>
     /// Vertical List
@@ -35,7 +35,7 @@ public class UIVerticalClone : MonoBehaviour
         this.cl_List = cl_List;
         this.m_Index = m_Index;
 
-        Set_Text_Numberic(m_Index);
+        SetText_Numberic(m_Index);
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ public class UIVerticalClone : MonoBehaviour
     {
         this.m_Index = m_Index;
 
-        Set_Text_Numberic(m_Index);
+        SetText_Numberic(m_Index);
     }
 
     /// <summary>
@@ -63,28 +63,28 @@ public class UIVerticalClone : MonoBehaviour
     /// </summary>
     public void SetClone_Remove()
     {
-        cl_List.Set_ListVertical_Remove(m_Index);
+        cl_List.SetListVertical_Remove(m_Index);
     }
 
     /// <summary>
     /// Set Numberic Text by Index and Format
     /// </summary>
     /// <param name="m_Index"></param>
-    private void Set_Text_Numberic(int m_Index)
+    private void SetText_Numberic(int m_Index)
     {
         if (t_Numberic == null)
         {
             return;
         }
 
-        if (!ClassString.GetStringIsExist(s_Format, "{0}"))
+        if (!ClassString.GetStringIsExist(m_Format, "{0}"))
         //If Format not right
         {
             t_Numberic.text = m_Index.ToString();
         }
         else
         {
-            t_Numberic.text = string.Format(s_Format, m_Index);
+            t_Numberic.text = string.Format(m_Format, m_Index);
         }
     }
 }

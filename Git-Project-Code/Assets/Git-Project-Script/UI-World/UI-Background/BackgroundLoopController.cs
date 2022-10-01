@@ -37,7 +37,7 @@ public class BackgroundLoopController : MonoBehaviour
 
         for (int i = 0; i < l_Background_Layer.Count; i++)
         {
-            l_Background_Layer[i].Set_Layer_PosStart_X(GetCamera_X());
+            l_Background_Layer[i].SetLayer_PosStart_X(GetCamera_X());
         }
     }
 
@@ -53,12 +53,12 @@ public class BackgroundLoopController : MonoBehaviour
 
             if (m_Temp > l_Background_Layer[i].GetLayer_PosStart_X() + m_Background_Bound_X * m_Background_Local_X)
             {
-                l_Background_Layer[i].Set_Layer_PosStart_X_Chance(m_Background_Bound_X * m_Background_Local_X);
+                l_Background_Layer[i].SetLayer_PosStart_X_Chance(m_Background_Bound_X * m_Background_Local_X);
             }
             else
             if (m_Temp < l_Background_Layer[i].GetLayer_PosStart_X() - m_Background_Bound_X * m_Background_Local_X)
             {
-                l_Background_Layer[i].Set_Layer_PosStart_X_Chance(-m_Background_Bound_X * m_Background_Local_X);
+                l_Background_Layer[i].SetLayer_PosStart_X_Chance(-m_Background_Bound_X * m_Background_Local_X);
             }
         }
     }
@@ -68,9 +68,9 @@ public class BackgroundLoopController : MonoBehaviour
         return com_Camera.position.x - m_Camera_X;
     }
 
-    private float GetCamera_Y(BackgroundLoopLayer cs_Layer)
+    private float GetCamera_Y(BackgroundLoopLayer cm_Layer)
     {
-        return (cs_Layer.GetLayer_Follow_Y()) ? com_Camera.position.y : cs_Layer.GetTransform().transform.position.y;
+        return (cm_Layer.GetLayer_Follow_Y()) ? com_Camera.position.y : cm_Layer.GetTransform().transform.position.y;
     }
 }
 
@@ -97,7 +97,7 @@ public class BackgroundLoopLayer
 
     #region Loop X
 
-    public void Set_Layer_Speed_X(float m_Background_Layer_Speed_X)
+    public void SetLayer_Speed_X(float m_Background_Layer_Speed_X)
     {
         m_Layer_Speed_X = m_Background_Layer_Speed_X;
     }
@@ -107,12 +107,12 @@ public class BackgroundLoopLayer
         return m_Layer_Speed_X;
     }
 
-    public void Set_Layer_PosStart_X(float m_Background_Layer_PosStart_X)
+    public void SetLayer_PosStart_X(float m_Background_Layer_PosStart_X)
     {
         m_Layer_PosStart_X = m_Background_Layer_PosStart_X;
     }
 
-    public void Set_Layer_PosStart_X_Chance(float m_Background_Layer_PosStart_X_Chance)
+    public void SetLayer_PosStart_X_Chance(float m_Background_Layer_PosStart_X_Chance)
     {
         m_Layer_PosStart_X += m_Background_Layer_PosStart_X_Chance;
     }
@@ -122,7 +122,7 @@ public class BackgroundLoopLayer
         return m_Layer_PosStart_X;
     }
 
-    public void Set_Layer_Follow_Y(bool m_Background_Layer_Follow_Y)
+    public void SetLayer_Follow_Y(bool m_Background_Layer_Follow_Y)
     {
         m_Layer_Follow_Y = m_Background_Layer_Follow_Y;
     }

@@ -7,7 +7,7 @@ public class Sample_TrajectoryBall : MonoBehaviour
 
     private Vector2 v2_MouseDrag_Next;
 
-    private RendererTrajectory cs_RendererTrajectory;
+    private RendererTrajectory cm_RendererTrajectory;
 
     private LineRenderer com_LineRenderer;
 
@@ -20,7 +20,7 @@ public class Sample_TrajectoryBall : MonoBehaviour
             gameObject.AddComponent<RendererTrajectory>();
         }
 
-        cs_RendererTrajectory = GetComponent<RendererTrajectory>();
+        cm_RendererTrajectory = GetComponent<RendererTrajectory>();
 
         if (GetComponent<Rigidbody>() == null)
         {
@@ -43,21 +43,21 @@ public class Sample_TrajectoryBall : MonoBehaviour
         {
             v2_MouseDrag_Start = transform.position;
 
-            cs_RendererTrajectory.Set_Trajectory_Start(v2_MouseDrag_Start);
+            cm_RendererTrajectory.SetTrajectory_Start(v2_MouseDrag_Start);
         }
 
         if (Input.GetMouseButton(0))
         {
             v2_MouseDrag_Next = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            cs_RendererTrajectory.Set_Trajectory_Next(v2_MouseDrag_Next);
+            cm_RendererTrajectory.SetTrajectory_Next(v2_MouseDrag_Next);
 
-            cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag, false);
+            cm_RendererTrajectory.SetTrajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag, false);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            cs_RendererTrajectory.Set_Trajectory_toRigidbody(com_Rigidbody, v2_MouseDrag_Start, v2_MouseDrag_Next);
+            cm_RendererTrajectory.SetTrajectory_toRigidbody(com_Rigidbody, v2_MouseDrag_Start, v2_MouseDrag_Next);
         }
     }
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 /// <summary>
 /// Working on Data and List
 /// </summary>
-public class Class_Data
+public class Clasm_Data
 {
     public bool m_Debug = false;
 
     /// <summary>
     /// Working on Data & List
     /// </summary>
-    public Class_Data()
+    public Clasm_Data()
     {
 
     }
@@ -19,7 +19,7 @@ public class Class_Data
     /// <summary>
     /// Working on Data & List
     /// </summary>
-    public Class_Data(bool m_Debug)
+    public Clasm_Data(bool m_Debug)
     {
         this.m_Debug = m_Debug;
     }
@@ -29,75 +29,75 @@ public class Class_Data
     /// <summary>
     /// Convert OBJECT to INT
     /// </summary>
-    /// <param name="s_Value"></param>
+    /// <param name="m_Value"></param>
     /// <returns>If Convert fail, return 0</returns>
-    public int GetConvert_Int(object s_Value)
+    public int GetConvert_Int(object m_Value)
     {
-        string s_ValueCheck = s_Value.ToString();
+        string m_ValueCheck = m_Value.ToString();
 
-        if (s_ValueCheck == GetString_Data_NotFound() || s_Value == null || s_ValueCheck == "")
+        if (m_ValueCheck == GetString_Data_NotFound() || m_Value == null || m_ValueCheck == "")
         {
             if (m_Debug)
             {
-                Debug.LogError("GetExchance_Int: \"s_Value\" To (INT)\"0\"");
+                Debug.LogError("GetExchance_Int: \"m_Value\" To (INT)\"0\"");
             }
 
             return 0;
         }
-        return int.Parse(s_ValueCheck);
+        return int.Parse(m_ValueCheck);
     }
 
     /// <summary>
     /// Convert OBJECT to FLOAT
     /// </summary>
-    /// <param name="s_Value"></param>
+    /// <param name="m_Value"></param>
     /// <returns>If Convert fail, return 0.0</returns>
-    public float GetConvert_Float(object s_Value)
+    public float GetConvert_Float(object m_Value)
     {
-        string s_ValueCheck = s_Value.ToString();
+        string m_ValueCheck = m_Value.ToString();
 
-        if (s_ValueCheck == GetString_Data_NotFound() || s_Value == null || s_ValueCheck == "")
+        if (m_ValueCheck == GetString_Data_NotFound() || m_Value == null || m_ValueCheck == "")
         {
             if (m_Debug)
             {
-                Debug.LogError("GetExchance_Float: \"s_Value\" To (FLOAT)\"0.0\"");
+                Debug.LogError("GetExchance_Float: \"m_Value\" To (FLOAT)\"0.0\"");
             }
 
             return 0.0f;
         }
-        return float.Parse(s_ValueCheck);
+        return float.Parse(m_ValueCheck);
     }
 
     /// <summary>
     /// Convert OBJECT to BOOL
     /// </summary>
-    /// <param name="s_Value"></param>
+    /// <param name="m_Value"></param>
     /// <returns>If Convert fail, return FALSE</returns>
-    public bool GetConvert_Bool(object s_Value)
+    public bool GetConvert_Bool(object m_Value)
     {
-        string s_ValueCheck = s_Value.ToString();
+        string m_ValueCheck = m_Value.ToString();
 
-        if (s_ValueCheck == GetString_Data_NotFound() || s_Value == null || s_ValueCheck == "")
+        if (m_ValueCheck == GetString_Data_NotFound() || m_Value == null || m_ValueCheck == "")
         {
             if (m_Debug)
             {
-                Debug.LogError("GetExchance_Bool: \"s_Value\" To (BOOL)\"FALSE\"");
+                Debug.LogError("GetExchance_Bool: \"m_Value\" To (BOOL)\"FALSE\"");
             }
 
             return false;
         }
-        return bool.Parse(s_ValueCheck);
+        return bool.Parse(m_ValueCheck);
     }
 
     /// <summary>
     /// Convert OBJECT to STRING
     /// </summary>
-    /// <param name="s_Value"></param>
+    /// <param name="m_Value"></param>
     /// <returns>If Convert fail, return NULL</returns>
-    public string GetConvert_String(object s_Value)
+    public string GetConvert_String(object m_Value)
     {
-        string s_ValueCheck = s_Value.ToString();
-        return s_ValueCheck.ToString();
+        string m_ValueCheck = m_Value.ToString();
+        return m_ValueCheck.ToString();
     }
 
     #endregion
@@ -135,9 +135,9 @@ public class Class_Data
     private int m_Index_Auto = -1;
 
     /// <summary>
-    /// Set Auto Index to "-1" before start use "Set_Index_Plus()"
+    /// Set Auto Index to "-1" before start use "SetIndex_Plus()"
     /// </summary>
-    public void Set_Index_Restart()
+    public void SetIndex_Restart()
     {
         m_Index_Auto = -1;
     }
@@ -145,7 +145,7 @@ public class Class_Data
     /// <summary>
     /// Set Auto Index "+1" each time called
     /// </summary>
-    public void Set_Index_Plus()
+    public void SetIndex_Plus()
     {
         m_Index_Auto++;
     }
@@ -166,13 +166,13 @@ public class Class_Data
     /// <summary>
     /// Get Index of Exist Data Name
     /// </summary>
-    /// <param name="s_DataName"></param>
+    /// <param name="m_DataName"></param>
     /// <returns></returns>
-    public int GetIndex_DataIsExist(string s_DataName)
+    public int GetIndex_DataIsExist(string m_DataName)
     {
         for (int i = 0; i < l_DataName.Count; i++)
         {
-            if (l_DataName[i] == s_DataName)
+            if (l_DataName[i] == m_DataName)
             {
                 return i;
             }
@@ -183,17 +183,17 @@ public class Class_Data
     /// <summary>
     /// Set Data Single
     /// </summary>
-    /// <param name="s_DataName"></param>
+    /// <param name="m_DataName"></param>
     /// <param name="o_DataValue"></param>
-    public void Set_Data(string s_DataName, object o_DataValue)
+    public void SetData(string m_DataName, object o_DataValue)
     {
-        int Index = GetIndex_DataIsExist(s_DataName);
+        int Index = GetIndex_DataIsExist(m_DataName);
 
         if (Index != -1)
         {
             if (m_Debug)
             {
-                Debug.Log("Set_Data: " + "\"" + s_DataName + "\"" + " Updated " + "\"" + o_DataValue + "\"");
+                Debug.Log("SetData: " + "\"" + m_DataName + "\"" + " Updated " + "\"" + o_DataValue + "\"");
             }
 
             if (o_DataValue == null)
@@ -223,49 +223,49 @@ public class Class_Data
             else
             if (m_Debug)
             {
-                Debug.LogError("Set_Data: " + s_DataName + " not support Updated TYPE");
+                Debug.LogError("SetData: " + m_DataName + " not support Updated TYPE");
             }
         }
         else
         {
             if (m_Debug)
             {
-                Debug.Log("Set_Data: " + "\"" + s_DataName + "\"" + " Added " + "\"" + o_DataValue + "\"");
+                Debug.Log("SetData: " + "\"" + m_DataName + "\"" + " Added " + "\"" + o_DataValue + "\"");
             }
 
             if (o_DataValue == null)
             {
-                l_DataName.Add(s_DataName);
+                l_DataName.Add(m_DataName);
                 l_Data_Value.Add(GetString_Data_NULL());
             }
             else
             if (o_DataValue.GetType() == typeof(int))
             {
-                l_DataName.Add(s_DataName);
+                l_DataName.Add(m_DataName);
                 l_Data_Value.Add(o_DataValue.ToString());
             }
             else
             if (o_DataValue.GetType() == typeof(float))
             {
-                l_DataName.Add(s_DataName);
+                l_DataName.Add(m_DataName);
                 l_Data_Value.Add(o_DataValue.ToString());
             }
             else
             if (o_DataValue.GetType() == typeof(bool))
             {
-                l_DataName.Add(s_DataName);
+                l_DataName.Add(m_DataName);
                 l_Data_Value.Add(o_DataValue.ToString());
             }
             else
             if (o_DataValue.GetType() == typeof(string))
             {
-                l_DataName.Add(s_DataName);
+                l_DataName.Add(m_DataName);
                 l_Data_Value.Add(o_DataValue.ToString());
             }
             else
             if (m_Debug)
             {
-                Debug.LogError("Set_Data: " + s_DataName + " not support Added TYPE");
+                Debug.LogError("SetData: " + m_DataName + " not support Added TYPE");
             }
         }
     }
@@ -273,20 +273,20 @@ public class Class_Data
     /// <summary>
     /// Get Data Single
     /// </summary>
-    /// <param name="s_DataName"></param>
+    /// <param name="m_DataName"></param>
     /// <returns>If not found Data, return "@NotFound"</returns>
-    public object GetData(string s_DataName)
+    public object GetData(string m_DataName)
     {
         for (int i = 0; i < l_DataName.Count; i++)
         {
-            if (l_DataName[i] == s_DataName)
+            if (l_DataName[i] == m_DataName)
             {
                 return l_Data_Value[i];
             }
         }
         if (m_Debug)
         {
-            Debug.LogError("GetData: " + "\"" + s_DataName + "\" Not found");
+            Debug.LogError("GetData: " + "\"" + m_DataName + "\" Not found");
         }
 
         return "@NotFound";
@@ -317,74 +317,74 @@ public class Class_Data
     /// <summary>
     /// Set Data Muti
     /// </summary>
-    /// <param name="s_DataName"></param>
+    /// <param name="m_DataName"></param>
     /// <param name="m_Index"></param>
     /// <param name="o_DataValue"></param>
-    public void Set_Data(string s_DataName, int m_Index, object o_DataValue)
+    public void SetData(string m_DataName, int m_Index, object o_DataValue)
     {
-        string s_DataCheck = s_DataName + "_" + m_Index.ToString();
-        Set_Data(s_DataCheck, o_DataValue);
+        string m_DataCheck = m_DataName + "_" + m_Index.ToString();
+        SetData(m_DataCheck, o_DataValue);
     }
 
     /// <summary>
     /// Set Data Muti Count
     /// </summary>
-    /// <param name="s_DataName"></param>
+    /// <param name="m_DataName"></param>
     /// <param name="iCount"></param>
-    public void Set_DataCount(string s_DataName, int iCount)
+    public void SetDataCount(string m_DataName, int iCount)
     {
-        string s_DataCheck = s_DataName + "Count";
-        Set_Data(s_DataCheck, iCount);
+        string m_DataCheck = m_DataName + "Count";
+        SetData(m_DataCheck, iCount);
     }
 
     /// <summary>
     /// Get Data Muti
     /// </summary>
-    /// <param name="s_DataName"></param>
+    /// <param name="m_DataName"></param>
     /// <param name="m_Index"></param>
     /// <returns></returns>
-    public object GetObject_Data(string s_DataName, int m_Index)
+    public object GetObject_Data(string m_DataName, int m_Index)
     {
-        string s_DataCheck = s_DataName + "_" + m_Index.ToString();
-        return GetData(s_DataCheck);
+        string m_DataCheck = m_DataName + "_" + m_Index.ToString();
+        return GetData(m_DataCheck);
     }
 
     /// <summary>
     /// Get Data Muti Count
     /// </summary>
-    /// <param name="s_DataName"></param>
+    /// <param name="m_DataName"></param>
     /// <returns></returns>
-    public int GetInt_DataCount(string s_DataName)
+    public int GetInt_DataCount(string m_DataName)
     {
-        string s_DataCheck = s_DataName + "Count";
-        if (GetConvert_String(GetData(s_DataCheck)) == GetString_Data_NotFound())
+        string m_DataCheck = m_DataName + "Count";
+        if (GetConvert_String(GetData(m_DataCheck)) == GetString_Data_NotFound())
         {
             return -1;
         }
 
-        return GetConvert_Int(GetData(s_DataCheck).ToString());
+        return GetConvert_Int(GetData(m_DataCheck).ToString());
     }
 
     /// <summary>
     /// Get own Index Name Data
     /// </summary>
-    /// <param name="s_DataName"></param>
+    /// <param name="m_DataName"></param>
     /// <param name="m_Index"></param>
     /// <returns></returns>
-    public string GetString_GetConvertNameIndex(string s_DataName, int m_Index)
+    public string GetString_GetConvertNameIndex(string m_DataName, int m_Index)
     {
-        return s_DataName + "_" + m_Index.ToString();
+        return m_DataName + "_" + m_Index.ToString();
     }
 
     /// <summary>
     /// Get own Count Name Data
     /// </summary>
-    /// <param name="s_DataName"></param>
+    /// <param name="m_DataName"></param>
     /// <param name="iCount"></param>
     /// <returns></returns>
-    public string GetString_GetConvertNameCount(string s_DataName)
+    public string GetString_GetConvertNameCount(string m_DataName)
     {
-        return s_DataName + "Count";
+        return m_DataName + "Count";
     }
 
     #endregion

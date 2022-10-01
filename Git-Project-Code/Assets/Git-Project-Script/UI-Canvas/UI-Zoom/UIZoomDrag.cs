@@ -10,7 +10,7 @@ public class UIZoomDrag : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void Update()
     {
-        Set_Zoom(Input.GetAxis("Mouse ScrollWheel") * 100f * m_Zoom_Speed);
+        SetZoom(Input.GetAxis("Mouse ScrollWheel") * 100f * m_Zoom_Speed);
     }
 
 #endif
@@ -35,11 +35,11 @@ public class UIZoomDrag : MonoBehaviour, IPointerDownHandler, IDragHandler
 
             float m_Difference = m_Cur_Duration - m_Prev_Duration;
 
-            Set_Zoom(m_Difference * m_Zoom_Speed);
+            SetZoom(m_Difference * m_Zoom_Speed);
         }
     }
 
-    private void Set_Zoom(float m_Increment)
+    private void SetZoom(float m_Increment)
     {
         if (Camera.main.orthographic)
         {

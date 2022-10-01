@@ -31,7 +31,7 @@ public class SimpleCountdownTime : MonoBehaviour
 
         do
         {
-            csCountdownTime.Set_TimeOut(m_Time_Passed);
+            csCountdownTime.SetTimeOut(m_Time_Passed);
 
             com_Text.text = csCountdownTime.GetTimeOut_Cur() + " / " + csCountdownTime.GetTime();
 
@@ -57,7 +57,7 @@ public class SampleCountdownTime_Class
 {
     [SerializeField] private float m_Time = 0;
 
-    [SerializeField] private string s_Message = "";
+    [SerializeField] private string m_Message = "";
 
     [SerializeField] private float m_Time_Cur;
 
@@ -67,15 +67,15 @@ public class SampleCountdownTime_Class
         m_Time_Cur = m_Time;
     }
 
-    public SampleCountdownTime_Class(float m_Time, string s_Message)
+    public SampleCountdownTime_Class(float m_Time, string m_Message)
     {
         this.m_Time = m_Time;
         m_Time_Cur = m_Time;
 
-        this.s_Message = s_Message;
+        this.m_Message = m_Message;
     }
 
-    public void Set_TimeOut(float m_Time_Passed)
+    public void SetTimeOut(float m_Time_Passed)
     {
         m_Time_Cur -= m_Time_Passed;
     }
@@ -97,6 +97,6 @@ public class SampleCountdownTime_Class
 
     public string GetMessage()
     {
-        return s_Message;
+        return m_Message;
     }
 }
