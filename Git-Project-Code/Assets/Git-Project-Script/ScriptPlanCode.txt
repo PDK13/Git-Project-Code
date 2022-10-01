@@ -21,7 +21,7 @@
 + Use to "Control automacally" after "Get Imformation" in Update().
 
 - FixedUpdate(): 
-+ Call more than about fer Frame (0.02 second fer called).
++ Call m_ore than about fer Frame (0.02 second fer called).
 + Use to "Physical Control" by Rigidbody.
 
 - OnDisable():
@@ -35,5 +35,5 @@
 - Just use Unity Button.
 - In "OnClick()", add Script from "Scene", not from "Asset".
 
-- Button will be Focus after Click, make it auto Click by "Space" Keyboard.
+- Button will be Focus after Click, m_ake it auto Click by "Space" Keyboard.
 - In Component "Button", at "Navigation", set this "None" to avoid this.

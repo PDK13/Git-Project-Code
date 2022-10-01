@@ -20,7 +20,7 @@ public class Sample_VelocityHigh : MonoBehaviour
 
         Physics2D.gravity = Vector2.down * 9.8f;
 
-        com_Rigidbody2D.gravityScale = 15f; //If gravity too high, the momement will pass though the collider of tarket ground
+        com_Rigidbody2D.gravityScale = 15f; //If gravity too high, the m_omement will pass though the collider of tarket ground
 
         Time.timeScale = 1;
     }

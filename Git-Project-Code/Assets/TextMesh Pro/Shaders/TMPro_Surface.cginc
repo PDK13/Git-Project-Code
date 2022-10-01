@@ -18,7 +18,7 @@ void VertShader(inout appdata_full v, out Input data)
 	float4 vPosition = UnityObjectToClipPos(vert);
 	float2 pixelSize = vPosition.w;
 
-	pixelSize /= float2(_ScaleX, _ScaleY) * mul((float2x2)UNITY_MATRIX_P, _ScreenParams.xy);
+	pixelSize /= float2(_ScaleX, _ScaleY) * m_ul((float2x2)UNITY_MATRIX_P, _ScreenParams.xy);
 	float scale = rsqrt(dot(pixelSize, pixelSize));
 	scale *= abs(v.texcoord1.y) * _GradientScale * (_Sharpness + 1);
 	scale = lerp(scale * (1 - _PerspectiveFilter), scale, abs(dot(UnityObjectToWorldNormal(v.normal.xyz), normalize(WorldSpaceViewDir(vert)))));
@@ -28,7 +28,7 @@ void VertShader(inout appdata_full v, out Input data)
 	data.param.x = (lerp(_WeightNormal, _WeightBold, bold) / 4.0 + _FaceDilate) * _ScaleRatioA * 0.5; // 
 
 	v.texcoord1.xy = UnpackUV(v.texcoord1.x);
-	data.viewDirEnv = mul((float3x3)_EnvMatrix, WorldSpaceViewDir(v.vertex));
+	data.viewDirEnv = m_ul((float3x3)_EnvMatrix, WorldSpaceViewDir(v.vertex));
 }
 
 void PixShader(Input input, inout SurfaceOutput o)
@@ -56,7 +56,7 @@ void PixShader(Input input, inout SurfaceOutput o)
 	faceColor *= tex2D(_FaceTex, float2(input.uv2_FaceTex.x + _FaceUVSpeedX * _Time.y, input.uv2_FaceTex.y + _FaceUVSpeedY * _Time.y));
 	outlineColor *= tex2D(_OutlineTex, float2(input.uv2_OutlineTex.x + _OutlineUVSpeedX * _Time.y, input.uv2_OutlineTex.y + _OutlineUVSpeedY * _Time.y));
 	faceColor = GetColor(sd, faceColor, outlineColor, outline, softness);
-	faceColor.rgb /= max(faceColor.a, 0.0001);
+	faceColor.rgb /= m_ax(faceColor.a, 0.0001);
 
 #if BEVEL_ON
 	float3 delta = float3(1.0 / _TextureWidth, 1.0 / _TextureHeight, 0.0);
@@ -76,7 +76,7 @@ void PixShader(Input input, inout SurfaceOutput o)
 	n = normalize(n - bump);
 
 	// Cubemap reflection
-	fixed4 reflcol = texCUBE(_Cube, reflect(input.viewDirEnv, mul((float3x3)unity_ObjectToWorld, n)));
+	fixed4 reflcol = texCUBE(_Cube, reflect(input.viewDirEnv, m_ul((float3x3)unity_ObjectToWorld, n)));
 	float3 emission = reflcol.rgb * lerp(_ReflectFaceColor.rgb, _ReflectOutlineColor.rgb, saturate(sd + outline * 0.5)) * faceColor.a;
 #else
 	float3 n = float3(0, 0, -1);
@@ -88,7 +88,7 @@ void PixShader(Input input, inout SurfaceOutput o)
 	glowColor.a *= input.color.a;
 	emission += glowColor.rgb*glowColor.a;
 	faceColor = BlendARGB(glowColor, faceColor);
-	faceColor.rgb /= max(faceColor.a, 0.0001);
+	faceColor.rgb /= m_ax(faceColor.a, 0.0001);
 #endif
 
 	// Set Standard output structure

@@ -11,7 +11,7 @@ public class Sample_BackgroundChance : MonoBehaviour
     public int backgroundNum;
     public Sprite[] Layer_Sprites;
     private readonly GameObject[] Layer_Object = new GameObject[5];
-    private readonly int max_backgroundNum = 3;
+    private readonly int m_ax_backgroundNum = 3;
 
     private void Start()
     {
@@ -54,7 +54,7 @@ public class Sample_BackgroundChance : MonoBehaviour
     public void NextBG()
     {
         backgroundNum = backgroundNum + 1;
-        if (backgroundNum > max_backgroundNum)
+        if (backgroundNum > m_ax_backgroundNum)
         {
             backgroundNum = 0;
         }
@@ -66,7 +66,7 @@ public class Sample_BackgroundChance : MonoBehaviour
         backgroundNum = backgroundNum - 1;
         if (backgroundNum < 0)
         {
-            backgroundNum = max_backgroundNum;
+            backgroundNum = m_ax_backgroundNum;
         }
 
         ChangeSprite();

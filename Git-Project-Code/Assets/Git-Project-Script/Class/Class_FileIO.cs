@@ -26,9 +26,9 @@ public class Class_FileIO
         return c_Path_Disk + @":\";
     }
 
-    public static string GetPath_File(string s_Name, string s_Type, string s_FileExtend)
+    public static string GetPath_File(string sName, string s_Type, string s_FileExtend)
     {
-        return s_Name + ((s_Type != null) ? "_" : "") + s_Type + "." + s_FileExtend;
+        return sName + ((s_Type != null) ? "_" : "") + s_Type + "." + s_FileExtend;
     }
 
     #region Application Data Path 
@@ -52,9 +52,9 @@ public class Class_FileIO
         return GetPath_Application() + @"resources\";
     }
 
-    public static string GetPath_Application_Resources_File(string s_Path_Folder, string s_File_Name)
+    public static string GetPath_Application_Resources_File(string s_Path_Folder, string s_FileName)
     {
-        return GetPath_Application_Resource() + s_Path_Folder + (s_Path_Folder.Equals("") ? "" : (@"\")) + s_File_Name + ".txt";
+        return GetPath_Application_Resource() + s_Path_Folder + (s_Path_Folder.Equals("") ? "" : (@"\")) + s_FileName + ".txt";
     }
 
     #endregion
@@ -66,9 +66,9 @@ public class Class_FileIO
         return Application.persistentDataPath + @"\";
     }
 
-    public static string GetPath_Application_Persistent_File(string s_Path_Folder, string s_File_Name)
+    public static string GetPath_Application_Persistent_File(string s_Path_Folder, string s_FileName)
     {
-        return GetPath_Application_Persistent() + s_Path_Folder + (s_Path_Folder.Equals("") ? "" : (@"\")) + s_File_Name + ".txt";
+        return GetPath_Application_Persistent() + s_Path_Folder + (s_Path_Folder.Equals("") ? "" : (@"\")) + s_FileName + ".txt";
     }
 
     #endregion
@@ -82,14 +82,14 @@ public class Class_FileIO
         return File.Exists(s_Path);
     }
 
-    public static bool GetFile_Application_ResourcesIsExist(string s_Path_Folder, string s_File_Name)
+    public static bool GetFile_Application_ResourcesIsExist(string s_Path_Folder, string s_FileName)
     {
-        return GetFileIsExist(GetPath_Application_Resources_File(s_Path_Folder, s_File_Name));
+        return GetFileIsExist(GetPath_Application_Resources_File(s_Path_Folder, s_FileName));
     }
 
-    public static bool GetFile_Application_PersistentIsExist(string s_Path_Folder, string s_File_Name)
+    public static bool GetFile_Application_PersistentIsExist(string s_Path_Folder, string s_FileName)
     {
-        return GetFileIsExist(GetPath_Application_Persistent_File(s_Path_Folder, s_File_Name));
+        return GetFileIsExist(GetPath_Application_Persistent_File(s_Path_Folder, s_FileName));
     }
 
     #endregion
@@ -109,12 +109,12 @@ public class Class_FileIO
 
     public static void Set_Data_Write_toFile(string s_Path, string s_Data)
     {
-        using (FileStream myFile = File.Create(s_Path))
+        using (FileStream m_yFile = File.Create(s_Path))
         {
             try
             {
                 byte[] m_Info = new UTF8Encoding(true).GetBytes(s_Data);
-                myFile.Write(m_Info, 0, m_Info.Length);
+                m_yFile.Write(m_Info, 0, m_Info.Length);
             }
             catch
             {
@@ -128,14 +128,14 @@ public class Class_FileIO
         Set_Data_Write_toFile(s_Path, GetData_Write_String());
     }
 
-    public void Set_Data_Write_Resource_Start(string s_Path_Folder, string s_File_Name)
+    public void Set_Data_Write_Resource_Start(string s_Path_Folder, string s_FileName)
     {
-        Set_Data_Write_Start(GetPath_Application_Resources_File(s_Path_Folder, s_File_Name));
+        Set_Data_Write_Start(GetPath_Application_Resources_File(s_Path_Folder, s_FileName));
     }
 
-    public void Set_Data_Write_Persistent_Start(string s_Path_Folder, string s_File_Name)
+    public void Set_Data_Write_Persistent_Start(string s_Path_Folder, string s_FileName)
     {
-        Set_Data_Write_Start(GetPath_Application_Persistent_File(s_Path_Folder, s_File_Name));
+        Set_Data_Write_Start(GetPath_Application_Persistent_File(s_Path_Folder, s_FileName));
     }
 
     #endregion
@@ -268,17 +268,17 @@ public class Class_FileIO
         ls_TextRead = GetData_Read_fromFile(s_Path);
     }
 
-    public void Set_Data_Read_Persistent_Start(string s_Path_Folder, string s_File_Name)
+    public void Set_Data_Read_Persistent_Start(string s_Path_Folder, string s_FileName)
     {
-        Set_Data_Read_Start(GetPath_Application_Persistent_File(s_Path_Folder, s_File_Name));
+        Set_Data_Read_Start(GetPath_Application_Persistent_File(s_Path_Folder, s_FileName));
     }
 
-    public void Set_Data_Read_Resource_Start(string s_Path_Folder, string s_File_Name)
+    public void Set_Data_Read_Resource_Start(string s_Path_Folder, string s_FileName)
     {
-        //Debug.Log("Set_Data_Read_Start: " + s_Path_Folder + (s_Path_Folder.Equals("") ? "" : (@"\")) + s_File_Name);
+        //Debug.Log("Set_Data_Read_Start: " + s_Path_Folder + (s_Path_Folder.Equals("") ? "" : (@"\")) + s_FileName);
 
         TextAsset t_TextFile = (TextAsset)Resources.Load(
-            s_Path_Folder + (s_Path_Folder.Equals("") ? "" : (@"\")) + s_File_Name,
+            s_Path_Folder + (s_Path_Folder.Equals("") ? "" : (@"\")) + s_FileName,
             typeof(TextAsset));
 
         ls_TextRead = ClassString.GetString_Split_List(t_TextFile.text, '\n');
@@ -373,7 +373,7 @@ public class Class_FileIO
     //Type "TextAsset" is a "Text Document" File or "*.txt" File
 
     //SAMPLE:
-    //ClassData myData = Class_FileIO.GetData_fromJSON<ClassData>(file_JSON_Data_TextDocument);
+    //ClassData m_yData = Class_FileIO.GetData_fromJSON<ClassData>(file_JSON_Data_TextDocument);
 
     public static ClassData GetData_fromJSON<ClassData>(TextAsset file_JSON_Data_TextDocument)
     {

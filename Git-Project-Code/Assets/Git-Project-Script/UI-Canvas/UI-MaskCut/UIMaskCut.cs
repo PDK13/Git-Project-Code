@@ -9,9 +9,9 @@ public class UIMaskCut : Image
     {
         get
         {
-            Material material = new Material(base.materialForRendering);
-            material.SetInt("_StencilComp", (int)CompareFunction.NotEqual);
-            return material;
+            Material m_material = new Material(base.materialForRendering);
+            m_material.SetInt("_StencilComp", (int)CompareFunction.NotEqual);
+            return m_material;
         }
     }
 }

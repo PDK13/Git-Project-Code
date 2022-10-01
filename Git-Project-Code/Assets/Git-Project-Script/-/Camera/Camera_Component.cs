@@ -22,7 +22,7 @@ public class Camera_Component : MonoBehaviour
     public Vector3 v3_Smooth = new Vector3(0.5f, 0.5f, 0.5f);
     //Độ trễ của Camera khi di chuyển theo Object (Đặt về 0 để di chuyển tức thời)
     private Vector3 v3_SmoothVelocity;
-    //Quán tính Camera khi di chuyển theo mục tiêu
+    //Quán tính Camera khi di chuyển theo m_ục tiêu
 
     public Vector3 v3_Rotation = new Vector3(35f, 0f, 0f);
     //Góc quay của Camera (Mặc định là hướng xuống)
@@ -88,7 +88,7 @@ public class Camera_Component : MonoBehaviour
             m_PosZ = transform.position.z;
         }
 
-        //Vector.SmoothDamp càng gia tăng tốc độ khi mục tiêu càng ở xa hơn
+        //Vector.SmoothDamp càng gia tăng tốc độ khi m_ục tiêu càng ở xa hơn
 
         Set_CameraPosition(m_PosX, m_PosY, m_PosZ);
         //Chú ý: Không rút gọn đoạn code này vì sẽ gây ra lỗi hoạt động
@@ -115,7 +115,7 @@ public class Camera_Component : MonoBehaviour
 
     //-------------------------------------------------------
 
-    //Thiết đặt mục tiêu di chuyển theo
+    //Thiết đặt m_ục tiêu di chuyển theo
     public void Set_Follow(Transform t_FollowNew)
     {
         t_Follow = t_FollowNew;

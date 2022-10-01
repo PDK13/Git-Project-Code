@@ -160,7 +160,7 @@
 //    /// </summary>
 //    /// <param name="s_Email">"myEmail@gmail.com"</param>
 //    /// <param name="s_Password"></param>
-//    /// <param name="o_Class">Add "new myClass()" to Firebase Database at "_ID$UserAuthID/"</param>
+//    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_ID$UserAuthID/"</param>
 //    public void Set_FirebaseAuth_Register_ContinueWith(string s_Email, string s_Password, object o_Class)
 //    {
 //        Class_String cs_String = new Class_String();
@@ -207,7 +207,7 @@
 //    /// <param name="s_Email">"myEmail@gmail.com"</param>
 //    /// <param name="s_Password"></param>
 //    /// <param name="s_RePassword"></param>
-//    /// <param name="o_Class">Add "new myClass()" to Firebase Database at "_ID$UserAuthID/"</param>
+//    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_ID$UserAuthID/"</param>
 //    public void Set_FirebaseAuth_Register_ContinueWith(string s_Email, string s_Password, string s_RePassword, object o_Class)
 //    {
 //        Class_String cs_String = new Class_String();
@@ -532,7 +532,7 @@
 //    /// <param name="s_Password"></param>
 //    /// <param name="s_DisplayName"></param>
 //    /// <param name="m_EmailVerification">If "True", Firebase will send an Email Verification</param>
-//    /// <param name="o_Class">Add "new myClass()" to Firebase Database at "_Player/UserAuthID"</param>
+//    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_Player/UserAuthID"</param>
 //    /// <returns></returns>
 //    public IEnumerator Set_FirebaseAuth_Register_IEnumerator(string s_Email, string s_Password, string s_DisplayName, bool m_EmailVerification, object o_Class)
 //    {
@@ -645,7 +645,7 @@
 //    /// <param name="s_PasswordRe">Check if "Re-Password" same to "Password"</param>
 //    /// <param name="s_DisplayName"></param>
 //    /// <param name="m_EmailVerification">If "True", Firebase will send an Email Verification</param>
-//    /// <param name="o_Class">Add "new myClass()" to Firebase Database at "_ID$UserAuthID/"</param>
+//    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_ID$UserAuthID/"</param>
 //    /// <returns></returns>
 //    public IEnumerator Set_FirebaseAuth_Register_IEnumerator(string s_Email, string s_Password, string s_PasswordRe, string s_DisplayName, bool m_EmailVerification, object o_Class)
 //    {
@@ -1056,7 +1056,7 @@
 //    /// <summary>
 //    /// Add Event Value Changed Listener by "Set_FirebaseEvent_ValueChanged(myEvent);"
 //    /// </summary>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ValueChanged(System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged");
@@ -1066,7 +1066,7 @@
 //    /// <summary>
 //    /// Add Event Value Changed Listener by "Set_FirebaseEvent_ValueChanged(myEvent);"
 //    /// </summary>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ValueChanged_Reset(System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged_Reset");
@@ -1079,7 +1079,7 @@
 //    /// Add Event Value Changed Listener by "Set_FirebaseEvent_ValueChanged(myEvent);"
 //    /// </summary>
 //    /// <param name="s_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ValueChanged(string s_DatabaseAcess, System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged: " + s_DatabaseAcess);
@@ -1090,7 +1090,7 @@
 //    /// Add Event Value Changed Listener by "Set_FirebaseEvent_ValueChanged(myEvent);"
 //    /// </summary>
 //    /// <param name="s_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ValueChanged_Reset(string s_DatabaseAcess, System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged_Reset: " + s_DatabaseAcess);
@@ -1104,7 +1104,7 @@
 //    /// <summary>
 //    /// Add Event Child Added Listener by "Set_FirebaseEvent_ChildAdded(myEvent);"
 //    /// </summary>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildAdded(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ChildAdded");
@@ -1114,7 +1114,7 @@
 //    /// <summary>
 //    /// Remove Event Child Added Listener by "Set_FirebaseEvent_ChildAdded(myEvent);"
 //    /// </summary>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildAdded_Reset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged_Reset");
@@ -1127,7 +1127,7 @@
 //    /// Add Event Child Added Listener by "Set_FirebaseEvent_ChildAdded(myEvent);"
 //    /// </summary>
 //    /// <param name="s_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildAdded(string s_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ChildAdded: " + s_DatabaseAcess);
@@ -1138,7 +1138,7 @@
 //    /// Remove Event Child Added Listener by "Set_FirebaseEvent_ChildAdded(myEvent);"
 //    /// </summary>
 //    /// <param name="s_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildAdded_Reset(string s_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged_Reset: " + s_DatabaseAcess);
@@ -1152,7 +1152,7 @@
 //    /// <summary>
 //    /// Add Event Child Changed Listener by "Set_FirebaseEvent_ChildChanged(myEvent);"
 //    /// </summary>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildChanged(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ChildChanged");
@@ -1162,7 +1162,7 @@
 //    /// <summary>
 //    /// Remove Event Child Changed Listener by "Set_FirebaseEvent_ChildChanged(myEvent);"
 //    /// </summary>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildChanged_Reset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged_Reset");
@@ -1175,7 +1175,7 @@
 //    /// Add Event Child Changed Listener by "Set_FirebaseEvent_ChildChanged(myEvent);"
 //    /// </summary>
 //    /// <param name="s_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildChanged(string s_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ChildChanged: " + s_DatabaseAcess);
@@ -1186,7 +1186,7 @@
 //    /// Remove Event Child Changed Listener by "Set_FirebaseEvent_ChildChanged(myEvent);"
 //    /// </summary>
 //    /// <param name="s_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildChanged_Reset(string s_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged_Reset: " + s_DatabaseAcess);
@@ -1200,7 +1200,7 @@
 //    /// <summary>
 //    /// Add Event Child Moved Listener by "Set_FirebaseEvent_ChildMoved(myEvent);"
 //    /// </summary>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildMoved(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ChildMoved");
@@ -1210,7 +1210,7 @@
 //    /// <summary>
 //    /// Remove Event Child Moved Listener by "Set_FirebaseEvent_ChildMoved(myEvent);"
 //    /// </summary>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildMoved_Reset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged_Reset");
@@ -1223,7 +1223,7 @@
 //    /// Add Event Child Moved Listener by "Set_FirebaseEvent_ChildMoved(myEvent);"
 //    /// </summary>
 //    /// <param name="s_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildMoved(string s_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ChildMoved: " + s_DatabaseAcess);
@@ -1234,7 +1234,7 @@
 //    /// Remove Event Child Moved Listener by "Set_FirebaseEvent_ChildMoved(myEvent);"
 //    /// </summary>
 //    /// <param name="s_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildMoved_Reset(string s_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged_Reset: " + s_DatabaseAcess);
@@ -1248,7 +1248,7 @@
 //    /// <summary>
 //    /// Add Event Child Removed Listener by "Set_FirebaseEvent_ChildRemoved(myEvent);"
 //    /// </summary>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildRemoved(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ChildRemoved");
@@ -1258,7 +1258,7 @@
 //    /// <summary>
 //    /// Remove Event Child Removed Listener by "Set_FirebaseEvent_ChildRemoved(myEvent);"
 //    /// </summary>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildRemoved_Reset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged_Reset");
@@ -1271,7 +1271,7 @@
 //    /// Add Event Child Removed Listener by "Set_FirebaseEvent_ChildRemoved(myEvent);"
 //    /// </summary>
 //    /// <param name="s_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildRemoved(string s_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ChildRemoved: " + s_DatabaseAcess);
@@ -1282,7 +1282,7 @@
 //    /// Remove Event Child Removed Listener by "Set_FirebaseEvent_ChildRemoved(myEvent);"
 //    /// </summary>
 //    /// <param name="s_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
-//    /// <param name="e_EventHandler">Add  "void myEvent(object sender, ValueChangedEventArgs e)"</param>
+//    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void Set_FirebaseEvent_ChildRemoved_Reset(string s_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("Set_FirebaseEvent_ValueChanged_Reset: " + s_DatabaseAcess);

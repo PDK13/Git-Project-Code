@@ -56,8 +56,8 @@ Shader "TextMeshPro/Sprite"
 			#include "UnityCG.cginc"
 			#include "UnityUI.cginc"
 
-            #pragma multm_compile __ UNITY_UI_CLIP_RECT
-            #pragma multm_compile __ UNITY_UI_ALPHACLIP
+            #pragma m_ultm_compile __ UNITY_UI_CLIP_RECT
+            #pragma m_ultm_compile __ UNITY_UI_ALPHACLIP
 			
 			struct appdata_t
 			{

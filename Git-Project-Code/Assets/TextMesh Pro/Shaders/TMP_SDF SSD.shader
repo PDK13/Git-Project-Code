@@ -27,7 +27,7 @@ Properties {
     _Diffuse            ("Diffuse", Range(0,1)) = 0.5
     _Ambient            ("Ambient", Range(1,0)) = 0.5
 
-    _BumpMap            ("Normal map", 2D) = "bump" {}
+    _BumpMap            ("Normal m_ap", 2D) = "bump" {}
     _BumpOutline        ("Bump Outline", Range(0,1)) = 0
     _BumpFace           ("Bump Face", Range(0,1)) = 0
 
@@ -119,8 +119,8 @@ SubShader {
         #pragma shader_feature __ GLOW_ON
         #pragma shader_feature __ FORCE_LINEAR
 
-        #pragma multm_compile __ UNITY_UI_CLIP_RECT
-        #pragma multm_compile __ UNITY_UI_ALPHACLIP
+        #pragma m_ultm_compile __ UNITY_UI_CLIP_RECT
+        #pragma m_ultm_compile __ UNITY_UI_ALPHACLIP
 
         #include "UnityCG.cginc"
         #include "UnityUI.cginc"
@@ -209,7 +209,7 @@ SubShader {
             output.atlas = input.texcoord0;
             output.weight = weight;
             output.mask = half2(vert.xy * 2 - clampedRect.xy - clampedRect.zw);
-            output.viewDir = mul((float3x3)_EnvMatrix, _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, vert).xyz);
+            output.viewDir = m_ul((float3x3)_EnvMatrix, _WorldSpaceCameraPos.xyz - m_ul(unity_ObjectToWorld, vert).xyz);
         #if (UNDERLAY_ON || UNDERLAY_INNER)
             output.texcoord2 = input.texcoord0 + bOffset;
             output.underlayColor = underlayColor;
@@ -289,9 +289,9 @@ SubShader {
 
             // Alternative implementation to UnityGet2DClipping with support for softness.
         #if UNITY_UI_CLIP_RECT
-            float2 maskZW = 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + (1 / scale));
-            half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * maskZW);
-            faceColor *= m.x * m.y;
+            float2 m_askZW = 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + (1 / scale));
+            half2 m_ = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * m_askZW);
+            faceColor *= m_.x * m_.y;
         #endif
 
         #if UNITY_UI_ALPHACLIP

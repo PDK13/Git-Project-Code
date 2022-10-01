@@ -56,8 +56,8 @@ public class RendererGeometryPoint : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        //Thể hiện hình vẽ mẫu trên chính GameObject. Và đây cũng là gợi ý cho cách sử dụng danh sách điểm.
-        //Đường vẽ màu "Vàng" là giữa điểm Kết thúc và Bắt đầu
+        //Thể hiện hình vẽ m_ẫu trên chính GameObject. Và đây cũng là gợi ý cho cách sử dụng danh sách điểm.
+        //Đường vẽ m_àu "Vàng" là giữa điểm Kết thúc và Bắt đầu
 
         if (!m_Debug)
         {

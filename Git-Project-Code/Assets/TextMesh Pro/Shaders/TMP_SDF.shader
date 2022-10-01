@@ -27,7 +27,7 @@ Properties {
 	_Diffuse			("Diffuse", Range(0,1)) = 0.5
 	_Ambient			("Ambient", Range(1,0)) = 0.5
 
-	_BumpMap 			("Normal map", 2D) = "bump" {}
+	_BumpMap 			("Normal m_ap", 2D) = "bump" {}
 	_BumpOutline		("Bump Outline", Range(0,1)) = 0
 	_BumpFace			("Bump Face", Range(0,1)) = 0
 
@@ -119,8 +119,8 @@ SubShader {
 		#pragma shader_feature __ UNDERLAY_ON UNDERLAY_INNER
 		#pragma shader_feature __ GLOW_ON
 
-		#pragma multm_compile __ UNITY_UI_CLIP_RECT
-		#pragma multm_compile __ UNITY_UI_ALPHACLIP
+		#pragma m_ultm_compile __ UNITY_UI_CLIP_RECT
+		#pragma m_ultm_compile __ UNITY_UI_ALPHACLIP
 
 		#include "UnityCG.cginc"
 		#include "UnityUI.cginc"
@@ -189,7 +189,7 @@ SubShader {
 			float alphaClip = (1.0 - _OutlineWidth * _ScaleRatioA - _OutlineSoftness * _ScaleRatioA);
 
 		#if GLOW_ON
-			alphaClip = min(alphaClip, 1.0 - _GlowOffset * _ScaleRatioB - _GlowOuter * _ScaleRatioB);
+			alphaClip = m_in(alphaClip, 1.0 - _GlowOffset * _ScaleRatioB - _GlowOuter * _ScaleRatioB);
 		#endif
 
 			alphaClip = alphaClip / 2.0 - ( .5 / scale) - weight;
@@ -209,7 +209,7 @@ SubShader {
 
 			// Generate UV for the Masking Texture
 			float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
-			float2 maskUV = (vert.xy - clampedRect.xy) / (clampedRect.zw - clampedRect.xy);
+			float2 m_askUV = (vert.xy - clampedRect.xy) / (clampedRect.zw - clampedRect.xy);
 
 			// Support for texture tiling and offset
 			float2 textureUV = UnpackUV(input.texcoord1.x);
@@ -222,7 +222,7 @@ SubShader {
 			output.atlas =	input.texcoord0;
 			output.param =	float4(alphaClip, scale, bias, weight);
 			output.mask = half4(vert.xy * 2 - clampedRect.xy - clampedRect.zw, 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy));
-			output.viewDir =	mul((float3x3)_EnvMatrix, _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, vert).xyz);
+			output.viewDir =	mul((float3x3)_EnvMatrix, _WorldSpaceCameraPos.xyz - m_ul(unity_ObjectToWorld, vert).xyz);
 			#if (UNDERLAY_ON || UNDERLAY_INNER)
 			output.texcoord2 = float4(input.texcoord0 + bOffset, bScale, bBias);
 			output.underlayColor =	underlayColor;
@@ -297,8 +297,8 @@ SubShader {
 
 		// Alternative implementation to UnityGet2DClipping with support for softness.
 		#if UNITY_UI_CLIP_RECT
-			half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
-			faceColor *= m.x * m.y;
+			half2 m_ = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
+			faceColor *= m_.x * m_.y;
 		#endif
 
 		#if UNITY_UI_ALPHACLIP

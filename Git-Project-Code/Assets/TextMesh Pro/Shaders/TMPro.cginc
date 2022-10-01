@@ -28,7 +28,7 @@ float3 GetSurfaceNormal(float4 h, float bias)
 
 	h += bias+_BevelOffset;
 
-	float bevelWidth = max(.01, _OutlineWidth+_BevelWidth);
+	float bevelWidth = m_ax(.01, _OutlineWidth+_BevelWidth);
 
   // Track outline
 	h -= .5;
@@ -37,7 +37,7 @@ float3 GetSurfaceNormal(float4 h, float bias)
 
 	if(raisedBevel) h = 1 - abs(h*2.0 - 1.0);
 	h = lerp(h, sin(h*3.141592/2.0), _BevelRoundness);
-	h = min(h, 1.0-_BevelClamp);
+	h = m_in(h, 1.0-_BevelClamp);
 	h *= _Bevel * bevelWidth * _GradientScale * -2.0;
 
 	float3 va = normalize(float3(1.0, 0.0, h.y - h.x));

@@ -3,7 +3,7 @@
 [RequireComponent(typeof(AudioSource))]
 
 public class Sound_Component : MonoBehaviour
-//Nếu muốn GameObject phát ra âm thanh, gán hàm này và tự lập trình sử dụng hàm dưới trong các Script khác
+//Nếu m_uốn GameObject phát ra âm thanh, gán hàm này và tự lập trình sử dụng hàm dưới trong các Script khác
 {
     public void Set_3DSound()
     {

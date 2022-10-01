@@ -107,7 +107,7 @@ public class Class_Data
     /// <summary>
     /// Data Name to Access
     /// </summary>
-    private readonly List<string> l_Data_Name = new List<string>();
+    private readonly List<string> l_DataName = new List<string>();
 
     /// <summary>
     /// Data Value (INT, FLOAT, BOOL, STRING) saved at STRING
@@ -118,9 +118,9 @@ public class Class_Data
     /// Get List of Data Name
     /// </summary>
     /// <returns></returns>
-    public List<string> GetList_Name()
+    public List<string> GetListName()
     {
-        return l_Data_Name;
+        return l_DataName;
     }
 
     /// <summary>
@@ -170,9 +170,9 @@ public class Class_Data
     /// <returns></returns>
     public int GetIndex_DataIsExist(string s_DataName)
     {
-        for (int i = 0; i < l_Data_Name.Count; i++)
+        for (int i = 0; i < l_DataName.Count; i++)
         {
-            if (l_Data_Name[i] == s_DataName)
+            if (l_DataName[i] == s_DataName)
             {
                 return i;
             }
@@ -235,31 +235,31 @@ public class Class_Data
 
             if (o_DataValue == null)
             {
-                l_Data_Name.Add(s_DataName);
+                l_DataName.Add(s_DataName);
                 l_Data_Value.Add(GetString_Data_NULL());
             }
             else
             if (o_DataValue.GetType() == typeof(int))
             {
-                l_Data_Name.Add(s_DataName);
+                l_DataName.Add(s_DataName);
                 l_Data_Value.Add(o_DataValue.ToString());
             }
             else
             if (o_DataValue.GetType() == typeof(float))
             {
-                l_Data_Name.Add(s_DataName);
+                l_DataName.Add(s_DataName);
                 l_Data_Value.Add(o_DataValue.ToString());
             }
             else
             if (o_DataValue.GetType() == typeof(bool))
             {
-                l_Data_Name.Add(s_DataName);
+                l_DataName.Add(s_DataName);
                 l_Data_Value.Add(o_DataValue.ToString());
             }
             else
             if (o_DataValue.GetType() == typeof(string))
             {
-                l_Data_Name.Add(s_DataName);
+                l_DataName.Add(s_DataName);
                 l_Data_Value.Add(o_DataValue.ToString());
             }
             else
@@ -277,9 +277,9 @@ public class Class_Data
     /// <returns>If not found Data, return "@NotFound"</returns>
     public object GetData(string s_DataName)
     {
-        for (int i = 0; i < l_Data_Name.Count; i++)
+        for (int i = 0; i < l_DataName.Count; i++)
         {
-            if (l_Data_Name[i] == s_DataName)
+            if (l_DataName[i] == s_DataName)
             {
                 return l_Data_Value[i];
             }
@@ -371,7 +371,7 @@ public class Class_Data
     /// <param name="s_DataName"></param>
     /// <param name="m_Index"></param>
     /// <returns></returns>
-    public string GetString_GetConvert_NameIndex(string s_DataName, int m_Index)
+    public string GetString_GetConvertNameIndex(string s_DataName, int m_Index)
     {
         return s_DataName + "_" + m_Index.ToString();
     }
@@ -382,7 +382,7 @@ public class Class_Data
     /// <param name="s_DataName"></param>
     /// <param name="iCount"></param>
     /// <returns></returns>
-    public string GetString_GetConvert_NameCount(string s_DataName)
+    public string GetString_GetConvertNameCount(string s_DataName)
     {
         return s_DataName + "Count";
     }

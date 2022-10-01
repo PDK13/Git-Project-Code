@@ -42,7 +42,7 @@ public class Class_Object
     //Folder(s) "Resources" can be created everywhere from root "Assests/*", that can be access by Unity or Application
 
     //BEWARD:
-    //All content(s) in folder(s) "Resources" will be builded to Application, even they mightn't be used in Build-Game Application
+    //All content(s) in folder(s) "Resources" will be builded to Application, even they m_ightn't be used in Build-Game Application
 
     public static List<GameObject> GetResources_Prefab(string s_Path_inResources)
     {

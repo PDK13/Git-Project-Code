@@ -34,14 +34,14 @@ public class ClassString
 
     #region String Replace
 
-    public static string GetStringReplace(string m_FatherString, string m_CheckString, string mReplaceString)
+    public static string GetStringReplace(string m_FatherString, string m_CheckString, string m_ReplaceString)
     {
-        return m_FatherString.Replace(m_CheckString, mReplaceString);
+        return m_FatherString.Replace(m_CheckString, m_ReplaceString);
     }
 
-    public static string GetStringReplaceClone(string mClone_Name)
+    public static string GetStringReplaceClone(string m_CloneName)
     {
-        return GetStringReplace(mClone_Name, "(Clone)", "");
+        return GetStringReplace(m_CloneName, "(Clone)", "");
     }
 
     public static string GetStringReplace_Resources(string m_Resourcem_Path)
@@ -300,30 +300,30 @@ public class ClassString
 
     #region String Data Vector Dencypt
 
-    public static Vector2 GetDataVector2Dencypt(string mVectorData, char m_Key)
+    public static Vector2 GetDataVector2Dencypt(string m_VectorData, char m_Key)
     {
-        List<float> m_Data = GetDataDencyptFloat(mVectorData, m_Key);
+        List<float> m_Data = GetDataDencyptFloat(m_VectorData, m_Key);
 
         return new Vector2(m_Data[0], m_Data[1]);
     }
 
-    public static Vector3 GetDataVector3Dencypt(string mVectorData, char m_Key)
+    public static Vector3 GetDataVector3Dencypt(string m_VectorData, char m_Key)
     {
-        List<float> m_Data = GetDataDencyptFloat(mVectorData, m_Key);
+        List<float> m_Data = GetDataDencyptFloat(m_VectorData, m_Key);
 
         return new Vector3(m_Data[0], m_Data[1], m_Data[2]);
     }
 
-    public static Vector2Int GetDataVector2IntDencypt(string mVectorData, char m_Key)
+    public static Vector2Int GetDataVector2IntDencypt(string m_VectorData, char m_Key)
     {
-        List<int> m_Data = GetDataDencyptInt(mVectorData, m_Key);
+        List<int> m_Data = GetDataDencyptInt(m_VectorData, m_Key);
 
         return new Vector2Int(m_Data[0], m_Data[1]);
     }
 
-    public static Vector3Int GetDataVector3IntDencypt(string mVectorData, char m_Key)
+    public static Vector3Int GetDataVector3IntDencypt(string m_VectorData, char m_Key)
     {
-        List<int> m_Data = GetDataDencyptInt(mVectorData, m_Key);
+        List<int> m_Data = GetDataDencyptInt(m_VectorData, m_Key);
 
         return new Vector3Int(m_Data[0], m_Data[1], m_Data[2]);
     }
@@ -350,20 +350,20 @@ public class ClassString
         }
 
         //Check @
-        bool mIsExist_AA = false;
+        bool m_CheckAAIsExist = false;
         for (int i = 0; i < m_EmailCheck.Length; i++)
         {
-            if (!mIsExist_AA && m_EmailCheck[i] == '@')
+            if (!m_CheckAAIsExist && m_EmailCheck[i] == '@')
             {
-                mIsExist_AA = true;
+                m_CheckAAIsExist = true;
             }
             else
-            if (mIsExist_AA && m_EmailCheck[i] == '@')
+            if (m_CheckAAIsExist && m_EmailCheck[i] == '@')
             {
                 return false;
             }
         }
-        if (!mIsExist_AA)
+        if (!m_CheckAAIsExist)
         {
             return false;
         }

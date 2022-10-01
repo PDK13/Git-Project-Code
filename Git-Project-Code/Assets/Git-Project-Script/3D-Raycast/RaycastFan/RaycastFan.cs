@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class RaycastFan : MonoBehaviour
 //Eye Fan Cast
-//Distance 0 mean not Cast (Even "INSIDE" other GameObject)
+//Distance 0 m_ean not Cast (Even "INSIDE" other GameObject)
 {
     [Header("Fan in 'XZ' or 'XY'?")]
     public bool m_XZ = true;

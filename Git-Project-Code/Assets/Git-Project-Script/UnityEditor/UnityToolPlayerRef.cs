@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UnityToolPlayerRef : EditorWindow
 {
-    private string m_Name = "";
+    private string mName = "";
 
     private string m_Value = "";
 
@@ -44,7 +44,7 @@ public class UnityToolPlayerRef : EditorWindow
         GUILayout.Label("------ REF ------", m_Style);
         GUILayout.Space(10);
 
-        m_Name = EditorGUILayout.TextField("Name", m_Name);
+        mName = EditorGUILayout.TextField("Name", mName);
 
         GUILayout.Space(5f);
 
@@ -109,7 +109,7 @@ public class UnityToolPlayerRef : EditorWindow
     {
         if (GUILayout.Button("Set", GUILayout.Width(position.width / m_Button_HorizontalCount), GUILayout.Height(50f)))
         {
-            if (m_Name.Equals(""))
+            if (mName.Equals(""))
             {
                 Debug.LogError("Tool: Name is Emty!");
             }
@@ -121,17 +121,17 @@ public class UnityToolPlayerRef : EditorWindow
             else
             if (m_Choice_Cur == m_Choice[0])
             {
-                Class_Scene.Set_PlayerPrefs(m_Name, m_Value);
+                Class_Scene.Set_PlayerPrefs(mName, m_Value);
             }
             else
                 if (m_Choice_Cur == m_Choice[1])
             {
-                Class_Scene.Set_PlayerPrefs(m_Name, int.Parse(m_Value));
+                Class_Scene.Set_PlayerPrefs(mName, int.Parse(m_Value));
             }
             else
                 if (m_Choice_Cur == m_Choice[2])
             {
-                Class_Scene.Set_PlayerPrefs(m_Name, float.Parse(m_Value));
+                Class_Scene.Set_PlayerPrefs(mName, float.Parse(m_Value));
             }
         }
     }
@@ -140,16 +140,16 @@ public class UnityToolPlayerRef : EditorWindow
     {
         if (GUILayout.Button("Get", GUILayout.Width(position.width / m_Button_HorizontalCount), GUILayout.Height(50f)))
         {
-            if (m_Name.Equals(""))
+            if (mName.Equals(""))
             {
                 Debug.LogError("Tool: Name is Emty!");
             }
             else
             if (m_Choice_Cur == m_Choice[0])
             {
-                if (Class_Scene.GetPlayerPrefsIsExist(m_Name))
+                if (Class_Scene.GetPlayerPrefsIsExist(mName))
                 {
-                    m_Value = Class_Scene.GetPlayerPrefs_String(m_Name);
+                    m_Value = Class_Scene.GetPlayerPrefs_String(mName);
                 }
                 else
                 {
@@ -160,9 +160,9 @@ public class UnityToolPlayerRef : EditorWindow
             else
             if (m_Choice_Cur == m_Choice[1])
             {
-                if (Class_Scene.GetPlayerPrefsIsExist(m_Name))
+                if (Class_Scene.GetPlayerPrefsIsExist(mName))
                 {
-                    m_Value = Class_Scene.GetPlayerPrefs_Int(m_Name).ToString();
+                    m_Value = Class_Scene.GetPlayerPrefs_Int(mName).ToString();
                 }
                 else
                 {
@@ -173,9 +173,9 @@ public class UnityToolPlayerRef : EditorWindow
             else
             if (m_Choice_Cur == m_Choice[2])
             {
-                if (Class_Scene.GetPlayerPrefsIsExist(m_Name))
+                if (Class_Scene.GetPlayerPrefsIsExist(mName))
                 {
-                    m_Value = Class_Scene.GetPlayerPrefs_Float(m_Name).ToString();
+                    m_Value = Class_Scene.GetPlayerPrefs_Float(mName).ToString();
                 }
                 else
                 {
@@ -190,11 +190,11 @@ public class UnityToolPlayerRef : EditorWindow
     {
         if (GUILayout.Button("Clear", GUILayout.Width(position.width / m_Button_HorizontalCount), GUILayout.Height(50f)))
         {
-            Debug.LogWarningFormat("Tool: Clear {0} = {1} Value!", m_Name, m_Value);
+            Debug.LogWarningFormat("Tool: Clear {0} = {1} Value!", mName, m_Value);
 
-            Class_Scene.Set_PlayerPrefs_Clear(m_Name);
+            Class_Scene.Set_PlayerPrefs_Clear(mName);
 
-            m_Name = "";
+            mName = "";
             m_Value = "";
         }
     }
@@ -207,7 +207,7 @@ public class UnityToolPlayerRef : EditorWindow
 
             Class_Scene.Set_PlayerPrefs_Clear_All();
 
-            m_Name = "";
+            mName = "";
             m_Value = "";
         }
     }

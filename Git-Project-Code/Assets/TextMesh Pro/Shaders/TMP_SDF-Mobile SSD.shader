@@ -1,5 +1,5 @@
 ﻿// Simplified SDF shader:
-// - No Shading Option (bevel / bump / env map)
+// - No Shading Option (bevel / bump / env m_ap)
 // - No Glow Option
 // - Softness is applied on both side of the outline
 
@@ -89,8 +89,8 @@ SubShader {
 		#pragma shader_feature __ OUTLINE_ON
 		#pragma shader_feature __ UNDERLAY_ON UNDERLAY_INNER
 
-		#pragma multm_compile __ UNITY_UI_CLIP_RECT
-		#pragma multm_compile __ UNITY_UI_ALPHACLIP
+		#pragma m_ultm_compile __ UNITY_UI_CLIP_RECT
+		#pragma m_ultm_compile __ UNITY_UI_ALPHACLIP
 
 		#include "UnityCG.cginc"
 		#include "UnityUI.cginc"

@@ -1,5 +1,5 @@
 ﻿// Simplified SDF shader:
-// - No Shading Option (bevel / bump / env map)
+// - No Shading Option (bevel / bump / env m_ap)
 // - No Glow Option
 // - Softness is applied on both side of the outline
 
@@ -91,8 +91,8 @@ SubShader {
 		#pragma shader_feature __ OUTLINE_ON
 		#pragma shader_feature __ UNDERLAY_ON UNDERLAY_INNER
 
-		#pragma multm_compile __ UNITY_UI_CLIP_RECT
-		#pragma multm_compile __ UNITY_UI_ALPHACLIP
+		#pragma m_ultm_compile __ UNITY_UI_CLIP_RECT
+		#pragma m_ultm_compile __ UNITY_UI_ALPHACLIP
 
 
 		#include "UnityCG.cginc"
@@ -175,14 +175,14 @@ SubShader {
 
 			// Generate UV for the Masking Texture
 			float4 clampedRect = clamp(_ClipRect, -2e10, 2e10);
-			float2 maskUV = (vert.xy - clampedRect.xy) / (clampedRect.zw - clampedRect.xy);
+			float2 m_askUV = (vert.xy - clampedRect.xy) / (clampedRect.zw - clampedRect.xy);
 
 			// Structure for pixel shader
 			pixel_t output = {
 				vPosition,
 				faceColor,
 				outlineColor,
-				float4(input.texcoord0.x, input.texcoord0.y, maskUV.x, maskUV.y),
+				float4(input.texcoord0.x, input.texcoord0.y, m_askUV.x, m_askUV.y),
 				half4(scale, bias - outline, bias + outline, bias),
 				half4(vert.xy * 2 - clampedRect.xy - clampedRect.zw, 0.25 / (0.25 * half2(_MaskSoftnessX, _MaskSoftnessY) + pixelSize.xy)),
 			#if (UNDERLAY_ON | UNDERLAY_INNER)
@@ -219,8 +219,8 @@ SubShader {
 
 		// Alternative implementation to UnityGet2DClipping with support for softness.
 		//#if UNITY_UI_CLIP_RECT
-			half2 m = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
-			c *= m.x * m.y;
+			half2 m_ = saturate((_ClipRect.zw - _ClipRect.xy - abs(input.mask.xy)) * input.mask.zw);
+			c *= m_.x * m_.y;
 		//#endif
 
 		float a = abs(_MaskInverse - tex2D(_MaskTex, input.texcoord0.zw).a);
