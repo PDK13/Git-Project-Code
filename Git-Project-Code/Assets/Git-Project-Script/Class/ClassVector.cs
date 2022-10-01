@@ -116,9 +116,9 @@ public class ClassVector
         return new Vector3(Mathf.Cos(m_Deg * Mathf.Deg2Rad), Mathf.Sin(m_Deg * Mathf.Deg2Rad), 0) * m_Duration;
     }
 
-    public static Vector3 GetPosOnCircleXZ(float m_Angle, float m_Duration)
+    public static Vector3 GetPosOnCircleXZ(float m_Deg, float m_Duration)
     {
-        return new Vector3(Mathf.Cos(m_Angle * Mathf.Deg2Rad), 0, Mathf.Sin(m_Angle * Mathf.Deg2Rad)) * m_Duration;
+        return new Vector3(Mathf.Cos(m_Deg * Mathf.Deg2Rad), 0, Mathf.Sin(m_Deg * Mathf.Deg2Rad)) * m_Duration;
     }
 
     public static float GetDegOnRotationXZ(Transform m_TransformMain, Transform m_TransformTarket)
