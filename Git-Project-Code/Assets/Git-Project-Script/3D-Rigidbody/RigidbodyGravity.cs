@@ -3,9 +3,9 @@ using UnityEngine;
 [AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody Gravity")]
 public class RigidbodyGravity : MonoBehaviour
 {
-    [SerializeField] private float f_Gravity_Scale = 1.0f;
+    [SerializeField] private float m_Gravity_Scale = 1.0f;
 
-    [SerializeField] private float f_Gravity_Global = 9.81f;
+    [SerializeField] private float m_Gravity_Global = 9.81f;
 
     private Rigidbody com_Rigidbody;
 
@@ -45,19 +45,19 @@ public class RigidbodyGravity : MonoBehaviour
 
     #region Set
 
-    public void Set_Gravity_Scale(float f_Gravity_Scale)
+    public void Set_Gravity_Scale(float m_Gravity_Scale)
     {
-        this.f_Gravity_Scale = f_Gravity_Scale;
+        this.m_Gravity_Scale = m_Gravity_Scale;
     }
 
-    public void Set_Gravity_Global(float f_Gravity_Global)
+    public void Set_Gravity_Global(float m_Gravity_Global)
     {
-        this.f_Gravity_Global = f_Gravity_Global;
+        this.m_Gravity_Global = m_Gravity_Global;
     }
 
-    public void Set_Rigidbody_Drag(float f_Gravity_Drag)
+    public void Set_Rigidbody_Drag(float m_Gravity_Drag)
     {
-        com_Rigidbody.drag = f_Gravity_Drag;
+        com_Rigidbody.drag = m_Gravity_Drag;
     }
 
     #endregion
@@ -66,12 +66,12 @@ public class RigidbodyGravity : MonoBehaviour
 
     public float GetGravity_Scale()
     {
-        return f_Gravity_Scale;
+        return m_Gravity_Scale;
     }
 
     public float GetGravity_Global_toFloat()
     {
-        return f_Gravity_Global;
+        return m_Gravity_Global;
     }
 
     public Vector3 GetGravity_Global_toVector()

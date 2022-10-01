@@ -14,7 +14,7 @@ public class UIObjectMoveToPoint : MonoBehaviour
     private RectTransform rec_MoveTo;
 
     [SerializeField]
-    private float f_Move_Time = 1f;
+    private float m_Move_Time = 1f;
 
     [SerializeField]
     private Vector2 v2_MoveTo_Offset = new Vector2();
@@ -29,10 +29,10 @@ public class UIObjectMoveToPoint : MonoBehaviour
     private Vector3 v3_MoveTo = new Vector3();
 
     //[SerializeField]
-    private float f_Distance = 0f;
+    private float m_Distance = 0f;
 
     //[SerializeField]
-    private float f_Speed = 0f;
+    private float m_Speed = 0f;
 
     [SerializeField]
     private bool m_Move_Done = true;
@@ -58,16 +58,16 @@ public class UIObjectMoveToPoint : MonoBehaviour
 
         Vector2 v2_MoveTo = new Vector2(v3_MoveTo.x, v3_MoveTo.y);
 
-        f_Distance = Vector2.Distance(rec_Transform.anchoredPosition, v2_MoveTo + v2_MoveTo_Offset);
+        m_Distance = Vector2.Distance(rec_Transform.anchoredPosition, v2_MoveTo + v2_MoveTo_Offset);
 
-        if (m_Move_Done && f_Distance > 1f)
+        if (m_Move_Done && m_Distance > 1f)
         {
-            f_Speed = f_Distance / f_Move_Time;
+            m_Speed = m_Distance / m_Move_Time;
 
             m_Move_Done = false;
         }
         else
-        if (f_Distance <= 1f)
+        if (m_Distance <= 1f)
         {
             m_Move_Done = true;
 
@@ -80,12 +80,12 @@ public class UIObjectMoveToPoint : MonoBehaviour
             }
         }
 
-        if (f_Distance > 0f)
+        if (m_Distance > 0f)
         {
             rec_Transform.anchoredPosition = Vector2.MoveTowards(
                 rec_Transform.anchoredPosition,
                 v2_MoveTo + v2_MoveTo_Offset,
-                f_Speed * Time.deltaTime);
+                m_Speed * Time.deltaTime);
 
             rec_Transform.anchoredPosition3D = new Vector3(
                 rec_Transform.anchoredPosition3D.x,
@@ -109,9 +109,9 @@ public class UIObjectMoveToPoint : MonoBehaviour
             v3_MoveTo.z);
     }
 
-    public void Set_UI_MoveTo_Time(float f_Move_Time)
+    public void Set_UI_MoveTo_Time(float m_Move_Time)
     {
-        this.f_Move_Time = f_Move_Time;
+        this.m_Move_Time = m_Move_Time;
     }
 
     public void Set_UI_MoveTo_Offset(Vector2 v2_MoveTo_Offset)

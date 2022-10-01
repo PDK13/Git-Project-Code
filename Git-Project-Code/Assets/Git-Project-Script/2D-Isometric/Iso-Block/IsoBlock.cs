@@ -15,12 +15,12 @@ public class IsoBlock : MonoBehaviour
     [Tooltip("Round to Upper on Matrix")]
     [SerializeField]
     [Range(0.5f, 0.6f)]
-    private float f_Pos_Matrix_Max = 0.55f;
+    private float m_Pos_Matrix_Max = 0.55f;
 
     [Tooltip("Round to Lower on Matrix")]
     [SerializeField]
     [Range(0.4f, 0.5f)]
-    private float f_Pos_Matrix_Min = 0.45f;
+    private float m_Pos_Matrix_Min = 0.45f;
 
     [Tooltip("Pos Primary on Matrix")]
     private Vector3Int v3_PosOnMatrix_Primary = new Vector3Int();
@@ -48,24 +48,9 @@ public class IsoBlock : MonoBehaviour
 
     [Header("Block Manager")]
 
-    [SerializeField]
-    private IsoWorld cl_World;
-
     private IsoClassBlock cl_Block = new IsoClassBlock("...", "...");
 
     #endregion
-
-    public void Set_World(IsoWorld cl_World)
-    {
-        this.cl_World = cl_World;
-
-        Set_Pos_Transform();
-    }
-
-    public IsoWorld GetWorld()
-    {
-        return cl_World;
-    }
 
     private void FixedUpdate()
     {
@@ -78,11 +63,11 @@ public class IsoBlock : MonoBehaviour
 
     private void Set_Pos_Transform()
     {
-        if (cl_World != null)
-        {
-            v3_Offset = cl_World.GetFix_Offset();
-            v3_Square = cl_World.GetFix_Square();
-        }
+        //if (cl_World != null)
+        //{
+        //    v3_Offset = cl_World.GetFix_Offset();
+        //    v3_Square = cl_World.GetFix_Square();
+        //}
 
         Vector3 v3_Pos_Transform = GetPos_OnScene(v3_Pos);
 
@@ -101,48 +86,43 @@ public class IsoBlock : MonoBehaviour
 
     private void Set_Pos_onMatrix()
     {
-        float i_Check_X = (Mathf.Abs((int)v3_Pos.x - v3_Pos.x));
+        float m_Check_X = (Mathf.Abs((int)v3_Pos.x - v3_Pos.x));
 
-        if (i_Check_X > f_Pos_Matrix_Max)
+        if (m_Check_X > m_Pos_Matrix_Max)
         {
             v3_PosOnMatrix.x = (int)v3_Pos.x + 1;
         }
         else
-        if (i_Check_X < f_Pos_Matrix_Min)
+        if (m_Check_X < m_Pos_Matrix_Min)
         {
             v3_PosOnMatrix.x = (int)v3_Pos.x;
         }
 
-        float i_Check_Y = (Mathf.Abs((int)v3_Pos.y - v3_Pos.y));
+        float m_Check_Y = (Mathf.Abs((int)v3_Pos.y - v3_Pos.y));
 
-        if (i_Check_Y > f_Pos_Matrix_Max)
+        if (m_Check_Y > m_Pos_Matrix_Max)
         {
             v3_PosOnMatrix.y = (int)v3_Pos.y + 1;
         }
         else
-        if (i_Check_Y < f_Pos_Matrix_Min)
+        if (m_Check_Y < m_Pos_Matrix_Min)
         {
             v3_PosOnMatrix.y = (int)v3_Pos.y;
         }
 
-        float i_Check_High = (Mathf.Abs((int)v3_Pos.z - v3_Pos.z));
+        float m_Check_High = (Mathf.Abs((int)v3_Pos.z - v3_Pos.z));
 
-        if (i_Check_High > f_Pos_Matrix_Max)
+        if (m_Check_High > m_Pos_Matrix_Max)
         {
             v3_PosOnMatrix.z = (int)v3_Pos.z + 1;
         }
         else
-        if (i_Check_High < f_Pos_Matrix_Min)
+        if (m_Check_High < m_Pos_Matrix_Min)
         {
             v3_PosOnMatrix.z = (int)v3_Pos.z;
         }
     }
 
-    /// <summary>
-    /// Exchance Pos on World to Pos on Scene or Screen
-    /// </summary>
-    /// <param name="v3_Pos_OnWorld">XY which UDLR and Z which TB</param>
-    /// <returns></returns>
     public static Vector3 GetPos_OnScene(Vector3 v3_Pos_OnWorld)
     {
         Vector3 v3_FixTransform = new Vector3(
@@ -153,20 +133,13 @@ public class IsoBlock : MonoBehaviour
         return v3_FixTransform;
     }
 
-    /// <summary>
-    /// Exchance Pos on Scene or Screen to Pos on World
-    /// </summary>
-    /// <param name="v3_Pos_OnScene"></param>
-    /// <returns></returns>
     public static Vector2 GetPos_OnWorld(Vector2 v3_Pos_OnScene)
     {
-        //return new Vector2(0.5f * v_Pos_Transform.x - v_Pos_Transform.y, 0.5f * v_Pos_Transform.x + v_Pos_Transform.y);
+        float m_Y_OnWorld = v3_Pos_OnScene.y + v3_Pos_OnScene.x / 2;
 
-        float f_Y_OnWorld = v3_Pos_OnScene.y + v3_Pos_OnScene.x / 2;
+        float m_X_OnWorld = v3_Pos_OnScene.x - m_Y_OnWorld;
 
-        float f_X_OnWorld = v3_Pos_OnScene.x - f_Y_OnWorld;
-
-        return new Vector3(f_X_OnWorld, f_Y_OnWorld, 0);
+        return new Vector3(m_X_OnWorld, m_Y_OnWorld, 0);
     }
 
     #endregion
@@ -182,28 +155,28 @@ public class IsoBlock : MonoBehaviour
         Set_Pos_Transform();
     }
 
-    public void Set_Pos(float f_X, float f_Y, float f_High)
+    public void Set_Pos(float m_X, float m_Y, float m_High)
     {
-        Set_Pos(new Vector3(f_X, f_Y, f_High));
+        Set_Pos(new Vector3(m_X, m_Y, m_High));
     }
 
-    public void Set_Pos_X(float f_X)
+    public void Set_Pos_X(float m_X)
     {
-        v3_Pos.x = f_X;
+        v3_Pos.x = m_X;
 
         Set_Pos_Transform();
     }
 
-    public void Set_Pos_Y(float f_Y)
+    public void Set_Pos_Y(float m_Y)
     {
-        v3_Pos.y = f_Y;
+        v3_Pos.y = m_Y;
 
         Set_Pos_Transform();
     }
 
-    public void Set_Pos_High(float f_High)
+    public void Set_Pos_High(float m_High)
     {
-        v3_Pos.z = f_High;
+        v3_Pos.z = m_High;
 
         Set_Pos_Transform();
     }
@@ -217,28 +190,28 @@ public class IsoBlock : MonoBehaviour
         Set_Pos(GetPos_Current() + v3_Pos_Add);
     }
 
-    public void Set_Pos_Add(float f_X_Add, float f_Y_Add, float f_High_Add)
+    public void Set_Pos_Add(float m_X_Add, float m_Y_Add, float m_High_Add)
     {
-        Set_Pos_Add(new Vector3(f_X_Add, f_Y_Add, f_High_Add));
+        Set_Pos_Add(new Vector3(m_X_Add, m_Y_Add, m_High_Add));
     }
 
-    public void Set_Pos_Add_X(float f_X_Add)
+    public void Set_Pos_Add_X(float m_X_Add)
     {
-        v3_Pos.x += f_X_Add;
+        v3_Pos.x += m_X_Add;
 
         Set_Pos_Transform();
     }
 
-    public void Set_Pos_Add_Y(float f_Y_Add)
+    public void Set_Pos_Add_Y(float m_Y_Add)
     {
-        v3_Pos.y += f_Y_Add;
+        v3_Pos.y += m_Y_Add;
 
         Set_Pos_Transform();
     }
 
-    public void Set_Pos_Add_High(float f_High_Add)
+    public void Set_Pos_Add_High(float m_High_Add)
     {
-        v3_Pos.z += f_High_Add;
+        v3_Pos.z += m_High_Add;
 
         Set_Pos_Transform();
     }

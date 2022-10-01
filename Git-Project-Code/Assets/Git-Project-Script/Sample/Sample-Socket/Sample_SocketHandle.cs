@@ -18,7 +18,7 @@ public class Sample_SocketHandle : MonoBehaviour
     [SerializeField]
     private List<string> l_Message;
 
-    private int i_Plus = 0;
+    private int m_Plus = 0;
 
     private void Start()
     {
@@ -41,8 +41,8 @@ public class Sample_SocketHandle : MonoBehaviour
 
         //    if (GetExist_ID(s_ID))
         //    {
-        //        int i_Index = GetExist_ID_Index(s_ID);
-        //        l_Message[i_Index] = s_Command;
+        //        int m_Index = GetExist_ID_Index(s_ID);
+        //        l_Message[m_Index] = s_Command;
         //    }
         //    else
         //    {
@@ -61,8 +61,8 @@ public class Sample_SocketHandle : MonoBehaviour
 
     public void Button_SendDeviceID()
     {
-        i_Plus++;
-        cl_SocketManager.Set_Socket_Write(cl_SocketManager.GetDeviceID() + ":" + i_Plus.ToString());
+        m_Plus++;
+        cl_SocketManager.Set_Socket_Write(cl_SocketManager.GetDeviceID() + ":" + m_Plus.ToString());
     }
 
     private bool GetExist_ID(string s_IDCheck)

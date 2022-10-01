@@ -8,9 +8,9 @@ public class RendererTrajectory : MonoBehaviour
 
     [Header("Trajectory Main")]
 
-    [SerializeField] private float f_Trajectory_Power = 5f;
+    [SerializeField] private float m_Trajectory_Power = 5f;
 
-    [SerializeField] private int i_Trajectory_Step = 500;
+    [SerializeField] private int m_Trajectory_Step = 500;
 
     [Header("Trajectory Point")]
 
@@ -20,11 +20,11 @@ public class RendererTrajectory : MonoBehaviour
 
     [Header("Trajectory Raycast")]
 
-    [SerializeField] private bool m_Trajectory_Raycast = false;
+    [SerializeField] private bool m_TrajectoryRaycastIsAllow = false;
 
     [SerializeField] private LayerMask l_Trajectory_Raycast;
 
-    [SerializeField] private float f_Trajectory_Raycast = 0.5f;
+    [SerializeField] private float m_Trajectory_Raycast = 0.5f;
 
     private RigidbodyGravity cs_RigidbodyGravity;
 
@@ -101,33 +101,33 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Trajectory Power
 
-    public void Set_Trajectory_Power(float f_Trajectory_Power)
+    public void Set_Trajectory_Power(float m_Trajectory_Power)
     {
-        this.f_Trajectory_Power = f_Trajectory_Power;
+        this.m_Trajectory_Power = m_Trajectory_Power;
     }
 
-    public void Set_Trajectory_Power_Chance(float f_Trajectory_Power_Chance)
+    public void Set_Trajectory_Power_Chance(float m_Trajectory_Power_Chance)
     {
-        f_Trajectory_Power += f_Trajectory_Power_Chance;
+        m_Trajectory_Power += m_Trajectory_Power_Chance;
     }
 
     public float GetTrajectory_Power()
     {
-        return f_Trajectory_Power;
+        return m_Trajectory_Power;
     }
 
     #endregion
 
     #region Trajectory Step
 
-    public void Set_Trajectory_Step(int i_Trajectory_Step)
+    public void Set_Trajectory_Step(int m_Trajectory_Step)
     {
-        this.i_Trajectory_Step = i_Trajectory_Step;
+        this.m_Trajectory_Step = m_Trajectory_Step;
     }
 
     public int GetTrajectory_Step()
     {
-        return i_Trajectory_Step;
+        return m_Trajectory_Step;
     }
 
     #endregion
@@ -136,55 +136,55 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Trajectory
 
-    public Vector3[] GetTrajectory_Points(float f_Rigidbody_Drag, bool m_Dir_Normalized)
+    public Vector3[] GetTrajectory_Points(float m_Rigidbody_Drag, bool m_Dir_Normalized)
     {
         Vector3[] v3_Trajectory_Result;
 
-        List<Vector3> lv3_Trajectory_Result_List = new List<Vector3>();
+        List<Vector3> m_Trajectory_Result_List = new List<Vector3>();
 
-        float f_TimeStep = Time.fixedDeltaTime / Physics.defaultSolverVelocityIterations;
+        float m_TimeStep = Time.fixedDeltaTime / Physics.defaultSolverVelocityIterations;
 
-        Vector3 v3_Gravity_Accel = cs_RigidbodyGravity.GetGravity_Global_toVector() * cs_RigidbodyGravity.GetGravity_Scale() * f_TimeStep * f_TimeStep;
+        Vector3 v3_Gravity_Accel = cs_RigidbodyGravity.GetGravity_Global_toVector() * cs_RigidbodyGravity.GetGravity_Scale() * m_TimeStep * m_TimeStep;
 
-        float f_Drag = 1f - f_TimeStep * f_Rigidbody_Drag;
+        float m_Drag = 1f - m_TimeStep * m_Rigidbody_Drag;
 
         Vector3 v3_Trajectory_Dir = GetTrajectory_Dir_Primary(m_Dir_Normalized);
 
-        Vector3 v3_MoveStep = v3_Trajectory_Dir * f_TimeStep;
+        Vector3 v3_MoveStep = v3_Trajectory_Dir * m_TimeStep;
 
         Vector3 v3_Pos_Point = GetTrajectory_Start();
 
-        for (int i = 0; i < i_Trajectory_Step; i++)
+        for (int i = 0; i < m_Trajectory_Step; i++)
         {
             v3_MoveStep += v3_Gravity_Accel;
 
-            v3_MoveStep *= f_Drag;
+            v3_MoveStep *= m_Drag;
 
             v3_Pos_Point += v3_MoveStep;
 
-            if (m_Trajectory_Raycast)
+            if (m_TrajectoryRaycastIsAllow)
             {
-                bool ray_Raycast = Physics.Linecast(v3_Pos_Point + Vector3.down * f_Trajectory_Raycast, v3_Pos_Point - Vector3.down * f_Trajectory_Raycast, l_Trajectory_Raycast);
+                bool ray_Raycast = Physics.Linecast(v3_Pos_Point + Vector3.down * m_Trajectory_Raycast, v3_Pos_Point - Vector3.down * m_Trajectory_Raycast, l_Trajectory_Raycast);
 
                 if (ray_Raycast)
                 {
-                    v3_Trajectory_Result = new Vector3[lv3_Trajectory_Result_List.Count];
-                    v3_Trajectory_Result = lv3_Trajectory_Result_List.ToArray();
+                    v3_Trajectory_Result = new Vector3[m_Trajectory_Result_List.Count];
+                    v3_Trajectory_Result = m_Trajectory_Result_List.ToArray();
                     return v3_Trajectory_Result;
                 }
                 else
                 {
-                    lv3_Trajectory_Result_List.Add(v3_Pos_Point);
+                    m_Trajectory_Result_List.Add(v3_Pos_Point);
                 }
             }
             else
             {
-                lv3_Trajectory_Result_List.Add(v3_Pos_Point);
+                m_Trajectory_Result_List.Add(v3_Pos_Point);
             }
         }
 
-        v3_Trajectory_Result = new Vector3[lv3_Trajectory_Result_List.Count];
-        v3_Trajectory_Result = lv3_Trajectory_Result_List.ToArray();
+        v3_Trajectory_Result = new Vector3[m_Trajectory_Result_List.Count];
+        v3_Trajectory_Result = m_Trajectory_Result_List.ToArray();
         return v3_Trajectory_Result;
     }
 
@@ -192,50 +192,50 @@ public class RendererTrajectory : MonoBehaviour
     {
         if (m_Dir_Normalized)
         {
-            return (GetTrajectory_Next() - GetTrajectory_Start()).normalized * f_Trajectory_Power;
+            return (GetTrajectory_Next() - GetTrajectory_Start()).normalized * m_Trajectory_Power;
         }
 
-        return (GetTrajectory_Next() - GetTrajectory_Start()) * f_Trajectory_Power;
+        return (GetTrajectory_Next() - GetTrajectory_Start()) * m_Trajectory_Power;
     }
 
     public Vector3 GetTrajectory_Dir()
     {
-        return (GetTrajectory_Next() - GetTrajectory_Start()) * f_Trajectory_Power;
+        return (GetTrajectory_Next() - GetTrajectory_Start()) * m_Trajectory_Power;
     }
 
     #endregion
 
     #region Angle for hit Trajectory
 
-    public float? GetTrajectory_Angle_toDeg(Vector3 v3_Pos_Start, Vector3 v3_Pos_Tarket, bool m_Angle_High)
+    public float? GetTrajectory_Angle_toDeg(Vector3 v3_Pos_Start, Vector3 v3_Pos_Tarket, bool m_AngleHighIsAllow)
     {
         Vector3 v3_Tarket_Dir = v3_Pos_Tarket - v3_Pos_Start;
 
-        float f_Y_High = v3_Tarket_Dir.y;
+        float m_Y_High = v3_Tarket_Dir.y;
 
         v3_Tarket_Dir.y = 0f;
 
-        float f_X_Duration = v3_Tarket_Dir.magnitude;
+        float m_X_Duration = v3_Tarket_Dir.magnitude;
 
-        float f_Gravity = cs_RigidbodyGravity.GetGravity_Global_toFloat() * cs_RigidbodyGravity.GetGravity_Scale();
+        float m_Gravity = cs_RigidbodyGravity.GetGravity_Global_toFloat() * cs_RigidbodyGravity.GetGravity_Scale();
 
-        float f_Speed_SQR = f_Trajectory_Power * f_Trajectory_Power;
+        float m_Speed_SQR = m_Trajectory_Power * m_Trajectory_Power;
 
-        float f_Under_SQR = (f_Speed_SQR * f_Speed_SQR) - f_Gravity * (f_Gravity * f_X_Duration * f_X_Duration + 2 * f_Y_High * f_Speed_SQR);
+        float m_Under_SQR = (m_Speed_SQR * m_Speed_SQR) - m_Gravity * (m_Gravity * m_X_Duration * m_X_Duration + 2 * m_Y_High * m_Speed_SQR);
 
-        if (f_Under_SQR >= 0)
+        if (m_Under_SQR >= 0)
         {
-            float f_Under_SQRT = Mathf.Sqrt(f_Under_SQR);
-            float f_Angle_High = f_Speed_SQR + f_Under_SQRT;
-            float f_Angle_Low = f_Speed_SQR - f_Under_SQRT;
+            float m_Under_SQRT = Mathf.Sqrt(m_Under_SQR);
+            float m_Angle_High = m_Speed_SQR + m_Under_SQRT;
+            float m_Angle_Low = m_Speed_SQR - m_Under_SQRT;
 
-            if (m_Angle_High)
+            if (m_AngleHighIsAllow)
             {
-                return Mathf.Atan2(f_Angle_High, f_Gravity * f_X_Duration) * Mathf.Rad2Deg;
+                return Mathf.Atan2(m_Angle_High, m_Gravity * m_X_Duration) * Mathf.Rad2Deg;
             }
             else
             {
-                return Mathf.Atan2(f_Angle_Low, f_Gravity * f_X_Duration) * Mathf.Rad2Deg;
+                return Mathf.Atan2(m_Angle_Low, m_Gravity * m_X_Duration) * Mathf.Rad2Deg;
             }
         }
 
@@ -275,9 +275,9 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Line Renderer with Trajectory
 
-    public void Set_Trajectory_toLineRenderer(LineRenderer com_LineRenderer, float f_Rigidbody_Drag, bool m_Dir_Normalized)
+    public void Set_Trajectory_toLineRenderer(LineRenderer com_LineRenderer, float m_Rigidbody_Drag, bool m_Dir_Normalized)
     {
-        Vector3[] trajectory = GetTrajectory_Points(f_Rigidbody_Drag, m_Dir_Normalized);
+        Vector3[] trajectory = GetTrajectory_Points(m_Rigidbody_Drag, m_Dir_Normalized);
 
         com_LineRenderer.positionCount = trajectory.Length;
         Vector3[] position = new Vector3[trajectory.Length];

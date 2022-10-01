@@ -7,7 +7,7 @@ public class SimpleCountdownTime : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI com_Text;
 
-    [SerializeField] private float f_Time_Passed = 1f;
+    [SerializeField] private float m_Time_Passed = 1f;
 
     [SerializeField] private List<SampleCountdownTime_Class> lCountdownTime = new List<SampleCountdownTime_Class>();
 
@@ -31,11 +31,11 @@ public class SimpleCountdownTime : MonoBehaviour
 
         do
         {
-            csCountdownTime.Set_TimeOut(f_Time_Passed);
+            csCountdownTime.Set_TimeOut(m_Time_Passed);
 
             com_Text.text = csCountdownTime.GetTimeOut_Cur() + " / " + csCountdownTime.GetTime();
 
-            yield return new WaitForSeconds(f_Time_Passed);
+            yield return new WaitForSeconds(m_Time_Passed);
         }
         while (!csCountdownTime.GetTimeOut());
 
@@ -55,44 +55,44 @@ public class SimpleCountdownTime : MonoBehaviour
 [System.Serializable]
 public class SampleCountdownTime_Class
 {
-    [SerializeField] private float f_Time = 0;
+    [SerializeField] private float m_Time = 0;
 
     [SerializeField] private string s_Message = "";
 
-    [SerializeField] private float f_Time_Cur;
+    [SerializeField] private float m_Time_Cur;
 
-    public SampleCountdownTime_Class(float f_Time)
+    public SampleCountdownTime_Class(float m_Time)
     {
-        this.f_Time = f_Time;
-        f_Time_Cur = f_Time;
+        this.m_Time = m_Time;
+        m_Time_Cur = m_Time;
     }
 
-    public SampleCountdownTime_Class(float f_Time, string s_Message)
+    public SampleCountdownTime_Class(float m_Time, string s_Message)
     {
-        this.f_Time = f_Time;
-        f_Time_Cur = f_Time;
+        this.m_Time = m_Time;
+        m_Time_Cur = m_Time;
 
         this.s_Message = s_Message;
     }
 
-    public void Set_TimeOut(float f_Time_Passed)
+    public void Set_TimeOut(float m_Time_Passed)
     {
-        f_Time_Cur -= f_Time_Passed;
+        m_Time_Cur -= m_Time_Passed;
     }
 
     public float GetTime()
     {
-        return f_Time;
+        return m_Time;
     }
 
     public float GetTimeOut_Cur()
     {
-        return f_Time_Cur;
+        return m_Time_Cur;
     }
 
     public bool GetTimeOut()
     {
-        return f_Time_Cur <= 0;
+        return m_Time_Cur <= 0;
     }
 
     public string GetMessage()

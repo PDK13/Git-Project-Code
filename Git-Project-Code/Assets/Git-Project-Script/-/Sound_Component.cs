@@ -25,7 +25,7 @@ public class Sound_Component : MonoBehaviour
         GetComponent<AudioSource>().spatialBlend = 0f;
     }
 
-    public void Set_PlaySound(AudioClip a_Sound, float f_Volumn, bool m_Loop) //Gọi hàm khi cần phát âm thanh
+    public void Set_PlaySound(AudioClip a_Sound, float m_Volumn, bool m_Loop) //Gọi hàm khi cần phát âm thanh
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
         {
@@ -35,19 +35,19 @@ public class Sound_Component : MonoBehaviour
         if (GetComponent<AudioSource>().clip != a_Sound)
         {
             GetComponent<AudioSource>().clip = a_Sound;
-            GetComponent<AudioSource>().volume = f_Volumn;
+            GetComponent<AudioSource>().volume = m_Volumn;
             GetComponent<AudioSource>().loop = m_Loop;
             GetComponent<AudioSource>().Play();
         }
         else
         {
-            GetComponent<AudioSource>().volume = f_Volumn;
+            GetComponent<AudioSource>().volume = m_Volumn;
             GetComponent<AudioSource>().loop = m_Loop;
         }
-        //GetComponent<AudioSource>().PlayOneShot(a_Sound, f_Volumn);
+        //GetComponent<AudioSource>().PlayOneShot(a_Sound, m_Volumn);
     }
 
-    public void Set_PlaySound(AudioClip a_Sound, float f_Volumn, bool m_Loop, bool m_Continue) //Gọi hàm khi cần phát âm thanh
+    public void Set_PlaySound(AudioClip a_Sound, float m_Volumn, bool m_Loop, bool m_Continue) //Gọi hàm khi cần phát âm thanh
     {
         if (GetComponent<AudioSource>() == null) //Thêm Component Audio Source
         {
@@ -55,7 +55,7 @@ public class Sound_Component : MonoBehaviour
         }
 
         GetComponent<AudioSource>().clip = a_Sound;
-        GetComponent<AudioSource>().volume = f_Volumn;
+        GetComponent<AudioSource>().volume = m_Volumn;
         GetComponent<AudioSource>().loop = m_Loop;
         if (!m_Continue)
         {

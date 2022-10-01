@@ -12,7 +12,7 @@ public class Canvas_Camera : MonoBehaviour
 
     public List<GameObject> l1_Camera = new List<GameObject>();
     //List of Camera (Start at First Camera)
-    private int i_Camera = 0;
+    private int m_Camera = 0;
     //Index of Camera in List is Enable
 
     private Canvas c_Canvas;
@@ -28,10 +28,10 @@ public class Canvas_Camera : MonoBehaviour
     {
         if (Input.GetKeyDown(k_Next))
         {
-            i_Camera++;
-            if (i_Camera > l1_Camera.Count - 1)
+            m_Camera++;
+            if (m_Camera > l1_Camera.Count - 1)
             {
-                i_Camera = 0;
+                m_Camera = 0;
             }
 
             Set_CameraEnable();
@@ -39,10 +39,10 @@ public class Canvas_Camera : MonoBehaviour
         else
         if (Input.GetKeyDown(k_Back))
         {
-            i_Camera--;
-            if (i_Camera < 0)
+            m_Camera--;
+            if (m_Camera < 0)
             {
-                i_Camera = l1_Camera.Count - 1;
+                m_Camera = l1_Camera.Count - 1;
             }
 
             Set_CameraEnable();
@@ -51,12 +51,12 @@ public class Canvas_Camera : MonoBehaviour
 
     private void Set_CameraEnable()
     {
-        c_Canvas.worldCamera = l1_Camera[i_Camera].GetComponent<Camera>();
-        l1_Camera[i_Camera].SetActive(true);
+        c_Canvas.worldCamera = l1_Camera[m_Camera].GetComponent<Camera>();
+        l1_Camera[m_Camera].SetActive(true);
 
         for (int i = 0; i < l1_Camera.Count; i++)
         {
-            if (i != i_Camera)
+            if (i != m_Camera)
             {
                 l1_Camera[i].SetActive(false);
             }

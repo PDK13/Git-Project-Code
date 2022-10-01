@@ -14,7 +14,7 @@ public class Sample_TrajectoryTank_Angle : MonoBehaviour
 
     private RigidbodyRotation cs_RigidbodyRotation;
 
-    [SerializeField] private float f_Deg_Cur = 0;
+    [SerializeField] private float m_Deg_Cur = 0;
 
     private void Awake()
     {
@@ -55,15 +55,15 @@ public class Sample_TrajectoryTank_Angle : MonoBehaviour
         //Deg by Y
         if (Input.GetKey(KeyCode.W))
         {
-            f_Deg_Cur += 1f;
+            m_Deg_Cur += 1f;
         }
         else
         if (Input.GetKey(KeyCode.S))
         {
-            f_Deg_Cur -= 1f;
+            m_Deg_Cur -= 1f;
         }
 
-        com_Gun.rotation = ClassVector.GetRotationEulerToQuaternion(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, f_Deg_Cur);
+        com_Gun.rotation = ClassVector.GetRotationEulerToQuaternion(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, m_Deg_Cur);
 
         //Power by X
         if (Input.GetKey(KeyCode.D))

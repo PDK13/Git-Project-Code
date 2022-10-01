@@ -19,71 +19,71 @@
 
 //    #region UI Anchor-Pos
 
-//    public static void Set_UI_Pos_ChanceTo(RectTransform rec_UI, Vector2 v2_Pos_ChanceTo, float f_Duration = 1f, float f_Delay = 0f, bool m_ValueInt = false)
+//    public static void Set_UI_Pos_ChanceTo(RectTransform rec_UI, Vector2 v2_Pos_ChanceTo, float m_Duration = 1f, float m_Delay = 0f, bool m_ValueInt = false)
 //    {
-//        rec_UI.DOAnchorPos(v2_Pos_ChanceTo, f_Duration, m_ValueInt).SetDelay(f_Delay);
+//        rec_UI.DOAnchorPos(v2_Pos_ChanceTo, m_Duration, m_ValueInt).SetDelay(m_Delay);
 //    }
 
-//    public static void Set_UI_Pos_ChanceTo_X(RectTransform rec_UI, float f_Pos_ChanceTo_X, float f_Duration = 1f, float f_Delay = 0f, bool m_ValueInt = false)
+//    public static void Set_UI_Pos_ChanceTo_X(RectTransform rec_UI, float m_Pos_ChanceTo_X, float m_Duration = 1f, float m_Delay = 0f, bool m_ValueInt = false)
 //    {
-//        rec_UI.DOAnchorPosX(f_Pos_ChanceTo_X, f_Duration, m_ValueInt).SetDelay(f_Delay);
+//        rec_UI.DOAnchorPosX(m_Pos_ChanceTo_X, m_Duration, m_ValueInt).SetDelay(m_Delay);
 //    }
 
-//    public static void Set_UI_Pos_ChanceTo_Y(RectTransform rec_UI, float f_Pos_ChanceTo_Y, float f_Duration = 1f, float f_Delay = 0f, bool m_ValueInt = false)
+//    public static void Set_UI_Pos_ChanceTo_Y(RectTransform rec_UI, float m_Pos_ChanceTo_Y, float m_Duration = 1f, float m_Delay = 0f, bool m_ValueInt = false)
 //    {
-//        rec_UI.DOAnchorPosY(f_Pos_ChanceTo_Y, f_Duration, m_ValueInt).SetDelay(f_Delay);
+//        rec_UI.DOAnchorPosY(m_Pos_ChanceTo_Y, m_Duration, m_ValueInt).SetDelay(m_Delay);
 //    }
 
 //    #endregion
 
 //    #region UI Anchor Pos Shake
 
-//    public static void Set_UI_Shake(RectTransform rec_UI, float f_Duration = 1f, float f_Strength = 50f, int i_Loop = 10, float f_Randomness = 0f, bool m_FadeOut = true, bool m_ValueInt = false)
+//    public static void Set_UI_Shake(RectTransform rec_UI, float m_Duration = 1f, float m_Strength = 50f, int m_Loop = 10, float m_Randomness = 0f, bool m_FadeOut = true, bool m_ValueInt = false)
 //    {
-//        rec_UI.DOShakeAnchorPos(f_Duration, f_Strength, i_Loop, f_Randomness, m_ValueInt, m_FadeOut);
+//        rec_UI.DOShakeAnchorPos(m_Duration, m_Strength, m_Loop, m_Randomness, m_ValueInt, m_FadeOut);
 //    }
 
 //    #endregion
 
 //    #region UI Scale
 
-//    public static void Set_UI_Scale_ChanceTo(RectTransform rec_UI, Vector2 v2_Scale_ChanceTo, float f_Duration = 1f, float f_Delay = 0f)
+//    public static void Set_UI_Scale_ChanceTo(RectTransform rec_UI, Vector2 v2_Scale_ChanceTo, float m_Duration = 1f, float m_Delay = 0f)
 //    {
-//        rec_UI.DOScale(v2_Scale_ChanceTo, f_Duration).SetDelay(f_Delay);
+//        rec_UI.DOScale(v2_Scale_ChanceTo, m_Duration).SetDelay(m_Delay);
 //    }
 
-//    public static void Set_UI_Scale_ChanceTo_X(RectTransform rec_UI, float f_Scale_ChanceTo_X, float f_Duration = 1f, float f_Delay = 0f)
+//    public static void Set_UI_Scale_ChanceTo_X(RectTransform rec_UI, float m_Scale_ChanceTo_X, float m_Duration = 1f, float m_Delay = 0f)
 //    {
-//        rec_UI.DOScaleX(f_Scale_ChanceTo_X, f_Duration).SetDelay(f_Delay);
+//        rec_UI.DOScaleX(m_Scale_ChanceTo_X, m_Duration).SetDelay(m_Delay);
 //    }
 
-//    public static void Set_UI_Scale_ChanceTo_Y(RectTransform rec_UI, float f_Scale_ChanceTo_Y, float f_Duration = 1f, float f_Delay = 0f)
+//    public static void Set_UI_Scale_ChanceTo_Y(RectTransform rec_UI, float m_Scale_ChanceTo_Y, float m_Duration = 1f, float m_Delay = 0f)
 //    {
-//        rec_UI.DOScaleY(f_Scale_ChanceTo_Y, f_Duration).SetDelay(f_Delay);
+//        rec_UI.DOScaleY(m_Scale_ChanceTo_Y, m_Duration).SetDelay(m_Delay);
 //    }
 
 //    #endregion
 
 //    #region UI Rotation (Quaternion)
 
-//    public static void Set_UI_Rotation_ChanceTo(RectTransform rec_UI, Vector3 v3_Rotation_ChanceTo, float f_Duration = 1f, float f_Delay = 0f)
+//    public static void Set_UI_Rotation_ChanceTo(RectTransform rec_UI, Vector3 v3_Rotation_ChanceTo, float m_Duration = 1f, float m_Delay = 0f)
 //    {
-//        rec_UI.DORotate(v3_Rotation_ChanceTo, f_Duration).SetDelay(f_Delay);
+//        rec_UI.DORotate(v3_Rotation_ChanceTo, m_Duration).SetDelay(m_Delay);
 //    }
 
-//    public static void Set_UI_Rotation_ChanceTo_X(RectTransform rec_UI, float f_Scale_ChanceTo_X, float f_Duration = 1f, float f_Delay = 0f)
+//    public static void Set_UI_Rotation_ChanceTo_X(RectTransform rec_UI, float m_Scale_ChanceTo_X, float m_Duration = 1f, float m_Delay = 0f)
 //    {
-//        rec_UI.DORotate(new Vector3(f_Scale_ChanceTo_X, rec_UI.rotation.y, rec_UI.rotation.z), f_Duration).SetDelay(f_Delay);
+//        rec_UI.DORotate(new Vector3(m_Scale_ChanceTo_X, rec_UI.rotation.y, rec_UI.rotation.z), m_Duration).SetDelay(m_Delay);
 //    }
 
-//    public static void Set_UI_Rotation_ChanceTo_Y(RectTransform rec_UI, float f_Scale_ChanceTo_Y, float f_Duration = 1f, float f_Delay = 0f)
+//    public static void Set_UI_Rotation_ChanceTo_Y(RectTransform rec_UI, float m_Scale_ChanceTo_Y, float m_Duration = 1f, float m_Delay = 0f)
 //    {
-//        rec_UI.DORotate(new Vector3(rec_UI.rotation.x, f_Scale_ChanceTo_Y, rec_UI.rotation.z), f_Duration).SetDelay(f_Delay);
+//        rec_UI.DORotate(new Vector3(rec_UI.rotation.x, m_Scale_ChanceTo_Y, rec_UI.rotation.z), m_Duration).SetDelay(m_Delay);
 //    }
 
-//    public static void Set_UI_Rotation_ChanceTo_Z(RectTransform rec_UI, float f_Scale_ChanceTo_Z, float f_Duration = 1f, float f_Delay = 0f)
+//    public static void Set_UI_Rotation_ChanceTo_Z(RectTransform rec_UI, float m_Scale_ChanceTo_Z, float m_Duration = 1f, float m_Delay = 0f)
 //    {
-//        rec_UI.DORotate(new Vector3(rec_UI.rotation.x, rec_UI.rotation.y, f_Scale_ChanceTo_Z), f_Duration).SetDelay(f_Delay);
+//        rec_UI.DORotate(new Vector3(rec_UI.rotation.x, rec_UI.rotation.y, m_Scale_ChanceTo_Z), m_Duration).SetDelay(m_Delay);
 //    }
 
 //    #endregion
@@ -92,54 +92,54 @@
 
 //    #region UI Fade
 
-//    public static void Set_UI_Fade_ChanceTo(CanvasGroup com_CanvasGroup, float f_Fade = 1f, float f_Duration = 1f)
+//    public static void Set_UI_Fade_ChanceTo(CanvasGroup com_CanvasGroup, float m_Fade = 1f, float m_Duration = 1f)
 //    {
-//        if (f_Fade > 1f)
+//        if (m_Fade > 1f)
 //        {
-//            com_CanvasGroup.DOFade(1f, f_Duration);
+//            com_CanvasGroup.DOFade(1f, m_Duration);
 //        }
 //        else
-//        if (f_Fade < 0f)
+//        if (m_Fade < 0f)
 //        {
-//            com_CanvasGroup.DOFade(0f, f_Duration);
+//            com_CanvasGroup.DOFade(0f, m_Duration);
 //        }
 //        else
 //        {
-//            com_CanvasGroup.DOFade(f_Fade, f_Duration);
+//            com_CanvasGroup.DOFade(m_Fade, m_Duration);
 //        }
 //    }
 
-//    public static void Set_UI_Fade_ChanceTo(Text t_Text, float f_Fade = 1f, float f_Duration = 1f)
+//    public static void Set_UI_Fade_ChanceTo(Text t_Text, float m_Fade = 1f, float m_Duration = 1f)
 //    {
-//        if (f_Fade > 1f)
+//        if (m_Fade > 1f)
 //        {
-//            t_Text.DOFade(1f, f_Duration);
+//            t_Text.DOFade(1f, m_Duration);
 //        }
 //        else
-//        if (f_Fade < 0f)
+//        if (m_Fade < 0f)
 //        {
-//            t_Text.DOFade(0f, f_Duration);
+//            t_Text.DOFade(0f, m_Duration);
 //        }
 //        else
 //        {
-//            t_Text.DOFade(f_Fade, f_Duration);
+//            t_Text.DOFade(m_Fade, m_Duration);
 //        }
 //    }
 
-//    public static void Set_UI_Fade_ChanceTo(Image i_Image, float f_Fade = 1f, float f_Duration = 1f)
+//    public static void Set_UI_Fade_ChanceTo(Image m_Image, float m_Fade = 1f, float m_Duration = 1f)
 //    {
-//        if (f_Fade > 1f)
+//        if (m_Fade > 1f)
 //        {
-//            i_Image.DOFade(1f, f_Duration);
+//            m_Image.DOFade(1f, m_Duration);
 //        }
 //        else
-//        if (f_Fade < 0f)
+//        if (m_Fade < 0f)
 //        {
-//            i_Image.DOFade(0f, f_Duration);
+//            m_Image.DOFade(0f, m_Duration);
 //        }
 //        else
 //        {
-//            i_Image.DOFade(f_Fade, f_Duration);
+//            m_Image.DOFade(m_Fade, m_Duration);
 //        }
 //    }
 
@@ -147,14 +147,14 @@
 
 //    #region UI Color
 
-//    public static void Set_UI_Color_ChanceTo(Text t_Text, Color c_Color_ChanceTo, float f_Duration = 1f, float f_Delay = 0f)
+//    public static void Set_UI_Color_ChanceTo(Text t_Text, Color c_Color_ChanceTo, float m_Duration = 1f, float m_Delay = 0f)
 //    {
-//        t_Text.DOColor(c_Color_ChanceTo, f_Duration).SetDelay(f_Delay);
+//        t_Text.DOColor(c_Color_ChanceTo, m_Duration).SetDelay(m_Delay);
 //    }
 
-//    public static void Set_UI_Color_ChanceTo(Image i_Image, Color c_Color_ChanceTo, float f_Duration = 1f, float f_Delay = 0f)
+//    public static void Set_UI_Color_ChanceTo(Image m_Image, Color c_Color_ChanceTo, float m_Duration = 1f, float m_Delay = 0f)
 //    {
-//        i_Image.DOColor(c_Color_ChanceTo, f_Duration).SetDelay(f_Delay);
+//        m_Image.DOColor(c_Color_ChanceTo, m_Duration).SetDelay(m_Delay);
 //    }
 
 //    #endregion
@@ -163,13 +163,13 @@
 
 //    #region Value
 
-//    public static IEnumerator Set_DOTween_Sample(int i_Number, Text t_Text)
+//    public static IEnumerator Set_DOTween_Sample(int m_Number, Text t_Text)
 //    {
-//        DOTween.To(() => 0, x => i_Number = x, 100, 1f);
+//        DOTween.To(() => 0, x => m_Number = x, 100, 1f);
 
-//        t_Text.text = i_Number.ToString();
+//        t_Text.text = m_Number.ToString();
 
-//        yield return i_Number == 100;
+//        yield return m_Number == 100;
 //    }
 
 //    #endregion

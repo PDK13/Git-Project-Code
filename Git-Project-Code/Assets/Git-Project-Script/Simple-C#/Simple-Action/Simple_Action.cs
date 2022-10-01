@@ -49,8 +49,8 @@ public class Simple_Action : MonoBehaviour
         Debug.LogFormat("{0}: Action 02: {1}!", name, s_MyString);
     }
 
-    private void Set_Action_03(string s_MyString, int i_MyInt)
+    private void Set_Action_03(string s_MyString, int m_MyInt)
     {
-        Debug.LogFormat("{0}: Action 02: {1} {2}!", name, s_MyString, i_MyInt);
+        Debug.LogFormat("{0}: Action 02: {1} {2}!", name, s_MyString, m_MyInt);
     }
 }

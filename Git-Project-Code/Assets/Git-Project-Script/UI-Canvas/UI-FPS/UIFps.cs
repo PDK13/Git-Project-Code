@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class UIFps : MonoBehaviour
 {
-    [SerializeField] private bool m_Time_Delay = false;
+    [SerializeField] private bool m_TimeDelayIsAllow = false;
 
-    [SerializeField] private float f_Time_Delay = 0.1f;
+    [SerializeField] private float m_Time_Delay = 0.1f;
 
-    private float f_DeltaTime = 0.0f;
-    private float f_Fps = 0.0f;
+    private float m_DeltaTime = 0.0f;
+    private float m_Fps = 0.0f;
 
     private void Start()
     {
@@ -23,27 +23,27 @@ public class UIFps : MonoBehaviour
 
         do
         {
-            f_DeltaTime += Time.deltaTime;
-            f_DeltaTime /= 2.0f;
-            f_Fps = 1.0f / f_DeltaTime;
+            m_DeltaTime += Time.deltaTime;
+            m_DeltaTime /= 2.0f;
+            m_Fps = 1.0f / m_DeltaTime;
 
             if (GetComponent<Text>())
             {
-                GetComponent<Text>().text = "FPS: " + ((int)f_Fps).ToString();
+                GetComponent<Text>().text = "FPS: " + ((int)m_Fps).ToString();
             }
             else
             if (GetComponent<TextMeshProUGUI>())
             {
-                GetComponent<TextMeshProUGUI>().text = "FPS: " + ((int)f_Fps).ToString();
+                GetComponent<TextMeshProUGUI>().text = "FPS: " + ((int)m_Fps).ToString();
             }
 
-            if (m_Time_Delay)
+            if (m_TimeDelayIsAllow)
             {
                 yield return null;
             }
             else
             {
-                yield return new WaitForSeconds(f_Time_Delay);
+                yield return new WaitForSeconds(m_Time_Delay);
             }
         }
         while (1 == 1);

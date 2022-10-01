@@ -4,13 +4,13 @@ using UnityEngine.EventSystems;
 
 public class UIZoomDrag : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
-    [SerializeField] private float f_Zoom_Speed = 0.01f;
+    [SerializeField] private float m_Zoom_Speed = 0.01f;
 
 #if UNITY_EDITOR
 
     public void Update()
     {
-        Set_Zoom(Input.GetAxis("Mouse ScrollWheel") * 100f * f_Zoom_Speed);
+        Set_Zoom(Input.GetAxis("Mouse ScrollWheel") * 100f * m_Zoom_Speed);
     }
 
 #endif
@@ -30,24 +30,24 @@ public class UIZoomDrag : MonoBehaviour, IPointerDownHandler, IDragHandler
             Vector2 v2_Touch_0_Prev_Pos = t_Touch_0.position - t_Touch_0.deltaPosition;
             Vector2 v2_Touch_1_Prev_Pos = t_Touch_1.position - t_Touch_1.deltaPosition;
 
-            float f_Prev_Duration = (v2_Touch_0_Prev_Pos - v2_Touch_1_Prev_Pos).magnitude;
-            float f_Cur_Duration = (t_Touch_0.position - t_Touch_1.position).magnitude;
+            float m_Prev_Duration = (v2_Touch_0_Prev_Pos - v2_Touch_1_Prev_Pos).magnitude;
+            float m_Cur_Duration = (t_Touch_0.position - t_Touch_1.position).magnitude;
 
-            float f_Difference = f_Cur_Duration - f_Prev_Duration;
+            float m_Difference = m_Cur_Duration - m_Prev_Duration;
 
-            Set_Zoom(f_Difference * f_Zoom_Speed);
+            Set_Zoom(m_Difference * m_Zoom_Speed);
         }
     }
 
-    private void Set_Zoom(float f_Increment)
+    private void Set_Zoom(float m_Increment)
     {
         if (Camera.main.orthographic)
         {
-            Camera.main.orthographicSize = Camera.main.orthographicSize - f_Increment;
+            Camera.main.orthographicSize = Camera.main.orthographicSize - m_Increment;
         }
         else
         {
-            Camera.main.fieldOfView = Camera.main.fieldOfView - f_Increment;
+            Camera.main.fieldOfView = Camera.main.fieldOfView - m_Increment;
         }
     }
 }

@@ -132,14 +132,14 @@ public class Class_Data
         return l_Data_Value;
     }
 
-    private int i_Index_Auto = -1;
+    private int m_Index_Auto = -1;
 
     /// <summary>
     /// Set Auto Index to "-1" before start use "Set_Index_Plus()"
     /// </summary>
     public void Set_Index_Restart()
     {
-        i_Index_Auto = -1;
+        m_Index_Auto = -1;
     }
 
     /// <summary>
@@ -147,7 +147,7 @@ public class Class_Data
     /// </summary>
     public void Set_Index_Plus()
     {
-        i_Index_Auto++;
+        m_Index_Auto++;
     }
 
     /// <summary>
@@ -156,7 +156,7 @@ public class Class_Data
     /// <returns></returns>
     public int GetIndex()
     {
-        return i_Index_Auto;
+        return m_Index_Auto;
     }
 
     #endregion
@@ -318,11 +318,11 @@ public class Class_Data
     /// Set Data Muti
     /// </summary>
     /// <param name="s_DataName"></param>
-    /// <param name="i_Index"></param>
+    /// <param name="m_Index"></param>
     /// <param name="o_DataValue"></param>
-    public void Set_Data(string s_DataName, int i_Index, object o_DataValue)
+    public void Set_Data(string s_DataName, int m_Index, object o_DataValue)
     {
-        string s_DataCheck = s_DataName + "_" + i_Index.ToString();
+        string s_DataCheck = s_DataName + "_" + m_Index.ToString();
         Set_Data(s_DataCheck, o_DataValue);
     }
 
@@ -341,11 +341,11 @@ public class Class_Data
     /// Get Data Muti
     /// </summary>
     /// <param name="s_DataName"></param>
-    /// <param name="i_Index"></param>
+    /// <param name="m_Index"></param>
     /// <returns></returns>
-    public object GetObject_Data(string s_DataName, int i_Index)
+    public object GetObject_Data(string s_DataName, int m_Index)
     {
-        string s_DataCheck = s_DataName + "_" + i_Index.ToString();
+        string s_DataCheck = s_DataName + "_" + m_Index.ToString();
         return GetData(s_DataCheck);
     }
 
@@ -369,11 +369,11 @@ public class Class_Data
     /// Get own Index Name Data
     /// </summary>
     /// <param name="s_DataName"></param>
-    /// <param name="i_Index"></param>
+    /// <param name="m_Index"></param>
     /// <returns></returns>
-    public string GetString_GetConvert_NameIndex(string s_DataName, int i_Index)
+    public string GetString_GetConvert_NameIndex(string s_DataName, int m_Index)
     {
-        return s_DataName + "_" + i_Index.ToString();
+        return s_DataName + "_" + m_Index.ToString();
     }
 
     /// <summary>

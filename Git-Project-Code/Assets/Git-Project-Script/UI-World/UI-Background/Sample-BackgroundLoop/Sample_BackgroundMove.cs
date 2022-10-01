@@ -17,9 +17,9 @@ public class Sample_BackgroundMove : MonoBehaviour
 
     [Header("Speed")]
 
-    [SerializeField] private float f_Move_Speed = 0.01f;
+    [SerializeField] private float m_Move_Speed = 0.01f;
 
-    [SerializeField] private float f_Move_Speed_Max = 1f;
+    [SerializeField] private float m_Move_Speed_Max = 1f;
 
     private void Start()
     {
@@ -33,17 +33,17 @@ public class Sample_BackgroundMove : MonoBehaviour
     {
         if (Input.GetKey(k_Move_U))
         {
-            if (v2_Move_Dir.y < f_Move_Speed_Max)
+            if (v2_Move_Dir.y < m_Move_Speed_Max)
             {
-                v2_Move_Dir.y += f_Move_Speed;
+                v2_Move_Dir.y += m_Move_Speed;
             }
         }
         else
         if (Input.GetKey(k_Move_D))
         {
-            if (v2_Move_Dir.y > -f_Move_Speed_Max)
+            if (v2_Move_Dir.y > -m_Move_Speed_Max)
             {
-                v2_Move_Dir.y -= f_Move_Speed;
+                v2_Move_Dir.y -= m_Move_Speed;
             }
         }
         else
@@ -53,17 +53,17 @@ public class Sample_BackgroundMove : MonoBehaviour
 
         if (Input.GetKey(k_Move_L))
         {
-            if (v2_Move_Dir.x > -f_Move_Speed_Max)
+            if (v2_Move_Dir.x > -m_Move_Speed_Max)
             {
-                v2_Move_Dir.x -= f_Move_Speed;
+                v2_Move_Dir.x -= m_Move_Speed;
             }
         }
         else
         if (Input.GetKey(k_Move_R))
         {
-            if (v2_Move_Dir.x < f_Move_Speed_Max)
+            if (v2_Move_Dir.x < m_Move_Speed_Max)
             {
-                v2_Move_Dir.x += f_Move_Speed;
+                v2_Move_Dir.x += m_Move_Speed;
             }
         }
         else

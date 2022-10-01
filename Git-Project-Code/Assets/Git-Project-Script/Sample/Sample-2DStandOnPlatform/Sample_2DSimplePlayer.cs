@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Sample_2DSimplePlayer : MonoBehaviour
 {
-    [SerializeField] private float f_Speed = 10f;
-    [SerializeField] private float f_Jump = 1500f;
+    [SerializeField] private float m_Speed = 10f;
+    [SerializeField] private float m_Jump = 1500f;
 
-    [SerializeField] private float f_Mass = 4f;
-    [SerializeField] private float f_LinearDrag = 2f;
-    [SerializeField] private float f_Angular = 2f;
-    [SerializeField] private float f_Gravity = 3f;
+    [SerializeField] private float m_Mass = 4f;
+    [SerializeField] private float m_LinearDrag = 2f;
+    [SerializeField] private float m_Angular = 2f;
+    [SerializeField] private float m_Gravity = 3f;
 
     private Transform t_Parent;
 
@@ -20,25 +20,25 @@ public class Sample_2DSimplePlayer : MonoBehaviour
 
         t_Parent = transform.parent;
 
-        r_Rigidbody2D.gravityScale = f_Gravity;
-        r_Rigidbody2D.angularVelocity = f_Angular;
+        r_Rigidbody2D.gravityScale = m_Gravity;
+        r_Rigidbody2D.angularVelocity = m_Angular;
     }
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            r_Rigidbody2D.AddForce(Vector2.right * f_Speed);
+            r_Rigidbody2D.AddForce(Vector2.right * m_Speed);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            r_Rigidbody2D.AddForce(Vector2.left * f_Speed);
+            r_Rigidbody2D.AddForce(Vector2.left * m_Speed);
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            r_Rigidbody2D.AddForce(Vector2.up * f_Jump);
+            r_Rigidbody2D.AddForce(Vector2.up * m_Jump);
         }
     }
 

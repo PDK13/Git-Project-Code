@@ -5,7 +5,7 @@ public class Sample_FileIO : MonoBehaviour
 {
     //This Script can work both on WINDOW and ANDROID
 
-    public InputField i_Send;
+    public InputField m_Send;
     public Text t_Receive;
 
     public Text t_Error;
@@ -29,7 +29,7 @@ public class Sample_FileIO : MonoBehaviour
         {
             cl_File.Set_Data_Write_Clear();
 
-            cl_File.Set_Data_Write_Add(i_Send.text);
+            cl_File.Set_Data_Write_Add(m_Send.text);
 
             cl_File.Set_Data_Write_Start(s_LinkFile);
 

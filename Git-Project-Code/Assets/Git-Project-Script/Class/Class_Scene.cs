@@ -40,15 +40,15 @@ public class Class_Scene
         PlayerPrefs.Save();
     }
 
-    public static void Set_PlayerPrefs(string s_ValueName, int i_Value)
+    public static void Set_PlayerPrefs(string s_ValueName, int m_Value)
     {
-        PlayerPrefs.SetInt(s_ValueName, i_Value);
+        PlayerPrefs.SetInt(s_ValueName, m_Value);
         PlayerPrefs.Save();
     }
 
-    public static void Set_PlayerPrefs(string s_ValueName, float f_Value)
+    public static void Set_PlayerPrefs(string s_ValueName, float m_Value)
     {
-        PlayerPrefs.SetFloat(s_ValueName, f_Value);
+        PlayerPrefs.SetFloat(s_ValueName, m_Value);
         PlayerPrefs.Save();
     }
 

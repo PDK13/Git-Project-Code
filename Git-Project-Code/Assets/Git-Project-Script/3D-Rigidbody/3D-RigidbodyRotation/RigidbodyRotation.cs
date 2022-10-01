@@ -26,24 +26,24 @@ public class RigidbodyRotation : MonoBehaviour
 
     [Header("Move")]
 
-    [SerializeField] private float f_SpeedNormal = 7f;
+    [SerializeField] private float m_SpeedNormal = 7f;
 
-    [SerializeField] private float f_SpeedChance = 10f;
+    [SerializeField] private float m_SpeedChance = 10f;
 
-    private float f_SpeedCur;
+    private float m_SpeedCur;
 
     [Header("Rotate")]
 
     [Range(0.1f, 5f)]
-    [SerializeField] private float f_SpeedRotate = 1f;
+    [SerializeField] private float m_SpeedRotate = 1f;
 
     [SerializeField] private bool m_StopRightAway = false;
 
-    [SerializeField] private float f_SpeedStop = 3f;
+    [SerializeField] private float m_SpeedStop = 3f;
 
     [SerializeField] private bool m_SlowWhenTurn = true;
 
-    [SerializeField] private float f_SpeedSlow = 5f;
+    [SerializeField] private float m_SpeedSlow = 5f;
 
     private void Awake()
     {
@@ -78,7 +78,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     private void Set_Control_Main_Keyboard()
     {
-        f_SpeedCur = (Input.GetKey(k_SpeedChance)) ? f_SpeedChance : f_SpeedNormal;
+        m_SpeedCur = (Input.GetKey(k_SpeedChance)) ? m_SpeedChance : m_SpeedNormal;
 
         if (Input.GetKey(k_TurnLeft) && Input.GetKey(k_TurnRight) ||
             Input.GetKey(k_MoveForward) && Input.GetKey(k_MoveBackward))
@@ -115,9 +115,9 @@ public class RigidbodyRotation : MonoBehaviour
         Set_Control_Move_Slow();
     }
 
-    private void Set_Control_Move(int i_MoveDir)
+    private void Set_Control_Move(int m_MoveDir)
     {
-        cs_Rigid.Set_MoveRotation_XZ(cs_Rigid.GetRotation_XZ(), f_SpeedCur * i_MoveDir);
+        cs_Rigid.Set_MoveRotation_XZ(cs_Rigid.GetRotation_XZ(), m_SpeedCur * m_MoveDir);
     }
 
     private void Set_Control_Move_Stop()
@@ -131,18 +131,18 @@ public class RigidbodyRotation : MonoBehaviour
 
     private void Set_Control_Move_Slow()
     {
-        cs_Rigid.Set_StopX_Velocity(f_SpeedSlow);
-        cs_Rigid.Set_StopZ_Velocity(f_SpeedSlow);
+        cs_Rigid.Set_StopX_Velocity(m_SpeedSlow);
+        cs_Rigid.Set_StopZ_Velocity(m_SpeedSlow);
     }
 
-    private void Set_Control_Rotate(int i_RotationDir)
+    private void Set_Control_Rotate(int m_RotationDir)
     {
         if (m_SlowWhenTurn)
         {
             Set_Control_Move_Slow();
         }
 
-        cs_Rigid.Set_RotationChance_XZ(f_SpeedRotate * i_RotationDir);
+        cs_Rigid.Set_RotationChance_XZ(m_SpeedRotate * m_RotationDir);
     }
 
     #endregion

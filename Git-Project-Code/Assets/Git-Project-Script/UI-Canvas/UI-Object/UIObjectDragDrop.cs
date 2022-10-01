@@ -36,12 +36,12 @@ public class UIObjectDragDrop : MonoBehaviour,
     [Tooltip("Canvas Alpha when Normal (Not Drag)")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float f_Canvas_Alpha_Normal = 1f;
+    private float m_Canvas_Alpha_Normal = 1f;
 
     [Tooltip("Canvas Alpha when Drag")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float f_Canvas_Alpha_Drag = 0.6f;
+    private float m_Canvas_Alpha_Drag = 0.6f;
 
     [Header("Event")]
 
@@ -309,7 +309,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         m_UI_Drag = true;
 
-        c_CanvasGroup.alpha = f_Canvas_Alpha_Drag;
+        c_CanvasGroup.alpha = m_Canvas_Alpha_Drag;
 
         c_CanvasGroup.blocksRaycasts = false;
 
@@ -337,7 +337,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         m_UI_Drag = false;
 
-        c_CanvasGroup.alpha = f_Canvas_Alpha_Normal;
+        c_CanvasGroup.alpha = m_Canvas_Alpha_Normal;
 
         c_CanvasGroup.blocksRaycasts = true;
 
@@ -446,21 +446,21 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <summary>
     /// Set Alpha Canvas when in Normal State (Not Drag State) (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="f_Canvas_Alpha_Normal"></param>
-    public void Set_UI_Canvas_Alpha_Normal(float f_Canvas_Alpha_Normal)
+    /// <param name="m_Canvas_Alpha_Normal"></param>
+    public void Set_UI_Canvas_Alpha_Normal(float m_Canvas_Alpha_Normal)
     {
-        if (f_Canvas_Alpha_Normal < 0)
+        if (m_Canvas_Alpha_Normal < 0)
         {
-            this.f_Canvas_Alpha_Normal = 0;
+            this.m_Canvas_Alpha_Normal = 0;
         }
         else
-        if (f_Canvas_Alpha_Normal > 1)
+        if (m_Canvas_Alpha_Normal > 1)
         {
-            this.f_Canvas_Alpha_Normal = 1;
+            this.m_Canvas_Alpha_Normal = 1;
         }
         else
         {
-            this.f_Canvas_Alpha_Normal = f_Canvas_Alpha_Normal;
+            this.m_Canvas_Alpha_Normal = m_Canvas_Alpha_Normal;
         }
     }
 
@@ -470,7 +470,7 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <returns></returns>
     public float GetUI_Canvas_Alpha_Normal()
     {
-        return f_Canvas_Alpha_Normal;
+        return m_Canvas_Alpha_Normal;
     }
 
     #endregion
@@ -480,21 +480,21 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <summary>
     /// Set Alpha Canvas when in Drag State (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="f_Canvas_Alpha_Drag"></param>
-    public void Set_UI_Canvas_Alpha_Drag(float f_Canvas_Alpha_Drag)
+    /// <param name="m_Canvas_Alpha_Drag"></param>
+    public void Set_UI_Canvas_Alpha_Drag(float m_Canvas_Alpha_Drag)
     {
-        if (f_Canvas_Alpha_Drag < 0)
+        if (m_Canvas_Alpha_Drag < 0)
         {
-            this.f_Canvas_Alpha_Drag = 0;
+            this.m_Canvas_Alpha_Drag = 0;
         }
         else
-        if (f_Canvas_Alpha_Drag > 1)
+        if (m_Canvas_Alpha_Drag > 1)
         {
-            this.f_Canvas_Alpha_Drag = 1;
+            this.m_Canvas_Alpha_Drag = 1;
         }
         else
         {
-            this.f_Canvas_Alpha_Drag = f_Canvas_Alpha_Drag;
+            this.m_Canvas_Alpha_Drag = m_Canvas_Alpha_Drag;
         }
     }
 
@@ -504,7 +504,7 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <returns></returns>
     public float GetUI_Canvas_Alpha_Drag()
     {
-        return f_Canvas_Alpha_Drag;
+        return m_Canvas_Alpha_Drag;
     }
 
     #endregion

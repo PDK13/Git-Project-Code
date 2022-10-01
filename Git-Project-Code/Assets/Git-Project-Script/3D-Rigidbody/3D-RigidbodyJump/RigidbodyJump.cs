@@ -33,7 +33,7 @@ public class RigidbodyJump : MonoBehaviour
     /// Jump Power
     /// </summary>
     [Header("Jump")]
-    private readonly float f_JumpVelocity = 5f;
+    private readonly float m_JumpVelocity = 5f;
 
     #endregion
 
@@ -94,7 +94,7 @@ public class RigidbodyJump : MonoBehaviour
     {
         if (cs_Rigid.GetCheckFoot())
         {
-            cs_Rigid.Set_MoveY_Jump(f_JumpVelocity);
+            cs_Rigid.Set_MoveY_Jump(m_JumpVelocity);
         }
     }
 }

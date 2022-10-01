@@ -9,13 +9,13 @@ public class Sample_TrajectoryBullet : MonoBehaviour
 
     [SerializeField] private Material m_Material_NotHit;
 
-    [SerializeField] private float f_Coroutine_Destroy_NoHit = 10f;
+    [SerializeField] private float m_Coroutine_Destroy_NoHit = 10f;
 
     [Header("Hit")]
 
     [SerializeField] private Material m_Material_Hit;
 
-    [SerializeField] private float f_Coroutine_Destroy_Hit = 1f;
+    [SerializeField] private float m_Coroutine_Destroy_Hit = 1f;
 
     private MeshRenderer com_MessRenderer;
 
@@ -39,7 +39,7 @@ public class Sample_TrajectoryBullet : MonoBehaviour
         cs_RigidbodyRotate = GetComponent<RigidbodyRotate>();
         cs_RigidbodyRotate.Set_Follow_Right(true);
 
-        StartCoroutine(Set_Bullet_Destroy(f_Coroutine_Destroy_NoHit));
+        StartCoroutine(Set_Bullet_Destroy(m_Coroutine_Destroy_NoHit));
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -53,12 +53,12 @@ public class Sample_TrajectoryBullet : MonoBehaviour
 
         cs_RigidbodyRotate.Set_Follow_Right(false);
 
-        StartCoroutine(Set_Bullet_Destroy(f_Coroutine_Destroy_Hit));
+        StartCoroutine(Set_Bullet_Destroy(m_Coroutine_Destroy_Hit));
     }
 
-    private IEnumerator Set_Bullet_Destroy(float f_Destory_AfterTime)
+    private IEnumerator Set_Bullet_Destroy(float m_Destory_AfterTime)
     {
-        yield return new WaitForSeconds(f_Destory_AfterTime);
+        yield return new WaitForSeconds(m_Destory_AfterTime);
 
         Destroy(gameObject);
     }

@@ -11,11 +11,11 @@
 //    /// <summary>
 //    /// Input Field EMAIL
 //    /// </summary>
-//    public InputField i_Email;
+//    public InputField m_Email;
 //    /// <summary>
 //    /// Input Field PASSWORD
 //    /// </summary>
-//    public InputField i_Password;
+//    public InputField m_Password;
 
 //    /// <summary>
 //    /// Text EMAIL Auth
@@ -36,7 +36,7 @@
 //    {
 //        cl_Firebase = new Class_Firebase();
 
-//        i_Password.inputType = InputField.InputType.Password;
+//        m_Password.inputType = InputField.InputType.Password;
 //        //Set Input Field to "Password"
 
 //        t_Info.text = "";
@@ -79,19 +79,19 @@
 
 //        cl_Firebase.Set_FirebaseAuth_Message_Clear();
 
-//        if (i_Email.text == "")
+//        if (m_Email.text == "")
 //        {
 //            t_Info.text = "Email not allow emty";
 //            return;
 //        }
 
-//        if (i_Password.text == "")
+//        if (m_Password.text == "")
 //        {
 //            t_Info.text = "Password not allow emty";
 //            return;
 //        }
 
-//        StartCoroutine(cl_Firebase.Set_FirebaseAuth_Login_IEnumerator(i_Email.text, i_Password.text));
+//        StartCoroutine(cl_Firebase.Set_FirebaseAuth_Login_IEnumerator(m_Email.text, m_Password.text));
 
 //        t_Info.text = cl_Firebase.GetFirebaseAuth_Message();
 //    }

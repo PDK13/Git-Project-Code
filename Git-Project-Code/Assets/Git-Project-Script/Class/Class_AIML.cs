@@ -18,7 +18,7 @@ public class Class_AIML
     /// <summary>
     /// Number of Layer in Neural (Input - Hidden - Output) (*)
     /// </summary>
-    private int i_LayerCount = 2;
+    private int m_LayerCount = 2;
 
     /// <summary>
     /// List of Neural in Layer (gồm Input - Hidden - Output) (*)
@@ -28,7 +28,7 @@ public class Class_AIML
     /// <summary>
     /// Number of Neural in Layer (gồm Input - Hidden - Output) (0)
     /// </summary>
-    private List<int> li_NeuralCount;
+    private List<int> lm_NeuralCount;
 
     /// <summary>
     /// List of Weight[L][L-1] Layer L (gồm Hidden - Output) (-1)
@@ -38,7 +38,7 @@ public class Class_AIML
     /// <summary>
     /// List of Bias Layer (gồm Input - Hidden) (-1)
     /// </summary>
-    private List<float> li_Bias;
+    private List<float> lm_Bias;
 
     /// <summary>
     /// List of Sum Layer (gồm Hidden - Output) (-1)
@@ -53,35 +53,35 @@ public class Class_AIML
     /// <summary>
     /// List of Neural Output wanted
     /// </summary>
-    private List<float> li_Desired;
+    private List<float> lm_Desired;
 
     ////Error before BackPropagation
-    //private float f_ErrorTotal = 0;
+    //private float m_ErrorTotal = 0;
 
     ////Count on run FeedForward và BackPropagation
-    //private int i_LoopLearning = 0;
+    //private int m_LoopLearning = 0;
 
     /// <summary>
     /// Save Imformation
     /// </summary>
-    private readonly List<float> li_Comment_dou = new List<float>();
+    private readonly List<float> lm_Comment_dou = new List<float>();
     /// <summary>
     /// Save Imformation
     /// </summary>
-    private readonly List<string> li_Comment_str = new List<string>();
+    private readonly List<string> lm_Comment_str = new List<string>();
 
     /// <summary>
     /// Reset Neural Network
     /// </summary>
     public void Set_Reset()
     {
-        li_NeuralCount = new List<int>();
+        lm_NeuralCount = new List<int>();
         li2_Activation = new List<List<float>>();
         li3_Weight = new List<List<List<float>>>();
-        li_Bias = new List<float>();
+        lm_Bias = new List<float>();
         li2_Sum = new List<List<float>>();
         li2_Error = new List<List<float>>();
-        li_Desired = new List<float>();
+        lm_Desired = new List<float>();
     }
 
     //---------------------------------------------------------------------------- Set / Get
@@ -101,7 +101,7 @@ public class Class_AIML
     /// <returns></returns>
     public int GetInt_LayerCount()
     {
-        return i_LayerCount;
+        return m_LayerCount;
     }
 
     /// <summary>
@@ -124,7 +124,7 @@ public class Class_AIML
     /// <returns></returns>
     public int GetInt_NeuralCount(int Layer)
     {
-        return li_NeuralCount[Layer];
+        return lm_NeuralCount[Layer];
     }
 
     /// <summary>
@@ -134,44 +134,44 @@ public class Class_AIML
     public void Set_NeuralNetworkCreate(bool RandomNumber)
     {
         //LayerCount
-        i_LayerCount = PlayerPrefs.GetInt("LC");
+        m_LayerCount = PlayerPrefs.GetInt("LC");
 
         //NeuralCount
-        li_NeuralCount = new List<int>();
-        for (int lay = 0; lay < i_LayerCount; lay++)
+        lm_NeuralCount = new List<int>();
+        for (int lay = 0; lay < m_LayerCount; lay++)
         {
-            li_NeuralCount.Add(PlayerPrefs.GetInt("NC_" + lay.ToString()));
+            lm_NeuralCount.Add(PlayerPrefs.GetInt("NC_" + lay.ToString()));
         }
 
         //Activation
         li2_Activation = new List<List<float>>();
-        for (int lay = 0; lay < i_LayerCount; lay++)
+        for (int lay = 0; lay < m_LayerCount; lay++)
         {
             li2_Activation.Add(new List<float> { });
-            for (int neu = 0; neu < li_NeuralCount[lay]; neu++)
+            for (int neu = 0; neu < lm_NeuralCount[lay]; neu++)
             {
                 li2_Activation[lay].Add(0);
             }
         }
 
-        //int i_o = 0;
+        //int m_o = 0;
         //Weight
         li3_Weight = new List<List<List<float>>>();
-        for (int lay = 0; lay < i_LayerCount - 1; lay++)
+        for (int lay = 0; lay < m_LayerCount - 1; lay++)
         {
             li3_Weight.Add(new List<List<float>> { });
-            for (int neuY = 0; neuY < li_NeuralCount[lay + 1]; neuY++)
+            for (int neuY = 0; neuY < lm_NeuralCount[lay + 1]; neuY++)
             {
                 li3_Weight[lay].Add(new List<float> { });
-                for (int neuX = 0; neuX < li_NeuralCount[lay]; neuX++)
+                for (int neuX = 0; neuX < lm_NeuralCount[lay]; neuX++)
                 {
-                    //i_o++;
+                    //m_o++;
                     if (RandomNumber)
                     {
                         System.Random Rand = new System.Random();
                         float Value =
                             (float)(
-                            (i_LayerCount * Rand.Next(1, 500) + li_NeuralCount[lay] *
+                            (m_LayerCount * Rand.Next(1, 500) + lm_NeuralCount[lay] *
                             Rand.Next(500, 1000) + neuX * Rand.Next(100, 200) + neuY *
                             Rand.Next(200, 300) + lay * Rand.Next(300, 400)) * Rand.Next(1, 50) / 100000.0) / 100.0f;
                         li3_Weight[lay][neuY].Add(Value);
@@ -187,28 +187,28 @@ public class Class_AIML
         }
 
         //Bias
-        li_Bias = new List<float>();
-        for (int lay = 0; lay < i_LayerCount - 1; lay++)
+        lm_Bias = new List<float>();
+        for (int lay = 0; lay < m_LayerCount - 1; lay++)
         {
             if (RandomNumber)
             {
                 System.Random Rand = new System.Random();
                 float Value = 0;
-                li_Bias.Add(Value);
+                lm_Bias.Add(Value);
             }
             else
             {
-                li_Bias.Add(0.0f);
+                lm_Bias.Add(0.0f);
             }
         }
 
         //Sum
         //Debug.Log("Sum");
         li2_Sum = new List<List<float>>();
-        for (int lay = 1; lay < i_LayerCount; lay++)
+        for (int lay = 1; lay < m_LayerCount; lay++)
         {
             li2_Sum.Add(new List<float> { });
-            for (int neu = 0; neu < li_NeuralCount[lay]; neu++)
+            for (int neu = 0; neu < lm_NeuralCount[lay]; neu++)
             {
                 //Debug.Log(lay + " " + neu);
                 li2_Sum[lay - 1].Add(0.0f);
@@ -217,61 +217,61 @@ public class Class_AIML
 
         //Error
         li2_Error = new List<List<float>>();
-        for (int lay = 0; lay < i_LayerCount - 1; lay++)
+        for (int lay = 0; lay < m_LayerCount - 1; lay++)
         {
             li2_Error.Add(new List<float> { });
-            for (int neu = 0; neu < li_NeuralCount[lay + 1]; neu++)
+            for (int neu = 0; neu < lm_NeuralCount[lay + 1]; neu++)
             {
                 li2_Error[lay].Add(0.0f);
             }
         }
 
         //Desired
-        li_Desired = new List<float>();
-        for (int neu = 0; neu < li_NeuralCount[i_LayerCount - 1]; neu++)
+        lm_Desired = new List<float>();
+        for (int neu = 0; neu < lm_NeuralCount[m_LayerCount - 1]; neu++)
         {
-            li_Desired.Add(0.0f);
+            lm_Desired.Add(0.0f);
         }
     }
 
     /// <summary>
     /// Set new Bias in Layer
     /// </summary>
-    /// <param name="i_Layer"></param>
-    /// <param name="f_Bias"></param>
-    public void Set_Input_Bias(int i_Layer, float f_Bias)
+    /// <param name="m_Layer"></param>
+    /// <param name="m_Bias"></param>
+    public void Set_Input_Bias(int m_Layer, float m_Bias)
     {
-        if (i_Layer < i_LayerCount && i_Layer >= 0)
+        if (m_Layer < m_LayerCount && m_Layer >= 0)
         {
-            li_Bias[i_Layer] = f_Bias;
+            lm_Bias[m_Layer] = m_Bias;
         }
     }
 
     /// <summary>
     /// Set new Weight with X (L-1) << Y (L)
     /// </summary>
-    /// <param name="i_Layer">L</param>
-    /// <param name="i_NeuralY">Y (L)</param>
-    /// <param name="i_NeuralX">X (L-1)</param>
-    /// <param name="f_Weight"></param>
-    public void Set_Input_Weight(int i_Layer, int i_NeuralY, int i_NeuralX, float f_Weight)
+    /// <param name="m_Layer">L</param>
+    /// <param name="m_NeuralY">Y (L)</param>
+    /// <param name="m_NeuralX">X (L-1)</param>
+    /// <param name="m_Weight"></param>
+    public void Set_Input_Weight(int m_Layer, int m_NeuralY, int m_NeuralX, float m_Weight)
     {
-        if (i_Layer < i_LayerCount - 1 && i_Layer >= 0)
+        if (m_Layer < m_LayerCount - 1 && m_Layer >= 0)
         {
-            li3_Weight[i_Layer][i_NeuralY][i_NeuralX] = f_Weight;
+            li3_Weight[m_Layer][m_NeuralY][m_NeuralX] = m_Weight;
         }
     }
 
     /// <summary>
     /// Set new Input
     /// </summary>
-    /// <param name="i_Neu_Input"></param>
-    /// <param name="f_ValueInput"></param>
-    public void Set_Input_LayerInput(int i_Neu_Input, float f_ValueInput)
+    /// <param name="m_Neu_Input"></param>
+    /// <param name="m_ValueInput"></param>
+    public void Set_Input_LayerInput(int m_Neu_Input, float m_ValueInput)
     {
-        if (i_Neu_Input >= 0 && i_Neu_Input < li_NeuralCount[0])
+        if (m_Neu_Input >= 0 && m_Neu_Input < lm_NeuralCount[0])
         {
-            li2_Activation[0][i_Neu_Input] = f_ValueInput;
+            li2_Activation[0][m_Neu_Input] = m_ValueInput;
         }
     }
 
@@ -305,8 +305,8 @@ public class Class_AIML
     /// Set Input
     /// </summary>
     /// <param name="ListInput"></param>
-    /// <param name="i_SetFrom"></param>
-    public void Set_Input_LayerInput(List<float> ListInput, int i_SetFrom)
+    /// <param name="m_SetFrom"></param>
+    public void Set_Input_LayerInput(List<float> ListInput, int m_SetFrom)
     {
         if (ListInput == null)
         {
@@ -316,7 +316,7 @@ public class Class_AIML
         for (int i = 0; i < ListInput.Count; i++)
         {
             //Gán List of bắt đầu from SetFrom
-            li2_Activation[0][i + i_SetFrom] = ListInput[i];
+            li2_Activation[0][i + m_SetFrom] = ListInput[i];
         }
     }
 
@@ -332,23 +332,23 @@ public class Class_AIML
     /// <summary>
     /// Get Neural from Input
     /// </summary>
-    /// <param name="i_Neural"></param>
+    /// <param name="m_Neural"></param>
     /// <returns></returns>
-    public float GetFloat_LayerInput(int i_Neural)
+    public float GetFloat_LayerInput(int m_Neural)
     {
-        return li2_Activation[0][i_Neural];
+        return li2_Activation[0][m_Neural];
     }
 
     /// <summary>
     /// Set new Output Desired
     /// </summary>
-    /// <param name="i_Neu_Desired"></param>
-    /// <param name="i_ValueDesired"></param>
-    public void Set_Input_Desired(int i_Neu_Desired, float i_ValueDesired)
+    /// <param name="m_Neu_Desired"></param>
+    /// <param name="m_ValueDesired"></param>
+    public void Set_Input_Desired(int m_Neu_Desired, float m_ValueDesired)
     {
-        if (i_Neu_Desired >= 0 && i_Neu_Desired < li_NeuralCount[i_LayerCount - 1])
+        if (m_Neu_Desired >= 0 && m_Neu_Desired < lm_NeuralCount[m_LayerCount - 1])
         {
-            li_Desired[i_Neu_Desired] = i_ValueDesired;
+            lm_Desired[m_Neu_Desired] = m_ValueDesired;
         }
     }
 
@@ -358,7 +358,7 @@ public class Class_AIML
     /// <returns></returns>
     public List<float> GetListFloat_Desired()
     {
-        return li_Desired;
+        return lm_Desired;
     }
 
     /// <summary>
@@ -367,29 +367,29 @@ public class Class_AIML
     /// <returns></returns>
     public List<float> GetListFloat_LayerOutput()
     {
-        return li2_Activation[i_LayerCount - 1];
+        return li2_Activation[m_LayerCount - 1];
     }
 
     /// <summary>
     /// Get Neural of Output
     /// </summary>
-    /// <param name="i_Neural"></param>
+    /// <param name="m_Neural"></param>
     /// <returns></returns>
-    public float GetFloat_LayerOutput(int i_Neural)
+    public float GetFloat_LayerOutput(int m_Neural)
     {
-        return li2_Activation[i_LayerCount - 1][i_Neural];
+        return li2_Activation[m_LayerCount - 1][m_Neural];
     }
 
     //Get Error Total sau khi chạy FeedForward và trước khi chạy BackPropagation
     //public float BrainGetErrorTotal()
     //{
-    //	return f_ErrorTotal;
+    //	return m_ErrorTotal;
     //}
 
     //Get số lần đã chạy BackPropagation
     //public int BrainGetLoopLearned()
     //{
-    //	return i_LoopLearning;
+    //	return m_LoopLearning;
     //}
 
     //---------------------------------------------------------------------------- File
@@ -413,30 +413,30 @@ public class Class_AIML
         Class_FileIO myFile = new Class_FileIO();
 
         myFile.Set_Data_Write_Add("LayerCount:");
-        myFile.Set_Data_Write_Add(i_LayerCount);
+        myFile.Set_Data_Write_Add(m_LayerCount);
 
         myFile.Set_Data_Write_Add("NeuralCount:");
-        for (int lay = 0; lay < i_LayerCount; lay++)
+        for (int lay = 0; lay < m_LayerCount; lay++)
         {
-            myFile.Set_Data_Write_Add(li_NeuralCount[lay]);
+            myFile.Set_Data_Write_Add(lm_NeuralCount[lay]);
             //Lưu Number of Neural of  Layer
         }
 
         myFile.Set_Data_Write_Add("Bias:");
-        for (int lay = 0; lay < i_LayerCount - 1; lay++)
+        for (int lay = 0; lay < m_LayerCount - 1; lay++)
         {
-            myFile.Set_Data_Write_Add(li_Bias[lay]);
+            myFile.Set_Data_Write_Add(lm_Bias[lay]);
             //Lưu Bias of  Layer
         }
 
         myFile.Set_Data_Write_Add("Weight:");
-        for (int lay = 0; lay < i_LayerCount - 1; lay++)
+        for (int lay = 0; lay < m_LayerCount - 1; lay++)
         {
             //Xét fromng Layer (L-1)
-            for (int neuY = 0; neuY < li_NeuralCount[lay + 1]; neuY++)
+            for (int neuY = 0; neuY < lm_NeuralCount[lay + 1]; neuY++)
             {
                 //Xét fromng Neural Y of Layer (L)
-                for (int neuX = 0; neuX < li_NeuralCount[lay]; neuX++)
+                for (int neuX = 0; neuX < lm_NeuralCount[lay]; neuX++)
                 {
                     //Xét fromng Neural X of Layer (L-1)
                     myFile.Set_Data_Write_Add(li3_Weight[lay][neuY][neuX]);
@@ -445,13 +445,13 @@ public class Class_AIML
             }
         }
 
-        //for (int neu = 0; neu < li_NeuralCount[0]; neu++)
+        //for (int neu = 0; neu < lm_NeuralCount[0]; neu++)
         //{
         //	myFile.Set_Write_Add(BrainGetInput()[neu]);
         //	//Lưu Input
         //}
 
-        //for (int neu = 0; neu < li_NeuralCount[i_LayerCount - 1]; neu++)
+        //for (int neu = 0; neu < lm_NeuralCount[m_LayerCount - 1]; neu++)
         //{
         //	myFile.Set_Write_Add(BrainGetDesired()[neu]);
         //	//Lưu Desired
@@ -464,13 +464,13 @@ public class Class_AIML
         ////Lưu Loop Learning
 
         myFile.Set_Data_Write_Add("Comment:");
-        myFile.Set_Data_Write_Add(li_Comment_dou.Count);
-        //myFile.FileWrite(li_Comment_str.Count);
+        myFile.Set_Data_Write_Add(lm_Comment_dou.Count);
+        //myFile.FileWrite(lm_Comment_str.Count);
         //two List of này có cùng Number of phần tử
-        for (int i = 0; i < li_Comment_dou.Count; i++)
+        for (int i = 0; i < lm_Comment_dou.Count; i++)
         {
-            myFile.Set_Data_Write_Add(li_Comment_str[i]);
-            myFile.Set_Data_Write_Add(li_Comment_dou[i]);
+            myFile.Set_Data_Write_Add(lm_Comment_str[i]);
+            myFile.Set_Data_Write_Add(lm_Comment_dou[i]);
             //Lưu Imformation
         }
 
@@ -507,20 +507,20 @@ public class Class_AIML
         //Debug.Log("Weight");
 
         t = myFile.GetData_Read_Auto_String();
-        for (int lay = 0; lay < i_LayerCount - 1; lay++)
+        for (int lay = 0; lay < m_LayerCount - 1; lay++)
         {
             Set_Input_Bias(lay, myFile.GetData_Read_Auto_Float());
             //Ghi Bias of  Layer
         }
 
         t = myFile.GetData_Read_Auto_String();
-        for (int lay = 0; lay < i_LayerCount - 1; lay++)
+        for (int lay = 0; lay < m_LayerCount - 1; lay++)
         {
             //Xét fromng Layer (L-1)
-            for (int neuY = 0; neuY < li_NeuralCount[lay + 1]; neuY++)
+            for (int neuY = 0; neuY < lm_NeuralCount[lay + 1]; neuY++)
             {
                 //Xét fromng Neural Y of Layer (L)
-                for (int neuX = 0; neuX < li_NeuralCount[lay]; neuX++)
+                for (int neuX = 0; neuX < lm_NeuralCount[lay]; neuX++)
                 {
                     //Xét fromng Neural X of Layer (L-1)
                     //Debug.Log(lay + " " + neuY + " " + neuX + " : " + this.li3_Weight[lay][neuY][neuX]);
@@ -531,32 +531,32 @@ public class Class_AIML
             }
         }
 
-        //for (int neu = 0; neu < li_NeuralCount[0]; neu++)
+        //for (int neu = 0; neu < lm_NeuralCount[0]; neu++)
         //{
         //	BrainSet_Input(neu, myFile.GetRead_Auto_Float());
         //	//Ghi Input
         //}
 
-        //for (int neu = 0; neu < li_NeuralCount[i_LayerCount - 1]; neu++)
+        //for (int neu = 0; neu < lm_NeuralCount[m_LayerCount - 1]; neu++)
         //{
         //	BrainSet_Desired(neu, myFile.GetRead_Auto_Float());
         //	//Ghi Desired
         //}
 
-        //this.f_ErrorTotal = myFile.GetRead_Auto_Float();
+        //this.m_ErrorTotal = myFile.GetRead_Auto_Float();
         ////Ghi Error Total
 
-        //this.i_LoopLearning = myFile.GetRead_Auto_Int();
+        //this.m_LoopLearning = myFile.GetRead_Auto_Int();
         ////Ghi Loop Learning
 
         t = myFile.GetData_Read_Auto_String();
         int CommentCount = myFile.GetData_Read_Auto_Int();
-        //myFile.FileReader(li_Comment_str.Count);
+        //myFile.FileReader(lm_Comment_str.Count);
         //two List of này có cùng Number of phần tử
         for (int i = 0; i < CommentCount; i++)
         {
-            li_Comment_str.Add(myFile.GetData_Read_Auto_String());
-            li_Comment_dou.Add(myFile.GetData_Read_Auto_Float());
+            lm_Comment_str.Add(myFile.GetData_Read_Auto_String());
+            lm_Comment_dou.Add(myFile.GetData_Read_Auto_Float());
             //Ghi Imformation
         }
     }
@@ -566,23 +566,23 @@ public class Class_AIML
     /// <summary>
     /// Caculate Sum of between two Layer X (L-1) >> Y (L)
     /// </summary>
-    /// <param name="i_Layer"></param>
-    private void Set_FeedForward_Sum(int i_Layer)
+    /// <param name="m_Layer"></param>
+    private void Set_FeedForward_Sum(int m_Layer)
     {
         //Debug.Log("After");
-        for (int neuY = 0; neuY < li_NeuralCount[i_Layer]; neuY++)
+        for (int neuY = 0; neuY < lm_NeuralCount[m_Layer]; neuY++)
         {
             //Xét Layer Y (L)
 
-            //Sum = Weight * li_Activation(L-1) + Bias
+            //Sum = Weight * lm_Activation(L-1) + Bias
             //Debug.Log(Layer + " " + neuY + " ");
-            li2_Sum[i_Layer - 1][neuY] = li_Bias[i_Layer - 1];
+            li2_Sum[m_Layer - 1][neuY] = lm_Bias[m_Layer - 1];
 
-            for (int neuX = 0; neuX < li_NeuralCount[i_Layer - 1]; neuX++)
+            for (int neuX = 0; neuX < lm_NeuralCount[m_Layer - 1]; neuX++)
             {
                 //Xét Layer X (L-1)
-                li2_Sum[i_Layer - 1][neuY] +=
-                    li3_Weight[i_Layer - 1][neuY][neuX] * li2_Activation[i_Layer - 1][neuX];
+                li2_Sum[m_Layer - 1][neuY] +=
+                    li3_Weight[m_Layer - 1][neuY][neuX] * li2_Activation[m_Layer - 1][neuX];
             }
         }
     }
@@ -603,11 +603,11 @@ public class Class_AIML
     /// <param name="Layer"></param>
     private void Set_FeedForward_Sigmoid(int Layer)
     {
-        for (int neuY = 0; neuY < li_NeuralCount[Layer]; neuY++)
+        for (int neuY = 0; neuY < lm_NeuralCount[Layer]; neuY++)
         {
             //Xét Layer Y (L)
 
-            //li_Activation(L) = Sigmoid(Sum)
+            //lm_Activation(L) = Sigmoid(Sum)
             li2_Activation[Layer][neuY] =
                 GetFloat_FeedForward_Sigmoid_Single(li2_Sum[Layer - 1][neuY]);
         }
@@ -616,11 +616,11 @@ public class Class_AIML
     //Caculate Error after FeedForward và before BackPropagation
     //private void Set_Error()
     //{
-    //	f_ErrorTotal = 0;
-    //	for (int neuY = 0; neuY < li_NeuralCount[i_LayerCount - 1]; neuY++)
+    //	m_ErrorTotal = 0;
+    //	for (int neuY = 0; neuY < lm_NeuralCount[m_LayerCount - 1]; neuY++)
     //	{
-    //		float Delta = li_Desired[neuY] - li2_Activation[i_LayerCount - 1][neuY];
-    //		f_ErrorTotal += (float)0.5 * Delta * Delta;
+    //		float Delta = lm_Desired[neuY] - li2_Activation[m_LayerCount - 1][neuY];
+    //		m_ErrorTotal += (float)0.5 * Delta * Delta;
     //	}
     //}
 
@@ -629,7 +629,7 @@ public class Class_AIML
     /// </summary>
     public void Set_FeedForward()
     {
-        for (int lay = 1; lay < i_LayerCount; lay++)
+        for (int lay = 1; lay < m_LayerCount; lay++)
         {
             Set_FeedForward_Sum(lay);
             Set_FeedForward_Sigmoid(lay);
@@ -644,41 +644,41 @@ public class Class_AIML
     /// </summary>
     private void Set_BackPropagation_ErrorOuput()
     {
-        int layerY = i_LayerCount - 1;
-        for (int neuY = 0; neuY < li_NeuralCount[layerY]; neuY++)
+        int layerY = m_LayerCount - 1;
+        for (int neuY = 0; neuY < lm_NeuralCount[layerY]; neuY++)
         {
             //Xét Layer Y (L) với Desired
             li2_Error[layerY - 1][neuY] =
-                -(li_Desired[neuY] - li2_Activation[layerY][neuY]);
+                -(lm_Desired[neuY] - li2_Activation[layerY][neuY]);
         }
     }
 
     /// <summary>
     /// Caculate Sigmoid
     /// </summary>
-    /// <param name="f_Value"></param>
+    /// <param name="m_Value"></param>
     /// <returns></returns>
-    public float GetFloat_BackPropagation_Sigmoid_Single(float f_Value)
+    public float GetFloat_BackPropagation_Sigmoid_Single(float m_Value)
     {
-        float Sigmoid = GetFloat_FeedForward_Sigmoid_Single(f_Value);
+        float Sigmoid = GetFloat_FeedForward_Sigmoid_Single(m_Value);
         return Sigmoid * ((float)1.0 - Sigmoid);
     }
 
     /// <summary>
     /// Caculate Error between Layer Y (L) >> Layer Z (L+1)
     /// </summary>
-    /// <param name="i_Layer"></param>
-    private void Set_BackPropagation_ErrorHidden(int i_Layer)
+    /// <param name="m_Layer"></param>
+    private void Set_BackPropagation_ErrorHidden(int m_Layer)
     {
-        int layerZ = i_Layer + 1;
-        int layerY = i_Layer;
-        for (int neuY = 0; neuY < li_NeuralCount[layerY]; neuY++)
+        int layerZ = m_Layer + 1;
+        int layerY = m_Layer;
+        for (int neuY = 0; neuY < lm_NeuralCount[layerY]; neuY++)
         {
             //Xét Layer Y (L) với Layer Z (L+1)
             //Debug.Log(Layer + " " + neuY);
             li2_Error[layerY - 1][neuY] = 0;
 
-            for (int neu_Z = 0; neu_Z < li_NeuralCount[layerZ]; neu_Z++)
+            for (int neu_Z = 0; neu_Z < lm_NeuralCount[layerZ]; neu_Z++)
             {
                 //Xét Layer Y (L) với Layer Z (L+1)
                 li2_Error[layerY - 1][neuY] +=
@@ -698,10 +698,10 @@ public class Class_AIML
         //Layer Output
         int layerX = Layer - 1;
         int layerY = Layer;
-        for (int neuX = 0; neuX < li_NeuralCount[layerX]; neuX++)
+        for (int neuX = 0; neuX < lm_NeuralCount[layerX]; neuX++)
         {
             //Xét Layer X (L-1) >> Layer Y (L)
-            for (int neuY = 0; neuY < li_NeuralCount[layerY]; neuY++)
+            for (int neuY = 0; neuY < lm_NeuralCount[layerY]; neuY++)
             {
                 //Xét Layer X (L-1) >> Layer Y (L)
                 li3_Weight[layerY - 1][neuY][neuX] -=
@@ -718,12 +718,12 @@ public class Class_AIML
     /// </summary>
     public void Set_BackPropagation()
     {
-        for (int lay = i_LayerCount - 1; lay > 0; lay--)
+        for (int lay = m_LayerCount - 1; lay > 0; lay--)
         {
             //Xét Layer X (L-1) >> Layer Y (L) >> Layer Z (L+1)
 
             //Caculate Error
-            if (lay == i_LayerCount - 1)
+            if (lay == m_LayerCount - 1)
             {
                 Set_BackPropagation_ErrorOuput();
             }
@@ -733,7 +733,7 @@ public class Class_AIML
             }
         }
 
-        for (int lay = i_LayerCount - 1; lay > 0; lay--)
+        for (int lay = m_LayerCount - 1; lay > 0; lay--)
         {
             //Xét Layer X (L-1) >> Layer Y (L) >> Layer Z (L+1)
 
@@ -741,7 +741,7 @@ public class Class_AIML
             Set_BackPropagation_Update(lay);
         }
 
-        //i_LoopLearning++;
+        //m_LoopLearning++;
     }
 
     //---------------------------------------------------------------------------- Ghi chú
@@ -753,9 +753,9 @@ public class Class_AIML
     /// <returns></returns>
     public int GetIndex_Comment(string CommentString)
     {
-        for (int i = 0; i < li_Comment_str.Count; i++)
+        for (int i = 0; i < lm_Comment_str.Count; i++)
         {
-            if (li_Comment_str[i] == CommentString)
+            if (lm_Comment_str[i] == CommentString)
             {
                 return i;
             }
@@ -773,12 +773,12 @@ public class Class_AIML
         int Index = GetIndex_Comment(CommentString);
         if (Index != -1)
         {
-            li_Comment_dou[Index] = CommentNumber;
+            lm_Comment_dou[Index] = CommentNumber;
         }
         else
         {
-            li_Comment_str.Add(CommentString);
-            li_Comment_dou.Add(CommentNumber);
+            lm_Comment_str.Add(CommentString);
+            lm_Comment_dou.Add(CommentNumber);
         }
     }
 
@@ -792,7 +792,7 @@ public class Class_AIML
         int Index = GetIndex_Comment(CommentString);
         if (Index != -1)
         {
-            return li_Comment_dou[Index];
+            return lm_Comment_dou[Index];
         }
         return int.MaxValue;
     }
@@ -802,8 +802,8 @@ public class Class_AIML
     /// <summary>
     /// Delay Time
     /// </summary>
-    private int i_BrainDelayTime = 3;
-    private int i_BrainDelayTime_Cur = 0;
+    private int m_BrainDelayTime = 3;
+    private int m_BrainDelayTime_Cur = 0;
 
     /// <summary>
     /// Set Delay Time
@@ -811,7 +811,7 @@ public class Class_AIML
     /// <param name="Value"></param>
     public void Set_Input_myBrainDelayTime(int Value)
     {
-        i_BrainDelayTime = Value;
+        m_BrainDelayTime = Value;
     }
 
     /// <summary>
@@ -820,7 +820,7 @@ public class Class_AIML
     /// <returns>Will return "True" if Delay Time = 0</returns>
     public bool GetBool_myBrainDelayTime_Value()
     {
-        if (i_BrainDelayTime_Cur > 0)
+        if (m_BrainDelayTime_Cur > 0)
         {
             return false;
         }
@@ -833,12 +833,12 @@ public class Class_AIML
     /// <returns>Will return "True" if Delay Time = 0</returns>
     public bool GetBool_myBrainDelayTime_Over()
     {
-        if (i_BrainDelayTime_Cur > 0)
+        if (m_BrainDelayTime_Cur > 0)
         {
-            i_BrainDelayTime_Cur -= 1;
+            m_BrainDelayTime_Cur -= 1;
             return false;
         }
-        i_BrainDelayTime_Cur = i_BrainDelayTime;
+        m_BrainDelayTime_Cur = m_BrainDelayTime;
         return true;
     }
 

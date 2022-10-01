@@ -228,12 +228,12 @@ public class Class_FileIO
     #region File Custom Read 
 
     private List<string> ls_TextRead = new List<string>();
-    private int i_ReadRun = -1;
+    private int m_ReadRun = -1;
 
     public void Set_Data_Read_Clear()
     {
         ls_TextRead = new List<string>();
-        i_ReadRun = -1;
+        m_ReadRun = -1;
     }
 
     #region File Custom Read Start
@@ -290,61 +290,61 @@ public class Class_FileIO
 
     public string GetData_Read_Auto_String()
     {
-        i_ReadRun++;
-        return ls_TextRead[i_ReadRun];
+        m_ReadRun++;
+        return ls_TextRead[m_ReadRun];
     }
 
     public int GetData_Read_Auto_Int()
     {
-        i_ReadRun++;
-        return int.Parse(ls_TextRead[i_ReadRun]);
+        m_ReadRun++;
+        return int.Parse(ls_TextRead[m_ReadRun]);
     }
 
     public float GetData_Read_Auto_Float()
     {
-        i_ReadRun++;
-        return float.Parse(ls_TextRead[i_ReadRun]);
+        m_ReadRun++;
+        return float.Parse(ls_TextRead[m_ReadRun]);
     }
 
     public double GetData_Read_Auto_Double()
     {
-        i_ReadRun++;
-        return double.Parse(ls_TextRead[i_ReadRun]);
+        m_ReadRun++;
+        return double.Parse(ls_TextRead[m_ReadRun]);
     }
 
     public bool GetData_Read_Auto_Bool()
     {
-        i_ReadRun++;
-        return ls_TextRead[i_ReadRun] == "True";
+        m_ReadRun++;
+        return ls_TextRead[m_ReadRun] == "True";
     }
 
     public Vector2 GetData_Read_AutoVector2(char c_Key)
     {
-        i_ReadRun++;
-        return ClassString.GetDataVector2Dencypt(ls_TextRead[i_ReadRun], c_Key);
+        m_ReadRun++;
+        return ClassString.GetDataVector2Dencypt(ls_TextRead[m_ReadRun], c_Key);
     }
 
     public Vector2Int GetData_Read_AutoVector2Int(char c_Key)
     {
-        i_ReadRun++;
-        return ClassString.GetDataVector2IntDencypt(ls_TextRead[i_ReadRun], c_Key);
+        m_ReadRun++;
+        return ClassString.GetDataVector2IntDencypt(ls_TextRead[m_ReadRun], c_Key);
     }
 
     public Vector3 GetData_Read_AutoVector3(char c_Key)
     {
-        i_ReadRun++;
-        return ClassString.GetDataVector3Dencypt(ls_TextRead[i_ReadRun], c_Key);
+        m_ReadRun++;
+        return ClassString.GetDataVector3Dencypt(ls_TextRead[m_ReadRun], c_Key);
     }
 
     public Vector3Int GetData_Read_AutoVector3Int(char c_Key)
     {
-        i_ReadRun++;
-        return ClassString.GetDataVector3IntDencypt(ls_TextRead[i_ReadRun], c_Key);
+        m_ReadRun++;
+        return ClassString.GetDataVector3IntDencypt(ls_TextRead[m_ReadRun], c_Key);
     }
 
     public int GetData_Read_Auto_Current()
     {
-        return i_ReadRun;
+        return m_ReadRun;
     }
 
     public bool GetData_Read_AutoIsEnd()

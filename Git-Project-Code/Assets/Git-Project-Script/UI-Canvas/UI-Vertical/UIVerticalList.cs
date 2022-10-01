@@ -73,25 +73,25 @@ public class UIVerticalList : MonoBehaviour
     /// <summary>
     /// Remove Clone in List Vertical
     /// </summary>
-    /// <param name="i_Index"></param>
-    public void Set_ListVertical_Remove(int i_Index)
+    /// <param name="m_Index"></param>
+    public void Set_ListVertical_Remove(int m_Index)
     {
         //if (!m_Component)
         //{
         //    return;
         //}
 
-        if (i_Index < 0 || i_Index > l_Vertical.Count - 1)
+        if (m_Index < 0 || m_Index > l_Vertical.Count - 1)
         {
             return;
         }
 
         //Remove Clone at Index
-        Class_Object.Set_GameObject_Destroy(l_Vertical[i_Index]);
-        l_Vertical.RemoveAt(i_Index);
+        Class_Object.Set_GameObject_Destroy(l_Vertical[m_Index]);
+        l_Vertical.RemoveAt(m_Index);
 
         //Fix Index other Clone
-        for (int i = i_Index; i < l_Vertical.Count; i++)
+        for (int i = m_Index; i < l_Vertical.Count; i++)
         {
             GetListVerticalClone(i).SetClone_Index(i);
         }
@@ -139,21 +139,21 @@ public class UIVerticalList : MonoBehaviour
     /// <summary>
     /// Get GameObject of Clone from List Vertical
     /// </summary>
-    /// <param name="i_Index"></param>
+    /// <param name="m_Index"></param>
     /// <returns></returns>
-    public GameObject GetListVertical_GameObject(int i_Index)
+    public GameObject GetListVertical_GameObject(int m_Index)
     {
         //if (!m_Component)
         //{
         //    return null;
         //}
 
-        if (i_Index < 0 || i_Index > l_Vertical.Count - 1)
+        if (m_Index < 0 || m_Index > l_Vertical.Count - 1)
         {
             return null;
         }
 
-        return l_Vertical[i_Index];
+        return l_Vertical[m_Index];
     }
 
     /// <summary>
@@ -168,21 +168,21 @@ public class UIVerticalList : MonoBehaviour
     /// <summary>
     /// Get Clone Component of Clone from List Vertical
     /// </summary>
-    /// <param name="i_Index"></param>
+    /// <param name="m_Index"></param>
     /// <returns></returns>
-    public UIVerticalClone GetListVerticalClone(int i_Index)
+    public UIVerticalClone GetListVerticalClone(int m_Index)
     {
         //if (!m_Component)
         //{
         //    return null;
         //}
 
-        if (i_Index < 0 || i_Index > l_Vertical.Count - 1)
+        if (m_Index < 0 || m_Index > l_Vertical.Count - 1)
         {
             return null;
         }
 
-        return l_Vertical[i_Index].GetComponent<UIVerticalClone>();
+        return l_Vertical[m_Index].GetComponent<UIVerticalClone>();
     }
 
     /// <summary>

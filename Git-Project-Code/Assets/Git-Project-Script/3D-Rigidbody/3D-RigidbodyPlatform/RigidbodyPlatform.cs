@@ -20,18 +20,18 @@ public class RigidbodyPlatform : MonoBehaviour
     //Control Speed Chance
 
     [Header("Move")]
-    public float f_SpeedNormal = 2f;
+    public float m_SpeedNormal = 2f;
     //Normal Speed Move
 
-    public float f_SpeedChance = 5f;
+    public float m_SpeedChance = 5f;
     //Chance Speed Move
-    private float f_SpeedCur;
+    private float m_SpeedCur;
     //Current Speed Move
 
     public bool m_StopRightAway = false;
     //Control Stop without Speed Stop Velocity
 
-    public float f_SpeedStop = 3f;
+    public float m_SpeedStop = 3f;
     //Speed Stop
 
     private void Awake()
@@ -72,10 +72,10 @@ public class RigidbodyPlatform : MonoBehaviour
         }
     }
 
-    private void Set_Move(int i_ButtonMove)
+    private void Set_Move(int m_ButtonMove)
     //Control Move
     {
-        cs_Rigid.Set_MoveX_Velocity(i_ButtonMove, f_SpeedCur, f_SpeedCur);
+        cs_Rigid.Set_MoveX_Velocity(m_ButtonMove, m_SpeedCur, m_SpeedCur);
     }
 
     private void Set_Stop()
@@ -87,13 +87,13 @@ public class RigidbodyPlatform : MonoBehaviour
         }
         else
         {
-            cs_Rigid.Set_StopX_Velocity(f_SpeedStop);
+            cs_Rigid.Set_StopX_Velocity(m_SpeedStop);
         }
     }
 
     public void Set_SpeedChance()
     //Control Speed Chance
     {
-        f_SpeedCur = (Input.GetKey(k_SpeedChance)) ? f_SpeedChance : f_SpeedNormal;
+        m_SpeedCur = (Input.GetKey(k_SpeedChance)) ? m_SpeedChance : m_SpeedNormal;
     }
 }

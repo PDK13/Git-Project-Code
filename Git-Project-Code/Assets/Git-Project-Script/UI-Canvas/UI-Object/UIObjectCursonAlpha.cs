@@ -25,12 +25,12 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     [Tooltip("Canvas Alpha when Pointer Enter")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float f_Canvas_Alpha_Enter = 1f;
+    private float m_Canvas_Alpha_Enter = 1f;
 
     [Tooltip("Canvas Alpha when Pointer Exit")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float f_Canvas_Alpha_Exit = 0.2f;
+    private float m_Canvas_Alpha_Exit = 0.2f;
 
     [Header("Event")]
 
@@ -58,11 +58,11 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
         if (m_Canvas_Lock_Enter)
         {
-            c_CanvasGroup.alpha = f_Canvas_Alpha_Enter;
+            c_CanvasGroup.alpha = m_Canvas_Alpha_Enter;
         }
         else
         {
-            c_CanvasGroup.alpha = f_Canvas_Alpha_Exit;
+            c_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
         }
 
         if (cl_Button_Lock_Chance != null)
@@ -116,7 +116,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     private void Set_Event_PointerEnter()
     {
-        c_CanvasGroup.alpha = f_Canvas_Alpha_Enter;
+        c_CanvasGroup.alpha = m_Canvas_Alpha_Enter;
 
         Set_Event_Invoke_PointerEnter();
     }
@@ -125,7 +125,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     {
         if (m_Canvas_Lock_Enter)
         {
-            c_CanvasGroup.alpha = f_Canvas_Alpha_Enter;
+            c_CanvasGroup.alpha = m_Canvas_Alpha_Enter;
 
             return;
         }
@@ -138,7 +138,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
             }
         }
 
-        c_CanvasGroup.alpha = f_Canvas_Alpha_Exit;
+        c_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
 
         Set_Event_Invoke_PointerExit();
     }
@@ -187,21 +187,21 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// <summary>
     /// Set Alpha Canvas when in Curson Enter State (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="f_Canvas_Alpha_Enter"></param>
-    public void Set_UI_Canvas_Alpha_Enter(float f_Canvas_Alpha_Enter)
+    /// <param name="m_Canvas_Alpha_Enter"></param>
+    public void Set_UI_Canvas_Alpha_Enter(float m_Canvas_Alpha_Enter)
     {
-        if (f_Canvas_Alpha_Enter < 0)
+        if (m_Canvas_Alpha_Enter < 0)
         {
-            this.f_Canvas_Alpha_Enter = 0;
+            this.m_Canvas_Alpha_Enter = 0;
         }
         else
-        if (f_Canvas_Alpha_Enter > 1)
+        if (m_Canvas_Alpha_Enter > 1)
         {
-            this.f_Canvas_Alpha_Enter = 1;
+            this.m_Canvas_Alpha_Enter = 1;
         }
         else
         {
-            this.f_Canvas_Alpha_Enter = f_Canvas_Alpha_Enter;
+            this.m_Canvas_Alpha_Enter = m_Canvas_Alpha_Enter;
         }
     }
 
@@ -211,7 +211,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// <returns></returns>
     public float GetUI_Canvas_Alpha_Enter()
     {
-        return f_Canvas_Alpha_Enter;
+        return m_Canvas_Alpha_Enter;
     }
 
     #endregion
@@ -221,21 +221,21 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// <summary>
     /// Set Alpha Canvas when in Curson Exit State (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="f_Canvas_Alpha_Exit"></param>
-    public void Set_UI_Canvas_Alpha_Exit(float f_Canvas_Alpha_Exit)
+    /// <param name="m_Canvas_Alpha_Exit"></param>
+    public void Set_UI_Canvas_Alpha_Exit(float m_Canvas_Alpha_Exit)
     {
-        if (f_Canvas_Alpha_Exit < 0)
+        if (m_Canvas_Alpha_Exit < 0)
         {
-            this.f_Canvas_Alpha_Exit = 0;
+            this.m_Canvas_Alpha_Exit = 0;
         }
         else
-        if (f_Canvas_Alpha_Exit > 1)
+        if (m_Canvas_Alpha_Exit > 1)
         {
-            this.f_Canvas_Alpha_Exit = 1;
+            this.m_Canvas_Alpha_Exit = 1;
         }
         else
         {
-            this.f_Canvas_Alpha_Exit = f_Canvas_Alpha_Exit;
+            this.m_Canvas_Alpha_Exit = m_Canvas_Alpha_Exit;
         }
     }
 
@@ -245,7 +245,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// <returns></returns>
     public float GetUI_Canvas_Alpha_Exit()
     {
-        return f_Canvas_Alpha_Exit;
+        return m_Canvas_Alpha_Exit;
     }
 
     #endregion

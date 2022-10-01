@@ -2,33 +2,33 @@ using UnityEngine;
 
 public class Sample_2DSimplePlatform : MonoBehaviour
 {
-    [SerializeField] private float f_Speed = 0.001f;
+    [SerializeField] private float m_Speed = 0.001f;
 
-    private int i_Move_Dir = 1;
+    private int m_Move_Dir = 1;
 
-    private readonly float f_Time_Chance = 5f;
+    private readonly float m_Time_Chance = 5f;
 
-    private float f_Time_Chance_Cur = 0f;
+    private float m_Time_Chance_Cur = 0f;
 
     private void Awake()
     {
-        f_Time_Chance_Cur = f_Time_Chance;
+        m_Time_Chance_Cur = m_Time_Chance;
     }
 
     private void Update()
     {
-        if (f_Time_Chance_Cur > 0)
+        if (m_Time_Chance_Cur > 0)
         {
-            f_Time_Chance_Cur -= Time.deltaTime;
+            m_Time_Chance_Cur -= Time.deltaTime;
         }
         else
         {
-            i_Move_Dir *= -1;
+            m_Move_Dir *= -1;
 
-            f_Time_Chance_Cur = f_Time_Chance;
+            m_Time_Chance_Cur = m_Time_Chance;
         }
 
-        Vector2 v2_Pos = Vector2.MoveTowards(transform.position, transform.position + Vector3.right * i_Move_Dir, f_Speed);
+        Vector2 v2_Pos = Vector2.MoveTowards(transform.position, transform.position + Vector3.right * m_Move_Dir, m_Speed);
 
         transform.position = v2_Pos;
     }

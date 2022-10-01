@@ -11,19 +11,19 @@
 //    /// <summary>
 //    /// Input Field EMAIL
 //    /// </summary>
-//    public InputField i_Email;
+//    public InputField m_Email;
 //    /// <summary>
 //    /// Input Field PASSWORD
 //    /// </summary>
-//    public InputField i_Password;
+//    public InputField m_Password;
 //    /// <summary>
 //    /// Input Field RE-PASSWORD
 //    /// </summary>
-//    public InputField i_Password_Re;
+//    public InputField m_Password_Re;
 //    /// <summary>
 //    /// Input Field DISPLAY-NAME
 //    /// </summary>
-//    public InputField i_DisplayName;
+//    public InputField m_DisplayName;
 
 //    /// <summary>
 //    /// Text EMAIL Auth
@@ -44,8 +44,8 @@
 //    {
 //        cl_Firebase = new Class_Firebase();
 
-//        i_Password.inputType = InputField.InputType.Password;
-//        i_Password_Re.inputType = InputField.InputType.Password;
+//        m_Password.inputType = InputField.InputType.Password;
+//        m_Password_Re.inputType = InputField.InputType.Password;
 //        //Set Input Field to "Password"
 
 //        t_Info.text = "";
@@ -88,46 +88,46 @@
 
 //        cl_Firebase.Set_FirebaseAuth_Message_Clear();
 
-//        if(i_Email.text == "")
+//        if(m_Email.text == "")
 //        {
 //            t_Info.text = "Email not allow emty";
 //            return;
 //        }
 
-//        if (i_Password.text == "")
+//        if (m_Password.text == "")
 //        {
 //            t_Info.text = "Password not allow emty";
 //            return;
 //        }
 
-//        if (i_Password_Re.text == "")
+//        if (m_Password_Re.text == "")
 //        {
 //            t_Info.text = "Re-Password not same to Password";
 //            return;
 //        }
 
-//        if(i_Password.text.Length < 6 || i_Password.text.Length > 12)
+//        if(m_Password.text.Length < 6 || m_Password.text.Length > 12)
 //        {
 //            t_Info.text = "Password allow 6-12 Characters";
 //            return;
 //        }
 
-//        if (i_DisplayName.text == "")
+//        if (m_DisplayName.text == "")
 //        //If DisplayName emty >> DisplayName will "Newbie"
 //        {
-//            i_DisplayName.text = "Newbie";
+//            m_DisplayName.text = "Newbie";
 //        }
 
-//        i_DisplayName.text = i_DisplayName.text.ToUpper();
+//        m_DisplayName.text = m_DisplayName.text.ToUpper();
 
 //        StartCoroutine(
 //            cl_Firebase.Set_FirebaseAuth_Register_IEnumerator(
-//                i_Email.text,
-//                i_Password.text,
-//                i_Password_Re.text,
-//                i_DisplayName.text,
+//                m_Email.text,
+//                m_Password.text,
+//                m_Password_Re.text,
+//                m_DisplayName.text,
 //                true,
-//                new Android_FirebasePlayer_Data(i_DisplayName.text)));
+//                new Android_FirebasePlayer_Data(m_DisplayName.text)));
 //        //Create Primary User Auth Profile in Firebase Database at "_Player/$UserAuthID/"
 
 //        t_Info.text = cl_Firebase.GetFirebaseAuth_Message();

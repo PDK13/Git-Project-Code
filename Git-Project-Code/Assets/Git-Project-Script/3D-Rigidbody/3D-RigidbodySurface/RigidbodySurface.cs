@@ -24,23 +24,23 @@ public class RigidbodySurface : MonoBehaviour
 
     [Header("Move")]
 
-    [SerializeField] private float f_SpeedNormal = 2f;
+    [SerializeField] private float m_SpeedNormal = 2f;
 
-    [SerializeField] private float f_SpeedChance = 5f;
+    [SerializeField] private float m_SpeedChance = 5f;
 
-    private float f_SpeedCur;
+    private float m_SpeedCur;
 
     [SerializeField] private bool m_StopRightAway = false;
 
-    [SerializeField] private float f_SpeedStop = 3f;
+    [SerializeField] private float m_SpeedStop = 3f;
 
     private RigidbodyComponent cs_Rigid;
 
-    private int i_ButtonMove_X_Right = 0;
+    private int m_ButtonMove_X_Right = 0;
 
-    private int i_ButtonMove_Z_Forward = 0;
+    private int m_ButtonMove_Z_Forward = 0;
 
-    private bool m_SpeedChance = false;
+    private bool m_SpeedIsChance = false;
 
     private void Awake()
     {
@@ -123,19 +123,19 @@ public class RigidbodySurface : MonoBehaviour
         }
     }
 
-    private void Set_Control_Move_X_Right(int i_ButtonMove_X_Right)
+    private void Set_Control_Move_X_Right(int m_ButtonMove_X_Right)
     {
-        this.i_ButtonMove_X_Right = i_ButtonMove_X_Right;
+        this.m_ButtonMove_X_Right = m_ButtonMove_X_Right;
     }
 
-    private void Set_Control_Move_Z_Forward(int i_ButtonMove_Z_Forward)
+    private void Set_Control_Move_Z_Forward(int m_ButtonMove_Z_Forward)
     {
-        this.i_ButtonMove_Z_Forward = i_ButtonMove_Z_Forward;
+        this.m_ButtonMove_Z_Forward = m_ButtonMove_Z_Forward;
     }
 
-    private void Set_Control_Move_SpeedChance(bool m_SpeedChance)
+    private void Set_Control_Move_SpeedChance(bool m_SpeedIsChance)
     {
-        this.m_SpeedChance = m_SpeedChance;
+        this.m_SpeedIsChance = m_SpeedIsChance;
     }
 
     #endregion
@@ -144,11 +144,11 @@ public class RigidbodySurface : MonoBehaviour
 
     private void Set_MoveControl()
     {
-        f_SpeedCur = (m_SpeedChance) ? f_SpeedChance : f_SpeedNormal;
+        m_SpeedCur = (m_SpeedIsChance) ? m_SpeedChance : m_SpeedNormal;
 
-        if (i_ButtonMove_X_Right != 0)
+        if (m_ButtonMove_X_Right != 0)
         {
-            cs_Rigid.Set_MoveX_Velocity(i_ButtonMove_X_Right, f_SpeedCur, f_SpeedCur);
+            cs_Rigid.Set_MoveX_Velocity(m_ButtonMove_X_Right, m_SpeedCur, m_SpeedCur);
         }
         else
         {
@@ -158,13 +158,13 @@ public class RigidbodySurface : MonoBehaviour
             }
             else
             {
-                cs_Rigid.Set_StopX_Velocity(f_SpeedStop);
+                cs_Rigid.Set_StopX_Velocity(m_SpeedStop);
             }
         }
 
-        if (i_ButtonMove_Z_Forward != 0)
+        if (m_ButtonMove_Z_Forward != 0)
         {
-            cs_Rigid.Set_MoveZ_Velocity(i_ButtonMove_Z_Forward, f_SpeedCur, f_SpeedCur);
+            cs_Rigid.Set_MoveZ_Velocity(m_ButtonMove_Z_Forward, m_SpeedCur, m_SpeedCur);
         }
         else
         {
@@ -174,7 +174,7 @@ public class RigidbodySurface : MonoBehaviour
             }
             else
             {
-                cs_Rigid.Set_StopZ_Velocity(f_SpeedStop);
+                cs_Rigid.Set_StopZ_Velocity(m_SpeedStop);
             }
         }
     }

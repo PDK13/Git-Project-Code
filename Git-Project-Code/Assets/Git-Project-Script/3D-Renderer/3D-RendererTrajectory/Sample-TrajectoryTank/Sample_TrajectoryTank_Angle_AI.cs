@@ -16,7 +16,7 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
 
     private RigidbodyRotation cs_RigidbodyRotation;
 
-    [SerializeField] private float f_Deg_Cur = 0;
+    [SerializeField] private float m_Deg_Cur = 0;
 
     [SerializeField] private bool m_Deg_High = true;
 
@@ -92,7 +92,7 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
     {
         try
         {
-            f_Deg_Cur = (float)cs_RendererTrajectory.GetTrajectory_Angle_toDeg(
+            m_Deg_Cur = (float)cs_RendererTrajectory.GetTrajectory_Angle_toDeg(
                 cs_RendererTrajectory.GetTrajectory_Start_toTransform().position,
                 com_Tarket.transform.position,
                 m_Deg_High);
@@ -102,7 +102,7 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
 
         }
 
-        com_Gun.rotation = ClassVector.GetRotationEulerToQuaternion(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, f_Deg_Cur);
+        com_Gun.rotation = ClassVector.GetRotationEulerToQuaternion(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, m_Deg_Cur);
 
         cs_RendererTrajectory.Set_Trajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag, true);
     }

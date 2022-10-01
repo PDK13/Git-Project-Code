@@ -31,14 +31,14 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     [Tooltip("Event After Hold Time")]
     [SerializeField]
-    private bool m_HoldTime = false;
+    private bool m_HoldTimeIsAllow = false;
 
     [Tooltip("Hold Time")]
     [SerializeField]
-    private float f_HoldTime = 1f;
+    private float m_HoldTime = 1f;
 
     [Tooltip("Time Remain in Hold Pressed")]
-    private float f_HoldTime_Remain;
+    private float m_HoldTime_Remain;
 
     [Header("Event")]
 
@@ -118,12 +118,12 @@ public class UIButtonHoldClick : MonoBehaviour,
         if (m_Button_Hold)
         //If Hold Pressed >> Do...
         {
-            if (m_HoldTime)
+            if (m_HoldTimeIsAllow)
             //If Need Time to do Event >> Do...
             {
-                f_HoldTime_Remain -= Time.deltaTime;
+                m_HoldTime_Remain -= Time.deltaTime;
 
-                if (f_HoldTime_Remain < 0)
+                if (m_HoldTime_Remain < 0)
                 //If out of Time Hold >> Do Event
                 {
                     Set_Event_Invoke_HoldState();
@@ -284,7 +284,7 @@ public class UIButtonHoldClick : MonoBehaviour,
         }
 
         m_Button_Hold = false;
-        f_HoldTime_Remain = f_HoldTime;
+        m_HoldTime_Remain = m_HoldTime;
 
         Set_Event_Invoke_PointerUp();
     }
@@ -364,7 +364,7 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     public float GetHoldTime_Remain()
     {
-        return f_HoldTime_Remain;
+        return m_HoldTime_Remain;
 
     }
 
@@ -396,10 +396,10 @@ public class UIButtonHoldClick : MonoBehaviour,
         if (m_Button_Hold)
         //If Hold Pressed >> Do...
         {
-            if (m_HoldTime)
+            if (m_HoldTimeIsAllow)
             //If Need Time to do Event >> Do...
             {
-                if (f_HoldTime_Remain < 0)
+                if (m_HoldTime_Remain < 0)
                 //If out of Time Hold >> Do Event
                 {
                     Set_Button_Color(c_Color_Hold);

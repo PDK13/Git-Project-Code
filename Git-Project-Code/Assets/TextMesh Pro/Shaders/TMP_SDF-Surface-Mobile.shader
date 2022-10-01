@@ -96,7 +96,7 @@ SubShader {
 		CGPROGRAM
 		#pragma vertex vert
 		#pragma fragment frag
-		#pragma multi_compile_shadowcaster
+		#pragma multm_compile_shadowcaster
 		#include "UnityCG.cginc"
 
 		struct v2f {

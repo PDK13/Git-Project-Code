@@ -8,7 +8,7 @@ public class Sample_VelocityHigh : MonoBehaviour
 
     private CircleCollider2D com_CircleCollider2D;
 
-    private float f_Distance_Get;
+    private float m_Distance_Get;
 
     private Vector2? v2_Pos_Drop;
 
@@ -44,12 +44,12 @@ public class Sample_VelocityHigh : MonoBehaviour
         else
         if (ray_Raycast.collider != null)
         {
-            if (ray_Raycast.collider != null && f_Distance_Get == 0)
+            if (ray_Raycast.collider != null && m_Distance_Get == 0)
             {
-                f_Distance_Get = ray_Raycast.distance * 1.0f;
+                m_Distance_Get = ray_Raycast.distance * 1.0f;
             }
             else
-            if (ray_Raycast.distance * 1.0f <= f_Distance_Get * Time.fixedDeltaTime && f_Distance_Get != 0)
+            if (ray_Raycast.distance * 1.0f <= m_Distance_Get * Time.fixedDeltaTime && m_Distance_Get != 0)
             {
                 if (com_Rigidbody2D.bodyType != RigidbodyType2D.Static)
                 {

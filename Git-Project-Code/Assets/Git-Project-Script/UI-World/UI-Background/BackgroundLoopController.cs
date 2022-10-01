@@ -9,15 +9,15 @@ public class BackgroundLoopController : MonoBehaviour
 
     [SerializeField] private Transform com_Camera;
 
-    private float f_Camera_X;
+    private float m_Camera_X;
 
     [Header("Background")]
 
     [SerializeField] private SpriteRenderer com_Background;
 
-    private float f_Background_Bound_X;
+    private float m_Background_Bound_X;
 
-    private float f_Background_Local_X;
+    private float m_Background_Local_X;
 
     [Header("Background Layer")]
 
@@ -30,10 +30,10 @@ public class BackgroundLoopController : MonoBehaviour
             com_Camera = Camera.main.transform;
         }
 
-        f_Background_Bound_X = com_Background.GetComponent<SpriteRenderer>().bounds.size.x;
-        f_Background_Local_X = com_Background.transform.localScale.x;
+        m_Background_Bound_X = com_Background.GetComponent<SpriteRenderer>().bounds.size.x;
+        m_Background_Local_X = com_Background.transform.localScale.x;
 
-        f_Camera_X = com_Camera.position.x;
+        m_Camera_X = com_Camera.position.x;
 
         for (int i = 0; i < l_Background_Layer.Count; i++)
         {
@@ -45,27 +45,27 @@ public class BackgroundLoopController : MonoBehaviour
     {
         for (int i = 0; i < l_Background_Layer.Count; i++)
         {
-            float f_Temp = GetCamera_X() * (1 - l_Background_Layer[i].GetLayer_Speed_X());
+            float m_Temp = GetCamera_X() * (1 - l_Background_Layer[i].GetLayer_Speed_X());
 
-            float f_Distance = GetCamera_X() * l_Background_Layer[i].GetLayer_Speed_X();
+            float m_Distance = GetCamera_X() * l_Background_Layer[i].GetLayer_Speed_X();
 
-            l_Background_Layer[i].GetTransform().transform.position = new Vector2(l_Background_Layer[i].GetLayer_PosStart_X() + f_Distance + f_Camera_X, GetCamera_Y(l_Background_Layer[i]));
+            l_Background_Layer[i].GetTransform().transform.position = new Vector2(l_Background_Layer[i].GetLayer_PosStart_X() + m_Distance + m_Camera_X, GetCamera_Y(l_Background_Layer[i]));
 
-            if (f_Temp > l_Background_Layer[i].GetLayer_PosStart_X() + f_Background_Bound_X * f_Background_Local_X)
+            if (m_Temp > l_Background_Layer[i].GetLayer_PosStart_X() + m_Background_Bound_X * m_Background_Local_X)
             {
-                l_Background_Layer[i].Set_Layer_PosStart_X_Chance(f_Background_Bound_X * f_Background_Local_X);
+                l_Background_Layer[i].Set_Layer_PosStart_X_Chance(m_Background_Bound_X * m_Background_Local_X);
             }
             else
-            if (f_Temp < l_Background_Layer[i].GetLayer_PosStart_X() - f_Background_Bound_X * f_Background_Local_X)
+            if (m_Temp < l_Background_Layer[i].GetLayer_PosStart_X() - m_Background_Bound_X * m_Background_Local_X)
             {
-                l_Background_Layer[i].Set_Layer_PosStart_X_Chance(-f_Background_Bound_X * f_Background_Local_X);
+                l_Background_Layer[i].Set_Layer_PosStart_X_Chance(-m_Background_Bound_X * m_Background_Local_X);
             }
         }
     }
 
     private float GetCamera_X()
     {
-        return com_Camera.position.x - f_Camera_X;
+        return com_Camera.position.x - m_Camera_X;
     }
 
     private float GetCamera_Y(BackgroundLoopLayer cs_Layer)
@@ -79,9 +79,9 @@ public class BackgroundLoopLayer
 {
     [SerializeField] private GameObject g_Layer;
 
-    [SerializeField] [Range(0, 1)] private float f_Layer_Speed_X;
+    [SerializeField] [Range(0, 1)] private float m_Layer_Speed_X;
 
-    private float f_Layer_PosStart_X;
+    private float m_Layer_PosStart_X;
 
     [SerializeField] private bool m_Layer_Follow_Y = true;
 
@@ -97,29 +97,29 @@ public class BackgroundLoopLayer
 
     #region Loop X
 
-    public void Set_Layer_Speed_X(float f_Background_Layer_Speed_X)
+    public void Set_Layer_Speed_X(float m_Background_Layer_Speed_X)
     {
-        f_Layer_Speed_X = f_Background_Layer_Speed_X;
+        m_Layer_Speed_X = m_Background_Layer_Speed_X;
     }
 
     public float GetLayer_Speed_X()
     {
-        return f_Layer_Speed_X;
+        return m_Layer_Speed_X;
     }
 
-    public void Set_Layer_PosStart_X(float f_Background_Layer_PosStart_X)
+    public void Set_Layer_PosStart_X(float m_Background_Layer_PosStart_X)
     {
-        f_Layer_PosStart_X = f_Background_Layer_PosStart_X;
+        m_Layer_PosStart_X = m_Background_Layer_PosStart_X;
     }
 
-    public void Set_Layer_PosStart_X_Chance(float f_Background_Layer_PosStart_X_Chance)
+    public void Set_Layer_PosStart_X_Chance(float m_Background_Layer_PosStart_X_Chance)
     {
-        f_Layer_PosStart_X += f_Background_Layer_PosStart_X_Chance;
+        m_Layer_PosStart_X += m_Background_Layer_PosStart_X_Chance;
     }
 
     public float GetLayer_PosStart_X()
     {
-        return f_Layer_PosStart_X;
+        return m_Layer_PosStart_X;
     }
 
     public void Set_Layer_Follow_Y(bool m_Background_Layer_Follow_Y)
