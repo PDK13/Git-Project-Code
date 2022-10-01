@@ -227,7 +227,7 @@ public class RaycastFan : MonoBehaviour
         return m_RaycastHit;
     }
 
-    public List<float> GetListDistance(int m_Minimize)
+    public List<float> GetListDistance(int mMinimize)
     //Get List Distance (Decrease by m_inimize)
     {
         List<RaycastHit> l1Ray = GetList();
@@ -242,7 +242,7 @@ public class RaycastFan : MonoBehaviour
             }
             else
             {
-                l1Distance.Add(l1Ray[i].distance / m_Minimize);
+                l1Distance.Add(l1Ray[i].distance / mMinimize);
             }
         }
         return l1Distance;

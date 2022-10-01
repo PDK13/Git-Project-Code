@@ -152,7 +152,7 @@ public class RendererTrajectory : MonoBehaviour
 
         Vector3 m_MoveStep = m_TrajectoryDir * m_TimeStep;
 
-        Vector3 m_Pos_Point = GetTrajectoryStart();
+        Vector3 m_PosPoint = GetTrajectoryStart();
 
         for (int i = 0; i < m_Trajectory_Step; i++)
         {
@@ -160,11 +160,11 @@ public class RendererTrajectory : MonoBehaviour
 
             m_MoveStep *= m_Drag;
 
-            m_Pos_Point += m_MoveStep;
+            m_PosPoint += m_MoveStep;
 
             if (m_AllowTrajectoryRaycast)
             {
-                bool rayRaycast = Physics.Linecast(m_Pos_Point + Vector3.down * m_TrajectoryRaycastSize, m_Pos_Point - Vector3.down * m_TrajectoryRaycastSize, m_TrajectoryRaycastLayerMask);
+                bool rayRaycast = Physics.Linecast(m_PosPoint + Vector3.down * m_TrajectoryRaycastSize, m_PosPoint - Vector3.down * m_TrajectoryRaycastSize, m_TrajectoryRaycastLayerMask);
 
                 if (rayRaycast)
                 {
@@ -174,12 +174,12 @@ public class RendererTrajectory : MonoBehaviour
                 }
                 else
                 {
-                    m_TrajectoryResumList.Add(m_Pos_Point);
+                    m_TrajectoryResumList.Add(m_PosPoint);
                 }
             }
             else
             {
-                m_TrajectoryResumList.Add(m_Pos_Point);
+                m_TrajectoryResumList.Add(m_PosPoint);
             }
         }
 
@@ -207,9 +207,9 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Angle for hit Trajectory
 
-    public float? GetTrajectory_Angle_toDeg(Vector3 m_PosStart, Vector3 m_Pos_Tarket, bool m_AllowAngleHighAllow)
+    public float? GetTrajectory_Angle_toDeg(Vector3 m_PosStart, Vector3 m_PosTarket, bool m_AllowAngleHighAllow)
     {
-        Vector3 m_TarketDir = m_Pos_Tarket - m_PosStart;
+        Vector3 m_TarketDir = m_PosTarket - m_PosStart;
 
         float m_Y_High = m_TarketDir.y;
 

@@ -11,7 +11,7 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     [SerializeField] private RectTransform com_JoyStickLimit;
 
-    private Vector2 v2_JoyStickLimitPos_Primary;
+    private Vector2 v2_JoyStickLimitPosPrimary;
 
     [SerializeField] private RectTransform com_JoyStics_KeyButton;
 
@@ -44,7 +44,7 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         com_JoyStics_KeyButton.pivot = center;
         com_JoyStics_KeyButton.anchoredPosition = Vector2.zero;
 
-        v2_JoyStickLimitPos_Primary = com_JoyStickLimit.GetComponent<RectTransform>().anchoredPosition;
+        v2_JoyStickLimitPosPrimary = com_JoyStickLimit.GetComponent<RectTransform>().anchoredPosition;
 
         if (com_Canvas == null)
         {
@@ -171,7 +171,7 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
         if (m_AllowAutoReset)
         {
-            com_JoyStickLimit.anchoredPosition = v2_JoyStickLimitPos_Primary;
+            com_JoyStickLimit.anchoredPosition = v2_JoyStickLimitPosPrimary;
         }
     }
 

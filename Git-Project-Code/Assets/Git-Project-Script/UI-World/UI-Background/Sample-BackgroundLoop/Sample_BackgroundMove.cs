@@ -19,7 +19,7 @@ public class Sample_BackgroundMove : MonoBehaviour
 
     [SerializeField] private float m_MoveSpeed = 0.01f;
 
-    [SerializeField] private float m_MoveSpeed_Max = 1f;
+    [SerializeField] private float m_MoveSpeedMax = 1f;
 
     private void Start()
     {
@@ -33,7 +33,7 @@ public class Sample_BackgroundMove : MonoBehaviour
     {
         if (Input.GetKey(m_KeyMoveU))
         {
-            if (v2_MoveDir.y < m_MoveSpeed_Max)
+            if (v2_MoveDir.y < m_MoveSpeedMax)
             {
                 v2_MoveDir.y += m_MoveSpeed;
             }
@@ -41,7 +41,7 @@ public class Sample_BackgroundMove : MonoBehaviour
         else
         if (Input.GetKey(m_KeyMoveD))
         {
-            if (v2_MoveDir.y > -m_MoveSpeed_Max)
+            if (v2_MoveDir.y > -m_MoveSpeedMax)
             {
                 v2_MoveDir.y -= m_MoveSpeed;
             }
@@ -53,7 +53,7 @@ public class Sample_BackgroundMove : MonoBehaviour
 
         if (Input.GetKey(m_KeyMoveL))
         {
-            if (v2_MoveDir.x > -m_MoveSpeed_Max)
+            if (v2_MoveDir.x > -m_MoveSpeedMax)
             {
                 v2_MoveDir.x -= m_MoveSpeed;
             }
@@ -61,7 +61,7 @@ public class Sample_BackgroundMove : MonoBehaviour
         else
         if (Input.GetKey(m_KeyMoveR))
         {
-            if (v2_MoveDir.x < m_MoveSpeed_Max)
+            if (v2_MoveDir.x < m_MoveSpeedMax)
             {
                 v2_MoveDir.x += m_MoveSpeed;
             }

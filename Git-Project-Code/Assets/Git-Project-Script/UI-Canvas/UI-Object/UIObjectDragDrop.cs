@@ -23,10 +23,10 @@ public class UIObjectDragDrop : MonoBehaviour,
     private Vector2 v2_Pivot = new Vector2(0.5f, 0.5f);
 
     [Tooltip("Anchor m_in")]
-    private Vector2 v2_Anchor_Min = new Vector2(0.5f, 0.5f);
+    private Vector2 v2_AnchorMin = new Vector2(0.5f, 0.5f);
 
     [Tooltip("Anchor m_ax")]
-    private Vector2 v2_Anchor_Max = new Vector2(0.5f, 0.5f);
+    private Vector2 v2_AnchorMax = new Vector2(0.5f, 0.5f);
 
     [Tooltip("Rect Transform")]
     private RectTransform rRectTransform;
@@ -106,8 +106,8 @@ public class UIObjectDragDrop : MonoBehaviour,
         rRectTransform = GetComponent<RectTransform>();
 
         rRectTransform.pivot = v2_Pivot;
-        rRectTransform.anchorMin = v2_Anchor_Min;
-        rRectTransform.anchorMax = v2_Anchor_Max;
+        rRectTransform.anchorMin = v2_AnchorMin;
+        rRectTransform.anchorMax = v2_AnchorMax;
 
         if (GetComponent<CanvasGroup>() == null)
         {
