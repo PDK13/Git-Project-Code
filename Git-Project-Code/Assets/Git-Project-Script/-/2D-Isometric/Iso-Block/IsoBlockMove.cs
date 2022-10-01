@@ -816,7 +816,7 @@ public class IsoBlockMove : MonoBehaviour
     /// <returns></returns>
     public float Get_Remain_Own_B()
     {
-        Vector3 v3_Remain = cl_Block.Get_Pos_Current() - Class_Vector.Get_Vector(Get_PosMatrix_Own_B());
+        Vector3 v3_Remain = cl_Block.Get_Pos_Current() - Get_PosMatrix_Own_B();
 
         if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Up_X || Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Down_X)
         {

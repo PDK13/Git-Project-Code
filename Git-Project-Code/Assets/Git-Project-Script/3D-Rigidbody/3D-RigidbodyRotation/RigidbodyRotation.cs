@@ -68,9 +68,9 @@ public class RigidbodyRotation : MonoBehaviour
 
         Gizmos.DrawLine(
             transform.position,
-            transform.position + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ(), 1f));
+            transform.position + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ(), 1f));
         Gizmos.DrawWireSphere(
-            transform.position + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ(), 1f),
+            transform.position + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ(), 1f),
             0.1f);
     }
 

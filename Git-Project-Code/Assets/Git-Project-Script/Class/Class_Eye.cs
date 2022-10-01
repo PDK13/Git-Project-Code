@@ -150,13 +150,13 @@ public class Class_Eye
     /// <returns></returns>
     public bool Get_RayCast_Vec_Check_LayerMask(Vector3 v3_Start, Vector3 v3_End, LayerMask l_Tarket, LayerMask l_Barrier)
     {
-        if (Get_RayCast_Vec_Check(v3_Start, v3_End, Class_Vector.Get_Distance(v3_Start, v3_End), l_Barrier))
+        if (Get_RayCast_Vec_Check(v3_Start, v3_End, ClassVector.GetDistance(v3_Start, v3_End), l_Barrier))
         {
             //Hit Barrier
             return false;
         }
         else
-        if (Get_RayCast_Vec_Check(v3_Start, v3_End, Class_Vector.Get_Distance(v3_Start, v3_End), l_Tarket))
+        if (Get_RayCast_Vec_Check(v3_Start, v3_End, ClassVector.GetDistance(v3_Start, v3_End), l_Tarket))
         {
             //Hit Tarket
             return true;
@@ -316,13 +316,13 @@ public class Class_Eye
     /// <returns></returns>
     public bool Get_BoxCast_Vec_Check_LayerMask(Vector3 v3_Start, Vector3 v3_Size, Vector3 v3_End, Vector3 v3_Rotation, LayerMask l_Tarket, LayerMask l_Barrier)
     {
-        if (Get_BoxCast_Vec_Check(v3_Start, v3_Size, v3_End, v3_Rotation, Class_Vector.Get_Distance(v3_Start, v3_End), l_Barrier))
+        if (Get_BoxCast_Vec_Check(v3_Start, v3_Size, v3_End, v3_Rotation, ClassVector.GetDistance(v3_Start, v3_End), l_Barrier))
         {
             //Hit Barrier
             return false;
         }
         else
-            if (Get_BoxCast_Vec_Check(v3_Start, v3_Size, v3_End, v3_Rotation, Class_Vector.Get_Distance(v3_Start, v3_End), l_Tarket))
+            if (Get_BoxCast_Vec_Check(v3_Start, v3_Size, v3_End, v3_Rotation, ClassVector.GetDistance(v3_Start, v3_End), l_Tarket))
         {
             //Hit Tarket
             return true;
@@ -447,13 +447,13 @@ public class Class_Eye
     /// <returns></returns>
     public bool Get_SphereCast_Vec_Check_LayerMask(Vector3 v3_Start, float f_Radius, Vector3 v3_End, LayerMask l_Tarket, LayerMask l_Barrier)
     {
-        if (Get_SphereCast_Vec_Check(v3_Start, f_Radius, v3_End, Class_Vector.Get_Distance(v3_Start, v3_End), l_Barrier))
+        if (Get_SphereCast_Vec_Check(v3_Start, f_Radius, v3_End, ClassVector.GetDistance(v3_Start, v3_End), l_Barrier))
         {
             //Hit Barrier
             return false;
         }
         else
-            if (Get_SphereCast_Vec_Check(v3_Start, f_Radius, v3_End, Class_Vector.Get_Distance(v3_Start, v3_End), l_Tarket))
+            if (Get_SphereCast_Vec_Check(v3_Start, f_Radius, v3_End, ClassVector.GetDistance(v3_Start, v3_End), l_Tarket))
         {
             //Hit Tarket
             return true;

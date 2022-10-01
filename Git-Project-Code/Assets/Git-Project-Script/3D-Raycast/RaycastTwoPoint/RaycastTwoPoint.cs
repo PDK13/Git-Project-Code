@@ -30,7 +30,7 @@ public class RaycastTwoPoint : MonoBehaviour
     public float Get_Distance_Transform()
     //Distance from Start to End Point
     {
-        return Class_Vector.Get_Distance(t_Start, t_End);
+        return ClassVector.GetDistance(t_Start, t_End);
     }
 
     //Cast của Start và End

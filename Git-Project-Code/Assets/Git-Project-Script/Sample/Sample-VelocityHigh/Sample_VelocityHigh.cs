@@ -53,7 +53,7 @@ public class Sample_VelocityHigh : MonoBehaviour
             {
                 if (com_Rigidbody2D.bodyType != RigidbodyType2D.Static)
                 {
-                    v2_Pos_Drop = ray_Raycast.collider.ClosestPoint((Vector2)transform.position + com_Rigidbody2D.velocity.normalized * (com_CircleCollider2D.radius * 2 + 0.2f) + (Vector2)Class_Vector.Get_Vector(com_Rigidbody2D.velocity.x, 0, 0) * Time.fixedDeltaTime);
+                    v2_Pos_Drop = ray_Raycast.collider.ClosestPoint((Vector2)transform.position + com_Rigidbody2D.velocity.normalized * (com_CircleCollider2D.radius * 2 + 0.2f) + (Vector2)ClassVector.GetVector(com_Rigidbody2D.velocity.x, 0, 0) * Time.fixedDeltaTime);
                 }
             }
         }

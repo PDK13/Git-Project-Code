@@ -317,7 +317,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <returns></returns>
     public float Get_Rotation_XY()
     {
-        return Class_Vector.Get_Exchance_Rotate_Unity(Class_Vector.Get_Rot_QuaternionToEuler(transform.rotation).z);
+        return ClassVector.GetDegExchanceUnity(ClassVector.GetRotationQuaternionToEuler(transform.rotation).z);
     }
 
     /// <summary>
@@ -326,7 +326,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <returns>Degree</returns>
     public float Get_Rotation_XZ()
     {
-        return Class_Vector.Get_Exchance_Rotate_Unity(Class_Vector.Get_Rot_QuaternionToEuler(transform.rotation).y);
+        return ClassVector.GetDegExchanceUnity(ClassVector.GetRotationQuaternionToEuler(transform.rotation).y);
     }
 
     /// <summary>
@@ -335,7 +335,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="f_Rotation"></param>
     public void Set_Rotation_XY(float f_Rotation)
     {
-        transform.rotation = Class_Vector.Get_Rot_EulerToQuaternion(0, 0, f_Rotation);
+        transform.rotation = ClassVector.GetRotationEulerToQuaternion(0, 0, f_Rotation);
     }
 
     /// <summary>
@@ -344,7 +344,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="f_Rotation"></param>
     public void Set_Rotation_XZ(float f_Rotation)
     {
-        transform.rotation = Class_Vector.Get_Rot_EulerToQuaternion(new Vector3(0, f_Rotation, 0));
+        transform.rotation = ClassVector.GetRotationEulerToQuaternion(new Vector3(0, f_Rotation, 0));
     }
 
     /// <summary>
@@ -375,8 +375,8 @@ public class RigidbodyComponent : MonoBehaviour
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
 
         r_Rigidbody.AddForce(
-            Class_Vector.Get_DegToVector_XZ(
-                Class_Vector.Get_Exchance_Rotate_Unity(-f_Rotation), 1).normalized * f_VelocityMove);
+            ClassVector.GetPosOnCircleXZ(
+                ClassVector.GetDegExchanceUnity(-f_Rotation), 1).normalized * f_VelocityMove);
     }
 
     //Y
@@ -425,7 +425,7 @@ public class RigidbodyComponent : MonoBehaviour
             transform.position,
             v3_FootCast,
             Vector3.down,
-            Class_Vector.Get_Rot_QuaternionToEuler(transform.rotation),
+            ClassVector.GetRotationQuaternionToEuler(transform.rotation),
             f_FootCast,
             l_GroundCheck);
     }
@@ -442,7 +442,7 @@ public class RigidbodyComponent : MonoBehaviour
             transform.position,
             v3_HeadCast,
             Vector3.up,
-            Class_Vector.Get_Rot_QuaternionToEuler(transform.rotation),
+            ClassVector.GetRotationQuaternionToEuler(transform.rotation),
             f_HeadCast,
             l_GroundCheck);
     }

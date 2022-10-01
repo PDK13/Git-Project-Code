@@ -60,12 +60,12 @@ public class RaycastFan : MonoBehaviour
             {
                 if (cs_Eye.Get_LineCast_Check(
                     transform.position + v3_OffPos,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), l_Barrier))
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), l_Barrier))
                 {
                     //Always Hit Tarket on Line
                     return cs_Eye.Get_LineCast_RaycastHit(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         l_Barrier);
                 }
             }
@@ -75,12 +75,12 @@ public class RaycastFan : MonoBehaviour
             {
                 if (cs_Eye.Get_RayCast_Vec_Check(
                     transform.position + v3_OffPos,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), f_Distance, l_Barrier))
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), f_Distance, l_Barrier))
                 {
                     //Always Hit Tarket if not have Barrier
                     return cs_Eye.Get_RayCast_Vec_RaycastHit(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         f_Distance,
                         l_Barrier);
                 }
@@ -92,7 +92,7 @@ public class RaycastFan : MonoBehaviour
                 if (cs_Eye.Get_BoxCast_Vec_Check(
                     transform.position + v3_OffPos,
                     v3_Square,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                     new Vector3(0, 0, 0),
                     f_Distance,
                     l_Barrier))
@@ -101,7 +101,7 @@ public class RaycastFan : MonoBehaviour
                     return cs_Eye.Get_BoxCast_Vec_RaycastHit(
                         transform.position + v3_OffPos,
                         v3_Square,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         new Vector3(0, 0, 0),
                         f_Distance,
                         l_Barrier);
@@ -114,7 +114,7 @@ public class RaycastFan : MonoBehaviour
                 if (cs_Eye.Get_SphereCast_Vec_Check(
                     transform.position + v3_OffPos,
                     f_Sphere,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                     f_Distance,
                     l_Barrier))
                 {
@@ -122,7 +122,7 @@ public class RaycastFan : MonoBehaviour
                     return cs_Eye.Get_SphereCast_Vec_RaycastHit(
                         transform.position + v3_OffPos,
                         f_Sphere,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         f_Distance,
                         l_Barrier);
                 }
@@ -136,11 +136,11 @@ public class RaycastFan : MonoBehaviour
             {
                 if (cs_Eye.Get_LineCast_Check(
                     transform.position + v3_OffPos,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), l_Barrier))
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), l_Barrier))
                 {
                     //Always Hit Tarket if not have Barrier
                     return cs_Eye.Get_LineCast_RaycastHit(
-                        transform.position + v3_OffPos, transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos, transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         l_Barrier);
                 }
             }
@@ -150,11 +150,11 @@ public class RaycastFan : MonoBehaviour
             {
                 if (cs_Eye.Get_RayCast_Vec_Check(
                     transform.position + v3_OffPos,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), f_Distance, l_Barrier))
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), f_Distance, l_Barrier))
                 {
                     //Always Hit Tarket if not have Barrier
                     return cs_Eye.Get_RayCast_Vec_RaycastHit(
-                        transform.position + v3_OffPos, transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos, transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         f_Distance,
                         l_Barrier);
                 }
@@ -166,7 +166,7 @@ public class RaycastFan : MonoBehaviour
                 if (cs_Eye.Get_BoxCast_Vec_Check(
                     transform.position + v3_OffPos,
                     v3_Square,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                     new Vector3(0, 0, 0),
                     f_Distance,
                     l_Barrier))
@@ -175,7 +175,7 @@ public class RaycastFan : MonoBehaviour
                     return cs_Eye.Get_BoxCast_Vec_RaycastHit(
                         transform.position + v3_OffPos,
                         v3_Square,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         new Vector3(0, 0, 0),
                         f_Distance,
                         l_Barrier);
@@ -188,7 +188,7 @@ public class RaycastFan : MonoBehaviour
                 if (cs_Eye.Get_SphereCast_Vec_Check(
                     transform.position + v3_OffPos,
                     f_Sphere,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                     f_Distance,
                     l_Barrier))
                 {
@@ -196,7 +196,7 @@ public class RaycastFan : MonoBehaviour
                     return cs_Eye.Get_SphereCast_Vec_RaycastHit(
                         transform.position + v3_OffPos,
                         f_Sphere,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         f_Distance,
                         l_Barrier);
                 }
@@ -313,23 +313,23 @@ public class RaycastFan : MonoBehaviour
             {
                 if (cs_Eye.Get_LineCast_Check(
                     transform.position + v3_OffPos,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), l_Barrier))
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), l_Barrier))
                 {
                     //Always Hit Tarket if not have Barrier
                     RaycastHit ray_Hit = cs_Eye.Get_LineCast_RaycastHit(
-                        transform.position + v3_OffPos, transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos, transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         l_Barrier);
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
                 }
                 else
                 {
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
                 }
             }
             //RayCast
@@ -338,26 +338,26 @@ public class RaycastFan : MonoBehaviour
             {
                 if (cs_Eye.Get_RayCast_Vec_Check(
                     transform.position + v3_OffPos,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                     f_Distance,
                     l_Barrier))
                 {
                     //Always Hit Tarket if not have Barrier
                     RaycastHit ray_Hit = cs_Eye.Get_RayCast_Vec_RaycastHit(
-                        transform.position + v3_OffPos, transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos, transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         f_Distance,
                         l_Barrier);
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
                 }
                 else
                 {
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
                 }
             }
             //BoxCast
@@ -367,7 +367,7 @@ public class RaycastFan : MonoBehaviour
                 if (cs_Eye.Get_BoxCast_Vec_Check(
                     transform.position + v3_OffPos,
                     v3_Square,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                     new Vector3(0, 0, 0),
                     f_Distance,
                     l_Barrier))
@@ -376,16 +376,16 @@ public class RaycastFan : MonoBehaviour
                     RaycastHit ray_Hit = cs_Eye.Get_BoxCast_Vec_RaycastHit(
                         transform.position + v3_OffPos,
                         v3_Square,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         new Vector3(0, 0, 0),
                         f_Distance,
                         l_Barrier);
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
                     Gizmos.DrawWireCube(
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance),
                         v3_Square);
                 }
                 else
@@ -393,9 +393,9 @@ public class RaycastFan : MonoBehaviour
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
                     Gizmos.DrawWireCube(
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         v3_Square);
                 }
             }
@@ -406,7 +406,7 @@ public class RaycastFan : MonoBehaviour
                 if (cs_Eye.Get_SphereCast_Vec_Check(
                     transform.position + v3_OffPos,
                     f_Sphere,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                     f_Distance,
                     l_Barrier))
                 {
@@ -414,15 +414,15 @@ public class RaycastFan : MonoBehaviour
                     RaycastHit ray_Hit = cs_Eye.Get_SphereCast_Vec_RaycastHit(
                         transform.position + v3_OffPos,
                         f_Sphere,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         f_Distance,
                         l_Barrier);
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
                     Gizmos.DrawWireSphere(
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance),
                         f_Sphere / 2);
                 }
                 else
@@ -430,9 +430,9 @@ public class RaycastFan : MonoBehaviour
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
                     Gizmos.DrawWireSphere(
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXY(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         f_Sphere / 2);
                 }
             }
@@ -445,23 +445,23 @@ public class RaycastFan : MonoBehaviour
             {
                 if (cs_Eye.Get_LineCast_Check(
                     transform.position + v3_OffPos,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), l_Barrier))
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), l_Barrier))
                 {
                     //Always Hit Tarket if not have Barrier
                     RaycastHit ray_Hit = cs_Eye.Get_LineCast_RaycastHit(
-                        transform.position + v3_OffPos, transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos, transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         l_Barrier);
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
                 }
                 else
                 {
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
                 }
             }
             //RayCast
@@ -470,24 +470,24 @@ public class RaycastFan : MonoBehaviour
             {
                 if (cs_Eye.Get_RayCast_Vec_Check(
                     transform.position + v3_OffPos,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), f_Distance, l_Barrier))
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance), f_Distance, l_Barrier))
                 {
                     //Always Hit Tarket if not have Barrier
                     RaycastHit ray_Hit = cs_Eye.Get_RayCast_Vec_RaycastHit(
-                        transform.position + v3_OffPos, transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos, transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         f_Distance,
                         l_Barrier);
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
                 }
                 else
                 {
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
                 }
             }
             //BoxCast
@@ -497,7 +497,7 @@ public class RaycastFan : MonoBehaviour
                 if (cs_Eye.Get_BoxCast_Vec_Check(
                     transform.position + v3_OffPos,
                     v3_Square,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                     new Vector3(0, 0, 0),
                     f_Distance,
                     l_Barrier))
@@ -506,16 +506,16 @@ public class RaycastFan : MonoBehaviour
                     RaycastHit ray_Hit = cs_Eye.Get_BoxCast_Vec_RaycastHit(
                         transform.position + v3_OffPos,
                         v3_Square,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         new Vector3(0, 0, 0),
                         f_Distance,
                         l_Barrier);
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
                     Gizmos.DrawWireCube(
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance),
                         v3_Square);
                 }
                 else
@@ -523,9 +523,9 @@ public class RaycastFan : MonoBehaviour
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
                     Gizmos.DrawWireCube(
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         v3_Square);
                 }
             }
@@ -536,7 +536,7 @@ public class RaycastFan : MonoBehaviour
                 if (cs_Eye.Get_SphereCast_Vec_Check(
                     transform.position + v3_OffPos,
                     f_Sphere,
-                    transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                    transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                     f_Distance,
                     l_Barrier))
                 {
@@ -544,15 +544,15 @@ public class RaycastFan : MonoBehaviour
                     RaycastHit ray_Hit = cs_Eye.Get_SphereCast_Vec_RaycastHit(
                         transform.position + v3_OffPos,
                         f_Sphere,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         f_Distance,
                         l_Barrier);
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance));
                     Gizmos.DrawWireSphere(
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, ray_Hit.distance),
                         f_Sphere / 2);
                 }
                 else
@@ -560,9 +560,9 @@ public class RaycastFan : MonoBehaviour
                     Gizmos.color = Color.green;
                     Gizmos.DrawLine(
                         transform.position + v3_OffPos,
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance));
                     Gizmos.DrawWireSphere(
-                        transform.position + v3_OffPos + Class_Vector.Get_DegToVector_XZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
+                        transform.position + v3_OffPos + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ() + i_CastIndex * f_OffFan, f_Distance),
                         f_Sphere / 2);
                 }
             }

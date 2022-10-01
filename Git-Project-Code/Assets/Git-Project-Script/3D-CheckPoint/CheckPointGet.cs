@@ -24,7 +24,7 @@ public class CheckPointGet : MonoBehaviour
 
     public float GetCheckPointNextOffsetRotate()
     {
-        return Class_Vector.Get_DirToDeg_XZ_MainToCheck(transform, m_CheckPointNext.transform);
+        return ClassVector.GetDegOnRotationXZ(transform, m_CheckPointNext.transform);
     }
 
     public bool GetCheckPointNextRonDirection(float m_CheckPointOffsetAngleHigher)
