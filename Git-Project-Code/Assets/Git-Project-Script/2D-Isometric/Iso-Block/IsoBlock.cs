@@ -23,10 +23,10 @@ public class IsoBlock : MonoBehaviour
     private float m_PosMatrixMin = 0.45f;
 
     [Tooltip("Pos Primary on Matrix")]
-    private Vector3Int m_PosOnMatrixPrimary = new Vector3Int();
+    private Vector3Int m_PosMatrixPrimary = new Vector3Int();
 
     [Tooltip("Pos on Matrix")]
-    private Vector3Int m_PosOnMatrix = new Vector3Int();
+    private Vector3Int m_PosMatrix = new Vector3Int();
 
     [Header("Pos Fix Manager")]
 
@@ -82,36 +82,36 @@ public class IsoBlock : MonoBehaviour
 
         if (m_X > m_PosMatrixMax)
         {
-            m_PosOnMatrix.x = (int)m_Pos.x + 1;
+            m_PosMatrix.x = (int)m_Pos.x + 1;
         }
         else
         if (m_X < m_PosMatrixMin)
         {
-            m_PosOnMatrix.x = (int)m_Pos.x;
+            m_PosMatrix.x = (int)m_Pos.x;
         }
 
         float m_Y = (Mathf.Abs((int)m_Pos.y - m_Pos.y));
 
         if (m_Y > m_PosMatrixMax)
         {
-            m_PosOnMatrix.y = (int)m_Pos.y + 1;
+            m_PosMatrix.y = (int)m_Pos.y + 1;
         }
         else
         if (m_Y < m_PosMatrixMin)
         {
-            m_PosOnMatrix.y = (int)m_Pos.y;
+            m_PosMatrix.y = (int)m_Pos.y;
         }
 
         float m_H = (Mathf.Abs((int)m_Pos.z - m_Pos.z));
 
         if (m_H > m_PosMatrixMax)
         {
-            m_PosOnMatrix.z = (int)m_Pos.z + 1;
+            m_PosMatrix.z = (int)m_Pos.z + 1;
         }
         else
         if (m_H < m_PosMatrixMin)
         {
-            m_PosOnMatrix.z = (int)m_Pos.z;
+            m_PosMatrix.z = (int)m_Pos.z;
         }
     }
 
@@ -240,19 +240,19 @@ public class IsoBlock : MonoBehaviour
 
     public Vector3Int GetPosOnMatrixCurrent()
     {
-        return m_PosOnMatrix;
+        return m_PosMatrix;
     }
 
     #region Pos on Matrix Primary 
 
     public void SetPosOnMatrixPrimary(Vector3Int m_Pos)
     {
-        m_PosOnMatrixPrimary = m_Pos;
+        m_PosMatrixPrimary = m_Pos;
     }
 
     public Vector3Int GetPosOnMatrixPrimary()
     {
-        return m_PosOnMatrixPrimary;
+        return m_PosMatrixPrimary;
     }
 
     /// <summary>
