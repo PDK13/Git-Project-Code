@@ -31,7 +31,7 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     [Tooltip("Event After Hold Time")]
     [SerializeField]
-    private bool b_HoldTime = false;
+    private bool m_HoldTime = false;
 
     [Tooltip("Hold Time")]
     [SerializeField]
@@ -48,7 +48,7 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     [Tooltip("Button Lock Status")]
     [SerializeField]
-    private bool b_Button_Lock = false;
+    private bool m_Button_Lock = false;
 
     [Tooltip("Unity Hold-State Event Handle")]
     [Space]
@@ -76,10 +76,10 @@ public class UIButtonHoldClick : MonoBehaviour,
     private UnityEvent Event_PointerExit;
 
     [Tooltip("Button Hold Status")]
-    private bool b_Button_Hold;
+    private bool m_Button_Hold;
 
     [Tooltip("Button Ready Status")]
-    private bool b_Button_Ready = false;
+    private bool m_Button_Ready = false;
 
     private void Update()
     {
@@ -92,7 +92,7 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     private void Set_Event_Keyboard()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
@@ -110,15 +110,15 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     private void Set_Event_Active()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        if (b_Button_Hold)
+        if (m_Button_Hold)
         //If Hold Pressed >> Do...
         {
-            if (b_HoldTime)
+            if (m_HoldTime)
             //If Need Time to do Event >> Do...
             {
                 f_HoldTime_Remain -= Time.deltaTime;
@@ -242,48 +242,48 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     private void Set_Event_PointerEnter()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        b_Button_Ready = true;
+        m_Button_Ready = true;
 
         Set_Event_Invoke_PointerEnter();
     }
 
     private void Set_Event_PointerExit()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        b_Button_Ready = false;
+        m_Button_Ready = false;
 
         Set_Event_Invoke_PointerExit();
     }
 
     private void Set_Event_PointerDown()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        b_Button_Hold = true;
+        m_Button_Hold = true;
 
         Set_Event_Invoke_PointerDown();
     }
 
     private void Set_Event_PointerUp()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        b_Button_Hold = false;
+        m_Button_Hold = false;
         f_HoldTime_Remain = f_HoldTime;
 
         Set_Event_Invoke_PointerUp();
@@ -322,7 +322,7 @@ public class UIButtonHoldClick : MonoBehaviour,
         this.k_Button_Keyboard = k_Button_Keyboard;
     }
 
-    public KeyCode Get_Button_Keyboard()
+    public KeyCode GetButton_Keyboard()
     {
         return k_Button_Keyboard;
     }
@@ -335,12 +335,12 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     public void Set_Button_Lock_Chance()
     {
-        b_Button_Lock = !b_Button_Lock;
+        m_Button_Lock = !m_Button_Lock;
     }
 
-    public void Set_Button_Lock(bool b_Lock_State)
+    public void Set_Button_Lock(bool m_Lock_State)
     {
-        b_Button_Lock = b_Lock_State;
+        m_Button_Lock = m_Lock_State;
     }
 
     public void Set_Button_Lock_True()
@@ -357,25 +357,25 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     #region Button Status Get
 
-    public bool Get_Button_Hold()
+    public bool GetButton_Hold()
     {
-        return b_Button_Hold;
+        return m_Button_Hold;
     }
 
-    public float Get_HoldTime_Remain()
+    public float GetHoldTime_Remain()
     {
         return f_HoldTime_Remain;
 
     }
 
-    public bool Get_Button_Ready()
+    public bool GetButton_Ready()
     {
-        return b_Button_Ready;
+        return m_Button_Ready;
     }
 
-    public bool Get_Button_Lock()
+    public bool GetButton_Lock()
     {
-        return b_Button_Lock;
+        return m_Button_Lock;
     }
 
     #endregion
@@ -388,15 +388,15 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     private void Set_Button_Color()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        if (b_Button_Hold)
+        if (m_Button_Hold)
         //If Hold Pressed >> Do...
         {
-            if (b_HoldTime)
+            if (m_HoldTime)
             //If Need Time to do Event >> Do...
             {
                 if (f_HoldTime_Remain < 0)
@@ -412,7 +412,7 @@ public class UIButtonHoldClick : MonoBehaviour,
             }
         }
         else
-        if (b_Button_Ready)
+        if (m_Button_Ready)
         //If Ready Pressed >> Do...
         {
             Set_Button_Color(c_Color_Ready);
@@ -470,22 +470,22 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     #region Color Button Get
 
-    public Color Get_Button_Color_Normal()
+    public Color GetButton_Color_Normal()
     {
         return c_Color_Normal;
     }
 
-    public Color Get_Button_Color_Ready()
+    public Color GetButton_Color_Ready()
     {
         return c_Color_Ready;
     }
 
-    public Color Get_Button_Color_Holdl()
+    public Color GetButton_Color_Holdl()
     {
         return c_Color_Hold;
     }
 
-    public Color Get_Button_Color_Lock()
+    public Color GetButton_Color_Lock()
     {
         return c_Color_Lock;
     }
@@ -494,22 +494,22 @@ public class UIButtonHoldClick : MonoBehaviour,
 
     #region Color Button Primary
 
-    public Color Get_Color_Normal_Primary()
+    public Color GetColor_Normal_Primary()
     {
         return Color.white;
     }
 
-    public Color Get_Color_Ready_Primary()
+    public Color GetColor_Ready_Primary()
     {
         return Color.gray;
     }
 
-    public Color Get_Color_Hold_Primary()
+    public Color GetColor_Hold_Primary()
     {
         return Color.yellow;
     }
 
-    public Color Get_Color_Lock_Primary()
+    public Color GetColor_Lock_Primary()
     {
         return Color.red;
     }

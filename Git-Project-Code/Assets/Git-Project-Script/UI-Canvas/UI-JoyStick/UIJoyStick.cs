@@ -5,9 +5,9 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 {
     [Header("UI")]
 
-    [SerializeField] private bool b_Lock_Position = true;
+    [SerializeField] private bool m_Lock_Position = true;
 
-    [SerializeField] private bool b_Auto_Reset = true;
+    [SerializeField] private bool m_Auto_Reset = true;
 
     [SerializeField] private RectTransform com_JoyStick_Limit;
 
@@ -17,13 +17,13 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     [Header("Lock")]
 
-    [SerializeField] private bool b_Lock_X_L = false;
+    [SerializeField] private bool m_Lock_X_L = false;
 
-    [SerializeField] private bool b_Lock_X_R = false;
+    [SerializeField] private bool m_Lock_X_R = false;
 
-    [SerializeField] private bool b_Lock_Y_U = false;
+    [SerializeField] private bool m_Lock_Y_U = false;
 
-    [SerializeField] private bool b_Lock_Y_D = false;
+    [SerializeField] private bool m_Lock_Y_D = false;
 
     [Header("Value")]
 
@@ -59,34 +59,34 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     #region Input Value
 
-    public Vector2 Get_JoyStick_Fixed()
+    public Vector2 GetJoyStick_Fixed()
     {
         return v2_JoyStick_Value_Fixed;
     }
 
-    public float Get_JoyStick_Fixed_X()
+    public float GetJoyStick_Fixed_X()
     {
-        return Get_JoyStick_Fixed().x;
+        return GetJoyStick_Fixed().x;
     }
 
-    public float Get_JoyStick_Fixed_Y()
+    public float GetJoyStick_Fixed_Y()
     {
-        return Get_JoyStick_Fixed().y;
+        return GetJoyStick_Fixed().y;
     }
 
-    public Vector2 Get_JoyStick_Primary()
+    public Vector2 GetJoyStick_Primary()
     {
         return v2_JoyStick_Value_Primary;
     }
 
-    public float Get_JoyStick_Primary_X()
+    public float GetJoyStick_Primary_X()
     {
-        return Get_JoyStick_Primary().x;
+        return GetJoyStick_Primary().x;
     }
 
-    public float Get_JoyStick_PrimaryY_()
+    public float GetJoyStick_PrimaryY_()
     {
-        return Get_JoyStick_Primary().y;
+        return GetJoyStick_Primary().y;
     }
 
     #endregion
@@ -100,7 +100,7 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             com_Camera = com_Canvas.worldCamera;
         }
 
-        if (!b_Lock_Position)
+        if (!m_Lock_Position)
         {
             Vector2 v2_JoyStick_Limit_Pos = RectTransformUtility.WorldToScreenPoint(com_Camera, com_JoyStick_Limit.position);
             Vector2 v2_JoyStick_Limit = (eventData.position - v2_JoyStick_Limit_Pos) / com_Canvas.scaleFactor;
@@ -118,32 +118,32 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
         v2_JoyStick_Value_Primary = (eventData.position - v2_JoyStick_Limit_Pos) / (v2_JoyStick_Limit_Radius * com_Canvas.scaleFactor);
 
-        //if (b_Lock_X)
+        //if (m_Lock_X)
         //{
         //    v2_JoyStick_Value_Primary.x = 0f;
         //}
 
-        //if (b_Lock_Y)
+        //if (m_Lock_Y)
         //{
         //    v2_JoyStick_Value_Primary.y = 0f;
         //}
 
-        if (b_Lock_X_L && v2_JoyStick_Value_Primary.x < 0)
+        if (m_Lock_X_L && v2_JoyStick_Value_Primary.x < 0)
         {
             v2_JoyStick_Value_Primary.x = 0;
         }
         else
-        if (b_Lock_X_R && v2_JoyStick_Value_Primary.x > 0)
+        if (m_Lock_X_R && v2_JoyStick_Value_Primary.x > 0)
         {
             v2_JoyStick_Value_Primary.x = 0;
         }
 
-        if (b_Lock_Y_U && v2_JoyStick_Value_Primary.y > 0)
+        if (m_Lock_Y_U && v2_JoyStick_Value_Primary.y > 0)
         {
             v2_JoyStick_Value_Primary.y = 0;
         }
         else
-        if (b_Lock_Y_D && v2_JoyStick_Value_Primary.y < 0)
+        if (m_Lock_Y_D && v2_JoyStick_Value_Primary.y < 0)
         {
             v2_JoyStick_Value_Primary.y = 0;
         }
@@ -169,7 +169,7 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     {
         com_JoyStick_Button.anchoredPosition = Vector2.zero;
 
-        if (b_Auto_Reset)
+        if (m_Auto_Reset)
         {
             com_JoyStick_Limit.anchoredPosition = v2_JoyStick_Limit_Position_Primary;
         }
@@ -179,44 +179,44 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     #region Lock JoyStick
 
-    public void Set_Lock_X_L(bool b_Lock_X_L)
+    public void Set_Lock_X_L(bool m_Lock_X_L)
     {
-        this.b_Lock_X_L = b_Lock_X_L;
+        this.m_Lock_X_L = m_Lock_X_L;
     }
 
-    public void Set_Lock_X_R(bool b_Lock_X_R)
+    public void Set_Lock_X_R(bool m_Lock_X_R)
     {
-        this.b_Lock_X_R = b_Lock_X_R;
+        this.m_Lock_X_R = m_Lock_X_R;
     }
 
-    public void Set_Lock_Y_U(bool b_Lock_Y_U)
+    public void Set_Lock_Y_U(bool m_Lock_Y_U)
     {
-        this.b_Lock_Y_U = b_Lock_Y_U;
+        this.m_Lock_Y_U = m_Lock_Y_U;
     }
 
-    public void Set_Lock_Y_D(bool b_Lock_Y_D)
+    public void Set_Lock_Y_D(bool m_Lock_Y_D)
     {
-        this.b_Lock_Y_D = b_Lock_Y_D;
+        this.m_Lock_Y_D = m_Lock_Y_D;
     }
 
-    public bool Get_Lock_X_L()
+    public bool GetLock_X_L()
     {
-        return b_Lock_X_L;
+        return m_Lock_X_L;
     }
 
-    public bool Get_Lock_X_R()
+    public bool GetLock_X_R()
     {
-        return b_Lock_X_R;
+        return m_Lock_X_R;
     }
 
-    public bool Get_Lock_Y_U()
+    public bool GetLock_Y_U()
     {
-        return b_Lock_Y_U;
+        return m_Lock_Y_U;
     }
 
-    public bool Get_Lock_Y_D()
+    public bool GetLock_Y_D()
     {
-        return b_Lock_Y_D;
+        return m_Lock_Y_D;
     }
 
     #endregion

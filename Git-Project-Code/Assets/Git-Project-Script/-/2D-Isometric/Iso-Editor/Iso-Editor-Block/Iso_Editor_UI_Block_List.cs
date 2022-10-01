@@ -71,22 +71,22 @@ public class Iso_Editor_UI_Block_List : MonoBehaviour
 
     #region UI Get
 
-    public bool Get_UI_Move()
+    public bool GetUI_Move()
     {
         return i_UI == i_UI_Move;
     }
 
-    public bool Get_UI_JoinTo()
+    public bool GetUI_JoinTo()
     {
         return i_UI == i_UI_JoinTo;
     }
 
-    public bool Get_UI_SwitchTo()
+    public bool GetUI_SwitchTo()
     {
         return i_UI == i_UI_SwitchTo;
     }
 
-    public bool Get_UI_Message()
+    public bool GetUI_Message()
     {
         return i_UI == i_UI_Message;
     }

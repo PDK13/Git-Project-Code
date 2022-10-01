@@ -13,37 +13,37 @@ public class Iso_Move_Primary : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            Get_Check(IsoClassDir.v3_Up_X);
+            GetCheck(IsoClassDir.v3_Up_X);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            Get_Check(IsoClassDir.v3_Down_X);
+            GetCheck(IsoClassDir.v3_Down_X);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            Get_Check(IsoClassDir.v3_Left_Y);
+            GetCheck(IsoClassDir.v3_Left_Y);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            Get_Check(IsoClassDir.v3_Right_Y);
+            GetCheck(IsoClassDir.v3_Right_Y);
         }
     }
 
-    private void Get_Check(Vector3Int v3_Move_Dir)
+    private void GetCheck(Vector3Int v3_Move_Dir)
     {
         cl_Move.Set_World_StandOn();
 
-        if (cl_Move.Get_World_StandOn().GetComponent<IsoBlock>().Get_Block_Check_Stair())
+        if (cl_Move.GetWorld_StandOn().GetComponent<IsoBlock>().GetBlock_Check_Stair())
         //If Stand-On Stair
         {
             if (v3_Move_Dir == IsoClassDir.v3_Up_X ||
                 v3_Move_Dir == IsoClassDir.v3_Down_X)
             //If Move Up Down
             {
-                if (cl_Move.Get_World_StandOn().GetComponent<IsoBlock>().Get_Block_Check_StairUD())
+                if (cl_Move.GetWorld_StandOn().GetComponent<IsoBlock>().GetBlock_Check_StairUD())
                 //If Stand-On Stair Up Down
                 {
 
@@ -59,7 +59,7 @@ public class Iso_Move_Primary : MonoBehaviour
                     v3_Move_Dir == IsoClassDir.v3_Right_Y)
             //If Move Left Right
             {
-                if (cl_Move.Get_World_StandOn().GetComponent<IsoBlock>().Get_Block_Check_StairLR())
+                if (cl_Move.GetWorld_StandOn().GetComponent<IsoBlock>().GetBlock_Check_StairLR())
                 //If Stand-On Stair Left Right
                 {
 
@@ -72,20 +72,20 @@ public class Iso_Move_Primary : MonoBehaviour
             }
         }
 
-        if (!cl_Move.Get_World_Emty(v3_Move_Dir, IsoClassDir.v3_Top_H))
+        if (!cl_Move.GetWorld_Emty(v3_Move_Dir, IsoClassDir.v3_Top_H))
         //If Move Top not Emty
         {
-            if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_Top_H).GetComponent<IsoBlock>().Get_Block_Check_Stair())
+            if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_Top_H).GetComponent<IsoBlock>().GetBlock_Check_Stair())
             //If Move To Stair Top
             {
                 if (v3_Move_Dir == IsoClassDir.v3_Up_X ||
                     v3_Move_Dir == IsoClassDir.v3_Down_X)
                 //If Move Up Down
                 {
-                    if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_Top_H).GetComponent<IsoBlock>().Get_Block_Check_StairUD())
+                    if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_Top_H).GetComponent<IsoBlock>().GetBlock_Check_StairUD())
                     //If Move to Stair Top Up Down
                     {
-                        if (cl_Move.Get_World_StandOn().GetComponent<IsoBlock>().Get_Block_Check_Ground())
+                        if (cl_Move.GetWorld_StandOn().GetComponent<IsoBlock>().GetBlock_Check_Ground())
                         //If Stand-On Ground
                         {
                             cl_Move.Set_Move(v3_Move_Dir, IsoClassDir.v3_Top_H, true);
@@ -107,10 +107,10 @@ public class Iso_Move_Primary : MonoBehaviour
                     v3_Move_Dir == IsoClassDir.v3_Right_Y)
                 //If Move Left Right
                 {
-                    if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_Top_H).GetComponent<IsoBlock>().Get_Block_Check_StairLR())
+                    if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_Top_H).GetComponent<IsoBlock>().GetBlock_Check_StairLR())
                     //If Move to Stair Top Left Right
                     {
-                        if (cl_Move.Get_World_StandOn().GetComponent<IsoBlock>().Get_Block_Check_Ground())
+                        if (cl_Move.GetWorld_StandOn().GetComponent<IsoBlock>().GetBlock_Check_Ground())
                         //If Stand-On Ground
                         {
                             cl_Move.Set_Move(v3_Move_Dir, IsoClassDir.v3_Top_H, true);
@@ -130,20 +130,20 @@ public class Iso_Move_Primary : MonoBehaviour
             }
         }
         else
-        if (!cl_Move.Get_World_Emty(v3_Move_Dir, IsoClassDir.v3_None))
+        if (!cl_Move.GetWorld_Emty(v3_Move_Dir, IsoClassDir.v3_None))
         //If Move None not Emty
         {
-            if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_None).GetComponent<IsoBlock>().Get_Block_Check_Stair())
+            if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_None).GetComponent<IsoBlock>().GetBlock_Check_Stair())
             //If Move To Stair None
             {
                 if (v3_Move_Dir == IsoClassDir.v3_Up_X ||
                     v3_Move_Dir == IsoClassDir.v3_Down_X)
                 //If Move Up Down
                 {
-                    if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_None).GetComponent<IsoBlock>().Get_Block_Check_StairUD())
+                    if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_None).GetComponent<IsoBlock>().GetBlock_Check_StairUD())
                     //If Move to Stair None Up Down
                     {
-                        if (cl_Move.Get_World_StandOn().GetComponent<IsoBlock>().Get_Block_Check_Ground())
+                        if (cl_Move.GetWorld_StandOn().GetComponent<IsoBlock>().GetBlock_Check_Ground())
                         //If Stand-On Ground
                         {
                             cl_Move.Set_Move(v3_Move_Dir, IsoClassDir.v3_None, true);
@@ -165,10 +165,10 @@ public class Iso_Move_Primary : MonoBehaviour
                     v3_Move_Dir == IsoClassDir.v3_Right_Y)
                 //If Move Left Right
                 {
-                    if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_None).GetComponent<IsoBlock>().Get_Block_Check_StairLR())
+                    if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_None).GetComponent<IsoBlock>().GetBlock_Check_StairLR())
                     //If Move to Stair None Left Right
                     {
-                        if (cl_Move.Get_World_StandOn().GetComponent<IsoBlock>().Get_Block_Check_Ground())
+                        if (cl_Move.GetWorld_StandOn().GetComponent<IsoBlock>().GetBlock_Check_Ground())
                         //If Stand-On Ground
                         {
                             cl_Move.Set_Move(v3_Move_Dir, IsoClassDir.v3_None, true);
@@ -187,24 +187,24 @@ public class Iso_Move_Primary : MonoBehaviour
                 }
             }
             else
-            if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_None).GetComponent<IsoBlock>().Get_Block_Check_Ground())
+            if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_None).GetComponent<IsoBlock>().GetBlock_Check_Ground())
             //If Move To Ground None
             {
                 cl_Move.Set_Move(v3_Move_Dir, IsoClassDir.v3_None, false);
             }
         }
         else
-        if (!cl_Move.Get_World_Emty(v3_Move_Dir, IsoClassDir.v3_Bot_H))
+        if (!cl_Move.GetWorld_Emty(v3_Move_Dir, IsoClassDir.v3_Bot_H))
         //If Move Bot not Emty
         {
-            if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_Bot_H).GetComponent<IsoBlock>().Get_Block_Check_Stair())
+            if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_Bot_H).GetComponent<IsoBlock>().GetBlock_Check_Stair())
             //If Move To Stair Bot (Mean Move to Stair Bot)
             {
                 if (v3_Move_Dir == IsoClassDir.v3_Up_X ||
                     v3_Move_Dir == IsoClassDir.v3_Down_X)
                 //If Move Up Down
                 {
-                    if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_Bot_H).GetComponent<IsoBlock>().Get_Block_Check_StairUD())
+                    if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_Bot_H).GetComponent<IsoBlock>().GetBlock_Check_StairUD())
                     //If Move to Stair Bot Bot Up Down
                     {
                         cl_Move.Set_Move(v3_Move_Dir, IsoClassDir.v3_Bot_H, false);
@@ -220,7 +220,7 @@ public class Iso_Move_Primary : MonoBehaviour
                     v3_Move_Dir == IsoClassDir.v3_Right_Y)
                 //If Move Left Right
                 {
-                    if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_Bot_H).GetComponent<IsoBlock>().Get_Block_Check_StairLR())
+                    if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_Bot_H).GetComponent<IsoBlock>().GetBlock_Check_StairLR())
                     //If Move to Stair Bot Left Right
                     {
                         cl_Move.Set_Move(v3_Move_Dir, IsoClassDir.v3_Bot_H, false);
@@ -233,10 +233,10 @@ public class Iso_Move_Primary : MonoBehaviour
                 }
             }
             else
-            if (cl_Move.Get_World_Current(v3_Move_Dir, IsoClassDir.v3_Bot_H).GetComponent<IsoBlock>().Get_Block_Check_Ground())
+            if (cl_Move.GetWorld_Current(v3_Move_Dir, IsoClassDir.v3_Bot_H).GetComponent<IsoBlock>().GetBlock_Check_Ground())
             //If Move To Ground Bot
             {
-                if (cl_Move.Get_World_StandOn().GetComponent<IsoBlock>().Get_Block_Check_Stair())
+                if (cl_Move.GetWorld_StandOn().GetComponent<IsoBlock>().GetBlock_Check_Stair())
                 //If Stand-On Stair
                 {
                     cl_Move.Set_Move(v3_Move_Dir, IsoClassDir.v3_Bot_H, false);

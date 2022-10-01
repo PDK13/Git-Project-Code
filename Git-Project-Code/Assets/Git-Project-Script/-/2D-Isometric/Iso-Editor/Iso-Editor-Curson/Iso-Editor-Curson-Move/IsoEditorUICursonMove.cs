@@ -34,32 +34,32 @@ public class IsoEditorUICursonMove : MonoBehaviour
 
     #region Button
 
-    public UIButtonOnClick Get_Button_Move_Up()
+    public UIButtonOnClick GetButton_Move_Up()
     {
         return ui_Button_Up;
     }
 
-    public UIButtonOnClick Get_Button_Move_Down()
+    public UIButtonOnClick GetButton_Move_Down()
     {
         return ui_Button_Down;
     }
 
-    public UIButtonOnClick Get_Button_Move_Left()
+    public UIButtonOnClick GetButton_Move_Left()
     {
         return ui_Button_Left;
     }
 
-    public UIButtonOnClick Get_Button_Move_Right()
+    public UIButtonOnClick GetButton_Move_Right()
     {
         return ui_Button_Right;
     }
 
-    public UIButtonOnClick Get_Button_Move_Top()
+    public UIButtonOnClick GetButton_Move_Top()
     {
         return ui_Button_Top;
     }
 
-    public UIButtonOnClick Get_Button_Move_Bot()
+    public UIButtonOnClick GetButton_Move_Bot()
     {
         return ui_Button_Bot;
     }

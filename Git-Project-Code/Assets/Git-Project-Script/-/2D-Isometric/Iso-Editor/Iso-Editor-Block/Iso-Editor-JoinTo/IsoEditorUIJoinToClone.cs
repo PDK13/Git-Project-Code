@@ -23,7 +23,7 @@ public class IsoEditorUIJoinToClone : MonoBehaviour
 
     #region Set Clone
 
-    public void Set_Clone(Vector3Int v3_Dir, int i_Length, float f_Speed, Vector3Int v3_PosMoveTo)
+    public void SetClone(Vector3Int v3_Dir, int i_Length, float f_Speed, Vector3Int v3_PosMoveTo)
     {
         if (v3_Dir == IsoClassDir.v3_None)
         {

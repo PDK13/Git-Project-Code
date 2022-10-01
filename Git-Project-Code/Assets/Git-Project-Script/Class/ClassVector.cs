@@ -18,14 +18,14 @@ public class ClassVector
 
     #region Duration
 
-    public static float GetDuration(Vector3 m_Vector)
+    public static float GetDuration(Vector3 mVector)
     {
-        return m_Vector.magnitude;
+        return mVector.magnitude;
     }
 
-    public static float GetDurationSqr(Vector3 m_Vector)
+    public static float GetDurationSqr(Vector3 mVector)
     {
-        return m_Vector.sqrMagnitude;
+        return mVector.sqrMagnitude;
     }
 
     #endregion
@@ -139,24 +139,24 @@ public class ClassVector
 
     #region Abs
 
-    public static Vector2 GetAbs(Vector2 m_Vector)
+    public static Vector2 GetAbs(Vector2 mVector)
     {
-        return new Vector2(Mathf.Abs(m_Vector.x), Mathf.Abs(m_Vector.y));
+        return new Vector2(Mathf.Abs(mVector.x), Mathf.Abs(mVector.y));
     }
 
-    public static Vector2Int GetAbs(Vector2Int m_Vector)
+    public static Vector2Int GetAbs(Vector2Int mVector)
     {
-        return new Vector2Int(Mathf.Abs(m_Vector.x), Mathf.Abs(m_Vector.y));
+        return new Vector2Int(Mathf.Abs(mVector.x), Mathf.Abs(mVector.y));
     }
 
-    public static Vector3 GetAbs(Vector3 m_Vector)
+    public static Vector3 GetAbs(Vector3 mVector)
     {
-        return new Vector3(Mathf.Abs(m_Vector.x), Mathf.Abs(m_Vector.y), Mathf.Abs(m_Vector.z));
+        return new Vector3(Mathf.Abs(mVector.x), Mathf.Abs(mVector.y), Mathf.Abs(mVector.z));
     }
 
-    public static Vector3Int GetAbs(Vector3Int m_Vector)
+    public static Vector3Int GetAbs(Vector3Int mVector)
     {
-        return new Vector3Int(Mathf.Abs(m_Vector.x), Mathf.Abs(m_Vector.y), Mathf.Abs(m_Vector.z));
+        return new Vector3Int(Mathf.Abs(mVector.x), Mathf.Abs(mVector.y), Mathf.Abs(mVector.z));
     }
 
     #endregion

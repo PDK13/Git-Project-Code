@@ -13,7 +13,7 @@ public class Iso_Test : MonoBehaviour
     [SerializeField]
     private float f_Time = 0.01f;
 
-    private bool b_PointA = false;
+    private bool m_PointA = false;
 
     private readonly float f_Velocity_X;
     private readonly float f_Velocity_Y;
@@ -26,9 +26,9 @@ public class Iso_Test : MonoBehaviour
 
     private void Update()
     {
-        if (b_PointA)
+        if (m_PointA)
         {
-            Vector3 v3_Pos = cl_Block.Get_Pos_Current();
+            Vector3 v3_Pos = cl_Block.GetPos_Current();
 
             v3_Pos.x = 0;
             v3_Pos.y -= f_Time;
@@ -36,14 +36,14 @@ public class Iso_Test : MonoBehaviour
 
             cl_Block.Set_Pos(v3_Pos);
 
-            if (cl_Block.Get_Pos_Current().y <= v3_PointA.y)
+            if (cl_Block.GetPos_Current().y <= v3_PointA.y)
             {
-                b_PointA = false;
+                m_PointA = false;
             }
         }
         else
         {
-            Vector3 v3_Pos = cl_Block.Get_Pos_Current();
+            Vector3 v3_Pos = cl_Block.GetPos_Current();
 
             v3_Pos.x = 0;
             v3_Pos.y += f_Time;
@@ -51,9 +51,9 @@ public class Iso_Test : MonoBehaviour
 
             cl_Block.Set_Pos(v3_Pos);
 
-            if (cl_Block.Get_Pos_Current().y >= v3_PointB.y)
+            if (cl_Block.GetPos_Current().y >= v3_PointB.y)
             {
-                b_PointA = true;
+                m_PointA = true;
             }
         }
     }

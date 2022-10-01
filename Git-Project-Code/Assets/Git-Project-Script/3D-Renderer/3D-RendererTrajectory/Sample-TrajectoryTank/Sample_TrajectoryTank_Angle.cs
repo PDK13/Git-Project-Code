@@ -78,16 +78,16 @@ public class Sample_TrajectoryTank_Angle : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject g_Bullet_Clone = Class_Object.Set_GameObject_Create(g_Bullet);
-            g_Bullet_Clone.transform.position = cs_RendererTrajectory.Get_Trajectory_Start();
-            g_Bullet_Clone.SetActive(true);
+            GameObject g_BulletClone = Class_Object.Set_GameObject_Create(g_Bullet);
+            g_BulletClone.transform.position = cs_RendererTrajectory.GetTrajectory_Start();
+            g_BulletClone.SetActive(true);
 
             cs_RendererTrajectory.Set_Trajectory_toRigidbody(
-                g_Bullet_Clone.GetComponent<Rigidbody>(),
-                cs_RendererTrajectory.Get_Trajectory_Start(),
-                cs_RendererTrajectory.Get_Trajectory_Next());
+                g_BulletClone.GetComponent<Rigidbody>(),
+                cs_RendererTrajectory.GetTrajectory_Start(),
+                cs_RendererTrajectory.GetTrajectory_Next());
 
-            cs_RigidbodyRotation.Set_Control_isLock(false);
+            cs_RigidbodyRotation.Set_ControlIsLock(false);
         }
     }
 

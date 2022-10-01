@@ -4,9 +4,9 @@ public class Ground_Move : MonoBehaviour
 //Script giúp một GameObject di chuyển theo 1 trình tự sẵn có
 {
 
-    public bool b_Trigger_Start = false;
+    public bool m_Trigger_Start = false;
     //Chỉ di chuyển khi có một GameObject kích hoạt
-    private bool b_Trigged_Start = false;
+    private bool m_Trigged_Start = false;
     //Kích hoạt Ground di chuyển
     public GameObject g_Tarket;
     //Chỉ GameObject mục tiêu mới có thể kích hoạt
@@ -22,11 +22,11 @@ public class Ground_Move : MonoBehaviour
     //Thời gian tạm ngưng di chuyển giữa các Point, đặc biệt là Start và End
     private float f_TimeDelay_Cur;
 
-    public bool b_Delay_Point = false;
+    public bool m_Delay_Point = false;
     //Ground tạm ngưng di chuyển khi đến mỗi vị trí
-    public bool b_Trigger_Once = false;
+    public bool m_Trigger_Once = false;
     //Ground chỉ di chuyển 1 lần duy nhất, tức không lặp lại hành trình
-    public bool b_Reverse_End = true;
+    public bool m_Reverse_End = true;
     //Ground di chuyển ngược lại với hành trình cũ, tức đi từ End - Point - Start
     //Nếu là False, GameOject sẽ đi trực tiếp từ End - Start
 
@@ -41,13 +41,13 @@ public class Ground_Move : MonoBehaviour
     }
     private void Update()
     {
-        if (!b_Trigger_Start)
+        if (!m_Trigger_Start)
         {
-            //Nếu không bật b_Trigger_Start thì Ground sẽ tự động di chuyển mà không đợi GameObject kích hoạt
-            b_Trigged_Start = true;
+            //Nếu không bật m_Trigger_Start thì Ground sẽ tự động di chuyển mà không đợi GameObject kích hoạt
+            m_Trigged_Start = true;
         }
 
-        if (b_Trigged_Start)
+        if (m_Trigged_Start)
         //Nếu cho phép kích hoạt
         {
             if (f_TimeDelay_Cur > 0)
@@ -61,11 +61,11 @@ public class Ground_Move : MonoBehaviour
             }
             //if(f_TimeDelay_Cur <= 0) ...
         }
-        //if(b_Trigged) ...
+        //if(m_Trigged) ...
     }
     private void OnCollisionEnter2D(Collision2D c_Col)
     {
-        if (!b_Trigger_Start)
+        if (!m_Trigger_Start)
         {
             //Nếu không kích hoạt "Xét va chạm"
             return;
@@ -74,18 +74,18 @@ public class Ground_Move : MonoBehaviour
         if (g_Tarket == null)
         {
             //Nếu không có mục tiêu
-            b_Trigged_Start = true;
+            m_Trigged_Start = true;
         }
         else
         if (c_Col.gameObject == g_Tarket)
         {
             //Nếu đúng mục tiêu
-            b_Trigged_Start = true;
+            m_Trigged_Start = true;
         }
     }
     private void Active_Move()
     {
-        if (b_Trigger_Once && b_Trigged_Start && i_GoTo > g_Point.Length - 1)
+        if (m_Trigger_Once && m_Trigged_Start && i_GoTo > g_Point.Length - 1)
         {
             //Nếu đã đến nơi và chỉ cho phép di chuyển 1 lần
             return;
@@ -98,19 +98,19 @@ public class Ground_Move : MonoBehaviour
         //Nếu đã đến điểm tiếp theo
         {
             i_GoTo += i_Reverse;
-            if (b_Delay_Point)
+            if (m_Delay_Point)
             {
                 //Nếu cho phép dừng lại mỗi điểm
                 f_TimeDelay_Cur = f_TimeDelay;
             }
 
-            if (!b_Trigger_Once && i_GoTo > g_Point.Length - 1 || i_GoTo < 0)
+            if (!m_Trigger_Once && i_GoTo > g_Point.Length - 1 || i_GoTo < 0)
             //Nếu không còn Point để xét và cho phép di chuyển nhiều lần
             {
                 f_TimeDelay_Cur = f_TimeDelay;
                 //Dừng lại mỗi khi đến Point Start và End
-                b_Trigged_Start = false;
-                if (b_Reverse_End)
+                m_Trigged_Start = false;
+                if (m_Reverse_End)
                 //Nếu cho phép di chuyển ngược hành trình
                 {
                     i_Reverse *= -1;
@@ -122,7 +122,7 @@ public class Ground_Move : MonoBehaviour
                     i_Reverse = 1;
                     i_GoTo = 0;
                 }
-                //if(b_Reverse_Point) ...
+                //if(m_Reverse_Point) ...
             }
             //if(i_GoTo > g_Point.Length - 1 || i_GoTo < 0) ...
         }

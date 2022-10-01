@@ -15,7 +15,7 @@ public class RigidbodyJump : MonoBehaviour
     /// </summary>
     [Header("Keyboard")]
     [SerializeField]
-    private bool b_UseScriptControl = true;
+    private bool m_UseScriptControl = true;
 
     /// <summary>
     /// Jump
@@ -27,7 +27,7 @@ public class RigidbodyJump : MonoBehaviour
     /// Hold Jump to Jump Higher?
     /// </summary>
     [SerializeField]
-    private bool b_HoldJump = false;
+    private bool m_HoldJump = false;
 
     /// <summary>
     /// Jump Power
@@ -53,7 +53,7 @@ public class RigidbodyJump : MonoBehaviour
 
     private void Update()
     {
-        if (b_UseScriptControl)
+        if (m_UseScriptControl)
         {
             Set_JumpButton();
         }
@@ -64,12 +64,12 @@ public class RigidbodyJump : MonoBehaviour
     /// </summary>
     public void Set_JumpButton()
     {
-        if (!b_HoldJump && Input.GetKeyDown(k_Jump))
+        if (!m_HoldJump && Input.GetKeyDown(k_Jump))
         {
             Set_Jump();
         }
         else
-        if (b_HoldJump && Input.GetKey(k_Jump))
+        if (m_HoldJump && Input.GetKey(k_Jump))
         {
             Set_Jump();
         }
@@ -78,10 +78,10 @@ public class RigidbodyJump : MonoBehaviour
     /// <summary>
     /// Set Jump Auto
     /// </summary>
-    /// <param name="b_JumpHold"></param>
-    public void Set_JumpAuto(bool b_JumpHold)
+    /// <param name="m_JumpHold"></param>
+    public void Set_JumpAuto(bool m_JumpHold)
     {
-        if (b_JumpHold)
+        if (m_JumpHold)
         {
             Set_Jump();
         }
@@ -92,7 +92,7 @@ public class RigidbodyJump : MonoBehaviour
     /// </summary>
     public void Set_Jump()
     {
-        if (cs_Rigid.Get_CheckFoot())
+        if (cs_Rigid.GetCheckFoot())
         {
             cs_Rigid.Set_MoveY_Jump(f_JumpVelocity);
         }

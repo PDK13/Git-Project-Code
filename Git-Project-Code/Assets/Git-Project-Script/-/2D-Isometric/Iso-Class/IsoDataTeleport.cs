@@ -28,8 +28,8 @@ public class IsoDataTeleport
         Set_Block(new IsoDataBlock(g_Teleport));
 
         Set_Add(
-            g_Teleport.GetComponent<IsoBlockTeleport>().Get_World_Name(),
-            g_Teleport.GetComponent<IsoBlockTeleport>().Get_Spawm_Pos());
+            g_Teleport.GetComponent<IsoBlockTeleport>().GetWorld_Name(),
+            g_Teleport.GetComponent<IsoBlockTeleport>().GetSpawm_Pos());
     }
 
     #region Block 
@@ -39,7 +39,7 @@ public class IsoDataTeleport
         this.cl_Block = cl_Block;
     }
 
-    public IsoDataBlock Get_Block()
+    public IsoDataBlock GetBlock()
     {
         return cl_Block;
     }
@@ -56,7 +56,7 @@ public class IsoDataTeleport
 
     public void Set_Add(IsoDataTeleport cl_Data_Teleport)
     {
-        Set_Add(cl_Data_Teleport.Get_World_Name(), cl_Data_Teleport.Get_Pos());
+        Set_Add(cl_Data_Teleport.GetWorld_Name(), cl_Data_Teleport.GetPos());
     }
 
     public void Set_Pos_Add(int i_Pos_X_Add, int i_Pos_Y_Add, int i_Pos_High_Add)
@@ -72,17 +72,17 @@ public class IsoDataTeleport
         v3_Pos_Teleport = new Vector3Int();
     }
 
-    public bool Get_isExist()
+    public bool GetisExist()
     {
-        return Get_World_Name() != "";
+        return GetWorld_Name() != "";
     }
 
-    public string Get_World_Name()
+    public string GetWorld_Name()
     {
         return s_WorldName;
     }
 
-    public Vector3Int Get_Pos()
+    public Vector3Int GetPos()
     {
         return v3_Pos_Teleport;
     }

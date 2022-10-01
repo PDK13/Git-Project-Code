@@ -7,18 +7,18 @@
 
     public int i_Number_Public = 5;
 
-    public static Simple_Singleton Get_Instance()
+    public static Simple_Singleton GetInstance()
     {
         return instance;
     }
 
     public static void Set_Number(int i_Number)
     {
-        Get_Instance().i_Number = i_Number;
+        GetInstance().i_Number = i_Number;
     }
 
-    public static int Get_Number()
+    public static int GetNumber()
     {
-        return Get_Instance().i_Number;
+        return GetInstance().i_Number;
     }
 }

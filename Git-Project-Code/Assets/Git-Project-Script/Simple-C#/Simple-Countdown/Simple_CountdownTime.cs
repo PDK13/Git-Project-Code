@@ -3,47 +3,47 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Simple_CountdownTime : MonoBehaviour
+public class SimpleCountdownTime : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI com_Text;
 
     [SerializeField] private float f_Time_Passed = 1f;
 
-    [SerializeField] private List<Sample_CountdownTime_Class> l_CountdownTime = new List<Sample_CountdownTime_Class>();
+    [SerializeField] private List<SampleCountdownTime_Class> lCountdownTime = new List<SampleCountdownTime_Class>();
 
     private void Start()
     {
-        l_CountdownTime.Add(new Sample_CountdownTime_Class(10, "Press Enter to Start from 10"));
+        lCountdownTime.Add(new SampleCountdownTime_Class(10, "Press Enter to Start from 10"));
 
-        if (l_CountdownTime.Count > 0)
+        if (lCountdownTime.Count > 0)
         {
-            StartCoroutine(Set_Countdown(l_CountdownTime[0]));
+            StartCoroutine(SetCountdown(lCountdownTime[0]));
         }
     }
 
-    private IEnumerator Set_Countdown(Sample_CountdownTime_Class cs_CountdownTime)
+    private IEnumerator SetCountdown(SampleCountdownTime_Class csCountdownTime)
     {
         yield return null;
 
-        com_Text.text = cs_CountdownTime.Get_Message();
+        com_Text.text = csCountdownTime.GetMessage();
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
 
         do
         {
-            cs_CountdownTime.Set_TimeOut(f_Time_Passed);
+            csCountdownTime.Set_TimeOut(f_Time_Passed);
 
-            com_Text.text = cs_CountdownTime.Get_TimeOut_Cur() + " / " + cs_CountdownTime.Get_Time();
+            com_Text.text = csCountdownTime.GetTimeOut_Cur() + " / " + csCountdownTime.GetTime();
 
             yield return new WaitForSeconds(f_Time_Passed);
         }
-        while (!cs_CountdownTime.Get_TimeOut());
+        while (!csCountdownTime.GetTimeOut());
 
-        l_CountdownTime.Remove(cs_CountdownTime);
+        lCountdownTime.Remove(csCountdownTime);
 
-        if (l_CountdownTime.Count > 0)
+        if (lCountdownTime.Count > 0)
         {
-            StartCoroutine(Set_Countdown(l_CountdownTime[0]));
+            StartCoroutine(SetCountdown(lCountdownTime[0]));
         }
         else
         {
@@ -53,7 +53,7 @@ public class Simple_CountdownTime : MonoBehaviour
 }
 
 [System.Serializable]
-public class Sample_CountdownTime_Class
+public class SampleCountdownTime_Class
 {
     [SerializeField] private float f_Time = 0;
 
@@ -61,13 +61,13 @@ public class Sample_CountdownTime_Class
 
     [SerializeField] private float f_Time_Cur;
 
-    public Sample_CountdownTime_Class(float f_Time)
+    public SampleCountdownTime_Class(float f_Time)
     {
         this.f_Time = f_Time;
         f_Time_Cur = f_Time;
     }
 
-    public Sample_CountdownTime_Class(float f_Time, string s_Message)
+    public SampleCountdownTime_Class(float f_Time, string s_Message)
     {
         this.f_Time = f_Time;
         f_Time_Cur = f_Time;
@@ -80,22 +80,22 @@ public class Sample_CountdownTime_Class
         f_Time_Cur -= f_Time_Passed;
     }
 
-    public float Get_Time()
+    public float GetTime()
     {
         return f_Time;
     }
 
-    public float Get_TimeOut_Cur()
+    public float GetTimeOut_Cur()
     {
         return f_Time_Cur;
     }
 
-    public bool Get_TimeOut()
+    public bool GetTimeOut()
     {
         return f_Time_Cur <= 0;
     }
 
-    public string Get_Message()
+    public string GetMessage()
     {
         return s_Message;
     }

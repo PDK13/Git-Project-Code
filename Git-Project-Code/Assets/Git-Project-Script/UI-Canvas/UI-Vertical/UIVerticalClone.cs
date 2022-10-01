@@ -30,7 +30,7 @@ public class UIVerticalClone : MonoBehaviour
     /// </summary>
     /// <param name="cl_List"></param>
     /// <param name="i_Index"></param>
-    public void Set_Clone(UIVerticalList cl_List, int i_Index)
+    public void SetClone(UIVerticalList cl_List, int i_Index)
     {
         this.cl_List = cl_List;
         this.i_Index = i_Index;
@@ -42,7 +42,7 @@ public class UIVerticalClone : MonoBehaviour
     /// Fix Index when Remove other Clone from Vertical List
     /// </summary>
     /// <param name="i_Index"></param>
-    public void Set_Clone_Index(int i_Index)
+    public void SetClone_Index(int i_Index)
     {
         this.i_Index = i_Index;
 
@@ -53,7 +53,7 @@ public class UIVerticalClone : MonoBehaviour
     /// Get Index on Vertical List
     /// </summary>
     /// <returns></returns>
-    public int Get_Clone_Index()
+    public int GetClone_Index()
     {
         return i_Index;
     }
@@ -61,7 +61,7 @@ public class UIVerticalClone : MonoBehaviour
     /// <summary>
     /// Remove this Clone from Vertical List
     /// </summary>
-    public void Set_Clone_Remove()
+    public void SetClone_Remove()
     {
         cl_List.Set_ListVertical_Remove(i_Index);
     }
@@ -77,7 +77,7 @@ public class UIVerticalClone : MonoBehaviour
             return;
         }
 
-        if (!Class_String.Get_String_Exist(s_Format, "{0}"))
+        if (!ClassString.GetStringIsExist(s_Format, "{0}"))
         //If Format not right
         {
             t_Numberic.text = i_Index.ToString();

@@ -18,7 +18,7 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
 
     [SerializeField] private float f_Deg_Cur = 0;
 
-    [SerializeField] private bool b_Deg_High = true;
+    [SerializeField] private bool m_Deg_High = true;
 
     private void Awake()
     {
@@ -69,22 +69,22 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            b_Deg_High = !b_Deg_High;
+            m_Deg_High = !m_Deg_High;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject g_Bullet_Clone = Class_Object.Set_GameObject_Create(g_Bullet);
-            g_Bullet_Clone.GetComponent<Sample_TrajectoryBullet>().Set_Tarket(com_Tarket.gameObject);
-            g_Bullet_Clone.transform.position = cs_RendererTrajectory.Get_Trajectory_Start();
-            g_Bullet_Clone.SetActive(true);
+            GameObject g_BulletClone = Class_Object.Set_GameObject_Create(g_Bullet);
+            g_BulletClone.GetComponent<Sample_TrajectoryBullet>().Set_Tarket(com_Tarket.gameObject);
+            g_BulletClone.transform.position = cs_RendererTrajectory.GetTrajectory_Start();
+            g_BulletClone.SetActive(true);
 
             cs_RendererTrajectory.Set_Trajectory_toRigidbody(
-                g_Bullet_Clone.GetComponent<Rigidbody>(),
-                cs_RendererTrajectory.Get_Trajectory_Start(),
-                cs_RendererTrajectory.Get_Trajectory_Next());
+                g_BulletClone.GetComponent<Rigidbody>(),
+                cs_RendererTrajectory.GetTrajectory_Start(),
+                cs_RendererTrajectory.GetTrajectory_Next());
 
-            cs_RigidbodyRotation.Set_Control_isLock(false);
+            cs_RigidbodyRotation.Set_ControlIsLock(false);
         }
     }
 
@@ -92,10 +92,10 @@ public class Sample_TrajectoryTank_Angle_AI : MonoBehaviour
     {
         try
         {
-            f_Deg_Cur = (float)cs_RendererTrajectory.Get_Trajectory_Angle_toDeg(
-                cs_RendererTrajectory.Get_Trajectory_Start_toTransform().position,
+            f_Deg_Cur = (float)cs_RendererTrajectory.GetTrajectory_Angle_toDeg(
+                cs_RendererTrajectory.GetTrajectory_Start_toTransform().position,
                 com_Tarket.transform.position,
-                b_Deg_High);
+                m_Deg_High);
         }
         catch
         {

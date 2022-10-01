@@ -12,7 +12,7 @@ public class RaycastTwoPoint : MonoBehaviour
     //Point
 
     [Header("End Point is 'Pos' or 'Dir'?")]
-    public bool b_EndIsPos = true;
+    public bool m_EndIsPos = true;
     public float f_Distance = 5f;
 
     [Header("None - Line - Ray - Box - Sphere Cast")]
@@ -27,7 +27,7 @@ public class RaycastTwoPoint : MonoBehaviour
     [Header("SphereCast")]
     public float f_Sphere = 0.1f;
 
-    public float Get_Distance_Transform()
+    public float GetDistance_Transform()
     //Distance from Start to End Point
     {
         return ClassVector.GetDistance(t_Start, t_End);
@@ -35,11 +35,11 @@ public class RaycastTwoPoint : MonoBehaviour
 
     //Cast của Start và End
 
-    public bool Get_LineCast_Check_LayerMask()
+    public bool GetLineCast_Check_LayerMask()
     //LineCast from Start to End
     {
         Class_Eye cs_Eye = new Class_Eye();
-        if (cs_Eye.Get_LineCast_Check(t_Start.position, t_End.position, l_Tarket))
+        if (cs_Eye.GetLineCast_Check(t_Start.position, t_End.position, l_Tarket))
         {
             //Always Hit if Tarket on LineCast
             return true;
@@ -47,17 +47,17 @@ public class RaycastTwoPoint : MonoBehaviour
         return false;
     }
 
-    public bool Get_RayCast_Check_LayerMask()
+    public bool GetRayCast_Check_LayerMask()
     //Raycast from Start to End
     {
         Class_Eye cs_Eye = new Class_Eye();
-        if (cs_Eye.Get_RayCast_Vec_Check(t_Start.position, t_End.position, Get_Distance_Transform(), l_Barrier))
+        if (cs_Eye.GetRayCast_Vec_Check(t_Start.position, t_End.position, GetDistance_Transform(), l_Barrier))
         {
             //Hit Barrier
             return false;
         }
         else
-        if (cs_Eye.Get_RayCast_Vec_Check(t_Start.position, t_End.position, Get_Distance_Transform(), l_Tarket))
+        if (cs_Eye.GetRayCast_Vec_Check(t_Start.position, t_End.position, GetDistance_Transform(), l_Tarket))
         {
             //Hit Tarket
             return true;
@@ -65,17 +65,17 @@ public class RaycastTwoPoint : MonoBehaviour
         return false;
     }
 
-    public bool Get_BoxCast_Check_LayerMask()
+    public bool GetBoxCast_Check_LayerMask()
     //BoxCast from Start to End
     {
         Class_Eye cs_Eye = new Class_Eye();
-        if (cs_Eye.Get_BoxCast_Vec_Check(t_Start.position, v3_Square, t_End.position, v3_Square_Rot, Get_Distance_Transform(), l_Barrier))
+        if (cs_Eye.GetBoxCast_Vec_Check(t_Start.position, v3_Square, t_End.position, v3_Square_Rot, GetDistance_Transform(), l_Barrier))
         {
             //Hit Barrier
             return false;
         }
         else
-            if (cs_Eye.Get_BoxCast_Vec_Check(t_Start.position, v3_Square, t_End.position, v3_Square_Rot, Get_Distance_Transform(), l_Tarket))
+            if (cs_Eye.GetBoxCast_Vec_Check(t_Start.position, v3_Square, t_End.position, v3_Square_Rot, GetDistance_Transform(), l_Tarket))
         {
             //Hit Tarket
             return true;
@@ -83,17 +83,17 @@ public class RaycastTwoPoint : MonoBehaviour
         return false;
     }
 
-    public bool Get_SphereCast_Check_LayerMask()
+    public bool GetSphereCast_Check_LayerMask()
     //SphereCast from Start to End
     {
         Class_Eye cs_Eye = new Class_Eye();
-        if (cs_Eye.Get_SphereCast_Vec_Check(t_Start.position, f_Sphere, t_End.position, Get_Distance_Transform(), l_Barrier))
+        if (cs_Eye.GetSphereCast_Vec_Check(t_Start.position, f_Sphere, t_End.position, GetDistance_Transform(), l_Barrier))
         {
             //Hit Barrier
             return false;
         }
         else
-            if (cs_Eye.Get_SphereCast_Vec_Check(t_Start.position, f_Sphere, t_End.position, Get_Distance_Transform(), l_Tarket))
+            if (cs_Eye.GetSphereCast_Vec_Check(t_Start.position, f_Sphere, t_End.position, GetDistance_Transform(), l_Tarket))
         {
             //Hit Tarket
             return true;
@@ -121,13 +121,13 @@ public class RaycastTwoPoint : MonoBehaviour
                     t_End.position,
                     0.1f);
                 //End Point is Black
-                if (cs_Eye.Get_LineCast_Check(
+                if (cs_Eye.GetLineCast_Check(
                     t_Start.position,
                     t_End.position,
                     l_Tarket))
                 {
                     //Hit Tarket
-                    RaycastHit ray_Hit = cs_Eye.Get_LineCast_RaycastHit(
+                    RaycastHit ray_Hit = cs_Eye.GetLineCast_RaycastHit(
                         t_Start.position,
                         t_End.position,
                         l_Tarket);
@@ -153,17 +153,17 @@ public class RaycastTwoPoint : MonoBehaviour
                 Gizmos.DrawWireSphere(
                     t_End.position,
                     0.1f);
-                if (cs_Eye.Get_RayCast_Vec_Check(
+                if (cs_Eye.GetRayCast_Vec_Check(
                     t_Start.position,
                     t_End.position,
-                    (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                    (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                     l_Barrier))
                 {
                     //Hit Barrier
-                    RaycastHit ray_Hit = cs_Eye.Get_RayCast_Vec_RaycastHit(
+                    RaycastHit ray_Hit = cs_Eye.GetRayCast_Vec_RaycastHit(
                         t_Start.position,
                         t_End.position,
-                        (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                        (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                         l_Barrier);
                     Gizmos.color = Color.white;
                     Gizmos.DrawRay(
@@ -171,17 +171,17 @@ public class RaycastTwoPoint : MonoBehaviour
                         (t_End.position - t_Start.position).normalized * ray_Hit.distance);
                 }
                 else
-                if (cs_Eye.Get_RayCast_Vec_Check(
+                if (cs_Eye.GetRayCast_Vec_Check(
                     t_Start.position,
                     t_End.position,
-                    (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                    (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                     l_Tarket))
                 {
                     //Hit Tarket
-                    RaycastHit ray_Hit = cs_Eye.Get_RayCast_Vec_RaycastHit(
+                    RaycastHit ray_Hit = cs_Eye.GetRayCast_Vec_RaycastHit(
                         t_Start.position,
                         t_End.position,
-                        (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                        (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                         l_Tarket);
                     Gizmos.color = Color.red;
                     Gizmos.DrawRay(
@@ -193,7 +193,7 @@ public class RaycastTwoPoint : MonoBehaviour
                     Gizmos.color = Color.white;
                     Gizmos.DrawRay(
                         t_Start.position,
-                        (t_End.position - t_Start.position).normalized * ((b_EndIsPos) ? Get_Distance_Transform() : f_Distance));
+                        (t_End.position - t_Start.position).normalized * ((m_EndIsPos) ? GetDistance_Transform() : f_Distance));
                 }
                 Gizmos.DrawWireSphere(t_Start.position, f_Sphere / 2);
                 break;
@@ -203,21 +203,21 @@ public class RaycastTwoPoint : MonoBehaviour
                 Gizmos.DrawWireSphere(
                     t_End.position,
                     f_Sphere / 2);
-                if (cs_Eye.Get_BoxCast_Vec_Check(
+                if (cs_Eye.GetBoxCast_Vec_Check(
                     t_Start.position,
                     v3_Square,
                     t_End.position,
                     v3_Square_Rot,
-                    (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                    (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                     l_Barrier))
                 {
                     //If Hit
-                    RaycastHit ray_Hit = cs_Eye.Get_BoxCast_Vec_RaycastHit(
+                    RaycastHit ray_Hit = cs_Eye.GetBoxCast_Vec_RaycastHit(
                         t_Start.position,
                         v3_Square,
                         t_End.position,
                         v3_Square_Rot,
-                        (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                        (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                         l_Barrier);
                     Gizmos.color = Color.white;
                     Gizmos.DrawLine(
@@ -228,21 +228,21 @@ public class RaycastTwoPoint : MonoBehaviour
                         v3_Square);
                 }
                 else
-                if (cs_Eye.Get_BoxCast_Vec_Check(
+                if (cs_Eye.GetBoxCast_Vec_Check(
                     t_Start.position,
                     v3_Square,
                     t_End.position,
                     v3_Square_Rot,
-                    (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                    (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                     l_Tarket))
                 {
                     //If Hit
-                    RaycastHit ray_Hit = cs_Eye.Get_BoxCast_Vec_RaycastHit(
+                    RaycastHit ray_Hit = cs_Eye.GetBoxCast_Vec_RaycastHit(
                         t_Start.position,
                         v3_Square,
                         t_End.position,
                         v3_Square_Rot,
-                        (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                        (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                         l_Tarket);
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(
@@ -257,7 +257,7 @@ public class RaycastTwoPoint : MonoBehaviour
                     Gizmos.color = Color.white;
                     Gizmos.DrawLine(
                         t_Start.position,
-                        t_Start.position + (t_End.position - t_Start.position).normalized * ((b_EndIsPos) ? Get_Distance_Transform() : f_Distance));
+                        t_Start.position + (t_End.position - t_Start.position).normalized * ((m_EndIsPos) ? GetDistance_Transform() : f_Distance));
                     Gizmos.DrawWireCube(
                         t_Start.position + (t_End.position - t_Start.position).normalized * f_Distance,
                         v3_Square);
@@ -272,19 +272,19 @@ public class RaycastTwoPoint : MonoBehaviour
                 Gizmos.DrawWireSphere(
                     t_End.position,
                     f_Sphere / 2);
-                if (cs_Eye.Get_SphereCast_Vec_Check(
+                if (cs_Eye.GetSphereCast_Vec_Check(
                     t_Start.position,
                     f_Sphere,
                     t_End.position,
-                    (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                    (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                     l_Barrier))
                 {
                     //If Hit
-                    RaycastHit ray_Hit = cs_Eye.Get_SphereCast_Vec_RaycastHit(
+                    RaycastHit ray_Hit = cs_Eye.GetSphereCast_Vec_RaycastHit(
                         t_Start.position,
                         f_Sphere,
                         t_End.position,
-                        (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                        (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                         l_Barrier);
                     Gizmos.color = Color.white;
                     Gizmos.DrawLine(
@@ -295,19 +295,19 @@ public class RaycastTwoPoint : MonoBehaviour
                         f_Sphere / 2);
                 }
                 else
-                if (cs_Eye.Get_SphereCast_Vec_Check(
+                if (cs_Eye.GetSphereCast_Vec_Check(
                     t_Start.position,
                     f_Sphere,
                     t_End.position,
-                    (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                    (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                     l_Tarket))
                 {
                     //If Hit
-                    RaycastHit ray_Hit = cs_Eye.Get_SphereCast_Vec_RaycastHit(
+                    RaycastHit ray_Hit = cs_Eye.GetSphereCast_Vec_RaycastHit(
                         t_Start.position,
                         f_Sphere,
                         t_End.position,
-                        (b_EndIsPos) ? Get_Distance_Transform() : f_Distance,
+                        (m_EndIsPos) ? GetDistance_Transform() : f_Distance,
                         l_Tarket);
                     Gizmos.color = Color.red;
                     Gizmos.DrawLine(
@@ -322,9 +322,9 @@ public class RaycastTwoPoint : MonoBehaviour
                     Gizmos.color = Color.white;
                     Gizmos.DrawLine(
                         t_Start.position,
-                        t_Start.position + (t_End.position - t_Start.position).normalized * ((b_EndIsPos) ? Get_Distance_Transform() : f_Distance));
+                        t_Start.position + (t_End.position - t_Start.position).normalized * ((m_EndIsPos) ? GetDistance_Transform() : f_Distance));
                     Gizmos.DrawWireSphere(
-                        t_Start.position + (t_End.position - t_Start.position).normalized * ((b_EndIsPos) ? Get_Distance_Transform() : f_Distance),
+                        t_Start.position + (t_End.position - t_Start.position).normalized * ((m_EndIsPos) ? GetDistance_Transform() : f_Distance),
                         f_Sphere / 2);
                 }
                 Gizmos.DrawWireSphere(

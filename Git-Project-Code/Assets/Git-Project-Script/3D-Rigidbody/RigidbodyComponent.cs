@@ -11,25 +11,25 @@ public class RigidbodyComponent : MonoBehaviour
     /// </summary>
     [Header("Rigid")]
     [SerializeField]
-    private bool b_UseScriptStart = true;
+    private bool m_UseScriptStart = true;
 
     /// <summary>
     /// Set Kinematic (Static)
     /// </summary>
     [SerializeField]
-    private bool b_Kinematic = false;
+    private bool m_Kinematic = false;
 
     /// <summary>
     /// Lock Rotation
     /// </summary>
     [SerializeField]
-    private bool b_LockRot = true;
+    private bool m_LockRot = true;
 
     /// <summary>
     /// Lock Pos
     /// </summary>
     [SerializeField]
-    private bool b_LockPos = false;
+    private bool m_LockPos = false;
 
     /// <summary>
     /// Layer Mask to Check Foot and Head
@@ -43,7 +43,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// </summary>
     [Header("Foot Check")]
     [SerializeField]
-    private bool b_FootDebug = true;
+    private bool m_FootDebug = true;
 
     /// <summary>
     /// Box Cast of Foot
@@ -61,7 +61,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Use Script Auto Gravity
     /// </summary>
     [SerializeField]
-    private bool b_UseScriptGravity = true;
+    private bool m_UseScriptGravity = true;
 
     /// <summary>
     /// Auto Gravity Velocity
@@ -74,7 +74,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// </summary>
     [Header("Head Check")]
     [SerializeField]
-    private bool b_HeadDebug = true;
+    private bool m_HeadDebug = true;
 
     /// <summary>
     /// Box Cast of Head
@@ -92,7 +92,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Use Script Auto Bounce
     /// </summary>
     [SerializeField]
-    private bool b_UseScriptBounce = true;
+    private bool m_UseScriptBounce = true;
 
     /// <summary>
     /// Auto Bounce Velocity
@@ -102,7 +102,7 @@ public class RigidbodyComponent : MonoBehaviour
 
     private void Awake()
     {
-        if (b_UseScriptStart)
+        if (m_UseScriptStart)
         {
             Set_Rigid();
         }
@@ -110,18 +110,18 @@ public class RigidbodyComponent : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (b_UseScriptBounce)
+        if (m_UseScriptBounce)
         {
-            if (Get_CheckHead() && !Get_CheckFoot())
+            if (GetCheckHead() && !GetCheckFoot())
             {
                 //If Jump but Head touch Top >> Set Fall Down
                 Set_MoveY_Fall(f_HeadBounce);
             }
         }
 
-        if (b_UseScriptGravity)
+        if (m_UseScriptGravity)
         {
-            if (!Get_CheckFoot())
+            if (!GetCheckFoot())
             {
                 //If not Stand on Ground >> Gravity Set
                 Set_MoveY_Gravity(f_GravityFall);
@@ -135,15 +135,15 @@ public class RigidbodyComponent : MonoBehaviour
     public void Set_Rigid()
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
-        r_Rigidbody.isKinematic = b_Kinematic;
+        r_Rigidbody.isKinematic = m_Kinematic;
         r_Rigidbody.useGravity = false;
 
-        if (b_LockRot)
+        if (m_LockRot)
         {
             r_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
-        if (b_LockPos)
+        if (m_LockPos)
         {
             r_Rigidbody.constraints = RigidbodyConstraints.FreezePosition;
         }
@@ -152,20 +152,20 @@ public class RigidbodyComponent : MonoBehaviour
     /// <summary>
     /// Set Rigid by SCRIPT
     /// </summary>
-    /// <param name="b_Kinematic"></param>
-    /// <param name="b_LockRot">No Rotation</param>
-    /// <param name="b_LockPos">No Move</param>
-    public void Set_Rigid(bool b_Kinematic, bool b_LockRot, bool b_LockPos)
+    /// <param name="m_Kinematic"></param>
+    /// <param name="m_LockRot">No Rotation</param>
+    /// <param name="m_LockPos">No Move</param>
+    public void Set_Rigid(bool m_Kinematic, bool m_LockRot, bool m_LockPos)
     {
         Rigidbody r_Rigidbody = GetComponent<Rigidbody>();
-        r_Rigidbody.isKinematic = b_Kinematic;
+        r_Rigidbody.isKinematic = m_Kinematic;
         r_Rigidbody.useGravity = false;
-        if (b_LockRot && !b_LockPos)
+        if (m_LockRot && !m_LockPos)
         {
             r_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
         else
-        if (!b_LockRot && b_LockPos)
+        if (!m_LockRot && m_LockPos)
         {
             r_Rigidbody.constraints = RigidbodyConstraints.FreezePosition;
         }
@@ -315,7 +315,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Get Rotation XY
     /// </summary>
     /// <returns></returns>
-    public float Get_Rotation_XY()
+    public float GetRotation_XY()
     {
         return ClassVector.GetDegExchanceUnity(ClassVector.GetRotationQuaternionToEuler(transform.rotation).z);
     }
@@ -324,7 +324,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Get Rotation XZ
     /// </summary>
     /// <returns>Degree</returns>
-    public float Get_Rotation_XZ()
+    public float GetRotation_XZ()
     {
         return ClassVector.GetDegExchanceUnity(ClassVector.GetRotationQuaternionToEuler(transform.rotation).y);
     }
@@ -353,7 +353,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="f_RotationChance"></param>
     public void Set_RotationChance_XY(float f_RotationChance)
     {
-        Set_Rotation_XY(Get_Rotation_XZ() + f_RotationChance);
+        Set_Rotation_XY(GetRotation_XZ() + f_RotationChance);
     }
 
     /// <summary>
@@ -362,7 +362,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="f_RotationChance"></param>
     public void Set_RotationChance_XZ(float f_RotationChance)
     {
-        Set_Rotation_XZ(Get_Rotation_XZ() + f_RotationChance);
+        Set_Rotation_XZ(GetRotation_XZ() + f_RotationChance);
     }
 
     /// <summary>
@@ -417,11 +417,11 @@ public class RigidbodyComponent : MonoBehaviour
     /// Check Foot
     /// </summary>
     /// <returns></returns>
-    public bool Get_CheckFoot()
+    public bool GetCheckFoot()
     {
         Class_Eye cs_Eye = new Class_Eye();
 
-        return cs_Eye.Get_BoxCast_Dir_Check(
+        return cs_Eye.GetBoxCast_Dir_Check(
             transform.position,
             v3_FootCast,
             Vector3.down,
@@ -434,11 +434,11 @@ public class RigidbodyComponent : MonoBehaviour
     /// Check Head
     /// </summary>
     /// <returns></returns>
-    public bool Get_CheckHead()
+    public bool GetCheckHead()
     {
         Class_Eye cs_Eye = new Class_Eye();
 
-        return cs_Eye.Get_BoxCast_Dir_Check(
+        return cs_Eye.GetBoxCast_Dir_Check(
             transform.position,
             v3_HeadCast,
             Vector3.up,
@@ -451,10 +451,10 @@ public class RigidbodyComponent : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (b_FootDebug)
+        if (m_FootDebug)
         {
             //Foot Check
-            if (Get_CheckFoot())
+            if (GetCheckFoot())
             {
                 Gizmos.color = Color.red;
             }
@@ -467,10 +467,10 @@ public class RigidbodyComponent : MonoBehaviour
             Gizmos.DrawWireCube(transform.position + Vector3.down * f_FootCast, v3_FootCast);
         }
 
-        if (b_HeadDebug)
+        if (m_HeadDebug)
         {
             //Head Check
-            if (Get_CheckHead())
+            if (GetCheckHead())
             {
                 Gizmos.color = Color.red;
             }

@@ -11,10 +11,10 @@ public class Simple_ScriptableObject_GetData : MonoBehaviour
 
     private void Start()
     {
-        Debug.LogFormat("{0}: Data: {1}", name, cs_Simple_ScriptableObject.Get_MyString());
+        Debug.LogFormat("{0}: Data: {1}", name, cs_Simple_ScriptableObject.GetMyString());
 
         cs_Simple_ScriptableObject.Set_MyString("Good bye!");
 
-        Debug.LogFormat("{0}: Data after chance: {1}", name, cs_Simple_ScriptableObject.Get_MyString());
+        Debug.LogFormat("{0}: Data after chance: {1}", name, cs_Simple_ScriptableObject.GetMyString());
     }
 }

@@ -14,7 +14,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     [Tooltip("Canvas Alpha when is Exit State on Start")]
     [SerializeField]
-    private bool b_Canvas_Lock_Enter = false;
+    private bool m_Canvas_Lock_Enter = false;
 
     [Tooltip("Button for Canvas Alpha Lock Chance")]
     [SerializeField]
@@ -56,7 +56,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
         c_CanvasGroup = GetComponent<CanvasGroup>();
 
-        if (b_Canvas_Lock_Enter)
+        if (m_Canvas_Lock_Enter)
         {
             c_CanvasGroup.alpha = f_Canvas_Alpha_Enter;
         }
@@ -68,7 +68,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
         if (cl_Button_Lock_Chance != null)
         {
             //cl_Button_Lock_Chance.Set_Event_Add_PointerDown(Set_UI_Canvas_Lock_Enter_Chance);
-            cl_Button_Lock_Chance.Set_Button_Active(b_Canvas_Lock_Enter);
+            cl_Button_Lock_Chance.Set_Button_Active(m_Canvas_Lock_Enter);
         }
     }
 
@@ -123,7 +123,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     private void Set_Event_PointerExit()
     {
-        if (b_Canvas_Lock_Enter)
+        if (m_Canvas_Lock_Enter)
         {
             c_CanvasGroup.alpha = f_Canvas_Alpha_Enter;
 
@@ -132,7 +132,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
         if (GetComponent<UIObjectDragDrop>() != null)
         {
-            if (GetComponent<UIObjectDragDrop>().Get_UI_Canvas_Drag())
+            if (GetComponent<UIObjectDragDrop>().GetUI_Canvas_Drag())
             {
                 return;
             }
@@ -163,19 +163,19 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     #region UI Canvas Lock
 
-    public void Set_UI_Canvas_Lock_Enter(bool b_Canvas_Lock_Enter)
+    public void Set_UI_Canvas_Lock_Enter(bool m_Canvas_Lock_Enter)
     {
-        this.b_Canvas_Lock_Enter = b_Canvas_Lock_Enter;
+        this.m_Canvas_Lock_Enter = m_Canvas_Lock_Enter;
     }
 
     public void Set_UI_Canvas_Lock_Enter_Chance()
     {
-        Set_UI_Canvas_Lock_Enter(!Get_UI_Canvas_Lock_Enter());
+        Set_UI_Canvas_Lock_Enter(!GetUI_Canvas_Lock_Enter());
     }
 
-    public bool Get_UI_Canvas_Lock_Enter()
+    public bool GetUI_Canvas_Lock_Enter()
     {
-        return b_Canvas_Lock_Enter;
+        return m_Canvas_Lock_Enter;
     }
 
     #endregion
@@ -209,7 +209,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// Get Alpha Canvas when in Curson Enter State
     /// </summary>
     /// <returns></returns>
-    public float Get_UI_Canvas_Alpha_Enter()
+    public float GetUI_Canvas_Alpha_Enter()
     {
         return f_Canvas_Alpha_Enter;
     }
@@ -243,7 +243,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// Get Alpha Canvas when in Curson Exit State
     /// </summary>
     /// <returns></returns>
-    public float Get_UI_Canvas_Alpha_Exit()
+    public float GetUI_Canvas_Alpha_Exit()
     {
         return f_Canvas_Alpha_Exit;
     }

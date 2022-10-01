@@ -50,22 +50,22 @@ public class IsoDataMoveSingle
 
     #region Move Single Get 
 
-    public Vector3Int Get_Dir()
+    public Vector3Int GetDir()
     {
         return v3_Dir;
     }
 
-    public int Get_Length()
+    public int GetLength()
     {
         return i_Length;
     }
 
-    public Vector3Int Get_PosMoveTo()
+    public Vector3Int GetPosMoveTo()
     {
         return v3_PosMoveTo;
     }
 
-    public float Get_Speed()
+    public float GetSpeed()
     {
         return f_Speed;
     }

@@ -35,12 +35,12 @@ public class IsoDataMessageSingle
 
     #region Message Get 
 
-    public string Get_Name()
+    public string GetName()
     {
         return s_Name;
     }
 
-    public string Get_Message()
+    public string GetMessage()
     {
         return s_Message;
     }

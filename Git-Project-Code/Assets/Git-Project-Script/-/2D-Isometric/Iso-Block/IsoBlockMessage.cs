@@ -7,10 +7,10 @@ public class IsoBlockMessage : MonoBehaviour
     [Header("Message")]
 
     [SerializeField]
-    private bool b_Message_Lock = false;
+    private bool m_Message_Lock = false;
 
     [SerializeField]
-    private bool b_Message_Loop = false;
+    private bool m_Message_Loop = false;
 
     [Tooltip("Message List")]
     private List<IsoDataMessageSingle> l_Message;
@@ -38,7 +38,7 @@ public class IsoBlockMessage : MonoBehaviour
 
     public void Set_Chance(int i_Message_Index, IsoDataMessageSingle cl_Message_Single)
     {
-        if (i_Message_Index > Get_Count() - 1)
+        if (i_Message_Index > GetCount() - 1)
         {
             return;
         }
@@ -57,24 +57,24 @@ public class IsoBlockMessage : MonoBehaviour
 
     public void Set_Remove_Lastest()
     {
-        Set_Remove(Get_Count() - 1);
+        Set_Remove(GetCount() - 1);
     }
 
     #endregion
 
     #region Message Get
 
-    public int Get_Count()
+    public int GetCount()
     {
         return l_Message.Count;
     }
 
-    public IsoDataMessageSingle Get_List(int i_Message_Index)
+    public IsoDataMessageSingle GetList(int i_Message_Index)
     {
         return l_Message[i_Message_Index];
     }
 
-    public List<IsoDataMessageSingle> Get_List()
+    public List<IsoDataMessageSingle> GetList()
     {
         return l_Message;
     }
@@ -83,37 +83,37 @@ public class IsoBlockMessage : MonoBehaviour
 
     #region Message Lock
 
-    public void Set_Lock(bool b_Message_Lock)
+    public void Set_Lock(bool m_Message_Lock)
     {
-        if (Get_Loop() && b_Message_Lock)
+        if (GetLoop() && m_Message_Lock)
         {
             //Debug.LogWarning("Loop Current Active, so can not Lock this Message!");
 
-            this.b_Message_Lock = false;
+            this.m_Message_Lock = false;
         }
         else
         {
-            this.b_Message_Lock = b_Message_Lock;
+            this.m_Message_Lock = m_Message_Lock;
         }
     }
 
-    public bool Get_Lock()
+    public bool GetLock()
     {
-        return b_Message_Lock;
+        return m_Message_Lock;
     }
 
     #endregion
 
     #region Message Loop
 
-    public void Set_Loop(bool b_Message_Loop)
+    public void Set_Loop(bool m_Message_Loop)
     {
-        this.b_Message_Loop = b_Message_Loop;
+        this.m_Message_Loop = m_Message_Loop;
     }
 
-    public bool Get_Loop()
+    public bool GetLoop()
     {
-        return b_Message_Loop;
+        return m_Message_Loop;
     }
 
     #endregion

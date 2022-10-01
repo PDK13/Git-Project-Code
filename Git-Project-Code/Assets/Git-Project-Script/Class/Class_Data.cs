@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class Class_Data
 {
-    public bool b_Debug = false;
+    public bool m_Debug = false;
 
     /// <summary>
     /// Working on Data & List
@@ -19,9 +19,9 @@ public class Class_Data
     /// <summary>
     /// Working on Data & List
     /// </summary>
-    public Class_Data(bool b_Debug)
+    public Class_Data(bool m_Debug)
     {
-        this.b_Debug = b_Debug;
+        this.m_Debug = m_Debug;
     }
 
     #region Convert
@@ -31,15 +31,15 @@ public class Class_Data
     /// </summary>
     /// <param name="s_Value"></param>
     /// <returns>If Convert fail, return 0</returns>
-    public int Get_Convert_Int(object s_Value)
+    public int GetConvert_Int(object s_Value)
     {
         string s_ValueCheck = s_Value.ToString();
 
-        if (s_ValueCheck == Get_String_Data_NotFound() || s_Value == null || s_ValueCheck == "")
+        if (s_ValueCheck == GetString_Data_NotFound() || s_Value == null || s_ValueCheck == "")
         {
-            if (b_Debug)
+            if (m_Debug)
             {
-                Debug.LogError("Get_Exchance_Int: \"s_Value\" To (INT)\"0\"");
+                Debug.LogError("GetExchance_Int: \"s_Value\" To (INT)\"0\"");
             }
 
             return 0;
@@ -52,15 +52,15 @@ public class Class_Data
     /// </summary>
     /// <param name="s_Value"></param>
     /// <returns>If Convert fail, return 0.0</returns>
-    public float Get_Convert_Float(object s_Value)
+    public float GetConvert_Float(object s_Value)
     {
         string s_ValueCheck = s_Value.ToString();
 
-        if (s_ValueCheck == Get_String_Data_NotFound() || s_Value == null || s_ValueCheck == "")
+        if (s_ValueCheck == GetString_Data_NotFound() || s_Value == null || s_ValueCheck == "")
         {
-            if (b_Debug)
+            if (m_Debug)
             {
-                Debug.LogError("Get_Exchance_Float: \"s_Value\" To (FLOAT)\"0.0\"");
+                Debug.LogError("GetExchance_Float: \"s_Value\" To (FLOAT)\"0.0\"");
             }
 
             return 0.0f;
@@ -73,15 +73,15 @@ public class Class_Data
     /// </summary>
     /// <param name="s_Value"></param>
     /// <returns>If Convert fail, return FALSE</returns>
-    public bool Get_Convert_Bool(object s_Value)
+    public bool GetConvert_Bool(object s_Value)
     {
         string s_ValueCheck = s_Value.ToString();
 
-        if (s_ValueCheck == Get_String_Data_NotFound() || s_Value == null || s_ValueCheck == "")
+        if (s_ValueCheck == GetString_Data_NotFound() || s_Value == null || s_ValueCheck == "")
         {
-            if (b_Debug)
+            if (m_Debug)
             {
-                Debug.LogError("Get_Exchance_Bool: \"s_Value\" To (BOOL)\"FALSE\"");
+                Debug.LogError("GetExchance_Bool: \"s_Value\" To (BOOL)\"FALSE\"");
             }
 
             return false;
@@ -94,7 +94,7 @@ public class Class_Data
     /// </summary>
     /// <param name="s_Value"></param>
     /// <returns>If Convert fail, return NULL</returns>
-    public string Get_Convert_String(object s_Value)
+    public string GetConvert_String(object s_Value)
     {
         string s_ValueCheck = s_Value.ToString();
         return s_ValueCheck.ToString();
@@ -118,7 +118,7 @@ public class Class_Data
     /// Get List of Data Name
     /// </summary>
     /// <returns></returns>
-    public List<string> Get_List_Name()
+    public List<string> GetList_Name()
     {
         return l_Data_Name;
     }
@@ -127,7 +127,7 @@ public class Class_Data
     /// Get List of Data Value
     /// </summary>
     /// <returns></returns>
-    public List<object> Get_List_Value()
+    public List<object> GetList_Value()
     {
         return l_Data_Value;
     }
@@ -154,7 +154,7 @@ public class Class_Data
     /// Get Auto Index
     /// </summary>
     /// <returns></returns>
-    public int Get_Index()
+    public int GetIndex()
     {
         return i_Index_Auto;
     }
@@ -168,7 +168,7 @@ public class Class_Data
     /// </summary>
     /// <param name="s_DataName"></param>
     /// <returns></returns>
-    public int Get_Index_Data_Exist(string s_DataName)
+    public int GetIndex_DataIsExist(string s_DataName)
     {
         for (int i = 0; i < l_Data_Name.Count; i++)
         {
@@ -187,18 +187,18 @@ public class Class_Data
     /// <param name="o_DataValue"></param>
     public void Set_Data(string s_DataName, object o_DataValue)
     {
-        int Index = Get_Index_Data_Exist(s_DataName);
+        int Index = GetIndex_DataIsExist(s_DataName);
 
         if (Index != -1)
         {
-            if (b_Debug)
+            if (m_Debug)
             {
                 Debug.Log("Set_Data: " + "\"" + s_DataName + "\"" + " Updated " + "\"" + o_DataValue + "\"");
             }
 
             if (o_DataValue == null)
             {
-                l_Data_Value[Index] = Get_String_Data_NULL();
+                l_Data_Value[Index] = GetString_Data_NULL();
             }
             else
             if (o_DataValue.GetType() == typeof(int))
@@ -221,14 +221,14 @@ public class Class_Data
                 l_Data_Value[Index] = o_DataValue.ToString();
             }
             else
-            if (b_Debug)
+            if (m_Debug)
             {
                 Debug.LogError("Set_Data: " + s_DataName + " not support Updated TYPE");
             }
         }
         else
         {
-            if (b_Debug)
+            if (m_Debug)
             {
                 Debug.Log("Set_Data: " + "\"" + s_DataName + "\"" + " Added " + "\"" + o_DataValue + "\"");
             }
@@ -236,7 +236,7 @@ public class Class_Data
             if (o_DataValue == null)
             {
                 l_Data_Name.Add(s_DataName);
-                l_Data_Value.Add(Get_String_Data_NULL());
+                l_Data_Value.Add(GetString_Data_NULL());
             }
             else
             if (o_DataValue.GetType() == typeof(int))
@@ -263,7 +263,7 @@ public class Class_Data
                 l_Data_Value.Add(o_DataValue.ToString());
             }
             else
-            if (b_Debug)
+            if (m_Debug)
             {
                 Debug.LogError("Set_Data: " + s_DataName + " not support Added TYPE");
             }
@@ -275,7 +275,7 @@ public class Class_Data
     /// </summary>
     /// <param name="s_DataName"></param>
     /// <returns>If not found Data, return "@NotFound"</returns>
-    public object Get_Data(string s_DataName)
+    public object GetData(string s_DataName)
     {
         for (int i = 0; i < l_Data_Name.Count; i++)
         {
@@ -284,28 +284,28 @@ public class Class_Data
                 return l_Data_Value[i];
             }
         }
-        if (b_Debug)
+        if (m_Debug)
         {
-            Debug.LogError("Get_Data: " + "\"" + s_DataName + "\" Not found");
+            Debug.LogError("GetData: " + "\"" + s_DataName + "\" Not found");
         }
 
         return "@NotFound";
     }
 
     /// <summary>
-    /// Use to Get "@NotFound" value for "Get_Data_String()"
+    /// Use to Get "@NotFound" value for "GetData_String()"
     /// </summary>
     /// <returns></returns>
-    public string Get_String_Data_NotFound()
+    public string GetString_Data_NotFound()
     {
         return "@NotFound";
     }
 
     /// <summary>
-    /// Use to Get "@Null" value for "Get_Data_String()"
+    /// Use to Get "@Null" value for "GetData_String()"
     /// </summary>
     /// <returns></returns>
-    public string Get_String_Data_NULL()
+    public string GetString_Data_NULL()
     {
         return "@Null";
     }
@@ -330,11 +330,11 @@ public class Class_Data
     /// Set Data Muti Count
     /// </summary>
     /// <param name="s_DataName"></param>
-    /// <param name="i_Count"></param>
-    public void Set_Data_Count(string s_DataName, int i_Count)
+    /// <param name="iCount"></param>
+    public void Set_DataCount(string s_DataName, int iCount)
     {
-        string s_DataCheck = s_DataName + "_Count";
-        Set_Data(s_DataCheck, i_Count);
+        string s_DataCheck = s_DataName + "Count";
+        Set_Data(s_DataCheck, iCount);
     }
 
     /// <summary>
@@ -343,10 +343,10 @@ public class Class_Data
     /// <param name="s_DataName"></param>
     /// <param name="i_Index"></param>
     /// <returns></returns>
-    public object Get_Object_Data(string s_DataName, int i_Index)
+    public object GetObject_Data(string s_DataName, int i_Index)
     {
         string s_DataCheck = s_DataName + "_" + i_Index.ToString();
-        return Get_Data(s_DataCheck);
+        return GetData(s_DataCheck);
     }
 
     /// <summary>
@@ -354,15 +354,15 @@ public class Class_Data
     /// </summary>
     /// <param name="s_DataName"></param>
     /// <returns></returns>
-    public int Get_Int_Data_Count(string s_DataName)
+    public int GetInt_DataCount(string s_DataName)
     {
-        string s_DataCheck = s_DataName + "_Count";
-        if (Get_Convert_String(Get_Data(s_DataCheck)) == Get_String_Data_NotFound())
+        string s_DataCheck = s_DataName + "Count";
+        if (GetConvert_String(GetData(s_DataCheck)) == GetString_Data_NotFound())
         {
             return -1;
         }
 
-        return Get_Convert_Int(Get_Data(s_DataCheck).ToString());
+        return GetConvert_Int(GetData(s_DataCheck).ToString());
     }
 
     /// <summary>
@@ -371,7 +371,7 @@ public class Class_Data
     /// <param name="s_DataName"></param>
     /// <param name="i_Index"></param>
     /// <returns></returns>
-    public string Get_String_Get_Convert_NameIndex(string s_DataName, int i_Index)
+    public string GetString_GetConvert_NameIndex(string s_DataName, int i_Index)
     {
         return s_DataName + "_" + i_Index.ToString();
     }
@@ -380,11 +380,11 @@ public class Class_Data
     /// Get own Count Name Data
     /// </summary>
     /// <param name="s_DataName"></param>
-    /// <param name="i_Count"></param>
+    /// <param name="iCount"></param>
     /// <returns></returns>
-    public string Get_String_Get_Convert_NameCount(string s_DataName)
+    public string GetString_GetConvert_NameCount(string s_DataName)
     {
-        return s_DataName + "_Count";
+        return s_DataName + "Count";
     }
 
     #endregion

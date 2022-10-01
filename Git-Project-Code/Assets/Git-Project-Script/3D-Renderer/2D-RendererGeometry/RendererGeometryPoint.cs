@@ -4,7 +4,7 @@ using UnityEngine;
 //Script này dùng để nhận toạ độ các điểm để vẽ trên cung tròn, ứng dụng công thức lượng giác trong việc xác định điểm
 public class RendererGeometryPoint : MonoBehaviour
 {
-    public bool b_Debug = true;
+    public bool m_Debug = true;
 
     public float f_Duration = 2;
 
@@ -59,7 +59,7 @@ public class RendererGeometryPoint : MonoBehaviour
         //Thể hiện hình vẽ mẫu trên chính GameObject. Và đây cũng là gợi ý cho cách sử dụng danh sách điểm.
         //Đường vẽ màu "Vàng" là giữa điểm Kết thúc và Bắt đầu
 
-        if (!b_Debug)
+        if (!m_Debug)
         {
             return;
         }

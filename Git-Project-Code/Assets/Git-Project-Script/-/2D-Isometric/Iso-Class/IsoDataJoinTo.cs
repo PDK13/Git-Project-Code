@@ -17,7 +17,7 @@ public class IsoDataJoinTo
     {
         Set_Block(new IsoDataBlock(g_Join));
 
-        Set_JoinToBlock_Pos(g_Join.GetComponent<IsoBlockJoinTo>().Get_JoinTo_Pos_Primary());
+        Set_JoinToBlock_Pos(g_Join.GetComponent<IsoBlockJoinTo>().GetJoinTo_Pos_Primary());
     }
 
     #region Block 
@@ -27,7 +27,7 @@ public class IsoDataJoinTo
         this.cl_Block = cl_Block;
     }
 
-    public IsoDataBlock Get_Block()
+    public IsoDataBlock GetBlock()
     {
         return cl_Block;
     }
@@ -41,7 +41,7 @@ public class IsoDataJoinTo
         this.v3_JoinTo_Pos = v3_JoinTo_Pos;
     }
 
-    public Vector3Int Get_JoinTo_Pos()
+    public Vector3Int GetJoinTo_Pos()
     {
         return v3_JoinTo_Pos;
     }

@@ -9,14 +9,14 @@ public class Camera_Component : MonoBehaviour
     //Object cần di chuyển theo
 
     //public Transform t_Renderer_Rotation;
-    //public bool b_Renderer_Rotation = false;
+    //public bool m_Renderer_Rotation = false;
     //Tự động xoay Object cần di chuyển theo để hiển thị tốt hơn
 
     public Vector3 v3_Follow = new Vector3(0f, 6f, -10f);
     //Khoá vị trí của Camera so với Object cần di chuyển theo (Mặc định là phía trên cao)
-    public bool b_FollowX = true;
-    public bool b_FollowY = true;
-    public bool b_FollowZ = false;
+    public bool m_FollowX = true;
+    public bool m_FollowY = true;
+    public bool m_FollowZ = false;
     //Cho phép Camera di chuyển teo Object theo trục X, Y và Z?
 
     public Vector3 v3_Smooth = new Vector3(0.5f, 0.5f, 0.5f);
@@ -40,7 +40,7 @@ public class Camera_Component : MonoBehaviour
     //Điều khiển Camera
     private void Control_Follow()
     {
-        if (b_FollowX)
+        if (m_FollowX)
         {
             if (v3_Smooth.x == 0)
             {
@@ -56,7 +56,7 @@ public class Camera_Component : MonoBehaviour
             f_PosX = transform.position.x;
         }
 
-        if (b_FollowY)
+        if (m_FollowY)
         {
             if (v3_Smooth.y == 0)
             {
@@ -72,7 +72,7 @@ public class Camera_Component : MonoBehaviour
             f_PosY = transform.position.y;
         }
 
-        if (b_FollowZ)
+        if (m_FollowZ)
         {
             if (v3_Smooth.y == 0)
             {

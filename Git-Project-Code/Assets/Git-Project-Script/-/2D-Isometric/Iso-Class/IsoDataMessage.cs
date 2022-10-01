@@ -23,7 +23,7 @@ public class IsoDataMessage
     {
         Set_Block(g_Block);
 
-        Set_List(g_Block.GetComponent<IsoBlockMessage>().Get_List());
+        Set_List(g_Block.GetComponent<IsoBlockMessage>().GetList());
     }
 
     #region Block 
@@ -36,11 +36,11 @@ public class IsoDataMessage
     public void Set_Block(GameObject g_Message)
     {
         Set_Block(new IsoDataBlock(
-            g_Message.GetComponent<IsoBlock>().Get_PosOnMatrix_Primary(),
-            g_Message.GetComponent<IsoBlock>().Get_Name()));
+            g_Message.GetComponent<IsoBlock>().GetPosOnMatrix_Primary(),
+            g_Message.GetComponent<IsoBlock>().GetName()));
     }
 
-    public IsoDataBlock Get_Block()
+    public IsoDataBlock GetBlock()
     {
         return cl_Data_Block;
     }
@@ -77,7 +77,7 @@ public class IsoDataMessage
         l_Data_Message = new List<IsoDataMessageSingle>();
     }
 
-    public int Get_Count()
+    public int GetCount()
     {
         if (l_Data_Message == null)
         {
@@ -89,12 +89,12 @@ public class IsoDataMessage
         return l_Data_Message.Count;
     }
 
-    public IsoDataMessageSingle Get_List(int i_Message_Index)
+    public IsoDataMessageSingle GetList(int i_Message_Index)
     {
         return l_Data_Message[i_Message_Index];
     }
 
-    public List<IsoDataMessageSingle> Get_List()
+    public List<IsoDataMessageSingle> GetList()
     {
         return l_Data_Message;
     }

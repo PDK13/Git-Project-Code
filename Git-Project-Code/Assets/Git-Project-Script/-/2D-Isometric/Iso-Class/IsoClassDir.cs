@@ -75,7 +75,7 @@ public class IsoClassDir
     /// </summary>
     public static readonly string s_Bot_H = "B";
 
-    public static string Get_Dir_Encypt(Vector3Int v3_Dir)
+    public static string GetDirEncypt(Vector3Int v3_Dir)
     {
         if (v3_Dir == IsoClassDir.v3_Up_X)
         {
@@ -110,7 +110,7 @@ public class IsoClassDir
         return s_None;
     }
 
-    public static Vector3Int Get_Dir_Dencyt(string s_Dir)
+    public static Vector3Int GetDir_Dencyt(string s_Dir)
     {
         if (s_Dir == s_Up_X)
         {
@@ -145,25 +145,25 @@ public class IsoClassDir
         return new Vector3Int();
     }
 
-    public static Vector3 Get_Vector_One(Vector3 v3_Vector)
+    public static Vector3 GetVector_One(Vector3 v3Vector)
     {
-        Vector3 v3_Vector_Chance = v3_Vector;
+        Vector3 v3Vector_Chance = v3Vector;
 
-        if (v3_Vector_Chance.x != 0)
+        if (v3Vector_Chance.x != 0)
         {
-            v3_Vector_Chance.x /= Mathf.Abs(v3_Vector_Chance.x);
+            v3Vector_Chance.x /= Mathf.Abs(v3Vector_Chance.x);
         }
 
-        if (v3_Vector_Chance.y != 0)
+        if (v3Vector_Chance.y != 0)
         {
-            v3_Vector_Chance.y /= Mathf.Abs(v3_Vector_Chance.y);
+            v3Vector_Chance.y /= Mathf.Abs(v3Vector_Chance.y);
         }
 
-        if (v3_Vector_Chance.z != 0)
+        if (v3Vector_Chance.z != 0)
         {
-            v3_Vector_Chance.z /= Mathf.Abs(v3_Vector_Chance.z);
+            v3Vector_Chance.z /= Mathf.Abs(v3Vector_Chance.z);
         }
 
-        return v3_Vector_Chance;
+        return v3Vector_Chance;
     }
 }

@@ -47,18 +47,18 @@ public class IsoEditorUIMoveClone : MonoBehaviour
         }
 
         //ui_Button_Fix.Set_Event_Add_PointerDown(Button_Fix);
-        ui_Button_Fix.Set_Button_Color_Active(ui_Button_Fix.Get_Button_Color_Normal());
+        ui_Button_Fix.Set_Button_Color_Active(ui_Button_Fix.GetButton_Color_Normal());
 
         //ui_Button_Copy.Set_Event_Add_PointerDown(Button_Copy);
-        ui_Button_Copy.Set_Button_Color_Active(ui_Button_Copy.Get_Button_Color_Normal());
+        ui_Button_Copy.Set_Button_Color_Active(ui_Button_Copy.GetButton_Color_Normal());
 
         //ui_Button_Del.Set_Event_Add_PointerDown(Button_Del);
-        ui_Button_Del.Set_Button_Color_Active(ui_Button_Del.Get_Button_Color_Normal());
+        ui_Button_Del.Set_Button_Color_Active(ui_Button_Del.GetButton_Color_Normal());
     }
 
     #region Set Clone
 
-    public void Set_Clone(Vector3Int v3_Dir, int i_Length, float f_Speed, Vector3Int v3_PosMoveTo)
+    public void SetClone(Vector3Int v3_Dir, int i_Length, float f_Speed, Vector3Int v3_PosMoveTo)
     {
         if (v3_Dir == IsoClassDir.v3_None)
         {
@@ -112,17 +112,17 @@ public class IsoEditorUIMoveClone : MonoBehaviour
 
     public void Button_Fix()
     {
-        cl_Editor_Block_Move.Set_Fix(GetComponent<UIVerticalClone>().Get_Clone_Index());
+        cl_Editor_Block_Move.Set_Fix(GetComponent<UIVerticalClone>().GetClone_Index());
     }
 
     public void Button_Copy()
     {
-        cl_Editor_Block_Move.Set_Copy(GetComponent<UIVerticalClone>().Get_Clone_Index());
+        cl_Editor_Block_Move.Set_Copy(GetComponent<UIVerticalClone>().GetClone_Index());
     }
 
     public void Button_Del()
     {
-        cl_Editor_Block_Move.Set_Del(GetComponent<UIVerticalClone>().Get_Clone_Index());
+        cl_Editor_Block_Move.Set_Del(GetComponent<UIVerticalClone>().GetClone_Index());
     }
 
     #endregion

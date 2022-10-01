@@ -19,28 +19,28 @@
 
 //    #region UI Anchor-Pos
 
-//    public static void Set_UI_Pos_ChanceTo(RectTransform rec_UI, Vector2 v2_Pos_ChanceTo, float f_Duration = 1f, float f_Delay = 0f, bool b_ValueInt = false)
+//    public static void Set_UI_Pos_ChanceTo(RectTransform rec_UI, Vector2 v2_Pos_ChanceTo, float f_Duration = 1f, float f_Delay = 0f, bool m_ValueInt = false)
 //    {
-//        rec_UI.DOAnchorPos(v2_Pos_ChanceTo, f_Duration, b_ValueInt).SetDelay(f_Delay);
+//        rec_UI.DOAnchorPos(v2_Pos_ChanceTo, f_Duration, m_ValueInt).SetDelay(f_Delay);
 //    }
 
-//    public static void Set_UI_Pos_ChanceTo_X(RectTransform rec_UI, float f_Pos_ChanceTo_X, float f_Duration = 1f, float f_Delay = 0f, bool b_ValueInt = false)
+//    public static void Set_UI_Pos_ChanceTo_X(RectTransform rec_UI, float f_Pos_ChanceTo_X, float f_Duration = 1f, float f_Delay = 0f, bool m_ValueInt = false)
 //    {
-//        rec_UI.DOAnchorPosX(f_Pos_ChanceTo_X, f_Duration, b_ValueInt).SetDelay(f_Delay);
+//        rec_UI.DOAnchorPosX(f_Pos_ChanceTo_X, f_Duration, m_ValueInt).SetDelay(f_Delay);
 //    }
 
-//    public static void Set_UI_Pos_ChanceTo_Y(RectTransform rec_UI, float f_Pos_ChanceTo_Y, float f_Duration = 1f, float f_Delay = 0f, bool b_ValueInt = false)
+//    public static void Set_UI_Pos_ChanceTo_Y(RectTransform rec_UI, float f_Pos_ChanceTo_Y, float f_Duration = 1f, float f_Delay = 0f, bool m_ValueInt = false)
 //    {
-//        rec_UI.DOAnchorPosY(f_Pos_ChanceTo_Y, f_Duration, b_ValueInt).SetDelay(f_Delay);
+//        rec_UI.DOAnchorPosY(f_Pos_ChanceTo_Y, f_Duration, m_ValueInt).SetDelay(f_Delay);
 //    }
 
 //    #endregion
 
 //    #region UI Anchor Pos Shake
 
-//    public static void Set_UI_Shake(RectTransform rec_UI, float f_Duration = 1f, float f_Strength = 50f, int i_Loop = 10, float f_Randomness = 0f, bool b_FadeOut = true, bool b_ValueInt = false)
+//    public static void Set_UI_Shake(RectTransform rec_UI, float f_Duration = 1f, float f_Strength = 50f, int i_Loop = 10, float f_Randomness = 0f, bool m_FadeOut = true, bool m_ValueInt = false)
 //    {
-//        rec_UI.DOShakeAnchorPos(f_Duration, f_Strength, i_Loop, f_Randomness, b_ValueInt, b_FadeOut);
+//        rec_UI.DOShakeAnchorPos(f_Duration, f_Strength, i_Loop, f_Randomness, m_ValueInt, m_FadeOut);
 //    }
 
 //    #endregion

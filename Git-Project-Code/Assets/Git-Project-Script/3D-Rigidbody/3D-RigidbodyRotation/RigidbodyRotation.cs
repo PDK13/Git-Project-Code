@@ -10,7 +10,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     [Header("Keyboard")]
 
-    [SerializeField] private bool b_LockControl = false;
+    [SerializeField] private bool m_LockControl = false;
 
     [SerializeField] private KeyCode k_MoveForward = KeyCode.UpArrow;
 
@@ -20,7 +20,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     [SerializeField] private KeyCode k_TurnRight = KeyCode.RightArrow;
 
-    [SerializeField] private bool b_MutiButton = true;
+    [SerializeField] private bool m_MutiButton = true;
 
     [SerializeField] private KeyCode k_SpeedChance = KeyCode.LeftShift;
 
@@ -37,11 +37,11 @@ public class RigidbodyRotation : MonoBehaviour
     [Range(0.1f, 5f)]
     [SerializeField] private float f_SpeedRotate = 1f;
 
-    [SerializeField] private bool b_StopRightAway = false;
+    [SerializeField] private bool m_StopRightAway = false;
 
     [SerializeField] private float f_SpeedStop = 3f;
 
-    [SerializeField] private bool b_SlowWhenTurn = true;
+    [SerializeField] private bool m_SlowWhenTurn = true;
 
     [SerializeField] private float f_SpeedSlow = 5f;
 
@@ -52,7 +52,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     private void Update()
     {
-        if (b_LockControl)
+        if (m_LockControl)
         {
             return;
         }
@@ -68,9 +68,9 @@ public class RigidbodyRotation : MonoBehaviour
 
         Gizmos.DrawLine(
             transform.position,
-            transform.position + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ(), 1f));
+            transform.position + ClassVector.GetPosOnCircleXZ(-cs_Rigid.GetRotation_XZ(), 1f));
         Gizmos.DrawWireSphere(
-            transform.position + ClassVector.GetPosOnCircleXZ(-cs_Rigid.Get_Rotation_XZ(), 1f),
+            transform.position + ClassVector.GetPosOnCircleXZ(-cs_Rigid.GetRotation_XZ(), 1f),
             0.1f);
     }
 
@@ -117,12 +117,12 @@ public class RigidbodyRotation : MonoBehaviour
 
     private void Set_Control_Move(int i_MoveDir)
     {
-        cs_Rigid.Set_MoveRotation_XZ(cs_Rigid.Get_Rotation_XZ(), f_SpeedCur * i_MoveDir);
+        cs_Rigid.Set_MoveRotation_XZ(cs_Rigid.GetRotation_XZ(), f_SpeedCur * i_MoveDir);
     }
 
     private void Set_Control_Move_Stop()
     {
-        if (b_StopRightAway)
+        if (m_StopRightAway)
         {
             cs_Rigid.Set_StopX_Velocity();
             cs_Rigid.Set_StopZ_Velocity();
@@ -137,7 +137,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     private void Set_Control_Rotate(int i_RotationDir)
     {
-        if (b_SlowWhenTurn)
+        if (m_SlowWhenTurn)
         {
             Set_Control_Move_Slow();
         }
@@ -149,14 +149,14 @@ public class RigidbodyRotation : MonoBehaviour
 
     #region Control is Lock
 
-    public void Set_Control_isLock(bool b_LockControl)
+    public void Set_ControlIsLock(bool m_LockControl)
     {
-        this.b_LockControl = b_LockControl;
+        this.m_LockControl = m_LockControl;
     }
 
-    public bool Get_Control_isLock()
+    public bool GetControlIsLock()
     {
-        return b_LockControl;
+        return m_LockControl;
     }
 
     #endregion

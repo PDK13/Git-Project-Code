@@ -62,12 +62,12 @@ public class IsoEditorUIFile : MonoBehaviour
         t_WorldSize.text = v3_WorldSize.ToString();
     }
 
-    public string Get_World_Name()
+    public string GetWorld_Name()
     {
         return i_WorldName.text;
     }
 
-    public Vector3Int Get_World_Size()
+    public Vector3Int GetWorld_Size()
     {
         return new Vector3Int(
             int.Parse(inp_Size_X.text),
@@ -75,22 +75,22 @@ public class IsoEditorUIFile : MonoBehaviour
             int.Parse(inp_Size_H.text));
     }
 
-    public UIButtonOnClick Get_Button_New()
+    public UIButtonOnClick GetButton_New()
     {
         return cl_Button_New;
     }
 
-    public UIButtonOnClick Get_Button_Save()
+    public UIButtonOnClick GetButton_Save()
     {
         return cl_Button_Save;
     }
 
-    public UIButtonOnClick Get_Button_Open()
+    public UIButtonOnClick GetButton_Open()
     {
         return cl_Button_Open;
     }
 
-    public UIButtonOnClick Get_Button_Open_Temp()
+    public UIButtonOnClick GetButton_Open_Temp()
     {
         return cl_Button_Open_Temp;
     }

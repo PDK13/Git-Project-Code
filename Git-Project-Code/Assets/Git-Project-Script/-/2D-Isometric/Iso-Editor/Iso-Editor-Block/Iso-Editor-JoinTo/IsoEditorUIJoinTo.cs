@@ -69,7 +69,7 @@ public class IsoEditorUIJoinTo : MonoBehaviour
         t_Pos.text = "NONE";
     }
 
-    public Vector3Int Get_Pos()
+    public Vector3Int GetPos()
     {
         return new Vector3Int(
             int.Parse(inp_Pos_X.text),
@@ -77,12 +77,12 @@ public class IsoEditorUIJoinTo : MonoBehaviour
             int.Parse(inp_Pos_H.text));
     }
 
-    public UIButtonOnClick Get_Button_Add()
+    public UIButtonOnClick GetButton_Add()
     {
         return cl_Button_Add;
     }
 
-    public UIButtonOnClick Get_Button_Del()
+    public UIButtonOnClick GetButton_Del()
     {
         return cl_Button_Del;
     }

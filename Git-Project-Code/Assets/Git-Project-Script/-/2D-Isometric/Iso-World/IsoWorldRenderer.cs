@@ -80,7 +80,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Block_Ground.Add(new List<GameObject>());
             lg_Block_Ground[i] =
-                Class_Object.Get_Resources_Prefab(ls_Block_Ground[i]);
+                Class_Object.GetResources_Prefab(ls_Block_Ground[i]);
         }
 
         lg_Block_Object = new List<List<GameObject>>();
@@ -88,7 +88,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Block_Object.Add(new List<GameObject>());
             lg_Block_Object[i] =
-                Class_Object.Get_Resources_Prefab(ls_Block_Object[i]);
+                Class_Object.GetResources_Prefab(ls_Block_Object[i]);
         }
 
         lg_Block_Item = new List<List<GameObject>>();
@@ -96,7 +96,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Block_Item.Add(new List<GameObject>());
             lg_Block_Item[i] =
-                Class_Object.Get_Resources_Prefab(ls_Block_Item[i]);
+                Class_Object.GetResources_Prefab(ls_Block_Item[i]);
         }
 
         //Block Stair
@@ -106,7 +106,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Block_StairUD.Add(new List<GameObject>());
             lg_Block_StairUD[i] =
-                Class_Object.Get_Resources_Prefab(ls_Block_StairUD[i]);
+                Class_Object.GetResources_Prefab(ls_Block_StairUD[i]);
         }
 
         lg_Block_StairLR = new List<List<GameObject>>();
@@ -114,7 +114,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Block_StairLR.Add(new List<GameObject>());
             lg_Block_StairLR[i] =
-                Class_Object.Get_Resources_Prefab(ls_Block_StairLR[i]);
+                Class_Object.GetResources_Prefab(ls_Block_StairLR[i]);
         }
 
         //Character
@@ -124,7 +124,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Character_Player.Add(new List<GameObject>());
             lg_Character_Player[i] =
-                Class_Object.Get_Resources_Prefab(ls_Character_Player[i]);
+                Class_Object.GetResources_Prefab(ls_Character_Player[i]);
         }
 
         lg_Character_Good = new List<List<GameObject>>();
@@ -132,7 +132,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Character_Good.Add(new List<GameObject>());
             lg_Character_Good[i] =
-                Class_Object.Get_Resources_Prefab(ls_Character_Good[i]);
+                Class_Object.GetResources_Prefab(ls_Character_Good[i]);
         }
 
         lg_Character_Neutral = new List<List<GameObject>>();
@@ -140,7 +140,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Character_Neutral.Add(new List<GameObject>());
             lg_Character_Neutral[i] =
-                Class_Object.Get_Resources_Prefab(ls_Character_Neutral[i]);
+                Class_Object.GetResources_Prefab(ls_Character_Neutral[i]);
         }
 
         lg_Character_Bad = new List<List<GameObject>>();
@@ -148,7 +148,7 @@ public class IsoWorldRenderer : MonoBehaviour
         {
             lg_Character_Bad.Add(new List<GameObject>());
             lg_Character_Bad[i] =
-                Class_Object.Get_Resources_Prefab(ls_Character_Bad[i]);
+                Class_Object.GetResources_Prefab(ls_Character_Bad[i]);
         }
     }
 
@@ -156,27 +156,27 @@ public class IsoWorldRenderer : MonoBehaviour
 
     //============================================================================================================ Combine
 
-    public GameObject Get_Combine(string s_Block_or_Character_Name)
+    public GameObject GetCombine(string s_Block_or_Character_Name)
     {
         GameObject g_Prefab = null;
 
         //Block Primary
 
-        g_Prefab = Get_Block_Ground(s_Block_or_Character_Name);
+        g_Prefab = GetBlock_Ground(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Block_Object(s_Block_or_Character_Name);
+        g_Prefab = GetBlock_Object(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Block_Item(s_Block_or_Character_Name);
+        g_Prefab = GetBlock_Item(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -185,14 +185,14 @@ public class IsoWorldRenderer : MonoBehaviour
 
         //Block Stair
 
-        g_Prefab = Get_Block_StairUD(s_Block_or_Character_Name);
+        g_Prefab = GetBlock_StairUD(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Block_StairLR(s_Block_or_Character_Name);
+        g_Prefab = GetBlock_StairLR(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -201,28 +201,28 @@ public class IsoWorldRenderer : MonoBehaviour
 
         //Character
 
-        g_Prefab = Get_Character_Player(s_Block_or_Character_Name);
+        g_Prefab = GetCharacter_Player(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Character_Good(s_Block_or_Character_Name);
+        g_Prefab = GetCharacter_Good(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Character_Neutral(s_Block_or_Character_Name);
+        g_Prefab = GetCharacter_Neutral(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Character_Bad(s_Block_or_Character_Name);
+        g_Prefab = GetCharacter_Bad(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -232,20 +232,20 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Combine_First()
+    public GameObject GetCombine_First()
     {
         GameObject g_Prefab = null;
 
         //Block Primary
 
-        g_Prefab = Get_Block_Ground(0, 0);
+        g_Prefab = GetBlock_Ground(0, 0);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Block_Item(0, 0);
+        g_Prefab = GetBlock_Item(0, 0);
 
         if (g_Prefab != null)
         {
@@ -254,14 +254,14 @@ public class IsoWorldRenderer : MonoBehaviour
 
         //Block Stair
 
-        g_Prefab = Get_Block_StairUD(0, 0);
+        g_Prefab = GetBlock_StairUD(0, 0);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Block_StairLR(0, 0);
+        g_Prefab = GetBlock_StairLR(0, 0);
 
         if (g_Prefab != null)
         {
@@ -270,28 +270,28 @@ public class IsoWorldRenderer : MonoBehaviour
 
         //Character
 
-        g_Prefab = Get_Character_Player(0, 0);
+        g_Prefab = GetCharacter_Player(0, 0);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Character_Good(0, 0);
+        g_Prefab = GetCharacter_Good(0, 0);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Character_Neutral(0, 0);
+        g_Prefab = GetCharacter_Neutral(0, 0);
 
         if (g_Prefab != null)
         {
             return g_Prefab;
         }
 
-        g_Prefab = Get_Character_Bad(0, 0);
+        g_Prefab = GetCharacter_Bad(0, 0);
 
         if (g_Prefab != null)
         {
@@ -301,7 +301,7 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Combine(int i_Block_Page, int i_Block_Index)
+    public GameObject GetCombine(int i_Block_Page, int i_Block_Index)
     {
         int i_PagePerList = 0;
 
@@ -319,7 +319,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Block_Ground(i_Block_Page - i_PagePerList_Before, i_Block_Index);
+                return GetBlock_Ground(i_Block_Page - i_PagePerList_Before, i_Block_Index);
             }
         }
 
@@ -333,7 +333,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Block_Object(i_Block_Page - i_PagePerList_Before, i_Block_Index);
+                return GetBlock_Object(i_Block_Page - i_PagePerList_Before, i_Block_Index);
             }
         }
 
@@ -347,7 +347,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Block_Item(i_Block_Page - i_PagePerList_Before, i_Block_Index);
+                return GetBlock_Item(i_Block_Page - i_PagePerList_Before, i_Block_Index);
             }
         }
 
@@ -363,7 +363,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Block_StairUD(i_Block_Page - i_PagePerList_Before, i_Block_Index);
+                return GetBlock_StairUD(i_Block_Page - i_PagePerList_Before, i_Block_Index);
             }
         }
 
@@ -377,7 +377,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Block_StairLR(i_Block_Page - i_PagePerList_Before, i_Block_Index);
+                return GetBlock_StairLR(i_Block_Page - i_PagePerList_Before, i_Block_Index);
             }
         }
 
@@ -393,7 +393,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Character_Player(i_Block_Page - i_PagePerList_Before, i_Block_Index);
+                return GetCharacter_Player(i_Block_Page - i_PagePerList_Before, i_Block_Index);
             }
         }
 
@@ -407,7 +407,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Character_Good(i_Block_Page - i_PagePerList_Before, i_Block_Index);
+                return GetCharacter_Good(i_Block_Page - i_PagePerList_Before, i_Block_Index);
             }
         }
 
@@ -421,7 +421,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Character_Neutral(i_Block_Page - i_PagePerList_Before, i_Block_Index);
+                return GetCharacter_Neutral(i_Block_Page - i_PagePerList_Before, i_Block_Index);
             }
         }
 
@@ -435,24 +435,24 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Character_Bad(i_Block_Page - i_PagePerList_Before, i_Block_Index);
+                return GetCharacter_Bad(i_Block_Page - i_PagePerList_Before, i_Block_Index);
             }
         }
 
         return null;
     }
 
-    public string Get_Combine_Name(int i_Block_Page, int i_Block_Index)
+    public string GetCombine_Name(int i_Block_Page, int i_Block_Index)
     {
-        return Class_String.Get_String_Replace_Clone(
-            Get_Combine(i_Block_Page, i_Block_Index).name);
+        return ClassString.GetStringReplaceClone(
+            GetCombine(i_Block_Page, i_Block_Index).name);
     }
 
     /// <summary>
     /// Count Page of Combine List
     /// </summary>
     /// <returns></returns>
-    public int Get_Combine_Count()
+    public int GetCombineCount()
     {
         int i_PagePerList = 0;
 
@@ -474,7 +474,7 @@ public class IsoWorldRenderer : MonoBehaviour
     /// </summary>
     /// <param name="i_Block_Page"></param>
     /// <returns></returns>
-    public int Get_Combine_Count(int i_Block_Page)
+    public int GetCombineCount(int i_Block_Page)
     {
         int i_PagePerList = 0;
 
@@ -492,7 +492,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Block_Ground_Count(i_Block_Page - i_PagePerList_Before);
+                return GetBlock_GroundCount(i_Block_Page - i_PagePerList_Before);
             }
         }
 
@@ -506,7 +506,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Block_Object_Count(i_Block_Page - i_PagePerList_Before);
+                return GetBlock_ObjectCount(i_Block_Page - i_PagePerList_Before);
             }
         }
 
@@ -520,7 +520,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Block_Item_Count(i_Block_Page - i_PagePerList_Before);
+                return GetBlock_ItemCount(i_Block_Page - i_PagePerList_Before);
             }
         }
 
@@ -536,7 +536,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Block_StairUD_Count(i_Block_Page - i_PagePerList_Before);
+                return GetBlock_StairUDCount(i_Block_Page - i_PagePerList_Before);
             }
         }
 
@@ -550,7 +550,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Block_StairLR_Count(i_Block_Page - i_PagePerList_Before);
+                return GetBlock_StairLRCount(i_Block_Page - i_PagePerList_Before);
             }
         }
 
@@ -566,7 +566,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Character_Player_Count(i_Block_Page - i_PagePerList_Before);
+                return GetCharacter_PlayerCount(i_Block_Page - i_PagePerList_Before);
             }
         }
 
@@ -580,7 +580,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Character_Good_Count(i_Block_Page - i_PagePerList_Before);
+                return GetCharacter_GoodCount(i_Block_Page - i_PagePerList_Before);
             }
         }
 
@@ -594,7 +594,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Character_Neutral_Count(i_Block_Page - i_PagePerList_Before);
+                return GetCharacter_NeutralCount(i_Block_Page - i_PagePerList_Before);
             }
         }
 
@@ -608,7 +608,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
             if (i_Block_Page < i_PagePerList)
             {
-                return Get_Character_Bad_Count(i_Block_Page - i_PagePerList_Before);
+                return GetCharacter_BadCount(i_Block_Page - i_PagePerList_Before);
             }
         }
 
@@ -620,7 +620,7 @@ public class IsoWorldRenderer : MonoBehaviour
     /// </summary>
     /// <param name="i_Block_Page"></param>
     /// <returns></returns>
-    public IsoClassBlock Get_Combine_Imformation(int i_Block_Page)
+    public IsoClassBlock GetCombine_Imformation(int i_Block_Page)
     {
         int i_PagePerList = 0;
 
@@ -784,13 +784,13 @@ public class IsoWorldRenderer : MonoBehaviour
     /// </summary>
     /// <param name="i_Block_Page"></param>
     /// <returns></returns>
-    public IsoClassBlock Get_Combine_Imformation(string s_Block_or_Character_Name)
+    public IsoClassBlock GetCombine_Imformation(string s_Block_or_Character_Name)
     {
         GameObject g_Prefab = null;
 
         //Block Primary
 
-        g_Prefab = Get_Block_Ground(s_Block_or_Character_Name);
+        g_Prefab = GetBlock_Ground(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -799,7 +799,7 @@ public class IsoWorldRenderer : MonoBehaviour
                 IsoClassBlock.s_Block_Ground);
         }
 
-        g_Prefab = Get_Block_Object(s_Block_or_Character_Name);
+        g_Prefab = GetBlock_Object(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -808,7 +808,7 @@ public class IsoWorldRenderer : MonoBehaviour
                 IsoClassBlock.s_Block_Object);
         }
 
-        g_Prefab = Get_Block_Item(s_Block_or_Character_Name);
+        g_Prefab = GetBlock_Item(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -819,7 +819,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
         //Block Stair
 
-        g_Prefab = Get_Block_StairUD(s_Block_or_Character_Name);
+        g_Prefab = GetBlock_StairUD(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -828,7 +828,7 @@ public class IsoWorldRenderer : MonoBehaviour
                 IsoClassBlock.s_Block_StairUD);
         }
 
-        g_Prefab = Get_Block_StairLR(s_Block_or_Character_Name);
+        g_Prefab = GetBlock_StairLR(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -839,7 +839,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
         //Character
 
-        g_Prefab = Get_Character_Player(s_Block_or_Character_Name);
+        g_Prefab = GetCharacter_Player(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -848,7 +848,7 @@ public class IsoWorldRenderer : MonoBehaviour
                 IsoClassBlock.s_Character_Player);
         }
 
-        g_Prefab = Get_Character_Good(s_Block_or_Character_Name);
+        g_Prefab = GetCharacter_Good(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -857,7 +857,7 @@ public class IsoWorldRenderer : MonoBehaviour
                 IsoClassBlock.s_Character_Good);
         }
 
-        g_Prefab = Get_Character_Neutral(s_Block_or_Character_Name);
+        g_Prefab = GetCharacter_Neutral(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -866,7 +866,7 @@ public class IsoWorldRenderer : MonoBehaviour
                 IsoClassBlock.s_Character_Neutral);
         }
 
-        g_Prefab = Get_Character_Bad(s_Block_or_Character_Name);
+        g_Prefab = GetCharacter_Bad(s_Block_or_Character_Name);
 
         if (g_Prefab != null)
         {
@@ -888,7 +888,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
     #region Block Ground List 
 
-    public GameObject Get_Block_Ground(string s_Block_Name)
+    public GameObject GetBlock_Ground(string s_Block_Name)
     {
         if (s_Block_Name.Equals(""))
         {
@@ -909,7 +909,7 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Block_Ground(int i_Block_Page, int i_Block_Index)
+    public GameObject GetBlock_Ground(int i_Block_Page, int i_Block_Index)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Block_Ground.Count - 1)
         {
@@ -924,18 +924,18 @@ public class IsoWorldRenderer : MonoBehaviour
         return lg_Block_Ground[i_Block_Page][i_Block_Index];
     }
 
-    public string Get_Block_Ground_Name(int i_Block_Page, int i_Block_Index)
+    public string GetBlock_Ground_Name(int i_Block_Page, int i_Block_Index)
     {
-        return Class_String.Get_String_Replace_Clone(
-            Get_Block_Ground(i_Block_Page, i_Block_Index).name);
+        return ClassString.GetStringReplaceClone(
+            GetBlock_Ground(i_Block_Page, i_Block_Index).name);
     }
 
-    public int Get_Block_Ground_Count()
+    public int GetBlock_GroundCount()
     {
         return lg_Block_Ground.Count;
     }
 
-    public int Get_Block_Ground_Count(int i_Block_Page)
+    public int GetBlock_GroundCount(int i_Block_Page)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Block_Ground.Count - 1)
         {
@@ -949,7 +949,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
     #region Block Object List 
 
-    public GameObject Get_Block_Object(string s_Block_Name)
+    public GameObject GetBlock_Object(string s_Block_Name)
     {
         if (s_Block_Name.Equals(""))
         {
@@ -970,7 +970,7 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Block_Object(int i_Block_Page, int i_Block_Index)
+    public GameObject GetBlock_Object(int i_Block_Page, int i_Block_Index)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Block_Object.Count - 1)
         {
@@ -985,18 +985,18 @@ public class IsoWorldRenderer : MonoBehaviour
         return lg_Block_Object[i_Block_Page][i_Block_Index];
     }
 
-    public string Get_Block_Object_Name(int i_Block_Page, int i_Block_Index)
+    public string GetBlock_Object_Name(int i_Block_Page, int i_Block_Index)
     {
-        return Class_String.Get_String_Replace_Clone(
-            Get_Block_Object(i_Block_Page, i_Block_Index).name);
+        return ClassString.GetStringReplaceClone(
+            GetBlock_Object(i_Block_Page, i_Block_Index).name);
     }
 
-    public int Get_Block_Object_Count()
+    public int GetBlock_ObjectCount()
     {
         return lg_Block_Object.Count;
     }
 
-    public int Get_Block_Object_Count(int i_Block_Page)
+    public int GetBlock_ObjectCount(int i_Block_Page)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Block_Object.Count - 1)
         {
@@ -1010,7 +1010,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
     #region Block Item List 
 
-    public GameObject Get_Block_Item(string s_Block_Name)
+    public GameObject GetBlock_Item(string s_Block_Name)
     {
         if (s_Block_Name.Equals(""))
         {
@@ -1031,7 +1031,7 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Block_Item(int i_Block_Page, int i_Block_Index)
+    public GameObject GetBlock_Item(int i_Block_Page, int i_Block_Index)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Block_Item.Count - 1)
         {
@@ -1046,18 +1046,18 @@ public class IsoWorldRenderer : MonoBehaviour
         return lg_Block_Item[i_Block_Page][i_Block_Index];
     }
 
-    public string Get_Block_Item_Name(int i_Block_Page, int i_Block_Index)
+    public string GetBlock_Item_Name(int i_Block_Page, int i_Block_Index)
     {
-        return Class_String.Get_String_Replace_Clone(
-            Get_Block_Item(i_Block_Page, i_Block_Index).name);
+        return ClassString.GetStringReplaceClone(
+            GetBlock_Item(i_Block_Page, i_Block_Index).name);
     }
 
-    public int Get_Block_Item_Count()
+    public int GetBlock_ItemCount()
     {
         return lg_Block_Item.Count;
     }
 
-    public int Get_Block_Item_Count(int i_Block_Page)
+    public int GetBlock_ItemCount(int i_Block_Page)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Block_Item.Count - 1)
         {
@@ -1075,7 +1075,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
     #region Block StairUD List 
 
-    public GameObject Get_Block_StairUD(string s_Block_Name)
+    public GameObject GetBlock_StairUD(string s_Block_Name)
     {
         if (s_Block_Name.Equals(""))
         {
@@ -1096,7 +1096,7 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Block_StairUD(int i_Block_Page, int i_Block_Index)
+    public GameObject GetBlock_StairUD(int i_Block_Page, int i_Block_Index)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Block_StairUD.Count - 1)
         {
@@ -1111,18 +1111,18 @@ public class IsoWorldRenderer : MonoBehaviour
         return lg_Block_StairUD[i_Block_Page][i_Block_Index];
     }
 
-    public string Get_Block_StairUD_Name(int i_Block_Page, int i_Block_Index)
+    public string GetBlock_StairUD_Name(int i_Block_Page, int i_Block_Index)
     {
-        return Class_String.Get_String_Replace_Clone(
-            Get_Block_StairUD(i_Block_Page, i_Block_Index).name);
+        return ClassString.GetStringReplaceClone(
+            GetBlock_StairUD(i_Block_Page, i_Block_Index).name);
     }
 
-    public int Get_Block_StairUD_Count()
+    public int GetBlock_StairUDCount()
     {
         return lg_Block_StairUD.Count;
     }
 
-    public int Get_Block_StairUD_Count(int i_Block_Page)
+    public int GetBlock_StairUDCount(int i_Block_Page)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Block_StairUD.Count - 1)
         {
@@ -1136,7 +1136,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
     #region Block StairLR List 
 
-    public GameObject Get_Block_StairLR(string s_Block_Name)
+    public GameObject GetBlock_StairLR(string s_Block_Name)
     {
         if (s_Block_Name.Equals(""))
         {
@@ -1157,7 +1157,7 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Block_StairLR(int i_Block_Page, int i_Block_Index)
+    public GameObject GetBlock_StairLR(int i_Block_Page, int i_Block_Index)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Block_StairLR.Count - 1)
         {
@@ -1172,18 +1172,18 @@ public class IsoWorldRenderer : MonoBehaviour
         return lg_Block_StairLR[i_Block_Page][i_Block_Index];
     }
 
-    public string Get_Block_StairLR_Name(int i_Block_Page, int i_Block_Index)
+    public string GetBlock_StairLR_Name(int i_Block_Page, int i_Block_Index)
     {
-        return Class_String.Get_String_Replace_Clone(
-            Get_Block_StairLR(i_Block_Page, i_Block_Index).name);
+        return ClassString.GetStringReplaceClone(
+            GetBlock_StairLR(i_Block_Page, i_Block_Index).name);
     }
 
-    public int Get_Block_StairLR_Count()
+    public int GetBlock_StairLRCount()
     {
         return lg_Block_StairLR.Count;
     }
 
-    public int Get_Block_StairLR_Count(int i_Block_Page)
+    public int GetBlock_StairLRCount(int i_Block_Page)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Block_StairLR.Count - 1)
         {
@@ -1205,7 +1205,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
     #region Character Player 
 
-    public GameObject Get_Character_Player(string s_Block_Name)
+    public GameObject GetCharacter_Player(string s_Block_Name)
     {
         if (s_Block_Name.Equals(""))
         {
@@ -1226,7 +1226,7 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Character_Player(int i_Block_Page, int i_Block_Index)
+    public GameObject GetCharacter_Player(int i_Block_Page, int i_Block_Index)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Character_Player.Count - 1)
         {
@@ -1241,18 +1241,18 @@ public class IsoWorldRenderer : MonoBehaviour
         return lg_Character_Player[i_Block_Page][i_Block_Index];
     }
 
-    public string Get_Character_Player_Name(int i_Block_Page, int i_Block_Index)
+    public string GetCharacter_Player_Name(int i_Block_Page, int i_Block_Index)
     {
-        return Class_String.Get_String_Replace_Clone(
-            Get_Character_Player(i_Block_Page, i_Block_Index).name);
+        return ClassString.GetStringReplaceClone(
+            GetCharacter_Player(i_Block_Page, i_Block_Index).name);
     }
 
-    public int Get_Character_Player_Count()
+    public int GetCharacter_PlayerCount()
     {
         return lg_Character_Player.Count;
     }
 
-    public int Get_Character_Player_Count(int i_Block_Page)
+    public int GetCharacter_PlayerCount(int i_Block_Page)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Character_Player.Count - 1)
         {
@@ -1266,7 +1266,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
     #region Character Good 
 
-    public GameObject Get_Character_Good(string s_Block_Name)
+    public GameObject GetCharacter_Good(string s_Block_Name)
     {
         if (s_Block_Name.Equals(""))
         {
@@ -1287,7 +1287,7 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Character_Good(int i_Block_Page, int i_Block_Index)
+    public GameObject GetCharacter_Good(int i_Block_Page, int i_Block_Index)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Character_Good.Count - 1)
         {
@@ -1302,18 +1302,18 @@ public class IsoWorldRenderer : MonoBehaviour
         return lg_Character_Good[i_Block_Page][i_Block_Index];
     }
 
-    public string Get_Character_Good_Name(int i_Block_Page, int i_Block_Index)
+    public string GetCharacter_Good_Name(int i_Block_Page, int i_Block_Index)
     {
-        return Class_String.Get_String_Replace_Clone(
-            Get_Character_Good(i_Block_Page, i_Block_Index).name);
+        return ClassString.GetStringReplaceClone(
+            GetCharacter_Good(i_Block_Page, i_Block_Index).name);
     }
 
-    public int Get_Character_Good_Count()
+    public int GetCharacter_GoodCount()
     {
         return lg_Character_Good.Count;
     }
 
-    public int Get_Character_Good_Count(int i_Block_Page)
+    public int GetCharacter_GoodCount(int i_Block_Page)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Character_Good.Count - 1)
         {
@@ -1327,7 +1327,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
     #region Character Neutral 
 
-    public GameObject Get_Character_Neutral(string s_Block_Name)
+    public GameObject GetCharacter_Neutral(string s_Block_Name)
     {
         if (s_Block_Name.Equals(""))
         {
@@ -1348,7 +1348,7 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Character_Neutral(int i_Block_Page, int i_Block_Index)
+    public GameObject GetCharacter_Neutral(int i_Block_Page, int i_Block_Index)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Character_Neutral.Count - 1)
         {
@@ -1363,18 +1363,18 @@ public class IsoWorldRenderer : MonoBehaviour
         return lg_Character_Neutral[i_Block_Page][i_Block_Index];
     }
 
-    public string Get_Character_Neutral_Name(int i_Block_Page, int i_Block_Index)
+    public string GetCharacter_Neutral_Name(int i_Block_Page, int i_Block_Index)
     {
-        return Class_String.Get_String_Replace_Clone(
-            Get_Character_Neutral(i_Block_Page, i_Block_Index).name);
+        return ClassString.GetStringReplaceClone(
+            GetCharacter_Neutral(i_Block_Page, i_Block_Index).name);
     }
 
-    public int Get_Character_Neutral_Count()
+    public int GetCharacter_NeutralCount()
     {
         return lg_Character_Neutral.Count;
     }
 
-    public int Get_Character_Neutral_Count(int i_Block_Page)
+    public int GetCharacter_NeutralCount(int i_Block_Page)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Character_Neutral.Count - 1)
         {
@@ -1388,7 +1388,7 @@ public class IsoWorldRenderer : MonoBehaviour
 
     #region Character Bad 
 
-    public GameObject Get_Character_Bad(string s_Block_Name)
+    public GameObject GetCharacter_Bad(string s_Block_Name)
     {
         if (s_Block_Name.Equals(""))
         {
@@ -1409,7 +1409,7 @@ public class IsoWorldRenderer : MonoBehaviour
         return null;
     }
 
-    public GameObject Get_Character_Bad(int i_Block_Page, int i_Block_Index)
+    public GameObject GetCharacter_Bad(int i_Block_Page, int i_Block_Index)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Character_Bad.Count - 1)
         {
@@ -1424,18 +1424,18 @@ public class IsoWorldRenderer : MonoBehaviour
         return lg_Character_Bad[i_Block_Page][i_Block_Index];
     }
 
-    public string Get_Character_Bad_Name(int i_Block_Page, int i_Block_Index)
+    public string GetCharacter_Bad_Name(int i_Block_Page, int i_Block_Index)
     {
-        return Class_String.Get_String_Replace_Clone(
-            Get_Character_Bad(i_Block_Page, i_Block_Index).name);
+        return ClassString.GetStringReplaceClone(
+            GetCharacter_Bad(i_Block_Page, i_Block_Index).name);
     }
 
-    public int Get_Character_Bad_Count()
+    public int GetCharacter_BadCount()
     {
         return lg_Character_Bad.Count;
     }
 
-    public int Get_Character_Bad_Count(int i_Block_Page)
+    public int GetCharacter_BadCount(int i_Block_Page)
     {
         if (i_Block_Page < 0 || i_Block_Page > lg_Character_Bad.Count - 1)
         {

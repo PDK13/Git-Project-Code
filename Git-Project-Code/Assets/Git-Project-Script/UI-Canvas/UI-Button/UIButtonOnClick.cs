@@ -40,11 +40,11 @@ public class UIButtonOnClick : MonoBehaviour,
 
     [Tooltip("Button Lock Status")]
     [SerializeField]
-    private bool b_Button_Lock = false;
+    private bool m_Button_Lock = false;
 
     [Tooltip("Button Active Status")]
     [SerializeField]
-    private bool b_Button_Active = false;
+    private bool m_Button_Active = false;
 
     [Tooltip("Unity Pointer Enter Event Handle")]
     [Space]
@@ -72,10 +72,10 @@ public class UIButtonOnClick : MonoBehaviour,
     private UnityEvent Event_ActiveState;
 
     [Tooltip("Button Hold Status")]
-    private bool b_Button_Hold = false;
+    private bool m_Button_Hold = false;
 
     [Tooltip("Button Ready Status")]
-    private bool b_Button_Ready = false;
+    private bool m_Button_Ready = false;
 
     private void Update()
     {
@@ -88,7 +88,7 @@ public class UIButtonOnClick : MonoBehaviour,
 
     private void Set_Event_Keyboard()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
@@ -106,12 +106,12 @@ public class UIButtonOnClick : MonoBehaviour,
 
     private void Set_Event_Active()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        if (b_Button_Active)
+        if (m_Button_Active)
         //If Active Pressed >> Do...
         {
             Set_Event_Invoke_ActiveState();
@@ -221,50 +221,50 @@ public class UIButtonOnClick : MonoBehaviour,
 
     private void Set_Event_PointerEnter()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        b_Button_Ready = true;
+        m_Button_Ready = true;
 
         Set_Event_Invoke_PointerEnter();
     }
 
     private void Set_Event_PointerExit()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        b_Button_Ready = false;
+        m_Button_Ready = false;
 
         Set_Event_Invoke_PointerExit();
     }
 
     private void Set_Event_PointerDown()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        b_Button_Active = !b_Button_Active;
+        m_Button_Active = !m_Button_Active;
 
-        b_Button_Hold = true;
+        m_Button_Hold = true;
 
         Set_Event_Invoke_PointerDown();
     }
 
     private void Set_Event_PointerUp()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         {
             return;
         }
 
-        b_Button_Hold = false;
+        m_Button_Hold = false;
 
         Set_Event_Invoke_PointerUp();
     }
@@ -304,7 +304,7 @@ public class UIButtonOnClick : MonoBehaviour,
         k_Button_Keyboard = k_Button_Keycode;
     }
 
-    public KeyCode Get_Button_Keycode()
+    public KeyCode GetButton_Keycode()
     {
         return k_Button_Keyboard;
     }
@@ -319,12 +319,12 @@ public class UIButtonOnClick : MonoBehaviour,
 
     public void Set_Button_Active_Chance()
     {
-        b_Button_Active = !b_Button_Active;
+        m_Button_Active = !m_Button_Active;
     }
 
-    public void Set_Button_Active(bool b_Active_State)
+    public void Set_Button_Active(bool m_Active_State)
     {
-        b_Button_Active = b_Active_State;
+        m_Button_Active = m_Active_State;
     }
 
     public void Set_Button_Active_True()
@@ -343,12 +343,12 @@ public class UIButtonOnClick : MonoBehaviour,
 
     public void Set_Button_Lock_Chance()
     {
-        b_Button_Lock = !b_Button_Lock;
+        m_Button_Lock = !m_Button_Lock;
     }
 
-    public void Set_Button_Lock(bool b_Lock_State)
+    public void Set_Button_Lock(bool m_Lock_State)
     {
-        b_Button_Lock = b_Lock_State;
+        m_Button_Lock = m_Lock_State;
     }
 
     public void Set_Button_Lock_True()
@@ -367,24 +367,24 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Button Status Get
 
-    public bool Get_Button_Active()
+    public bool GetButton_Active()
     {
-        return b_Button_Active;
+        return m_Button_Active;
     }
 
-    public bool Get_Button_Hold()
+    public bool GetButton_Hold()
     {
-        return b_Button_Hold;
+        return m_Button_Hold;
     }
 
-    public bool Get_Button_Ready()
+    public bool GetButton_Ready()
     {
-        return b_Button_Ready;
+        return m_Button_Ready;
     }
 
-    public bool Get_Button_Lock()
+    public bool GetButton_Lock()
     {
-        return b_Button_Lock;
+        return m_Button_Lock;
     }
 
     #endregion
@@ -397,25 +397,25 @@ public class UIButtonOnClick : MonoBehaviour,
 
     private void Set_Button_Color()
     {
-        if (b_Button_Lock)
+        if (m_Button_Lock)
         //If Lock Pressed >> Do...
         {
             Set_Button_Color(c_Color_Lock);
         }
         else
-        if (b_Button_Hold)
+        if (m_Button_Hold)
         //If Hold Pressed >> Do...
         {
             Set_Button_Color(c_Color_Hold);
         }
         else
-        if (b_Button_Ready)
+        if (m_Button_Ready)
         //If Ready Pressed >> Do...
         {
             Set_Button_Color(c_Color_Ready);
         }
         else
-        if (b_Button_Active)
+        if (m_Button_Active)
         //If Active Pressed >> Do...
         {
             Set_Button_Color(c_Color_Active);
@@ -478,27 +478,27 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Color Button Get
 
-    public Color Get_Button_Color_Normal()
+    public Color GetButton_Color_Normal()
     {
         return c_Color_Normal;
     }
 
-    public Color Get_Button_Color_Ready()
+    public Color GetButton_Color_Ready()
     {
         return c_Color_Ready;
     }
 
-    public Color Get_Button_Color_Holdl()
+    public Color GetButton_Color_Holdl()
     {
         return c_Color_Hold;
     }
 
-    public Color Get_Button_Color_Active()
+    public Color GetButton_Color_Active()
     {
         return c_Color_Active;
     }
 
-    public Color Get_Button_Color_Lock()
+    public Color GetButton_Color_Lock()
     {
         return c_Color_Lock;
     }
@@ -507,27 +507,27 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Color Button Primary
 
-    public Color Get_Color_Normal_Primary()
+    public Color GetColor_Normal_Primary()
     {
         return Color.white;
     }
 
-    public Color Get_Color_Ready_Primary()
+    public Color GetColor_Ready_Primary()
     {
         return Color.gray;
     }
 
-    public Color Get_Color_Hold_Primary()
+    public Color GetColor_Hold_Primary()
     {
         return Color.yellow;
     }
 
-    public Color Get_Color_Active_Primary()
+    public Color GetColor_Active_Primary()
     {
         return Color.green;
     }
 
-    public Color Get_Color_Lock_Primary()
+    public Color GetColor_Lock_Primary()
     {
         return Color.red;
     }

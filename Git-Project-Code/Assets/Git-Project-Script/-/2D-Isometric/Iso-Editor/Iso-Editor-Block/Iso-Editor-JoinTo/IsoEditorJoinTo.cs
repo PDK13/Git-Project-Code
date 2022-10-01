@@ -13,7 +13,7 @@ public class IsoEditorJoinTo : MonoBehaviour
 
     [Tooltip("Editor Block Join-To UI")]
     [SerializeField]
-    private GameObject g_JoinTo_Clone;
+    private GameObject g_JoinToClone;
 
     [Header("UI Editor Block Join-To")]
 
@@ -45,11 +45,11 @@ public class IsoEditorJoinTo : MonoBehaviour
 
         iso_Editor_Block_List = cl_Vertical_List.gameObject.GetComponent<Iso_Editor_UI_Block_List>();
 
-        //iso_Editor_Block_JoinTo_UI.Get_Button_Add().Set_Event_Add_PointerDown(Button_Add);
-        iso_Editor_Block_JoinTo_UI.Get_Button_Add().Set_Button_Color_Active(iso_Editor_Block_JoinTo_UI.Get_Button_Add().Get_Color_Normal_Primary());
+        //iso_Editor_Block_JoinTo_UI.GetButton_Add().Set_Event_Add_PointerDown(Button_Add);
+        iso_Editor_Block_JoinTo_UI.GetButton_Add().Set_Button_Color_Active(iso_Editor_Block_JoinTo_UI.GetButton_Add().GetColor_Normal_Primary());
 
-        //iso_Editor_Block_JoinTo_UI.Get_Button_Del().Set_Event_Add_PointerDown(Button_Del);
-        iso_Editor_Block_JoinTo_UI.Get_Button_Del().Set_Button_Color_Active(iso_Editor_Block_JoinTo_UI.Get_Button_Del().Get_Color_Normal_Primary());
+        //iso_Editor_Block_JoinTo_UI.GetButton_Del().Set_Event_Add_PointerDown(Button_Del);
+        iso_Editor_Block_JoinTo_UI.GetButton_Del().Set_Button_Color_Active(iso_Editor_Block_JoinTo_UI.GetButton_Del().GetColor_Normal_Primary());
 
         //ui_Object_DragDrop.Set_Event_Add_PointerDown(Set_ListVertical_Data_Current_Pos_Matrix_This);
     }
@@ -58,7 +58,7 @@ public class IsoEditorJoinTo : MonoBehaviour
 
     public void Set_ListVertical_Data_Current_Pos_Matrix_This()
     {
-        iso_Editor_Block_List.Set_UI_JoinTo(iso_Block.Get_PosOnMatrix_Current());
+        iso_Editor_Block_List.Set_UI_JoinTo(iso_Block.GetPosOnMatrix_Current());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
     }
@@ -68,12 +68,12 @@ public class IsoEditorJoinTo : MonoBehaviour
     /// </summary>
     public void Set_ListVertical_Data_Current_Pos_Matrix()
     {
-        if (!iso_World.Get_World_isGenerated())
+        if (!iso_World.GetWorldIsGenerated())
         {
             return;
         }
 
-        if (!iso_Editor_Block_List.Get_UI_JoinTo())
+        if (!iso_Editor_Block_List.GetUI_JoinTo())
         {
             return;
         }
@@ -82,57 +82,57 @@ public class IsoEditorJoinTo : MonoBehaviour
 
 
 
-        if (iso_World.Get_Primary_isEmty(iso_Block.Get_PosOnMatrix_Current())) //Check Emty
+        if (iso_World.GetPrimaryIsEmty(iso_Block.GetPosOnMatrix_Current())) //Check Emty
         {
             iso_Editor_Block_JoinTo_UI.Set_Text();
 
             return;
         }
 
-        //if (!iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<Isometric2D_Block>().Get_Block_Check()) //Check Block
+        //if (!iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<Isometric2D_Block>().GetBlock_Check()) //Check Block
         //{
         //    iso_Editor_Block_JoinTo_UI.Set_Text();
 
         //    return;
         //}
 
-        if (iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockJoinTo>() == null) //Check Component
+        if (iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockJoinTo>() == null) //Check Component
         {
             iso_Editor_Block_JoinTo_UI.Set_Text();
 
             return;
         }
 
-        if (!iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockJoinTo>().Get_JoinTo_isExist()) //Check Join-To Exist
+        if (!iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockJoinTo>().GetJoinToIsExist()) //Check Join-To Exist
         {
             iso_Editor_Block_JoinTo_UI.Set_Text();
 
             return;
         }
 
-        Vector3Int v3_JoinTo_Pos = iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockJoinTo>().Get_JoinTo_Pos_Primary();
+        Vector3Int v3_JoinTo_Pos = iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockJoinTo>().GetJoinTo_Pos_Primary();
 
         iso_Editor_Block_JoinTo_UI.Set_Text(v3_JoinTo_Pos);
 
-        iso_Editor_Block_List.Set_UI_JoinTo(iso_Block.Get_PosOnMatrix_Current());
+        iso_Editor_Block_List.Set_UI_JoinTo(iso_Block.GetPosOnMatrix_Current());
 
-        Vector3Int v3_JoinTo_Pos_Distance = iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockJoinTo>().Get_JoinTo_Pos_Distance();
+        Vector3Int v3_JoinTo_Pos_Distance = iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockJoinTo>().GetJoinTo_Pos_Distance();
 
-        List<IsoDataMoveSingle> l_Move_Data_Single = iso_World.Get_Primary_GameObject(v3_JoinTo_Pos).GetComponent<IsoBlockMove>().Get_List();
+        List<IsoDataMoveSingle> l_Move_Data_Single = iso_World.GetPrimary_GameObject(v3_JoinTo_Pos).GetComponent<IsoBlockMove>().GetList();
 
         cl_Vertical_List.Set_ListVertical_Remove_All();
 
-        cl_Vertical_List.Set_Clone(g_JoinTo_Clone);
+        cl_Vertical_List.SetClone(g_JoinToClone);
 
         for (int i = 0; i < l_Move_Data_Single.Count; i++)
         {
             cl_Vertical_List.Set_ListVertical_Add();
 
-            cl_Vertical_List.Get_ListVertical_GameObject_Lastest().GetComponent<IsoEditorUIJoinToClone>().Set_Clone(
-                l_Move_Data_Single[i].Get_Dir(),
-                l_Move_Data_Single[i].Get_Length(),
-                l_Move_Data_Single[i].Get_Speed(),
-                l_Move_Data_Single[i].Get_PosMoveTo() + v3_JoinTo_Pos_Distance);
+            cl_Vertical_List.GetListVertical_GameObject_Lastest().GetComponent<IsoEditorUIJoinToClone>().SetClone(
+                l_Move_Data_Single[i].GetDir(),
+                l_Move_Data_Single[i].GetLength(),
+                l_Move_Data_Single[i].GetSpeed(),
+                l_Move_Data_Single[i].GetPosMoveTo() + v3_JoinTo_Pos_Distance);
         }
     }
 
@@ -142,7 +142,7 @@ public class IsoEditorJoinTo : MonoBehaviour
 
     public void Button_Add()
     {
-        iso_World.Set_JoinToBlock_Primary_Active_Add(iso_Block.Get_PosOnMatrix_Current(), iso_Editor_Block_JoinTo_UI.Get_Pos());
+        iso_World.Set_JoinToBlock_Primary_Active_Add(iso_Block.GetPosOnMatrix_Current(), iso_Editor_Block_JoinTo_UI.GetPos());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 
@@ -151,7 +151,7 @@ public class IsoEditorJoinTo : MonoBehaviour
 
     public void Button_Del()
     {
-        iso_World.Set_JoinToBlock_Primary_Active_Remove(iso_Block.Get_PosOnMatrix_Current());
+        iso_World.Set_JoinToBlock_Primary_Active_Remove(iso_Block.GetPosOnMatrix_Current());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 

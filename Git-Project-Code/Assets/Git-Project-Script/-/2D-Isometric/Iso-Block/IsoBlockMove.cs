@@ -19,17 +19,17 @@ public class IsoBlockMove : MonoBehaviour
 
     [Tooltip("Status of Move is Active or Not-Active")]
     [SerializeField]
-    private bool b_Status_isActive = false;
+    private bool m_StatusIsActive = false;
 
     [Header("Move Hop")]
 
     [Tooltip("Hop Between Move(s) when Status of Move is Active")]
     [SerializeField]
-    private bool b_Hop_isAllow = false;
+    private bool m_HopIsAllow = false;
 
     [Tooltip("Hop Current will True when call and will False after end Move Step")]
     [SerializeField]
-    private bool b_Hop_isActive = false;
+    private bool m_HopIsActive = false;
 
     #endregion
 
@@ -67,39 +67,39 @@ public class IsoBlockMove : MonoBehaviour
 
     private void Update()
     {
-        if (!Get_Move_FineToWork())
+        if (!GetMove_FineToWork())
         {
             return;
         }
 
         Set_Move_Active(
-            Get_Count() > 0 &&
-            Get_Status_isActive() &&
-            Get_Hop_fixWorking()
+            GetCount() > 0 &&
+            GetStatusIsActive() &&
+            GetHop_fixWorking()
         );
     }
 
     public void Set_Move(IsoBlockMove cl_Move)
     {
-        v3_PosMatrix_Own_A = cl_Block.Get_PosOnMatrix_Primary();
-        v3_PosMatrix_Own_B = cl_Block.Get_PosOnMatrix_Primary();
+        v3_PosMatrix_Own_A = cl_Block.GetPosOnMatrix_Primary();
+        v3_PosMatrix_Own_B = cl_Block.GetPosOnMatrix_Primary();
 
-        v3_PosMatrix_Before = cl_Block.Get_PosOnMatrix_Primary();
+        v3_PosMatrix_Before = cl_Block.GetPosOnMatrix_Primary();
 
-        Set_List(cl_Move.Get_List());
-        Set_Status_isActive(cl_Move.Get_Status_isActive_Numberic());
+        Set_List(cl_Move.GetList());
+        Set_StatusIsActive(cl_Move.GetStatusIsActive_Numberic());
     }
 
-    private bool Get_Move_FineToWork()
+    private bool GetMove_FineToWork()
     {
-        if (cl_Block.Get_World() != null)
+        if (cl_Block.GetWorld() != null)
         {
-            if (!cl_Block.Get_World().Get_World_isGenerated())
+            if (!cl_Block.GetWorld().GetWorldIsGenerated())
             {
                 return false;
             }
 
-            if (!cl_Block.Get_World().Get_World_isActive())
+            if (!cl_Block.GetWorld().GetWorldIsActive())
             {
                 return false;
             }
@@ -121,22 +121,22 @@ public class IsoBlockMove : MonoBehaviour
     /// <summary>
     /// Primary Move Active
     /// </summary>
-    /// <param name="b_Move_Active"></param>
+    /// <param name="m_Move_Active"></param>
     /// <remarks>
     /// The Move will take 1 or 2 Pos(s) on Matrix, called Own Pos(s), the other Move(s) not allow to Move in this Own Pos(s)
     /// </remarks>
-    private void Set_Move_Active(bool b_Move_Active)
+    private void Set_Move_Active(bool m_Move_Active)
     {
-        if (!b_Move_Active)
+        if (!m_Move_Active)
         {
             return;
         }
 
         //If Current Move at End Pos and Start Pos not Equa to End Pos
-        if (Get_Move_Active_Index_End() && !Get_Move_Active_Index_Loop())
+        if (GetMove_Active_Index_End() && !GetMove_Active_Index_Loop())
         {
             //Hop Stop Active if Hop Allow
-            if (Get_Hop_isAllow())
+            if (GetHopIsAllow())
             {
                 Set_Hop_stopActive();
             }
@@ -147,22 +147,22 @@ public class IsoBlockMove : MonoBehaviour
         //Move-On
 
         //Stop
-        if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_None)
+        if (GetMove_Active_Current().GetDir() == IsoClassDir.v3_None)
         {
-            //Set_Status_isActive_Chance();
+            //Set_StatusIsActive_Chance();
 
             Set_Move_Active_Index_Continue();
         }
         else
         //X
         //Up
-        if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Up_X)
+        if (GetMove_Active_Current().GetDir() == IsoClassDir.v3_Up_X)
         {
             //If Move above the Move Current
-            if (cl_Block.Get_Pos_Current().x + (-Get_Move_Active_Current().Get_Speed()) < l_Move[i_Step_inActive].Get_PosMoveTo().x)
+            if (cl_Block.GetPos_Current().x + (-GetMove_Active_Current().GetSpeed()) < l_Move[i_Step_inActive].GetPosMoveTo().x)
             {
                 //Set Pos on True Move Current
-                cl_Block.Set_Pos(l_Move[i_Step_inActive].Get_PosMoveTo());
+                cl_Block.Set_Pos(l_Move[i_Step_inActive].GetPosMoveTo());
 
                 //Set Next Move
                 Set_Move_Active_Index_Continue();
@@ -174,14 +174,14 @@ public class IsoBlockMove : MonoBehaviour
             else
             {
                 //Moving
-                cl_Block.Set_Pos_Add(new Vector3(-Get_Move_Active_Current().Get_Speed(), 0, 0));
+                cl_Block.Set_Pos_Add(new Vector3(-GetMove_Active_Current().GetSpeed(), 0, 0));
 
                 //If Moving to another Pos
-                if (cl_Block.Get_Pos_Current().x <= Get_PosMatrix_Own_B().x)
+                if (cl_Block.GetPos_Current().x <= GetPosMatrix_Own_B().x)
                 {
                     //This Move take 2 Pos(s) on Matrix
                     v3_PosMatrix_Own_A = v3_PosMatrix_Own_B;
-                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + Get_Move_Active_Current().Get_Dir();
+                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + GetMove_Active_Current().GetDir();
 
                     //cl_Block.Set_Pos(v3_PosMatrix_Own_A);
                 }
@@ -189,11 +189,11 @@ public class IsoBlockMove : MonoBehaviour
         }
         else
         //Down
-        if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Down_X)
+        if (GetMove_Active_Current().GetDir() == IsoClassDir.v3_Down_X)
         {
-            if (cl_Block.Get_Pos_Current().x + (Get_Move_Active_Current().Get_Speed()) > l_Move[i_Step_inActive].Get_PosMoveTo().x)
+            if (cl_Block.GetPos_Current().x + (GetMove_Active_Current().GetSpeed()) > l_Move[i_Step_inActive].GetPosMoveTo().x)
             {
-                cl_Block.Set_Pos(l_Move[i_Step_inActive].Get_PosMoveTo());
+                cl_Block.Set_Pos(l_Move[i_Step_inActive].GetPosMoveTo());
 
                 Set_Move_Active_Index_Continue();
 
@@ -201,12 +201,12 @@ public class IsoBlockMove : MonoBehaviour
             }
             else
             {
-                cl_Block.Set_Pos_Add(new Vector3(Get_Move_Active_Current().Get_Speed(), 0, 0));
+                cl_Block.Set_Pos_Add(new Vector3(GetMove_Active_Current().GetSpeed(), 0, 0));
 
-                if (cl_Block.Get_Pos_Current().x >= Get_PosMatrix_Own_B().x)
+                if (cl_Block.GetPos_Current().x >= GetPosMatrix_Own_B().x)
                 {
                     v3_PosMatrix_Own_A = v3_PosMatrix_Own_B;
-                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + Get_Move_Active_Current().Get_Dir();
+                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + GetMove_Active_Current().GetDir();
 
                     //cl_Block.Set_Pos(v3_PosMatrix_Own_A);
                 }
@@ -215,11 +215,11 @@ public class IsoBlockMove : MonoBehaviour
         else
         //Y
         //Left
-        if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Left_Y)
+        if (GetMove_Active_Current().GetDir() == IsoClassDir.v3_Left_Y)
         {
-            if (cl_Block.Get_Pos_Current().y + (-Get_Move_Active_Current().Get_Speed()) < l_Move[i_Step_inActive].Get_PosMoveTo().y)
+            if (cl_Block.GetPos_Current().y + (-GetMove_Active_Current().GetSpeed()) < l_Move[i_Step_inActive].GetPosMoveTo().y)
             {
-                cl_Block.Set_Pos(l_Move[i_Step_inActive].Get_PosMoveTo());
+                cl_Block.Set_Pos(l_Move[i_Step_inActive].GetPosMoveTo());
 
                 Set_Move_Active_Index_Continue();
 
@@ -227,12 +227,12 @@ public class IsoBlockMove : MonoBehaviour
             }
             else
             {
-                cl_Block.Set_Pos_Add(new Vector3(0, -Get_Move_Active_Current().Get_Speed(), 0));
+                cl_Block.Set_Pos_Add(new Vector3(0, -GetMove_Active_Current().GetSpeed(), 0));
 
-                if (cl_Block.Get_Pos_Current().y <= Get_PosMatrix_Own_B().y)
+                if (cl_Block.GetPos_Current().y <= GetPosMatrix_Own_B().y)
                 {
                     v3_PosMatrix_Own_A = v3_PosMatrix_Own_B;
-                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + Get_Move_Active_Current().Get_Dir();
+                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + GetMove_Active_Current().GetDir();
 
                     //cl_Block.Set_Pos(v3_PosMatrix_Own_A);
                 }
@@ -240,11 +240,11 @@ public class IsoBlockMove : MonoBehaviour
         }
         else
         //Right
-        if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Right_Y)
+        if (GetMove_Active_Current().GetDir() == IsoClassDir.v3_Right_Y)
         {
-            if (cl_Block.Get_Pos_Current().y + (Get_Move_Active_Current().Get_Speed()) > l_Move[i_Step_inActive].Get_PosMoveTo().y)
+            if (cl_Block.GetPos_Current().y + (GetMove_Active_Current().GetSpeed()) > l_Move[i_Step_inActive].GetPosMoveTo().y)
             {
-                cl_Block.Set_Pos(l_Move[i_Step_inActive].Get_PosMoveTo());
+                cl_Block.Set_Pos(l_Move[i_Step_inActive].GetPosMoveTo());
 
                 Set_Move_Active_Index_Continue();
 
@@ -252,12 +252,12 @@ public class IsoBlockMove : MonoBehaviour
             }
             else
             {
-                cl_Block.Set_Pos_Add(new Vector3(0, Get_Move_Active_Current().Get_Speed(), 0));
+                cl_Block.Set_Pos_Add(new Vector3(0, GetMove_Active_Current().GetSpeed(), 0));
 
-                if (cl_Block.Get_Pos_Current().y >= Get_PosMatrix_Own_B().y)
+                if (cl_Block.GetPos_Current().y >= GetPosMatrix_Own_B().y)
                 {
                     v3_PosMatrix_Own_A = v3_PosMatrix_Own_B;
-                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + Get_Move_Active_Current().Get_Dir();
+                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + GetMove_Active_Current().GetDir();
 
                     //cl_Block.Set_Pos(v3_PosMatrix_Own_A);
                 }
@@ -266,11 +266,11 @@ public class IsoBlockMove : MonoBehaviour
         else
         //Z
         //Top
-        if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Top_H)
+        if (GetMove_Active_Current().GetDir() == IsoClassDir.v3_Top_H)
         {
-            if (cl_Block.Get_Pos_Current().z + (Get_Move_Active_Current().Get_Speed()) > l_Move[i_Step_inActive].Get_PosMoveTo().z)
+            if (cl_Block.GetPos_Current().z + (GetMove_Active_Current().GetSpeed()) > l_Move[i_Step_inActive].GetPosMoveTo().z)
             {
-                cl_Block.Set_Pos(l_Move[i_Step_inActive].Get_PosMoveTo());
+                cl_Block.Set_Pos(l_Move[i_Step_inActive].GetPosMoveTo());
 
                 Set_Move_Active_Index_Continue();
 
@@ -278,12 +278,12 @@ public class IsoBlockMove : MonoBehaviour
             }
             else
             {
-                cl_Block.Set_Pos_Add(new Vector3(0, 0, Get_Move_Active_Current().Get_Speed()));
+                cl_Block.Set_Pos_Add(new Vector3(0, 0, GetMove_Active_Current().GetSpeed()));
 
-                if (cl_Block.Get_Pos_Current().z >= Get_PosMatrix_Own_B().z)
+                if (cl_Block.GetPos_Current().z >= GetPosMatrix_Own_B().z)
                 {
                     v3_PosMatrix_Own_A = v3_PosMatrix_Own_B;
-                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + Get_Move_Active_Current().Get_Dir();
+                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + GetMove_Active_Current().GetDir();
 
                     //cl_Block.Set_Pos(v3_PosMatrix_Own_A);
                 }
@@ -291,11 +291,11 @@ public class IsoBlockMove : MonoBehaviour
         }
         else
         //Bot
-        if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Bot_H)
+        if (GetMove_Active_Current().GetDir() == IsoClassDir.v3_Bot_H)
         {
-            if (cl_Block.Get_Pos_Current().z + (-Get_Move_Active_Current().Get_Speed()) < l_Move[i_Step_inActive].Get_PosMoveTo().z)
+            if (cl_Block.GetPos_Current().z + (-GetMove_Active_Current().GetSpeed()) < l_Move[i_Step_inActive].GetPosMoveTo().z)
             {
-                cl_Block.Set_Pos(l_Move[i_Step_inActive].Get_PosMoveTo());
+                cl_Block.Set_Pos(l_Move[i_Step_inActive].GetPosMoveTo());
 
                 Set_Move_Active_Index_Continue();
 
@@ -303,19 +303,19 @@ public class IsoBlockMove : MonoBehaviour
             }
             else
             {
-                cl_Block.Set_Pos_Add(new Vector3(0, 0, -Get_Move_Active_Current().Get_Speed()));
+                cl_Block.Set_Pos_Add(new Vector3(0, 0, -GetMove_Active_Current().GetSpeed()));
 
-                if (cl_Block.Get_Pos_Current().z <= Get_PosMatrix_Own_B().z)
+                if (cl_Block.GetPos_Current().z <= GetPosMatrix_Own_B().z)
                 {
                     v3_PosMatrix_Own_A = v3_PosMatrix_Own_B;
-                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + Get_Move_Active_Current().Get_Dir();
+                    v3_PosMatrix_Own_B = v3_PosMatrix_Own_A + GetMove_Active_Current().GetDir();
 
                     //cl_Block.Set_Pos(v3_PosMatrix_Own_A);
                 }
             }
         }
 
-        if (Get_Move_Active_PosOnMatrix_Chance())
+        if (GetMove_Active_PosOnMatrix_Chance())
         {
             //Update Pos
             Set_Move_Active_PosOnMatrix_Update();
@@ -326,9 +326,9 @@ public class IsoBlockMove : MonoBehaviour
     /// Get Move Current on Move Active
     /// </summary>
     /// <returns></returns>
-    public IsoDataMoveSingle Get_Move_Active_Current()
+    public IsoDataMoveSingle GetMove_Active_Current()
     {
-        return Get_List(i_Step_inActive);
+        return GetList(i_Step_inActive);
     }
 
     #endregion
@@ -342,16 +342,16 @@ public class IsoBlockMove : MonoBehaviour
     {
         i_Step_inActive++;
 
-        if (Get_Move_Active_Index_End())
+        if (GetMove_Active_Index_End())
         {
-            if (Get_Move_Active_Index_Loop())
+            if (GetMove_Active_Index_Loop())
             {
                 i_Step_inActive = 0;
             }
         }
 
         //Hop Stop Active if Hop Allow
-        if (Get_Hop_isAllow())
+        if (GetHopIsAllow())
         {
             Set_Hop_stopActive();
         }
@@ -361,16 +361,16 @@ public class IsoBlockMove : MonoBehaviour
     /// Check PosMoveTo of Lastest Move is the Start Pos
     /// </summary>
     /// <returns></returns>
-    private bool Get_Move_Active_Index_Loop()
+    private bool GetMove_Active_Index_Loop()
     {
-        return cl_Block.Get_PosOnMatrix_Primary() == l_Move[l_Move.Count - 1].Get_PosMoveTo();
+        return cl_Block.GetPosOnMatrix_Primary() == l_Move[l_Move.Count - 1].GetPosMoveTo();
     }
 
     /// <summary>
     /// Check Move Active End at List
     /// </summary>
     /// <returns></returns>
-    private bool Get_Move_Active_Index_End()
+    private bool GetMove_Active_Index_End()
     {
         return i_Step_inActive > l_Move.Count - 1;
     }
@@ -379,9 +379,9 @@ public class IsoBlockMove : MonoBehaviour
     /// Get Pos on Matrix Single Equa to Pos on Matrix Before
     /// </summary>
     /// <returns></returns>
-    private bool Get_Move_Active_PosOnMatrix_Chance()
+    private bool GetMove_Active_PosOnMatrix_Chance()
     {
-        return Get_PosOnMatrix_Before() != cl_Block.Get_PosOnMatrix_Current();
+        return GetPosOnMatrix_Before() != cl_Block.GetPosOnMatrix_Current();
     }
 
     /// <summary>
@@ -391,7 +391,7 @@ public class IsoBlockMove : MonoBehaviour
     {
         if (cl_Block != null)
         {
-            v3_PosMatrix_Before = cl_Block.Get_PosOnMatrix_Current();
+            v3_PosMatrix_Before = cl_Block.GetPosOnMatrix_Current();
         }
     }
 
@@ -415,7 +415,7 @@ public class IsoBlockMove : MonoBehaviour
     /// Get Pos Before Move on Matrix
     /// </summary>
     /// <returns></returns>
-    public Vector3Int Get_PosOnMatrix_Before()
+    public Vector3Int GetPosOnMatrix_Before()
     {
         return v3_PosMatrix_Before;
     }
@@ -452,8 +452,8 @@ public class IsoBlockMove : MonoBehaviour
 
         Vector3Int v3_Move_PosMoveTo =
             (l_Move.Count == 0) ?
-            (cl_Block.Get_PosOnMatrix_Primary() + v3_Move_Dir * i_Move_Length) :
-            (l_Move[l_Move.Count - 1].Get_PosMoveTo() + v3_Move_Dir * i_Move_Length);
+            (cl_Block.GetPosOnMatrix_Primary() + v3_Move_Dir * i_Move_Length) :
+            (l_Move[l_Move.Count - 1].GetPosMoveTo() + v3_Move_Dir * i_Move_Length);
 
         l_Move.Add(new IsoDataMoveSingle(v3_Move_Dir, i_Move_Length, f_Move_Speed, v3_Move_PosMoveTo));
     }
@@ -467,39 +467,39 @@ public class IsoBlockMove : MonoBehaviour
 
         for (int i = i_Repeat; i >= 0; i--)
         {
-            if (IsoClassDir.Get_Vector_One(l_Move[i].Get_Dir()) == IsoClassDir.v3_Up_X)
+            if (IsoClassDir.GetVector_One(l_Move[i].GetDir()) == IsoClassDir.v3_Up_X)
             {
-                Set_Add(IsoClassDir.v3_Down_X, l_Move[i].Get_Length(), l_Move[i].Get_Speed());
+                Set_Add(IsoClassDir.v3_Down_X, l_Move[i].GetLength(), l_Move[i].GetSpeed());
             }
             else
-            if (IsoClassDir.Get_Vector_One(l_Move[i].Get_Dir()) == IsoClassDir.v3_Down_X)
+            if (IsoClassDir.GetVector_One(l_Move[i].GetDir()) == IsoClassDir.v3_Down_X)
             {
-                Set_Add(IsoClassDir.v3_Up_X, l_Move[i].Get_Length(), l_Move[i].Get_Speed());
+                Set_Add(IsoClassDir.v3_Up_X, l_Move[i].GetLength(), l_Move[i].GetSpeed());
             }
             else
-            if (IsoClassDir.Get_Vector_One(l_Move[i].Get_Dir()) == IsoClassDir.v3_Left_Y)
+            if (IsoClassDir.GetVector_One(l_Move[i].GetDir()) == IsoClassDir.v3_Left_Y)
             {
-                Set_Add(IsoClassDir.v3_Right_Y, l_Move[i].Get_Length(), l_Move[i].Get_Speed());
+                Set_Add(IsoClassDir.v3_Right_Y, l_Move[i].GetLength(), l_Move[i].GetSpeed());
             }
             else
-            if (IsoClassDir.Get_Vector_One(l_Move[i].Get_Dir()) == IsoClassDir.v3_Right_Y)
+            if (IsoClassDir.GetVector_One(l_Move[i].GetDir()) == IsoClassDir.v3_Right_Y)
             {
-                Set_Add(IsoClassDir.v3_Left_Y, l_Move[i].Get_Length(), l_Move[i].Get_Speed());
+                Set_Add(IsoClassDir.v3_Left_Y, l_Move[i].GetLength(), l_Move[i].GetSpeed());
             }
             else
-            if (IsoClassDir.Get_Vector_One(l_Move[i].Get_Dir()) == IsoClassDir.v3_Top_H)
+            if (IsoClassDir.GetVector_One(l_Move[i].GetDir()) == IsoClassDir.v3_Top_H)
             {
-                Set_Add(IsoClassDir.v3_Bot_H, l_Move[i].Get_Length(), l_Move[i].Get_Speed());
+                Set_Add(IsoClassDir.v3_Bot_H, l_Move[i].GetLength(), l_Move[i].GetSpeed());
             }
             else
-            if (IsoClassDir.Get_Vector_One(l_Move[i].Get_Dir()) == IsoClassDir.v3_Bot_H)
+            if (IsoClassDir.GetVector_One(l_Move[i].GetDir()) == IsoClassDir.v3_Bot_H)
             {
-                Set_Add(IsoClassDir.v3_Top_H, l_Move[i].Get_Length(), l_Move[i].Get_Speed());
+                Set_Add(IsoClassDir.v3_Top_H, l_Move[i].GetLength(), l_Move[i].GetSpeed());
             }
             else
-            if (IsoClassDir.Get_Vector_One(l_Move[i].Get_Dir()) == IsoClassDir.v3_None)
+            if (IsoClassDir.GetVector_One(l_Move[i].GetDir()) == IsoClassDir.v3_None)
             {
-                Set_Add(IsoClassDir.v3_None, l_Move[i].Get_Length(), l_Move[i].Get_Speed());
+                Set_Add(IsoClassDir.v3_None, l_Move[i].GetLength(), l_Move[i].GetSpeed());
             }
         }
     }
@@ -513,9 +513,9 @@ public class IsoBlockMove : MonoBehaviour
         for (int i = 0; i < l_Move_List.Count; i++)
         {
             Set_Add(
-                l_Move_List[i].Get_Dir(),
-                l_Move_List[i].Get_Length(),
-                l_Move_List[i].Get_Speed());
+                l_Move_List[i].GetDir(),
+                l_Move_List[i].GetLength(),
+                l_Move_List[i].GetSpeed());
         }
     }
 
@@ -525,15 +525,15 @@ public class IsoBlockMove : MonoBehaviour
 
     public void Set_Chance(int i_Move_Index, Vector3Int v3_Move_Dir, int i_Move_Length, float f_Move_Speed)
     {
-        if (i_Move_Index > Get_Count() - 1)
+        if (i_Move_Index > GetCount() - 1)
         {
             return;
         }
 
         Vector3Int v3_Move_PosMoveTo =
             (i_Move_Index == 0) ?
-            (cl_Block.Get_PosOnMatrix_Primary() + v3_Move_Dir * i_Move_Length) :
-            (l_Move[i_Move_Index - 1].Get_PosMoveTo() + v3_Move_Dir * i_Move_Length);
+            (cl_Block.GetPosOnMatrix_Primary() + v3_Move_Dir * i_Move_Length) :
+            (l_Move[i_Move_Index - 1].GetPosMoveTo() + v3_Move_Dir * i_Move_Length);
 
         l_Move[i_Move_Index] = new IsoDataMoveSingle(v3_Move_Dir, i_Move_Length, f_Move_Speed, v3_Move_PosMoveTo);
 
@@ -582,10 +582,10 @@ public class IsoBlockMove : MonoBehaviour
         {
             Vector3Int v3_Move_PosMoveTo =
                 (i == 0) ?
-                (cl_Block.Get_PosOnMatrix_Primary() + l_Move[i].Get_Dir() * l_Move[i].Get_Length()) :
-                (l_Move[i - 1].Get_PosMoveTo() + l_Move[i].Get_Dir() * l_Move[i].Get_Length());
+                (cl_Block.GetPosOnMatrix_Primary() + l_Move[i].GetDir() * l_Move[i].GetLength()) :
+                (l_Move[i - 1].GetPosMoveTo() + l_Move[i].GetDir() * l_Move[i].GetLength());
 
-            l_Move[i] = new IsoDataMoveSingle(l_Move[i].Get_Dir(), l_Move[i].Get_Length(), l_Move[i].Get_Speed(), v3_Move_PosMoveTo);
+            l_Move[i] = new IsoDataMoveSingle(l_Move[i].GetDir(), l_Move[i].GetLength(), l_Move[i].GetSpeed(), v3_Move_PosMoveTo);
         }
     }
 
@@ -593,22 +593,22 @@ public class IsoBlockMove : MonoBehaviour
 
     #region Move List Primary 
 
-    public int Get_Count()
+    public int GetCount()
     {
         return l_Move.Count;
     }
 
-    public IsoDataMoveSingle Get_List(int i_Move_Index)
+    public IsoDataMoveSingle GetList(int i_Move_Index)
     {
         return l_Move[i_Move_Index];
     }
 
-    public IsoDataMoveSingle Get_List_Lastest()
+    public IsoDataMoveSingle GetList_Lastest()
     {
-        return Get_List(Get_Count() - 1);
+        return GetList(GetCount() - 1);
     }
 
-    public List<IsoDataMoveSingle> Get_List()
+    public List<IsoDataMoveSingle> GetList()
     {
         return l_Move;
     }
@@ -621,45 +621,45 @@ public class IsoBlockMove : MonoBehaviour
 
     #region Move Status Active
 
-    public void Set_Status_isActive_True()
+    public void Set_StatusIsActive_True()
     {
-        b_Status_isActive = true;
+        m_StatusIsActive = true;
     }
 
-    public void Set_Status_isActive_False()
+    public void Set_StatusIsActive_False()
     {
-        b_Status_isActive = false;
+        m_StatusIsActive = false;
     }
 
-    public void Set_Status_isActive_Chance()
+    public void Set_StatusIsActive_Chance()
     {
-        b_Status_isActive = !b_Status_isActive;
+        m_StatusIsActive = !m_StatusIsActive;
     }
 
-    public void Set_Status_isActive(bool b_Status_isActive)
+    public void Set_StatusIsActive(bool m_StatusIsActive)
     {
-        if (b_Status_isActive)
+        if (m_StatusIsActive)
         {
-            Set_Status_isActive_True();
+            Set_StatusIsActive_True();
         }
         else
         {
-            Set_Status_isActive_False();
+            Set_StatusIsActive_False();
         }
     }
 
     /// <summary>
     /// Set Move Status Active (1 or 0)
     /// </summary>
-    /// <param name="i_Status_isActive_Numberic"></param>
-    public void Set_Status_isActive(int i_Status_isActive_Numberic)
+    /// <param name="i_StatusIsActive_Numberic"></param>
+    public void Set_StatusIsActive(int i_StatusIsActive_Numberic)
     {
-        b_Status_isActive = Get_Status_isActive_Numberic_Complete(i_Status_isActive_Numberic);
+        m_StatusIsActive = GetStatusIsActive_Numberic_Complete(i_StatusIsActive_Numberic);
     }
 
-    public bool Get_Status_isActive()
+    public bool GetStatusIsActive()
     {
-        return b_Status_isActive;
+        return m_StatusIsActive;
     }
 
     #endregion
@@ -670,9 +670,9 @@ public class IsoBlockMove : MonoBehaviour
     /// Get Move Status Active (1 or 0)
     /// </summary>
     /// <returns></returns>
-    public int Get_Status_isActive_Numberic()
+    public int GetStatusIsActive_Numberic()
     {
-        if (b_Status_isActive)
+        if (m_StatusIsActive)
         {
             return 1;
         }
@@ -684,7 +684,7 @@ public class IsoBlockMove : MonoBehaviour
     /// </summary>
     /// <param name="i_Status_Numberic">Move Number Active Current</param>
     /// <returns></returns>
-    private bool Get_Status_isActive_Numberic_Complete(int i_Status_Numberic)
+    private bool GetStatusIsActive_Numberic_Complete(int i_Status_Numberic)
     {
         if (i_Status_Numberic == 1)
         {
@@ -707,14 +707,14 @@ public class IsoBlockMove : MonoBehaviour
 
     #region Move Hop Allow 
 
-    public void Set_Hop_isAllow(bool b_Hop_isAllow)
+    public void Set_HopIsAllow(bool m_HopIsAllow)
     {
-        this.b_Hop_isAllow = b_Hop_isAllow;
+        this.m_HopIsAllow = m_HopIsAllow;
     }
 
-    public bool Get_Hop_isAllow()
+    public bool GetHopIsAllow()
     {
-        return b_Hop_isAllow;
+        return m_HopIsAllow;
     }
 
     #endregion
@@ -724,37 +724,37 @@ public class IsoBlockMove : MonoBehaviour
     /// <summary>
     /// Hop Active after Hop is Allow
     /// </summary>
-    public void Set_Hop_isActive()
+    public void Set_HopIsActive()
     {
-        if (Get_Count() == 0 || !Get_Status_isActive())
+        if (GetCount() == 0 || !GetStatusIsActive())
         {
-            b_Hop_isActive = false;
+            m_HopIsActive = false;
         }
         else
         {
-            b_Hop_isActive = true;
+            m_HopIsActive = true;
         }
     }
 
     private void Set_Hop_stopActive()
     {
-        b_Hop_isActive = false;
+        m_HopIsActive = false;
     }
 
-    public bool Get_Hop_isActive()
+    public bool GetHopIsActive()
     {
-        return b_Hop_isActive;
+        return m_HopIsActive;
     }
 
     #endregion
 
     #region Move Hop Fix 
 
-    private bool Get_Hop_fixWorking()
+    private bool GetHop_fixWorking()
     {
-        if (b_Hop_isAllow)
+        if (m_HopIsAllow)
         {
-            return b_Hop_isActive;
+            return m_HopIsActive;
         }
         return true;
     }
@@ -772,8 +772,8 @@ public class IsoBlockMove : MonoBehaviour
     /// </summary>
     public void Set_PosMatrix_Own_Reset()
     {
-        v3_PosMatrix_Own_A = cl_Block.Get_PosOnMatrix_Primary();
-        v3_PosMatrix_Own_B = cl_Block.Get_PosOnMatrix_Primary();
+        v3_PosMatrix_Own_A = cl_Block.GetPosOnMatrix_Primary();
+        v3_PosMatrix_Own_B = cl_Block.GetPosOnMatrix_Primary();
     }
 
     /// <summary>
@@ -783,11 +783,11 @@ public class IsoBlockMove : MonoBehaviour
     /// Pos Own A will Chance when Pos on Matrix Single reach Pos Own B
     /// </remarks>
     /// <returns></returns>
-    public Vector3Int Get_PosMatrix_Own_A()
+    public Vector3Int GetPosMatrix_Own_A()
     {
         //if (g_Join != null)
         //{
-        //    return g_Join.GetComponent<Iso_Block_Move>().Get_PosMatrix_Own_A() + Get_Join_Pos();
+        //    return g_Join.GetComponent<Iso_Block_Move>().GetPosMatrix_Own_A() + GetJoin_Pos();
         //}
 
         return v3_PosMatrix_Own_A;
@@ -800,11 +800,11 @@ public class IsoBlockMove : MonoBehaviour
     /// Pos Own B will Chance when Pos on Matrix Single over come Pos Own A
     /// </remarks>
     /// <returns></returns>
-    public Vector3Int Get_PosMatrix_Own_B()
+    public Vector3Int GetPosMatrix_Own_B()
     {
         //if (g_Join != null)
         //{
-        //    return g_Join.GetComponent<Iso_Block_Move>().Get_PosMatrix_Own_B() + Get_Join_Pos();
+        //    return g_Join.GetComponent<Iso_Block_Move>().GetPosMatrix_Own_B() + GetJoin_Pos();
         //}
 
         return v3_PosMatrix_Own_B;
@@ -814,19 +814,19 @@ public class IsoBlockMove : MonoBehaviour
     /// Get Remain of Current Pos to Pos Own B
     /// </summary>
     /// <returns></returns>
-    public float Get_Remain_Own_B()
+    public float GetRemain_Own_B()
     {
-        Vector3 v3_Remain = cl_Block.Get_Pos_Current() - Get_PosMatrix_Own_B();
+        Vector3 v3_Remain = cl_Block.GetPos_Current() - GetPosMatrix_Own_B();
 
-        if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Up_X || Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Down_X)
+        if (GetMove_Active_Current().GetDir() == IsoClassDir.v3_Up_X || GetMove_Active_Current().GetDir() == IsoClassDir.v3_Down_X)
         {
             return (Mathf.Abs(v3_Remain.x));
         }
-        if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Left_Y || Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Right_Y)
+        if (GetMove_Active_Current().GetDir() == IsoClassDir.v3_Left_Y || GetMove_Active_Current().GetDir() == IsoClassDir.v3_Right_Y)
         {
             return (Mathf.Abs(v3_Remain.y));
         }
-        if (Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Top_H || Get_Move_Active_Current().Get_Dir() == IsoClassDir.v3_Bot_H)
+        if (GetMove_Active_Current().GetDir() == IsoClassDir.v3_Top_H || GetMove_Active_Current().GetDir() == IsoClassDir.v3_Bot_H)
         {
             return (Mathf.Abs(v3_Remain.z));
         }
@@ -837,10 +837,10 @@ public class IsoBlockMove : MonoBehaviour
 
     #region Check with other Move(s) and World 
 
-    private bool Get_Move_Stop_Check_World()
+    private bool GetMove_Stop_Check_World()
     {
         //If Not Emty at Pos Own B
-        if (!cl_Block.Get_World().Get_Primary_isEmty(Get_PosMatrix_Own_B()))
+        if (!cl_Block.GetWorld().GetPrimaryIsEmty(GetPosMatrix_Own_B()))
         {
             return true;
         }
@@ -849,25 +849,25 @@ public class IsoBlockMove : MonoBehaviour
         return false;
     }
 
-    //private bool Get_Move_Stop_Check_List(int i_Move_Index_Current)
+    //private bool GetMove_Stop_Check_List(int i_Move_Index_Current)
     //{
-    //    if (!cl_World.Get_Move_Check())
+    //    if (!cl_World.GetMove_Check())
     //    {
     //        //Non-Stop Moving
     //        return false;
     //    }
 
-    //    for (int i = 0; i < cl_World.Get_Move_List().Count; i++)
+    //    for (int i = 0; i < cl_World.GetMove_List().Count; i++)
     //    {
     //        if (i_Move_Index_Current != i)
     //        {
-    //            if (Get_PosMatrix_Own_B() == cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_PosMatrix_Own_A())
+    //            if (GetPosMatrix_Own_B() == cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetPosMatrix_Own_A())
     //            //Own B = A
     //            {
-    //                if (Get_Move_Current().Get_Dir() == cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_Move_Current().Get_Dir())
+    //                if (GetMove_Current().GetDir() == cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetMove_Current().GetDir())
     //                //Dir Equa
     //                {
-    //                    if (Get_Remain_Own_B() <= cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_Remain_Own_B())
+    //                    if (GetRemain_Own_B() <= cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetRemain_Own_B())
     //                    //Remain Lower or Equa
     //                    {
     //                        //Stop Moving
@@ -876,7 +876,7 @@ public class IsoBlockMove : MonoBehaviour
     //                }
     //                else
     //                {
-    //                    if (cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_Remain_Own_B() > cl_World.Get_Move_Fix())
+    //                    if (cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetRemain_Own_B() > cl_World.GetMove_Fix())
     //                    //Remain Check
     //                    {
     //                        //Stop Moving
@@ -885,35 +885,35 @@ public class IsoBlockMove : MonoBehaviour
     //                }
     //            }
     //            else
-    //            if (Get_PosMatrix_Own_B() == cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_PosMatrix_Own_B())
+    //            if (GetPosMatrix_Own_B() == cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetPosMatrix_Own_B())
     //            //Own B = B
     //            {
-    //                if (Get_Remain_Own_B() > cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_Remain_Own_B())
+    //                if (GetRemain_Own_B() > cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetRemain_Own_B())
     //                //Remain Higher
     //                {
     //                    //Stop Moving
     //                    return true;
     //                }
     //                else
-    //                if (Get_Remain_Own_B() == cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_Remain_Own_B())
+    //                if (GetRemain_Own_B() == cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetRemain_Own_B())
     //                {
-    //                    if (Get_Move_Current().Get_Speed() < cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_Move_Current().Get_Speed())
+    //                    if (GetMove_Current().GetSpeed() < cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetMove_Current().GetSpeed())
     //                    //Speed Lower
     //                    {
     //                        //Stop Moving
     //                        return true;
     //                    }
     //                    else
-    //                    if (Get_Move_Current().Get_Speed() == cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_Move_Current().Get_Speed())
+    //                    if (GetMove_Current().GetSpeed() == cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetMove_Current().GetSpeed())
     //                    {
-    //                        if (Get_Move_Current().Get_Length() < cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_Move_Current().Get_Length())
+    //                        if (GetMove_Current().GetLength() < cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetMove_Current().GetLength())
     //                        //Length Lower
     //                        {
     //                            //Stop Moving
     //                            return true;
     //                        }
     //                        else
-    //                        if (Get_Move_Current().Get_Length() == cl_World.Get_Move_List()[i][0].GetComponent<Iso_Block_Move>().Get_Move_Current().Get_Length())
+    //                        if (GetMove_Current().GetLength() == cl_World.GetMove_List()[i][0].GetComponent<Iso_Block_Move>().GetMove_Current().GetLength())
     //                        {
     //                            if (i_Move_Index_Current < i)
     //                            {

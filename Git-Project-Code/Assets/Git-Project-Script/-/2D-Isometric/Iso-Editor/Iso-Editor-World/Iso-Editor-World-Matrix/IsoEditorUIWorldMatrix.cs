@@ -50,22 +50,22 @@ public class IsoEditorUIWorldMatrix : MonoBehaviour
 
     #region World Add
 
-    public UIButtonOnClick Get_Button_Add_XH()
+    public UIButtonOnClick GetButton_Add_XH()
     {
         return ui_Button_Add_XH;
     }
 
-    public UIButtonOnClick Get_Button_Add_YH()
+    public UIButtonOnClick GetButton_Add_YH()
     {
         return ui_Button_Add_YH;
     }
 
-    public UIButtonOnClick Get_Button_Add_XY()
+    public UIButtonOnClick GetButton_Add_XY()
     {
         return ui_Button_Add_XY;
     }
 
-    public UIButtonOnClick Get_Button_Choice_Back()
+    public UIButtonOnClick GetButton_Choice_Back()
     {
         return ui_Button_Add_XY;
     }
@@ -74,17 +74,17 @@ public class IsoEditorUIWorldMatrix : MonoBehaviour
 
     #region World Remove
 
-    public UIButtonOnClick Get_Button_Remove_XH()
+    public UIButtonOnClick GetButton_Remove_XH()
     {
         return ui_Button_Remove_XH;
     }
 
-    public UIButtonOnClick Get_Button_Remove_YH()
+    public UIButtonOnClick GetButton_Remove_YH()
     {
         return ui_Button_Remove_YH;
     }
 
-    public UIButtonOnClick Get_Button_Remove_XY()
+    public UIButtonOnClick GetButton_Remove_XY()
     {
         return ui_Button_Remove_XY;
     }
@@ -93,17 +93,17 @@ public class IsoEditorUIWorldMatrix : MonoBehaviour
 
     #region World View
 
-    public UIButtonOnClick Get_Button_View_X()
+    public UIButtonOnClick GetButton_View_X()
     {
         return ui_Button_View_X;
     }
 
-    public UIButtonOnClick Get_Button_View_Y()
+    public UIButtonOnClick GetButton_View_Y()
     {
         return ui_Button_View_Y;
     }
 
-    public UIButtonOnClick Get_Button_View_H()
+    public UIButtonOnClick GetButton_View_H()
     {
         return ui_Button_View_H;
     }

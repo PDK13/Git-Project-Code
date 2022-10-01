@@ -25,25 +25,25 @@ public class IsoEditorUIMessage : MonoBehaviour
 
     #region Message Pos
 
-    public void Set_Clone(IsoDataMessageSingle v3_Message_Single)
+    public void SetClone(IsoDataMessageSingle v3_Message_Single)
     {
-        inp_Name.text = v3_Message_Single.Get_Name();
-        inp_Message.text = v3_Message_Single.Get_Message();
+        inp_Name.text = v3_Message_Single.GetName();
+        inp_Message.text = v3_Message_Single.GetMessage();
     }
 
-    public IsoDataMessageSingle Get_Data()
+    public IsoDataMessageSingle GetData()
     {
         return new IsoDataMessageSingle(
             inp_Name.text,
             inp_Message.text);
     }
 
-    public UIButtonOnClick Get_Button_Add()
+    public UIButtonOnClick GetButton_Add()
     {
         return cl_Button_Add;
     }
 
-    public UIButtonOnClick Get_Button_Del_Lastest()
+    public UIButtonOnClick GetButton_Del_Lastest()
     {
         return cl_Button_Del_Lastest;
     }

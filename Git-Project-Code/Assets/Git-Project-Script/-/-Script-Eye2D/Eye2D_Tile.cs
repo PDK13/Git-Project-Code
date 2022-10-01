@@ -8,7 +8,7 @@ public class Eye2D_Tile : MonoBehaviour
 {
     //Script dùng để duyệt tầm nhìn theo Ma trận Điểm ảnh
 
-    public bool b_Debug_Emty = true;
+    public bool m_Debug_Emty = true;
     //Cho phép hiển thị phần tử Emyt trên Ma trận
 
     public Vector2 v_MatrixEye = new Vector2(0, 0.3f);
@@ -77,13 +77,13 @@ public class Eye2D_Tile : MonoBehaviour
                 else
                 {
                     //Duyệt Normal (Bình thường)
-                    if (Physics2D.BoxCast(Get_Pos(x, y), Get_Size(), 0, Vector2.zero, 0, l_Normal))
+                    if (Physics2D.BoxCast(GetPos(x, y), GetSize(), 0, Vector2.zero, 0, l_Normal))
                     {
                         l2_Matrix[y + i_Up][x + i_Left] = "N";
                     }
                     else
                     //Duyệt Danger (Nguy hiểm)
-                    if (Physics2D.BoxCast(Get_Pos(x, y), Get_Size(), 0, Vector2.zero, 0, l_Danger))
+                    if (Physics2D.BoxCast(GetPos(x, y), GetSize(), 0, Vector2.zero, 0, l_Danger))
                     {
                         l2_Matrix[y + i_Up][x + i_Left] = "D";
                     }
@@ -97,7 +97,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Nhận Vector Pos để xử lý
-    private Vector3 Get_Pos(float x, float y)
+    private Vector3 GetPos(float x, float y)
     {
         return new Vector3(
             transform.position.x + (x * f_Square_Dist) + v_MatrixEye.x,
@@ -106,7 +106,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Nhận Vector Size để xử lý
-    private Vector3 Get_Size()
+    private Vector3 GetSize()
     {
         return new Vector3(f_Square_Size, f_Square_Size, 0);
     }
@@ -141,7 +141,7 @@ public class Eye2D_Tile : MonoBehaviour
                             if (l2_Matrix[y + i_Up][x + i_Left] == "E")
                             {
                                 //Nếu là Emty ("E") >> Black
-                                if (b_Debug_Emty)
+                                if (m_Debug_Emty)
                                 {
                                     Gizmos.color = Color.gray;
                                 }
@@ -154,7 +154,7 @@ public class Eye2D_Tile : MonoBehaviour
                     }
                 }
 
-                Gizmos.DrawWireCube(Get_Pos(x, y), Get_Size());
+                Gizmos.DrawWireCube(GetPos(x, y), GetSize());
             }
         }
         //End 
@@ -163,7 +163,7 @@ public class Eye2D_Tile : MonoBehaviour
     //------------------------------------------------------------------------
 
     //Nhận Danh sách Pixel từ Ma trận Pixel (Nhận bằng kí hiệu "N", "D", "M" và "E")
-    public List<string> Get_List_TileMatrix_Str()
+    public List<string> GetList_TileMatrix_Str()
     {
         if (l2_Matrix == null)
         {
@@ -184,7 +184,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Nhận Danh sách Pixel từ Ma trận Pixel (Nhận bằng số hiệu "N" = 1, "D" = 2, "M" = -1 và "E" = 0)
-    public List<int> Get_List_TileMatrix_Int()
+    public List<int> GetList_TileMatrix_Int()
     {
         if (l2_Matrix == null)
         {
@@ -208,7 +208,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Nhận Danh sách Pixel từ Ma trận Pixel (Nhận bằng số hiệu "N" = 1, "D" = 2, "M" = -1 và "E" = 0)
-    public List<float> Get_List_TileMatrix_Float()
+    public List<float> GetList_TileMatrix_Float()
     {
         if (l2_Matrix == null)
         {
@@ -232,7 +232,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Nhận số lượng phần tử trong Ma trận
-    public int Get_CountTile()
+    public int GetCountTile()
     {
         return (i_Up + i_Down + 1) * (i_Left + i_Right + 1);
     }
@@ -240,7 +240,7 @@ public class Eye2D_Tile : MonoBehaviour
     //------------------------------------------------------------------------ 
 
     //Trả về phần trăm (0..1) theo hướng Trên
-    public float Get_Percent_Dir_Up(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Dir_Up(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = i_Up * (i_Left + i_Right + 1);
         int i_Check = 0;
@@ -251,9 +251,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //Left >> Right
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -264,7 +264,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo hướng Dưới
-    public float Get_Percent_Dir_Down(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Dir_Down(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = i_Down * (i_Left + i_Right + 1);
         int i_Check = 0;
@@ -275,9 +275,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //Left >> Right
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -288,7 +288,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo hướng Trái
-    public float Get_Percent_Dir_Left(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Dir_Left(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = (i_Down + i_Up + 1) * i_Left;
         int i_Check = 0;
@@ -299,9 +299,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //Left >> 0
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -312,7 +312,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo hướng Phải
-    public float Get_Percent_Dir_Right(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Dir_Right(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = (i_Down + i_Up + 1) * i_Right;
         int i_Check = 0;
@@ -323,9 +323,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //1 >> Right
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -336,7 +336,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo góc phần tư I
-    public float Get_Percent_Cir_One(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Cir_One(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = i_Up * i_Right;
         int i_Check = 0;
@@ -347,9 +347,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //0 >> Right
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -360,7 +360,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo góc phần tư II
-    public float Get_Percent_Cir_Two(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Cir_Two(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = i_Up * i_Left;
         int i_Check = 0;
@@ -371,9 +371,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //Left >> 0
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -384,7 +384,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo góc phần tư III
-    public float Get_Percent_Cir_Three(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Cir_Three(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = i_Down * i_Left;
         int i_Check = 0;
@@ -395,9 +395,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //Left >> 0
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -408,7 +408,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo góc phần tư IV
-    public float Get_Percent_Cir_Four(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Cir_Four(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = i_Down * i_Right;
         int i_Check = 0;
@@ -419,9 +419,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //Left >> 0
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -432,7 +432,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo đường thẳng hướng tâm Trên
-    public float Get_Percent_Lin_Up(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Lin_Up(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = i_Up;
         int i_Check = 0;
@@ -443,9 +443,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //Left >> 0
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -456,7 +456,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo đường thẳng hướng tâm Dưới
-    public float Get_Percent_Lin_Down(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Lin_Down(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = i_Down;
         int i_Check = 0;
@@ -467,9 +467,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //Left >> 0
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -480,7 +480,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo đường thẳng hướng tâm Trái
-    public float Get_Percent_Lin_Left(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Lin_Left(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = i_Left;
         int i_Check = 0;
@@ -491,9 +491,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //Left >> 0
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;
@@ -504,7 +504,7 @@ public class Eye2D_Tile : MonoBehaviour
     }
 
     //Trả về phần trăm (0..1) theo đường thẳng hướng tâm Phải
-    public float Get_Percent_Lin_Right(bool b_EmtyCheck, bool b_NormalCheck, bool b_DangerCheck)
+    public float GetPercent_Lin_Right(bool m_EmtyCheck, bool m_NormalCheck, bool m_DangerCheck)
     {
         int i_Full = i_Left;
         int i_Check = 0;
@@ -515,9 +515,9 @@ public class Eye2D_Tile : MonoBehaviour
             {
                 //Left >> 0
                 if (
-                    b_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
-                    b_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
-                    b_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
+                    m_EmtyCheck && l2_Matrix[y + i_Up][x + i_Left] == "E" ||
+                    m_NormalCheck && l2_Matrix[y + i_Up][x + i_Left] == "N" ||
+                    m_DangerCheck && l2_Matrix[y + i_Up][x + i_Left] == "D"
                     )
                 {
                     i_Check++;

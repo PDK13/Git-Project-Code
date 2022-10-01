@@ -50,7 +50,7 @@ public class Sample_2DSimplePlatform : MonoBehaviour
             return;
         }
 
-        if (collider.transform.parent != cl_Player.Get_Primary_Parent())
+        if (collider.transform.parent != cl_Player.GetPrimary_Parent())
         {
             return;
         }

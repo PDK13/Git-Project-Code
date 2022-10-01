@@ -13,7 +13,7 @@ public class IsoEditorMessage : MonoBehaviour
 
     [Tooltip("Editor Block Message UI")]
     [SerializeField]
-    private GameObject g_Message_Clone;
+    private GameObject g_MessageClone;
 
     [Header("UI Editor Block Message")]
 
@@ -45,11 +45,11 @@ public class IsoEditorMessage : MonoBehaviour
 
         iso_Editor_Block_List = cl_Vertical_List.gameObject.GetComponent<Iso_Editor_UI_Block_List>();
 
-        //iso_Editor_Block_Message_UI.Get_Button_Add().Set_Event_Add_PointerDown(Button_Add);
-        iso_Editor_Block_Message_UI.Get_Button_Add().Set_Button_Color_Active(iso_Editor_Block_Message_UI.Get_Button_Add().Get_Color_Normal_Primary());
+        //iso_Editor_Block_Message_UI.GetButton_Add().Set_Event_Add_PointerDown(Button_Add);
+        iso_Editor_Block_Message_UI.GetButton_Add().Set_Button_Color_Active(iso_Editor_Block_Message_UI.GetButton_Add().GetColor_Normal_Primary());
 
-        //iso_Editor_Block_Message_UI.Get_Button_Del_Lastest().Set_Event_Add_PointerDown(Button_Del_Lastest);
-        iso_Editor_Block_Message_UI.Get_Button_Del_Lastest().Set_Button_Color_Active(iso_Editor_Block_Message_UI.Get_Button_Del_Lastest().Get_Color_Normal_Primary());
+        //iso_Editor_Block_Message_UI.GetButton_Del_Lastest().Set_Event_Add_PointerDown(Button_Del_Lastest);
+        iso_Editor_Block_Message_UI.GetButton_Del_Lastest().Set_Button_Color_Active(iso_Editor_Block_Message_UI.GetButton_Del_Lastest().GetColor_Normal_Primary());
 
         //ui_Object_DragDrop.Set_Event_Add_PointerDown(Set_ListVertical_Data_Current_Pos_Matrix_This);
     }
@@ -58,7 +58,7 @@ public class IsoEditorMessage : MonoBehaviour
 
     public void Set_ListVertical_Data_Current_Pos_Matrix_This()
     {
-        iso_Editor_Block_List.Set_UI_Message(iso_Block.Get_PosOnMatrix_Current());
+        iso_Editor_Block_List.Set_UI_Message(iso_Block.GetPosOnMatrix_Current());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
     }
@@ -68,48 +68,48 @@ public class IsoEditorMessage : MonoBehaviour
     /// </summary>
     public void Set_ListVertical_Data_Current_Pos_Matrix()
     {
-        if (!iso_World.Get_World_isGenerated())
+        if (!iso_World.GetWorldIsGenerated())
         {
             return;
         }
 
-        if (!iso_Editor_Block_List.Get_UI_Message())
+        if (!iso_Editor_Block_List.GetUI_Message())
         {
             return;
         }
 
-        iso_Editor_Block_List.Set_UI_Message(iso_Block.Get_PosOnMatrix_Current());
+        iso_Editor_Block_List.Set_UI_Message(iso_Block.GetPosOnMatrix_Current());
 
         cl_Vertical_List.Set_ListVertical_Remove_All();
 
-        if (iso_World.Get_Primary_isEmty(iso_Block.Get_PosOnMatrix_Current())) //Check Emty
+        if (iso_World.GetPrimaryIsEmty(iso_Block.GetPosOnMatrix_Current())) //Check Emty
         {
             return;
         }
 
-        //if (!iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<Isometric2D_Block>().Get_Block_Check()) //Check Block
+        //if (!iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<Isometric2D_Block>().GetBlock_Check()) //Check Block
         //{
         //    return;
         //}
 
-        if (iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockMessage>() == null) //Check Componenet
+        if (iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockMessage>() == null) //Check Componenet
         {
             return;
         }
 
-        List<IsoDataMessageSingle> l_Message_Data_Single = iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockMessage>().Get_List();
+        List<IsoDataMessageSingle> l_Message_Data_Single = iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockMessage>().GetList();
 
         cl_Vertical_List.Set_ListVertical_Remove_All();
 
-        cl_Vertical_List.Set_Clone(g_Message_Clone);
+        cl_Vertical_List.SetClone(g_MessageClone);
 
         for (int i = 0; i < l_Message_Data_Single.Count; i++)
         {
             cl_Vertical_List.Set_ListVertical_Add();
 
-            cl_Vertical_List.Get_ListVertical_GameObject_Lastest().GetComponent<IsoEditorUIMessage_Clone>().Set_Clone(
-                l_Message_Data_Single[i].Get_Name(),
-                l_Message_Data_Single[i].Get_Message());
+            cl_Vertical_List.GetListVertical_GameObject_Lastest().GetComponent<IsoEditorUIMessageClone>().SetClone(
+                l_Message_Data_Single[i].GetName(),
+                l_Message_Data_Single[i].GetMessage());
         }
     }
 
@@ -119,7 +119,7 @@ public class IsoEditorMessage : MonoBehaviour
 
     public void Button_Add()
     {
-        iso_World.Set_MessageBlock_Primary_Active_Add(iso_Block.Get_PosOnMatrix_Current(), iso_Editor_Block_Message_UI.Get_Data());
+        iso_World.Set_MessageBlock_Primary_Active_Add(iso_Block.GetPosOnMatrix_Current(), iso_Editor_Block_Message_UI.GetData());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 
@@ -128,7 +128,7 @@ public class IsoEditorMessage : MonoBehaviour
 
     public void Button_Del_Lastest()
     {
-        iso_World.Set_MessageBlock_Primary_Active_Remove_Lastest(iso_Block.Get_PosOnMatrix_Current());
+        iso_World.Set_MessageBlock_Primary_Active_Remove_Lastest(iso_Block.GetPosOnMatrix_Current());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 
@@ -141,17 +141,17 @@ public class IsoEditorMessage : MonoBehaviour
 
     public void Set_Copy(int i_Message_Index)
     {
-        IsoDataMessageSingle cl_Message_Data_Single = iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockMessage>().Get_List(i_Message_Index);
+        IsoDataMessageSingle cl_Message_Data_Single = iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockMessage>().GetList(i_Message_Index);
 
-        iso_Editor_Block_Message_UI.Set_Clone(cl_Message_Data_Single);
+        iso_Editor_Block_Message_UI.SetClone(cl_Message_Data_Single);
     }
 
     public void Set_Fix(int i_Message_Index)
     {
         iso_World.Set_MessageBlock_Primary_Active_Chance(
-            iso_Block.Get_PosOnMatrix_Current(),
+            iso_Block.GetPosOnMatrix_Current(),
             i_Message_Index,
-            iso_Editor_Block_Message_UI.Get_Data());
+            iso_Editor_Block_Message_UI.GetData());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 
@@ -160,7 +160,7 @@ public class IsoEditorMessage : MonoBehaviour
 
     public void Set_Del(int i_Message_Index)
     {
-        iso_World.Set_MessageBlock_Primary_Active_Remove(iso_Block.Get_PosOnMatrix_Current(), i_Message_Index);
+        iso_World.Set_MessageBlock_Primary_Active_Remove(iso_Block.GetPosOnMatrix_Current(), i_Message_Index);
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 

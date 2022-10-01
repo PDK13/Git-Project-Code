@@ -13,7 +13,7 @@ public class Simple_ScriptableObject : ScriptableObject
     }
 
     //Data is stored local can be CHANCE to new value and be SAVED (CAUTION!)
-    public string Get_MyString()
+    public string GetMyString()
     {
         return s_MyString;
     }

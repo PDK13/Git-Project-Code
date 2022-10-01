@@ -80,7 +80,7 @@ public class IsoEditorUIMove : MonoBehaviour
     private Vector3Int v3_Move_Dir;
 
     [Tooltip("Move Rev")]
-    private bool b_Move_Rev = false;
+    private bool m_Move_Rev = false;
 
     private void Start()
     {
@@ -96,10 +96,10 @@ public class IsoEditorUIMove : MonoBehaviour
         //cl_Button_Status.Set_Event_Add_PointerDown(Button_Status);
 
         //cl_Button_List_Add.Set_Event_Add_PointerDown(Button_Add);
-        cl_Button_List_Add.Set_Button_Color_Active(cl_Button_List_Add.Get_Color_Normal_Primary());
+        cl_Button_List_Add.Set_Button_Color_Active(cl_Button_List_Add.GetColor_Normal_Primary());
 
         //cl_Button_List_Del_Lastest.Set_Event_Add_PointerDown(Button_Del_Lastest);
-        cl_Button_List_Del_Lastest.Set_Button_Color_Active(cl_Button_List_Del_Lastest.Get_Color_Normal_Primary());
+        cl_Button_List_Del_Lastest.Set_Button_Color_Active(cl_Button_List_Del_Lastest.GetColor_Normal_Primary());
 
         Button_Dir_U();
         Set_Length(1);
@@ -154,243 +154,243 @@ public class IsoEditorUIMove : MonoBehaviour
     public void Button_Dir_U()
     {
         v3_Move_Dir = IsoClassDir.v3_Up_X;
-        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.Get_Button_Color_Active());
+        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.GetButton_Color_Active());
         cl_Button_Dir_U.Set_Button_Active_True();
 
-        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.Get_Color_Normal_Primary());
+        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.GetColor_Normal_Primary());
         cl_Button_Dir_D.Set_Button_Active_False();
 
-        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.Get_Color_Normal_Primary());
+        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.GetColor_Normal_Primary());
         cl_Button_Dir_L.Set_Button_Active_False();
 
-        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.Get_Color_Normal_Primary());
+        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.GetColor_Normal_Primary());
         cl_Button_Dir_R.Set_Button_Active_False();
 
-        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.Get_Color_Normal_Primary());
+        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.GetColor_Normal_Primary());
         cl_Button_Dir_T.Set_Button_Active_False();
 
-        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.Get_Color_Normal_Primary());
+        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.GetColor_Normal_Primary());
         cl_Button_Dir_B.Set_Button_Active_False();
 
-        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.Get_Color_Normal_Primary());
+        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.GetColor_Normal_Primary());
         cl_Button_Dir_Sta.Set_Button_Active_False();
 
-        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.Get_Color_Normal_Primary());
+        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.GetColor_Normal_Primary());
         cl_Button_Dir_Rev.Set_Button_Active_False();
-        b_Move_Rev = false;
+        m_Move_Rev = false;
     }
 
     public void Button_Dir_D()
     {
-        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.Get_Color_Normal_Primary());
+        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.GetColor_Normal_Primary());
         cl_Button_Dir_U.Set_Button_Active_False();
 
         v3_Move_Dir = IsoClassDir.v3_Down_X;
-        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.Get_Button_Color_Active());
+        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.GetButton_Color_Active());
         cl_Button_Dir_D.Set_Button_Active_True();
 
-        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.Get_Color_Normal_Primary());
+        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.GetColor_Normal_Primary());
         cl_Button_Dir_L.Set_Button_Active_False();
 
-        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.Get_Color_Normal_Primary());
+        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.GetColor_Normal_Primary());
         cl_Button_Dir_R.Set_Button_Active_False();
 
-        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.Get_Color_Normal_Primary());
+        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.GetColor_Normal_Primary());
         cl_Button_Dir_T.Set_Button_Active_False();
 
-        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.Get_Color_Normal_Primary());
+        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.GetColor_Normal_Primary());
         cl_Button_Dir_B.Set_Button_Active_False();
 
-        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.Get_Color_Normal_Primary());
+        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.GetColor_Normal_Primary());
         cl_Button_Dir_Sta.Set_Button_Active_False();
 
-        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.Get_Color_Normal_Primary());
+        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.GetColor_Normal_Primary());
         cl_Button_Dir_Rev.Set_Button_Active_False();
-        b_Move_Rev = false;
+        m_Move_Rev = false;
     }
 
     public void Button_Dir_L()
     {
-        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.Get_Color_Normal_Primary());
+        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.GetColor_Normal_Primary());
         cl_Button_Dir_U.Set_Button_Active_False();
 
-        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.Get_Color_Normal_Primary());
+        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.GetColor_Normal_Primary());
         cl_Button_Dir_D.Set_Button_Active_False();
 
         v3_Move_Dir = IsoClassDir.v3_Left_Y;
-        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.Get_Button_Color_Active());
+        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.GetButton_Color_Active());
         cl_Button_Dir_L.Set_Button_Active_True();
 
-        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.Get_Color_Normal_Primary());
+        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.GetColor_Normal_Primary());
         cl_Button_Dir_R.Set_Button_Active_False();
 
-        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.Get_Color_Normal_Primary());
+        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.GetColor_Normal_Primary());
         cl_Button_Dir_T.Set_Button_Active_False();
 
-        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.Get_Color_Normal_Primary());
+        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.GetColor_Normal_Primary());
         cl_Button_Dir_B.Set_Button_Active_False();
 
-        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.Get_Color_Normal_Primary());
+        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.GetColor_Normal_Primary());
         cl_Button_Dir_Sta.Set_Button_Active_False();
 
-        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.Get_Color_Normal_Primary());
+        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.GetColor_Normal_Primary());
         cl_Button_Dir_Rev.Set_Button_Active_False();
-        b_Move_Rev = false;
+        m_Move_Rev = false;
     }
 
     public void Button_Dir_R()
     {
-        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.Get_Color_Normal_Primary());
+        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.GetColor_Normal_Primary());
         cl_Button_Dir_U.Set_Button_Active_False();
 
-        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.Get_Color_Normal_Primary());
+        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.GetColor_Normal_Primary());
         cl_Button_Dir_D.Set_Button_Active_False();
 
-        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.Get_Color_Normal_Primary());
+        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.GetColor_Normal_Primary());
         cl_Button_Dir_L.Set_Button_Active_False();
 
         v3_Move_Dir = IsoClassDir.v3_Right_Y;
-        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.Get_Button_Color_Active());
+        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.GetButton_Color_Active());
         cl_Button_Dir_R.Set_Button_Active_True();
 
-        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.Get_Color_Normal_Primary());
+        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.GetColor_Normal_Primary());
         cl_Button_Dir_T.Set_Button_Active_False();
 
-        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.Get_Color_Normal_Primary());
+        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.GetColor_Normal_Primary());
         cl_Button_Dir_B.Set_Button_Active_False();
 
-        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.Get_Color_Normal_Primary());
+        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.GetColor_Normal_Primary());
         cl_Button_Dir_Sta.Set_Button_Active_False();
 
-        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.Get_Color_Normal_Primary());
+        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.GetColor_Normal_Primary());
         cl_Button_Dir_Rev.Set_Button_Active_False();
-        b_Move_Rev = false;
+        m_Move_Rev = false;
     }
 
     public void Button_Dir_T()
     {
-        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.Get_Color_Normal_Primary());
+        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.GetColor_Normal_Primary());
         cl_Button_Dir_U.Set_Button_Active_False();
 
-        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.Get_Color_Normal_Primary());
+        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.GetColor_Normal_Primary());
         cl_Button_Dir_D.Set_Button_Active_False();
 
-        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.Get_Color_Normal_Primary());
+        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.GetColor_Normal_Primary());
         cl_Button_Dir_L.Set_Button_Active_False();
 
-        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.Get_Color_Normal_Primary());
+        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.GetColor_Normal_Primary());
         cl_Button_Dir_R.Set_Button_Active_False();
 
         v3_Move_Dir = IsoClassDir.v3_Top_H;
-        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.Get_Button_Color_Active());
+        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.GetButton_Color_Active());
         cl_Button_Dir_T.Set_Button_Active_True();
 
-        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.Get_Color_Normal_Primary());
+        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.GetColor_Normal_Primary());
         cl_Button_Dir_B.Set_Button_Active_False();
 
-        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.Get_Color_Normal_Primary());
+        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.GetColor_Normal_Primary());
         cl_Button_Dir_Sta.Set_Button_Active_False();
 
-        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.Get_Color_Normal_Primary());
+        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.GetColor_Normal_Primary());
         cl_Button_Dir_Rev.Set_Button_Active_False();
-        b_Move_Rev = false;
+        m_Move_Rev = false;
     }
 
     public void Button_Dir_B()
     {
-        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.Get_Color_Normal_Primary());
+        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.GetColor_Normal_Primary());
         cl_Button_Dir_U.Set_Button_Active_False();
 
-        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.Get_Color_Normal_Primary());
+        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.GetColor_Normal_Primary());
         cl_Button_Dir_D.Set_Button_Active_False();
 
-        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.Get_Color_Normal_Primary());
+        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.GetColor_Normal_Primary());
         cl_Button_Dir_L.Set_Button_Active_False();
 
-        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.Get_Color_Normal_Primary());
+        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.GetColor_Normal_Primary());
         cl_Button_Dir_R.Set_Button_Active_False();
 
-        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.Get_Color_Normal_Primary());
+        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.GetColor_Normal_Primary());
         cl_Button_Dir_T.Set_Button_Active_False();
 
         v3_Move_Dir = IsoClassDir.v3_Bot_H;
-        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.Get_Button_Color_Active());
+        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.GetButton_Color_Active());
         cl_Button_Dir_B.Set_Button_Active_True();
 
-        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.Get_Color_Normal_Primary());
+        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.GetColor_Normal_Primary());
         cl_Button_Dir_Sta.Set_Button_Active_False();
 
-        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.Get_Color_Normal_Primary());
+        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.GetColor_Normal_Primary());
         cl_Button_Dir_Rev.Set_Button_Active_False();
-        b_Move_Rev = false;
+        m_Move_Rev = false;
     }
 
     public void Button_Dir_Sta()
     {
-        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.Get_Color_Normal_Primary());
+        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.GetColor_Normal_Primary());
         cl_Button_Dir_U.Set_Button_Active_False();
 
-        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.Get_Color_Normal_Primary());
+        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.GetColor_Normal_Primary());
         cl_Button_Dir_D.Set_Button_Active_False();
 
-        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.Get_Color_Normal_Primary());
+        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.GetColor_Normal_Primary());
         cl_Button_Dir_L.Set_Button_Active_False();
 
-        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.Get_Color_Normal_Primary());
+        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.GetColor_Normal_Primary());
         cl_Button_Dir_R.Set_Button_Active_False();
 
-        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.Get_Color_Normal_Primary());
+        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.GetColor_Normal_Primary());
         cl_Button_Dir_T.Set_Button_Active_False();
 
-        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.Get_Color_Normal_Primary());
+        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.GetColor_Normal_Primary());
         cl_Button_Dir_B.Set_Button_Active_False();
 
         v3_Move_Dir = IsoClassDir.v3_None;
-        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.Get_Button_Color_Active());
+        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.GetButton_Color_Active());
         cl_Button_Dir_Sta.Set_Button_Active_True();
 
-        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.Get_Color_Normal_Primary());
+        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.GetColor_Normal_Primary());
         cl_Button_Dir_Rev.Set_Button_Active_False();
-        b_Move_Rev = false;
+        m_Move_Rev = false;
     }
 
     public void Button_Dir_Rev()
     {
-        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.Get_Color_Normal_Primary());
+        cl_Button_Dir_U.Set_Button_Color_Normal(cl_Button_Dir_U.GetColor_Normal_Primary());
         cl_Button_Dir_U.Set_Button_Active_False();
 
-        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.Get_Color_Normal_Primary());
+        cl_Button_Dir_D.Set_Button_Color_Normal(cl_Button_Dir_D.GetColor_Normal_Primary());
         cl_Button_Dir_D.Set_Button_Active_False();
 
-        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.Get_Color_Normal_Primary());
+        cl_Button_Dir_L.Set_Button_Color_Normal(cl_Button_Dir_L.GetColor_Normal_Primary());
         cl_Button_Dir_L.Set_Button_Active_False();
 
-        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.Get_Color_Normal_Primary());
+        cl_Button_Dir_R.Set_Button_Color_Normal(cl_Button_Dir_R.GetColor_Normal_Primary());
         cl_Button_Dir_R.Set_Button_Active_False();
 
-        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.Get_Color_Normal_Primary());
+        cl_Button_Dir_T.Set_Button_Color_Normal(cl_Button_Dir_T.GetColor_Normal_Primary());
         cl_Button_Dir_T.Set_Button_Active_False();
 
-        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.Get_Color_Normal_Primary());
+        cl_Button_Dir_B.Set_Button_Color_Normal(cl_Button_Dir_B.GetColor_Normal_Primary());
         cl_Button_Dir_B.Set_Button_Active_False();
 
-        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.Get_Color_Normal_Primary());
+        cl_Button_Dir_Sta.Set_Button_Color_Normal(cl_Button_Dir_Sta.GetColor_Normal_Primary());
         cl_Button_Dir_Sta.Set_Button_Active_False();
 
         v3_Move_Dir = IsoClassDir.v3_None;
-        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.Get_Button_Color_Active());
+        cl_Button_Dir_Rev.Set_Button_Color_Normal(cl_Button_Dir_Rev.GetButton_Color_Active());
         cl_Button_Dir_Rev.Set_Button_Active_True();
-        b_Move_Rev = true;
+        m_Move_Rev = true;
     }
 
-    public Vector3Int Get_Dir()
+    public Vector3Int GetDir()
     {
         return v3_Move_Dir;
     }
 
-    public bool Get_Rev()
+    public bool GetRev()
     {
-        return b_Move_Rev;
+        return m_Move_Rev;
     }
 
     #endregion
@@ -402,7 +402,7 @@ public class IsoEditorUIMove : MonoBehaviour
         inp_Length.text = i_Move_Length.ToString();
     }
 
-    public int Get_Length()
+    public int GetLength()
     {
         return int.Parse(inp_Length.text);
     }
@@ -416,7 +416,7 @@ public class IsoEditorUIMove : MonoBehaviour
         inp_Speed.text = f_Move_Speed.ToString();
     }
 
-    public float Get_Speed()
+    public float GetSpeed()
     {
         return float.Parse(inp_Speed.text);
     }
@@ -429,14 +429,14 @@ public class IsoEditorUIMove : MonoBehaviour
     {
         cl_Editor_Block_Move.Set_Status_Chance();
 
-        Set_Status(cl_Editor_Block_Move.Get_Status());
+        Set_Status(cl_Editor_Block_Move.GetStatus());
     }
 
-    public void Set_Status(bool b_Move_Status)
+    public void Set_Status(bool m_Move_Status)
     {
-        cl_Button_Status.Set_Button_Active(b_Move_Status);
+        cl_Button_Status.Set_Button_Active(m_Move_Status);
 
-        if (b_Move_Status)
+        if (m_Move_Status)
         {
             t_Move_Status.text = "STATUS: RUN!";
         }
@@ -446,9 +446,9 @@ public class IsoEditorUIMove : MonoBehaviour
         }
     }
 
-    public bool Get_Status()
+    public bool GetStatus()
     {
-        return cl_Button_Status.Get_Button_Active();
+        return cl_Button_Status.GetButton_Active();
     }
 
     #endregion
@@ -457,13 +457,13 @@ public class IsoEditorUIMove : MonoBehaviour
 
     public void Button_Add()
     {
-        if (Get_Rev())
+        if (GetRev())
         {
             cl_Editor_Block_Move.Set_Add_Rev();
         }
         else
         {
-            cl_Editor_Block_Move.Set_Add(Get_Dir(), Get_Length(), Get_Speed());
+            cl_Editor_Block_Move.Set_Add(GetDir(), GetLength(), GetSpeed());
         }
     }
 

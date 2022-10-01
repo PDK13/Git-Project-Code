@@ -54,7 +54,7 @@ public class IsoClassBlock
     /// Type Block or Character
     /// </summary>
     /// <returns></returns>
-    public string Get_Type_Main()
+    public string GetType_Main()
     {
         return s_Type_Main;
     }
@@ -63,7 +63,7 @@ public class IsoClassBlock
     /// Type Child of Type A (Block or Character)
     /// </summary>
     /// <returns></returns>
-    public string Get_Type()
+    public string GetType()
     {
         return s_Type;
     }

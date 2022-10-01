@@ -46,8 +46,8 @@ public class IsoDataBlock
     public void Set_Block_Chance(GameObject g_Block)
     {
         Set_Block_Chance(
-            g_Block.GetComponent<IsoBlock>().Get_PosOnMatrix_Primary(),
-            g_Block.GetComponent<IsoBlock>().Get_Name());
+            g_Block.GetComponent<IsoBlock>().GetPosOnMatrix_Primary(),
+            g_Block.GetComponent<IsoBlock>().GetName());
     }
 
     #endregion
@@ -59,7 +59,7 @@ public class IsoDataBlock
         this.v3_Pos = v3_Pos;
     }
 
-    public Vector3Int Get_Pos()
+    public Vector3Int GetPos()
     {
         return v3_Pos;
     }
@@ -80,7 +80,7 @@ public class IsoDataBlock
         this.s_Name_Origin = s_Name_Origin;
     }
 
-    public string Get_NameOrigin()
+    public string GetNameOrigin()
     {
         return s_Name_Origin;
     }

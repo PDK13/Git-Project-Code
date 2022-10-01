@@ -6,7 +6,7 @@ public class IsoBlockTeleport : MonoBehaviour
     [Header("Teleport to other World")]
 
     [SerializeField]
-    private bool b_Teleport_isAlow = true;
+    private bool m_TeleportIsAlow = true;
 
     [Tooltip("World Name for Teleport")]
     private string s_WorldName = "";
@@ -25,13 +25,13 @@ public class IsoBlockTeleport : MonoBehaviour
     public void Set_Add(GameObject g_Teleport)
     {
         Set_Add(
-            g_Teleport.GetComponent<IsoBlockTeleport>().Get_World_Name(),
-            g_Teleport.GetComponent<IsoBlockTeleport>().Get_Spawm_Pos());
+            g_Teleport.GetComponent<IsoBlockTeleport>().GetWorld_Name(),
+            g_Teleport.GetComponent<IsoBlockTeleport>().GetSpawm_Pos());
     }
 
     public void Set_Add(IsoDataTeleport cl_Data_Teleport)
     {
-        Set_Add(cl_Data_Teleport.Get_World_Name(), cl_Data_Teleport.Get_Pos());
+        Set_Add(cl_Data_Teleport.GetWorld_Name(), cl_Data_Teleport.GetPos());
     }
 
     public void Set_Remove()
@@ -44,28 +44,28 @@ public class IsoBlockTeleport : MonoBehaviour
 
     #region Teleport is Allow
 
-    public void Set_Teleport_isAllow(bool b_Teleport_isAlow)
+    public void Set_TeleportIsAllow(bool m_TeleportIsAlow)
     {
-        this.b_Teleport_isAlow = b_Teleport_isAlow;
+        this.m_TeleportIsAlow = m_TeleportIsAlow;
     }
 
-    public bool Get_Teleport_isAllow()
+    public bool GetTeleportIsAllow()
     {
-        return b_Teleport_isAlow;
+        return m_TeleportIsAlow;
     }
 
     #endregion
 
     #region Teleport Get
 
-    public bool Get_isExist()
+    public bool GetisExist()
     {
-        return Get_World_Name() != "";
+        return GetWorld_Name() != "";
     }
 
-    public string Get_World_Name()
+    public string GetWorld_Name()
     {
-        if (Get_Teleport_isAllow())
+        if (GetTeleportIsAllow())
         {
             return s_WorldName;
         }
@@ -73,9 +73,9 @@ public class IsoBlockTeleport : MonoBehaviour
         return "";
     }
 
-    public Vector3Int Get_Spawm_Pos()
+    public Vector3Int GetSpawm_Pos()
     {
-        if (Get_Teleport_isAllow())
+        if (GetTeleportIsAllow())
         {
             return v3_Pos_Teleport;
         }

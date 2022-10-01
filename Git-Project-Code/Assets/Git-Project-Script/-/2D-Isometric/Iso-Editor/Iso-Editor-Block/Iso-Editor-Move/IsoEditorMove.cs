@@ -13,7 +13,7 @@ public class IsoEditorMove : MonoBehaviour
 
     [Tooltip("Editor Block Move UI")]
     [SerializeField]
-    private GameObject g_Move_Clone;
+    private GameObject g_MoveClone;
 
     [Header("UI Editor Block Move")]
 
@@ -50,14 +50,14 @@ public class IsoEditorMove : MonoBehaviour
         //ui_Object_DragDrop.Set_Event_Add_PointerDown(Set_ListVertical_Data_Current_Pos_Matrix_This);
 
         //UI Move Firstly
-        iso_Editor_Block_List.Set_UI_Move(iso_Block.Get_PosOnMatrix_Current());
+        iso_Editor_Block_List.Set_UI_Move(iso_Block.GetPosOnMatrix_Current());
     }
 
     #region Move List Vertical
 
     public void Set_ListVertical_Data_Current_Pos_Matrix_This()
     {
-        iso_Editor_Block_List.Set_UI_Move(iso_Block.Get_PosOnMatrix_Current());
+        iso_Editor_Block_List.Set_UI_Move(iso_Block.GetPosOnMatrix_Current());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
     }
@@ -67,58 +67,58 @@ public class IsoEditorMove : MonoBehaviour
     /// </summary>
     public void Set_ListVertical_Data_Current_Pos_Matrix()
     {
-        if (!iso_World.Get_World_isGenerated())
+        if (!iso_World.GetWorldIsGenerated())
         {
             return;
         }
 
-        if (!iso_Editor_Block_List.Get_UI_Move())
+        if (!iso_Editor_Block_List.GetUI_Move())
         {
             return;
         }
 
-        iso_Editor_Block_List.Set_UI_Move(iso_Block.Get_PosOnMatrix_Current());
+        iso_Editor_Block_List.Set_UI_Move(iso_Block.GetPosOnMatrix_Current());
 
         cl_Vertical_List.Set_ListVertical_Remove_All();
 
-        if (iso_World.Get_Primary_isEmty(iso_Block.Get_PosOnMatrix_Current())) //Check Emty
+        if (iso_World.GetPrimaryIsEmty(iso_Block.GetPosOnMatrix_Current())) //Check Emty
         {
             iso_Editor_Block_Move_UI.Set_Status(false);
 
             return;
         }
 
-        //if (!iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<Isometric2D_Block>().Get_Block_Check()) //Check Block
+        //if (!iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<Isometric2D_Block>().GetBlock_Check()) //Check Block
         //{
         //    iso_Editor_Block_Move_UI.Set_Status(false);
 
         //    return;
         //}
 
-        if (iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockMove>() == null) //Check Componenet
+        if (iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockMove>() == null) //Check Componenet
         {
             iso_Editor_Block_Move_UI.Set_Status(false);
 
             return;
         }
 
-        iso_Editor_Block_Move_UI.Set_Status(iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockMove>().Get_Status_isActive());
+        iso_Editor_Block_Move_UI.Set_Status(iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockMove>().GetStatusIsActive());
 
-        List<IsoDataMoveSingle> l_Move_Data_Single = iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockMove>().Get_List();
+        List<IsoDataMoveSingle> l_Move_Data_Single = iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockMove>().GetList();
 
         cl_Vertical_List.Set_ListVertical_Remove_All();
 
-        cl_Vertical_List.Set_Clone(g_Move_Clone);
+        cl_Vertical_List.SetClone(g_MoveClone);
 
         for (int i = 0; i < l_Move_Data_Single.Count; i++)
         {
             cl_Vertical_List.Set_ListVertical_Add();
 
-            cl_Vertical_List.Get_ListVertical_GameObject_Lastest().GetComponent<IsoEditorUIMoveClone>().Set_Clone(
-                l_Move_Data_Single[i].Get_Dir(),
-                l_Move_Data_Single[i].Get_Length(),
-                l_Move_Data_Single[i].Get_Speed(),
-                l_Move_Data_Single[i].Get_PosMoveTo());
+            cl_Vertical_List.GetListVertical_GameObject_Lastest().GetComponent<IsoEditorUIMoveClone>().SetClone(
+                l_Move_Data_Single[i].GetDir(),
+                l_Move_Data_Single[i].GetLength(),
+                l_Move_Data_Single[i].GetSpeed(),
+                l_Move_Data_Single[i].GetPosMoveTo());
         }
     }
 
@@ -128,7 +128,7 @@ public class IsoEditorMove : MonoBehaviour
 
     public void Set_Add(Vector3Int v3_Move_Dir, int i_Move_Length, float f_Move_Speed)
     {
-        iso_World.Set_MoveBlock_Primary_Active_Add(iso_Block.Get_PosOnMatrix_Current(), v3_Move_Dir, i_Move_Length, f_Move_Speed);
+        iso_World.Set_MoveBlock_Primary_Active_Add(iso_Block.GetPosOnMatrix_Current(), v3_Move_Dir, i_Move_Length, f_Move_Speed);
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 
@@ -137,7 +137,7 @@ public class IsoEditorMove : MonoBehaviour
 
     public void Set_Add_Rev()
     {
-        iso_World.Set_MoveBlock_Primary_Active_Add_Rev(iso_Block.Get_PosOnMatrix_Current());
+        iso_World.Set_MoveBlock_Primary_Active_Add_Rev(iso_Block.GetPosOnMatrix_Current());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 
@@ -146,7 +146,7 @@ public class IsoEditorMove : MonoBehaviour
 
     public void Set_Del_Lastest()
     {
-        iso_World.Set_MoveBlock_Primary_Active_Remove_Lastest(iso_Block.Get_PosOnMatrix_Current());
+        iso_World.Set_MoveBlock_Primary_Active_Remove_Lastest(iso_Block.GetPosOnMatrix_Current());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 
@@ -159,16 +159,16 @@ public class IsoEditorMove : MonoBehaviour
 
     public void Set_Status_Chance()
     {
-        iso_World.Set_MoveBlock_Primary_Status_Chance(iso_Block.Get_PosOnMatrix_Current());
+        iso_World.Set_MoveBlock_Primary_Status_Chance(iso_Block.GetPosOnMatrix_Current());
 
-        iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockMove>().Set_Active_Reset();
+        iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockMove>().Set_Active_Reset();
 
         iso_Editor_File.Button_Save_Temp();
     }
 
-    public bool Get_Status()
+    public bool GetStatus()
     {
-        return iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockMove>().Get_Status_isActive();
+        return iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockMove>().GetStatusIsActive();
     }
 
     #endregion
@@ -177,21 +177,21 @@ public class IsoEditorMove : MonoBehaviour
 
     public void Set_Copy(int i_Move_Index)
     {
-        IsoDataMoveSingle cl_Move_Data_Single = iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockMove>().Get_List(i_Move_Index);
+        IsoDataMoveSingle cl_Move_Data_Single = iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockMove>().GetList(i_Move_Index);
 
-        iso_Editor_Block_Move_UI.Set_Dir(cl_Move_Data_Single.Get_Dir());
-        iso_Editor_Block_Move_UI.Set_Length(cl_Move_Data_Single.Get_Length());
-        iso_Editor_Block_Move_UI.Set_Speed(cl_Move_Data_Single.Get_Speed());
+        iso_Editor_Block_Move_UI.Set_Dir(cl_Move_Data_Single.GetDir());
+        iso_Editor_Block_Move_UI.Set_Length(cl_Move_Data_Single.GetLength());
+        iso_Editor_Block_Move_UI.Set_Speed(cl_Move_Data_Single.GetSpeed());
     }
 
     public void Set_Fix(int i_Move_Index)
     {
         iso_World.Set_MoveBlock_Primary_Active_Chance(
-            iso_Block.Get_PosOnMatrix_Current(),
+            iso_Block.GetPosOnMatrix_Current(),
             i_Move_Index,
-            iso_Editor_Block_Move_UI.Get_Dir(),
-            iso_Editor_Block_Move_UI.Get_Length(),
-            iso_Editor_Block_Move_UI.Get_Speed());
+            iso_Editor_Block_Move_UI.GetDir(),
+            iso_Editor_Block_Move_UI.GetLength(),
+            iso_Editor_Block_Move_UI.GetSpeed());
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 
@@ -200,7 +200,7 @@ public class IsoEditorMove : MonoBehaviour
 
     public void Set_Del(int i_Move_Index)
     {
-        iso_World.Set_MoveBlock_Primary_Active_Remove(iso_Block.Get_PosOnMatrix_Current(), i_Move_Index);
+        iso_World.Set_MoveBlock_Primary_Active_Remove(iso_Block.GetPosOnMatrix_Current(), i_Move_Index);
 
         Set_ListVertical_Data_Current_Pos_Matrix();
 

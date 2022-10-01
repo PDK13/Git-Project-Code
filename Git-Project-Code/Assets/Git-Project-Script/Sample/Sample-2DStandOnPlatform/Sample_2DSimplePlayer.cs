@@ -44,12 +44,12 @@ public class Sample_2DSimplePlayer : MonoBehaviour
 
     public void Reset()
     {
-        transform.SetParent(Get_Primary_Parent());
-        transform.localScale = Get_Primary_Parent().localScale;
+        transform.SetParent(GetPrimary_Parent());
+        transform.localScale = GetPrimary_Parent().localScale;
         GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
     }
 
-    public Transform Get_Primary_Parent()
+    public Transform GetPrimary_Parent()
     {
         return t_Parent;
     }

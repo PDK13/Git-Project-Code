@@ -65,7 +65,7 @@ public class IsoDataWorld
     /// <param name="cl_Iso_Data"></param>
     public IsoDataWorld(IsoDataWorld cl_Iso_Data)
     {
-        Set_Data_Exist(cl_Iso_Data);
+        Set_DataIsExist(cl_Iso_Data);
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public class IsoDataWorld
     /// <param name="l_Spawm"></param>
     public IsoDataWorld(string s_World_Name, List<List<List<GameObject>>> l3_World)
     {
-        Set_Data_Exist(s_World_Name, l3_World);
+        Set_DataIsExist(s_World_Name, l3_World);
     }
 
     /// <summary>
@@ -95,22 +95,22 @@ public class IsoDataWorld
     /// Set World Data from Exist Data
     /// </summary>
     /// <param name="cl_Iso_Data"></param>
-    public void Set_Data_Exist(IsoDataWorld cl_Iso_Data)
+    public void Set_DataIsExist(IsoDataWorld cl_Iso_Data)
     {
         Set_Data_New();
 
-        Set_World_Size(cl_Iso_Data.Get_World_Size());
+        Set_World_Size(cl_Iso_Data.GetWorld_Size());
 
-        Set_Block_List(cl_Iso_Data.Get_Block_List());
-        Set_Block_Move_List(cl_Iso_Data.Get_Block_Move_List());
-        Set_Block_JoinTo_List(cl_Iso_Data.Get_Block_JoinTo_List());
-        Set_Block_SwitchTo_List(cl_Iso_Data.Get_Block_SwitchTo_List());
-        Set_Block_Message_List(cl_Iso_Data.Get_Block_Message_List());
+        Set_Block_List(cl_Iso_Data.GetBlock_List());
+        Set_Block_Move_List(cl_Iso_Data.GetBlock_Move_List());
+        Set_Block_JoinTo_List(cl_Iso_Data.GetBlock_JoinTo_List());
+        Set_Block_SwitchTo_List(cl_Iso_Data.GetBlock_SwitchTo_List());
+        Set_Block_Message_List(cl_Iso_Data.GetBlock_Message_List());
 
-        Set_UI_Player_List(cl_Iso_Data.Get_Character_Player_List());
-        Set_Character_Good_List(cl_Iso_Data.Get_Character_Good_List());
-        Set_Character_Neutral_List(cl_Iso_Data.Get_Character_Neutral_List());
-        Set_Character_Bad_List(cl_Iso_Data.Get_Character_Bad_List());
+        Set_UI_Player_List(cl_Iso_Data.GetCharacter_Player_List());
+        Set_Character_Good_List(cl_Iso_Data.GetCharacter_Good_List());
+        Set_Character_Neutral_List(cl_Iso_Data.GetCharacter_Neutral_List());
+        Set_Character_Bad_List(cl_Iso_Data.GetCharacter_Bad_List());
     }
 
     /// <summary>
@@ -119,7 +119,7 @@ public class IsoDataWorld
     /// <param name="v3_Size"></param>
     /// <param name="l3_World"></param>
     /// <param name="l_Spawm"></param>
-    public void Set_Data_Exist(string s_World_Name, List<List<List<GameObject>>> l3_World)
+    public void Set_DataIsExist(string s_World_Name, List<List<List<GameObject>>> l3_World)
     {
         Set_Data_New();
 
@@ -135,34 +135,34 @@ public class IsoDataWorld
                 {
                     if (l3_World[h][x][y] != null)
                     {
-                        if (l3_World[h][x][y].GetComponent<IsoBlock>().Get_Block_Check())
+                        if (l3_World[h][x][y].GetComponent<IsoBlock>().GetBlock_Check())
                         {
                             //Block
                             Set_Block_Add(l3_World[h][x][y]);
                         }
                         else
-                        if (l3_World[h][x][y].GetComponent<IsoBlock>().Get_Character_Check())
+                        if (l3_World[h][x][y].GetComponent<IsoBlock>().GetCharacter_Check())
                         {
                             //Character Player
-                            if (l3_World[h][x][y].GetComponent<IsoBlock>().Get_Character_Check_Player())
+                            if (l3_World[h][x][y].GetComponent<IsoBlock>().GetCharacter_Check_Player())
                             {
                                 Set_UI_Player_Add(l3_World[h][x][y]);
                             }
                             else
                             //Character Good
-                            if (l3_World[h][x][y].GetComponent<IsoBlock>().Get_Character_Check_Good())
+                            if (l3_World[h][x][y].GetComponent<IsoBlock>().GetCharacter_Check_Good())
                             {
                                 Set_Character_Good_Add(l3_World[h][x][y]);
                             }
                             else
                             //Character Neutral
-                            if (l3_World[h][x][y].GetComponent<IsoBlock>().Get_Character_Check_Neutral())
+                            if (l3_World[h][x][y].GetComponent<IsoBlock>().GetCharacter_Check_Neutral())
                             {
                                 Set_Character_Neutral_Add(l3_World[h][x][y]);
                             }
                             else
                             //Character Bad
-                            if (l3_World[h][x][y].GetComponent<IsoBlock>().Get_Character_Check_Bad())
+                            if (l3_World[h][x][y].GetComponent<IsoBlock>().GetCharacter_Check_Bad())
                             {
                                 Set_Character_Bad_Add(l3_World[h][x][y]);
                             }
@@ -173,7 +173,7 @@ public class IsoDataWorld
                             //Move
                             if (l3_World[h][x][y].GetComponent<IsoBlockMove>() != null)
                             {
-                                if (l3_World[h][x][y].GetComponent<IsoBlockMove>().Get_Count() != 0)
+                                if (l3_World[h][x][y].GetComponent<IsoBlockMove>().GetCount() != 0)
                                 {
                                     Set_Block_Move_Add(l3_World[h][x][y]);
                                 }
@@ -182,7 +182,7 @@ public class IsoDataWorld
                             //Join-To
                             if (l3_World[h][x][y].GetComponent<IsoBlockJoinTo>() != null)
                             {
-                                if (l3_World[h][x][y].GetComponent<IsoBlockJoinTo>().Get_JoinTo_isExist() == true)
+                                if (l3_World[h][x][y].GetComponent<IsoBlockJoinTo>().GetJoinToIsExist() == true)
                                 {
                                     Set_Block_JoinTo_Add(l3_World[h][x][y]);
                                 }
@@ -191,7 +191,7 @@ public class IsoDataWorld
                             //Switch-To
                             if (l3_World[h][x][y].GetComponent<IsoBlockSwitchTo>() != null)
                             {
-                                if (l3_World[h][x][y].GetComponent<IsoBlockSwitchTo>().Get_Count() != 0)
+                                if (l3_World[h][x][y].GetComponent<IsoBlockSwitchTo>().GetCount() != 0)
                                 {
                                     Set_Block_SwitchTo_Add(l3_World[h][x][y]);
                                 }
@@ -200,7 +200,7 @@ public class IsoDataWorld
                             //Message
                             if (l3_World[h][x][y].GetComponent<IsoBlockMessage>() != null)
                             {
-                                if (l3_World[h][x][y].GetComponent<IsoBlockMessage>().Get_Count() != 0)
+                                if (l3_World[h][x][y].GetComponent<IsoBlockMessage>().GetCount() != 0)
                                 {
                                     Set_Block_Message_Add(l3_World[h][x][y]);
                                 }
@@ -209,7 +209,7 @@ public class IsoDataWorld
                             //Teleport
                             if (l3_World[h][x][y].GetComponent<IsoBlockTeleport>() != null)
                             {
-                                if (l3_World[h][x][y].GetComponent<IsoBlockTeleport>().Get_isExist())
+                                if (l3_World[h][x][y].GetComponent<IsoBlockTeleport>().GetisExist())
                                 {
                                     Set_Block_Teleport_Add(l3_World[h][x][y]);
                                 }
@@ -234,7 +234,7 @@ public class IsoDataWorld
 
         Set_World_Size(v3_Size);
 
-        string s_Block_Name = Class_String.Get_String_Replace_Clone(cl_World_Renderer.Get_Combine_First().name);
+        string s_Block_Name = ClassString.GetStringReplaceClone(cl_World_Renderer.GetCombine_First().name);
 
         for (int x = 0; x < v3_Size.x; x++)
         {
@@ -280,7 +280,7 @@ public class IsoDataWorld
         this.s_World_Name = s_World_Name;
     }
 
-    public string Get_World_Name()
+    public string GetWorld_Name()
     {
         return s_World_Name;
     }
@@ -301,7 +301,7 @@ public class IsoDataWorld
         v3_World_Size.z += i_World_Size_High_Add;
     }
 
-    public Vector3Int Get_World_Size()
+    public Vector3Int GetWorld_Size()
     {
         return v3_World_Size;
     }
@@ -337,21 +337,21 @@ public class IsoDataWorld
 
     #region Block Primary Data Get 
 
-    public IsoDataBlock Get_Block(int i_Block_Index)
+    public IsoDataBlock GetBlock(int i_Block_Index)
     {
-        if (i_Block_Index < 0 || i_Block_Index >= Get_Block_Count())
+        if (i_Block_Index < 0 || i_Block_Index >= GetBlockCount())
         {
             return null;
         }
         return l_Block[i_Block_Index];
     }
 
-    public int Get_Block_Count()
+    public int GetBlockCount()
     {
         return l_Block.Count;
     }
 
-    public List<IsoDataBlock> Get_Block_List()
+    public List<IsoDataBlock> GetBlock_List()
     {
         return l_Block;
     }
@@ -376,7 +376,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block.Count; i_Index++)
             {
-                if (l_Block[i_Index].Get_Pos().x == v3_Pos_Remove.x)
+                if (l_Block[i_Index].GetPos().x == v3_Pos_Remove.x)
                 {
                     l_Block.RemoveAt(i_Index);
                     break;
@@ -387,7 +387,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block.Count; i++)
         {
-            if (l_Block[i].Get_Pos().x > v3_Pos_Remove.x)
+            if (l_Block[i].GetPos().x > v3_Pos_Remove.x)
             {
                 l_Block[i].Set_Pos_Add(-1, 0, 0);
             }
@@ -399,7 +399,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_Move.Count; i_Index++)
             {
-                if (l_Block_Move[i_Index].Get_Block().Get_Pos().x == v3_Pos_Remove.x)
+                if (l_Block_Move[i_Index].GetBlock().GetPos().x == v3_Pos_Remove.x)
                 {
                     l_Block_Move.RemoveAt(i_Index);
                     break;
@@ -410,9 +410,9 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_Move.Count; i++)
         {
-            if (l_Block_Move[i].Get_Block().Get_Pos().x > v3_Pos_Remove.x)
+            if (l_Block_Move[i].GetBlock().GetPos().x > v3_Pos_Remove.x)
             {
-                l_Block_Move[i].Get_Block().Set_Pos_Add(-1, 0, 0);
+                l_Block_Move[i].GetBlock().Set_Pos_Add(-1, 0, 0);
             }
         }
 
@@ -422,7 +422,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_JoinTo.Count; i_Index++)
             {
-                if (l_Block_JoinTo[i_Index].Get_Block().Get_Pos().x == v3_Pos_Remove.x)
+                if (l_Block_JoinTo[i_Index].GetBlock().GetPos().x == v3_Pos_Remove.x)
                 {
                     l_Block_JoinTo.RemoveAt(i_Index);
                     break;
@@ -433,12 +433,12 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_JoinTo.Count; i++)
         {
-            if (l_Block_JoinTo[i].Get_Block().Get_Pos().x > v3_Pos_Remove.x)
+            if (l_Block_JoinTo[i].GetBlock().GetPos().x > v3_Pos_Remove.x)
             {
-                l_Block_JoinTo[i].Get_Block().Set_Pos_Add(-1, 0, 0);
+                l_Block_JoinTo[i].GetBlock().Set_Pos_Add(-1, 0, 0);
             }
 
-            if (l_Block_JoinTo[i].Get_JoinTo_Pos().x > v3_Pos_Remove.x)
+            if (l_Block_JoinTo[i].GetJoinTo_Pos().x > v3_Pos_Remove.x)
             {
                 l_Block_JoinTo[i].Set_Pos_JoinTo_Add(-1, 0, 0);
             }
@@ -450,7 +450,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_SwitchTo.Count; i_Index++)
             {
-                if (l_Block_SwitchTo[i_Index].Get_Block().Get_Pos().x == v3_Pos_Remove.x)
+                if (l_Block_SwitchTo[i_Index].GetBlock().GetPos().x == v3_Pos_Remove.x)
                 {
                     l_Block_SwitchTo.RemoveAt(i_Index);
                     break;
@@ -461,14 +461,14 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_SwitchTo.Count; i++)
         {
-            if (l_Block_SwitchTo[i].Get_Block().Get_Pos().x > v3_Pos_Remove.x)
+            if (l_Block_SwitchTo[i].GetBlock().GetPos().x > v3_Pos_Remove.x)
             {
-                l_Block_SwitchTo[i].Get_Block().Set_Pos_Add(-1, 0, 0);
+                l_Block_SwitchTo[i].GetBlock().Set_Pos_Add(-1, 0, 0);
             }
 
-            for (int j = 0; j < l_Block_SwitchTo[i].Get_List().Count; j++)
+            for (int j = 0; j < l_Block_SwitchTo[i].GetList().Count; j++)
             {
-                if (l_Block_SwitchTo[i].Get_List(j).x > v3_Pos_Remove.x)
+                if (l_Block_SwitchTo[i].GetList(j).x > v3_Pos_Remove.x)
                 {
                     l_Block_SwitchTo[i].Set_Add(j, -1, 0, 0);
                 }
@@ -481,7 +481,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_Message.Count; i_Index++)
             {
-                if (l_Block_Message[i_Index].Get_Block().Get_Pos().x == v3_Pos_Remove.x)
+                if (l_Block_Message[i_Index].GetBlock().GetPos().x == v3_Pos_Remove.x)
                 {
                     l_Block_Message.RemoveAt(i_Index);
                     break;
@@ -492,9 +492,9 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_Message.Count; i++)
         {
-            if (l_Block_Message[i].Get_Block().Get_Pos().x > v3_Pos_Remove.x)
+            if (l_Block_Message[i].GetBlock().GetPos().x > v3_Pos_Remove.x)
             {
-                l_Block_Message[i].Get_Block().Set_Pos_Add(-1, 0, 0);
+                l_Block_Message[i].GetBlock().Set_Pos_Add(-1, 0, 0);
             }
         }
 
@@ -504,7 +504,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_Teleport.Count; i_Index++)
             {
-                if (l_Block_Teleport[i_Index].Get_Block().Get_Pos().x == v3_Pos_Remove.x)
+                if (l_Block_Teleport[i_Index].GetBlock().GetPos().x == v3_Pos_Remove.x)
                 {
                     l_Block_Teleport.RemoveAt(i_Index);
                     break;
@@ -515,9 +515,9 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_Teleport.Count; i++)
         {
-            if (l_Block_Teleport[i].Get_Block().Get_Pos().x > v3_Pos_Remove.x)
+            if (l_Block_Teleport[i].GetBlock().GetPos().x > v3_Pos_Remove.x)
             {
-                l_Block_Teleport[i].Get_Block().Set_Pos_Add(-1, 0, 0);
+                l_Block_Teleport[i].GetBlock().Set_Pos_Add(-1, 0, 0);
             }
         }
 
@@ -527,7 +527,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Player.Count; i_Index++)
             {
-                if (l_Character_Player[i_Index].Get_Pos().x == v3_Pos_Remove.x)
+                if (l_Character_Player[i_Index].GetPos().x == v3_Pos_Remove.x)
                 {
                     l_Character_Player.RemoveAt(i_Index);
                     break;
@@ -538,7 +538,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Player.Count; i++)
         {
-            if (l_Character_Player[i].Get_Pos().x > v3_Pos_Remove.x)
+            if (l_Character_Player[i].GetPos().x > v3_Pos_Remove.x)
             {
                 l_Character_Player[i].Set_Pos_Add(-1, 0, 0);
             }
@@ -550,7 +550,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Good.Count; i_Index++)
             {
-                if (l_Character_Good[i_Index].Get_Pos().x == v3_Pos_Remove.x)
+                if (l_Character_Good[i_Index].GetPos().x == v3_Pos_Remove.x)
                 {
                     l_Character_Good.RemoveAt(i_Index);
                     break;
@@ -561,7 +561,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Good.Count; i++)
         {
-            if (l_Character_Good[i].Get_Pos().x > v3_Pos_Remove.x)
+            if (l_Character_Good[i].GetPos().x > v3_Pos_Remove.x)
             {
                 l_Character_Good[i].Set_Pos_Add(-1, 0, 0);
             }
@@ -573,7 +573,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Neutral.Count; i_Index++)
             {
-                if (l_Character_Neutral[i_Index].Get_Pos().x == v3_Pos_Remove.x)
+                if (l_Character_Neutral[i_Index].GetPos().x == v3_Pos_Remove.x)
                 {
                     l_Character_Neutral.RemoveAt(i_Index);
                     break;
@@ -584,7 +584,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Neutral.Count; i++)
         {
-            if (l_Character_Neutral[i].Get_Pos().x > v3_Pos_Remove.x)
+            if (l_Character_Neutral[i].GetPos().x > v3_Pos_Remove.x)
             {
                 l_Character_Neutral[i].Set_Pos_Add(-1, 0, 0);
             }
@@ -596,7 +596,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Bad.Count; i_Index++)
             {
-                if (l_Character_Bad[i_Index].Get_Pos().x == v3_Pos_Remove.x)
+                if (l_Character_Bad[i_Index].GetPos().x == v3_Pos_Remove.x)
                 {
                     l_Character_Bad.RemoveAt(i_Index);
                     break;
@@ -607,7 +607,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Bad.Count; i++)
         {
-            if (l_Character_Bad[i].Get_Pos().x > v3_Pos_Remove.x)
+            if (l_Character_Bad[i].GetPos().x > v3_Pos_Remove.x)
             {
                 l_Character_Bad[i].Set_Pos_Add(-1, 0, 0);
             }
@@ -630,7 +630,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block.Count; i_Index++)
             {
-                if (l_Block[i_Index].Get_Pos().y == v3_Pos_Remove.y)
+                if (l_Block[i_Index].GetPos().y == v3_Pos_Remove.y)
                 {
                     l_Block.RemoveAt(i_Index);
                     break;
@@ -641,7 +641,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block.Count; i++)
         {
-            if (l_Block[i].Get_Pos().y > v3_Pos_Remove.y)
+            if (l_Block[i].GetPos().y > v3_Pos_Remove.y)
             {
                 l_Block[i].Set_Pos_Add(0, -1, 0);
             }
@@ -653,7 +653,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_Move.Count; i_Index++)
             {
-                if (l_Block_Move[i_Index].Get_Block().Get_Pos().y == v3_Pos_Remove.y)
+                if (l_Block_Move[i_Index].GetBlock().GetPos().y == v3_Pos_Remove.y)
                 {
                     l_Block_Move.RemoveAt(i_Index);
                     break;
@@ -664,9 +664,9 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_Move.Count; i++)
         {
-            if (l_Block_Move[i].Get_Block().Get_Pos().y > v3_Pos_Remove.y)
+            if (l_Block_Move[i].GetBlock().GetPos().y > v3_Pos_Remove.y)
             {
-                l_Block_Move[i].Get_Block().Set_Pos_Add(0, -1, 0);
+                l_Block_Move[i].GetBlock().Set_Pos_Add(0, -1, 0);
             }
         }
 
@@ -676,7 +676,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_JoinTo.Count; i_Index++)
             {
-                if (l_Block_JoinTo[i_Index].Get_Block().Get_Pos().y == v3_Pos_Remove.y)
+                if (l_Block_JoinTo[i_Index].GetBlock().GetPos().y == v3_Pos_Remove.y)
                 {
                     l_Block_JoinTo.RemoveAt(i_Index);
                     break;
@@ -687,12 +687,12 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_JoinTo.Count; i++)
         {
-            if (l_Block_JoinTo[i].Get_Block().Get_Pos().y > v3_Pos_Remove.y)
+            if (l_Block_JoinTo[i].GetBlock().GetPos().y > v3_Pos_Remove.y)
             {
-                l_Block_JoinTo[i].Get_Block().Set_Pos_Add(0, -1, 0);
+                l_Block_JoinTo[i].GetBlock().Set_Pos_Add(0, -1, 0);
             }
 
-            if (l_Block_JoinTo[i].Get_JoinTo_Pos().y > v3_Pos_Remove.y)
+            if (l_Block_JoinTo[i].GetJoinTo_Pos().y > v3_Pos_Remove.y)
             {
                 l_Block_JoinTo[i].Set_Pos_JoinTo_Add(0, -1, 0);
             }
@@ -704,7 +704,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_SwitchTo.Count; i_Index++)
             {
-                if (l_Block_SwitchTo[i_Index].Get_Block().Get_Pos().y == v3_Pos_Remove.y)
+                if (l_Block_SwitchTo[i_Index].GetBlock().GetPos().y == v3_Pos_Remove.y)
                 {
                     l_Block_SwitchTo.RemoveAt(i_Index);
                     break;
@@ -715,14 +715,14 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_SwitchTo.Count; i++)
         {
-            if (l_Block_SwitchTo[i].Get_Block().Get_Pos().y > v3_Pos_Remove.y)
+            if (l_Block_SwitchTo[i].GetBlock().GetPos().y > v3_Pos_Remove.y)
             {
-                l_Block_SwitchTo[i].Get_Block().Set_Pos_Add(0, -1, 0);
+                l_Block_SwitchTo[i].GetBlock().Set_Pos_Add(0, -1, 0);
             }
 
-            for (int j = 0; j < l_Block_SwitchTo[i].Get_List().Count; j++)
+            for (int j = 0; j < l_Block_SwitchTo[i].GetList().Count; j++)
             {
-                if (l_Block_SwitchTo[i].Get_List(j).x > v3_Pos_Remove.x)
+                if (l_Block_SwitchTo[i].GetList(j).x > v3_Pos_Remove.x)
                 {
                     l_Block_SwitchTo[i].Set_Add(j, 0, -1, 0);
                 }
@@ -736,7 +736,7 @@ public class IsoDataWorld
         {
             for (i_Remove_Message = 0; i_Remove_Message < l_Block_Message.Count; i_Remove_Message++)
             {
-                if (l_Block_Message[i_Remove_Message].Get_Block().Get_Pos().y == v3_Pos_Remove.y)
+                if (l_Block_Message[i_Remove_Message].GetBlock().GetPos().y == v3_Pos_Remove.y)
                 {
                     l_Block_Message.RemoveAt(i_Remove_Message);
                     break;
@@ -747,9 +747,9 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_Message.Count; i++)
         {
-            if (l_Block_Message[i].Get_Block().Get_Pos().y > v3_Pos_Remove.y)
+            if (l_Block_Message[i].GetBlock().GetPos().y > v3_Pos_Remove.y)
             {
-                l_Block_Message[i].Get_Block().Set_Pos_Add(0, -1, 0);
+                l_Block_Message[i].GetBlock().Set_Pos_Add(0, -1, 0);
             }
         }
 
@@ -759,7 +759,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_Teleport.Count; i_Index++)
             {
-                if (l_Block_Teleport[i_Index].Get_Block().Get_Pos().y == v3_Pos_Remove.y)
+                if (l_Block_Teleport[i_Index].GetBlock().GetPos().y == v3_Pos_Remove.y)
                 {
                     l_Block_Teleport.RemoveAt(i_Index);
                     break;
@@ -770,9 +770,9 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_Teleport.Count; i++)
         {
-            if (l_Block_Teleport[i].Get_Block().Get_Pos().y > v3_Pos_Remove.y)
+            if (l_Block_Teleport[i].GetBlock().GetPos().y > v3_Pos_Remove.y)
             {
-                l_Block_Teleport[i].Get_Block().Set_Pos_Add(0, -1, 0);
+                l_Block_Teleport[i].GetBlock().Set_Pos_Add(0, -1, 0);
             }
         }
 
@@ -782,7 +782,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Player.Count; i_Index++)
             {
-                if (l_Character_Player[i_Index].Get_Pos().y == v3_Pos_Remove.y)
+                if (l_Character_Player[i_Index].GetPos().y == v3_Pos_Remove.y)
                 {
                     l_Character_Player.RemoveAt(i_Index);
                     break;
@@ -793,7 +793,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Player.Count; i++)
         {
-            if (l_Character_Player[i].Get_Pos().y > v3_Pos_Remove.y)
+            if (l_Character_Player[i].GetPos().y > v3_Pos_Remove.y)
             {
                 l_Character_Player[i].Set_Pos_Add(0, -1, 0);
             }
@@ -805,7 +805,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Good.Count; i_Index++)
             {
-                if (l_Character_Good[i_Index].Get_Pos().y == v3_Pos_Remove.y)
+                if (l_Character_Good[i_Index].GetPos().y == v3_Pos_Remove.y)
                 {
                     l_Character_Good.RemoveAt(i_Index);
                     break;
@@ -816,7 +816,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Good.Count; i++)
         {
-            if (l_Character_Good[i].Get_Pos().y > v3_Pos_Remove.y)
+            if (l_Character_Good[i].GetPos().y > v3_Pos_Remove.y)
             {
                 l_Character_Good[i].Set_Pos_Add(0, -1, 0);
             }
@@ -828,7 +828,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Neutral.Count; i_Index++)
             {
-                if (l_Character_Neutral[i_Index].Get_Pos().y == v3_Pos_Remove.y)
+                if (l_Character_Neutral[i_Index].GetPos().y == v3_Pos_Remove.y)
                 {
                     l_Character_Neutral.RemoveAt(i_Index);
                     break;
@@ -839,7 +839,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Neutral.Count; i++)
         {
-            if (l_Character_Neutral[i].Get_Pos().y > v3_Pos_Remove.y)
+            if (l_Character_Neutral[i].GetPos().y > v3_Pos_Remove.y)
             {
                 l_Character_Neutral[i].Set_Pos_Add(0, -1, 0);
             }
@@ -851,7 +851,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Bad.Count; i_Index++)
             {
-                if (l_Character_Bad[i_Index].Get_Pos().y == v3_Pos_Remove.y)
+                if (l_Character_Bad[i_Index].GetPos().y == v3_Pos_Remove.y)
                 {
                     l_Character_Bad.RemoveAt(i_Index);
                     break;
@@ -862,7 +862,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Bad.Count; i++)
         {
-            if (l_Character_Bad[i].Get_Pos().y > v3_Pos_Remove.y)
+            if (l_Character_Bad[i].GetPos().y > v3_Pos_Remove.y)
             {
                 l_Character_Bad[i].Set_Pos_Add(0, -1, 0);
             }
@@ -885,7 +885,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block.Count; i_Index++)
             {
-                if (l_Block[i_Index].Get_Pos().z == v3_Pos_Remove.z)
+                if (l_Block[i_Index].GetPos().z == v3_Pos_Remove.z)
                 {
                     l_Block.RemoveAt(i_Index);
                     break;
@@ -896,7 +896,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block.Count; i++)
         {
-            if (l_Block[i].Get_Pos().z > v3_Pos_Remove.z)
+            if (l_Block[i].GetPos().z > v3_Pos_Remove.z)
             {
                 l_Block[i].Set_Pos_Add(0, 0, -1);
             }
@@ -908,7 +908,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_Move.Count; i_Index++)
             {
-                if (l_Block_Move[i_Index].Get_Block().Get_Pos().z == v3_Pos_Remove.z)
+                if (l_Block_Move[i_Index].GetBlock().GetPos().z == v3_Pos_Remove.z)
                 {
                     l_Block_Move.RemoveAt(i_Index);
                     break;
@@ -919,9 +919,9 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block.Count; i++)
         {
-            if (l_Block_Move[i].Get_Block().Get_Pos().z > v3_Pos_Remove.z)
+            if (l_Block_Move[i].GetBlock().GetPos().z > v3_Pos_Remove.z)
             {
-                l_Block_Move[i].Get_Block().Set_Pos_Add(0, 0, -1);
+                l_Block_Move[i].GetBlock().Set_Pos_Add(0, 0, -1);
             }
         }
 
@@ -931,7 +931,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_JoinTo.Count; i_Index++)
             {
-                if (l_Block_JoinTo[i_Index].Get_Block().Get_Pos().z == v3_Pos_Remove.z)
+                if (l_Block_JoinTo[i_Index].GetBlock().GetPos().z == v3_Pos_Remove.z)
                 {
                     l_Block_JoinTo.RemoveAt(i_Index);
                     break;
@@ -942,12 +942,12 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block.Count; i++)
         {
-            if (l_Block_JoinTo[i].Get_Block().Get_Pos().z > v3_Pos_Remove.z)
+            if (l_Block_JoinTo[i].GetBlock().GetPos().z > v3_Pos_Remove.z)
             {
-                l_Block_JoinTo[i].Get_Block().Set_Pos_Add(0, 0, -1);
+                l_Block_JoinTo[i].GetBlock().Set_Pos_Add(0, 0, -1);
             }
 
-            if (l_Block_JoinTo[i].Get_JoinTo_Pos().z > v3_Pos_Remove.z)
+            if (l_Block_JoinTo[i].GetJoinTo_Pos().z > v3_Pos_Remove.z)
             {
                 l_Block_JoinTo[i].Set_Pos_JoinTo_Add(0, 0, -1);
             }
@@ -959,7 +959,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_SwitchTo.Count; i_Index++)
             {
-                if (l_Block_SwitchTo[i_Index].Get_Block().Get_Pos().z == v3_Pos_Remove.z)
+                if (l_Block_SwitchTo[i_Index].GetBlock().GetPos().z == v3_Pos_Remove.z)
                 {
                     l_Block_SwitchTo.RemoveAt(i_Index);
                     break;
@@ -970,14 +970,14 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block.Count; i++)
         {
-            if (l_Block_SwitchTo[i].Get_Block().Get_Pos().z > v3_Pos_Remove.z)
+            if (l_Block_SwitchTo[i].GetBlock().GetPos().z > v3_Pos_Remove.z)
             {
-                l_Block_SwitchTo[i].Get_Block().Set_Pos_Add(0, 0, -1);
+                l_Block_SwitchTo[i].GetBlock().Set_Pos_Add(0, 0, -1);
             }
 
-            for (int j = 0; j < l_Block_SwitchTo[i].Get_List().Count; j++)
+            for (int j = 0; j < l_Block_SwitchTo[i].GetList().Count; j++)
             {
-                if (l_Block_SwitchTo[i].Get_List(j).x > v3_Pos_Remove.x)
+                if (l_Block_SwitchTo[i].GetList(j).x > v3_Pos_Remove.x)
                 {
                     l_Block_SwitchTo[i].Set_Add(j, 0, 0, -1);
                 }
@@ -990,7 +990,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_Message.Count; i_Index++)
             {
-                if (l_Block_Message[i_Index].Get_Block().Get_Pos().z == v3_Pos_Remove.z)
+                if (l_Block_Message[i_Index].GetBlock().GetPos().z == v3_Pos_Remove.z)
                 {
                     l_Block_Message.RemoveAt(i_Index);
                     break;
@@ -1001,9 +1001,9 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block.Count; i++)
         {
-            if (l_Block_Message[i].Get_Block().Get_Pos().z > v3_Pos_Remove.z)
+            if (l_Block_Message[i].GetBlock().GetPos().z > v3_Pos_Remove.z)
             {
-                l_Block_Message[i].Get_Block().Set_Pos_Add(0, 0, -1);
+                l_Block_Message[i].GetBlock().Set_Pos_Add(0, 0, -1);
             }
         }
 
@@ -1013,7 +1013,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Block_Teleport.Count; i_Index++)
             {
-                if (l_Block_Teleport[i_Index].Get_Block().Get_Pos().z == v3_Pos_Remove.z)
+                if (l_Block_Teleport[i_Index].GetBlock().GetPos().z == v3_Pos_Remove.z)
                 {
                     l_Block_Teleport.RemoveAt(i_Index);
                     break;
@@ -1024,9 +1024,9 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Block_Teleport.Count; i++)
         {
-            if (l_Block_Teleport[i].Get_Block().Get_Pos().z > v3_Pos_Remove.z)
+            if (l_Block_Teleport[i].GetBlock().GetPos().z > v3_Pos_Remove.z)
             {
-                l_Block_Teleport[i].Get_Block().Set_Pos_Add(0, 0, -1);
+                l_Block_Teleport[i].GetBlock().Set_Pos_Add(0, 0, -1);
             }
         }
 
@@ -1036,7 +1036,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Player.Count; i_Index++)
             {
-                if (l_Character_Player[i_Index].Get_Pos().z == v3_Pos_Remove.z)
+                if (l_Character_Player[i_Index].GetPos().z == v3_Pos_Remove.z)
                 {
                     l_Character_Player.RemoveAt(i_Index);
                     break;
@@ -1047,7 +1047,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Player.Count; i++)
         {
-            if (l_Character_Player[i].Get_Pos().z > v3_Pos_Remove.z)
+            if (l_Character_Player[i].GetPos().z > v3_Pos_Remove.z)
             {
                 l_Character_Player[i].Set_Pos_Add(0, 0, -1);
             }
@@ -1059,7 +1059,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Good.Count; i_Index++)
             {
-                if (l_Character_Good[i_Index].Get_Pos().z == v3_Pos_Remove.z)
+                if (l_Character_Good[i_Index].GetPos().z == v3_Pos_Remove.z)
                 {
                     l_Character_Good.RemoveAt(i_Index);
                     break;
@@ -1070,7 +1070,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Good.Count; i++)
         {
-            if (l_Character_Good[i].Get_Pos().z > v3_Pos_Remove.z)
+            if (l_Character_Good[i].GetPos().z > v3_Pos_Remove.z)
             {
                 l_Character_Good[i].Set_Pos_Add(0, 0, -1);
             }
@@ -1082,7 +1082,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Neutral.Count; i_Index++)
             {
-                if (l_Character_Neutral[i_Index].Get_Pos().z == v3_Pos_Remove.z)
+                if (l_Character_Neutral[i_Index].GetPos().z == v3_Pos_Remove.z)
                 {
                     l_Character_Neutral.RemoveAt(i_Index);
                     break;
@@ -1093,7 +1093,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Neutral.Count; i++)
         {
-            if (l_Character_Neutral[i].Get_Pos().z > v3_Pos_Remove.z)
+            if (l_Character_Neutral[i].GetPos().z > v3_Pos_Remove.z)
             {
                 l_Character_Neutral[i].Set_Pos_Add(0, 0, -1);
             }
@@ -1105,7 +1105,7 @@ public class IsoDataWorld
         {
             for (i_Index = 0; i_Index < l_Character_Bad.Count; i_Index++)
             {
-                if (l_Character_Bad[i_Index].Get_Pos().z == v3_Pos_Remove.z)
+                if (l_Character_Bad[i_Index].GetPos().z == v3_Pos_Remove.z)
                 {
                     l_Character_Bad.RemoveAt(i_Index);
                     break;
@@ -1116,7 +1116,7 @@ public class IsoDataWorld
 
         for (int i = 0; i < l_Character_Bad.Count; i++)
         {
-            if (l_Character_Bad[i].Get_Pos().z > v3_Pos_Remove.z)
+            if (l_Character_Bad[i].GetPos().z > v3_Pos_Remove.z)
             {
                 l_Character_Bad[i].Set_Pos_Add(0, 0, -1);
             }
@@ -1138,7 +1138,7 @@ public class IsoDataWorld
         //Block Block Data
         for (int i = 0; i < l_Block.Count; i++)
         {
-            if (l_Block[i].Get_Pos().x >= v3_Pos_Add.x)
+            if (l_Block[i].GetPos().x >= v3_Pos_Add.x)
             {
                 l_Block[i].Set_Pos_Add(1, 0, 0);
             }
@@ -1147,21 +1147,21 @@ public class IsoDataWorld
         //Block Move Data
         for (int i = 0; i < l_Block_Move.Count; i++)
         {
-            if (l_Block_Move[i].Get_Block().Get_Pos().x >= v3_Pos_Add.x)
+            if (l_Block_Move[i].GetBlock().GetPos().x >= v3_Pos_Add.x)
             {
-                l_Block_Move[i].Get_Block().Set_Pos_Add(1, 0, 0);
+                l_Block_Move[i].GetBlock().Set_Pos_Add(1, 0, 0);
             }
         }
 
         //Block Join-To Data
         for (int i = 0; i < l_Block_JoinTo.Count; i++)
         {
-            if (l_Block_JoinTo[i].Get_Block().Get_Pos().x >= v3_Pos_Add.x)
+            if (l_Block_JoinTo[i].GetBlock().GetPos().x >= v3_Pos_Add.x)
             {
-                l_Block_JoinTo[i].Get_Block().Set_Pos_Add(1, 0, 0);
+                l_Block_JoinTo[i].GetBlock().Set_Pos_Add(1, 0, 0);
             }
 
-            if (l_Block_JoinTo[i].Get_JoinTo_Pos().x >= v3_Pos_Add.x)
+            if (l_Block_JoinTo[i].GetJoinTo_Pos().x >= v3_Pos_Add.x)
             {
                 l_Block_JoinTo[i].Set_Pos_JoinTo_Add(1, 0, 0);
             }
@@ -1170,14 +1170,14 @@ public class IsoDataWorld
         //Block Switch-To Data
         for (int i = 0; i < l_Block_SwitchTo.Count; i++)
         {
-            if (l_Block_SwitchTo[i].Get_Block().Get_Pos().x >= v3_Pos_Add.x)
+            if (l_Block_SwitchTo[i].GetBlock().GetPos().x >= v3_Pos_Add.x)
             {
-                l_Block_SwitchTo[i].Get_Block().Set_Pos_Add(1, 0, 0);
+                l_Block_SwitchTo[i].GetBlock().Set_Pos_Add(1, 0, 0);
             }
 
-            for (int j = 0; j < l_Block_SwitchTo[i].Get_List().Count; j++)
+            for (int j = 0; j < l_Block_SwitchTo[i].GetList().Count; j++)
             {
-                if (l_Block_SwitchTo[i].Get_List(j).x > v3_Pos_Add.x)
+                if (l_Block_SwitchTo[i].GetList(j).x > v3_Pos_Add.x)
                 {
                     l_Block_SwitchTo[i].Set_Add(j, 1, 0, 0);
                 }
@@ -1187,18 +1187,18 @@ public class IsoDataWorld
         //Block Message Data
         for (int i = 0; i < l_Block_Message.Count; i++)
         {
-            if (l_Block_Message[i].Get_Block().Get_Pos().x >= v3_Pos_Add.x)
+            if (l_Block_Message[i].GetBlock().GetPos().x >= v3_Pos_Add.x)
             {
-                l_Block_Message[i].Get_Block().Set_Pos_Add(1, 0, 0);
+                l_Block_Message[i].GetBlock().Set_Pos_Add(1, 0, 0);
             }
         }
 
         //Block Teleport Data
         for (int i = 0; i < l_Block_Teleport.Count; i++)
         {
-            if (l_Block_Teleport[i].Get_Block().Get_Pos().x >= v3_Pos_Add.x)
+            if (l_Block_Teleport[i].GetBlock().GetPos().x >= v3_Pos_Add.x)
             {
-                l_Block_Teleport[i].Get_Block().Set_Pos_Add(1, 0, 0);
+                l_Block_Teleport[i].GetBlock().Set_Pos_Add(1, 0, 0);
 
                 l_Block_Teleport[i].Set_Pos_Add(1, 0, 0);
             }
@@ -1207,7 +1207,7 @@ public class IsoDataWorld
         //Character Player Data
         for (int i = 0; i < l_Character_Player.Count; i++)
         {
-            if (l_Character_Player[i].Get_Pos().x >= v3_Pos_Add.x)
+            if (l_Character_Player[i].GetPos().x >= v3_Pos_Add.x)
             {
                 l_Character_Player[i].Set_Pos_Add(1, 0, 0);
             }
@@ -1216,7 +1216,7 @@ public class IsoDataWorld
         //Character Good Data
         for (int i = 0; i < l_Character_Good.Count; i++)
         {
-            if (l_Character_Good[i].Get_Pos().x >= v3_Pos_Add.x)
+            if (l_Character_Good[i].GetPos().x >= v3_Pos_Add.x)
             {
                 l_Character_Good[i].Set_Pos_Add(1, 0, 0);
             }
@@ -1225,7 +1225,7 @@ public class IsoDataWorld
         //Character Neutral Data
         for (int i = 0; i < l_Character_Neutral.Count; i++)
         {
-            if (l_Character_Neutral[i].Get_Pos().x >= v3_Pos_Add.x)
+            if (l_Character_Neutral[i].GetPos().x >= v3_Pos_Add.x)
             {
                 l_Character_Neutral[i].Set_Pos_Add(1, 0, 0);
             }
@@ -1234,7 +1234,7 @@ public class IsoDataWorld
         //Character Bad Data
         for (int i = 0; i < l_Character_Bad.Count; i++)
         {
-            if (l_Character_Bad[i].Get_Pos().x >= v3_Pos_Add.x)
+            if (l_Character_Bad[i].GetPos().x >= v3_Pos_Add.x)
             {
                 l_Character_Bad[i].Set_Pos_Add(1, 0, 0);
             }
@@ -1252,7 +1252,7 @@ public class IsoDataWorld
         //Block Block Data
         for (int i = 0; i < l_Block.Count; i++)
         {
-            if (l_Block[i].Get_Pos().y >= v3_Pos_Add.y)
+            if (l_Block[i].GetPos().y >= v3_Pos_Add.y)
             {
                 l_Block[i].Set_Pos_Add(0, 1, 0);
             }
@@ -1261,21 +1261,21 @@ public class IsoDataWorld
         //Block Move Data
         for (int i = 0; i < l_Block_Move.Count; i++)
         {
-            if (l_Block_Move[i].Get_Block().Get_Pos().y >= v3_Pos_Add.y)
+            if (l_Block_Move[i].GetBlock().GetPos().y >= v3_Pos_Add.y)
             {
-                l_Block_Move[i].Get_Block().Set_Pos_Add(0, 1, 0);
+                l_Block_Move[i].GetBlock().Set_Pos_Add(0, 1, 0);
             }
         }
 
         //Block Join-To Data
         for (int i = 0; i < l_Block_JoinTo.Count; i++)
         {
-            if (l_Block_JoinTo[i].Get_Block().Get_Pos().y >= v3_Pos_Add.y)
+            if (l_Block_JoinTo[i].GetBlock().GetPos().y >= v3_Pos_Add.y)
             {
-                l_Block_JoinTo[i].Get_Block().Set_Pos_Add(0, 1, 0);
+                l_Block_JoinTo[i].GetBlock().Set_Pos_Add(0, 1, 0);
             }
 
-            if (l_Block_JoinTo[i].Get_JoinTo_Pos().y >= v3_Pos_Add.y)
+            if (l_Block_JoinTo[i].GetJoinTo_Pos().y >= v3_Pos_Add.y)
             {
                 l_Block_JoinTo[i].Set_Pos_JoinTo_Add(0, 1, 0);
             }
@@ -1284,14 +1284,14 @@ public class IsoDataWorld
         //Block Switch-To Data
         for (int i = 0; i < l_Block_SwitchTo.Count; i++)
         {
-            if (l_Block_SwitchTo[i].Get_Block().Get_Pos().y >= v3_Pos_Add.y)
+            if (l_Block_SwitchTo[i].GetBlock().GetPos().y >= v3_Pos_Add.y)
             {
-                l_Block_SwitchTo[i].Get_Block().Set_Pos_Add(0, 1, 0);
+                l_Block_SwitchTo[i].GetBlock().Set_Pos_Add(0, 1, 0);
             }
 
-            for (int j = 0; j < l_Block_SwitchTo[i].Get_List().Count; j++)
+            for (int j = 0; j < l_Block_SwitchTo[i].GetList().Count; j++)
             {
-                if (l_Block_SwitchTo[i].Get_List(j).x > v3_Pos_Add.x)
+                if (l_Block_SwitchTo[i].GetList(j).x > v3_Pos_Add.x)
                 {
                     l_Block_SwitchTo[i].Set_Add(j, 0, 1, 0);
                 }
@@ -1301,18 +1301,18 @@ public class IsoDataWorld
         //Block Message Data
         for (int i = 0; i < l_Block_Message.Count; i++)
         {
-            if (l_Block_Message[i].Get_Block().Get_Pos().y >= v3_Pos_Add.y)
+            if (l_Block_Message[i].GetBlock().GetPos().y >= v3_Pos_Add.y)
             {
-                l_Block_Message[i].Get_Block().Set_Pos_Add(0, 1, 0);
+                l_Block_Message[i].GetBlock().Set_Pos_Add(0, 1, 0);
             }
         }
 
         //Block Teleport Data
         for (int i = 0; i < l_Block_Teleport.Count; i++)
         {
-            if (l_Block_Teleport[i].Get_Block().Get_Pos().y >= v3_Pos_Add.y)
+            if (l_Block_Teleport[i].GetBlock().GetPos().y >= v3_Pos_Add.y)
             {
-                l_Block_Teleport[i].Get_Block().Set_Pos_Add(0, 1, 0);
+                l_Block_Teleport[i].GetBlock().Set_Pos_Add(0, 1, 0);
 
                 l_Block_Teleport[i].Set_Pos_Add(0, 1, 0);
             }
@@ -1321,7 +1321,7 @@ public class IsoDataWorld
         //Character Player Data
         for (int i = 0; i < l_Character_Player.Count; i++)
         {
-            if (l_Character_Player[i].Get_Pos().y >= v3_Pos_Add.y)
+            if (l_Character_Player[i].GetPos().y >= v3_Pos_Add.y)
             {
                 l_Character_Player[i].Set_Pos_Add(0, 1, 0);
             }
@@ -1330,7 +1330,7 @@ public class IsoDataWorld
         //Character Good Data
         for (int i = 0; i < l_Character_Good.Count; i++)
         {
-            if (l_Character_Good[i].Get_Pos().y >= v3_Pos_Add.y)
+            if (l_Character_Good[i].GetPos().y >= v3_Pos_Add.y)
             {
                 l_Character_Good[i].Set_Pos_Add(0, 1, 0);
             }
@@ -1339,7 +1339,7 @@ public class IsoDataWorld
         //Character Neutral Data
         for (int i = 0; i < l_Character_Neutral.Count; i++)
         {
-            if (l_Character_Neutral[i].Get_Pos().y >= v3_Pos_Add.y)
+            if (l_Character_Neutral[i].GetPos().y >= v3_Pos_Add.y)
             {
                 l_Character_Neutral[i].Set_Pos_Add(0, 1, 0);
             }
@@ -1348,7 +1348,7 @@ public class IsoDataWorld
         //Character Bad Data
         for (int i = 0; i < l_Character_Bad.Count; i++)
         {
-            if (l_Character_Bad[i].Get_Pos().y >= v3_Pos_Add.y)
+            if (l_Character_Bad[i].GetPos().y >= v3_Pos_Add.y)
             {
                 l_Character_Bad[i].Set_Pos_Add(0, 1, 0);
             }
@@ -1366,7 +1366,7 @@ public class IsoDataWorld
         //Block Data
         for (int i = 0; i < l_Block.Count; i++)
         {
-            if (l_Block[i].Get_Pos().z >= v3_Pos_Add.z)
+            if (l_Block[i].GetPos().z >= v3_Pos_Add.z)
             {
                 l_Block[i].Set_Pos_Add(0, 0, 1);
             }
@@ -1375,21 +1375,21 @@ public class IsoDataWorld
         //Block Move Data
         for (int i = 0; i < l_Block_Move.Count; i++)
         {
-            if (l_Block_Move[i].Get_Block().Get_Pos().z >= v3_Pos_Add.z)
+            if (l_Block_Move[i].GetBlock().GetPos().z >= v3_Pos_Add.z)
             {
-                l_Block_Move[i].Get_Block().Set_Pos_Add(0, 0, 1);
+                l_Block_Move[i].GetBlock().Set_Pos_Add(0, 0, 1);
             }
         }
 
         //Block Join-To Data
         for (int i = 0; i < l_Block_JoinTo.Count; i++)
         {
-            if (l_Block_JoinTo[i].Get_Block().Get_Pos().z >= v3_Pos_Add.z)
+            if (l_Block_JoinTo[i].GetBlock().GetPos().z >= v3_Pos_Add.z)
             {
-                l_Block_JoinTo[i].Get_Block().Set_Pos_Add(0, 0, 1);
+                l_Block_JoinTo[i].GetBlock().Set_Pos_Add(0, 0, 1);
             }
 
-            if (l_Block_JoinTo[i].Get_JoinTo_Pos().z >= v3_Pos_Add.z)
+            if (l_Block_JoinTo[i].GetJoinTo_Pos().z >= v3_Pos_Add.z)
             {
                 l_Block_JoinTo[i].Set_Pos_JoinTo_Add(0, 0, 1);
             }
@@ -1398,14 +1398,14 @@ public class IsoDataWorld
         //Block Switch-To Data
         for (int i = 0; i < l_Block_SwitchTo.Count; i++)
         {
-            if (l_Block_SwitchTo[i].Get_Block().Get_Pos().z >= v3_Pos_Add.z)
+            if (l_Block_SwitchTo[i].GetBlock().GetPos().z >= v3_Pos_Add.z)
             {
-                l_Block_SwitchTo[i].Get_Block().Set_Pos_Add(0, 0, 1);
+                l_Block_SwitchTo[i].GetBlock().Set_Pos_Add(0, 0, 1);
             }
 
-            for (int j = 0; j < l_Block_SwitchTo[i].Get_List().Count; j++)
+            for (int j = 0; j < l_Block_SwitchTo[i].GetList().Count; j++)
             {
-                if (l_Block_SwitchTo[i].Get_List(j).x > v3_Pos_Add.x)
+                if (l_Block_SwitchTo[i].GetList(j).x > v3_Pos_Add.x)
                 {
                     l_Block_SwitchTo[i].Set_Add(j, 0, 0, 1);
                 }
@@ -1415,18 +1415,18 @@ public class IsoDataWorld
         //Block Message Data
         for (int i = 0; i < l_Block_Message.Count; i++)
         {
-            if (l_Block_Message[i].Get_Block().Get_Pos().z >= v3_Pos_Add.z)
+            if (l_Block_Message[i].GetBlock().GetPos().z >= v3_Pos_Add.z)
             {
-                l_Block_Message[i].Get_Block().Set_Pos_Add(0, 0, 1);
+                l_Block_Message[i].GetBlock().Set_Pos_Add(0, 0, 1);
             }
         }
 
         //Block Teleport Data
         for (int i = 0; i < l_Block_Teleport.Count; i++)
         {
-            if (l_Block_Teleport[i].Get_Block().Get_Pos().z >= v3_Pos_Add.z)
+            if (l_Block_Teleport[i].GetBlock().GetPos().z >= v3_Pos_Add.z)
             {
-                l_Block_Teleport[i].Get_Block().Set_Pos_Add(0, 0, 1);
+                l_Block_Teleport[i].GetBlock().Set_Pos_Add(0, 0, 1);
 
                 l_Block_Teleport[i].Set_Pos_Add(0, 0, 1);
             }
@@ -1435,7 +1435,7 @@ public class IsoDataWorld
         //Character Player Data
         for (int i = 0; i < l_Character_Player.Count; i++)
         {
-            if (l_Character_Player[i].Get_Pos().z >= v3_Pos_Add.z)
+            if (l_Character_Player[i].GetPos().z >= v3_Pos_Add.z)
             {
                 l_Character_Player[i].Set_Pos_Add(0, 0, 1);
             }
@@ -1444,7 +1444,7 @@ public class IsoDataWorld
         //Character Good Data
         for (int i = 0; i < l_Character_Good.Count; i++)
         {
-            if (l_Character_Good[i].Get_Pos().z >= v3_Pos_Add.z)
+            if (l_Character_Good[i].GetPos().z >= v3_Pos_Add.z)
             {
                 l_Character_Good[i].Set_Pos_Add(0, 0, 1);
             }
@@ -1453,7 +1453,7 @@ public class IsoDataWorld
         //Character Neutral Data
         for (int i = 0; i < l_Character_Neutral.Count; i++)
         {
-            if (l_Character_Neutral[i].Get_Pos().z >= v3_Pos_Add.z)
+            if (l_Character_Neutral[i].GetPos().z >= v3_Pos_Add.z)
             {
                 l_Character_Neutral[i].Set_Pos_Add(0, 0, 1);
             }
@@ -1462,7 +1462,7 @@ public class IsoDataWorld
         //Character Bad Data
         for (int i = 0; i < l_Character_Bad.Count; i++)
         {
-            if (l_Character_Bad[i].Get_Pos().z >= v3_Pos_Add.z)
+            if (l_Character_Bad[i].GetPos().z >= v3_Pos_Add.z)
             {
                 l_Character_Bad[i].Set_Pos_Add(0, 0, 1);
             }
@@ -1502,7 +1502,7 @@ public class IsoDataWorld
 
     #region Block Move Get 
 
-    public int Get_Block_Move_Count()
+    public int GetBlock_MoveCount()
     {
         if (l_Block_Move == null)
         {
@@ -1514,9 +1514,9 @@ public class IsoDataWorld
         return l_Block_Move.Count;
     }
 
-    public IsoDataMove Get_Block_Move(int i_Move_Index)
+    public IsoDataMove GetBlock_Move(int i_Move_Index)
     {
-        if (i_Move_Index < 0 || i_Move_Index >= Get_Block_Move_Count())
+        if (i_Move_Index < 0 || i_Move_Index >= GetBlock_MoveCount())
         {
             return null;
         }
@@ -1524,7 +1524,7 @@ public class IsoDataWorld
         return l_Block_Move[i_Move_Index];
     }
 
-    public List<IsoDataMove> Get_Block_Move_List()
+    public List<IsoDataMove> GetBlock_Move_List()
     {
         return l_Block_Move;
     }
@@ -1558,7 +1558,7 @@ public class IsoDataWorld
 
     #region Block Join Data Get 
 
-    public int Get_Block_JoinTo_Count()
+    public int GetBlock_JoinToCount()
     {
         if (l_Block_JoinTo == null)
         {
@@ -1570,9 +1570,9 @@ public class IsoDataWorld
         return l_Block_JoinTo.Count;
     }
 
-    public IsoDataJoinTo Get_Block_JoinTo(int i_JoinTo_Index)
+    public IsoDataJoinTo GetBlock_JoinTo(int i_JoinTo_Index)
     {
-        if (i_JoinTo_Index < 0 || i_JoinTo_Index >= Get_Block_JoinTo_Count())
+        if (i_JoinTo_Index < 0 || i_JoinTo_Index >= GetBlock_JoinToCount())
         {
             return null;
         }
@@ -1580,7 +1580,7 @@ public class IsoDataWorld
         return l_Block_JoinTo[i_JoinTo_Index];
     }
 
-    public List<IsoDataJoinTo> Get_Block_JoinTo_List()
+    public List<IsoDataJoinTo> GetBlock_JoinTo_List()
     {
         return l_Block_JoinTo;
     }
@@ -1614,17 +1614,17 @@ public class IsoDataWorld
 
     #region Block Switch-To Get 
 
-    public int Get_Block_SwitchTo_Count()
+    public int GetBlock_SwitchToCount()
     {
         return l_Block_SwitchTo.Count;
     }
 
-    public IsoDataSwitchTo Get_Block_SwitchTo(int i_SwitchTo_Index)
+    public IsoDataSwitchTo GetBlock_SwitchTo(int i_SwitchTo_Index)
     {
         return l_Block_SwitchTo[i_SwitchTo_Index];
     }
 
-    public List<IsoDataSwitchTo> Get_Block_SwitchTo_List()
+    public List<IsoDataSwitchTo> GetBlock_SwitchTo_List()
     {
         return l_Block_SwitchTo;
     }
@@ -1658,17 +1658,17 @@ public class IsoDataWorld
 
     #region Block Message Get 
 
-    public int Get_Block_Message_Count()
+    public int GetBlock_MessageCount()
     {
         return l_Block_Message.Count;
     }
 
-    public IsoDataMessage Get_Block_Message(int i_Message_Index)
+    public IsoDataMessage GetBlock_Message(int i_Message_Index)
     {
         return l_Block_Message[i_Message_Index];
     }
 
-    public List<IsoDataMessage> Get_Block_Message_List()
+    public List<IsoDataMessage> GetBlock_Message_List()
     {
         return l_Block_Message;
     }
@@ -1702,17 +1702,17 @@ public class IsoDataWorld
 
     #region Block Teleport Get 
 
-    public int Get_Block_Teleport_Count()
+    public int GetBlock_TeleportCount()
     {
         return l_Block_Teleport.Count;
     }
 
-    public IsoDataTeleport Get_Block_Teleport(int i_Teleport_Index)
+    public IsoDataTeleport GetBlock_Teleport(int i_Teleport_Index)
     {
         return l_Block_Teleport[i_Teleport_Index];
     }
 
-    public List<IsoDataTeleport> Get_Block_Teleport_List()
+    public List<IsoDataTeleport> GetBlock_Teleport_List()
     {
         return l_Block_Teleport;
     }
@@ -1752,17 +1752,17 @@ public class IsoDataWorld
 
     #region Character Player Get 
 
-    public int Get_Character_Player_Count()
+    public int GetCharacter_PlayerCount()
     {
         return l_Character_Player.Count;
     }
 
-    public IsoDataBlock Get_Character_Player(int i_Character_Index)
+    public IsoDataBlock GetCharacter_Player(int i_Character_Index)
     {
         return l_Character_Player[i_Character_Index];
     }
 
-    public List<IsoDataBlock> Get_Character_Player_List()
+    public List<IsoDataBlock> GetCharacter_Player_List()
     {
         return l_Character_Player;
     }
@@ -1796,17 +1796,17 @@ public class IsoDataWorld
 
     #region Character Good Get 
 
-    public int Get_Character_Good_Count()
+    public int GetCharacter_GoodCount()
     {
         return l_Character_Good.Count;
     }
 
-    public IsoDataBlock Get_Character_Good(int i_Character_Index)
+    public IsoDataBlock GetCharacter_Good(int i_Character_Index)
     {
         return l_Character_Good[i_Character_Index];
     }
 
-    public List<IsoDataBlock> Get_Character_Good_List()
+    public List<IsoDataBlock> GetCharacter_Good_List()
     {
         return l_Character_Good;
     }
@@ -1840,17 +1840,17 @@ public class IsoDataWorld
 
     #region Character Neutral Get 
 
-    public int Get_Character_Neutral_Count()
+    public int GetCharacter_NeutralCount()
     {
         return l_Character_Neutral.Count;
     }
 
-    public IsoDataBlock Get_Character_Neutral(int i_Character_Index)
+    public IsoDataBlock GetCharacter_Neutral(int i_Character_Index)
     {
         return l_Character_Neutral[i_Character_Index];
     }
 
-    public List<IsoDataBlock> Get_Character_Neutral_List()
+    public List<IsoDataBlock> GetCharacter_Neutral_List()
     {
         return l_Character_Neutral;
     }
@@ -1884,17 +1884,17 @@ public class IsoDataWorld
 
     #region Character Bad Get 
 
-    public int Get_Character_Bad_Count()
+    public int GetCharacter_BadCount()
     {
         return l_Character_Bad.Count;
     }
 
-    public IsoDataBlock Get_Character_Bad(int i_Character_Index)
+    public IsoDataBlock GetCharacter_Bad(int i_Character_Index)
     {
         return l_Character_Bad[i_Character_Index];
     }
 
-    public List<IsoDataBlock> Get_Character_Bad_List()
+    public List<IsoDataBlock> GetCharacter_Bad_List()
     {
         return l_Character_Bad;
     }

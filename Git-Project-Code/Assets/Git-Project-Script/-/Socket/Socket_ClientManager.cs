@@ -52,7 +52,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// </summary>
     [Header("Network On Start")]
     [SerializeField]
-    private bool b_AutoConnect = true;
+    private bool m_AutoConnect = true;
 
     /// <summary>
     /// Host to Connect or Connected
@@ -70,7 +70,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// Auto Read by Thread
     /// </summary>
     [SerializeField]
-    private bool b_AutoRead = true;
+    private bool m_AutoRead = true;
 
     [Header("Socket Message")]
     [SerializeField]
@@ -96,12 +96,12 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// Socket Connect OK?
     /// </summary>
-    private bool b_SocketStart = false;
+    private bool m_SocketStart = false;
 
     /// <summary>
     /// Socket Auto Thread Read?
     /// </summary>
-    private bool b_SocketRead = false;
+    private bool m_SocketRead = false;
 
     private TcpClient tcp_Socket;
     private NetworkStream net_Stream;
@@ -146,12 +146,12 @@ public class Socket_ClientManager : MonoBehaviour
 
         l_DataQueue = new List<string>();
 
-        if (b_AutoConnect)
+        if (m_AutoConnect)
         {
             Set_Socket_Start();
         }
 
-        if (b_AutoRead)
+        if (m_AutoRead)
         {
             Set_SocketThread_Read(true);
         }
@@ -170,10 +170,10 @@ public class Socket_ClientManager : MonoBehaviour
         Set_CloseApplication();
     }
 
-    private void OnApplicationPause(bool b_OnPause)
+    private void OnApplicationPause(bool m_OnPause)
     {
         //Android Event onResume() and onPause()
-        if (b_OnPause)
+        if (m_OnPause)
         {
             Set_CloseApplication();
         }
@@ -205,13 +205,13 @@ public class Socket_ClientManager : MonoBehaviour
     {
         while (true)
         {
-            if (b_SocketStart)
+            if (m_SocketStart)
             //If Socket Started
             {
-                if (b_SocketRead)
+                if (m_SocketRead)
                 //If Socket Read
                 {
-                    string s_DataGet = Get_SocketData_Read();
+                    string s_DataGet = GetSocketData_Read();
                     if (s_DataGet != "")
                     {
                         //Debug.Log("Set_Thread_AutoRead: " + s_DataGet);
@@ -225,19 +225,19 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// Set Socket Read by Thread
     /// </summary>
-    /// <param name="b_SocketRead"></param>
-    public void Set_SocketThread_Read(bool b_SocketRead)
+    /// <param name="m_SocketRead"></param>
+    public void Set_SocketThread_Read(bool m_SocketRead)
     {
-        this.b_SocketRead = b_SocketRead;
+        this.m_SocketRead = m_SocketRead;
     }
 
     /// <summary>
     /// Get Socket Read by Thread
     /// </summary>
     /// <returns></returns>
-    public bool Get_SocketThread_Read()
+    public bool GetSocketThread_Read()
     {
-        return b_SocketRead;
+        return m_SocketRead;
     }
 
     #endregion
@@ -249,7 +249,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// </summary>
     public void Set_Socket_Start()
     {
-        if (!Get_Socket_Start())
+        if (!GetSocket_Start())
         {
             try
             {
@@ -290,7 +290,7 @@ public class Socket_ClientManager : MonoBehaviour
                 s_HostConnect = inp_Host.text;
                 s_PortConnect = inp_Port.text;
 
-                b_SocketStart = true;
+                m_SocketStart = true;
 
                 Debug.LogWarning("Set_Socket_Start: Socket Start!");
 
@@ -316,9 +316,9 @@ public class Socket_ClientManager : MonoBehaviour
     /// Socket is Started?
     /// </summary>
     /// <returns></returns>
-    public bool Get_Socket_Start()
+    public bool GetSocket_Start()
     {
-        return b_SocketStart;
+        return m_SocketStart;
     }
 
     #endregion
@@ -331,7 +331,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// <param name="s_Data"></param>
     public void Set_Socket_Write(string s_Data)
     {
-        if (!Get_Socket_Start())
+        if (!GetSocket_Start())
         {
             return;
         }
@@ -356,16 +356,16 @@ public class Socket_ClientManager : MonoBehaviour
     /// Should use this in 'void FixedUpdate()' or use with 'Thread'
     /// </remarks>
     /// <returns></returns>
-    private string Get_SocketData_Read()
+    private string GetSocketData_Read()
     {
-        if (!Get_Socket_Start())
+        if (!GetSocket_Start())
         {
             return "";
         }
         if (net_Stream.DataAvailable)
         {
             string s_ReadData = st_Reader.ReadLine();
-            Debug.Log("Get_Socket_Read: " + s_ReadData);
+            Debug.Log("GetSocket_Read: " + s_ReadData);
             return s_ReadData;
         }
         return "";
@@ -377,9 +377,9 @@ public class Socket_ClientManager : MonoBehaviour
     /// Get Data from Queue List
     /// </summary>
     /// <returns></returns>
-    public string Get_SocketQueue_Read()
+    public string GetSocketQueue_Read()
     {
-        if (Get_SocketQueue_Count() <= 0)
+        if (GetSocketQueueCount() <= 0)
         {
             return "";
         }
@@ -392,7 +392,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// Get Data Exist from Queue List
     /// </summary>
     /// <returns></returns>
-    public int Get_SocketQueue_Count()
+    public int GetSocketQueueCount()
     {
         return l_DataQueue.Count;
     }
@@ -406,7 +406,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// </summary>
     public void Set_Socket_Close()
     {
-        if (!Get_Socket_Start())
+        if (!GetSocket_Start())
         {
             return;
         }
@@ -415,7 +415,7 @@ public class Socket_ClientManager : MonoBehaviour
         st_Writer.Close();
         st_Reader.Close();
         tcp_Socket.Close();
-        b_SocketStart = false;
+        m_SocketStart = false;
 
         Debug.LogWarning("Set_Socket_Close: Called!");
     }
@@ -426,7 +426,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// Get ID of this Device
     /// </summary>
     /// <returns></returns>
-    public string Get_DeviceID()
+    public string GetDeviceID()
     {
         return SystemInfo.deviceUniqueIdentifier;
     }

@@ -22,12 +22,12 @@ public class IsoEditorUICursonBlockClone : MonoBehaviour
 
         ui_Button_Block_Choice = GetComponent<UIButtonOnClick>();
 
-        ui_Button_Block_Choice.Set_Button_Color_Active(ui_Button_Block_Choice.Get_Button_Color_Normal());
+        ui_Button_Block_Choice.Set_Button_Color_Active(ui_Button_Block_Choice.GetButton_Color_Normal());
     }
 
     public void Button_Block_Choice()
     {
-        cl_Editor_Curson_Block.Button_Index(GetComponent<UIVerticalClone>().Get_Clone_Index());
+        cl_Editor_Curson_Block.Button_Index(GetComponent<UIVerticalClone>().GetClone_Index());
     }
 
     public void Set_Image(SpriteRenderer sp_SpriteRenderer)

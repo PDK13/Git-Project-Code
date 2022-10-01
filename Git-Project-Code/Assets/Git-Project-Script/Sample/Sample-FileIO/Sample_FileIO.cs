@@ -18,9 +18,9 @@ public class Sample_FileIO : MonoBehaviour
     {
         cl_File = new Class_FileIO();
 
-        s_LinkFile = Class_FileIO.Get_Path_Application_Persistent() + Class_FileIO.Get_Path_File("HelloWorld", "", "txt");
+        s_LinkFile = Class_FileIO.GetPath_Application_Persistent() + Class_FileIO.GetPath_File("HelloWorld", "", "txt");
 
-        //s_LinkFile = Class_FileIO.Get_Path_File_WriteToResources("GameSaved", "HelloWorld");
+        //s_LinkFile = Class_FileIO.GetPath_File_WriteToResources("GameSaved", "HelloWorld");
     }
 
     public void Button_Send()
@@ -49,7 +49,7 @@ public class Sample_FileIO : MonoBehaviour
 
             cl_File.Set_Data_Read_Start(s_LinkFile);
 
-            t_Receive.text = cl_File.Get_Data_Read_Auto_String();
+            t_Receive.text = cl_File.GetData_Read_Auto_String();
 
             t_Error.text = "READ OK: \n" + s_LinkFile;
         }

@@ -3,11 +3,11 @@ using UnityEngine;
 [AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody Rotate")]
 public class RigidbodyRotate : MonoBehaviour
 {
-    [SerializeField] [Tooltip("Vector Right - Red Axis")] private bool b_Follow_Right = true;
+    [SerializeField] [Tooltip("Vector Right - Red Axis")] private bool m_Follow_Right = true;
 
-    [SerializeField] [Tooltip("Vector Forward - Blue Axis")] private bool b_Follow_Forward = false;
+    [SerializeField] [Tooltip("Vector Forward - Blue Axis")] private bool m_Follow_Forward = false;
 
-    [SerializeField] [Tooltip("Vector Up - Green Axis")] private bool b_Follow_Up = false;
+    [SerializeField] [Tooltip("Vector Up - Green Axis")] private bool m_Follow_Up = false;
 
     private Rigidbody com_Rigidbody;
 
@@ -34,17 +34,17 @@ public class RigidbodyRotate : MonoBehaviour
     {
         if (com_Rigidbody != null)
         {
-            if (b_Follow_Right)
+            if (m_Follow_Right)
             {
                 transform.right = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
             }
 
-            if (b_Follow_Up)
+            if (m_Follow_Up)
             {
                 transform.up = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
             }
 
-            if (b_Follow_Forward)
+            if (m_Follow_Forward)
             {
                 transform.forward = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
             }
@@ -52,50 +52,50 @@ public class RigidbodyRotate : MonoBehaviour
         else
         if (com_Rigidbody2D != null)
         {
-            if (b_Follow_Right)
+            if (m_Follow_Right)
             {
                 transform.right = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
             }
 
-            if (b_Follow_Up)
+            if (m_Follow_Up)
             {
                 transform.up = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
             }
 
-            if (b_Follow_Forward)
+            if (m_Follow_Forward)
             {
                 transform.forward = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
             }
         }
     }
 
-    public void Set_Follow_Right(bool b_Follow_Right)
+    public void Set_Follow_Right(bool m_Follow_Right)
     {
-        this.b_Follow_Right = b_Follow_Right;
+        this.m_Follow_Right = m_Follow_Right;
     }
 
-    public bool Get_Follow_Right()
+    public bool GetFollow_Right()
     {
-        return b_Follow_Right;
+        return m_Follow_Right;
     }
 
-    public void Set_Follow_Up(bool b_Follow_Up)
+    public void Set_Follow_Up(bool m_Follow_Up)
     {
-        this.b_Follow_Up = b_Follow_Up;
+        this.m_Follow_Up = m_Follow_Up;
     }
 
-    public bool Get_Follow_Up()
+    public bool GetFollow_Up()
     {
-        return b_Follow_Up;
+        return m_Follow_Up;
     }
 
-    public void Set_Follow_Forward(bool b_Follow_Forward)
+    public void Set_Follow_Forward(bool m_Follow_Forward)
     {
-        this.b_Follow_Forward = b_Follow_Forward;
+        this.m_Follow_Forward = m_Follow_Forward;
     }
 
-    public bool Get_Follow_Forward()
+    public bool GetFollow_Forward()
     {
-        return b_Follow_Forward;
+        return m_Follow_Forward;
     }
 }

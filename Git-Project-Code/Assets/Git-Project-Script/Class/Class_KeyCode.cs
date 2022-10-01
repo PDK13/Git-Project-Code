@@ -17,7 +17,7 @@ public class Class_KeyCode
     /// Get Key Down
     /// </summary>
     /// <returns></returns>
-    public static KeyCode Get_KeyCode_Pressed_Down()
+    public static KeyCode GetKeyCode_Pressed_Down()
     {
         foreach (KeyCode k_KeyCode in Enum.GetValues(typeof(KeyCode)))
         {
@@ -33,7 +33,7 @@ public class Class_KeyCode
     /// Get Key Up
     /// </summary>
     /// <returns></returns>
-    public static KeyCode Get_KeyCode_Pressed_Up()
+    public static KeyCode GetKeyCode_Pressed_Up()
     {
         foreach (KeyCode k_KeyCode in Enum.GetValues(typeof(KeyCode)))
         {
@@ -49,7 +49,7 @@ public class Class_KeyCode
     /// Get Key Hold
     /// </summary>
     /// <returns></returns>
-    public static KeyCode Get_KeyCode_Pressed_Hold()
+    public static KeyCode GetKeyCode_Pressed_Hold()
     {
         foreach (KeyCode k_KeyCode in Enum.GetValues(typeof(KeyCode)))
         {
@@ -65,16 +65,16 @@ public class Class_KeyCode
 
     #region Mouse
 
-    public static void Set_Mouse_Visible(bool b_Mouse_Visble)
+    public static void Set_Mouse_Visible(bool m_Mouse_Visble)
     {
-        Cursor.visible = b_Mouse_Visble;
+        Cursor.visible = m_Mouse_Visble;
     }
 
     /// <summary>
     /// Mouse Pos
     /// </summary>
     /// <returns></returns>
-    public static Vector3 Get_Mouse()
+    public static Vector3 GetMouse()
     {
         return Input.mousePosition;
     }
@@ -85,7 +85,7 @@ public class Class_KeyCode
     /// Get Mouse Down
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Any_Down()
+    public static bool GetMouse_Any_Down()
     {
         return
             Input.GetKeyDown(KeyCode.Mouse0) || //Left Mouse
@@ -101,7 +101,7 @@ public class Class_KeyCode
     /// Get Mouse Up
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Any_Up()
+    public static bool GetMouse_Any_Up()
     {
         return
             Input.GetKeyUp(KeyCode.Mouse0) || //Left Mouse
@@ -117,7 +117,7 @@ public class Class_KeyCode
     /// Get Mouse Hold
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Any_Hold()
+    public static bool GetMouse_Any_Hold()
     {
         return
             Input.GetKey(KeyCode.Mouse0) || //Left Mouse
@@ -137,7 +137,7 @@ public class Class_KeyCode
     /// Get Mouse Left Down
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Left_Down()
+    public static bool GetMouse_Left_Down()
     {
         return Input.GetKeyDown(KeyCode.Mouse0);
     }
@@ -146,7 +146,7 @@ public class Class_KeyCode
     /// Get Mouse Left Up
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Left_Up()
+    public static bool GetMouse_Left_Up()
     {
         return Input.GetKeyUp(KeyCode.Mouse0);
     }
@@ -155,7 +155,7 @@ public class Class_KeyCode
     /// Get Mouse Left Hold
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Left_Hold()
+    public static bool GetMouse_Left_Hold()
     {
         return Input.GetKey(KeyCode.Mouse0);
     }
@@ -168,7 +168,7 @@ public class Class_KeyCode
     /// Get Mouse Right Down
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Right_Down()
+    public static bool GetMouse_Right_Down()
     {
         return Input.GetKeyDown(KeyCode.Mouse1);
     }
@@ -177,7 +177,7 @@ public class Class_KeyCode
     /// Get Mouse Right Up
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Right_Up()
+    public static bool GetMouse_Right_Up()
     {
         return Input.GetKeyUp(KeyCode.Mouse1);
     }
@@ -186,7 +186,7 @@ public class Class_KeyCode
     /// Get Mouse Right Hold
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Right_Hold()
+    public static bool GetMouse_Right_Hold()
     {
         return Input.GetKey(KeyCode.Mouse1);
     }
@@ -199,7 +199,7 @@ public class Class_KeyCode
     /// Get Mouse Mid Down
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Mid_Down()
+    public static bool GetMouse_Mid_Down()
     {
         return Input.GetKeyDown(KeyCode.Mouse2);
     }
@@ -208,7 +208,7 @@ public class Class_KeyCode
     /// Get Mouse Mid Up
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Mid_Up()
+    public static bool GetMouse_Mid_Up()
     {
         return Input.GetKeyUp(KeyCode.Mouse2);
     }
@@ -217,7 +217,7 @@ public class Class_KeyCode
     /// Get Mouse Mid Hold
     /// </summary>
     /// <returns></returns>
-    public static bool Get_Mouse_Mid_Hold()
+    public static bool GetMouse_Mid_Hold()
     {
         return Input.GetKey(KeyCode.Mouse2);
     }
@@ -233,7 +233,7 @@ public class Class_KeyCode
     /// </summary>
     /// <param name="k_Keyboard"></param>
     /// <returns></returns>
-    public static bool Get_Keyboard_Hold(KeyCode k_Keyboard)
+    public static bool GetKeyboard_Hold(KeyCode k_Keyboard)
     {
         return Input.GetKey(k_Keyboard);
     }
@@ -243,7 +243,7 @@ public class Class_KeyCode
     /// </summary>
     /// <param name="k_Keyboard"></param>
     /// <returns></returns>
-    public static bool Get_Keyboard_Down(KeyCode k_Keyboard)
+    public static bool GetKeyboard_Down(KeyCode k_Keyboard)
     {
         return Input.GetKeyDown(k_Keyboard);
     }
@@ -253,7 +253,7 @@ public class Class_KeyCode
     /// </summary>
     /// <param name="k_Keyboard"></param>
     /// <returns></returns>
-    public static bool Get_Keyboard_Up(KeyCode k_Keyboard)
+    public static bool GetKeyboard_Up(KeyCode k_Keyboard)
     {
         return Input.GetKeyUp(k_Keyboard);
     }
@@ -267,7 +267,7 @@ public class Class_KeyCode
     /// </summary>
     /// <param name="k_Key"></param>
     /// <returns></returns>
-    public static string Get_KeyCode_Simple(KeyCode k_Key)
+    public static string GetKeyCode_Simple(KeyCode k_Key)
     {
         //Key [ ]
         if (k_Key == KeyCode.LeftBracket)

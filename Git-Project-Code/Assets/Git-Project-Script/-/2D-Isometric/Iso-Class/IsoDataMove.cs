@@ -21,8 +21,8 @@ public class IsoDataMove
     {
         Set_Block(g_Move);
 
-        Set_List(g_Move.GetComponent<IsoBlockMove>().Get_List());
-        Set_Status_Numberic(g_Move.GetComponent<IsoBlockMove>().Get_Status_isActive_Numberic());
+        Set_List(g_Move.GetComponent<IsoBlockMove>().GetList());
+        Set_Status_Numberic(g_Move.GetComponent<IsoBlockMove>().GetStatusIsActive_Numberic());
     }
 
     #region Block 
@@ -35,11 +35,11 @@ public class IsoDataMove
     public void Set_Block(GameObject g_Move)
     {
         Set_Block(new IsoDataBlock(
-            g_Move.GetComponent<IsoBlock>().Get_PosOnMatrix_Primary(),
-            g_Move.GetComponent<IsoBlock>().Get_Name()));
+            g_Move.GetComponent<IsoBlock>().GetPosOnMatrix_Primary(),
+            g_Move.GetComponent<IsoBlock>().GetName()));
     }
 
-    public IsoDataBlock Get_Block()
+    public IsoDataBlock GetBlock()
     {
         return cl_Data_Block;
     }
@@ -58,7 +58,7 @@ public class IsoDataMove
         l_Data_Move.Add(cl_Move_Single);
     }
 
-    public int Get_Count()
+    public int GetCount()
     {
         if (l_Data_Move == null)
         {
@@ -70,9 +70,9 @@ public class IsoDataMove
         return l_Data_Move.Count;
     }
 
-    public IsoDataMoveSingle Get_List(int i_Move_Index)
+    public IsoDataMoveSingle GetList(int i_Move_Index)
     {
-        if (i_Move_Index < 0 || i_Move_Index >= Get_Count())
+        if (i_Move_Index < 0 || i_Move_Index >= GetCount())
         {
             return null;
         }
@@ -80,7 +80,7 @@ public class IsoDataMove
         return l_Data_Move[i_Move_Index];
     }
 
-    public List<IsoDataMoveSingle> Get_List()
+    public List<IsoDataMoveSingle> GetList()
     {
         return l_Data_Move;
     }
@@ -90,7 +90,7 @@ public class IsoDataMove
         i_Data_Status_Numberic = i_Status_Numberic;
     }
 
-    public int Get_Status_Numberic()
+    public int GetStatus_Numberic()
     {
         return i_Data_Status_Numberic;
     }

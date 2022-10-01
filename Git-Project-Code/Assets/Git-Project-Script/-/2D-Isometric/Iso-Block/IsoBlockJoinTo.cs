@@ -13,7 +13,7 @@ public class IsoBlockJoinTo : MonoBehaviour
 
     private IsoBlock cl_Block;
 
-    private bool b_JoinTo = false;
+    private bool m_JoinTo = false;
 
     private void Awake()
     {
@@ -27,11 +27,11 @@ public class IsoBlockJoinTo : MonoBehaviour
 
     private void Set_Active()
     {
-        if (b_JoinTo)
+        if (m_JoinTo)
         {
-            if (Get_JoinTo_isExist())
+            if (GetJoinToIsExist())
             {
-                cl_Block.Set_Pos(g_JoinTo.GetComponent<IsoBlock>().Get_Pos_Current() + Get_JoinTo_Pos_Distance());
+                cl_Block.Set_Pos(g_JoinTo.GetComponent<IsoBlock>().GetPos_Current() + GetJoinTo_Pos_Distance());
             }
         }
     }
@@ -46,11 +46,11 @@ public class IsoBlockJoinTo : MonoBehaviour
         }
 
         g_JoinTo = g_Join;
-        v3_JoinTo_Pos_Primary = g_Join.GetComponent<IsoBlock>().Get_PosOnMatrix_Primary();
-        b_JoinTo = true;
+        v3_JoinTo_Pos_Primary = g_Join.GetComponent<IsoBlock>().GetPosOnMatrix_Primary();
+        m_JoinTo = true;
     }
 
-    public bool Get_JoinTo_isExist()
+    public bool GetJoinToIsExist()
     {
         return g_JoinTo != null;
     }
@@ -58,10 +58,10 @@ public class IsoBlockJoinTo : MonoBehaviour
     public void Set_JoinToBlock_Remove()
     {
         g_JoinTo = null;
-        b_JoinTo = false;
+        m_JoinTo = false;
     }
 
-    public GameObject Get_JoinTo()
+    public GameObject GetJoinTo()
     {
         return g_JoinTo;
     }
@@ -74,7 +74,7 @@ public class IsoBlockJoinTo : MonoBehaviour
     /// Get Join-To Pos Primary
     /// </summary>
     /// <returns></returns>
-    public Vector3Int Get_JoinTo_Pos_Primary()
+    public Vector3Int GetJoinTo_Pos_Primary()
     {
         return v3_JoinTo_Pos_Primary;
     }
@@ -83,9 +83,9 @@ public class IsoBlockJoinTo : MonoBehaviour
     /// Get Join-To Pos Distance between Pos Primary
     /// </summary>
     /// <returns></returns>
-    public Vector3Int Get_JoinTo_Pos_Distance()
+    public Vector3Int GetJoinTo_Pos_Distance()
     {
-        return cl_Block.Get_PosOnMatrix_Primary() - g_JoinTo.GetComponent<IsoBlock>().Get_PosOnMatrix_Primary();
+        return cl_Block.GetPosOnMatrix_Primary() - g_JoinTo.GetComponent<IsoBlock>().GetPosOnMatrix_Primary();
     }
 
     #endregion

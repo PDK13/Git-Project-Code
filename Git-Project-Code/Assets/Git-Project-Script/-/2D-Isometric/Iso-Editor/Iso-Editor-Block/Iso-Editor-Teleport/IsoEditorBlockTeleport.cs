@@ -22,35 +22,35 @@ public class IsoEditorBlockTeleport : MonoBehaviour
 
         iso_Editor_File = GetComponent<IsoEditorFile>();
 
-        //iso_Editor_Block_Teleport_UI.Get_Button_Add().Set_Event_Add_PointerDown(Button_Add);
-        iso_Editor_Block_Teleport_UI.Get_Button_Add().Set_Button_Color_Active(iso_Editor_Block_Teleport_UI.Get_Button_Add().Get_Color_Normal_Primary());
+        //iso_Editor_Block_Teleport_UI.GetButton_Add().Set_Event_Add_PointerDown(Button_Add);
+        iso_Editor_Block_Teleport_UI.GetButton_Add().Set_Button_Color_Active(iso_Editor_Block_Teleport_UI.GetButton_Add().GetColor_Normal_Primary());
 
-        //iso_Editor_Block_Teleport_UI.Get_Button_Del().Set_Event_Add_PointerDown(Button_Del);
-        iso_Editor_Block_Teleport_UI.Get_Button_Del().Set_Button_Color_Active(iso_Editor_Block_Teleport_UI.Get_Button_Del().Get_Color_Normal_Primary());
+        //iso_Editor_Block_Teleport_UI.GetButton_Del().Set_Event_Add_PointerDown(Button_Del);
+        iso_Editor_Block_Teleport_UI.GetButton_Del().Set_Button_Color_Active(iso_Editor_Block_Teleport_UI.GetButton_Del().GetColor_Normal_Primary());
     }
 
     public void Set_ListVertical_Data_Current_Pos_Matrix()
     {
-        if (!iso_World.Get_World_isGenerated())
+        if (!iso_World.GetWorldIsGenerated())
         {
             return;
         }
 
-        if (iso_World.Get_Primary_isEmty(iso_Block.Get_PosOnMatrix_Current())) //Check Emty
+        if (iso_World.GetPrimaryIsEmty(iso_Block.GetPosOnMatrix_Current())) //Check Emty
         {
             iso_Editor_Block_Teleport_UI.Set_Teleport("", new Vector3Int());
 
             return;
         }
 
-        //if (!iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<Isometric2D_Block>().Get_Block_Check()) //Check Block
+        //if (!iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<Isometric2D_Block>().GetBlock_Check()) //Check Block
         //{
         //    iso_Editor_Block_Teleport_UI.Set_Teleport("", new Vector3Int());
 
         //    return;
         //}
 
-        if (iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockTeleport>() == null) //Check Component
+        if (iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockTeleport>() == null) //Check Component
         {
             iso_Editor_Block_Teleport_UI.Set_Teleport("", new Vector3Int());
 
@@ -58,24 +58,24 @@ public class IsoEditorBlockTeleport : MonoBehaviour
         }
 
         iso_Editor_Block_Teleport_UI.Set_Teleport(
-            iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockTeleport>().Get_World_Name(),
-            iso_World.Get_Primary_GameObject(iso_Block.Get_PosOnMatrix_Current()).GetComponent<IsoBlockTeleport>().Get_Spawm_Pos());
+            iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockTeleport>().GetWorld_Name(),
+            iso_World.GetPrimary_GameObject(iso_Block.GetPosOnMatrix_Current()).GetComponent<IsoBlockTeleport>().GetSpawm_Pos());
     }
 
     #region Join-To Pos
 
     public void Button_Add()
     {
-        iso_World.Set_TeleportBlock_Primary_Active_Add(iso_Block.Get_PosOnMatrix_Current(), iso_Editor_Block_Teleport_UI.Get_Data());
+        iso_World.Set_TeleportBlock_Primary_Active_Add(iso_Block.GetPosOnMatrix_Current(), iso_Editor_Block_Teleport_UI.GetData());
 
-        iso_Editor_Block_Teleport_UI.Set_Teleport(iso_Editor_Block_Teleport_UI.Get_Data().Get_World_Name(), iso_Editor_Block_Teleport_UI.Get_Data().Get_Pos());
+        iso_Editor_Block_Teleport_UI.Set_Teleport(iso_Editor_Block_Teleport_UI.GetData().GetWorld_Name(), iso_Editor_Block_Teleport_UI.GetData().GetPos());
 
         iso_Editor_File.Button_Save_Temp();
     }
 
     public void Button_Del()
     {
-        iso_World.Set_TeleportBlock_Primary_Active_Remove(iso_Block.Get_PosOnMatrix_Current());
+        iso_World.Set_TeleportBlock_Primary_Active_Remove(iso_Block.GetPosOnMatrix_Current());
 
         iso_Editor_File.Button_Save_Temp();
     }

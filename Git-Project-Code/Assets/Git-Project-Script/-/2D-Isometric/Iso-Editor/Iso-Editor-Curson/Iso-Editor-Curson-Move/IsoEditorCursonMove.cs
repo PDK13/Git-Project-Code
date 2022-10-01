@@ -56,29 +56,29 @@ public class IsoEditorCursonMove : MonoBehaviour
 
         iso_Editor_World_Matrix = GetComponent<IsoEditorWorldMatrix>();
 
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Up().Set_Button_Keycode(k_Move_Up);
-        //iso_Editor_Curson_Move_UI.Get_Button_Move_Up().Set_Event_Add_PointerDown(Button_Dir_Up);
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Up().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.Get_Button_Move_Up().Get_Button_Color_Normal());
+        iso_Editor_Curson_Move_UI.GetButton_Move_Up().Set_Button_Keycode(k_Move_Up);
+        //iso_Editor_Curson_Move_UI.GetButton_Move_Up().Set_Event_Add_PointerDown(Button_Dir_Up);
+        iso_Editor_Curson_Move_UI.GetButton_Move_Up().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.GetButton_Move_Up().GetButton_Color_Normal());
 
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Down().Set_Button_Keycode(k_Move_Down);
-        //iso_Editor_Curson_Move_UI.Get_Button_Move_Down().Set_Event_Add_PointerDown(Button_Dir_Down);
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Down().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.Get_Button_Move_Down().Get_Button_Color_Normal());
+        iso_Editor_Curson_Move_UI.GetButton_Move_Down().Set_Button_Keycode(k_Move_Down);
+        //iso_Editor_Curson_Move_UI.GetButton_Move_Down().Set_Event_Add_PointerDown(Button_Dir_Down);
+        iso_Editor_Curson_Move_UI.GetButton_Move_Down().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.GetButton_Move_Down().GetButton_Color_Normal());
 
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Left().Set_Button_Keycode(k_Move_Left);
-        //iso_Editor_Curson_Move_UI.Get_Button_Move_Left().Set_Event_Add_PointerDown(Button_Dir_Left);
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Left().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.Get_Button_Move_Left().Get_Button_Color_Normal());
+        iso_Editor_Curson_Move_UI.GetButton_Move_Left().Set_Button_Keycode(k_Move_Left);
+        //iso_Editor_Curson_Move_UI.GetButton_Move_Left().Set_Event_Add_PointerDown(Button_Dir_Left);
+        iso_Editor_Curson_Move_UI.GetButton_Move_Left().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.GetButton_Move_Left().GetButton_Color_Normal());
 
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Right().Set_Button_Keycode(k_Move_Right);
-        //iso_Editor_Curson_Move_UI.Get_Button_Move_Right().Set_Event_Add_PointerDown(Button_Dir_Right);
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Right().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.Get_Button_Move_Right().Get_Button_Color_Normal());
+        iso_Editor_Curson_Move_UI.GetButton_Move_Right().Set_Button_Keycode(k_Move_Right);
+        //iso_Editor_Curson_Move_UI.GetButton_Move_Right().Set_Event_Add_PointerDown(Button_Dir_Right);
+        iso_Editor_Curson_Move_UI.GetButton_Move_Right().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.GetButton_Move_Right().GetButton_Color_Normal());
 
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Top().Set_Button_Keycode(k_Move_Top);
-        //iso_Editor_Curson_Move_UI.Get_Button_Move_Top().Set_Event_Add_PointerDown(Button_Dir_Top);
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Top().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.Get_Button_Move_Top().Get_Button_Color_Normal());
+        iso_Editor_Curson_Move_UI.GetButton_Move_Top().Set_Button_Keycode(k_Move_Top);
+        //iso_Editor_Curson_Move_UI.GetButton_Move_Top().Set_Event_Add_PointerDown(Button_Dir_Top);
+        iso_Editor_Curson_Move_UI.GetButton_Move_Top().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.GetButton_Move_Top().GetButton_Color_Normal());
 
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Bot().Set_Button_Keycode(k_Move_Bot);
-        //iso_Editor_Curson_Move_UI.Get_Button_Move_Bot().Set_Event_Add_PointerDown(Button_Dir_Bot);
-        iso_Editor_Curson_Move_UI.Get_Button_Move_Bot().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.Get_Button_Move_Bot().Get_Button_Color_Normal());
+        iso_Editor_Curson_Move_UI.GetButton_Move_Bot().Set_Button_Keycode(k_Move_Bot);
+        //iso_Editor_Curson_Move_UI.GetButton_Move_Bot().Set_Event_Add_PointerDown(Button_Dir_Bot);
+        iso_Editor_Curson_Move_UI.GetButton_Move_Bot().Set_Button_Color_Active(iso_Editor_Curson_Move_UI.GetButton_Move_Bot().GetButton_Color_Normal());
     }
 
     #region Curson 
@@ -115,9 +115,9 @@ public class IsoEditorCursonMove : MonoBehaviour
 
     private void Set_Dir(Vector3Int v3_Move_Dir)
     {
-        if (iso_World.Get_World_inLimit(iso_Block.Get_PosOnMatrix_Current(), v3_Move_Dir))
+        if (iso_World.GetWorld_inLimit(iso_Block.GetPosOnMatrix_Current(), v3_Move_Dir))
         {
-            iso_Editor_World.Set_Reset_UI_PosAndSize(iso_Block.Get_PosOnMatrix_Current() + v3_Move_Dir);
+            iso_Editor_World.Set_Reset_UI_PosAndSize(iso_Block.GetPosOnMatrix_Current() + v3_Move_Dir);
             iso_Editor_World.Set_Reset_UI_Block_List();
 
             iso_Editor_World_Matrix.Set_WorldView_nonActive();
@@ -126,7 +126,7 @@ public class IsoEditorCursonMove : MonoBehaviour
 
     public void Button_Pos_Reset()
     {
-        iso_Editor_World.Set_Reset_UI_PosAndSize(iso_Block.Get_PosOnMatrix_Primary());
+        iso_Editor_World.Set_Reset_UI_PosAndSize(iso_Block.GetPosOnMatrix_Primary());
         iso_Editor_World.Set_Reset_UI_Block_List();
     }
 

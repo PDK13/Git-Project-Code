@@ -29,14 +29,14 @@ public class IsoEditorUISwitchTo : MonoBehaviour
 
     #region Switch-To Pos
 
-    public void Set_Clone(Vector3Int v3_SwitchTo_Pos)
+    public void SetClone(Vector3Int v3_SwitchTo_Pos)
     {
         inp_Pos_X.text = v3_SwitchTo_Pos.x.ToString();
         inp_Pos_Y.text = v3_SwitchTo_Pos.y.ToString();
         inp_Pos_H.text = v3_SwitchTo_Pos.z.ToString();
     }
 
-    public Vector3Int Get_Pos()
+    public Vector3Int GetPos()
     {
         return new Vector3Int(
             int.Parse(inp_Pos_X.text),
@@ -44,12 +44,12 @@ public class IsoEditorUISwitchTo : MonoBehaviour
             int.Parse(inp_Pos_H.text));
     }
 
-    public UIButtonOnClick Get_Button_Add()
+    public UIButtonOnClick GetButton_Add()
     {
         return cl_Button_Add;
     }
 
-    public UIButtonOnClick Get_Button_Del_Lastest()
+    public UIButtonOnClick GetButton_Del_Lastest()
     {
         return cl_Button_Del_Lastest;
     }

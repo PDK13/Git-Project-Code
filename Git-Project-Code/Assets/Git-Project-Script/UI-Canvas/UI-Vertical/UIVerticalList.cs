@@ -13,10 +13,10 @@ public class UIVerticalList : MonoBehaviour
 
     [Tooltip("Vertical Clone(s) will Add to List")]
     [SerializeField]
-    private GameObject g_Clone;
+    private GameObject gClone;
 
     //[Tooltip("Check Component Required Exist in Clone")]
-    //private bool b_Component = true;
+    //private bool m_Component = true;
 
     [Header("List-Vertical Data")]
 
@@ -28,21 +28,21 @@ public class UIVerticalList : MonoBehaviour
     {
         l_Vertical = new List<GameObject>();
 
-        //if (g_Clone == null)
+        //if (gClone == null)
         //{
-        //    b_Component = false;
+        //    m_Component = false;
 
         //    return;
         //}
 
-        //if (g_Clone.GetComponent<Vertical_Clone>() == null)
+        //if (gClone.GetComponent<VerticalClone>() == null)
         //{
-        //    b_Component = false;
+        //    m_Component = false;
 
         //    return;
         //}
 
-        //b_Component = true;
+        //m_Component = true;
     }
 
     #region List 
@@ -54,14 +54,14 @@ public class UIVerticalList : MonoBehaviour
     /// </summary>
     public void Set_ListVertical_Add()
     {
-        //if (!b_Component)
+        //if (!m_Component)
         //{
         //    return;
         //}
 
-        GameObject g_GameObject_Create = Class_Object.Set_GameObject_Create(g_Clone, t_Content);
+        GameObject g_GameObject_Create = Class_Object.Set_GameObject_Create(gClone, t_Content);
 
-        g_GameObject_Create.GetComponent<UIVerticalClone>().Set_Clone(this, l_Vertical.Count);
+        g_GameObject_Create.GetComponent<UIVerticalClone>().SetClone(this, l_Vertical.Count);
 
         l_Vertical.Add(g_GameObject_Create);
     }
@@ -76,7 +76,7 @@ public class UIVerticalList : MonoBehaviour
     /// <param name="i_Index"></param>
     public void Set_ListVertical_Remove(int i_Index)
     {
-        //if (!b_Component)
+        //if (!m_Component)
         //{
         //    return;
         //}
@@ -93,7 +93,7 @@ public class UIVerticalList : MonoBehaviour
         //Fix Index other Clone
         for (int i = i_Index; i < l_Vertical.Count; i++)
         {
-            Get_ListVertical_Clone(i).Set_Clone_Index(i);
+            GetListVerticalClone(i).SetClone_Index(i);
         }
     }
 
@@ -110,7 +110,7 @@ public class UIVerticalList : MonoBehaviour
     /// </summary>
     public void Set_ListVertical_Remove_All()
     {
-        //if (!b_Component)
+        //if (!m_Component)
         //{
         //    return;
         //}
@@ -131,7 +131,7 @@ public class UIVerticalList : MonoBehaviour
     /// Get Count of List Vertical
     /// </summary>
     /// <returns></returns>
-    public int Get_ListVertical_Count()
+    public int GetListVerticalCount()
     {
         return l_Vertical.Count;
     }
@@ -141,9 +141,9 @@ public class UIVerticalList : MonoBehaviour
     /// </summary>
     /// <param name="i_Index"></param>
     /// <returns></returns>
-    public GameObject Get_ListVertical_GameObject(int i_Index)
+    public GameObject GetListVertical_GameObject(int i_Index)
     {
-        //if (!b_Component)
+        //if (!m_Component)
         //{
         //    return null;
         //}
@@ -160,9 +160,9 @@ public class UIVerticalList : MonoBehaviour
     /// Get GameObject of Clone from List Vertical Lastest
     /// </summary>
     /// <returns></returns>
-    public GameObject Get_ListVertical_GameObject_Lastest()
+    public GameObject GetListVertical_GameObject_Lastest()
     {
-        return Get_ListVertical_GameObject(Get_ListVertical_Count() - 1);
+        return GetListVertical_GameObject(GetListVerticalCount() - 1);
     }
 
     /// <summary>
@@ -170,9 +170,9 @@ public class UIVerticalList : MonoBehaviour
     /// </summary>
     /// <param name="i_Index"></param>
     /// <returns></returns>
-    public UIVerticalClone Get_ListVertical_Clone(int i_Index)
+    public UIVerticalClone GetListVerticalClone(int i_Index)
     {
-        //if (!b_Component)
+        //if (!m_Component)
         //{
         //    return null;
         //}
@@ -189,9 +189,9 @@ public class UIVerticalList : MonoBehaviour
     /// Get Clone Component of Clone from List Vertical Lastest
     /// </summary>
     /// <returns></returns>
-    public UIVerticalClone Get_ListVertical_Clone_Lastest()
+    public UIVerticalClone GetListVerticalClone_Lastest()
     {
-        return Get_ListVertical_Clone(Get_ListVertical_Count());
+        return GetListVerticalClone(GetListVerticalCount());
     }
 
     #endregion
@@ -203,39 +203,39 @@ public class UIVerticalList : MonoBehaviour
     /// <summary>
     /// Set Clone for List Vertical
     /// </summary>
-    /// <param name="g_Clone"></param>
-    public void Set_Clone(GameObject g_Clone)
+    /// <param name="gClone"></param>
+    public void SetClone(GameObject gClone)
     {
-        if (g_Clone == null)
+        if (gClone == null)
         {
             return;
         }
 
-        if (g_Clone.GetComponent<UIVerticalClone>() == null)
+        if (gClone.GetComponent<UIVerticalClone>() == null)
         {
             return;
         }
 
-        //b_Component = true;
-        this.g_Clone = g_Clone;
+        //m_Component = true;
+        this.gClone = gClone;
     }
 
     /// <summary>
     /// Set Clone Emty for List Vertical
     /// </summary>
-    public void Set_Clone_Emty()
+    public void SetClone_Emty()
     {
-        //b_Component = false;
-        g_Clone = null;
+        //m_Component = false;
+        gClone = null;
     }
 
     /// <summary>
     /// Check Component Required Exist in Clone
     /// </summary>
     /// <returns></returns>
-    //public bool Get_Clone_Component()
+    //public bool GetClone_Component()
     //{
-    //    return b_Component;
+    //    return m_Component;
     //}
 
     #endregion

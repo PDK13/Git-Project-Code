@@ -10,15 +10,15 @@ public class Eye2D_Raycast : MonoBehaviour
     //Hàm này cho phép nhìn thấy tất cả các mục tiêu mà không bị cản trở bởi các mục tiêu khác trên đường truyền
     //Lưu ý là việc mục tiêu có bị nhìn thấy hay không là phụ thuộc vào vị trí tâm của mục tiêu so với vùng nhìn của Eye
 
-    public bool b_GizmosTarket = true;
-    public bool b_GizmosVision = true;
+    public bool m_GizmosTarket = true;
+    public bool m_GizmosVision = true;
 
     public Vector2 v_CircleEye = new Vector2(0, 0);
     //Vị trí của Eye so với tâm của GameObject chủ
 
     public LayerMask l_Tarket;
     //Layer của các mục tiêu cần được phát hiện
-    public bool b_EyeThrough = true;
+    public bool m_EyeThrough = true;
     //Nếu là True thì các mục tiêu khác Layer sẽ không thể che chắn cho nhau
     public LayerMask l_Barrier;
     //Layer vật cản
@@ -35,7 +35,7 @@ public class Eye2D_Raycast : MonoBehaviour
     private List<GameObject> lg_TarketInVision = new List<GameObject>();
     //Danh sách các mục tiêu đã được nhìn thấy
 
-    private bool b_ClosedSorted = false;
+    private bool m_ClosedSorted = false;
     //Luôn luôn sắp xếp danh sách theo khoảng cách gần nhất
 
     private void Update()
@@ -77,7 +77,7 @@ public class Eye2D_Raycast : MonoBehaviour
                 LayerMask l_Through;
                 //Layer hiện đang xét
 
-                if (b_EyeThrough)
+                if (m_EyeThrough)
                 {
                     //Nếu cho phép nhìn xuyên vật thể
                     l_Through = 0;
@@ -99,7 +99,7 @@ public class Eye2D_Raycast : MonoBehaviour
             }
         }
 
-        if (b_ClosedSorted)
+        if (m_ClosedSorted)
         //Nếu luôn phải sắp xếp danh sách theo khoảng cách gần nhất
         {
             if (lg_Vision.Count != 0)
@@ -146,7 +146,7 @@ public class Eye2D_Raycast : MonoBehaviour
         v_PosCur.x = v_PosCur.x + v_CircleEye.x;
         v_PosCur.y = v_PosCur.y + v_CircleEye.y;
 
-        if (b_GizmosVision)
+        if (m_GizmosVision)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(
@@ -165,7 +165,7 @@ public class Eye2D_Raycast : MonoBehaviour
             //Vẽ khoảng giữa Centre
         }
 
-        if (b_GizmosTarket)
+        if (m_GizmosTarket)
         {
             if (lg_TarketInVision.Count > 0)
             {
@@ -187,7 +187,7 @@ public class Eye2D_Raycast : MonoBehaviour
         v_PosCur.x = v_PosCur.x + v_CircleEye.x;
         v_PosCur.y = v_PosCur.y + v_CircleEye.y;
 
-        //if(b_GizmosVision)
+        //if(m_GizmosVision)
         //{
         //    Gizmos.color = Color.gray;
         //    Gizmos.DrawWireSphere(v_PosCur, f_CircleDuration);
@@ -202,30 +202,30 @@ public class Eye2D_Raycast : MonoBehaviour
     //----------------------------------------------------------------
 
     //Xác định có luôn phải sắp xếp danh sách tầm nhìn theo khoảng cách gần nhất hay không
-    public void Set_ClosedSorted(bool b_ClosedSorted)
+    public void Set_ClosedSorted(bool m_ClosedSorted)
     {
-        this.b_ClosedSorted = b_ClosedSorted;
+        this.m_ClosedSorted = m_ClosedSorted;
     }
 
     //Trả về kết quả có luôn phải sắp xếp danh sách tầm nhìn theo khoảng cách gần nhất hay không
-    public bool Get_ClosedSorted()
+    public bool GetClosedSorted()
     {
-        return b_ClosedSorted;
+        return m_ClosedSorted;
     }
 
-    public int Get_Count()
+    public int GetCount()
     //Trả về số lượng mục tiêu trong danh sách tầm nhìn
     {
         return lg_TarketInVision.Count;
     }
 
-    public List<GameObject> Get_List()
+    public List<GameObject> GetList()
     //Trả về danh sách mục tiêu trong tầm nhìn
     {
         return lg_TarketInVision;
     }
 
-    public GameObject Get_Closed()
+    public GameObject GetClosed()
     //Trả về mục tiêu có khoảng cách gần nhất
     {
         if (lg_TarketInVision.Count == 0)
@@ -249,7 +249,7 @@ public class Eye2D_Raycast : MonoBehaviour
             }
         }
 
-        //if(b_Debug)
+        //if(m_Debug)
         //{
         //    Vector2 v_PosCur = (Vector2)transform.position;
         //    v_PosCur.x = v_PosCur.x + v_CircleEye.x;
@@ -262,7 +262,7 @@ public class Eye2D_Raycast : MonoBehaviour
     }
 
     //Trả về danh sách khoảng cách theo danh sách mục tiêu nhìn thấy hiện tại
-    public List<float> Get_Distance()
+    public List<float> GetDistance()
     {
         if (lg_TarketInVision.Count == 0)
         {
@@ -280,7 +280,7 @@ public class Eye2D_Raycast : MonoBehaviour
     }
 
     //Trả về danh sách khoảng cách theo trục X theo danh sách mục tiêu nhìn thấy hiện tại
-    public List<float> Get_Distance_X()
+    public List<float> GetDistance_X()
     {
         if (lg_TarketInVision.Count == 0)
         {
@@ -298,7 +298,7 @@ public class Eye2D_Raycast : MonoBehaviour
     }
 
     //Trả về danh sách khoảng cách theo trục Y theo danh sách mục tiêu nhìn thấy hiện tại
-    public List<float> Get_Distance_Y()
+    public List<float> GetDistance_Y()
     {
         if (lg_TarketInVision.Count == 0)
         {
@@ -316,7 +316,7 @@ public class Eye2D_Raycast : MonoBehaviour
     }
 
     //Trả về danh sách khoảng cách theo trục Z theo danh sách mục tiêu nhìn thấy hiện tại
-    public List<float> Get_Distance_Z()
+    public List<float> GetDistance_Z()
     {
         if (lg_TarketInVision.Count == 0)
         {

@@ -18,7 +18,7 @@ public class IsoDataSwitchTo
     {
         Set_Block(g_Block);
 
-        Set_List(g_Block.GetComponent<IsoBlockSwitchTo>().Get_List());
+        Set_List(g_Block.GetComponent<IsoBlockSwitchTo>().GetList());
     }
 
     #region Block 
@@ -31,11 +31,11 @@ public class IsoDataSwitchTo
     public void Set_Block(GameObject g_SwitchTo)
     {
         Set_Block(new IsoDataBlock(
-            g_SwitchTo.GetComponent<IsoBlock>().Get_PosOnMatrix_Primary(),
-            g_SwitchTo.GetComponent<IsoBlock>().Get_Name()));
+            g_SwitchTo.GetComponent<IsoBlock>().GetPosOnMatrix_Primary(),
+            g_SwitchTo.GetComponent<IsoBlock>().GetName()));
     }
 
-    public IsoDataBlock Get_Block()
+    public IsoDataBlock GetBlock()
     {
         return cl_Data_Block;
     }
@@ -61,17 +61,17 @@ public class IsoDataSwitchTo
         l_Data_Switch[i_SwitchTo_Index] += v3_Pos_Add;
     }
 
-    public int Get_Count()
+    public int GetCount()
     {
         return l_Data_Switch.Count;
     }
 
-    public Vector3Int Get_List(int i_SwitchTo_Index)
+    public Vector3Int GetList(int i_SwitchTo_Index)
     {
         return l_Data_Switch[i_SwitchTo_Index];
     }
 
-    public List<Vector3Int> Get_List()
+    public List<Vector3Int> GetList()
     {
         return l_Data_Switch;
     }

@@ -9,12 +9,12 @@ public class Control3DSticky : MonoBehaviour
     public Transform t_Tarket;
     //Tarket
 
-    public bool b_Lock_Pos = true;
+    public bool m_Lock_Pos = true;
     //Auto Stick to Tarket
     public Vector3 v_Lock_Pos = new Vector3(1, 1, 0);
     //Offset Pos Stick to Tarket
 
-    public bool b_Lock_Sca = true;
+    public bool m_Lock_Sca = true;
     //Not Chance Scale follow Tarket Scale
     private Vector3 v_Lock_Scale;
 
@@ -25,7 +25,7 @@ public class Control3DSticky : MonoBehaviour
             return;
         }
 
-        if (b_Lock_Sca)
+        if (m_Lock_Sca)
         {
             v_Lock_Scale = t_Tarket.localScale;
         }
@@ -44,7 +44,7 @@ public class Control3DSticky : MonoBehaviour
 
     private void Auto_Follow()
     {
-        if (!b_Lock_Pos)
+        if (!m_Lock_Pos)
         {
             return;
         }
@@ -54,7 +54,7 @@ public class Control3DSticky : MonoBehaviour
 
     private void Auto_Scale()
     {
-        if (!b_Lock_Sca)
+        if (!m_Lock_Sca)
         {
             return;
         }

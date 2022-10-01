@@ -53,10 +53,10 @@
 
 //    private void Update()
 //    {
-//        if (cl_Firebase.Get_FirebaseAuth_Login())
+//        if (cl_Firebase.GetFirebaseAuth_Login())
 //        //If Auth LOGIN or CREATE Success
 //        {
-//            t_EmailAuth.text = cl_Firebase.Get_FirebaseAuth_Email().ToUpper();
+//            t_EmailAuth.text = cl_Firebase.GetFirebaseAuth_Email().ToUpper();
 //        }
 //        else
 //        //If Auth not LOGIN or CREATE yet
@@ -64,9 +64,9 @@
 //            t_EmailAuth.text = "Unknown".ToUpper();
 //        }
 
-//        if (cl_Firebase.Get_FirebaseAuth_Register_Done())
+//        if (cl_Firebase.GetFirebaseAuth_Register_Done())
 //        {
-//            t_Info.text = cl_Firebase.Get_FirebaseAuth_Message();
+//            t_Info.text = cl_Firebase.GetFirebaseAuth_Message();
 //            cl_Firebase.Set_FirebaseAuth_Register_Done(false);
 //        } 
 //    }
@@ -130,7 +130,7 @@
 //                new Android_FirebasePlayer_Data(i_DisplayName.text)));
 //        //Create Primary User Auth Profile in Firebase Database at "_Player/$UserAuthID/"
 
-//        t_Info.text = cl_Firebase.Get_FirebaseAuth_Message();
+//        t_Info.text = cl_Firebase.GetFirebaseAuth_Message();
 //    }
 
 //    //Back

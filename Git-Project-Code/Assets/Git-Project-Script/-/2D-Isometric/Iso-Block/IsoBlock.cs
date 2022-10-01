@@ -62,7 +62,7 @@ public class IsoBlock : MonoBehaviour
         Set_Pos_Transform();
     }
 
-    public IsoWorld Get_World()
+    public IsoWorld GetWorld()
     {
         return cl_World;
     }
@@ -80,11 +80,11 @@ public class IsoBlock : MonoBehaviour
     {
         if (cl_World != null)
         {
-            v3_Offset = cl_World.Get_Fix_Offset();
-            v3_Square = cl_World.Get_Fix_Square();
+            v3_Offset = cl_World.GetFix_Offset();
+            v3_Square = cl_World.GetFix_Square();
         }
 
-        Vector3 v3_Pos_Transform = Get_Pos_OnScene(v3_Pos);
+        Vector3 v3_Pos_Transform = GetPos_OnScene(v3_Pos);
 
         v3_Pos_Transform.x *= v3_Square.x;
         v3_Pos_Transform.y *= v3_Square.y;
@@ -143,7 +143,7 @@ public class IsoBlock : MonoBehaviour
     /// </summary>
     /// <param name="v3_Pos_OnWorld">XY which UDLR and Z which TB</param>
     /// <returns></returns>
-    public static Vector3 Get_Pos_OnScene(Vector3 v3_Pos_OnWorld)
+    public static Vector3 GetPos_OnScene(Vector3 v3_Pos_OnWorld)
     {
         Vector3 v3_FixTransform = new Vector3(
             v3_Pos_OnWorld.x + v3_Pos_OnWorld.y,
@@ -158,7 +158,7 @@ public class IsoBlock : MonoBehaviour
     /// </summary>
     /// <param name="v3_Pos_OnScene"></param>
     /// <returns></returns>
-    public static Vector2 Get_Pos_OnWorld(Vector2 v3_Pos_OnScene)
+    public static Vector2 GetPos_OnWorld(Vector2 v3_Pos_OnScene)
     {
         //return new Vector2(0.5f * v_Pos_Transform.x - v_Pos_Transform.y, 0.5f * v_Pos_Transform.x + v_Pos_Transform.y);
 
@@ -214,7 +214,7 @@ public class IsoBlock : MonoBehaviour
 
     public void Set_Pos_Add(Vector3 v3_Pos_Add)
     {
-        Set_Pos(Get_Pos_Current() + v3_Pos_Add);
+        Set_Pos(GetPos_Current() + v3_Pos_Add);
     }
 
     public void Set_Pos_Add(float f_X_Add, float f_Y_Add, float f_High_Add)
@@ -247,24 +247,24 @@ public class IsoBlock : MonoBehaviour
 
     #region Get Pos 
 
-    public Vector3 Get_Pos_Current()
+    public Vector3 GetPos_Current()
     {
         return v3_Pos;
     }
 
-    public float Get_Pos_Current_X()
+    public float GetPos_Current_X()
     {
-        return Get_Pos_Current().x;
+        return GetPos_Current().x;
     }
 
-    public float Get_Pos_Current_Y()
+    public float GetPos_Current_Y()
     {
-        return Get_Pos_Current().y;
+        return GetPos_Current().y;
     }
 
-    public float Get_Pos_Current_High()
+    public float GetPos_Current_High()
     {
-        return Get_Pos_Current().z;
+        return GetPos_Current().z;
     }
 
     #endregion
@@ -273,7 +273,7 @@ public class IsoBlock : MonoBehaviour
 
     #region Pos on Matrix Int 
 
-    public Vector3Int Get_PosOnMatrix_Current()
+    public Vector3Int GetPosOnMatrix_Current()
     {
         return v3_PosOnMatrix;
     }
@@ -285,7 +285,7 @@ public class IsoBlock : MonoBehaviour
         v3_PosOnMatrix_Primary = v3_Pos;
     }
 
-    public Vector3Int Get_PosOnMatrix_Primary()
+    public Vector3Int GetPosOnMatrix_Primary()
     {
         return v3_PosOnMatrix_Primary;
     }
@@ -294,9 +294,9 @@ public class IsoBlock : MonoBehaviour
     /// Check Pos on Matrix Current same on Pos on Matrix Primary
     /// </summary>
     /// <returns></returns>
-    public bool Get_PosOnMatrix_StayOnPrimary()
+    public bool GetPosOnMatrix_StayOnPrimary()
     {
-        return Get_PosOnMatrix_Primary() == Get_PosOnMatrix_Current();
+        return GetPosOnMatrix_Primary() == GetPosOnMatrix_Current();
     }
 
     /// <summary>
@@ -304,7 +304,7 @@ public class IsoBlock : MonoBehaviour
     /// </summary>
     public void Set_PosOnMatrix_ResetToPrimary()
     {
-        Set_Pos(Get_PosOnMatrix_Primary());
+        Set_Pos(GetPosOnMatrix_Primary());
     }
 
     #endregion
@@ -326,9 +326,9 @@ public class IsoBlock : MonoBehaviour
     /// Get Origin Name of GameObject
     /// </summary>
     /// <returns></returns>
-    public string Get_Name()
+    public string GetName()
     {
-        return Class_String.Get_String_Replace_Clone(name);
+        return ClassString.GetStringReplaceClone(name);
     }
 
     #endregion
@@ -342,7 +342,7 @@ public class IsoBlock : MonoBehaviour
 
     #region Type and Dir Check 
 
-    public IsoClassBlock Get_Imformation()
+    public IsoClassBlock GetImformation()
     {
         return cl_Block;
     }
@@ -350,41 +350,41 @@ public class IsoBlock : MonoBehaviour
     [ContextMenu("Block Imformation")]
     public void Debug_Imformation()
     {
-        Debug.Log(v3_PosOnMatrix + " : " + cl_Block.Get_Type());
+        Debug.Log(v3_PosOnMatrix + " : " + cl_Block.GetType());
     }
 
     #region Check Block 
 
     #region Check Block Type 
 
-    public bool Get_Block_Check()
+    public bool GetBlock_Check()
     {
-        return cl_Block.Get_Type_Main().Equals(IsoClassBlock.s_Block);
+        return cl_Block.GetType_Main().Equals(IsoClassBlock.s_Block);
     }
 
-    public bool Get_Block_Check_Ground()
+    public bool GetBlock_Check_Ground()
     {
-        return cl_Block.Get_Type().Equals(IsoClassBlock.s_Block_Ground);
+        return cl_Block.GetType().Equals(IsoClassBlock.s_Block_Ground);
     }
 
-    public bool Get_Block_Check_Object()
+    public bool GetBlock_Check_Object()
     {
-        return cl_Block.Get_Type().Equals(IsoClassBlock.s_Block_Object);
+        return cl_Block.GetType().Equals(IsoClassBlock.s_Block_Object);
     }
 
-    public bool Get_Block_Check_Stair()
+    public bool GetBlock_Check_Stair()
     {
-        return cl_Block.Get_Type().Equals(IsoClassBlock.s_Block_Stair);
+        return cl_Block.GetType().Equals(IsoClassBlock.s_Block_Stair);
     }
 
-    public bool Get_Block_Check_StairUD()
+    public bool GetBlock_Check_StairUD()
     {
-        return cl_Block.Get_Type().Equals(IsoClassBlock.s_Block_StairUD);
+        return cl_Block.GetType().Equals(IsoClassBlock.s_Block_StairUD);
     }
 
-    public bool Get_Block_Check_StairLR()
+    public bool GetBlock_Check_StairLR()
     {
-        return cl_Block.Get_Type().Equals(IsoClassBlock.s_Block_StairLR);
+        return cl_Block.GetType().Equals(IsoClassBlock.s_Block_StairLR);
     }
 
     #endregion
@@ -393,29 +393,29 @@ public class IsoBlock : MonoBehaviour
 
     #region Check Character 
 
-    public bool Get_Character_Check()
+    public bool GetCharacter_Check()
     {
-        return cl_Block.Get_Type_Main().Equals(IsoClassBlock.s_Character);
+        return cl_Block.GetType_Main().Equals(IsoClassBlock.s_Character);
     }
 
-    public bool Get_Character_Check_Player()
+    public bool GetCharacter_Check_Player()
     {
-        return cl_Block.Get_Type().Equals(IsoClassBlock.s_Character_Player);
+        return cl_Block.GetType().Equals(IsoClassBlock.s_Character_Player);
     }
 
-    public bool Get_Character_Check_Good()
+    public bool GetCharacter_Check_Good()
     {
-        return cl_Block.Get_Type().Equals(IsoClassBlock.s_Character_Good);
+        return cl_Block.GetType().Equals(IsoClassBlock.s_Character_Good);
     }
 
-    public bool Get_Character_Check_Neutral()
+    public bool GetCharacter_Check_Neutral()
     {
-        return cl_Block.Get_Type().Equals(IsoClassBlock.s_Character_Neutral);
+        return cl_Block.GetType().Equals(IsoClassBlock.s_Character_Neutral);
     }
 
-    public bool Get_Character_Check_Bad()
+    public bool GetCharacter_Check_Bad()
     {
-        return cl_Block.Get_Type().Equals(IsoClassBlock.s_Character_Bad);
+        return cl_Block.GetType().Equals(IsoClassBlock.s_Character_Bad);
     }
 
     #endregion

@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private GameObject g_SoundClone;
 
-    private readonly bool b_Sound_isMute = false;
+    private readonly bool m_SoundIsMute = false;
 
     [Header("Sound List")]
 
@@ -42,7 +42,7 @@ public class SoundManager : MonoBehaviour
 
         g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_2D(new SoundCloneData(au_Clip, true, f_Volumn_Primary));
 
-        g_SoundClone.GetComponent<SoundClone>().Set_Sound_Mute(Get_Sound_isMute());
+        g_SoundClone.GetComponent<SoundClone>().Set_Sound_Mute(GetSoundIsMute());
 
         cs_This.lg_SoundClone[0] = g_SoundClone;
 
@@ -63,7 +63,7 @@ public class SoundManager : MonoBehaviour
 
     #region Sound Primary
 
-    public static GameObject Set_Sound_3D(AudioClip au_Clip, bool b_Loop, float f_Volumn_Primary, Vector2 v2_Pos, float f_Distance)
+    public static GameObject Set_Sound_3D(AudioClip au_Clip, bool m_Loop, float f_Volumn_Primary, Vector2 v2_Pos, float f_Distance)
     {
         GameObject g_SoundClone = Class_Object.Set_GameObject_Create(cs_This.g_SoundClone);
 
@@ -72,11 +72,11 @@ public class SoundManager : MonoBehaviour
             g_SoundClone.AddComponent<SoundClone>();
         }
 
-        g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_3D(new SoundCloneData(au_Clip, b_Loop, f_Volumn_Primary), v2_Pos, f_Distance);
+        g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_3D(new SoundCloneData(au_Clip, m_Loop, f_Volumn_Primary), v2_Pos, f_Distance);
 
-        g_SoundClone.GetComponent<SoundClone>().Set_Sound_Mute(Get_Sound_isMute());
+        g_SoundClone.GetComponent<SoundClone>().Set_Sound_Mute(GetSoundIsMute());
 
-        if (b_Loop)
+        if (m_Loop)
         {
             cs_This.lg_SoundClone.Add(g_SoundClone);
         }
@@ -84,7 +84,7 @@ public class SoundManager : MonoBehaviour
         return g_SoundClone;
     }
 
-    public static GameObject Set_Sound_2D(AudioClip au_Clip, bool b_Loop, float f_Volumn_Primary)
+    public static GameObject Set_Sound_2D(AudioClip au_Clip, bool m_Loop, float f_Volumn_Primary)
     {
         GameObject g_SoundClone = Class_Object.Set_GameObject_Create(cs_This.g_SoundClone);
 
@@ -93,11 +93,11 @@ public class SoundManager : MonoBehaviour
             g_SoundClone.AddComponent<SoundClone>();
         }
 
-        g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_2D(new SoundCloneData(au_Clip, b_Loop, f_Volumn_Primary));
+        g_SoundClone.GetComponent<SoundClone>().Set_PlaySound_2D(new SoundCloneData(au_Clip, m_Loop, f_Volumn_Primary));
 
-        g_SoundClone.GetComponent<SoundClone>().Set_Sound_Mute(Get_Sound_isMute());
+        g_SoundClone.GetComponent<SoundClone>().Set_Sound_Mute(GetSoundIsMute());
 
-        if (b_Loop)
+        if (m_Loop)
         {
             cs_This.lg_SoundClone.Add(g_SoundClone);
         }
@@ -109,7 +109,7 @@ public class SoundManager : MonoBehaviour
     {
         for (int i = 1; i < cs_This.lg_SoundClone.Count; i++)
         {
-            if (cs_This.lg_SoundClone[i].GetComponent<SoundClone>().Get_Sound().name.Equals(au_Clip.name))
+            if (cs_This.lg_SoundClone[i].GetComponent<SoundClone>().GetSound().name.Equals(au_Clip.name))
             {
                 Destroy(cs_This.lg_SoundClone[i]);
 
@@ -137,17 +137,17 @@ public class SoundManager : MonoBehaviour
 
     #region Sound Primary Mute
 
-    public static void Set_Sound_Mute(bool b_Sound_isMute)
+    public static void Set_Sound_Mute(bool m_SoundIsMute)
     {
         for (int i = 0; i < cs_This.lg_SoundClone.Count; i++)
         {
-            cs_This.lg_SoundClone[i].GetComponent<SoundClone>().Set_Sound_Mute(b_Sound_isMute);
+            cs_This.lg_SoundClone[i].GetComponent<SoundClone>().Set_Sound_Mute(m_SoundIsMute);
         }
     }
 
-    public static bool Get_Sound_isMute()
+    public static bool GetSoundIsMute()
     {
-        return cs_This.b_Sound_isMute;
+        return cs_This.m_SoundIsMute;
     }
 
     #endregion

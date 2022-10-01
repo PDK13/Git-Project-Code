@@ -57,13 +57,13 @@ public class IsoEditorWorld : MonoBehaviour
 
     public void Set_Reset_UI_PosAndSize()
     {
-        iso_Editor_PosAndSize_UI.Set_UI_WorldSize(iso_World.Get_World_Size_Current());
-        iso_Editor_PosAndSize_UI.Set_UI_Pos(iso_Block.Get_PosOnMatrix_Current());
+        iso_Editor_PosAndSize_UI.Set_UI_WorldSize(iso_World.GetWorld_Size_Current());
+        iso_Editor_PosAndSize_UI.Set_UI_Pos(iso_Block.GetPosOnMatrix_Current());
     }
 
     public void Set_Reset_UI_PosAndSize(Vector3Int v3_Pos_MoveTo)
     {
-        iso_Editor_PosAndSize_UI.Set_UI_WorldSize(iso_World.Get_World_Size_Current());
+        iso_Editor_PosAndSize_UI.Set_UI_WorldSize(iso_World.GetWorld_Size_Current());
         iso_Editor_PosAndSize_UI.Set_UI_Pos(v3_Pos_MoveTo);
 
         iso_Block.Set_Pos(v3_Pos_MoveTo);
@@ -71,9 +71,9 @@ public class IsoEditorWorld : MonoBehaviour
 
     public void Set_Reset_Block_Move()
     {
-        for (int i = 0; i < iso_World.Get_MoveBlock_Primary_ListPos().Count; i++)
+        for (int i = 0; i < iso_World.GetMoveBlock_Primary_ListPos().Count; i++)
         {
-            iso_World.Get_Primary_GameObject(iso_World.Get_MoveBlock_Primary_ListPos()[i]).GetComponent<IsoBlockMove>().Set_Active_Reset();
+            iso_World.GetPrimary_GameObject(iso_World.GetMoveBlock_Primary_ListPos()[i]).GetComponent<IsoBlockMove>().Set_Active_Reset();
         }
     }
 }

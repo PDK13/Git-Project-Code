@@ -42,15 +42,15 @@
 
 //    private void Update()
 //    {
-//        if (cl_Firebase.Get_FirebaseAuth_Login())
+//        if (cl_Firebase.GetFirebaseAuth_Login())
 //        //If Auth LOGIN Success
 //        {
-//            t_EmailAuth.text = cl_Firebase.Get_FirebaseAuth_Email().ToUpper();
+//            t_EmailAuth.text = cl_Firebase.GetFirebaseAuth_Email().ToUpper();
 
 //            g_ButtonLogOut.SetActive(true);
 //            //Active Button LOG OUT
 
-//            if (!cl_Firebase.Get_FirebaseAuth_EmailVerification_Check())
+//            if (!cl_Firebase.GetFirebaseAuth_EmailVerification_Check())
 //            //If EMAIL VERIFICATION not check yet
 //            {
 //                t_Info.text = "Waiting for Email Verification check";

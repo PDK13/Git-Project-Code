@@ -23,16 +23,16 @@ public class IsoEditorWorldActive : MonoBehaviour
 
         iso_Editor_World = GetComponent<IsoEditorWorld>();
 
-        //ui_Button_World_Active.Set_Event_Add_PointerDown(Set_World_isActive_Chance);
+        //ui_Button_World_Active.Set_Event_Add_PointerDown(Set_WorldIsActive_Chance);
 
-        ui_Button_World_Active.Set_Button_Active(iso_World.Get_World_isActive());
+        ui_Button_World_Active.Set_Button_Active(iso_World.GetWorldIsActive());
 
         Set_UI_Button();
     }
 
-    public void Set_World_isActive_Chance()
+    public void Set_WorldIsActive_Chance()
     {
-        iso_World.Set_World_isActive_Chance();
+        iso_World.Set_WorldIsActive_Chance();
 
         Set_UI_Button();
 
@@ -41,7 +41,7 @@ public class IsoEditorWorldActive : MonoBehaviour
 
     private void Set_UI_Button()
     {
-        if (iso_World.Get_World_isActive())
+        if (iso_World.GetWorldIsActive())
         {
             t_World_Active.text = "WORLD ACTIVE: RUN!";
         }

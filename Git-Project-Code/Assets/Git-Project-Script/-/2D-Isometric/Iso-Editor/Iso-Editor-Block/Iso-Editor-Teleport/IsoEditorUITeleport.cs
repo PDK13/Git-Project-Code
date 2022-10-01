@@ -60,17 +60,17 @@ public class IsoEditorUITeleport : MonoBehaviour
         }
     }
 
-    public IsoDataTeleport Get_Data()
+    public IsoDataTeleport GetData()
     {
-        return new IsoDataTeleport(null, Get_World_Name(), Get_Pos());
+        return new IsoDataTeleport(null, GetWorld_Name(), GetPos());
     }
 
-    public string Get_World_Name()
+    public string GetWorld_Name()
     {
         return i_WorldName.text;
     }
 
-    public Vector3Int Get_Pos()
+    public Vector3Int GetPos()
     {
         return new Vector3Int(
             int.Parse(i_Pos_X.text),
@@ -78,12 +78,12 @@ public class IsoEditorUITeleport : MonoBehaviour
             int.Parse(i_Pos_H.text));
     }
 
-    public UIButtonOnClick Get_Button_Del()
+    public UIButtonOnClick GetButton_Del()
     {
         return cl_Button_Del;
     }
 
-    public UIButtonOnClick Get_Button_Add()
+    public UIButtonOnClick GetButton_Add()
     {
 
 

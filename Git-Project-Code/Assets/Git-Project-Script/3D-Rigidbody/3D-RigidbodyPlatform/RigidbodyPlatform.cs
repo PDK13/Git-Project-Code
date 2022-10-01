@@ -28,7 +28,7 @@ public class RigidbodyPlatform : MonoBehaviour
     private float f_SpeedCur;
     //Current Speed Move
 
-    public bool b_StopRightAway = false;
+    public bool m_StopRightAway = false;
     //Control Stop without Speed Stop Velocity
 
     public float f_SpeedStop = 3f;
@@ -81,7 +81,7 @@ public class RigidbodyPlatform : MonoBehaviour
     private void Set_Stop()
     //Control Stop
     {
-        if (b_StopRightAway)
+        if (m_StopRightAway)
         {
             cs_Rigid.Set_StopX_Velocity();
         }

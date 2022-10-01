@@ -11,7 +11,7 @@ public class Eye2D_Focus : MonoBehaviour
     //Script có thể trả về 1 GameObject hoặc danh sách các GameObject này
     //Để thuận tiện khi trả về 1 GameObject, Script có tính năng chọn đơn mục tiêu, yêu cầu GameObject ngắm có gán Object_Stick.cs
 
-    public bool b_Debug = true;
+    public bool m_Debug = true;
 
     public KeyCode k_BeforeTarket = KeyCode.Q;
     public KeyCode k_AfterTarket = KeyCode.E;
@@ -129,7 +129,7 @@ public class Eye2D_Focus : MonoBehaviour
 
         //    g_MaskClone.GetComponent<Control2D_Sticky>().t_Tarket = l_List[i_Tarket].gameObject.transform;
         //    g_MaskClone.GetComponent<Control2D_Sticky>().v_Lock_Pos = v_Mask;
-        //    g_MaskClone.GetComponent<Control2D_Sticky>().b_Lock_Sca = false;
+        //    g_MaskClone.GetComponent<Control2D_Sticky>().m_Lock_Sca = false;
         //    //Truy cập vào Component Obj2D_Stick.cs
         //}
         //else  //Nếu đã có thì chỉ cần thay đổi vị trí của nó trên mục tiêu hiện tại
@@ -169,7 +169,7 @@ public class Eye2D_Focus : MonoBehaviour
     //Hàm này được chạy liên tục trên Scene nhằm giúp chúng ta Debug ngay cả khi không chạy game
     private void OnDrawGizmosSelected()
     {
-        if (!b_Debug)
+        if (!m_Debug)
         {
             return;
         }
@@ -178,39 +178,39 @@ public class Eye2D_Focus : MonoBehaviour
 
         if (GetComponent<BoxCollider2D>() != null)
         {
-            BoxCollider2D b_BoxCollider = GetComponent<BoxCollider2D>();
+            BoxCollider2D m_BoxCollider = GetComponent<BoxCollider2D>();
 
             Gizmos.DrawLine(
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x - (b_BoxCollider.size.x / 2),
-                    transform.position.y + b_BoxCollider.offset.y - (b_BoxCollider.size.y / 2)),
+                    transform.position.x + m_BoxCollider.offset.x - (m_BoxCollider.size.x / 2),
+                    transform.position.y + m_BoxCollider.offset.y - (m_BoxCollider.size.y / 2)),
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x + (b_BoxCollider.size.x / 2),
-                    transform.position.y + b_BoxCollider.offset.y - (b_BoxCollider.size.y / 2)));
+                    transform.position.x + m_BoxCollider.offset.x + (m_BoxCollider.size.x / 2),
+                    transform.position.y + m_BoxCollider.offset.y - (m_BoxCollider.size.y / 2)));
 
             Gizmos.DrawLine(
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x - (b_BoxCollider.size.x / 2),
-                    transform.position.y + b_BoxCollider.offset.y + (b_BoxCollider.size.y / 2)),
+                    transform.position.x + m_BoxCollider.offset.x - (m_BoxCollider.size.x / 2),
+                    transform.position.y + m_BoxCollider.offset.y + (m_BoxCollider.size.y / 2)),
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x + (b_BoxCollider.size.x / 2),
-                    transform.position.y + b_BoxCollider.offset.y + (b_BoxCollider.size.y / 2)));
+                    transform.position.x + m_BoxCollider.offset.x + (m_BoxCollider.size.x / 2),
+                    transform.position.y + m_BoxCollider.offset.y + (m_BoxCollider.size.y / 2)));
 
             Gizmos.DrawLine(
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x - (b_BoxCollider.size.x / 2),
-                    transform.position.y + b_BoxCollider.offset.y - (b_BoxCollider.size.y / 2)),
+                    transform.position.x + m_BoxCollider.offset.x - (m_BoxCollider.size.x / 2),
+                    transform.position.y + m_BoxCollider.offset.y - (m_BoxCollider.size.y / 2)),
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x - (b_BoxCollider.size.x / 2),
-                    transform.position.y + b_BoxCollider.offset.y + (b_BoxCollider.size.y / 2)));
+                    transform.position.x + m_BoxCollider.offset.x - (m_BoxCollider.size.x / 2),
+                    transform.position.y + m_BoxCollider.offset.y + (m_BoxCollider.size.y / 2)));
 
             Gizmos.DrawLine(
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x + (b_BoxCollider.size.x / 2),
-                    transform.position.y + b_BoxCollider.offset.y - (b_BoxCollider.size.y / 2)),
+                    transform.position.x + m_BoxCollider.offset.x + (m_BoxCollider.size.x / 2),
+                    transform.position.y + m_BoxCollider.offset.y - (m_BoxCollider.size.y / 2)),
                 new Vector2(
-                    transform.position.x + b_BoxCollider.offset.x + (b_BoxCollider.size.x / 2),
-                    transform.position.y + b_BoxCollider.offset.y + (b_BoxCollider.size.y / 2)));
+                    transform.position.x + m_BoxCollider.offset.x + (m_BoxCollider.size.x / 2),
+                    transform.position.y + m_BoxCollider.offset.y + (m_BoxCollider.size.y / 2)));
         }
         else
             if (GetComponent<CircleCollider2D>() != null)
@@ -246,7 +246,7 @@ public class Eye2D_Focus : MonoBehaviour
         return l_List;
     }
 
-    public int Receive_Count()
+    public int ReceiveCount()
     //Trả về số lượng mục tiêu hiện có trong danh sách
     {
         return l_List.Count;

@@ -47,7 +47,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     [Tooltip("Canvas Lock State")]
     [SerializeField]
-    private bool b_Canvas_Lock = false;
+    private bool m_Canvas_Lock = false;
 
     [Tooltip("Unity Pointer Enter Event Handle")]
     [Space]
@@ -88,13 +88,13 @@ public class UIObjectDragDrop : MonoBehaviour,
     private CanvasGroup c_CanvasGroup;
 
     [Tooltip("UI Drag Status")]
-    private bool b_UI_Drag = false;
+    private bool m_UI_Drag = false;
 
     [Tooltip("UI Hold Status")]
-    private bool b_UI_Hold = false;
+    private bool m_UI_Hold = false;
 
     [Tooltip("Button Ready Status")]
-    private bool b_UI_Ready = false;
+    private bool m_UI_Ready = false;
 
     private void Start()
     {
@@ -254,60 +254,60 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     private void Set_Event_PointerEnter()
     {
-        if (b_Canvas_Lock)
+        if (m_Canvas_Lock)
         {
             return;
         }
 
-        b_UI_Ready = true;
+        m_UI_Ready = true;
 
         Set_Event_Invoke_PointerEnter();
     }
 
     private void Set_Event_PointerExit()
     {
-        if (b_Canvas_Lock)
+        if (m_Canvas_Lock)
         {
             return;
         }
 
-        b_UI_Ready = false;
+        m_UI_Ready = false;
 
         Set_Event_Invoke_PointerExit();
     }
 
     private void Set_Event_PointerDown()
     {
-        if (b_Canvas_Lock)
+        if (m_Canvas_Lock)
         {
             return;
         }
 
-        b_UI_Hold = true;
+        m_UI_Hold = true;
 
         Set_Event_Invoke_PointerDown();
     }
 
     private void Set_Event_PointerUp()
     {
-        if (b_Canvas_Lock)
+        if (m_Canvas_Lock)
         {
             return;
         }
 
-        b_UI_Hold = false;
+        m_UI_Hold = false;
 
         Set_Event_Invoke_PointerUp();
     }
 
     private void Set_Event_OnBeginDrag()
     {
-        if (b_Canvas_Lock)
+        if (m_Canvas_Lock)
         {
             return;
         }
 
-        b_UI_Drag = true;
+        m_UI_Drag = true;
 
         c_CanvasGroup.alpha = f_Canvas_Alpha_Drag;
 
@@ -318,7 +318,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     private void Set_Event_OnDrag(PointerEventData eventData)
     {
-        if (b_Canvas_Lock)
+        if (m_Canvas_Lock)
         {
             return;
         }
@@ -330,12 +330,12 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     private void Set_Event_OnEndDrag()
     {
-        if (b_Canvas_Lock)
+        if (m_Canvas_Lock)
         {
             return;
         }
 
-        b_UI_Drag = false;
+        m_UI_Drag = false;
 
         c_CanvasGroup.alpha = f_Canvas_Alpha_Normal;
 
@@ -396,9 +396,9 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     #region UI Status Set
 
-    public void Set_UI_Canvas_Lock(bool b_Lock_Status)
+    public void Set_UI_Canvas_Lock(bool m_Lock_Status)
     {
-        b_Canvas_Lock = b_Lock_Status;
+        m_Canvas_Lock = m_Lock_Status;
     }
 
     public void Set_UI_Canvas_Lock_True()
@@ -415,24 +415,24 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     #region UI Status
 
-    public bool Get_UI_Canvas_Drag()
+    public bool GetUI_Canvas_Drag()
     {
-        return b_UI_Drag;
+        return m_UI_Drag;
     }
 
-    public bool Get_UI_Canvas_Hold()
+    public bool GetUI_Canvas_Hold()
     {
-        return b_UI_Hold;
+        return m_UI_Hold;
     }
 
-    public bool Get_UI_Canvas_Ready()
+    public bool GetUI_Canvas_Ready()
     {
-        return b_UI_Ready;
+        return m_UI_Ready;
     }
 
-    public bool Get_UI_Canvas_Lock()
+    public bool GetUI_Canvas_Lock()
     {
-        return b_Canvas_Lock;
+        return m_Canvas_Lock;
     }
 
     #endregion
@@ -468,7 +468,7 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// Get Alpha Canvas when in Drag State
     /// </summary>
     /// <returns></returns>
-    public float Get_UI_Canvas_Alpha_Normal()
+    public float GetUI_Canvas_Alpha_Normal()
     {
         return f_Canvas_Alpha_Normal;
     }
@@ -502,7 +502,7 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// Get Alpha Canvas when in Drag State
     /// </summary>
     /// <returns></returns>
-    public float Get_UI_Canvas_Alpha_Drag()
+    public float GetUI_Canvas_Alpha_Drag()
     {
         return f_Canvas_Alpha_Drag;
     }

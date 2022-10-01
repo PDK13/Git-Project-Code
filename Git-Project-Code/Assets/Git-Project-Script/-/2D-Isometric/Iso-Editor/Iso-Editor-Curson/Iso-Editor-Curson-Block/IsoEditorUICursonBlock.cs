@@ -80,7 +80,7 @@ public class IsoEditorUICursonBlock : MonoBehaviour
         i_Block_Renderer.sprite = null;
     }
 
-    public Image Get_Image_Block_Renderer()
+    public Image GetImage_Block_Renderer()
     {
         return i_Block_Renderer;
     }
@@ -91,41 +91,41 @@ public class IsoEditorUICursonBlock : MonoBehaviour
 
     //Block
 
-    public UIButtonOnClick Get_Button_Edit()
+    public UIButtonOnClick GetButton_Edit()
     {
         return ui_Button_Edit;
     }
 
-    public UIButtonOnClick Get_Button_Remove()
+    public UIButtonOnClick GetButton_Remove()
     {
         return ui_Button_Remove;
     }
 
-    public UIButtonOnClick Get_Button_Check()
+    public UIButtonOnClick GetButton_Check()
     {
         return ui_Button_Check;
     }
 
     //Index
 
-    public UIButtonOnClick Get_Button_Index_Next()
+    public UIButtonOnClick GetButton_Index_Next()
     {
         return ui_Button_Index_Next;
     }
 
-    public UIButtonOnClick Get_Button_Index_Back()
+    public UIButtonOnClick GetButton_Index_Back()
     {
         return ui_Button_Index_Back;
     }
 
     //Page
 
-    public UIButtonOnClick Get_Button_Page_Next()
+    public UIButtonOnClick GetButton_Page_Next()
     {
         return ui_Button_Page_Next;
     }
 
-    public UIButtonOnClick Get_Button_Page_Back()
+    public UIButtonOnClick GetButton_Page_Back()
     {
         return ui_Button_Page_Back;
     }
