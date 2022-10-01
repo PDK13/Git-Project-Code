@@ -4,13 +4,13 @@ public class CheckPointGet : MonoBehaviour
 {
     [Header("Check Point(s)")]
 
+    //First Check-Point head to go
     [SerializeField] private Transform m_CheckPointFirst;
 
-    [SerializeField] private float m_DegCheck = 90;
+    //Offset Direction in Angle (Deg)
+    [SerializeField] private float m_CheckPointOffsetDirection = 90f;
 
-    [Header("Debug")]
-
-    [SerializeField] private Transform m_CheckPointNext;
+    private Transform m_CheckPointNext;
 
     private void Start()
     {

@@ -2,11 +2,15 @@
 
 public class CheckPointArea : MonoBehaviour
 {
+    [Header("Check Point(s)")]
+
     //Next Check-Point (If got) to attach to Tarket GameObject with CheckPoint3DGet.cs
     [SerializeField] private Transform m_CheckPointNext;
 
     //Size of Check-Point Cube
     [SerializeField] private Vector3 m_CheckPointSize = new Vector3(1f, 1f, 1f);
+
+    [Header("Check Tarket(s)")]
 
     //Layer-Mask to check Tarket GameObject with Cast
     [SerializeField] private LayerMask m_CheckPointLayer;
