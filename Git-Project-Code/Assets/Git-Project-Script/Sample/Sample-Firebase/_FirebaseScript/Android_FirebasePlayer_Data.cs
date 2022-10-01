@@ -1,7 +1,7 @@
 /// <summary>
 /// Sample and Primary CLASS to Firebase Database
 /// </summary>
-public class Android_FirebasePlayer_Data
+public class Android_FirebasePlayerData
 {
     /// <summary>
     /// Display Name
@@ -11,14 +11,14 @@ public class Android_FirebasePlayer_Data
     /// <summary>
     /// Sample and Primary CLASS to Firebase Database
     /// </summary>
-    public Android_FirebasePlayer_Data()
+    public Android_FirebasePlayerData()
     {
     }
 
     /// <summary>
     /// Sample and Primary CLASS to Firebase Database
     /// </summary>
-    public Android_FirebasePlayer_Data(string Name)
+    public Android_FirebasePlayerData(string Name)
     {
         this.Name = Name;
     }

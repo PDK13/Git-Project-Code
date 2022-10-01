@@ -8,7 +8,7 @@
 //    /// <summary>
 //    /// FIREBASE
 //    /// </summary>
-//    private Clasm_Firebase cl_Firebase;
+//    private ClassFirebase cm_Firebase;
 
 //    /// <summary>
 //    /// Text EMAIL Auth
@@ -18,7 +18,7 @@
 //    /// <summary>
 //    /// Button START
 //    /// </summary>
-//    public GameObject g_StartButton;
+//    public GameObject m_StartButton;
 
 //    /// <summary>
 //    /// Text INFO
@@ -28,34 +28,34 @@
 //    /// <summary>
 //    /// Button LOG OUT
 //    /// </summary>
-//    public GameObject g_ButtonLogOut;
+//    public GameObject m_ButtonLogOut;
 
 //    private void Start()
 //    {
-//        cl_Firebase = new Clasm_Firebase();
+//        cm_Firebase = new ClassFirebase();
 
-//        g_StartButton.SetActive(false);
-//        g_ButtonLogOut.SetActive(false);
+//        m_StartButton.SetActive(false);
+//        m_ButtonLogOut.SetActive(false);
 
 //        t_Info.text = "";
 //    }
 
 //    private void Update()
 //    {
-//        if (cl_Firebase.GetFirebaseAuth_Login())
+//        if (cm_Firebase.GetFirebaseAumLogin())
 //        //If Auth LOGIN Success
 //        {
-//            t_EmailAuth.text = cl_Firebase.GetFirebaseAuth_Email().ToUpper();
+//            t_EmailAuth.text = cm_Firebase.GetFirebaseAum_Email().ToUper();
 
-//            g_ButtonLogOut.SetActive(true);
+//            m_ButtonLogOut.SetActive(true);
 //            //Active Button LOG OUT
 
-//            if (!cl_Firebase.GetFirebaseAuth_EmailVerification_Check())
+//            if (!cm_Firebase.GetFirebaseAum_EmailVerification())
 //            //If EMAIL VERIFICATION not check yet
 //            {
 //                t_Info.text = "Waiting for Email Verification check";
 
-//                g_StartButton.SetActive(false);
+//                m_StartButton.SetActive(false);
 //                //De-Active Button START
 //            }
 //            else
@@ -63,20 +63,20 @@
 //            {
 //                t_Info.text = "Click \"START\" to continue";
 
-//                g_StartButton.SetActive(true);
+//                m_StartButton.SetActive(true);
 //                //Active Button START
 //            }
 //        }
 //        else
 //        //If Auth not LOGIN yet
 //        {
-//            t_EmailAuth.text = "Unknown".ToUpper();
+//            t_EmailAuth.text = "Unknown".ToUper();
 
 //            t_Info.text = "Click \"LOGIN\" or \"CREATE\" to continue";
 
-//            g_StartButton.SetActive(false);
+//            m_StartButton.SetActive(false);
 //            //De-Active Button START
-//            g_ButtonLogOut.SetActive(false);
+//            m_ButtonLogOut.SetActive(false);
 //            //De-Active Button LOG OUT
 //        }
 //    }
@@ -96,9 +96,9 @@
 //    /// <summary>
 //    /// Button CREATE
 //    /// </summary>
-//    public void Button_Create()
+//    public void ButtonCreate()
 //    {
-//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneCreate);
+//        ClassScene cm_Scene = new ClassScene(m_SceneCreate);
 //        //Chance Scene to "Create"
 //    }
 
@@ -112,9 +112,9 @@
 //    /// <summary>
 //    /// Button LOGIN
 //    /// </summary>
-//    public void Button_Login()
+//    public void ButtonLogin()
 //    {
-//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneLogin);
+//        ClassScene cm_Scene = new ClassScene(m_SceneLogin);
 //        //Chance Scene to "Login"
 //    }
 
@@ -123,9 +123,9 @@
 //    /// <summary>
 //    /// Button LOG OUT
 //    /// </summary>
-//    public void Button_LogOut()
+//    public void ButtonLogOut()
 //    {
-//        cl_Firebase.SetFirebaseAuth_SignOut();
+//        cm_Firebase.SetFirebaseAum_SignOut();
 //        //Sign out User Auth from Firebase
 //    }
 
@@ -141,7 +141,7 @@
 //    /// </summary>
 //    public void Button_Info()
 //    {
-//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneInfo);
+//        ClassScene cm_Scene = new ClassScene(m_SceneInfo);
 //        //Chance Scene to "Login"
 //    }
 
@@ -155,9 +155,9 @@
 //    /// <summary>
 //    /// Button START
 //    /// </summary>
-//    public void Button_Start()
+//    public void ButtonStart()
 //    {
-//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneStart);
+//        ClassScene cm_Scene = new ClassScene(m_SceneStart);
 //        //Chance Scene to "Login"
 //    }
 
@@ -168,7 +168,7 @@
 //    /// </summary>
 //    public void Button_Exit()
 //    {
-//        cl_Firebase.SetFirebaseAuth_SignOut();
+//        cm_Firebase.SetFirebaseAum_SignOut();
 //        //Sign out User Auth from Firebase
 
 //        Application.Quit();

@@ -7,13 +7,13 @@ public class SimpleCountdownTime : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI com_Text;
 
-    [SerializeField] private float m_Time_Passed = 1f;
+    [SerializeField] private float m_TimePassed = 1f;
 
-    [SerializeField] private List<SampleCountdownTime_Class> lCountdownTime = new List<SampleCountdownTime_Class>();
+    [SerializeField] private List<SampleCountdownTimeClass> lCountdownTime = new List<SampleCountdownTimeClass>();
 
     private void Start()
     {
-        lCountdownTime.Add(new SampleCountdownTime_Class(10, "Press Enter to Start from 10"));
+        lCountdownTime.Add(new SampleCountdownTimeClass(10, "Press Enter to Start from 10"));
 
         if (lCountdownTime.Count > 0)
         {
@@ -21,7 +21,7 @@ public class SimpleCountdownTime : MonoBehaviour
         }
     }
 
-    private IEnumerator SetCountdown(SampleCountdownTime_Class csCountdownTime)
+    private IEnumerator SetCountdown(SampleCountdownTimeClass csCountdownTime)
     {
         yield return null;
 
@@ -31,13 +31,13 @@ public class SimpleCountdownTime : MonoBehaviour
 
         do
         {
-            csCountdownTime.SetTimeOut(m_Time_Passed);
+            csCountdownTime.SetTimeOut(m_TimePassed);
 
-            com_Text.text = csCountdownTime.GetTimeOut_Cur() + " / " + csCountdownTime.GetTime();
+            com_Text.text = csCountdownTime.GetTimeOutCurrent() + " / " + csCountdownTime.GetTime();
 
-            yield return new WaitForSeconds(m_Time_Passed);
+            yield return new WaitForSeconds(m_TimePassed);
         }
-        while (!csCountdownTime.GetTimeOut());
+        while (!csCountdownTime.GetCheckTimeOut());
 
         lCountdownTime.Remove(csCountdownTime);
 
@@ -53,31 +53,31 @@ public class SimpleCountdownTime : MonoBehaviour
 }
 
 [System.Serializable]
-public class SampleCountdownTime_Class
+public class SampleCountdownTimeClass
 {
     [SerializeField] private float m_Time = 0;
 
     [SerializeField] private string m_Message = "";
 
-    [SerializeField] private float m_Time_Cur;
+    [SerializeField] private float m_TimeCurrent;
 
-    public SampleCountdownTime_Class(float m_Time)
+    public SampleCountdownTimeClass(float m_Time)
     {
         this.m_Time = m_Time;
-        m_Time_Cur = m_Time;
+        m_TimeCurrent = m_Time;
     }
 
-    public SampleCountdownTime_Class(float m_Time, string m_Message)
+    public SampleCountdownTimeClass(float m_Time, string m_Message)
     {
         this.m_Time = m_Time;
-        m_Time_Cur = m_Time;
+        m_TimeCurrent = m_Time;
 
         this.m_Message = m_Message;
     }
 
-    public void SetTimeOut(float m_Time_Passed)
+    public void SetTimeOut(float m_TimePassed)
     {
-        m_Time_Cur -= m_Time_Passed;
+        m_TimeCurrent -= m_TimePassed;
     }
 
     public float GetTime()
@@ -85,14 +85,14 @@ public class SampleCountdownTime_Class
         return m_Time;
     }
 
-    public float GetTimeOut_Cur()
+    public float GetTimeOutCurrent()
     {
-        return m_Time_Cur;
+        return m_TimeCurrent;
     }
 
-    public bool GetTimeOut()
+    public bool GetCheckTimeOut()
     {
-        return m_Time_Cur <= 0;
+        return m_TimeCurrent <= 0;
     }
 
     public string GetMessage()

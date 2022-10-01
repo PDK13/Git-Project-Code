@@ -5,23 +5,23 @@ public class BackgroundLoopController : MonoBehaviour
 {
     [Header("Camera")]
 
-    [SerializeField] private bool m_Camera_Loop_X = true;
+    //[SerializeField] private bool m_AllowCameraLoopX = true;
 
     [SerializeField] private Transform com_Camera;
 
-    private float m_Camera_X;
+    private float m_CameraX;
 
     [Header("Background")]
 
     [SerializeField] private SpriteRenderer com_Background;
 
-    private float m_Background_Bound_X;
+    private float m_BackgroundBoundX;
 
-    private float m_Background_Local_X;
+    private float m_BackgroundLocamX;
 
     [Header("Background Layer")]
 
-    [SerializeField] private List<BackgroundLoopLayer> l_Background_Layer;
+    [SerializeField] private List<BackgroundLoopLayer> m_BackgroundLayer;
 
     private void Start()
     {
@@ -30,106 +30,106 @@ public class BackgroundLoopController : MonoBehaviour
             com_Camera = Camera.main.transform;
         }
 
-        m_Background_Bound_X = com_Background.GetComponent<SpriteRenderer>().bounds.size.x;
-        m_Background_Local_X = com_Background.transform.localScale.x;
+        m_BackgroundBoundX = com_Background.GetComponent<SpriteRenderer>().bounds.size.x;
+        m_BackgroundLocamX = com_Background.transform.localScale.x;
 
-        m_Camera_X = com_Camera.position.x;
+        m_CameraX = com_Camera.position.x;
 
-        for (int i = 0; i < l_Background_Layer.Count; i++)
+        for (int i = 0; i < m_BackgroundLayer.Count; i++)
         {
-            l_Background_Layer[i].SetLayer_PosStart_X(GetCamera_X());
+            m_BackgroundLayer[i].SetLayerPosStartX(GetCameraX());
         }
     }
 
     private void Update()
     {
-        for (int i = 0; i < l_Background_Layer.Count; i++)
+        for (int i = 0; i < m_BackgroundLayer.Count; i++)
         {
-            float m_Temp = GetCamera_X() * (1 - l_Background_Layer[i].GetLayer_Speed_X());
+            float m_Temp = GetCameraX() * (1 - m_BackgroundLayer[i].GetLayerSpeedX());
 
-            float m_Distance = GetCamera_X() * l_Background_Layer[i].GetLayer_Speed_X();
+            float m_Distance = GetCameraX() * m_BackgroundLayer[i].GetLayerSpeedX();
 
-            l_Background_Layer[i].GetTransform().transform.position = new Vector2(l_Background_Layer[i].GetLayer_PosStart_X() + m_Distance + m_Camera_X, GetCamera_Y(l_Background_Layer[i]));
+            m_BackgroundLayer[i].GetTransform().transform.position = new Vector2(m_BackgroundLayer[i].GetLayerPosStartX() + m_Distance + m_CameraX, GetCameraY(m_BackgroundLayer[i]));
 
-            if (m_Temp > l_Background_Layer[i].GetLayer_PosStart_X() + m_Background_Bound_X * m_Background_Local_X)
+            if (m_Temp > m_BackgroundLayer[i].GetLayerPosStartX() + m_BackgroundBoundX * m_BackgroundLocamX)
             {
-                l_Background_Layer[i].SetLayer_PosStart_X_Chance(m_Background_Bound_X * m_Background_Local_X);
+                m_BackgroundLayer[i].SetLayerPosStartXChance(m_BackgroundBoundX * m_BackgroundLocamX);
             }
             else
-            if (m_Temp < l_Background_Layer[i].GetLayer_PosStart_X() - m_Background_Bound_X * m_Background_Local_X)
+            if (m_Temp < m_BackgroundLayer[i].GetLayerPosStartX() - m_BackgroundBoundX * m_BackgroundLocamX)
             {
-                l_Background_Layer[i].SetLayer_PosStart_X_Chance(-m_Background_Bound_X * m_Background_Local_X);
+                m_BackgroundLayer[i].SetLayerPosStartXChance(-m_BackgroundBoundX * m_BackgroundLocamX);
             }
         }
     }
 
-    private float GetCamera_X()
+    private float GetCameraX()
     {
-        return com_Camera.position.x - m_Camera_X;
+        return com_Camera.position.x - m_CameraX;
     }
 
-    private float GetCamera_Y(BackgroundLoopLayer cm_Layer)
+    private float GetCameraY(BackgroundLoopLayer m_Layer)
     {
-        return (cm_Layer.GetLayer_Follow_Y()) ? com_Camera.position.y : cm_Layer.GetTransform().transform.position.y;
+        return (m_Layer.GetCheckLayerFollowY()) ? com_Camera.position.y : m_Layer.GetTransform().transform.position.y;
     }
 }
 
 [System.Serializable]
 public class BackgroundLoopLayer
 {
-    [SerializeField] private GameObject g_Layer;
+    [SerializeField] private GameObject m_Layer;
 
-    [SerializeField] [Range(0, 1)] private float m_Layer_Speed_X;
+    [SerializeField] [Range(0, 1)] private float m_LayerSpeedX;
 
-    private float m_Layer_PosStart_X;
+    private float m_LayerPosStartX;
 
-    [SerializeField] private bool m_Layer_Follow_Y = true;
+    [SerializeField] private bool m_AllowBackgroundLayerFollowY = true;
 
     public Transform GetTransform()
     {
-        return g_Layer.transform;
+        return m_Layer.transform;
     }
 
     public SpriteRenderer GetSpriteRenderer()
     {
-        return g_Layer.GetComponent<SpriteRenderer>();
+        return m_Layer.GetComponent<SpriteRenderer>();
     }
 
     #region Loop X
 
-    public void SetLayer_Speed_X(float m_Background_Layer_Speed_X)
+    public void SetLayerSpeedX(float m_BackgroundLayerSpeedX)
     {
-        m_Layer_Speed_X = m_Background_Layer_Speed_X;
+        m_LayerSpeedX = m_BackgroundLayerSpeedX;
     }
 
-    public float GetLayer_Speed_X()
+    public float GetLayerSpeedX()
     {
-        return m_Layer_Speed_X;
+        return m_LayerSpeedX;
     }
 
-    public void SetLayer_PosStart_X(float m_Background_Layer_PosStart_X)
+    public void SetLayerPosStartX(float m_BackgroundLayerPosStartX)
     {
-        m_Layer_PosStart_X = m_Background_Layer_PosStart_X;
+        m_LayerPosStartX = m_BackgroundLayerPosStartX;
     }
 
-    public void SetLayer_PosStart_X_Chance(float m_Background_Layer_PosStart_X_Chance)
+    public void SetLayerPosStartXChance(float m_BackgroundLayerPosStartXChance)
     {
-        m_Layer_PosStart_X += m_Background_Layer_PosStart_X_Chance;
+        m_LayerPosStartX += m_BackgroundLayerPosStartXChance;
     }
 
-    public float GetLayer_PosStart_X()
+    public float GetLayerPosStartX()
     {
-        return m_Layer_PosStart_X;
+        return m_LayerPosStartX;
     }
 
-    public void SetLayer_Follow_Y(bool m_Background_Layer_Follow_Y)
+    public void SetLayerFollowY(bool m_AllowBackgroundLayerFollowY)
     {
-        m_Layer_Follow_Y = m_Background_Layer_Follow_Y;
+        this.m_AllowBackgroundLayerFollowY = m_AllowBackgroundLayerFollowY;
     }
 
-    public bool GetLayer_Follow_Y()
+    public bool GetCheckLayerFollowY()
     {
-        return m_Layer_Follow_Y;
+        return m_AllowBackgroundLayerFollowY;
     }
 
     #endregion

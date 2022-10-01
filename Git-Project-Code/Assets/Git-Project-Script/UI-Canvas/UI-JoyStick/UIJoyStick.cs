@@ -5,31 +5,31 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 {
     [Header("UI")]
 
-    [SerializeField] private bool m_Lock_Position = true;
+    [SerializeField] private bool m_AllowLockPos = true;
 
-    [SerializeField] private bool m_Auto_Reset = true;
+    [SerializeField] private bool m_AllowAutoReset = true;
 
-    [SerializeField] private RectTransform com_JoyStick_Limit;
+    [SerializeField] private RectTransform com_JoyStickLimit;
 
-    private Vector2 v2_JoyStick_Limit_Position_Primary;
+    private Vector2 v2_JoyStickLimitPos_Primary;
 
-    [SerializeField] private RectTransform com_JoyStick_Button;
+    [SerializeField] private RectTransform com_JoySticm_KeyButton;
 
     [Header("Lock")]
 
-    [SerializeField] private bool m_Lock_X_L = false;
+    [SerializeField] private bool m_AllowLockXL = false;
 
-    [SerializeField] private bool m_Lock_X_R = false;
+    [SerializeField] private bool m_AllowLockXR = false;
 
-    [SerializeField] private bool m_Lock_Y_U = false;
+    [SerializeField] private bool m_AllowLockYU = false;
 
-    [SerializeField] private bool m_Lock_Y_D = false;
+    [SerializeField] private bool m_AllowLockYD = false;
 
     [Header("Value")]
 
-    [SerializeField] private Vector2 v2_JoyStick_Value_Primary;
+    [SerializeField] private Vector2 v2_JoySticm_KeyValue_Primary;
 
-    [SerializeField] private Vector2 v2_JoyStick_Value_Fixed;
+    [SerializeField] private Vector2 v2_JoySticm_KeyValue_Fixed;
 
     private Canvas com_Canvas;
 
@@ -38,13 +38,13 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     private void Start()
     {
         Vector2 center = new Vector2(0.5f, 0.5f);
-        com_JoyStick_Limit.pivot = center;
-        com_JoyStick_Button.anchorMin = center;
-        com_JoyStick_Button.anchorMax = center;
-        com_JoyStick_Button.pivot = center;
-        com_JoyStick_Button.anchoredPosition = Vector2.zero;
+        com_JoyStickLimit.pivot = center;
+        com_JoySticm_KeyButton.anchorMin = center;
+        com_JoySticm_KeyButton.anchorMax = center;
+        com_JoySticm_KeyButton.pivot = center;
+        com_JoySticm_KeyButton.anchoredPosition = Vector2.zero;
 
-        v2_JoyStick_Limit_Position_Primary = com_JoyStick_Limit.GetComponent<RectTransform>().anchoredPosition;
+        v2_JoyStickLimitPos_Primary = com_JoyStickLimit.GetComponent<RectTransform>().anchoredPosition;
 
         if (com_Canvas == null)
         {
@@ -59,34 +59,34 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     #region Input Value
 
-    public Vector2 GetJoyStick_Fixed()
+    public Vector2 GetJoySticm_KeyFixed()
     {
-        return v2_JoyStick_Value_Fixed;
+        return v2_JoySticm_KeyValue_Fixed;
     }
 
-    public float GetJoyStick_Fixed_X()
+    public float GetJoySticm_KeyFixedX()
     {
-        return GetJoyStick_Fixed().x;
+        return GetJoySticm_KeyFixed().x;
     }
 
-    public float GetJoyStick_Fixed_Y()
+    public float GetJoySticm_KeyFixedY()
     {
-        return GetJoyStick_Fixed().y;
+        return GetJoySticm_KeyFixed().y;
     }
 
-    public Vector2 GetJoyStick_Primary()
+    public Vector2 GetJoySticm_KeyPrimary()
     {
-        return v2_JoyStick_Value_Primary;
+        return v2_JoySticm_KeyValue_Primary;
     }
 
-    public float GetJoyStick_Primary_X()
+    public float GetJoySticm_KeyPrimaryX()
     {
-        return GetJoyStick_Primary().x;
+        return GetJoySticm_KeyPrimary().x;
     }
 
-    public float GetJoyStick_PrimaryY_()
+    public float GetJoySticm_KeyPrimaryY_()
     {
-        return GetJoyStick_Primary().y;
+        return GetJoySticm_KeyPrimary().y;
     }
 
     #endregion
@@ -100,12 +100,12 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             com_Camera = com_Canvas.worldCamera;
         }
 
-        if (!m_Lock_Position)
+        if (!m_AllowLockPos)
         {
-            Vector2 v2_JoyStick_Limit_Pos = RectTransformUtility.WorldToScreenPoint(com_Camera, com_JoyStick_Limit.position);
-            Vector2 v2_JoyStick_Limit = (eventData.position - v2_JoyStick_Limit_Pos) / com_Canvas.scaleFactor;
+            Vector2 v2_JoyStickLimit_Pos = RectTransformUtility.WorldToScreenPoint(com_Camera, com_JoyStickLimit.position);
+            Vector2 v2_JoyStickLimit = (eventData.position - v2_JoyStickLimit_Pos) / com_Canvas.scaleFactor;
 
-            com_JoyStick_Limit.anchoredPosition = com_JoyStick_Limit.anchoredPosition + v2_JoyStick_Limit;
+            com_JoyStickLimit.anchoredPosition = com_JoyStickLimit.anchoredPosition + v2_JoyStickLimit;
         }
 
         OnDrag(eventData);
@@ -113,65 +113,65 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void OnDrag(PointerEventData eventData)
     {
-        Vector2 v2_JoyStick_Limit_Pos = RectTransformUtility.WorldToScreenPoint(com_Camera, com_JoyStick_Limit.position);
-        Vector2 v2_JoyStick_Limit_Radius = com_JoyStick_Limit.sizeDelta / 2;
+        Vector2 v2_JoyStickLimit_Pos = RectTransformUtility.WorldToScreenPoint(com_Camera, com_JoyStickLimit.position);
+        Vector2 v2_JoyStickLimitRadius = com_JoyStickLimit.sizeDelta / 2;
 
-        v2_JoyStick_Value_Primary = (eventData.position - v2_JoyStick_Limit_Pos) / (v2_JoyStick_Limit_Radius * com_Canvas.scaleFactor);
+        v2_JoySticm_KeyValue_Primary = (eventData.position - v2_JoyStickLimit_Pos) / (v2_JoyStickLimitRadius * com_Canvas.scaleFactor);
 
-        //if (m_Lock_X)
+        //if (m_LockX)
         //{
-        //    v2_JoyStick_Value_Primary.x = 0f;
+        //    v2_JoySticm_KeyValue_Primary.x = 0f;
         //}
 
-        //if (m_Lock_Y)
+        //if (m_LockY)
         //{
-        //    v2_JoyStick_Value_Primary.y = 0f;
+        //    v2_JoySticm_KeyValue_Primary.y = 0f;
         //}
 
-        if (m_Lock_X_L && v2_JoyStick_Value_Primary.x < 0)
+        if (m_AllowLockXL && v2_JoySticm_KeyValue_Primary.x < 0)
         {
-            v2_JoyStick_Value_Primary.x = 0;
+            v2_JoySticm_KeyValue_Primary.x = 0;
         }
         else
-        if (m_Lock_X_R && v2_JoyStick_Value_Primary.x > 0)
+        if (m_AllowLockXR && v2_JoySticm_KeyValue_Primary.x > 0)
         {
-            v2_JoyStick_Value_Primary.x = 0;
+            v2_JoySticm_KeyValue_Primary.x = 0;
         }
 
-        if (m_Lock_Y_U && v2_JoyStick_Value_Primary.y > 0)
+        if (m_AllowLockYU && v2_JoySticm_KeyValue_Primary.y > 0)
         {
-            v2_JoyStick_Value_Primary.y = 0;
+            v2_JoySticm_KeyValue_Primary.y = 0;
         }
         else
-        if (m_Lock_Y_D && v2_JoyStick_Value_Primary.y < 0)
+        if (m_AllowLockYD && v2_JoySticm_KeyValue_Primary.y < 0)
         {
-            v2_JoyStick_Value_Primary.y = 0;
+            v2_JoySticm_KeyValue_Primary.y = 0;
         }
 
-        v2_JoyStick_Value_Fixed = v2_JoyStick_Value_Primary;
+        v2_JoySticm_KeyValue_Fixed = v2_JoySticm_KeyValue_Primary;
 
-        if (v2_JoyStick_Value_Fixed.magnitude > 0)
+        if (v2_JoySticm_KeyValue_Fixed.magnitude > 0)
         {
-            if (v2_JoyStick_Value_Fixed.magnitude > 1)
+            if (v2_JoySticm_KeyValue_Fixed.magnitude > 1)
             {
-                v2_JoyStick_Value_Fixed = v2_JoyStick_Value_Fixed.normalized;
+                v2_JoySticm_KeyValue_Fixed = v2_JoySticm_KeyValue_Fixed.normalized;
             }
         }
         else
         {
-            v2_JoyStick_Value_Fixed = Vector2.zero;
+            v2_JoySticm_KeyValue_Fixed = Vector2.zero;
         }
 
-        com_JoyStick_Button.anchoredPosition = v2_JoyStick_Value_Fixed * v2_JoyStick_Limit_Radius * 1;
+        com_JoySticm_KeyButton.anchoredPosition = v2_JoySticm_KeyValue_Fixed * v2_JoyStickLimitRadius * 1;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        com_JoyStick_Button.anchoredPosition = Vector2.zero;
+        com_JoySticm_KeyButton.anchoredPosition = Vector2.zero;
 
-        if (m_Auto_Reset)
+        if (m_AllowAutoReset)
         {
-            com_JoyStick_Limit.anchoredPosition = v2_JoyStick_Limit_Position_Primary;
+            com_JoyStickLimit.anchoredPosition = v2_JoyStickLimitPos_Primary;
         }
     }
 
@@ -179,44 +179,44 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     #region Lock JoyStick
 
-    public void SetLock_X_L(bool m_Lock_X_L)
+    public void SetLockXL(bool m_AllowLockXL)
     {
-        this.m_Lock_X_L = m_Lock_X_L;
+        this.m_AllowLockXL = m_AllowLockXL;
     }
 
-    public void SetLock_X_R(bool m_Lock_X_R)
+    public void SetLockXR(bool m_AllowLockXR)
     {
-        this.m_Lock_X_R = m_Lock_X_R;
+        this.m_AllowLockXR = m_AllowLockXR;
     }
 
-    public void SetLock_Y_U(bool m_Lock_Y_U)
+    public void SetLockYU(bool m_AllowLockYU)
     {
-        this.m_Lock_Y_U = m_Lock_Y_U;
+        this.m_AllowLockYU = m_AllowLockYU;
     }
 
-    public void SetLock_Y_D(bool m_Lock_Y_D)
+    public void SetLockYD(bool m_AllowLockYD)
     {
-        this.m_Lock_Y_D = m_Lock_Y_D;
+        this.m_AllowLockYD = m_AllowLockYD;
     }
 
-    public bool GetLock_X_L()
+    public bool GetCheckLockXL()
     {
-        return m_Lock_X_L;
+        return m_AllowLockXL;
     }
 
-    public bool GetLock_X_R()
+    public bool GetCheckLockXR()
     {
-        return m_Lock_X_R;
+        return m_AllowLockXR;
     }
 
-    public bool GetLock_Y_U()
+    public bool GetCheckLockYU()
     {
-        return m_Lock_Y_U;
+        return m_AllowLockYU;
     }
 
-    public bool GetLock_Y_D()
+    public bool GetCheckLockYD()
     {
-        return m_Lock_Y_D;
+        return m_AllowLockYD;
     }
 
     #endregion

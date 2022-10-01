@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class Sample_TrajectoryTank_Primary : MonoBehaviour
+public class Sample_TrajectoryTanm_KeyPrimary : MonoBehaviour
 {
-    [SerializeField] private GameObject g_Bullet;
+    [SerializeField] private GameObject m_Bullet;
 
-    private RendererTrajectory cm_RendererTrajectory;
+    private RendererTrajectory m_RendererTrajectory;
 
-    private LineRenderer com_LineRenderer;
+    private LineRenderer comLineRenderer;
 
     private Rigidbody com_Rigidbody;
 
-    private RigidbodyRotation cm_RigidbodyRotation;
+    private RigidbodyRotation m_RigidbodyRotation;
 
     private void Awake()
     {
@@ -26,24 +26,24 @@ public class Sample_TrajectoryTank_Primary : MonoBehaviour
             gameObject.AddComponent<LineRenderer>();
         }
 
-        com_LineRenderer = GetComponent<LineRenderer>();
-        com_LineRenderer.startWidth = 0.2f;
-        com_LineRenderer.endWidth = 0.2f;
+        comLineRenderer = GetComponent<LineRenderer>();
+        comLineRenderer.startWidth = 0.2f;
+        comLineRenderer.endWidth = 0.2f;
 
         if (GetComponent<RendererTrajectory>() == null)
         {
             gameObject.AddComponent<RendererTrajectory>();
         }
 
-        cm_RendererTrajectory = GetComponent<RendererTrajectory>();
-        cm_RendererTrajectory.SetTrajectory_toLineRenderer_Clear(com_LineRenderer);
+        m_RendererTrajectory = GetComponent<RendererTrajectory>();
+        m_RendererTrajectory.SetTrajectory_toLineRendererClear(comLineRenderer);
 
         if (GetComponent<RigidbodyRotation>() == null)
         {
             gameObject.AddComponent<RigidbodyRotation>();
         }
 
-        cm_RigidbodyRotation = GetComponent<RigidbodyRotation>();
+        m_RigidbodyRotation = GetComponent<RigidbodyRotation>();
     }
 
     private void Update()
@@ -51,42 +51,42 @@ public class Sample_TrajectoryTank_Primary : MonoBehaviour
         //High by Y
         if (Input.GetKey(KeyCode.W))
         {
-            cm_RendererTrajectory.SetTrajectory_Next_Chance(Vector3.up * 0.01f);
+            m_RendererTrajectory.SetTrajectory_NextChance(Vector3.up * 0.01f);
         }
         else
         if (Input.GetKey(KeyCode.S))
         {
-            cm_RendererTrajectory.SetTrajectory_Next_Chance(Vector3.down * 0.01f);
+            m_RendererTrajectory.SetTrajectory_NextChance(Vector3.down * 0.01f);
         }
 
         //Power by X
         if (Input.GetKey(KeyCode.D))
         {
-            cm_RendererTrajectory.SetTrajectory_Next_Chance(transform.right * 0.01f);
+            m_RendererTrajectory.SetTrajectory_NextChance(transform.right * 0.01f);
         }
         else
         if (Input.GetKey(KeyCode.A))
         {
-            cm_RendererTrajectory.SetTrajectory_Next_Chance(transform.right * 0.01f * -1);
+            m_RendererTrajectory.SetTrajectory_NextChance(transform.right * 0.01f * -1);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject g_BulletClone = Clasm_Object.SetGameObject_Create(g_Bullet);
-            g_BulletClone.transform.position = cm_RendererTrajectory.GetTrajectory_Start();
-            g_BulletClone.SetActive(true);
+            GameObject m_BulletClone = ClassObject.SetGameObjectCreate(m_Bullet);
+            m_BulletClone.transform.position = m_RendererTrajectory.GetTrajectoryStart();
+            m_BulletClone.SetActive(true);
 
-            cm_RendererTrajectory.SetTrajectory_toRigidbody(
-                g_BulletClone.GetComponent<Rigidbody>(),
-                cm_RendererTrajectory.GetTrajectory_Start(),
-                cm_RendererTrajectory.GetTrajectory_Next());
+            m_RendererTrajectory.SetTrajectory_toRigidbody(
+                m_BulletClone.GetComponent<Rigidbody>(),
+                m_RendererTrajectory.GetTrajectoryStart(),
+                m_RendererTrajectory.GetTrajectory_Next());
 
-            cm_RigidbodyRotation.SetControlIsLock(false);
+            m_RigidbodyRotation.SetControlLock(false);
         }
     }
 
     private void FixedUpdate()
     {
-        cm_RendererTrajectory.SetTrajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag, false);
+        m_RendererTrajectory.SetTrajectory_toLineRenderer(comLineRenderer, com_Rigidbody.drag, false);
     }
 }

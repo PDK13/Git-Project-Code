@@ -1,4 +1,4 @@
-public class IsoClassBlock
+public class oClassBlock
 {
     public static readonly string m_None = "";
 
@@ -8,17 +8,17 @@ public class IsoClassBlock
 
     public static readonly string m_Block = "Block";
 
-    public static readonly string m_Block_Ground = "Ground";
+    public static readonly string m_BlockGround = "Ground";
 
-    public static readonly string m_Block_Object = "Object";
+    public static readonly string m_BlockObject = "Object";
 
-    public static readonly string m_Block_Item = "Item";
+    public static readonly string m_BlockItem = "Item";
 
-    public static readonly string m_Block_Stair = "Stair";
+    public static readonly string m_BlockStair = "Stair";
 
-    public static readonly string m_Block_StairUD = "StairUD";
+    public static readonly string m_BlockStairUD = "StairUD";
 
-    public static readonly string m_Block_StairLR = "StairLR";
+    public static readonly string m_BlockStairLR = "StairLR";
 
     #endregion
 
@@ -44,7 +44,7 @@ public class IsoClassBlock
 
     private readonly string m_Type = "";
 
-    public IsoClassBlock(string m_Type_Main, string m_Type)
+    public oClassBlock(string m_Type_Main, string m_Type)
     {
         this.m_Type_Main = m_Type_Main;
         this.m_Type = m_Type;
@@ -54,7 +54,7 @@ public class IsoClassBlock
     /// Type Block or Character
     /// </summary>
     /// <returns></returns>
-    public string GetType_Main()
+    public string GetBlockTypeMain()
     {
         return m_Type_Main;
     }
@@ -63,7 +63,7 @@ public class IsoClassBlock
     /// Type Child of Type A (Block or Character)
     /// </summary>
     /// <returns></returns>
-    public string GetType()
+    public string GetBlockType()
     {
         return m_Type;
     }

@@ -6,29 +6,29 @@
 public class RigidbodyPlatform : MonoBehaviour
 //Move Control Platform (X)
 {
-    private RigidbodyComponent cm_Rigid;
+    private RigidbodyComponent m_Rigid;
     //Use "Move" of this Script
 
     [Header("Keyboard")]
-    public KeyCode k_MoveLeft = KeyCode.LeftArrow;
-    //Control Move Left
+    public KeyCode m_KeyMoveL = KeyCode.LeftArrow;
+    //Control m_ove L
 
-    public KeyCode k_MoveRight = KeyCode.RightArrow;
-    //Control Move Right
+    public KeyCode m_KeyMoveR = KeyCode.RightArrow;
+    //Control m_ove R
 
-    public KeyCode k_SpeedChance = KeyCode.LeftShift;
+    public KeyCode m_KeySpeedChance = KeyCode.LeftShift;
     //Control Speed Chance
 
     [Header("Move")]
     public float m_SpeedNormal = 2f;
-    //Normal Speed Move
+    //Normal Speed m_ove
 
     public float m_SpeedChance = 5f;
-    //Chance Speed Move
+    //Chance Speed m_ove
     private float m_SpeedCur;
-    //Current Speed Move
+    //Current Speed m_ove
 
-    public bool m_StopRightAway = false;
+    public bool m_AllowStopRAway = false;
     //Control Stop without Speed Stop Velocity
 
     public float m_SpeedStop = 3f;
@@ -36,7 +36,7 @@ public class RigidbodyPlatform : MonoBehaviour
 
     private void Awake()
     {
-        cm_Rigid = GetComponent<RigidbodyComponent>();
+        m_Rigid = GetComponent<RigidbodyComponent>();
     }
 
     private void Update()
@@ -46,23 +46,23 @@ public class RigidbodyPlatform : MonoBehaviour
     }
 
     public void SetMoveButton()
-    //Control Move by Keyboard
+    //Control m_ove by Keyboard
     {
-        if (Input.GetKey(k_MoveLeft) && Input.GetKey(k_MoveRight))
+        if (Input.GetKey(m_KeyMoveL) && Input.GetKey(m_KeyMoveR))
         {
-            //Press "Left" & "Right" same time >> Not Move
+            //Press "L" & "R" same time >> Not m_ove
             SetStop();
         }
         else
-            if (Input.GetKey(k_MoveLeft))
+            if (Input.GetKey(m_KeyMoveL))
         {
-            //Left
+            //L
             SetMove(-1);
         }
         else
-            if (Input.GetKey(k_MoveRight))
+            if (Input.GetKey(m_KeyMoveR))
         {
-            //Right
+            //R
             SetMove(1);
         }
         else
@@ -73,27 +73,27 @@ public class RigidbodyPlatform : MonoBehaviour
     }
 
     private void SetMove(int m_ButtonMove)
-    //Control Move
+    //Control m_ove
     {
-        cm_Rigid.SetMoveX_Velocity(m_ButtonMove, m_SpeedCur, m_SpeedCur);
+        m_Rigid.SetMoveX_Velocity(m_ButtonMove, m_SpeedCur, m_SpeedCur);
     }
 
     private void SetStop()
     //Control Stop
     {
-        if (m_StopRightAway)
+        if (m_AllowStopRAway)
         {
-            cm_Rigid.SetStopX_Velocity();
+            m_Rigid.SetStopX_Velocity();
         }
         else
         {
-            cm_Rigid.SetStopX_Velocity(m_SpeedStop);
+            m_Rigid.SetStopX_Velocity(m_SpeedStop);
         }
     }
 
     public void SetSpeedChance()
     //Control Speed Chance
     {
-        m_SpeedCur = (Input.GetKey(k_SpeedChance)) ? m_SpeedChance : m_SpeedNormal;
+        m_SpeedCur = (Input.GetKey(m_KeySpeedChance)) ? m_SpeedChance : m_SpeedNormal;
     }
 }

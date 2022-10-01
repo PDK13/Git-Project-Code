@@ -30,10 +30,10 @@ public class UIZoomDrag : MonoBehaviour, IPointerDownHandler, IDragHandler
             Vector2 v2_Touch_0_Prev_Pos = t_Touch_0.position - t_Touch_0.deltaPosition;
             Vector2 v2_Touch_1_Prev_Pos = t_Touch_1.position - t_Touch_1.deltaPosition;
 
-            float m_Prev_Duration = (v2_Touch_0_Prev_Pos - v2_Touch_1_Prev_Pos).magnitude;
-            float m_Cur_Duration = (t_Touch_0.position - t_Touch_1.position).magnitude;
+            float m_PrevDuration = (v2_Touch_0_Prev_Pos - v2_Touch_1_Prev_Pos).magnitude;
+            float m_CurrentDuration = (t_Touch_0.position - t_Touch_1.position).magnitude;
 
-            float m_Difference = m_Cur_Duration - m_Prev_Duration;
+            float m_Difference = m_CurrentDuration - m_PrevDuration;
 
             SetZoom(m_Difference * m_Zoom_Speed);
         }

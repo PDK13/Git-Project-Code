@@ -22,32 +22,32 @@ public class UIObjectDragDrop : MonoBehaviour,
     [SerializeField]
     private Vector2 v2_Pivot = new Vector2(0.5f, 0.5f);
 
-    [Tooltip("Anchor Min")]
+    [Tooltip("Anchor m_in")]
     private Vector2 v2_Anchor_Min = new Vector2(0.5f, 0.5f);
 
-    [Tooltip("Anchor Max")]
+    [Tooltip("Anchor m_ax")]
     private Vector2 v2_Anchor_Max = new Vector2(0.5f, 0.5f);
 
     [Tooltip("Rect Transform")]
-    private RectTransform r_RectTransform;
+    private RectTransform rRectTransform;
 
     [Header("This Canvas")]
 
     [Tooltip("Canvas Alpha when Normal (Not Drag)")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float m_Canvam_Alpha_Normal = 1f;
+    private float m_Canvas_Alpha_Normal = 1f;
 
     [Tooltip("Canvas Alpha when Drag")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float m_Canvam_Alpha_Drag = 0.6f;
+    private float m_Canvas_AlphaDrag = 0.6f;
 
     [Header("Event")]
 
     [Tooltip("Canvas Lock State")]
     [SerializeField]
-    private bool m_Canvam_Lock = false;
+    private bool m_AllowCavasLock = false;
 
     [Tooltip("Unity Pointer Enter Event Handle")]
     [Space]
@@ -59,15 +59,15 @@ public class UIObjectDragDrop : MonoBehaviour,
     [SerializeField]
     private UnityEvent Event_PointerExit;
 
-    [Tooltip("Unity Pointer Down Event Handle")]
+    [Tooltip("Unity Pointer D Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerDown;
+    private UnityEvent Event_PointerD;
 
-    [Tooltip("Unity Pointer Up Event Handle")]
+    [Tooltip("Unity Pointer U Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerUp;
+    private UnityEvent Event_PointerU;
 
     [Tooltip("Unity On Begin Drag Event Handle")]
     [Space]
@@ -88,13 +88,13 @@ public class UIObjectDragDrop : MonoBehaviour,
     private CanvasGroup c_CanvasGroup;
 
     [Tooltip("UI Drag Status")]
-    private bool m_UI_Drag = false;
+    private bool m_AllowUIDrag = false;
 
     [Tooltip("UI Hold Status")]
-    private bool m_UI_Hold = false;
+    private bool m_AllowUIHold = false;
 
     [Tooltip("Button Ready Status")]
-    private bool m_UI_Ready = false;
+    private bool m_AllowUIReady = false;
 
     private void Start()
     {
@@ -103,11 +103,11 @@ public class UIObjectDragDrop : MonoBehaviour,
             c_ParentCanvas = GetComponentInParent<Canvas>();
         }
 
-        r_RectTransform = GetComponent<RectTransform>();
+        rRectTransform = GetComponent<RectTransform>();
 
-        r_RectTransform.pivot = v2_Pivot;
-        r_RectTransform.anchorMin = v2_Anchor_Min;
-        r_RectTransform.anchorMax = v2_Anchor_Max;
+        rRectTransform.pivot = v2_Pivot;
+        rRectTransform.anchorMin = v2_Anchor_Min;
+        rRectTransform.anchorMax = v2_Anchor_Max;
 
         if (GetComponent<CanvasGroup>() == null)
         {
@@ -145,18 +145,18 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerDown(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerD(UnityAction ua_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerDown, ua_Methode);
+        UnityEventTools.AddPersistentListener(Event_PointerD, ua_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
     /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerUp(UnityAction ua_Methode)
+    public void SetEvent_Add_PointerU(UnityAction ua_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerUp, ua_Methode);
+        UnityEventTools.AddPersistentListener(Event_PointerU, ua_Methode);
     }
 
     /// <summary>
@@ -208,19 +208,19 @@ public class UIObjectDragDrop : MonoBehaviour,
         }
     }
 
-    private void SetEvent_Invoke_PointerDown()
+    private void SetEvent_Invoke_PointerD()
     {
-        if (Event_PointerDown != null)
+        if (Event_PointerD != null)
         {
-            Event_PointerDown.Invoke();
+            Event_PointerD.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_PointerUp()
+    private void SetEvent_Invoke_PointerU()
     {
-        if (Event_PointerUp != null)
+        if (Event_PointerU != null)
         {
-            Event_PointerUp.Invoke();
+            Event_PointerU.Invoke();
         }
     }
 
@@ -254,62 +254,62 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     private void SetEvent_PointerEnter()
     {
-        if (m_Canvam_Lock)
+        if (m_AllowCavasLock)
         {
             return;
         }
 
-        m_UI_Ready = true;
+        m_AllowUIReady = true;
 
         SetEvent_Invoke_PointerEnter();
     }
 
     private void SetEvent_PointerExit()
     {
-        if (m_Canvam_Lock)
+        if (m_AllowCavasLock)
         {
             return;
         }
 
-        m_UI_Ready = false;
+        m_AllowUIReady = false;
 
         SetEvent_Invoke_PointerExit();
     }
 
-    private void SetEvent_PointerDown()
+    private void SetEvent_PointerD()
     {
-        if (m_Canvam_Lock)
+        if (m_AllowCavasLock)
         {
             return;
         }
 
-        m_UI_Hold = true;
+        m_AllowUIHold = true;
 
-        SetEvent_Invoke_PointerDown();
+        SetEvent_Invoke_PointerD();
     }
 
-    private void SetEvent_PointerUp()
+    private void SetEvent_PointerU()
     {
-        if (m_Canvam_Lock)
+        if (m_AllowCavasLock)
         {
             return;
         }
 
-        m_UI_Hold = false;
+        m_AllowUIHold = false;
 
-        SetEvent_Invoke_PointerUp();
+        SetEvent_Invoke_PointerU();
     }
 
     private void SetEvent_OnBeginDrag()
     {
-        if (m_Canvam_Lock)
+        if (m_AllowCavasLock)
         {
             return;
         }
 
-        m_UI_Drag = true;
+        m_AllowUIDrag = true;
 
-        c_CanvasGroup.alpha = m_Canvam_Alpha_Drag;
+        c_CanvasGroup.alpha = m_Canvas_AlphaDrag;
 
         c_CanvasGroup.blocksRaycasts = false;
 
@@ -318,26 +318,26 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     private void SetEvent_OnDrag(PointerEventData eventData)
     {
-        if (m_Canvam_Lock)
+        if (m_AllowCavasLock)
         {
             return;
         }
 
-        r_RectTransform.anchoredPosition += eventData.delta / c_ParentCanvas.scaleFactor;
+        rRectTransform.anchoredPosition += eventData.delta / c_ParentCanvas.scaleFactor;
 
         SetEvent_Invoke_OnDrag();
     }
 
     private void SetEvent_OnEndDrag()
     {
-        if (m_Canvam_Lock)
+        if (m_AllowCavasLock)
         {
             return;
         }
 
-        m_UI_Drag = false;
+        m_AllowUIDrag = false;
 
-        c_CanvasGroup.alpha = m_Canvam_Alpha_Normal;
+        c_CanvasGroup.alpha = m_Canvas_Alpha_Normal;
 
         c_CanvasGroup.blocksRaycasts = true;
 
@@ -362,12 +362,12 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        SetEvent_PointerDown();
+        SetEvent_PointerD();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        SetEvent_PointerUp();
+        SetEvent_PointerU();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -396,43 +396,43 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     #region UI Status Set
 
-    public void SetUI_Canvam_Lock(bool m_Lock_Status)
+    public void SetUICanvasLock(bool m_AllowLockStatus)
     {
-        m_Canvam_Lock = m_Lock_Status;
+        m_AllowCavasLock = m_AllowLockStatus;
     }
 
-    public void SetUI_Canvam_Lock_True()
+    public void SetUICanvasLocm_KeyTrue()
     {
-        SetUI_Canvam_Lock(true);
+        SetUICanvasLock(true);
     }
 
-    public void SetUI_Canvam_Lock_False()
+    public void SetUICanvasLocm_KeyFalse()
     {
-        SetUI_Canvam_Lock(false);
+        SetUICanvasLock(false);
     }
 
     #endregion
 
     #region UI Status
 
-    public bool GetUI_Canvam_Drag()
+    public bool GetCheckUICanvasDrag()
     {
-        return m_UI_Drag;
+        return m_AllowUIDrag;
     }
 
-    public bool GetUI_Canvam_Hold()
+    public bool GetCheckUICanvasHold()
     {
-        return m_UI_Hold;
+        return m_AllowUIHold;
     }
 
-    public bool GetUI_Canvam_Ready()
+    public bool GetCheckUICanvasReady()
     {
-        return m_UI_Ready;
+        return m_AllowUIReady;
     }
 
-    public bool GetUI_Canvam_Lock()
+    public bool GetCheckUICanvasLock()
     {
-        return m_Canvam_Lock;
+        return m_AllowCavasLock;
     }
 
     #endregion
@@ -446,21 +446,21 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <summary>
     /// Set Alpha Canvas when in Normal State (Not Drag State) (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="m_Canvam_Alpha_Normal"></param>
-    public void SetUI_Canvam_Alpha_Normal(float m_Canvam_Alpha_Normal)
+    /// <param name="mCanvas_Alpha_Normal"></param>
+    public void SetUICanvas_Alpha_Normal(float m_Canvas_Alpha_Normal)
     {
-        if (m_Canvam_Alpha_Normal < 0)
+        if (m_Canvas_Alpha_Normal < 0)
         {
-            this.m_Canvam_Alpha_Normal = 0;
+            m_Canvas_Alpha_Normal = 0;
         }
         else
-        if (m_Canvam_Alpha_Normal > 1)
+        if (m_Canvas_Alpha_Normal > 1)
         {
-            this.m_Canvam_Alpha_Normal = 1;
+            m_Canvas_Alpha_Normal = 1;
         }
         else
         {
-            this.m_Canvam_Alpha_Normal = m_Canvam_Alpha_Normal;
+            this.m_Canvas_Alpha_Normal = m_Canvas_Alpha_Normal;
         }
     }
 
@@ -468,9 +468,9 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// Get Alpha Canvas when in Drag State
     /// </summary>
     /// <returns></returns>
-    public float GetUI_Canvam_Alpha_Normal()
+    public float GetUICanvas_Alpha_Normal()
     {
-        return m_Canvam_Alpha_Normal;
+        return m_Canvas_Alpha_Normal;
     }
 
     #endregion
@@ -480,21 +480,21 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <summary>
     /// Set Alpha Canvas when in Drag State (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="m_Canvam_Alpha_Drag"></param>
-    public void SetUI_Canvam_Alpha_Drag(float m_Canvam_Alpha_Drag)
+    /// <param name="mCanvas_AlphaDrag"></param>
+    public void SetUICanvas_AlphaDrag(float m_Canvas_AlphaDrag)
     {
-        if (m_Canvam_Alpha_Drag < 0)
+        if (m_Canvas_AlphaDrag < 0)
         {
-            this.m_Canvam_Alpha_Drag = 0;
+            m_Canvas_AlphaDrag = 0;
         }
         else
-        if (m_Canvam_Alpha_Drag > 1)
+        if (m_Canvas_AlphaDrag > 1)
         {
-            this.m_Canvam_Alpha_Drag = 1;
+            m_Canvas_AlphaDrag = 1;
         }
         else
         {
-            this.m_Canvam_Alpha_Drag = m_Canvam_Alpha_Drag;
+            this.m_Canvas_AlphaDrag = m_Canvas_AlphaDrag;
         }
     }
 
@@ -502,9 +502,9 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// Get Alpha Canvas when in Drag State
     /// </summary>
     /// <returns></returns>
-    public float GetUI_Canvam_Alpha_Drag()
+    public float GetUICanvas_AlphaDrag()
     {
-        return m_Canvam_Alpha_Drag;
+        return m_Canvas_AlphaDrag;
     }
 
     #endregion

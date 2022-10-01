@@ -14,23 +14,23 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     [Tooltip("Canvas Alpha when is Exit State on Start")]
     [SerializeField]
-    private bool m_Canvam_Lock_Enter = false;
+    private bool m_AllowCavasLockEnter = false;
 
     [Tooltip("Button for Canvas Alpha Lock Chance")]
     [SerializeField]
-    private UIButtonOnClick cl_Button_Lock_Chance;
+    private UIButtonOnClick cm_ButtonLockChance;
 
     [Header("Canvas Alpha")]
 
     [Tooltip("Canvas Alpha when Pointer Enter")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float m_Canvam_Alpha_Enter = 1f;
+    private float m_Canvas_AlphaEnter = 1f;
 
     [Tooltip("Canvas Alpha when Pointer Exit")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float m_Canvam_Alpha_Exit = 0.2f;
+    private float m_Canvas_Alpha_Exit = 0.2f;
 
     [Header("Event")]
 
@@ -56,19 +56,19 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
         c_CanvasGroup = GetComponent<CanvasGroup>();
 
-        if (m_Canvam_Lock_Enter)
+        if (m_AllowCavasLockEnter)
         {
-            c_CanvasGroup.alpha = m_Canvam_Alpha_Enter;
+            c_CanvasGroup.alpha = m_Canvas_AlphaEnter;
         }
         else
         {
-            c_CanvasGroup.alpha = m_Canvam_Alpha_Exit;
+            c_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
         }
 
-        if (cl_Button_Lock_Chance != null)
+        if (cm_ButtonLockChance != null)
         {
-            //cl_Button_Lock_Chance.SetEvent_Add_PointerDown(SetUI_Canvam_Lock_Enter_Chance);
-            cl_Button_Lock_Chance.SetButton_Active(m_Canvam_Lock_Enter);
+            //cm_ButtonLockChance.SetEvent_Add_PointerD(SetUICanvasLockEnterChance);
+            cm_ButtonLockChance.SetButtonActive(m_AllowCavasLockEnter);
         }
     }
 
@@ -116,29 +116,29 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     private void SetEvent_PointerEnter()
     {
-        c_CanvasGroup.alpha = m_Canvam_Alpha_Enter;
+        c_CanvasGroup.alpha = m_Canvas_AlphaEnter;
 
         SetEvent_Invoke_PointerEnter();
     }
 
     private void SetEvent_PointerExit()
     {
-        if (m_Canvam_Lock_Enter)
+        if (m_AllowCavasLockEnter)
         {
-            c_CanvasGroup.alpha = m_Canvam_Alpha_Enter;
+            c_CanvasGroup.alpha = m_Canvas_AlphaEnter;
 
             return;
         }
 
         if (GetComponent<UIObjectDragDrop>() != null)
         {
-            if (GetComponent<UIObjectDragDrop>().GetUI_Canvam_Drag())
+            if (GetComponent<UIObjectDragDrop>().GetCheckUICanvasDrag())
             {
                 return;
             }
         }
 
-        c_CanvasGroup.alpha = m_Canvam_Alpha_Exit;
+        c_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
 
         SetEvent_Invoke_PointerExit();
     }
@@ -163,19 +163,19 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     #region UI Canvas Lock
 
-    public void SetUI_Canvam_Lock_Enter(bool m_Canvam_Lock_Enter)
+    public void SetUICanvasLockEnter(bool m_AllowCavasLockEnter)
     {
-        this.m_Canvam_Lock_Enter = m_Canvam_Lock_Enter;
+        this.m_AllowCavasLockEnter = m_AllowCavasLockEnter;
     }
 
-    public void SetUI_Canvam_Lock_Enter_Chance()
+    public void SetUICanvasLockEnterChance()
     {
-        SetUI_Canvam_Lock_Enter(!GetUI_Canvam_Lock_Enter());
+        SetUICanvasLockEnter(!GetCheckUICanvasLockEnter());
     }
 
-    public bool GetUI_Canvam_Lock_Enter()
+    public bool GetCheckUICanvasLockEnter()
     {
-        return m_Canvam_Lock_Enter;
+        return m_AllowCavasLockEnter;
     }
 
     #endregion
@@ -187,21 +187,21 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// <summary>
     /// Set Alpha Canvas when in Curson Enter State (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="m_Canvam_Alpha_Enter"></param>
-    public void SetUI_Canvam_Alpha_Enter(float m_Canvam_Alpha_Enter)
+    /// <param name="m_Canvas_AlphaEnter"></param>
+    public void SetUICanvas_AlphaEnter(float m_Canvas_AlphaEnter)
     {
-        if (m_Canvam_Alpha_Enter < 0)
+        if (m_Canvas_AlphaEnter < 0)
         {
-            this.m_Canvam_Alpha_Enter = 0;
+            m_Canvas_AlphaEnter = 0;
         }
         else
-        if (m_Canvam_Alpha_Enter > 1)
+        if (m_Canvas_AlphaEnter > 1)
         {
-            this.m_Canvam_Alpha_Enter = 1;
+            m_Canvas_AlphaEnter = 1;
         }
         else
         {
-            this.m_Canvam_Alpha_Enter = m_Canvam_Alpha_Enter;
+            this.m_Canvas_AlphaEnter = m_Canvas_AlphaEnter;
         }
     }
 
@@ -209,9 +209,9 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// Get Alpha Canvas when in Curson Enter State
     /// </summary>
     /// <returns></returns>
-    public float GetUI_Canvam_Alpha_Enter()
+    public float GetUICanvas_AlphaEnter()
     {
-        return m_Canvam_Alpha_Enter;
+        return m_Canvas_AlphaEnter;
     }
 
     #endregion
@@ -221,21 +221,21 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// <summary>
     /// Set Alpha Canvas when in Curson Exit State (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="m_Canvam_Alpha_Exit"></param>
-    public void SetUI_Canvam_Alpha_Exit(float m_Canvam_Alpha_Exit)
+    /// <param name="mCanvas_Alpha_Exit"></param>
+    public void SetUICanvas_Alpha_Exit(float m_Canvas_Alpha_Exit)
     {
-        if (m_Canvam_Alpha_Exit < 0)
+        if (m_Canvas_Alpha_Exit < 0)
         {
-            this.m_Canvam_Alpha_Exit = 0;
+            m_Canvas_Alpha_Exit = 0;
         }
         else
-        if (m_Canvam_Alpha_Exit > 1)
+        if (m_Canvas_Alpha_Exit > 1)
         {
-            this.m_Canvam_Alpha_Exit = 1;
+            m_Canvas_Alpha_Exit = 1;
         }
         else
         {
-            this.m_Canvam_Alpha_Exit = m_Canvam_Alpha_Exit;
+            this.m_Canvas_Alpha_Exit = m_Canvas_Alpha_Exit;
         }
     }
 
@@ -243,9 +243,9 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     /// Get Alpha Canvas when in Curson Exit State
     /// </summary>
     /// <returns></returns>
-    public float GetUI_Canvam_Alpha_Exit()
+    public float GetUICanvas_Alpha_Exit()
     {
-        return m_Canvam_Alpha_Exit;
+        return m_Canvas_Alpha_Exit;
     }
 
     #endregion

@@ -26,7 +26,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// </summary>
     [Header("Network Host Server")]
     [SerializeField]
-    private string m_Tag_Host = "SocketHost";
+    private string m_Tam_Host = "SocketHost";
 
     /// <summary>
     /// Host to Connect
@@ -39,7 +39,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// </summary>
     [Header("Network Port Server")]
     [SerializeField]
-    private string m_Tag_Port = "SocketPort";
+    private string m_Tam_Port = "SocketPort";
 
     /// <summary>
     /// Port for Connect to Host
@@ -52,7 +52,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// </summary>
     [Header("Network On Start")]
     [SerializeField]
-    private bool m_AutoConnect = true;
+    private bool m_AllowAutoConnect = true;
 
     /// <summary>
     /// Host to Connect or Connected
@@ -70,11 +70,11 @@ public class Socket_ClientManager : MonoBehaviour
     /// Auto Read by Thread
     /// </summary>
     [SerializeField]
-    private bool m_AutoRead = true;
+    private bool m_AllowAutoRead = true;
 
-    [Header("Socket Message")]
+    [Header("Socket m_essage")]
     [SerializeField]
-    private List<Text> lt_SocketMessage;
+    private List<Text> m_SocketMessage;
 
     [SerializeField]
     private string m_ConnectSuccess = "Connect Success!";
@@ -96,25 +96,25 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// Socket Connect OK?
     /// </summary>
-    private bool m_SocketStart = false;
+    private bool m_AllowSocketStart = false;
 
     /// <summary>
     /// Socket Auto Thread Read?
     /// </summary>
-    private bool m_SocketRead = false;
+    private bool m_AllowSocketRead = false;
 
     private TcpClient tcp_Socket;
     private NetworkStream net_Stream;
     private StreamWriter st_Writer;
-    private StreamReader st_Reader;
+    private StreamReader stReader;
 
     //Data
 
-    private Thread th_GetData;
+    private Thread m_GetData;
 
     [Header("Network Auto Read")]
     [SerializeField]
-    private List<string> l_DataQueue;
+    private List<string> m_DataQueue;
 
     #endregion
 
@@ -122,7 +122,7 @@ public class Socket_ClientManager : MonoBehaviour
     {
         if (inp_Host == null)
         {
-            inp_Host = GameObject.FindGameObjectWithTag(m_Tag_Host).GetComponent<InputField>();
+            inp_Host = GameObject.FindGameObjectWithTag(m_Tam_Host).GetComponent<InputField>();
         }
         if (inp_Host != null)
         {
@@ -134,7 +134,7 @@ public class Socket_ClientManager : MonoBehaviour
 
         if (inp_Port == null)
         {
-            inp_Port = GameObject.FindGameObjectWithTag(m_Tag_Port).GetComponent<InputField>();
+            inp_Port = GameObject.FindGameObjectWithTag(m_Tam_Port).GetComponent<InputField>();
         }
         if (inp_Port != null)
         {
@@ -144,20 +144,20 @@ public class Socket_ClientManager : MonoBehaviour
             }
         }
 
-        l_DataQueue = new List<string>();
+        m_DataQueue = new List<string>();
 
-        if (m_AutoConnect)
+        if (m_AllowAutoConnect)
         {
-            SetSocket_Start();
+            SetSocketStart();
         }
 
-        if (m_AutoRead)
+        if (m_AllowAutoRead)
         {
-            SetSocketThread_Read(true);
+            SetSocketThreadRead(true);
         }
 
-        th_GetData = new Thread(SetSocketThread_AutoRead);
-        th_GetData.Start();
+        m_GetData = new Thread(SetSocketThread_AutoRead);
+        m_GetData.Start();
     }
 
     private void OnDestroy()
@@ -170,26 +170,26 @@ public class Socket_ClientManager : MonoBehaviour
         SetCloseApplication();
     }
 
-    private void OnApplicationPause(bool m_OnPause)
+    private void OnApplicationPause(bool m_AllowOnPause)
     {
         //Android Event onResume() and onPause()
-        if (m_OnPause)
+        if (m_AllowOnPause)
         {
             SetCloseApplication();
         }
         else
         {
-            SetSocket_Start();
+            SetSocketStart();
         }
     }
 
     private void SetCloseApplication()
     {
-        if (th_GetData != null)
+        if (m_GetData != null)
         {
-            if (th_GetData.IsAlive)
+            if (m_GetData.IsAlive)
             {
-                th_GetData.Abort();
+                m_GetData.Abort();
             }
         }
 
@@ -205,17 +205,17 @@ public class Socket_ClientManager : MonoBehaviour
     {
         while (true)
         {
-            if (m_SocketStart)
+            if (m_AllowSocketStart)
             //If Socket Started
             {
-                if (m_SocketRead)
+                if (m_AllowSocketRead)
                 //If Socket Read
                 {
-                    string m_DataGet = GetSocketData_Read();
+                    string m_DataGet = GetSocketReadData();
                     if (m_DataGet != "")
                     {
                         //Debug.Log("SetThread_AutoRead: " + m_DataGet);
-                        l_DataQueue.Add(m_DataGet);
+                        m_DataQueue.Add(m_DataGet);
                     }
                 }
             }
@@ -226,18 +226,18 @@ public class Socket_ClientManager : MonoBehaviour
     /// Set Socket Read by Thread
     /// </summary>
     /// <param name="m_SocketRead"></param>
-    public void SetSocketThread_Read(bool m_SocketRead)
+    public void SetSocketThreadRead(bool m_AllowSocketRead)
     {
-        this.m_SocketRead = m_SocketRead;
+        this.m_AllowSocketRead = m_AllowSocketRead;
     }
 
     /// <summary>
     /// Get Socket Read by Thread
     /// </summary>
     /// <returns></returns>
-    public bool GetSocketThread_Read()
+    public bool GetCheckSocketThreadRead()
     {
-        return m_SocketRead;
+        return m_AllowSocketRead;
     }
 
     #endregion
@@ -247,9 +247,9 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// Set Socket Ready
     /// </summary>
-    public void SetSocket_Start()
+    public void SetSocketStart()
     {
-        if (!GetSocket_Start())
+        if (!GetCheckSocketStart())
         {
             try
             {
@@ -257,27 +257,27 @@ public class Socket_ClientManager : MonoBehaviour
 
                 if (inp_Port == null || inp_Port == null)
                 {
-                    Debug.LogError("SetSocket_Start: Require Input Field!");
+                    Debug.LogError("SetSocketStart: Require Input Field!");
                     return;
                 }
                 else
                 {
                     if (inp_Port.text == "")
                     {
-                        Debug.LogWarning("SetSocket_Start: Port Require!");
+                        Debug.LogWarning("SetSocketStart: Port Require!");
                         return;
                     }
 
                     if (inp_Host.text == "")
                     {
-                        Debug.LogWarning("SetSocket_Start: Local Host Instead!");
-                        Debug.LogWarning("SetSocket_Start: Device " + SystemInfo.deviceUniqueIdentifier);
+                        Debug.LogWarning("SetSocketStart: Local Host Instead!");
+                        Debug.LogWarning("SetSocketStart: Device " + SystemInfo.deviceUniqueIdentifier);
                         tcp_Socket.Connect(m_LocalHost, int.Parse(inp_Port.text));
                     }
                     else
                     {
-                        Debug.LogWarning("SetSocket_Start: Host " + inp_Host.text);
-                        Debug.LogWarning("SetSocket_Start: Device " + SystemInfo.deviceUniqueIdentifier);
+                        Debug.LogWarning("SetSocketStart: Host " + inp_Host.text);
+                        Debug.LogWarning("SetSocketStart: Device " + SystemInfo.deviceUniqueIdentifier);
                         tcp_Socket.Connect(inp_Host.text, int.Parse(inp_Port.text));
                     }
                 }
@@ -285,28 +285,28 @@ public class Socket_ClientManager : MonoBehaviour
                 net_Stream = tcp_Socket.GetStream();
                 net_Stream.ReadTimeout = 1;
                 st_Writer = new StreamWriter(net_Stream);
-                st_Reader = new StreamReader(net_Stream);
+                stReader = new StreamReader(net_Stream);
 
                 m_HostConnect = inp_Host.text;
                 m_PortConnect = inp_Port.text;
 
-                m_SocketStart = true;
+                m_AllowSocketStart = true;
 
-                Debug.LogWarning("SetSocket_Start: Socket Start!");
+                Debug.LogWarning("SetSocketStart: Socket Start!");
 
-                for (int i = 0; i < lt_SocketMessage.Count; i++)
+                for (int i = 0; i < m_SocketMessage.Count; i++)
                 {
-                    lt_SocketMessage[i].text = m_ConnectSuccess;
+                    m_SocketMessage[i].text = m_ConnectSuccess;
                 }
 
             }
             catch (Exception e)
             {
-                Debug.LogError("SetSocket_Start: Socket error '" + e + "'");
+                Debug.LogError("SetSocketStart: Socket error '" + e + "'");
 
-                for (int i = 0; i < lt_SocketMessage.Count; i++)
+                for (int i = 0; i < m_SocketMessage.Count; i++)
                 {
-                    lt_SocketMessage[i].text = m_ConnectFailed;
+                    m_SocketMessage[i].text = m_ConnectFailed;
                 }
             }
         }
@@ -316,9 +316,9 @@ public class Socket_ClientManager : MonoBehaviour
     /// Socket is Started?
     /// </summary>
     /// <returns></returns>
-    public bool GetSocket_Start()
+    public bool GetCheckSocketStart()
     {
-        return m_SocketStart;
+        return m_AllowSocketStart;
     }
 
     #endregion
@@ -328,10 +328,10 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// Sent Data to Server
     /// </summary>
-    /// <param name="m_Data"></param>
+    /// <param name="mData"></param>
     public void SetSocket_Write(string m_Data)
     {
-        if (!GetSocket_Start())
+        if (!GetCheckSocketStart())
         {
             return;
         }
@@ -356,16 +356,16 @@ public class Socket_ClientManager : MonoBehaviour
     /// Should use this in 'void FixedUpdate()' or use with 'Thread'
     /// </remarks>
     /// <returns></returns>
-    private string GetSocketData_Read()
+    private string GetSocketReadData()
     {
-        if (!GetSocket_Start())
+        if (!GetCheckSocketStart())
         {
             return "";
         }
         if (net_Stream.DataAvailable)
         {
-            string m_ReadData = st_Reader.ReadLine();
-            Debug.Log("GetSocket_Read: " + m_ReadData);
+            string m_ReadData = stReader.ReadLine();
+            Debug.Log("GetSocketRead: " + m_ReadData);
             return m_ReadData;
         }
         return "";
@@ -377,14 +377,14 @@ public class Socket_ClientManager : MonoBehaviour
     /// Get Data from Queue List
     /// </summary>
     /// <returns></returns>
-    public string GetSocketQueue_Read()
+    public string GetSocketQueueRead()
     {
         if (GetSocketQueueCount() <= 0)
         {
             return "";
         }
-        string m_DataGet = l_DataQueue[0];
-        l_DataQueue.RemoveAt(0);
+        string m_DataGet = m_DataQueue[0];
+        m_DataQueue.RemoveAt(0);
         return m_DataGet;
     }
 
@@ -394,7 +394,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// <returns></returns>
     public int GetSocketQueueCount()
     {
-        return l_DataQueue.Count;
+        return m_DataQueue.Count;
     }
 
     #endregion
@@ -406,16 +406,16 @@ public class Socket_ClientManager : MonoBehaviour
     /// </summary>
     public void SetSocket_Close()
     {
-        if (!GetSocket_Start())
+        if (!GetCheckSocketStart())
         {
             return;
         }
 
         SetSocket_Write("Exit");
         st_Writer.Close();
-        st_Reader.Close();
+        stReader.Close();
         tcp_Socket.Close();
-        m_SocketStart = false;
+        m_AllowSocketStart = false;
 
         Debug.LogWarning("SetSocket_Close: Called!");
     }

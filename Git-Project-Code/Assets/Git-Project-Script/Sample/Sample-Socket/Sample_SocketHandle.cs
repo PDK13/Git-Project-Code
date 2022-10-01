@@ -4,57 +4,57 @@ using UnityEngine.UI;
 
 public class Sample_SocketHandle : MonoBehaviour
 {
-    [Header("Socket Manager")]
+    [Header("Socket m_anager")]
     [SerializeField]
-    private Socket_ClientManager cl_SocketManager;
+    private Socket_ClientManager cm_SocketManager;
 
     [Header("Debug List")]
     [SerializeField]
-    private Text t_Debug;
+    private Text tDebug;
 
     [SerializeField]
-    private List<string> l_ID;
+    private List<string> m_ID;
 
     [SerializeField]
-    private List<string> l_Message;
+    private List<string> m_Message;
 
     private int m_Plus = 0;
 
     private void Start()
     {
-        l_ID = new List<string>();
-        l_Message = new List<string>();
+        m_ID = new List<string>();
+        m_Message = new List<string>();
     }
 
     private void FixedUpdate()
     {
-        //if (cl_SocketManager.GetSocket_Queue_ReadIsExist())
+        //if (cm_SocketManager.GetSocket_QueueReadExist())
         //{
-        //    string m_SocketGet = cl_SocketManager.GetSocket_Queue_Read();
+        //    string m_SocketGet = cm_SocketManager.GetSocket_QueueRead();
         //    Debug.Log("Debug:" + m_SocketGet);
-        //    //List<string> l_Data = cl_SocketManager.GetSocketData(m_SocketGet);
-        //    string[] l_Data = m_SocketGet.Split(':');
+        //    //List<string> m_Data = cm_SocketManager.GetSocketData(m_SocketGet);
+        //    string[] m_Data = m_SocketGet.Split(':');
 
-        //    string m_ID = l_Data[0];
-        //    string m_Command = l_Data[1];
+        //    string m_ID = m_Data[0];
+        //    string m_Command = m_Data[1];
         //    Debug.Log("Debug: " + m_ID + "||" + m_Command);
 
         //    if (GetExist_ID(m_ID))
         //    {
         //        int m_Index = GetExist_ID_Index(m_ID);
-        //        l_Message[m_Index] = m_Command;
+        //        m_Message[m_Index] = m_Command;
         //    }
         //    else
         //    {
-        //        l_ID.Add(m_ID);
-        //        l_Message.Add(m_Command);
-        //        //cl_SocketManager.SetGet(l_ID.Count);
+        //        m_ID.Add(m_ID);
+        //        m_Message.Add(m_Command);
+        //        //cm_SocketManager.SetGet(m_ID.Count);
         //    }
 
         //    string m_Debug = "";
-        //    for(int i = 0; i < l_ID.Count; i++)
+        //    for(int i = 0; i < m_ID.Count; i++)
         //    {
-        //        m_Debug += l_ID[i] + ":" + l_Message[i] + "\n";
+        //        m_Debug += m_ID[i] + ":" + m_Message[i] + "\n";
         //    }
         //}
     }
@@ -62,14 +62,14 @@ public class Sample_SocketHandle : MonoBehaviour
     public void Button_SendDeviceID()
     {
         m_Plus++;
-        cl_SocketManager.SetSocket_Write(cl_SocketManager.GetDeviceID() + ":" + m_Plus.ToString());
+        cm_SocketManager.SetSocket_Write(cm_SocketManager.GetDeviceID() + ":" + m_Plus.ToString());
     }
 
-    private bool GetExist_ID(string m_IDCheck)
+    private bool GetCheckExist_ID(string m_IDCheck)
     {
-        for (int i = 0; i < l_ID.Count; i++)
+        for (int i = 0; i < m_ID.Count; i++)
         {
-            if (l_ID[i] == m_IDCheck)
+            if (m_ID[i] == m_IDCheck)
             {
                 return true;
             }
@@ -79,9 +79,9 @@ public class Sample_SocketHandle : MonoBehaviour
 
     private int GetExist_ID_Index(string m_IDCheck)
     {
-        for (int i = 0; i < l_ID.Count; i++)
+        for (int i = 0; i < m_ID.Count; i++)
         {
-            if (l_ID[i] == m_IDCheck)
+            if (m_ID[i] == m_IDCheck)
             {
                 return i;
             }

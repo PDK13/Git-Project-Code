@@ -3,13 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(RendererTrajectory))]
 public class Sample_TrajectoryBall : MonoBehaviour
 {
-    private Vector2 v2_MouseDrag_Start;
+    private Vector2 v2_MouseDramStart;
 
-    private Vector2 v2_MouseDrag_Next;
+    private Vector2 v2_MouseDram_Next;
 
-    private RendererTrajectory cm_RendererTrajectory;
+    private RendererTrajectory m_RendererTrajectory;
 
-    private LineRenderer com_LineRenderer;
+    private LineRenderer comLineRenderer;
 
     private Rigidbody com_Rigidbody;
 
@@ -20,7 +20,7 @@ public class Sample_TrajectoryBall : MonoBehaviour
             gameObject.AddComponent<RendererTrajectory>();
         }
 
-        cm_RendererTrajectory = GetComponent<RendererTrajectory>();
+        m_RendererTrajectory = GetComponent<RendererTrajectory>();
 
         if (GetComponent<Rigidbody>() == null)
         {
@@ -34,30 +34,30 @@ public class Sample_TrajectoryBall : MonoBehaviour
             gameObject.AddComponent<LineRenderer>();
         }
 
-        com_LineRenderer = GetComponent<LineRenderer>();
+        comLineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            v2_MouseDrag_Start = transform.position;
+            v2_MouseDramStart = transform.position;
 
-            cm_RendererTrajectory.SetTrajectory_Start(v2_MouseDrag_Start);
+            m_RendererTrajectory.SetTrajectoryStart(v2_MouseDramStart);
         }
 
         if (Input.GetMouseButton(0))
         {
-            v2_MouseDrag_Next = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            v2_MouseDram_Next = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            cm_RendererTrajectory.SetTrajectory_Next(v2_MouseDrag_Next);
+            m_RendererTrajectory.SetTrajectory_Next(v2_MouseDram_Next);
 
-            cm_RendererTrajectory.SetTrajectory_toLineRenderer(com_LineRenderer, com_Rigidbody.drag, false);
+            m_RendererTrajectory.SetTrajectory_toLineRenderer(comLineRenderer, com_Rigidbody.drag, false);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            cm_RendererTrajectory.SetTrajectory_toRigidbody(com_Rigidbody, v2_MouseDrag_Start, v2_MouseDrag_Next);
+            m_RendererTrajectory.SetTrajectory_toRigidbody(com_Rigidbody, v2_MouseDramStart, v2_MouseDram_Next);
         }
     }
 }

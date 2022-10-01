@@ -4,31 +4,31 @@ public class Sample_2DSimplePlatform : MonoBehaviour
 {
     [SerializeField] private float m_Speed = 0.001f;
 
-    private int m_Move_Dir = 1;
+    private int m_MoveDir = 1;
 
-    private readonly float m_Time_Chance = 5f;
+    private readonly float m_TimeChance = 5f;
 
-    private float m_Time_Chance_Cur = 0f;
+    private float m_TimeChanceCurrent = 0f;
 
     private void Awake()
     {
-        m_Time_Chance_Cur = m_Time_Chance;
+        m_TimeChanceCurrent = m_TimeChance;
     }
 
     private void Update()
     {
-        if (m_Time_Chance_Cur > 0)
+        if (m_TimeChanceCurrent > 0)
         {
-            m_Time_Chance_Cur -= Time.deltaTime;
+            m_TimeChanceCurrent -= Time.deltaTime;
         }
         else
         {
-            m_Move_Dir *= -1;
+            m_MoveDir *= -1;
 
-            m_Time_Chance_Cur = m_Time_Chance;
+            m_TimeChanceCurrent = m_TimeChance;
         }
 
-        Vector2 v2_Pos = Vector2.MoveTowards(transform.position, transform.position + Vector3.right * m_Move_Dir, m_Speed);
+        Vector2 v2_Pos = Vector2.MoveTowards(transform.position, transform.position + Vector3.right * m_MoveDir, m_Speed);
 
         transform.position = v2_Pos;
     }
@@ -43,14 +43,14 @@ public class Sample_2DSimplePlatform : MonoBehaviour
 
     private void DoPlayerEnter(Collider2D collider)
     {
-        Sample_2DSimplePlayer cl_Player = collider.GetComponent<Sample_2DSimplePlayer>();
+        Sample_2DSimplePlayer cm_Player = collider.GetComponent<Sample_2DSimplePlayer>();
 
-        if (cl_Player == null)
+        if (cm_Player == null)
         {
             return;
         }
 
-        if (collider.transform.parent != cl_Player.GetPrimary_Parent())
+        if (collider.transform.parent != cm_Player.GetPrimary_Parent())
         {
             return;
         }
@@ -70,9 +70,9 @@ public class Sample_2DSimplePlatform : MonoBehaviour
 
     private void DoPlayerExit(Collider2D collider)
     {
-        Sample_2DSimplePlayer cl_Player = collider.GetComponent<Sample_2DSimplePlayer>();
+        Sample_2DSimplePlayer cm_Player = collider.GetComponent<Sample_2DSimplePlayer>();
 
-        if (cl_Player == null)
+        if (cm_Player == null)
         {
             return;
         }
@@ -82,6 +82,6 @@ public class Sample_2DSimplePlatform : MonoBehaviour
             return;
         }
 
-        cl_Player.Reset();
+        cm_Player.Reset();
     }
 }

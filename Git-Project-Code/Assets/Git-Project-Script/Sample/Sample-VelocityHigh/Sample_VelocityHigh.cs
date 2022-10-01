@@ -10,7 +10,7 @@ public class Sample_VelocityHigh : MonoBehaviour
 
     private float m_Distance_Get;
 
-    private Vector2? v2_Pom_Drop;
+    private Vector2? v2_PomDrop;
 
     private void Start()
     {
@@ -29,31 +29,31 @@ public class Sample_VelocityHigh : MonoBehaviour
     {
         com_Rigidbody2D.AddForce(Vector3.right * 50f);
 
-        RaycastHit2D ray_Raycast = Physics2D.CircleCast(
+        RaycastHit2D rayRaycast = Physics2D.CircleCast(
             (Vector2)transform.position + com_Rigidbody2D.velocity.normalized * (com_CircleCollider2D.radius * 2 + 0.2f),
             com_CircleCollider2D.radius,
             com_Rigidbody2D.velocity.normalized,
             com_Rigidbody2D.velocity.magnitude);
 
-        if (v2_Pom_Drop != null)
+        if (v2_PomDrop != null)
         {
             com_Rigidbody2D.bodyType = RigidbodyType2D.Static;
 
-            transform.position = (Vector3)v2_Pom_Drop;
+            transform.position = (Vector3)v2_PomDrop;
         }
         else
-        if (ray_Raycast.collider != null)
+        if (rayRaycast.collider != null)
         {
-            if (ray_Raycast.collider != null && m_Distance_Get == 0)
+            if (rayRaycast.collider != null && m_Distance_Get == 0)
             {
-                m_Distance_Get = ray_Raycast.distance * 1.0f;
+                m_Distance_Get = rayRaycast.distance * 1.0f;
             }
             else
-            if (ray_Raycast.distance * 1.0f <= m_Distance_Get * Time.fixedDeltaTime && m_Distance_Get != 0)
+            if (rayRaycast.distance * 1.0f <= m_Distance_Get * Time.fixedDeltaTime && m_Distance_Get != 0)
             {
                 if (com_Rigidbody2D.bodyType != RigidbodyType2D.Static)
                 {
-                    v2_Pom_Drop = ray_Raycast.collider.ClosestPoint((Vector2)transform.position + com_Rigidbody2D.velocity.normalized * (com_CircleCollider2D.radius * 2 + 0.2f) + (Vector2)ClassVector.GetVector(com_Rigidbody2D.velocity.x, 0, 0) * Time.fixedDeltaTime);
+                    v2_PomDrop = rayRaycast.collider.ClosestPoint((Vector2)transform.position + com_Rigidbody2D.velocity.normalized * (com_CircleCollider2D.radius * 2 + 0.2f) + (Vector2)ClassVector.GetVector(com_Rigidbody2D.velocity.x, 0, 0) * Time.fixedDeltaTime);
                 }
             }
         }
@@ -76,11 +76,11 @@ public class Sample_VelocityHigh : MonoBehaviour
 
         Gizmos.color = Color.red;
 
-        if (v2_Pom_Drop != null)
+        if (v2_PomDrop != null)
         {
-            Gizmos.DrawLine(transform.position, (Vector2)v2_Pom_Drop);
+            Gizmos.DrawLine(transform.position, (Vector2)v2_PomDrop);
 
-            Gizmos.DrawWireSphere((Vector2)v2_Pom_Drop, GetComponent<CircleCollider2D>().radius);
+            Gizmos.DrawWireSphere((Vector2)v2_PomDrop, GetComponent<CircleCollider2D>().radius);
         }
     }
 }

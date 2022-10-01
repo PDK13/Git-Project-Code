@@ -6,56 +6,56 @@ public class Sample_FileIO : MonoBehaviour
     //This Script can work both on WINDOW and ANDROID
 
     public InputField m_Send;
-    public Text t_Receive;
+    public Text tReceive;
 
     public Text t_Error;
 
-    private Clasm_FileIO cl_File;
+    private ClassFileIO cm_File;
 
-    private string m_LinkFile = "";
+    private string m_PathFile = "";
 
     private void Start()
     {
-        cl_File = new Clasm_FileIO();
+        cm_File = new ClassFileIO();
 
-        m_LinkFile = Clasm_FileIO.GetPath_Application_Persistent() + Clasm_FileIO.GetPath_File("HelloWorld", "", "txt");
+        m_PathFile = ClassFileIO.GetPathApplicationPersistent() + ClassFileIO.GetPathFile("HelloWorld", "", "txt");
 
-        //m_LinkFile = Clasm_FileIO.GetPath_File_WriteToResources("GameSaved", "HelloWorld");
+        //m_PathFile = ClassFileIO.GetPathFileWriteToResources("GameSaved", "HelloWorld");
     }
 
     public void Button_Send()
     {
         try
         {
-            cl_File.SetData_Write_Clear();
+            cm_File.SetWriteDataClear();
 
-            cl_File.SetData_Write_Add(m_Send.text);
+            cm_File.SetWriteDataAdd(m_Send.text);
 
-            cl_File.SetData_Write_Start(m_LinkFile);
+            cm_File.SetWriteDataStart(m_PathFile);
 
-            t_Error.text = "WRITE OK: \n" + m_LinkFile;
+            t_Error.text = "WRITE OK: \n" + m_PathFile;
         }
         catch
         {
-            t_Error.text = "WRITE ERROR: \n" + m_LinkFile;
+            t_Error.text = "WRITE ERROR: \n" + m_PathFile;
         }
     }
 
-    public void Button_Receive()
+    public void ButtonReceive()
     {
         try
         {
-            cl_File.SetData_Read_Clear();
+            cm_File.SetReadDataClear();
 
-            cl_File.SetData_Read_Start(m_LinkFile);
+            cm_File.SetReadDataStart(m_PathFile);
 
-            t_Receive.text = cl_File.GetData_Read_Auto_String();
+            tReceive.text = cm_File.GetReadDataAutoString();
 
-            t_Error.text = "READ OK: \n" + m_LinkFile;
+            t_Error.text = "READ OK: \n" + m_PathFile;
         }
         catch
         {
-            t_Error.text = "READ ERROR: \n" + m_LinkFile;
+            t_Error.text = "READ ERROR: \n" + m_PathFile;
         }
     }
 }

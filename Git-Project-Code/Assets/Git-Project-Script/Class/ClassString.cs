@@ -2,9 +2,6 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-/// <summary>
-/// Working on String
-/// </summary>
 public class ClassString
 {
     #region String Command
@@ -25,7 +22,7 @@ public class ClassString
 
     #region String Exist
 
-    public static bool GetStringIsExist(string m_FatherString, string m_ChildString)
+    public static bool GetCheckStringExist(string m_FatherString, string m_ChildString)
     {
         return m_FatherString.Contains(m_ChildString);
     }
@@ -34,9 +31,9 @@ public class ClassString
 
     #region String Replace
 
-    public static string GetStringReplace(string m_FatherString, string m_CheckString, string m_ReplaceString)
+    public static string GetStringReplace(string m_FatherString, string m_String, string m_ReplaceString)
     {
-        return m_FatherString.Replace(m_CheckString, m_ReplaceString);
+        return m_FatherString.Replace(m_String, m_ReplaceString);
     }
 
     public static string GetStringReplaceClone(string m_CloneName)
@@ -44,7 +41,7 @@ public class ClassString
         return GetStringReplace(m_CloneName, "(Clone)", "");
     }
 
-    public static string GetStringReplace_Resources(string m_Resourcem_Path)
+    public static string GetStringReplaceResources(string m_Resourcem_Path)
     {
         return GetStringReplace(m_Resourcem_Path, "Assets/resources/", "");
     }
@@ -53,14 +50,14 @@ public class ClassString
 
     #region String Split
 
-    public static string[] GetString_Split_Array(string m_FatherString, char m_Key)
+    public static string[] GetStrinm_Split_Array(string m_FatherString, char m_Key)
     {
         return m_FatherString.Split(m_Key);
     }
 
-    public static List<string> GetString_Split_List(string m_FatherString, char m_Key)
+    public static List<string> GetStrinm_SplitList(string m_FatherString, char m_Key)
     {
-        string[] m_SplitArray = GetString_Split_Array(m_FatherString, m_Key);
+        string[] m_SplitArray = GetStrinm_Split_Array(m_FatherString, m_Key);
 
         List<string> m_SplitString = new List<string>();
 
@@ -75,9 +72,9 @@ public class ClassString
 
     #region String Data
 
-    #region String Data Main
+    #region String Data main
 
-    #region String Data Main Encypt
+    #region String Data main Encypt
 
     public static string GetDataEncypt(List<string> m_DataList, char m_Key)
     {
@@ -85,7 +82,7 @@ public class ClassString
 
         for (int i = 0; i < m_DataList.Count; i++)
         {
-            //m_Data += (m_DataList[i]);
+            //mData += (m_DataList[i]);
 
             //if (i < m_DataList.Count - 1)
             //{
@@ -104,7 +101,7 @@ public class ClassString
 
         for (int i = 0; i < m_DataList.Count; i++)
         {
-            //m_Data += (m_DataList[i].ToString());
+            //mData += (m_DataList[i].ToString());
 
             //if (i < m_DataList.Count - 1)
             //{
@@ -123,7 +120,7 @@ public class ClassString
 
         for (int i = 0; i < m_DataList.Count; i++)
         {
-            //m_Data += (m_DataList[i].ToString());
+            //mData += (m_DataList[i].ToString());
 
             //if (i < m_DataList.Count - 1)
             //{
@@ -142,7 +139,7 @@ public class ClassString
 
         for (int i = 0; i < m_DataList.Count; i++)
         {
-            //m_Data += ((m_DataList[i]) ? "1" : "0");
+            //mData += ((m_DataList[i]) ? "1" : "0");
 
             //if (i < m_DataList.Count - 1)
             //{
@@ -157,7 +154,7 @@ public class ClassString
 
     #endregion
 
-    #region String Data Main Add Encypt
+    #region String Data main Add Encypt
 
     public static string GetDataEncyptAdd(string m_Data, string m_DataAdd, char m_Key)
     {
@@ -174,14 +171,14 @@ public class ClassString
         return m_Data + ((m_Data.Length != 0) ? m_Key.ToString() : "") + m_DataAdd.ToString();
     }
 
-    public static string GetDataEncyptAdd(string m_Data, bool m_DataAdd, char m_Key)
+    public static string GetDataEncyptAdd(string m_Data, bool m_AllowDataAdd, char m_Key)
     {
-        return m_Data + ((m_Data.Length != 0) ? m_Key.ToString() : "") + ((m_DataAdd) ? "1" : "0");
+        return m_Data + ((m_Data.Length != 0) ? m_Key.ToString() : "") + ((m_AllowDataAdd) ? "1" : "0");
     }
 
     #endregion
 
-    #region String Data Main Dencypt
+    #region String Data main Dencypt
 
     public static List<string> GetDataDencyptString(string m_Data, char m_Key)
     {
@@ -192,7 +189,7 @@ public class ClassString
             return new List<string>();
         }
 
-        return GetString_Split_List(m_Data, m_Key);
+        return GetStrinm_SplitList(m_Data, m_Key);
     }
 
     public static List<int> GetDataDencyptInt(string m_Data, char m_Key)
@@ -204,13 +201,13 @@ public class ClassString
             return new List<int>();
         }
 
-        List<string> l_DataListString = GetDataDencyptString(m_Data, m_Key);
+        List<string> m_DataListString = GetDataDencyptString(m_Data, m_Key);
 
         List<int> m_DataListInt = new List<int>();
 
-        for (int i = 0; i < l_DataListString.Count; i++)
+        for (int i = 0; i < m_DataListString.Count; i++)
         {
-            m_DataListInt.Add(int.Parse(l_DataListString[i]));
+            m_DataListInt.Add(int.Parse(m_DataListString[i]));
         }
 
         return m_DataListInt;
@@ -225,13 +222,13 @@ public class ClassString
             return new List<float>();
         }
 
-        List<string> l_DataListString = GetString_Split_List(m_Data, m_Key);
+        List<string> m_DataListString = GetStrinm_SplitList(m_Data, m_Key);
 
         List<float> m_DataListFloat = new List<float>();
 
-        for (int i = 0; i < l_DataListString.Count; i++)
+        for (int i = 0; i < m_DataListString.Count; i++)
         {
-            m_DataListFloat.Add(float.Parse(l_DataListString[i]));
+            m_DataListFloat.Add(float.Parse(m_DataListString[i]));
         }
 
         return m_DataListFloat;
@@ -246,7 +243,7 @@ public class ClassString
             return new List<bool>();
         }
 
-        List<string> m_DataListString = GetString_Split_List(m_Data, m_Key);
+        List<string> m_DataListString = GetStrinm_SplitList(m_Data, m_Key);
 
         List<bool> m_DataListBool = new List<bool>();
 
@@ -281,9 +278,9 @@ public class ClassString
         return v2VectorData.x.ToString() + m_Key + v2VectorData.y.ToString();
     }
 
-    public static string GetDataVector3Encypt(Vector3 v3VectorData, char m_Key)
+    public static string GetDataVector3Encypt(Vector3 mVectorData, char m_Key)
     {
-        return v3VectorData.x.ToString() + m_Key + v3VectorData.y.ToString() + m_Key + v3VectorData.z.ToString();
+        return mVectorData.x.ToString() + m_Key + mVectorData.y.ToString() + m_Key + mVectorData.z.ToString();
     }
 
     public static string GetDataVector2IntEncypt(Vector2Int v2VectorData, char m_Key)
@@ -291,39 +288,39 @@ public class ClassString
         return v2VectorData.x.ToString() + m_Key + v2VectorData.y.ToString();
     }
 
-    public static string GetDataVector3IntEncypt(Vector3Int v3VectorData, char m_Key)
+    public static string GetDataVector3IntEncypt(Vector3Int mVectorData, char m_Key)
     {
-        return v3VectorData.x.ToString() + m_Key + v3VectorData.y.ToString() + m_Key + v3VectorData.z.ToString();
+        return mVectorData.x.ToString() + m_Key + mVectorData.y.ToString() + m_Key + mVectorData.z.ToString();
     }
 
     #endregion
 
     #region String Data Vector Dencypt
 
-    public static Vector2 GetDataVector2Dencypt(string m_VectorData, char m_Key)
+    public static Vector2 GetDataVector2Dencypt(string m_VectortorData, char m_Key)
     {
-        List<float> m_Data = GetDataDencyptFloat(m_VectorData, m_Key);
+        List<float> m_Data = GetDataDencyptFloat(m_VectortorData, m_Key);
 
         return new Vector2(m_Data[0], m_Data[1]);
     }
 
-    public static Vector3 GetDataVector3Dencypt(string m_VectorData, char m_Key)
+    public static Vector3 GetDataVector3Dencypt(string m_VectortorData, char m_Key)
     {
-        List<float> m_Data = GetDataDencyptFloat(m_VectorData, m_Key);
+        List<float> m_Data = GetDataDencyptFloat(m_VectortorData, m_Key);
 
         return new Vector3(m_Data[0], m_Data[1], m_Data[2]);
     }
 
-    public static Vector2Int GetDataVector2IntDencypt(string m_VectorData, char m_Key)
+    public static Vector2Int GetDataVector2IntDencypt(string m_VectortorData, char m_Key)
     {
-        List<int> m_Data = GetDataDencyptInt(m_VectorData, m_Key);
+        List<int> m_Data = GetDataDencyptInt(m_VectortorData, m_Key);
 
         return new Vector2Int(m_Data[0], m_Data[1]);
     }
 
-    public static Vector3Int GetDataVector3IntDencypt(string m_VectorData, char m_Key)
+    public static Vector3Int GetDataVector3IntDencypt(string m_VectortorData, char m_Key)
     {
-        List<int> m_Data = GetDataDencyptInt(m_VectorData, m_Key);
+        List<int> m_Data = GetDataDencyptInt(m_VectortorData, m_Key);
 
         return new Vector3Int(m_Data[0], m_Data[1], m_Data[2]);
     }
@@ -350,20 +347,20 @@ public class ClassString
         }
 
         //Check @
-        bool m_CheckAAIsExist = false;
+        bool m_AllowCheckAAExist = false;
         for (int i = 0; i < m_EmailCheck.Length; i++)
         {
-            if (!m_CheckAAIsExist && m_EmailCheck[i] == '@')
+            if (!m_AllowCheckAAExist && m_EmailCheck[i] == '@')
             {
-                m_CheckAAIsExist = true;
+                m_AllowCheckAAExist = true;
             }
             else
-            if (m_CheckAAIsExist && m_EmailCheck[i] == '@')
+            if (m_AllowCheckAAExist && m_EmailCheck[i] == '@')
             {
                 return false;
             }
         }
-        if (!m_CheckAAIsExist)
+        if (!m_AllowCheckAAExist)
         {
             return false;
         }
@@ -385,7 +382,7 @@ public class ClassString
             return false;
         }
 
-        //Lower MAIL
+        //Lower m_AIL
         m_EmailCheck = m_EmailCheck.ToLower();
 
         return
@@ -406,11 +403,11 @@ public class ClassString
             //Get ASCII
             byte[] ba_Ascii = Encoding.ASCII.GetBytes(m_EmailCheck);
 
-            //First Character (Just Allow '0-9' and 'a-z')
+            //First Character (Just '0-9' and 'a-z')
             if (ba_Ascii[0] >= 48 && ba_Ascii[0] <= 57 ||
                 ba_Ascii[0] >= 97 && ba_Ascii[0] <= 122)
             {
-                //Next Character (Just Allow '0-9' and 'a-z' and '.')
+                //Next Character (Just '0-9' and 'a-z' and '.')
                 for (int i = 1; i < m_EmailCheck.Length; i++)
                 {
                     if (m_EmailCheck[i] == '@')
@@ -453,10 +450,10 @@ public class ClassString
             //Get ASCII
             byte[] ba_Ascii = Encoding.ASCII.GetBytes(m_EmailCheck);
 
-            //First Character (Just Allow 'a-z')
+            //First Character (Just 'a-z')
             if (ba_Ascii[0] >= 97 && ba_Ascii[0] <= 122)
             {
-                //Next Character (Just Allow '0-9' and 'a-z' and '.' and '_')
+                //Next Character (Just '0-9' and 'a-z' and '.' and '_')
                 for (int i = 1; i < m_EmailCheck.Length; i++)
                 {
                     if (m_EmailCheck[i] == '@')

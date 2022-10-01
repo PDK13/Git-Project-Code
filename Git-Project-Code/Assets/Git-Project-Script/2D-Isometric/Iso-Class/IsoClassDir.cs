@@ -3,167 +3,167 @@ using UnityEngine;
 public class IsoClassDir
 {
     /// <summary>
-    /// Dir(0, 0, 0) on Isometric Block
+    /// Dir(0, 0, 0) on ometric Block
     /// </summary>
-    public static readonly Vector3Int v3_None = new Vector3Int(0, 0, 0);
+    public static readonly Vector3Int m_DirNone = new Vector3Int(0, 0, 0);
 
     /// <summary>
-    /// Dir(0, 0, 0) on Isometric Block
+    /// Dir(0, 0, 0) on ometric Block
     /// </summary>
     public static readonly string m_None = "N";
 
     /// <summary>
-    /// Dir(-1, 0, 0) on Isometric Block
+    /// Dir(-1, 0, 0) on ometric Block
     /// </summary>
-    public static readonly Vector3Int v3_Up_X = new Vector3Int(-1, 0, 0);
+    public static readonly Vector3Int m_DirUX = new Vector3Int(-1, 0, 0);
 
     /// <summary>
-    /// Dir(-1, 0, 0) on Isometric Block
+    /// Dir(-1, 0, 0) on ometric Block
     /// </summary>
-    public static readonly string m_Up_X = "U";
+    public static readonly string m_UX = "U";
 
     /// <summary>
-    /// Dir(+1, 0, 0) on Isometric Block
+    /// Dir(+1, 0, 0) on ometric Block
     /// </summary>
     /// <returns></returns>
-    public static readonly Vector3Int v3_Down_X = new Vector3Int(1, 0, 0);
+    public static readonly Vector3Int m_DirDX = new Vector3Int(1, 0, 0);
 
     /// <summary>
-    /// Dir(+1, 0, 0) on Isometric Block
+    /// Dir(+1, 0, 0) on ometric Block
     /// </summary>
     /// <returns></returns>
-    public static readonly string m_Down_X = "D";
+    public static readonly string m_DX = "D";
 
     /// <summary>
-    /// Dir(+1, 0, 0) on Isometric Block
+    /// Dir(+1, 0, 0) on ometric Block
     /// </summary>
     /// <returns></returns>
-    public static readonly Vector3Int v3_Left_Y = new Vector3Int(0, -1, 0);
+    public static readonly Vector3Int m_DirLY = new Vector3Int(0, -1, 0);
 
     /// <summary>
-    /// Dir(0, -1, 0) on Isometric Block
+    /// Dir(0, -1, 0) on ometric Block
     /// </summary>
-    public static readonly string m_Left_Y = "L";
+    public static readonly string m_LY = "L";
 
     /// <summary>
-    /// Dir(0, +1, 0) on Isometric Block
+    /// Dir(0, +1, 0) on ometric Block
     /// </summary>
-    public static readonly Vector3Int v3_Right_Y = new Vector3Int(0, 1, 0);
+    public static readonly Vector3Int m_DirRY = new Vector3Int(0, 1, 0);
 
     /// <summary>
-    /// Dir(0, +1, 0) on Isometric Block
+    /// Dir(0, +1, 0) on ometric Block
     /// </summary>
-    public static readonly string m_Right_Y = "R";
+    public static readonly string m_RY = "R";
 
     /// <summary>
-    /// Dir(0, 0, +1) on Isometric Block
+    /// Dir(0, 0, +1) on ometric Block
     /// </summary>
-    public static readonly Vector3Int v3_Top_H = new Vector3Int(0, 0, 1);
+    public static readonly Vector3Int m_DirTH = new Vector3Int(0, 0, 1);
 
     /// <summary>
-    /// Dir(0, 0, +1) on Isometric Block
+    /// Dir(0, 0, +1) on ometric Block
     /// </summary>
-    public static readonly string m_Top_H = "T";
+    public static readonly string m_TH = "T";
 
     /// <summary>
-    /// Dir(0, 0, -1) on Isometric Block
+    /// Dir(0, 0, -1) on ometric Block
     /// </summary>
-    public static readonly Vector3Int v3_Bot_H = new Vector3Int(0, 0, -1);
+    public static readonly Vector3Int m_DirBH = new Vector3Int(0, 0, -1);
 
     /// <summary>
-    /// Dir(0, 0, -1) on Isometric Block
+    /// Dir(0, 0, -1) on ometric Block
     /// </summary>
-    public static readonly string m_Bot_H = "B";
+    public static readonly string m_BH = "B";
 
-    public static string GetDirEncypt(Vector3Int v3_Dir)
+    public static string GetDirEncypt(Vector3Int m_Dir)
     {
-        if (v3_Dir == IsoClassDir.v3_Up_X)
+        if (m_Dir == IsoClassDir.m_DirUX)
         {
-            return m_Up_X;
+            return m_UX;
         }
 
-        if (v3_Dir == IsoClassDir.v3_Down_X)
+        if (m_Dir == IsoClassDir.m_DirDX)
         {
-            return m_Down_X;
+            return m_DX;
         }
 
-        if (v3_Dir == IsoClassDir.v3_Left_Y)
+        if (m_Dir == IsoClassDir.m_DirLY)
         {
-            return m_Left_Y;
+            return m_LY;
         }
 
-        if (v3_Dir == IsoClassDir.v3_Right_Y)
+        if (m_Dir == IsoClassDir.m_DirRY)
         {
-            return m_Right_Y;
+            return m_RY;
         }
 
-        if (v3_Dir == IsoClassDir.v3_Top_H)
+        if (m_Dir == IsoClassDir.m_DirTH)
         {
-            return m_Top_H;
+            return m_TH;
         }
 
-        if (v3_Dir == IsoClassDir.v3_Bot_H)
+        if (m_Dir == IsoClassDir.m_DirBH)
         {
-            return m_Bot_H;
+            return m_BH;
         }
 
         return m_None;
     }
 
-    public static Vector3Int GetDir_Dencyt(string m_Dir)
+    public static Vector3Int GetDirDencyt(string m_Dir)
     {
-        if (m_Dir == m_Up_X)
+        if (m_Dir == m_UX)
         {
-            return IsoClassDir.v3_Up_X;
+            return IsoClassDir.m_DirUX;
         }
 
-        if (m_Dir == m_Down_X)
+        if (m_Dir == m_DX)
         {
-            return IsoClassDir.v3_Down_X;
+            return IsoClassDir.m_DirDX;
         }
 
-        if (m_Dir == m_Left_Y)
+        if (m_Dir == m_LY)
         {
-            return IsoClassDir.v3_Left_Y;
+            return IsoClassDir.m_DirLY;
         }
 
-        if (m_Dir == m_Right_Y)
+        if (m_Dir == m_RY)
         {
-            return IsoClassDir.v3_Right_Y;
+            return IsoClassDir.m_DirRY;
         }
 
-        if (m_Dir == m_Bot_H)
+        if (m_Dir == m_BH)
         {
-            return IsoClassDir.v3_Bot_H;
+            return IsoClassDir.m_DirBH;
         }
 
-        if (m_Dir == m_Top_H)
+        if (m_Dir == m_TH)
         {
-            return IsoClassDir.v3_Top_H;
+            return IsoClassDir.m_DirTH;
         }
 
         return new Vector3Int();
     }
 
-    public static Vector3 GetVector_One(Vector3 v3Vector)
+    public static Vector3 GetVectorOne(Vector3 m_Vector)
     {
-        Vector3 v3Vector_Chance = v3Vector;
+        Vector3 m_VectorChance = m_Vector;
 
-        if (v3Vector_Chance.x != 0)
+        if (m_VectorChance.x != 0)
         {
-            v3Vector_Chance.x /= Mathf.Abs(v3Vector_Chance.x);
+            m_VectorChance.x /= Mathf.Abs(m_VectorChance.x);
         }
 
-        if (v3Vector_Chance.y != 0)
+        if (m_VectorChance.y != 0)
         {
-            v3Vector_Chance.y /= Mathf.Abs(v3Vector_Chance.y);
+            m_VectorChance.y /= Mathf.Abs(m_VectorChance.y);
         }
 
-        if (v3Vector_Chance.z != 0)
+        if (m_VectorChance.z != 0)
         {
-            v3Vector_Chance.z /= Mathf.Abs(v3Vector_Chance.z);
+            m_VectorChance.z /= Mathf.Abs(m_VectorChance.z);
         }
 
-        return v3Vector_Chance;
+        return m_VectorChance;
     }
 }

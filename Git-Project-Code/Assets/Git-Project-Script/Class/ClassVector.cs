@@ -18,14 +18,14 @@ public class ClassVector
 
     #region Duration
 
-    public static float GetDuration(Vector3 m_Vector)
+    public static float GetDuration(Vector3 m_Vectortor)
     {
-        return m_Vector.magnitude;
+        return m_Vectortor.magnitude;
     }
 
-    public static float GetDurationSqr(Vector3 m_Vector)
+    public static float GetDurationSqr(Vector3 m_Vectortor)
     {
-        return m_Vector.sqrMagnitude;
+        return m_Vectortor.sqrMagnitude;
     }
 
     #endregion
@@ -61,19 +61,19 @@ public class ClassVector
         return m_Deg;
     }
 
-    public static float GetDegExchanceUnity(float m_Deg_Euler)
+    public static float GetDegExchanceUnity(float m_Dem_Euler)
     {
-        if (m_Deg_Euler <= -180)
+        if (m_Dem_Euler <= -180)
         {
-            return 360 + m_Deg_Euler;
+            return 360 + m_Dem_Euler;
         }
         else
-        if (m_Deg_Euler >= 180)
+        if (m_Dem_Euler >= 180)
         {
-            return (360 - m_Deg_Euler) * -1;
+            return (360 - m_Dem_Euler) * -1;
         }
 
-        return m_Deg_Euler;
+        return m_Dem_Euler;
     }
 
     public static float GetDegTransformXY(Quaternion m_QuaternionRotation)
@@ -90,15 +90,15 @@ public class ClassVector
 
     #region Rotate & Quaternion
 
-    public static Quaternion GetRotationEulerToQuaternion(float m_Deg_X, float m_Deg_Y, float m_Deg_Z)
+    public static Quaternion GetRotationEulerToQuaternion(float m_DemX, float m_DemY, float m_DemZ)
     {
-        return GetRotationEulerToQuaternion(new Vector3(m_Deg_X, m_Deg_Y, m_Deg_Z));
+        return GetRotationEulerToQuaternion(new Vector3(m_DemX, m_DemY, m_DemZ));
     }
 
     public static Quaternion GetRotationEulerToQuaternion(Vector3 m_Deg)
     {
-        Quaternion q_Rotation = Quaternion.Euler(m_Deg);
-        return q_Rotation;
+        Quaternion qRotation = Quaternion.Euler(m_Deg);
+        return qRotation;
     }
 
     public static Vector3 GetRotationQuaternionToEuler(Quaternion m_QuaternionRotation)
@@ -139,24 +139,24 @@ public class ClassVector
 
     #region Abs
 
-    public static Vector2 GetAbs(Vector2 m_Vector)
+    public static Vector2 GetAbs(Vector2 m_Vectortor)
     {
-        return new Vector2(Mathf.Abs(m_Vector.x), Mathf.Abs(m_Vector.y));
+        return new Vector2(Mathf.Abs(m_Vectortor.x), Mathf.Abs(m_Vectortor.y));
     }
 
-    public static Vector2Int GetAbs(Vector2Int m_Vector)
+    public static Vector2Int GetAbs(Vector2Int m_Vectortor)
     {
-        return new Vector2Int(Mathf.Abs(m_Vector.x), Mathf.Abs(m_Vector.y));
+        return new Vector2Int(Mathf.Abs(m_Vectortor.x), Mathf.Abs(m_Vectortor.y));
     }
 
-    public static Vector3 GetAbs(Vector3 m_Vector)
+    public static Vector3 GetAbs(Vector3 m_Vectortor)
     {
-        return new Vector3(Mathf.Abs(m_Vector.x), Mathf.Abs(m_Vector.y), Mathf.Abs(m_Vector.z));
+        return new Vector3(Mathf.Abs(m_Vectortor.x), Mathf.Abs(m_Vectortor.y), Mathf.Abs(m_Vectortor.z));
     }
 
-    public static Vector3Int GetAbs(Vector3Int m_Vector)
+    public static Vector3Int GetAbs(Vector3Int m_Vectortor)
     {
-        return new Vector3Int(Mathf.Abs(m_Vector.x), Mathf.Abs(m_Vector.y), Mathf.Abs(m_Vector.z));
+        return new Vector3Int(Mathf.Abs(m_Vectortor.x), Mathf.Abs(m_Vectortor.y), Mathf.Abs(m_Vectortor.z));
     }
 
     #endregion

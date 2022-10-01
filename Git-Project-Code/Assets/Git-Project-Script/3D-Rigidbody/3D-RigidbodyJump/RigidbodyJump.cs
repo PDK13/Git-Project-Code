@@ -15,19 +15,19 @@ public class RigidbodyJump : MonoBehaviour
     /// </summary>
     [Header("Keyboard")]
     [SerializeField]
-    private bool m_UseScriptControl = true;
+    private bool m_AllowUseScriptControl = true;
 
     /// <summary>
     /// Jump
     /// </summary>
     [SerializeField]
-    private KeyCode k_Jump = KeyCode.Space;
+    private KeyCode m_KeyJump = KeyCode.Space;
 
     /// <summary>
     /// Hold Jump to Jump Higher?
     /// </summary>
     [SerializeField]
-    private bool m_HoldJump = false;
+    private bool m_AllowHoldJump = false;
 
     /// <summary>
     /// Jump Power
@@ -42,18 +42,18 @@ public class RigidbodyJump : MonoBehaviour
     /// <summary>
     /// Control Velocity GameObject in 3D
     /// </summary>
-    private RigidbodyComponent cm_Rigid;
+    private RigidbodyComponent m_Rigid;
 
     #endregion
 
     private void Start()
     {
-        cm_Rigid = GetComponent<RigidbodyComponent>();
+        m_Rigid = GetComponent<RigidbodyComponent>();
     }
 
     private void Update()
     {
-        if (m_UseScriptControl)
+        if (m_AllowUseScriptControl)
         {
             SetJumpButton();
         }
@@ -64,12 +64,12 @@ public class RigidbodyJump : MonoBehaviour
     /// </summary>
     public void SetJumpButton()
     {
-        if (!m_HoldJump && Input.GetKeyDown(k_Jump))
+        if (!m_AllowHoldJump && Input.GetKeyDown(m_KeyJump))
         {
             SetJump();
         }
         else
-        if (m_HoldJump && Input.GetKey(k_Jump))
+        if (m_AllowHoldJump && Input.GetKey(m_KeyJump))
         {
             SetJump();
         }
@@ -79,9 +79,9 @@ public class RigidbodyJump : MonoBehaviour
     /// Set Jump Auto
     /// </summary>
     /// <param name="m_JumpHold"></param>
-    public void SetJumpAuto(bool m_JumpHold)
+    public void SetJumpAuto(bool m_AllowJumpHold)
     {
-        if (m_JumpHold)
+        if (m_AllowJumpHold)
         {
             SetJump();
         }
@@ -92,9 +92,9 @@ public class RigidbodyJump : MonoBehaviour
     /// </summary>
     public void SetJump()
     {
-        if (cm_Rigid.GetCheckFoot())
+        if (m_Rigid.GetCheckFoot())
         {
-            cm_Rigid.SetMoveY_Jump(m_JumpVelocity);
+            m_Rigid.SetMoveY_Jump(m_JumpVelocity);
         }
     }
 }

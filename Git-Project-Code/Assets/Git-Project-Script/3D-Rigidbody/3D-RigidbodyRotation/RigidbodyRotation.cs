@@ -6,23 +6,23 @@
 public class RigidbodyRotation : MonoBehaviour
 //Move Control Surface (X & Z & Rotation)
 {
-    private RigidbodyComponent cm_Rigid;
+    private RigidbodyComponent m_Rigid;
 
     [Header("Keyboard")]
 
-    [SerializeField] private bool m_LockControl = false;
+    [SerializeField] private bool m_AllowLockControl = false;
 
-    [SerializeField] private KeyCode k_MoveForward = KeyCode.UpArrow;
+    [SerializeField] private KeyCode m_KeyMoveForward = KeyCode.UpArrow;
 
-    [SerializeField] private KeyCode k_MoveBackward = KeyCode.DownArrow;
+    [SerializeField] private KeyCode m_KeyMoveBackward = KeyCode.DownArrow;
 
-    [SerializeField] private KeyCode k_TurnLeft = KeyCode.LeftArrow;
+    [SerializeField] private KeyCode m_KeyTurnL = KeyCode.LeftArrow;
 
-    [SerializeField] private KeyCode k_TurnRight = KeyCode.RightArrow;
+    [SerializeField] private KeyCode m_KeyTurnR = KeyCode.RightArrow;
 
-    [SerializeField] private bool m_MutiButton = true;
+    [SerializeField] private bool m_AllowMutiButton = true;
 
-    [SerializeField] private KeyCode k_SpeedChance = KeyCode.LeftShift;
+    [SerializeField] private KeyCode m_KeySpeedChance = KeyCode.LeftShift;
 
     [Header("Move")]
 
@@ -37,126 +37,156 @@ public class RigidbodyRotation : MonoBehaviour
     [Range(0.1f, 5f)]
     [SerializeField] private float m_SpeedRotate = 1f;
 
-    [SerializeField] private bool m_StopRightAway = false;
+    [SerializeField] private bool m_AllowStopRAway = false;
 
-    [SerializeField] private float m_SpeedStop = 3f;
+    //[SerializeField] private float m_SpeedStop = 3f;
 
-    [SerializeField] private bool m_SlowWhenTurn = true;
+    [SerializeField] private bool m_AllowSlowWhenTurn = true;
 
     [SerializeField] private float m_SpeedSlow = 5f;
 
     private void Awake()
     {
-        cm_Rigid = GetComponent<RigidbodyComponent>();
+        m_Rigid = GetComponent<RigidbodyComponent>();
     }
 
     private void Update()
     {
-        if (m_LockControl)
+        if (m_AllowLockControl)
         {
             return;
         }
 
-        SetControl_Main_Keyboard();
+        SetControlMain_Keyboard();
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
 
-        RigidbodyComponent cm_Rigid = GetComponent<RigidbodyComponent>();
+        RigidbodyComponent m_Rigid = GetComponent<RigidbodyComponent>();
 
         Gizmos.DrawLine(
             transform.position,
-            transform.position + ClassVector.GetPosOnCircleXZ(-cm_Rigid.GetRotation_XZ(), 1f));
+            transform.position + ClassVector.GetPosOnCircleXZ(-m_Rigid.GetRotationXZ(), 1f));
         Gizmos.DrawWireSphere(
-            transform.position + ClassVector.GetPosOnCircleXZ(-cm_Rigid.GetRotation_XZ(), 1f),
+            transform.position + ClassVector.GetPosOnCircleXZ(-m_Rigid.GetRotationXZ(), 1f),
             0.1f);
     }
 
-    #region Control Main
+    #region Control main
 
-    private void SetControl_Main_Keyboard()
+    private void SetControlMain_Keyboard()
     {
-        m_SpeedCur = (Input.GetKey(k_SpeedChance)) ? m_SpeedChance : m_SpeedNormal;
+        m_SpeedCur = (Input.GetKey(m_KeySpeedChance)) ? m_SpeedChance : m_SpeedNormal;
 
-        if (Input.GetKey(k_TurnLeft) && Input.GetKey(k_TurnRight) ||
-            Input.GetKey(k_MoveForward) && Input.GetKey(k_MoveBackward))
+        if (Input.GetKey(m_KeyTurnL) && Input.GetKey(m_KeyTurnR) ||
+            Input.GetKey(m_KeyMoveForward) && Input.GetKey(m_KeyMoveBackward))
         {
             //
             return;
         }
 
-        if (Input.GetKey(k_TurnLeft))
+        if (m_AllowMutiButton)
         {
-            SetControl_Rotate(-1);
+            if (Input.GetKey(m_KeyTurnL))
+            {
+                SetContromRotate(-1);
+            }
+            else
+            if (Input.GetKey(m_KeyTurnR)) 
+            {
+                SetContromRotate(1);
+            }
+
+            if (Input.GetKey(m_KeyMoveForward))
+            {
+                SetControlMove(1);
+            }
+            else
+            if (Input.GetKey(m_KeyMoveBackward))
+            {
+                SetControlMove(-1);
+            }
+            else
+            {
+                SetControlMoveStop();
+            }
         }
         else
-        if (Input.GetKey(k_TurnRight))
         {
-            SetControl_Rotate(1);
+            if (Input.GetKey(m_KeyTurnL))
+            {
+                SetContromRotate(-1);
+            }
+            else
+            if (Input.GetKey(m_KeyTurnR))
+            {
+                SetContromRotate(1);
+            }
+            else
+            if (Input.GetKey(m_KeyMoveForward))
+            {
+                SetControlMove(1);
+            }
+            else
+            if (Input.GetKey(m_KeyMoveBackward))
+            {
+                SetControlMove(-1);
+            }
+            else
+            {
+                SetControlMoveStop();
+            }
         }
 
-        if (Input.GetKey(k_MoveForward))
-        {
-            SetControl_Move(1);
-        }
 
-        else
-        if (Input.GetKey(k_MoveBackward))
-        {
-            SetControl_Move(-1);
-        }
-        else
-        {
-            SetControl_Move_Stop();
-        }
 
-        SetControl_Move_Slow();
+        SetControlMoveSlow();
     }
 
-    private void SetControl_Move(int m_MoveDir)
+    private void SetControlMove(int m_MoveDir)
     {
-        cm_Rigid.SetMoveRotation_XZ(cm_Rigid.GetRotation_XZ(), m_SpeedCur * m_MoveDir);
+        m_Rigid.SetMoveRotationXZ(m_Rigid.GetRotationXZ(), m_SpeedCur * m_MoveDir);
     }
 
-    private void SetControl_Move_Stop()
+    private void SetControlMoveStop()
     {
-        if (m_StopRightAway)
+        if (m_AllowStopRAway)
         {
-            cm_Rigid.SetStopX_Velocity();
-            cm_Rigid.SetStopZ_Velocity();
+            m_Rigid.SetStopX_Velocity();
+            m_Rigid.SetStopZ_Velocity();
         }
     }
 
-    private void SetControl_Move_Slow()
+    private void SetControlMoveSlow()
     {
-        cm_Rigid.SetStopX_Velocity(m_SpeedSlow);
-        cm_Rigid.SetStopZ_Velocity(m_SpeedSlow);
+        m_Rigid.SetStopX_Velocity(m_SpeedSlow);
+        m_Rigid.SetStopZ_Velocity(m_SpeedSlow);
     }
 
-    private void SetControl_Rotate(int m_RotationDir)
+    private void SetContromRotate(int m_RotationDir)
     {
-        if (m_SlowWhenTurn)
+        if (m_AllowSlowWhenTurn)
         {
-            SetControl_Move_Slow();
+            SetControlMoveSlow();
         }
 
-        cm_Rigid.SetRotationChance_XZ(m_SpeedRotate * m_RotationDir);
+        m_Rigid.SetRotationChanceXZ(m_SpeedRotate * m_RotationDir);
     }
 
     #endregion
 
     #region Control is Lock
 
-    public void SetControlIsLock(bool m_LockControl)
+    public void SetControlLock(bool m_AllowLockControl)
     {
-        this.m_LockControl = m_LockControl;
+        this.m_AllowLockControl = m_AllowLockControl;
     }
 
-    public bool GetControlIsLock()
+    public bool GetCheckControlLock()
     {
-        return m_LockControl;
+        return m_AllowLockControl;
     }
 
     #endregion

@@ -4,150 +4,150 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     //Can call this Script instancely thought this Name of Script!
-    private static SoundManager cm_This;
+    private static SoundManager m_This;
 
-    [Header("Sound Manager")]
+    [Header("Sound m_anager")]
 
-    [SerializeField] private GameObject g_SoundClone;
+    [SerializeField] private GameObject m_SoundClone;
 
-    private readonly bool m_SoundIsMute = false;
+    private readonly bool m_AllowSoundMute = false;
 
     [Header("Sound List")]
 
-    //First Index is Background Music
-    private List<GameObject> lg_SoundClone = new List<GameObject>() { null };
+    //First Index is Background m_usic
+    private List<GameObject> lm_SoundClone = new List<GameObject>() { null };
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
 
-        if (cm_This == null)
+        if (m_This == null)
         {
-            cm_This = this;
+            m_This = this;
         }
     }
 
-    #region Music
+    #region m_usic
 
-    public static SoundClone SetBackground_Music(AudioClip au_Clip, float m_Volumn_Primary)
+    public static SoundClone SetBackgroundMusic(AudioClip au_Clip, float m_Volumn_Primary)
     {
-        SetBackground_Music_Stop();
+        SetBackgroundMusic_Stop();
 
-        GameObject g_SoundClone = Clasm_Object.SetGameObject_Create(cm_This.g_SoundClone);
+        GameObject m_SoundClone = ClassObject.SetGameObjectCreate(m_This.m_SoundClone);
 
-        if (g_SoundClone.GetComponent<SoundClone>() == null)
+        if (m_SoundClone.GetComponent<SoundClone>() == null)
         {
-            g_SoundClone.AddComponent<SoundClone>();
+            m_SoundClone.AddComponent<SoundClone>();
         }
 
-        g_SoundClone.GetComponent<SoundClone>().SetPlaySound_2D(new SoundCloneData(au_Clip, true, m_Volumn_Primary));
+        m_SoundClone.GetComponent<SoundClone>().SetPlaySound_2D(new SoundCloneData(au_Clip, true, m_Volumn_Primary));
 
-        g_SoundClone.GetComponent<SoundClone>().SetSound_Mute(GetSoundIsMute());
+        m_SoundClone.GetComponent<SoundClone>().SetSound_Mute(GetCheckSoundMute());
 
-        cm_This.lg_SoundClone[0] = g_SoundClone;
+        m_This.lm_SoundClone[0] = m_SoundClone;
 
-        return g_SoundClone.GetComponent<SoundClone>();
+        return m_SoundClone.GetComponent<SoundClone>();
     }
 
-    public static void SetBackground_Music_Stop()
+    public static void SetBackgroundMusic_Stop()
     {
-        if (cm_This.lg_SoundClone[0] == null)
+        if (m_This.lm_SoundClone[0] == null)
         {
             return;
         }
 
-        Destroy(cm_This.lg_SoundClone[0]);
+        Destroy(m_This.lm_SoundClone[0]);
     }
 
     #endregion
 
     #region Sound Primary
 
-    public static GameObject SetSound_3D(AudioClip au_Clip, bool m_Loop, float m_Volumn_Primary, Vector2 v2_Pos, float m_Distance)
+    public static GameObject SetSound_3D(AudioClip au_Clip, bool m_AllowLoop, float m_Volumn_Primary, Vector2 v2_Pos, float m_Distance)
     {
-        GameObject g_SoundClone = Clasm_Object.SetGameObject_Create(cm_This.g_SoundClone);
+        GameObject m_SoundClone = ClassObject.SetGameObjectCreate(m_This.m_SoundClone);
 
-        if (g_SoundClone.GetComponent<SoundClone>() == null)
+        if (m_SoundClone.GetComponent<SoundClone>() == null)
         {
-            g_SoundClone.AddComponent<SoundClone>();
+            m_SoundClone.AddComponent<SoundClone>();
         }
 
-        g_SoundClone.GetComponent<SoundClone>().SetPlaySound_3D(new SoundCloneData(au_Clip, m_Loop, m_Volumn_Primary), v2_Pos, m_Distance);
+        m_SoundClone.GetComponent<SoundClone>().SetPlaySound_3D(new SoundCloneData(au_Clip, m_AllowLoop, m_Volumn_Primary), v2_Pos, m_Distance);
 
-        g_SoundClone.GetComponent<SoundClone>().SetSound_Mute(GetSoundIsMute());
+        m_SoundClone.GetComponent<SoundClone>().SetSound_Mute(GetCheckSoundMute());
 
-        if (m_Loop)
+        if (m_AllowLoop)
         {
-            cm_This.lg_SoundClone.Add(g_SoundClone);
+            m_This.lm_SoundClone.Add(m_SoundClone);
         }
 
-        return g_SoundClone;
+        return m_SoundClone;
     }
 
-    public static GameObject SetSound_2D(AudioClip au_Clip, bool m_Loop, float m_Volumn_Primary)
+    public static GameObject SetSound_2D(AudioClip au_Clip, bool m_AllowLoop, float m_Volumn_Primary)
     {
-        GameObject g_SoundClone = Clasm_Object.SetGameObject_Create(cm_This.g_SoundClone);
+        GameObject m_SoundClone = ClassObject.SetGameObjectCreate(m_This.m_SoundClone);
 
-        if (g_SoundClone.GetComponent<SoundClone>() == null)
+        if (m_SoundClone.GetComponent<SoundClone>() == null)
         {
-            g_SoundClone.AddComponent<SoundClone>();
+            m_SoundClone.AddComponent<SoundClone>();
         }
 
-        g_SoundClone.GetComponent<SoundClone>().SetPlaySound_2D(new SoundCloneData(au_Clip, m_Loop, m_Volumn_Primary));
+        m_SoundClone.GetComponent<SoundClone>().SetPlaySound_2D(new SoundCloneData(au_Clip, m_AllowLoop, m_Volumn_Primary));
 
-        g_SoundClone.GetComponent<SoundClone>().SetSound_Mute(GetSoundIsMute());
+        m_SoundClone.GetComponent<SoundClone>().SetSound_Mute(GetCheckSoundMute());
 
-        if (m_Loop)
+        if (m_AllowLoop)
         {
-            cm_This.lg_SoundClone.Add(g_SoundClone);
+            m_This.lm_SoundClone.Add(m_SoundClone);
         }
 
-        return g_SoundClone;
+        return m_SoundClone;
     }
 
     public static bool SetSound_Stop(AudioClip au_Clip)
     {
-        for (int i = 1; i < cm_This.lg_SoundClone.Count; i++)
+        for (int i = 1; i < m_This.lm_SoundClone.Count; i++)
         {
-            if (cm_This.lg_SoundClone[i].GetComponent<SoundClone>().GetSound().name.Equals(au_Clip.name))
+            if (m_This.lm_SoundClone[i].GetComponent<SoundClone>().GetSound().name.Equals(au_Clip.name))
             {
-                Destroy(cm_This.lg_SoundClone[i]);
+                Destroy(m_This.lm_SoundClone[i]);
 
-                cm_This.lg_SoundClone.RemoveAt(i);
+                m_This.lm_SoundClone.RemoveAt(i);
 
                 return true;
             }
         }
 
-        Debug.LogWarningFormat("{0}: Not found Sound {1} to Stop it!", cm_This.name, au_Clip.name);
+        Debug.LogWarningFormat("{0}: Not found Sound {1} to Stop it!", m_This.name, au_Clip.name);
         return false;
     }
 
     public static void SetSound_Stop_All()
     {
-        for (int i = 1; i < cm_This.lg_SoundClone.Count; i++)
+        for (int i = 1; i < m_This.lm_SoundClone.Count; i++)
         {
-            Destroy(cm_This.lg_SoundClone[i]);
+            Destroy(m_This.lm_SoundClone[i]);
         }
 
-        cm_This.lg_SoundClone = new List<GameObject>();
+        m_This.lm_SoundClone = new List<GameObject>();
     }
 
     #endregion
 
-    #region Sound Primary Mute
+    #region Sound Primary mute
 
-    public static void SetSound_Mute(bool m_SoundIsMute)
+    public static void SetSound_Mute(bool m_AllowSoundMute)
     {
-        for (int i = 0; i < cm_This.lg_SoundClone.Count; i++)
+        for (int i = 0; i < m_This.lm_SoundClone.Count; i++)
         {
-            cm_This.lg_SoundClone[i].GetComponent<SoundClone>().SetSound_Mute(m_SoundIsMute);
+            m_This.lm_SoundClone[i].GetComponent<SoundClone>().SetSound_Mute(m_AllowSoundMute);
         }
     }
 
-    public static bool GetSoundIsMute()
+    public static bool GetCheckSoundMute()
     {
-        return cm_This.m_SoundIsMute;
+        return m_This.m_AllowSoundMute;
     }
 
     #endregion

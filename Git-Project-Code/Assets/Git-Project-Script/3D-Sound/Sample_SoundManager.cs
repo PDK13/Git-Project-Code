@@ -15,7 +15,7 @@ public class Sample_SoundManager : MonoBehaviour
         else
         if (Input.GetKeyDown(KeyCode.X))
         {
-            SoundManager.SetBackground_Music(au_Sound, 1f);
+            SoundManager.SetBackgroundMusic(au_Sound, 1f);
         }
         else
         if (Input.GetKeyDown(KeyCode.M))

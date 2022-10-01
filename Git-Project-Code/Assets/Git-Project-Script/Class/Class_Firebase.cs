@@ -9,27 +9,27 @@
 ///// <summary>
 ///// Working on Firebasee Primary for Android
 ///// </summary>
-//public class Clasm_Firebase
+//public class ClassFirebase
 ////Firebasee Primary for Android
 //{
-//    public bool m_Debug = false;
+//    public bool m_AllowDebug = false;
 
 //    /// <summary>
 //    /// Working on Firebasee Primary for Android
 //    /// </summary>
-//    public Clasm_Firebase()
+//    public ClassFirebase()
 //    {
 //        SetFirebaseStart();
-//        this.m_Debug = false;
+//        mDebug = false;
 //    }
 
 //    /// <summary>
 //    /// Working on Firebasee Primary for Android
 //    /// </summary>
-//    public Clasm_Firebase(bool m_Debug)
+//    public ClassFirebase(bool m_AllowDebug)
 //    {
 //        SetFirebaseStart();
-//        this.m_Debug = m_Debug;
+//        mDebug = m_Debug;
 //    }
 
 //    private void SetFirebaseStart()
@@ -38,13 +38,13 @@
 //        //Auth on Firebase
 //        //Active Auth on Android
 
-//        da_Reference = FirebaseDatabase.DefaultInstance.RootReference;
+//        daReference = FirebaseDatabase.DefaultInstance.RootReference;
 //        //Database on Firebase
 
-//        cl_Data = new Clasm_Data();
+//        cmData = new ClassData();
 //        //Working on Data
 
-//        FirebaseApp.Create(new AppOptions(), GetFirebaseAuth_ID());
+//        FirebaseApp.Create(new AppOptions(), GetFirebaseAum_ID());
 //    }
 
 //    public void SetFirebaseEnd()
@@ -69,9 +69,9 @@
 //    /// <summary>
 //    /// Auth Sign out
 //    /// </summary>
-//    public void SetFirebaseAuth_SignOut()
+//    public void SetFirebaseAum_SignOut()
 //    {
-//        if(m_Debug) Debug.LogWarning("SetFirebaseAuth_SignOut: Sign Out!");
+//        if(m_Debug) Debug.LogWarning("SetFirebaseAum_SignOut: Sign Out!");
 //        fm_Auth.SignOut();
 //    }
 
@@ -79,9 +79,9 @@
 //    /// Get Auth Login
 //    /// </summary>
 //    /// <returns></returns>
-//    public bool GetFirebaseAuth_Login()
+//    public bool GetCheckFirebaseAumLogin()
 //    {
-//        if(m_Debug) Debug.Log("GetFirebaseAuth_LogIn: " + (fm_Auth.CurrentUser != null).ToString());
+//        if(m_Debug) Debug.Log("GetFirebaseAumLogIn: " + (fm_Auth.CurrentUser != null).ToString());
 //        return fm_Auth.CurrentUser != null;
 //    }
 
@@ -89,14 +89,14 @@
 //    /// Get Display Name of User after get Auth
 //    /// </summary>
 //    /// <returns></returns>
-//    public string GetFirebaseAuth_DisplayName()
+//    public string GetFirebaseAumDisplayName()
 //    {
-//        if (GetFirebaseAuth_Login())
+//        if (GetFirebaseAumLogin())
 //        {
-//            if(m_Debug) Debug.Log("GetFirebaseAuth_DisplayName: " + fm_Auth.CurrentUser.DisplayName);
+//            if(m_Debug) Debug.Log("GetFirebaseAumDisplayName: " + fm_Auth.CurrentUser.DisplayName);
 //            return fm_Auth.CurrentUser.DisplayName;
 //        }
-//        if(m_Debug) Debug.Log("GetFirebaseAuth_DisplayName: Null");
+//        if(m_Debug) Debug.Log("GetFirebaseAumDisplayName: Null");
 //        return null;
 //    }
 
@@ -104,14 +104,14 @@
 //    /// Get Email of User after get Auth
 //    /// </summary>
 //    /// <returns></returns>
-//    public string GetFirebaseAuth_Email()
+//    public string GetFirebaseAum_Email()
 //    {
-//        if (GetFirebaseAuth_Login())
+//        if (GetFirebaseAumLogin())
 //        {
-//            if(m_Debug) Debug.Log("GetFirebaseAuth_Email: " + fm_Auth.CurrentUser.Email);
+//            if(m_Debug) Debug.Log("GetFirebaseAum_Email: " + fm_Auth.CurrentUser.Email);
 //            return fm_Auth.CurrentUser.Email;
 //        }
-//        if(m_Debug) Debug.Log("GetFirebaseAuth_Email: Null");
+//        if(m_Debug) Debug.Log("GetFirebaseAum_Email: Null");
 //        return null;
 //    }
 
@@ -119,14 +119,14 @@
 //    /// Get ID of User after get Auth
 //    /// </summary>
 //    /// <returns></returns>
-//    public string GetFirebaseAuth_ID()
+//    public string GetFirebaseAum_ID()
 //    {
-//        if (GetFirebaseAuth_Login())
+//        if (GetFirebaseAumLogin())
 //        {
-//            if(m_Debug) Debug.Log("GetFirebaseAuth_ID: " + fm_Auth.CurrentUser.UserId);
+//            if(m_Debug) Debug.Log("GetFirebaseAum_ID: " + fm_Auth.CurrentUser.UserId);
 //            return fm_Auth.CurrentUser.UserId;
 //        }
-//        if(m_Debug) Debug.Log("GetFirebaseAuth_ID: Null");
+//        if(m_Debug) Debug.Log("GetFirebaseAum_ID: Null");
 //        return null;
 //    }
 
@@ -135,24 +135,24 @@
 //    /// <summary>
 //    /// Check if Register is Done
 //    /// </summary>
-//    private bool m_FirebaseAuth_Register_Done = false;
+//    private bool m_AllowFirebaseAumRegisterDone = false;
 
 //    /// <summary>
 //    /// Check if Register is Done
 //    /// </summary>
 //    /// <returns></returns>
-//    public bool GetFirebaseAuth_Register_Done()
+//    public bool GetCheckFirebaseAumRegisterDone()
 //    {
-//        return m_FirebaseAuth_Register_Done;
+//        return m_FirebaseAumRegisterDone;
 //    }
 
 //    /// <summary>
 //    /// Set Register Done check
 //    /// </summary>
-//    /// <param name="m_Chance"></param>
-//    public void SetFirebaseAuth_Register_Done(bool m_Chance)
+//    /// <param name="mChance"></param>
+//    public void SetFirebaseAumRegisterDone(bool m_AllowChance)
 //    {
-//        this.m_FirebaseAuth_Register_Done = m_Chance;
+//        m_FirebaseAumRegisterDone = m_Chance;
 //    }
 
 //    /// <summary>
@@ -161,40 +161,40 @@
 //    /// <param name="m_Email">"myEmail@gmail.com"</param>
 //    /// <param name="m_Password"></param>
 //    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_ID$UserAuthID/"</param>
-//    public void SetFirebaseAuth_Register_ContinueWith(string m_Email, string m_Password, object o_Class)
+//    public void SetFirebaseAumRegister_ContinueWith(string m_Email, string m_Password, object o_Class)
 //    {
-//        Clasm_String cm_String = new Clasm_String();
-//        if (!cm_String.GetCheckEmail(m_Email))
+//        ClassString m_String = new ClassString();
+//        if (!m_String.GetCheckEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
-//            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_ContinueWith: Invalid Email");
+//            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
 //            return;
 //        }
 
-//        SetFirebaseAuth_Register_Done(false);
+//        SetFirebaseAumRegisterDone(false);
 
 //        SetFirebase_Message("Creating...");
-//        if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_ContinueWith: Creating");
+//        if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_ContinueWith: Creating");
 
 //        fm_Auth.CreateUserWithEmailAndPasswordAsync(m_Email, m_Password).ContinueWith(task =>
 //        {
-//            if (task.IsCanceled || task.IsFaulted)
+//            if (task.Canceled || task.Faulted)
 //            {
-//                if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_ContinueWith: UnSuccessfully!");
+//                if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: UnSuccessfully!");
 //                return;
 //            }
 //            //Create
-//            SetFirebaseAuth_Register_Done(true);
+//            SetFirebaseAumRegisterDone(true);
 
 //            FirebaseUser fm_AuthUser = task.Result;
 
 //            SetFirebase_Message("Register Complete");
-//            if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_ContinueWith: " + fm_Auth.CurrentUser.Email);
+//            if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_ContinueWith: " + fm_Auth.CurrentUser.Email);
 
 //            if (o_Class != null)
 //            {
 //                SetFirebaseDatabase_Object(
-//                    "_Player/" + GetFirebaseAuth_ID().ToString(),
+//                    "_Player/" + GetFirebaseAum_ID().ToString(),
 //                    o_Class);
 //                //Create Primary User Auth Profile in Firebase Database at "_Player/$UserAuthID/"
 //            }
@@ -206,49 +206,49 @@
 //    /// </summary>
 //    /// <param name="m_Email">"myEmail@gmail.com"</param>
 //    /// <param name="m_Password"></param>
-//    /// <param name="m_RePassword"></param>
+//    /// <param name="mRePassword"></param>
 //    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_ID$UserAuthID/"</param>
-//    public void SetFirebaseAuth_Register_ContinueWith(string m_Email, string m_Password, string m_RePassword, object o_Class)
+//    public void SetFirebaseAumRegister_ContinueWith(string m_Email, string m_Password, string m_RePassword, object o_Class)
 //    {
-//        Clasm_String cm_String = new Clasm_String();
-//        if (!cm_String.GetCheckEmail(m_Email))
+//        ClassString m_String = new ClassString();
+//        if (!m_String.GetCheckEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
-//            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_ContinueWith: Invalid Email");
+//            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
 //            return;
 //        }
 
 //        if (m_Password != m_RePassword)
 //        {
-//            if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_ContinueWith: Not same Password");
+//            if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_ContinueWith: Not same Password");
 //            return;
 //        }
 //        else
 //        {
-//            SetFirebaseAuth_Register_Done(false);
+//            SetFirebaseAumRegisterDone(false);
 
 //            SetFirebase_Message("Creating...");
-//            if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_ContinueWith: Creating");
+//            if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_ContinueWith: Creating");
 
 //            fm_Auth.CreateUserWithEmailAndPasswordAsync(m_Email, m_Password).ContinueWith(task =>
 //            {
-//                if (task.IsCanceled || task.IsFaulted)
+//                if (task.Canceled || task.Faulted)
 //                {
-//                    if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_ContinueWith: UnSuccessfully!");
+//                    if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: UnSuccessfully!");
 //                    return;
 //                }
 //                //Create
-//                SetFirebaseAuth_Register_Done(true);
+//                SetFirebaseAumRegisterDone(true);
 
 //                FirebaseUser fm_AuthUser = task.Result;
 
 //                SetFirebase_Message("Register Complete");
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_ContinueWith: " + fm_Auth.CurrentUser.Email);
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_ContinueWith: " + fm_Auth.CurrentUser.Email);
 
 //                if (o_Class != null)
 //                {
 //                    SetFirebaseDatabase_Object(
-//                        GetFirebaseDatabase_ID(GetFirebaseAuth_ID().ToString()),
+//                        GetFirebaseDatabase_ID(GetFirebaseAum_ID().ToString()),
 //                        o_Class);
 //                    //Create Primary User Auth Profile in Firebase Database at "_ID$UserAuthID/"
 //                }
@@ -261,24 +261,24 @@
 //    /// <summary>
 //    /// Check if Login is Done
 //    /// </summary>
-//    private bool FirebaseListen_Login_Done = false;
+//    private bool FirebaseListenLoginDone = false;
 
 //    /// <summary>
 //    /// Check if Login is Done
 //    /// </summary>
 //    /// <returns></returns>
-//    public bool GetFirebaseAuth_Login_Done()
+//    public bool GetCheckFirebaseAumLoginDone()
 //    {
-//        return FirebaseListen_Login_Done;
+//        return FirebaseListenLoginDone;
 //    }
 
 //    /// <summary>
 //    /// Set Login Done check
 //    /// </summary>
-//    /// <param name="m_Chance"></param>
-//    public void SetFirebaseAuth_Login_Done(bool m_Chance)
+//    /// <param name="mChance"></param>
+//    public void SetFirebaseAumLoginDone(bool m_AllowChance)
 //    {
-//        this.FirebaseListen_Login_Done = m_Chance;
+//        this.FirebaseListenLoginDone = m_Chance;
 //    }
 
 //    /// <summary>
@@ -286,31 +286,31 @@
 //    /// </summary>
 //    /// <param name="m_Email">"myEmail@gmail.com"</param>
 //    /// <param name="m_Password"></param>
-//    public void SetFirebaseListen_Login_ContinueWith(string m_Email, string m_Password)
+//    public void SetFirebaseListenLogin_ContinueWith(string m_Email, string m_Password)
 //    {
-//        Clasm_String cm_String = new Clasm_String();
-//        if (!cm_String.GetCheckEmail(m_Email))
+//        ClassString m_String = new ClassString();
+//        if (!m_String.GetCheckEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
-//            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_ContinueWith: Invalid Email");
+//            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
 //            return;
 //        }
 
 //        SetFirebase_Message("Log-ing...");
-//        if(m_Debug) Debug.LogWarning("SetFirebaseListen_Login_ContinueWith: Log-ing...");
+//        if(m_Debug) Debug.LogWarning("SetFirebaseListenLogin_ContinueWith: Log-ing...");
 
 //        fm_Auth.SignInWithEmailAndPasswordAsync(m_Email, m_Password).ContinueWith(task =>
 //        {
-//            if (task.IsCanceled || task.IsFaulted)
+//            if (task.Canceled || task.Faulted)
 //            {
-//                if(m_Debug) Debug.LogError("SetFirebaseListen_Login_ContinueWith: UnSuccessfully!");
+//                if(m_Debug) Debug.LogError("SetFirebaseListenLogin_ContinueWith: UnSuccessfully!");
 //                return;
 //            }
 //            //Login
 //            FirebaseUser fm_AuthUser = task.Result;
 
 //            SetFirebase_Message("Login Complete");
-//            if(m_Debug) Debug.LogWarning("SetFirebaseListen_Login_ContinueWith: " + fm_Auth.CurrentUser.Email);
+//            if(m_Debug) Debug.LogWarning("SetFirebaseListenLogin_ContinueWith: " + fm_Auth.CurrentUser.Email);
 //        });
 //    }
 
@@ -319,11 +319,11 @@
 //    /// <summary>
 //    /// Create User Profile Auth to Firebase
 //    /// </summary>
-//    /// <param name="m_DisplayName"></param>
+//    /// <param name="mDisplayName"></param>
 //    /// <param name="u_PhotoUrl"></param>
-//    public void SetFirebaseAuth_ChanceProfile_ContinueWith(string m_DisplayName, System.Uri u_PhotoUrl)
+//    public void SetFirebaseAumChanceProfile_ContinueWith(string m_DisplayName, System.Uri u_PhotoUrl)
 //    {
-//        if (GetFirebaseAuth_Login())
+//        if (GetFirebaseAumLogin())
 //        {
 //            Firebase.Auth.UserProfile u_Profile = new Firebase.Auth.UserProfile
 //            {
@@ -334,17 +334,17 @@
 //            //Update
 //            fm_Auth.CurrentUser.UpdateUserProfileAsync(u_Profile).ContinueWith(task =>
 //            {
-//                if (task.IsCanceled || task.IsFaulted)
+//                if (task.Canceled || task.Faulted)
 //                {
-//                    if(m_Debug) Debug.LogError("SetFirebaseAuth_ChanceProfile_ContinueWith: UnSuccessfully!");
+//                    if(m_Debug) Debug.LogError("SetFirebaseAumChanceProfile_ContinueWith: UnSuccessfully!");
 //                    return;
 //                }
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_ChanceProfile_ContinueWith: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumChanceProfile_ContinueWith: Successfully!");
 //            });
 //        }
 //        else
 //        {
-//            if(m_Debug) Debug.LogError("SetFirebaseAuth_ChanceProfile_ContinueWith: UnSuccessfully!");
+//            if(m_Debug) Debug.LogError("SetFirebaseAumChanceProfile_ContinueWith: UnSuccessfully!");
 //        }
 //    }
 
@@ -354,24 +354,24 @@
 //    /// Chance Email Auth to Firebase
 //    /// </summary>
 //    /// <param name="m_Email">"myEmail@gmail.com"</param>
-//    public void SetFirebaseAuth_ChanceEmail_ContinueWith(string m_Email)
+//    public void SetFirebaseAumChanceEmaim_ContinueWith(string m_Email)
 //    {
-//        if (GetFirebaseAuth_Login())
+//        if (GetFirebaseAumLogin())
 //        {
 //            //Update
 //            fm_Auth.CurrentUser.UpdateEmailAsync(m_Email).ContinueWith(task =>
 //            {
-//                if (task.IsCanceled || task.IsFaulted)
+//                if (task.Canceled || task.Faulted)
 //                {
-//                    if(m_Debug) Debug.LogError("SetFirebaseAuth_ChanceEmail_ContinueWith: UnSuccessfully!");
+//                    if(m_Debug) Debug.LogError("SetFirebaseAumChanceEmaim_ContinueWith: UnSuccessfully!");
 //                    return;
 //                }
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_ChanceEmail_ContinueWith: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumChanceEmaim_ContinueWith: Successfully!");
 //            });
 //        }
 //        else
 //        {
-//            if(m_Debug) Debug.LogError("SetFirebaseAuth_ChanceEmail_ContinueWith: UnSuccessfully!");
+//            if(m_Debug) Debug.LogError("SetFirebaseAumChanceEmaim_ContinueWith: UnSuccessfully!");
 //        }
 //    }
 
@@ -381,23 +381,23 @@
 //    /// Chance Password Auth to Firebase
 //    /// </summary>
 //    /// <param name="m_NewPassword"></param>
-//    public void SetFirebaseAuth_ChancePassword_ContinueWith(string m_NewPassword)
+//    public void SetFirebaseAumChancePassword_ContinueWith(string m_NewPassword)
 //    {
-//        if (GetFirebaseAuth_Login())
+//        if (GetFirebaseAumLogin())
 //        {
 //            fm_Auth.CurrentUser.UpdatePasswordAsync(m_NewPassword).ContinueWith(task =>
 //            {
-//                if (task.IsCanceled || task.IsFaulted)
+//                if (task.Canceled || task.Faulted)
 //                {
-//                    if(m_Debug) Debug.LogError("SetFirebaseAuth_ChancePassword_ContinueWith: UnSuccessfully!");
+//                    if(m_Debug) Debug.LogError("SetFirebaseAumChancePassword_ContinueWith: UnSuccessfully!");
 //                    return;
 //                }
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_ChancePassword_ContinueWith: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumChancePassword_ContinueWith: Successfully!");
 //            });
 //        }
 //        else
 //        {
-//            if(m_Debug) Debug.LogError("SetFirebaseAuth_ChancePassword_ContinueWith: UnSuccessfully!");
+//            if(m_Debug) Debug.LogError("SetFirebaseAumChancePassword_ContinueWith: UnSuccessfully!");
 //        }
 //    }
 
@@ -406,23 +406,23 @@
 //    /// <summary>
 //    /// Delete Auth on Firebase
 //    /// </summary>
-//    public void SetFirebaseAuth_DeleteAuth_ContinueWith()
+//    public void SetFirebaseAumDeleteAum_ContinueWith()
 //    {
-//        if (GetFirebaseAuth_Login())
+//        if (GetFirebaseAumLogin())
 //        {
 //            fm_Auth.CurrentUser.DeleteAsync().ContinueWith(task =>
 //            {
-//                if (task.IsCanceled || task.IsFaulted)
+//                if (task.Canceled || task.Faulted)
 //                {
-//                    if(m_Debug) Debug.LogError("SetFirebaseAuth_DeleteAuth_ContinueWith: UnSuccessfully!");
+//                    if(m_Debug) Debug.LogError("SetFirebaseAumDeleteAum_ContinueWith: UnSuccessfully!");
 //                    return;
 //                }
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_DeleteAuth_ContinueWith: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumDeleteAum_ContinueWith: Successfully!");
 //            });
 //        }
 //        else
 //        {
-//            if(m_Debug) Debug.LogError("SetFirebaseAuth_DeleteAuth_ContinueWith: UnSuccessfully!");
+//            if(m_Debug) Debug.LogError("SetFirebaseAumDeleteAum_ContinueWith: UnSuccessfully!");
 //        }
 //    }
 
@@ -431,65 +431,65 @@
 //    /// <summary>
 //    /// Check if Send Email is Done
 //    /// </summary>
-//    private bool m_FirebaseAuth_SendEmail_Done = false;
+//    private bool m_AllowFirebaseAum_SendEmaimDone = false;
 
 //    /// <summary>
 //    /// Check if Send Email is Done
 //    /// </summary>
 //    /// <returns></returns>
-//    public bool GetFirebaseAuth_SendEmail_Done()
+//    public bool GetCheckFirebaseAum_SendEmaimDone()
 //    {
-//        return m_FirebaseAuth_SendEmail_Done;
+//        return m_FirebaseAum_SendEmaimDone;
 //    }
 
 //    /// <summary>
 //    /// Set Send Email Done check
 //    /// </summary>
-//    /// <param name="m_Chance"></param>
-//    public void SetFirebaseAuth_SendEmail_Done(bool m_Chance)
+//    /// <param name="mChance"></param>
+//    public void SetFirebaseAum_SendEmaimDone(bool m_AllowChance)
 //    {
-//        this.m_FirebaseAuth_SendEmail_Done = m_Chance;
+//        m_FirebaseAum_SendEmaimDone = m_Chance;
 //    }
 
 //    /// <summary>
 //    /// Get Email Verified after Send Email
 //    /// </summary>
 //    /// <returns></returns>
-//    public bool GetFirebaseAuth_EmailVerification_Check()
+//    public bool GetCheckFirebaseAum_EmailVerification()
 //    {
-//        if (GetFirebaseAuth_Login())
+//        if (GetFirebaseAumLogin())
 //        {
 //            fm_Auth.CurrentUser.ReloadAsync();
 //            //Refreshes the data for this User Auth on Firebase
 
-//            if(m_Debug) Debug.Log("GetFirebaseAuth_EmailVerification_Check: " + fm_Auth.CurrentUser.IsEmailVerified);
-//            return fm_Auth.CurrentUser.IsEmailVerified;
+//            if(m_Debug) Debug.Log("GetFirebaseAum_EmailVerification: " + fm_Auth.CurrentUser.EmailVerified);
+//            return fm_Auth.CurrentUser.EmailVerified;
 //        }
-//        if(m_Debug) Debug.Log("GetFirebaseAuth_EmailVerification_Check: Not Login yet");
+//        if(m_Debug) Debug.Log("GetFirebaseAum_EmailVerification: Not Login yet");
 //        return false;
 //    }
 
 //    /// <summary>
 //    /// Send Email Verification on Firebase
 //    /// </summary>
-//    public void SetFirebaseAuth_EmailVerification_Send_ContinueWith()
+//    public void SetFirebaseAum_EmailVerification_Send_ContinueWith()
 //    {
-//        SetFirebaseAuth_SendEmail_Done(false);
+//        SetFirebaseAum_SendEmaimDone(false);
 
-//        FirebaseUser fm_User_Cur = fm_Auth.CurrentUser;
-//        if (fm_User_Cur != null)
+//        FirebaseUser fmUserCurrent = fm_Auth.CurrentUser;
+//        if (fmUserCurrent != null)
 //        {
-//            fm_User_Cur.SendEmailVerificationAsync().ContinueWith(task =>
+//            fmUserCurrent.SendEmailVerificationAsync().ContinueWith(task =>
 //            {
-//                if (task.IsCanceled || task.IsFaulted)
+//                if (task.Canceled || task.Faulted)
 //                {
-//                    //If not Checked Mail, this will throuw Exception
-//                    if(m_Debug) Debug.LogError("SetFirebaseAuth_EmailVerification_Send_ContinueWith: UnSuccessfully!");
+//                    //If not Checked m_ail, this will throuw Exception
+//                    if(m_Debug) Debug.LogError("SetFirebaseAum_EmailVerification_Send_ContinueWith: UnSuccessfully!");
 //                    return;
 //                }
-//                SetFirebaseAuth_SendEmail_Done(true);
+//                SetFirebaseAum_SendEmaimDone(true);
 
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_EmailVerification_Send_ContinueWith: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAum_EmailVerification_Send_ContinueWith: Successfully!");
 //            });
 //        }
 //    }
@@ -498,69 +498,69 @@
 //    /// Send Email Password Verification on Firebase
 //    /// </summary>
 //    /// <param name="m_Email"></param>
-//    public void SetFirebaseAuth_PasswordResetEmail_Send_ContinueWith(string m_Email)
+//    public void SetFirebaseAum_PasswordResetEmaim_Send_ContinueWith(string m_Email)
 //    {
-//        SetFirebaseAuth_SendEmail_Done(false);
+//        SetFirebaseAum_SendEmaimDone(false);
 
-//        FirebaseUser fm_User_Cur = fm_Auth.CurrentUser;
-//        if (fm_User_Cur != null)
+//        FirebaseUser fmUserCurrent = fm_Auth.CurrentUser;
+//        if (fmUserCurrent != null)
 //        {
 //            fm_Auth.SendPasswordResetEmailAsync(m_Email).ContinueWith(task =>
 //            {
-//                if (task.IsCanceled || task.IsFaulted)
+//                if (task.Canceled || task.Faulted)
 //                {
-//                    //If not Checked Mail, this will throuw Exception
-//                    if(m_Debug) Debug.LogError("SetFirebaseAuth_PasswordResetEmail_Send_ContinueWith: UnSuccessfully!");
+//                    //If not Checked m_ail, this will throuw Exception
+//                    if(m_Debug) Debug.LogError("SetFirebaseAum_PasswordResetEmaim_Send_ContinueWith: UnSuccessfully!");
 //                    return;
 //                }
-//                SetFirebaseAuth_SendEmail_Done(true);
+//                SetFirebaseAum_SendEmaimDone(true);
 
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_PasswordResetEmail_Send_ContinueWith: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAum_PasswordResetEmaim_Send_ContinueWith: Successfully!");
 //            });
 //        }
 //    }
 
-//    //Auth IEnumerator (In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_Register(...));")
+//    //Auth IEnumerator (In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumeratorRegister(...));")
 //    //"https://docs.unity3d.com/Manual/Coroutines.html"
 
 //    //Register
 
 //    /// <summary>
-//    /// Create User Auth to Firebase. In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_Register(...));"
+//    /// Create User Auth to Firebase. In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumeratorRegister(...));"
 //    /// </summary>
 //    /// <param name="m_Email">"myEmail@gmail.com"</param>
 //    /// <param name="m_Password"></param>
-//    /// <param name="m_DisplayName"></param>
+//    /// <param name="mDisplayName"></param>
 //    /// <param name="m_EmailVerification">If "True", Firebase will send an Email Verification</param>
 //    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_Player/UserAuthID"</param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAuth_Register_IEnumerator(string m_Email, string m_Password, string m_DisplayName, bool m_EmailVerification, object o_Class)
+//    public IEnumerator SetFirebaseAumRegister_IEnumerator(string m_Email, string m_Password, string m_DisplayName, bool m_AllowEmailVerification, object o_Class)
 //    {
-//        Clasm_String cm_String = new Clasm_String();
-//        if (!cm_String.GetCheckEmail(m_Email))
+//        ClassString m_String = new ClassString();
+//        if (!m_String.GetCheckEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
-//            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_ContinueWith: Invalid Email");
+//            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
 //        }
 //        else
 //        {
-//            SetFirebaseAuth_Register_Done(false);
+//            SetFirebaseAumRegisterDone(false);
 
 //            SetFirebase_Message("Register-ing...");
-//            if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_IEnumerator: Register-ing");
+//            if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_IEnumerator: Register-ing");
 
-//            var v_RegisterTask = fm_Auth.CreateUserWithEmailAndPasswordAsync(m_Email, m_Password);
+//            var vRegisterTask = fm_Auth.CreateUserWithEmailAndPasswordAsync(m_Email, m_Password);
 //            //Create User Auth to Firebase
 
-//            yield return new WaitUntil(predicate: () => v_RegisterTask.IsCompleted);
+//            yield return new WaitUntil(predicate: () => vRegisterTask.Completed);
 //            //Wait until Create User Auth to Firebase complete
 
-//            SetFirebaseAuth_Register_Done(true);
+//            SetFirebaseAumRegisterDone(true);
 
-//            if (v_RegisterTask.Exception != null)
+//            if (vRegisterTask.Exception != null)
 //            //If Create User Auth to Firebase Error
 //            {
-//                FirebaseException m_FirebaseEx = v_RegisterTask.Exception.GetBaseException() as FirebaseException;
+//                FirebaseException m_FirebaseEx = vRegisterTask.Exception.GetBaseException() as FirebaseException;
 //                AuthError a_ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
 //                //Get Create User Auth to Firebase Error
 
@@ -568,19 +568,19 @@
 //                {
 //                    case AuthError.MissingEmail:
 //                        SetFirebase_Message("Missing Email");
-//                        if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_IEnumerator: Missing Email");
+//                        if(m_Debug) Debug.LogError("SetFirebaseAumRegister_IEnumerator: m_issing Email");
 //                        break;
 //                    case AuthError.MissingPassword:
 //                        SetFirebase_Message("Missing Password");
-//                        if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_IEnumerator: Missing Password");
+//                        if(m_Debug) Debug.LogError("SetFirebaseAumRegister_IEnumerator: m_issing Password");
 //                        break;
 //                    case AuthError.WeakPassword:
 //                        SetFirebase_Message("Weak Password");
-//                        if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_IEnumerator: Weak Password");
+//                        if(m_Debug) Debug.LogError("SetFirebaseAumRegister_IEnumerator: Weak Password");
 //                        break;
 //                    case AuthError.EmailAlreadyInUse:
 //                        SetFirebase_Message("Email Already In Use");
-//                        if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_IEnumerator: Email Already In Use");
+//                        if(m_Debug) Debug.LogError("SetFirebaseAumRegister_IEnumerator: Email Already In Use");
 //                        break;
 //                }
 //            }
@@ -588,9 +588,9 @@
 //            //If Create User Auth to Firebase complete
 //            {
 //                SetFirebase_Message("Register Complete");
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_IEnumerator: " + m_Email);
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_IEnumerator: " + m_Email);
 
-//                FirebaseUser fm_AuthUser = v_RegisterTask.Result;
+//                FirebaseUser fm_AuthUser = vRegisterTask.Result;
 
 //                if (fm_AuthUser != null)
 //                //If Login new User Auth to Firebase complete
@@ -599,7 +599,7 @@
 
 //                    if (m_EmailVerification)
 //                    {
-//                        SetFirebaseAuth_EmailVerification_Send_ContinueWith();
+//                        SetFirebaseAum_EmailVerification_Send_ContinueWith();
 //                    }
 
 //                    //Set Profile
@@ -610,7 +610,7 @@
 //                    var v_ProfileTask = fm_AuthUser.UpdateUserProfileAsync(u_Profile);
 //                    //Update User Auth Profile
 
-//                    yield return new WaitUntil(predicate: () => v_ProfileTask.IsCompleted);
+//                    yield return new WaitUntil(predicate: () => v_ProfileTask.Completed);
 //                    //Wait until Update User Profile Auth to Firebase complete
 
 //                    if (v_ProfileTask.Exception != null)
@@ -618,17 +618,17 @@
 //                    {
 //                        FirebaseException m_FirebaseEx = v_ProfileTask.Exception.GetBaseException() as FirebaseException;
 //                        AuthError ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
-//                        if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_IEnumerator: " + m_DisplayName);
+//                        if(m_Debug) Debug.LogError("SetFirebaseAumRegister_IEnumerator: " + m_DisplayName);
 //                    }
 //                    else
 //                    {
-//                        if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_IEnumerator: Successfully!");
+//                        if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_IEnumerator: Successfully!");
 //                    }
 
 //                    if (o_Class != null)
 //                    {
 //                        SetFirebaseDatabase_Object(
-//                            "_Player/" + GetFirebaseAuth_ID().ToString(),
+//                            "_Player/" + GetFirebaseAum_ID().ToString(),
 //                            o_Class);
 //                        //Create Primary User Auth Profile in Firebase Database at "_Player/$UserAuthID/"
 //                    }
@@ -638,49 +638,49 @@
 //    }
 
 //    /// <summary>
-//    /// Create User Auth to Firebase. In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_Register(...));"
+//    /// Create User Auth to Firebase. In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumeratorRegister(...));"
 //    /// </summary>
 //    /// <param name="m_Email">"myEmail@gmail.com"</param>
 //    /// <param name="m_Password"></param>
 //    /// <param name="m_PasswordRe">Check if "Re-Password" same to "Password"</param>
-//    /// <param name="m_DisplayName"></param>
+//    /// <param name="mDisplayName"></param>
 //    /// <param name="m_EmailVerification">If "True", Firebase will send an Email Verification</param>
 //    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_ID$UserAuthID/"</param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAuth_Register_IEnumerator(string m_Email, string m_Password, string m_PasswordRe, string m_DisplayName, bool m_EmailVerification, object o_Class)
+//    public IEnumerator SetFirebaseAumRegister_IEnumerator(string m_Email, string m_Password, string m_PasswordRe, string m_DisplayName, bool m_AllowEmailVerification, object o_Class)
 //    {
-//        Clasm_String cm_String = new Clasm_String();
-//        if (!cm_String.GetCheckEmail(m_Email))
+//        ClassString m_String = new ClassString();
+//        if (!m_String.GetCheckEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
-//            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_ContinueWith: Invalid Email");
+//            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
 //        }
 //        else
 //        {
 //            if (m_Password != m_PasswordRe)
 //            {
 //                SetFirebase_Message("Check Password Again");
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_IEnumerator: Not same Password");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_IEnumerator: Not same Password");
 //            }
 //            else
 //            {
-//                SetFirebaseAuth_Register_Done(false);
+//                SetFirebaseAumRegisterDone(false);
 
 //                SetFirebase_Message("Register-ing...");
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_IEnumerator: Register-ing");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_IEnumerator: Register-ing");
 
-//                var v_RegisterTask = fm_Auth.CreateUserWithEmailAndPasswordAsync(m_Email, m_Password);
+//                var vRegisterTask = fm_Auth.CreateUserWithEmailAndPasswordAsync(m_Email, m_Password);
 //                //Create User Auth to Firebase
 
-//                yield return new WaitUntil(predicate: () => v_RegisterTask.IsCompleted);
+//                yield return new WaitUntil(predicate: () => vRegisterTask.Completed);
 //                //Wait until Create User Auth to Firebase complete
 
-//                SetFirebaseAuth_Register_Done(true);
+//                SetFirebaseAumRegisterDone(true);
 
-//                if (v_RegisterTask.Exception != null)
+//                if (vRegisterTask.Exception != null)
 //                //If Create User Auth to Firebase Error
 //                {
-//                    FirebaseException m_FirebaseEx = v_RegisterTask.Exception.GetBaseException() as FirebaseException;
+//                    FirebaseException m_FirebaseEx = vRegisterTask.Exception.GetBaseException() as FirebaseException;
 //                    AuthError a_ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
 //                    //Get Create User Auth to Firebase Error
 
@@ -688,19 +688,19 @@
 //                    {
 //                        case AuthError.MissingEmail:
 //                            SetFirebase_Message("Missing Email");
-//                            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_IEnumerator: Missing Email");
+//                            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_IEnumerator: m_issing Email");
 //                            break;
 //                        case AuthError.MissingPassword:
 //                            SetFirebase_Message("Missing Password");
-//                            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_IEnumerator: Missing Password");
+//                            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_IEnumerator: m_issing Password");
 //                            break;
 //                        case AuthError.WeakPassword:
 //                            SetFirebase_Message("Weak Password");
-//                            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_IEnumerator: Weak Password");
+//                            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_IEnumerator: Weak Password");
 //                            break;
 //                        case AuthError.EmailAlreadyInUse:
 //                            SetFirebase_Message("Email Already In Use");
-//                            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_IEnumerator: Email Already In Use");
+//                            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_IEnumerator: Email Already In Use");
 //                            break;
 //                    }
 //                }
@@ -708,9 +708,9 @@
 //                //If Create User Auth to Firebase complete
 //                {
 //                    SetFirebase_Message("Register Complete");
-//                    if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_IEnumerator: " + m_Email);
+//                    if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_IEnumerator: " + m_Email);
 
-//                    FirebaseUser fm_AuthUser = v_RegisterTask.Result;
+//                    FirebaseUser fm_AuthUser = vRegisterTask.Result;
 
 //                    if (fm_AuthUser != null)
 //                    //If Login new User Auth to Firebase complete
@@ -719,7 +719,7 @@
 
 //                        if (m_EmailVerification)
 //                        {
-//                            SetFirebaseAuth_EmailVerification_Send_ContinueWith();
+//                            SetFirebaseAum_EmailVerification_Send_ContinueWith();
 //                        }
 
 //                        //Set Profile
@@ -730,7 +730,7 @@
 //                        var v_ProfileTask = fm_AuthUser.UpdateUserProfileAsync(u_Profile);
 //                        //Update User Auth Profile
 
-//                        yield return new WaitUntil(predicate: () => v_ProfileTask.IsCompleted);
+//                        yield return new WaitUntil(predicate: () => v_ProfileTask.Completed);
 //                        //Wait until Update User Profile Auth to Firebase complete
 
 //                        if (v_ProfileTask.Exception != null)
@@ -738,17 +738,17 @@
 //                        {
 //                            FirebaseException m_FirebaseEx = v_ProfileTask.Exception.GetBaseException() as FirebaseException;
 //                            AuthError ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
-//                            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_IEnumerator: " + m_DisplayName);
+//                            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_IEnumerator: " + m_DisplayName);
 //                        }
 //                        else
 //                        {
-//                            if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Register_IEnumerator: Successfully!");
+//                            if(m_Debug) Debug.LogWarning("SetFirebaseAumRegister_IEnumerator: Successfully!");
 //                        }
 
 //                        if (o_Class != null)
 //                        {
 //                            SetFirebaseDatabase_Object(
-//                                GetFirebaseDatabase_ID(GetFirebaseAuth_ID().ToString()),
+//                                GetFirebaseDatabase_ID(GetFirebaseAum_ID().ToString()),
 //                                o_Class);
 //                            //Create Primary User Auth Profile in Firebase Database at "_ID$UserAuthID/"
 //                        }
@@ -771,38 +771,38 @@
 //    //Login
 
 //    /// <summary>
-//    /// Login User Auth to Firebase. In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_Login(...));"
+//    /// Login User Auth to Firebase. In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumeratorLogin(...));"
 //    /// </summary>
 //    /// <param name="m_Email">"myEmail@gmail.com"</param>
 //    /// <param name="m_Password"></param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAuth_Login_IEnumerator(string m_Email, string m_Password)
+//    public IEnumerator SetFirebaseAumLogin_IEnumerator(string m_Email, string m_Password)
 //    {
-//        Clasm_String cm_String = new Clasm_String();
-//        if (!cm_String.GetCheckEmail(m_Email))
+//        ClassString m_String = new ClassString();
+//        if (!m_String.GetCheckEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
-//            if(m_Debug) Debug.LogError("SetFirebaseAuth_Register_ContinueWith: Invalid Email");
+//            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
 //        }
 //        else
 //        {
-//            SetFirebaseAuth_Login_Done(false);
+//            SetFirebaseAumLoginDone(false);
 
 //            SetFirebase_Message("Log-ing...");
-//            if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Login_IEnumerator: Log-ing...");
+//            if(m_Debug) Debug.LogWarning("SetFirebaseAumLogin_IEnumerator: Log-ing...");
 
-//            var v_LoginTask = fm_Auth.SignInWithEmailAndPasswordAsync(m_Email, m_Password);
+//            var vLoginTask = fm_Auth.SignInWithEmailAndPasswordAsync(m_Email, m_Password);
 //            //Login User Auth to Firebase
 
-//            yield return new WaitUntil(predicate: () => v_LoginTask.IsCompleted);
+//            yield return new WaitUntil(predicate: () => vLoginTask.Completed);
 //            //Wait until Create User Auth to Firebase complete
 
-//            SetFirebaseAuth_Login_Done(true);
+//            SetFirebaseAumLoginDone(true);
 
-//            if (v_LoginTask.Exception != null)
+//            if (vLoginTask.Exception != null)
 //            //If Create User Auth to Firebase Error
 //            {
-//                FirebaseException m_FirebaseEx = v_LoginTask.Exception.GetBaseException() as FirebaseException;
+//                FirebaseException m_FirebaseEx = vLoginTask.Exception.GetBaseException() as FirebaseException;
 //                AuthError a_ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
 //                //Get Create User Auth to Firebase Error
 
@@ -810,23 +810,23 @@
 //                {
 //                    case AuthError.MissingEmail:
 //                        SetFirebase_Message("Missing Email");
-//                        if(m_Debug) Debug.LogError("SetFirebaseAuth_Login_IEnumerator: Missing Email");
+//                        if(m_Debug) Debug.LogError("SetFirebaseAumLogin_IEnumerator: m_issing Email");
 //                        break;
 //                    case AuthError.MissingPassword:
 //                        SetFirebase_Message("Missing Password");
-//                        if(m_Debug) Debug.LogError("SetFirebaseAuth_Login_IEnumerator: Missing Password");
+//                        if(m_Debug) Debug.LogError("SetFirebaseAumLogin_IEnumerator: m_issing Password");
 //                        break;
 //                    case AuthError.WrongPassword:
 //                        SetFirebase_Message("Wrong Password");
-//                        if(m_Debug) Debug.LogError("SetFirebaseAuth_Login_IEnumerator: Wrong Password");
+//                        if(m_Debug) Debug.LogError("SetFirebaseAumLogin_IEnumerator: Wrong Password");
 //                        break;
 //                    case AuthError.InvalidEmail:
 //                        SetFirebase_Message("Invalid Email");
-//                        if(m_Debug) Debug.LogError("SetFirebaseAuth_Login_IEnumerator: Invalid Email");
+//                        if(m_Debug) Debug.LogError("SetFirebaseAumLogin_IEnumerator: Invalid Email");
 //                        break;
 //                    case AuthError.UserNotFound:
 //                        SetFirebase_Message("Account does not exist");
-//                        if(m_Debug) Debug.LogError("SetFirebaseAuth_Login_IEnumerator: Account does not exist");
+//                        if(m_Debug) Debug.LogError("SetFirebaseAumLogin_IEnumerator: Account does not exist");
 //                        break;
 //                }
 //            }
@@ -834,9 +834,9 @@
 //            //If Login User Auth to Firebase complete
 //            {
 //                SetFirebase_Message("Login Complete");
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_Login_IEnumerator: " + GetFirebaseAuth_Email());
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumLogin_IEnumerator: " + GetFirebaseAum_Email());
 
-//                FirebaseUser fm_AuthUser = v_LoginTask.Result;
+//                FirebaseUser fm_AuthUser = vLoginTask.Result;
 //            }
 //        }
 //    }
@@ -844,11 +844,11 @@
 //    //Chance Profile
 
 //    /// <summary>
-//    /// Create User Profile Auth to Firebase. In "MonoBehavior", use "StartCoroutine(SetFirebaseAuth_Profile(...));"
+//    /// Create User Profile Auth to Firebase. In "MonoBehaviour", use "StartCoroutine(SetFirebaseAum_Profile(...));"
 //    /// </summary>
-//    /// <param name="m_DisplayName"></param>
+//    /// <param name="mDisplayName"></param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAuth_ChanceProfile_IEnumerator(string m_DisplayName)
+//    public IEnumerator SetFirebaseAumChanceProfile_IEnumerator(string m_DisplayName)
 //    {
 //        FirebaseUser fm_AuthUser = fm_Auth.CurrentUser;
 //        if (fm_AuthUser != null)
@@ -859,7 +859,7 @@
 //            var v_ProfileTask = fm_AuthUser.UpdateUserProfileAsync(u_Profile);
 //            //Update User Auth Profile
 
-//            yield return new WaitUntil(predicate: () => v_ProfileTask.IsCompleted);
+//            yield return new WaitUntil(predicate: () => v_ProfileTask.Completed);
 //            //Wait until Update User Profile Auth to Firebase complete
 
 //            if (v_ProfileTask.Exception != null)
@@ -867,11 +867,11 @@
 //            {
 //                FirebaseException m_FirebaseEx = v_ProfileTask.Exception.GetBaseException() as FirebaseException;
 //                AuthError ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
-//                if(m_Debug) Debug.LogError("SetFirebaseAuth_ChanceProfile_IEnumerator: UnSuccessfully!");
+//                if(m_Debug) Debug.LogError("SetFirebaseAumChanceProfile_IEnumerator: UnSuccessfully!");
 //            }
 //            else
 //            {
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_ChanceProfile_IEnumerator: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumChanceProfile_IEnumerator: Successfully!");
 //            }
 //        }
 //    }
@@ -879,11 +879,11 @@
 //    //Chance Email
 
 //    /// <summary>
-//    /// Chance Email Auth to Firebase. In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_ChanceEmail(...));"
+//    /// Chance Email Auth to Firebase. In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumeratorChanceEmail(...));"
 //    /// </summary>
 //    /// <param name="m_Email">"myEmail@gmail.com"</param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAuth_ChanceEmail_IEnumerator(string m_Email)
+//    public IEnumerator SetFirebaseAumChanceEmaim_IEnumerator(string m_Email)
 //    {
 //        FirebaseUser fm_AuthUser = fm_Auth.CurrentUser;
 //        if (fm_AuthUser != null)
@@ -891,7 +891,7 @@
 //            var v_EmailTask = fm_AuthUser.UpdateEmailAsync(m_Email);
 //            //Update User Auth Profile
 
-//            yield return new WaitUntil(predicate: () => v_EmailTask.IsCompleted);
+//            yield return new WaitUntil(predicate: () => v_EmailTask.Completed);
 //            //Wait until Update User Profile Auth to Firebase complete
 
 //            if (v_EmailTask.Exception != null)
@@ -899,11 +899,11 @@
 //            {
 //                FirebaseException m_FirebaseEx = v_EmailTask.Exception.GetBaseException() as FirebaseException;
 //                AuthError ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
-//                if(m_Debug) Debug.LogError("SetFirebaseAuth_ChanceEmail_IEnumerator: UnSuccessfully!");
+//                if(m_Debug) Debug.LogError("SetFirebaseAumChanceEmaim_IEnumerator: UnSuccessfully!");
 //            }
 //            else
 //            {
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_ChanceEmail_IEnumerator: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumChanceEmaim_IEnumerator: Successfully!");
 //            }
 //        }
 //    }
@@ -911,11 +911,11 @@
 //    //Chance Password
 
 //    /// <summary>
-//    /// Chance Password Auth to Firebase. In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_ChancePassword(...));"
+//    /// Chance Password Auth to Firebase. In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumeratorChancePassword(...));"
 //    /// </summary>
 //    /// <param name="m_NewPassword"></param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAuth_ChancePassword_IEnumerator(string m_NewPassword)
+//    public IEnumerator SetFirebaseAumChancePassword_IEnumerator(string m_NewPassword)
 //    {
 //        FirebaseUser fm_AuthUser = fm_Auth.CurrentUser;
 //        if (fm_AuthUser != null)
@@ -923,7 +923,7 @@
 //            var v_PasswordTask = fm_AuthUser.UpdatePasswordAsync(m_NewPassword);
 //            //Update User Auth Profile
 
-//            yield return new WaitUntil(predicate: () => v_PasswordTask.IsCompleted);
+//            yield return new WaitUntil(predicate: () => v_PasswordTask.Completed);
 //            //Wait until Update User Profile Auth to Firebase complete
 
 //            if (v_PasswordTask.Exception != null)
@@ -931,11 +931,11 @@
 //            {
 //                FirebaseException m_FirebaseEx = v_PasswordTask.Exception.GetBaseException() as FirebaseException;
 //                AuthError ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
-//                if(m_Debug) Debug.LogError("SetFirebaseAuth_ChancePassword_IEnumerator: UnSuccessfully!");
+//                if(m_Debug) Debug.LogError("SetFirebaseAumChancePassword_IEnumerator: UnSuccessfully!");
 //            }
 //            else
 //            {
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_ChancePassword_IEnumerator: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumChancePassword_IEnumerator: Successfully!");
 //            }
 //        }
 //    }
@@ -943,30 +943,30 @@
 //    //Delete Auth
 
 //    /// <summary>
-//    /// Delete Auth on Firebase. In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_DeleteAuth(...));"
+//    /// Delete Auth on Firebase. In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumeratorDeleteAuth(...));"
 //    /// </summary>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAuth_DeleteAuth_IEnumerator()
+//    public IEnumerator SetFirebaseAumDeleteAum_IEnumerator()
 //    {
 //        FirebaseUser fm_AuthUser = fm_Auth.CurrentUser;
 //        if (fm_AuthUser != null)
 //        {
-//            var v_DeleteTask = fm_AuthUser.DeleteAsync();
+//            var vDeleteTask = fm_AuthUser.DeleteAsync();
 //            //Update User Auth Profile
 
-//            yield return new WaitUntil(predicate: () => v_DeleteTask.IsCompleted);
+//            yield return new WaitUntil(predicate: () => vDeleteTask.Completed);
 //            //Wait until Update User Profile Auth to Firebase complete
 
-//            if (v_DeleteTask.Exception != null)
+//            if (vDeleteTask.Exception != null)
 //            //If Update User Profile Auth to Firebase Error
 //            {
-//                FirebaseException m_FirebaseEx = v_DeleteTask.Exception.GetBaseException() as FirebaseException;
+//                FirebaseException m_FirebaseEx = vDeleteTask.Exception.GetBaseException() as FirebaseException;
 //                AuthError ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
-//                if(m_Debug) Debug.LogError("SetFirebaseAuth_DeleteAuth_IEnumerator: UnSuccessfully!");
+//                if(m_Debug) Debug.LogError("SetFirebaseAumDeleteAum_IEnumerator: UnSuccessfully!");
 //            }
 //            else
 //            {
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_DeleteAuth_IEnumerator: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAumDeleteAum_IEnumerator: Successfully!");
 //            }
 //        }
 //    }
@@ -977,16 +977,16 @@
 
 //    public void SetResetEventTime(int m_ResetEventTime)
 //    {
-//        this.m_ResetEventTime = m_ResetEventTime;
+//        mResetEventTime = m_ResetEventTime;
 //    }
 
 //    /// <summary>
-//    /// Send Email Verification on Firebase. In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_EmailVerification_Send(...));"
+//    /// Send Email Verification on Firebase. In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumerator_EmailVerification_Send(...));"
 //    /// </summary>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAuth_EmailVerification_Send_IEnumerator()
+//    public IEnumerator SetFirebaseAum_EmailVerification_Send_IEnumerator()
 //    {
-//        SetFirebaseAuth_SendEmail_Done(false);
+//        SetFirebaseAum_SendEmaimDone(false);
 
 //        FirebaseUser fm_AuthUser = fm_Auth.CurrentUser;
 //        if (fm_AuthUser != null)
@@ -994,55 +994,55 @@
 //            var v_VerificationTask = fm_AuthUser.SendEmailVerificationAsync();
 //            //Update User Auth Profile
 
-//            yield return new WaitUntil(predicate: () => v_VerificationTask.IsCompleted);
+//            yield return new WaitUntil(predicate: () => v_VerificationTask.Completed);
 //            //Wait until Update User Profile Auth to Firebase complete
 
-//            SetFirebaseAuth_SendEmail_Done(true);
+//            SetFirebaseAum_SendEmaimDone(true);
 
 //            if (v_VerificationTask.Exception != null)
 //            //If Update User Profile Auth to Firebase Error
 //            {
 //                FirebaseException m_FirebaseEx = v_VerificationTask.Exception.GetBaseException() as FirebaseException;
 //                AuthError ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
-//                if(m_Debug) Debug.LogError("SetFirebaseAuth_EmailVerification_Send_IEnumerator: UnSuccessfully!");
+//                if(m_Debug) Debug.LogError("SetFirebaseAum_EmailVerification_Send_IEnumerator: UnSuccessfully!");
 //            }
 //            else
 //            {
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_EmailVerification_Send_IEnumerator: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAum_EmailVerification_Send_IEnumerator: Successfully!");
 //            }
 //        }
 //    }
 
 //    /// <summary>
-//    /// Send Email Password Verification on Firebase. In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_PasswordResetEmail_Send(...));"
+//    /// Send Email Password Verification on Firebase. In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumerator_PasswordResetEmaim_Send(...));"
 //    /// </summary>
 //    /// <param name="m_Email"></param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAuth_PasswordResetEmail_Send_IEnumerator(string m_Email)
+//    public IEnumerator SetFirebaseAum_PasswordResetEmaim_Send_IEnumerator(string m_Email)
 //    {
-//        SetFirebaseAuth_SendEmail_Done(false);
+//        SetFirebaseAum_SendEmaimDone(false);
 
-//        FirebaseUser fm_User_Cur = fm_Auth.CurrentUser;
-//        if (fm_User_Cur != null)
+//        FirebaseUser fmUserCurrent = fm_Auth.CurrentUser;
+//        if (fmUserCurrent != null)
 //        {
 //            var v_VerificationTask = fm_Auth.SendPasswordResetEmailAsync(m_Email);
 //            //Update User Auth Profile
 
-//            yield return new WaitUntil(predicate: () => v_VerificationTask.IsCompleted);
+//            yield return new WaitUntil(predicate: () => v_VerificationTask.Completed);
 //            //Wait until Update User Profile Auth to Firebase complete
 
-//            SetFirebaseAuth_SendEmail_Done(true);
+//            SetFirebaseAum_SendEmaimDone(true);
 
 //            if (v_VerificationTask.Exception != null)
 //            //If Update User Profile Auth to Firebase Error
 //            {
 //                FirebaseException m_FirebaseEx = v_VerificationTask.Exception.GetBaseException() as FirebaseException;
 //                AuthError ErrorCode = (AuthError)m_FirebaseEx.ErrorCode;
-//                if(m_Debug) Debug.LogError("SetFirebaseAuth_PasswordResetEmail_Send_IEnumerator: UnSuccessfully!");
+//                if(m_Debug) Debug.LogError("SetFirebaseAum_PasswordResetEmaim_Send_IEnumerator: UnSuccessfully!");
 //            }
 //            else
 //            {
-//                if(m_Debug) Debug.LogWarning("SetFirebaseAuth_PasswordResetEmail_Send_IEnumerator: Successfully!");
+//                if(m_Debug) Debug.LogWarning("SetFirebaseAum_PasswordResetEmaim_Send_IEnumerator: Successfully!");
 //            }
 //        }
 //    }
@@ -1054,273 +1054,273 @@
 //    //Value Changed
 
 //    /// <summary>
-//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(myEvent);"
+//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void SetFirebaseEvent_ValueChanged(System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged");
-//        da_Reference.ValueChanged += e_EventHandler;
+//        daReference.ValueChanged += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(myEvent);"
+//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ValueChanged_Reset(System.EventHandler<ValueChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEvent_ValueChangedReset(System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged_Reset");
+//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset");
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
-//            da_Reference.ValueChanged -= e_EventHandler;
+//            daReference.ValueChanged -= e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(myEvent);"
+//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(m_yEvent);"
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void SetFirebaseEvent_ValueChanged(string m_DatabaseAcess, System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged: " + m_DatabaseAcess);
-//        da_Reference.Child(m_DatabaseAcess).ValueChanged += e_EventHandler;
+//        daReference.Child(m_DatabaseAcess).ValueChanged += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(myEvent);"
+//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(m_yEvent);"
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ValueChanged_Reset(string m_DatabaseAcess, System.EventHandler<ValueChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEvent_ValueChangedReset(string m_DatabaseAcess, System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged_Reset: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset: " + m_DatabaseAcess);
 
 //        for (int i = 0; i < m_ResetEventTime; i++) 
-//            da_Reference.Child(m_DatabaseAcess).ValueChanged -= e_EventHandler;
+//            daReference.Child(m_DatabaseAcess).ValueChanged -= e_EventHandler;
 //    }
 
 //    //Child Added
 
 //    /// <summary>
-//    /// Add Event Child Added Listener by "SetFirebaseEvent_ChildAdded(myEvent);"
+//    /// Add Event Child Added Listener by "SetFirebaseEvent_ChildAdded(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void SetFirebaseEvent_ChildAdded(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildAdded");
-//        da_Reference.ChildAdded += e_EventHandler;
+//        daReference.ChildAdded += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Added Listener by "SetFirebaseEvent_ChildAdded(myEvent);"
+//    /// Remove Event Child Added Listener by "SetFirebaseEvent_ChildAdded(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildAdded_Reset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEvent_ChildAddedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged_Reset");
+//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset");
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
-//            da_Reference.ChildAdded -= e_EventHandler;
+//            daReference.ChildAdded -= e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Child Added Listener by "SetFirebaseEvent_ChildAdded(myEvent);"
+//    /// Add Event Child Added Listener by "SetFirebaseEvent_ChildAdded(m_yEvent);"
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void SetFirebaseEvent_ChildAdded(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildAdded: " + m_DatabaseAcess);
-//        da_Reference.Child(m_DatabaseAcess).ChildAdded += e_EventHandler;
+//        daReference.Child(m_DatabaseAcess).ChildAdded += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Added Listener by "SetFirebaseEvent_ChildAdded(myEvent);"
+//    /// Remove Event Child Added Listener by "SetFirebaseEvent_ChildAdded(m_yEvent);"
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildAdded_Reset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEvent_ChildAddedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged_Reset: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset: " + m_DatabaseAcess);
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
-//            da_Reference.Child(m_DatabaseAcess).ChildAdded -= e_EventHandler;
+//            daReference.Child(m_DatabaseAcess).ChildAdded -= e_EventHandler;
 //    }
 
 //    //Child Changed
 
 //    /// <summary>
-//    /// Add Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(myEvent);"
+//    /// Add Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void SetFirebaseEvent_ChildChanged(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildChanged");
-//        da_Reference.ChildChanged += e_EventHandler;
+//        daReference.ChildChanged += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(myEvent);"
+//    /// Remove Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildChanged_Reset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEvent_ChildChangedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged_Reset");
+//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset");
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
-//            da_Reference.ChildChanged -= e_EventHandler;
+//            daReference.ChildChanged -= e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(myEvent);"
+//    /// Add Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(m_yEvent);"
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void SetFirebaseEvent_ChildChanged(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildChanged: " + m_DatabaseAcess);
-//        da_Reference.Child(m_DatabaseAcess).ChildChanged += e_EventHandler;
+//        daReference.Child(m_DatabaseAcess).ChildChanged += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(myEvent);"
+//    /// Remove Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(m_yEvent);"
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildChanged_Reset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEvent_ChildChangedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged_Reset: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset: " + m_DatabaseAcess);
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
-//            da_Reference.Child(m_DatabaseAcess).ChildChanged -= e_EventHandler;
+//            daReference.Child(m_DatabaseAcess).ChildChanged -= e_EventHandler;
 //    }
 
-//    //Child Moved
+//    //Child m_oved
 
 //    /// <summary>
-//    /// Add Event Child Moved Listener by "SetFirebaseEvent_ChildMoved(myEvent);"
+//    /// Add Event Child m_oved Listener by "SetFirebaseEvent_ChildMoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void SetFirebaseEvent_ChildMoved(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildMoved");
-//        da_Reference.ChildMoved += e_EventHandler;
+//        daReference.ChildMoved += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Moved Listener by "SetFirebaseEvent_ChildMoved(myEvent);"
+//    /// Remove Event Child m_oved Listener by "SetFirebaseEvent_ChildMoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildMoved_Reset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEvent_ChildMovedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged_Reset");
+//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset");
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
-//            da_Reference.ChildMoved -= e_EventHandler;
+//            daReference.ChildMoved -= e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Child Moved Listener by "SetFirebaseEvent_ChildMoved(myEvent);"
+//    /// Add Event Child m_oved Listener by "SetFirebaseEvent_ChildMoved(m_yEvent);"
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void SetFirebaseEvent_ChildMoved(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildMoved: " + m_DatabaseAcess);
-//        da_Reference.Child(m_DatabaseAcess).ChildMoved += e_EventHandler;
+//        daReference.Child(m_DatabaseAcess).ChildMoved += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Moved Listener by "SetFirebaseEvent_ChildMoved(myEvent);"
+//    /// Remove Event Child m_oved Listener by "SetFirebaseEvent_ChildMoved(m_yEvent);"
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildMoved_Reset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEvent_ChildMovedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged_Reset: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset: " + m_DatabaseAcess);
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
-//            da_Reference.Child(m_DatabaseAcess).ChildMoved -= e_EventHandler;
+//            daReference.Child(m_DatabaseAcess).ChildMoved -= e_EventHandler;
 //    }
 
 //    //Child Removed
 
 //    /// <summary>
-//    /// Add Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(myEvent);"
+//    /// Add Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void SetFirebaseEvent_ChildRemoved(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildRemoved");
-//        da_Reference.ChildRemoved += e_EventHandler;
+//        daReference.ChildRemoved += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(myEvent);"
+//    /// Remove Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildRemoved_Reset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEvent_ChildRemovedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged_Reset");
+//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset");
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
-//            da_Reference.ChildRemoved -= e_EventHandler;
+//            daReference.ChildRemoved -= e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(myEvent);"
+//    /// Add Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(m_yEvent);"
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
 //    public void SetFirebaseEvent_ChildRemoved(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
 //        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildRemoved: " + m_DatabaseAcess);
-//        da_Reference.Child(m_DatabaseAcess).ChildRemoved += e_EventHandler;
+//        daReference.Child(m_DatabaseAcess).ChildRemoved += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(myEvent);"
+//    /// Remove Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(m_yEvent);"
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildRemoved_Reset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEvent_ChildRemovedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged_Reset: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset: " + m_DatabaseAcess);
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
-//            da_Reference.Child(m_DatabaseAcess).ChildRemoved -= e_EventHandler;
+//            daReference.Child(m_DatabaseAcess).ChildRemoved -= e_EventHandler;
 //    }
 
 //    //=========================================================================================
 
-//    //Script Message
+//    //Script m_essage
 
-//    private string m_FirebaseAuth_Message = "";
+//    private string m_FirebaseAum_Message = "";
 
 //    /// <summary>
-//    /// Get Current Message
+//    /// Get Current m_essage
 //    /// </summary>
 //    /// <returns></returns>
-//    public string GetFirebaseAuth_Message()
+//    public string GetFirebaseAum_Message()
 //    {
-//        return m_FirebaseAuth_Message;
+//        return m_FirebaseAum_Message;
 //    }
 
 //    /// <summary>
-//    /// Clear Current Message
+//    /// Clear Current m_essage
 //    /// </summary>
-//    public void SetFirebaseAuth_Message_Clear()
+//    public void SetFirebaseAum_MessageClear()
 //    {
-//        m_FirebaseAuth_Message = "";
+//        m_FirebaseAum_Message = "";
 //    }
 
 //    /// <summary>
-//    /// Set Message
+//    /// Set m_essage
 //    /// </summary>
 //    /// <param name="m_Message"></param>
 //    private void SetFirebase_Message(string m_Message)
 //    {
-//        m_FirebaseAuth_Message = m_Message;
+//        m_FirebaseAum_Message = m_Message;
 //    }
 
 //    //=========================================================================================
@@ -1330,72 +1330,72 @@
 //    /// <summary>
 //    /// Primary Root Database on Firebase
 //    /// </summary>
-//    private DatabaseReference da_Reference;
+//    private DatabaseReference daReference;
 
 //    /// <summary>
 //    /// Update Child in Database with INT
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
 //    /// <param name="m_Value"></param>
 //    public void SetFirebaseDatabase_Value(string m_DatabaseAcess, int m_Value)
 //    {
-//        da_Reference.Child(m_DatabaseAcess).SetValueAsync(m_Value);
+//        daReference.Child(m_DatabaseAcess).SetValueAsync(m_Value);
 //        if(m_Debug) Debug.Log("SetFirebaseDatabase_Value: " + "\"" + m_DatabaseAcess + "\" : \"" + m_Value + "\"");
 //    }
 
 //    /// <summary>
 //    /// Update Child in Database with FLOAT
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
 //    /// <param name="m_Value"></param>
 //    public void SetFirebaseDatabase_Value(string m_DatabaseAcess, float m_Value)
 //    {
-//        da_Reference.Child(m_DatabaseAcess).SetValueAsync(m_Value);
+//        daReference.Child(m_DatabaseAcess).SetValueAsync(m_Value);
 //        if(m_Debug) Debug.Log("SetFirebaseDatabase_Value: " + "\"" + m_DatabaseAcess + "\" : \"" + m_Value + "\"");
 //    }
 
 //    /// <summary>
 //    /// Update Child in Database with STRING
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
 //    /// <param name="m_Value"></param>
 //    public void SetFirebaseDatabase_Value(string m_DatabaseAcess, string m_Value)
 //    {
-//        da_Reference.Child(m_DatabaseAcess).SetValueAsync(m_Value);
+//        daReference.Child(m_DatabaseAcess).SetValueAsync(m_Value);
 //        if(m_Debug) Debug.Log("SetFirebaseDatabase_Value: " + "\"" + m_DatabaseAcess + "\" : \"" + m_Value + "\"");
 //    }
 
 //    /// <summary>
 //    /// Update Child in Database with BOOL
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
 //    /// <param name="m_Value"></param>
-//    public void SetFirebaseDatabase_Value(string m_DatabaseAcess, bool m_Value)
+//    public void SetFirebaseDatabase_Value(string m_DatabaseAcess, bool m_AllowValue)
 //    {
-//        da_Reference.Child(m_DatabaseAcess).SetValueAsync(m_Value);
+//        daReference.Child(m_DatabaseAcess).SetValueAsync(m_Value);
 //        if(m_Debug) Debug.Log("SetFirebaseDatabase_Value: " + "\"" + m_DatabaseAcess + "\" : \"" + m_Value + "\"");
 //    }
 
 //    /// <summary>
 //    /// Update Child in Database with OBJECT
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
-//    /// <param name="o_Class">"MyClass" see example in "Android_Firebase_UserClass.cs"</param>
+//    /// <param name="mDatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
+//    /// <param name="o_Class">"MyClass" see example in "Android_FirebaseUserClass.cs"</param>
 //    public void SetFirebaseDatabase_Object(string m_DatabaseAcess, object o_Class)
 //    {
 //        string m_Json = JsonUtility.ToJson(o_Class);
-//        da_Reference.Child(m_DatabaseAcess).SetRawJsonValueAsync(m_Json);
+//        daReference.Child(m_DatabaseAcess).SetRawJsonValueAsync(m_Json);
 //        if(m_Debug) Debug.Log("SetFirebaseDatabase_Object: " + "\"" + m_DatabaseAcess + "\" : \"" + m_Json + "\"");
 //    }
 
 //    /// <summary>
 //    /// Delete Child in Database
 //    /// </summary>
-//    /// <param name="m_DatabaseAcess">"Parent/KeyDelete" or "KeyDelete"</param>
-//    public void SetFirebaseDatabase_Delete(string m_DatabaseAcess)
+//    /// <param name="mDatabaseAcess">"Parent/KeyDelete" or "KeyDelete"</param>
+//    public void SetFirebaseDatabaseDelete(string m_DatabaseAcess)
 //    {
-//        da_Reference.Child(m_DatabaseAcess).RemoveValueAsync();
-//        if(m_Debug) Debug.Log("SetFirebaseDatabase_Delete: " + "\"" + m_DatabaseAcess + "\"");
+//        daReference.Child(m_DatabaseAcess).RemoveValueAsync();
+//        if(m_Debug) Debug.Log("SetFirebaseDatabaseDelete: " + "\"" + m_DatabaseAcess + "\"");
 //    }
 
 //    //Data
@@ -1403,35 +1403,35 @@
 //    /// <summary>
 //    /// Working on Data
 //    /// </summary>
-//    private Clasm_Data cl_Data;
+//    private ClassData cmData;
 
 //    /// <summary>
 //    /// Working on Data
 //    /// </summary>
 //    /// <returns></returns>
-//    public Clasm_Data GetData()
+//    public ClassData GetData()
 //    {
-//        return cl_Data;
+//        return cmData;
 //    }
 
 //    //Firebase Database (Get)
 
-//    private void GetDataSnapshot_Value_Debug(DataSnapshot d_Snapshot, string m_Debug)
+//    private void GetDataSnapshot_ValueDebug(DataSnapshot d_Snapshot, string m_Debug)
 //    {
 //        if(m_Debug) Debug.LogWarning(m_Debug + "\"" + d_Snapshot.Key.ToString() + "\"" + ":" + "\"" + d_Snapshot.Value.ToString() + "\"");
 //    }
 
-//    private void GetDataSnapshot_Value_Debug(DataSnapshot d_Snapshot, string m_Json, string m_Debug)
+//    private void GetDataSnapshot_ValueDebug(DataSnapshot d_Snapshot, string m_Json, string m_Debug)
 //    {
 //        if(m_Debug) Debug.LogWarning(m_Debug + "\"" + d_Snapshot.Key.ToString() + "\"" + ":" + "\"" + m_Json + "\"");
 //    }
 
-//    private void GetDataSnapshot_NotExist_Debug(DataSnapshot d_Snapshot, string m_Debug)
+//    private void GetDataSnapshot_NotExistDebug(DataSnapshot d_Snapshot, string m_Debug)
 //    {
-//        if(m_Debug) Debug.LogError(m_Debug + "\"" + d_Snapshot.Key.ToString() + "\"" + ":" + "\"" + cl_Data.GetData_NotFound() + "\"");
+//        if(m_Debug) Debug.LogError(m_Debug + "\"" + d_Snapshot.Key.ToString() + "\"" + ":" + "\"" + cmData.GetDataNotFound() + "\"");
 //    }
 
-//    private bool GetDataSnapshotIsExist(DataSnapshot d_Snapshot)
+//    private bool GetCheckDataSnapshotExist(DataSnapshot d_Snapshot)
 //    {
 //        return d_Snapshot.Exists;
 //    }
@@ -1442,7 +1442,7 @@
 //    /// Check if Get from Firebase Database is Done
 //    /// </summary>
 //    /// <returns>If Convert fail, return FALSE</returns>
-//    public bool GetFirebaseDatabase_GetDone(string m_ProgessSaveName)
+//    public bool GetCheckFirebaseDatabase_GetDone(string m_ProgessSaveName)
 //    {
 //        return GetData().GetConvert_Bool(GetData().GetData(m_ProgessSaveName));
 //    }
@@ -1451,7 +1451,7 @@
 //    /// Set Get from Firebase Database Done check
 //    /// </summary>
 //    /// <param name="m_ProgessChance"></param>
-//    public void SetFirebaseDatabase_GetDone(string m_ProgessSaveName, bool m_ProgessChance)
+//    public void SetFirebaseDatabase_GetDone(string m_ProgessSaveName, bool m_AllowProgessChance)
 //    {
 //        GetData().SetData(m_ProgessSaveName, m_ProgessChance);
 //    }
@@ -1459,14 +1459,14 @@
 //    /// <summary>
 //    /// Get Signle Data inside Key Get from Firebase Database, then Save Data (Get Data from "GetData()")
 //    /// </summary>
-//    /// <param name="m_DatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
-//    /// <param name="m_DataNameSave"></param>
+//    /// <param name="mDatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
+//    /// <param name="mDataNameSave"></param>
 //    public void SetFirebaseDatabase_ValueSingle_ContinueWith(string m_DatabaseAccess, string m_DataNameSave, string m_ProgessSaveName)
 //    {
 //        SetFirebaseDatabase_GetDone(m_ProgessSaveName, false);
 
-//        da_Reference.Child(m_DatabaseAccess).GetValueAsync().ContinueWith(task => {
-//            if (task.IsFaulted || task.IsCanceled)
+//        daReference.Child(m_DatabaseAccess).GetValueAsync().ContinueWith(task => {
+//            if (task.Faulted || task.Canceled)
 //            {
 //                if(m_Debug) Debug.LogError("SetFirebaseDatabase_ValueSingle_ContinueWith: UnSuccessfully!");
 //                return;
@@ -1476,38 +1476,38 @@
 
 //            DataSnapshot d_Snapshot = task.Result;
 
-//            if (GetDataSnapshotIsExist(d_Snapshot))
+//            if (GetDataSnapshotExist(d_Snapshot))
 //            //If Exist Data to Read
 //            {
 //                string m_Json = d_Snapshot.GetRawJsonValue();
-//                //Read & Try Chance Single Data to JSON Data
+//                //Read & Try Chance Single Data to Json Data
 
 //                //if(m_Json == "")
-//                ////If there is not JSON Data
+//                ////If there is not Json Data
 //                //{
-//                //    GetDataSnapshot_Value_Debug(
+//                //    GetDataSnapshot_ValueDebug(
 //                //        d_Snapshot, "SetFirebaseDatabase_ValueSingle_ContinueWith: ");
 
-//                //    cl_Data.SetData(m_DataNameSave, d_Snapshot.Value);
+//                //    cmData.SetData(m_DataNameSave, d_Snapshot.Value);
 //                //    //Save Data (Value)
 //                //}
 //                //else
-//                ////If there is JSON Data
+//                ////If there is Json Data
 //                //{
-//                //    GetDataSnapshot_Value_Debug(
+//                //    GetDataSnapshot_ValueDebug(
 //                //        d_Snapshot, m_Json, "SetFirebaseDatabase_ValueSingle_ContinueWith: ");
 //                //}
 
-//                GetDataSnapshot_Value_Debug(
+//                GetDataSnapshot_ValueDebug(
 //                        d_Snapshot, "SetFirebaseDatabase_ValueSingle_ContinueWith: ");
 
-//                cl_Data.SetData(m_DataNameSave, d_Snapshot.Value);
+//                cmData.SetData(m_DataNameSave, d_Snapshot.Value);
 //                //Save Data (Value)
 //            }
 //            else
 //            //If not Exist Data to Read
 //            {
-//                GetDataSnapshot_NotExist_Debug(
+//                GetDataSnapshot_NotExistDebug(
 //                    d_Snapshot, "SetFirebaseDatabase_ValueSingle_ContinueWith: ");
 //            }
 //        });
@@ -1516,14 +1516,14 @@
 //    /// <summary>
 //    /// Get List of Key inside Key Get from Firebase Database, then Save Data (Get Data from "GetData()")
 //    /// </summary>
-//    /// <param name="m_DatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
-//    /// <param name="m_DataNameSave"></param>
+//    /// <param name="mDatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
+//    /// <param name="mDataNameSave"></param>
 //    public void SetFirebaseDatabase_KeyList_ContinueWith(string m_DatabaseAccess, string m_DataNameSave, string m_ProgessSaveName)
 //    {
 //        SetFirebaseDatabase_GetDone(m_ProgessSaveName, false);
 
-//        da_Reference.Child(m_DatabaseAccess).GetValueAsync().ContinueWith(task => {
-//            if (task.IsFaulted || task.IsCanceled)
+//        daReference.Child(m_DatabaseAccess).GetValueAsync().ContinueWith(task => {
+//            if (task.Faulted || task.Canceled)
 //            {
 //                if(m_Debug) Debug.LogError("SetFirebaseDatabase_KeyList_ContinueWith: UnSuccessfully!");
 //                return;
@@ -1533,63 +1533,63 @@
 
 //            DataSnapshot d_Snapshot = task.Result;
 
-//            if (GetDataSnapshotIsExist(d_Snapshot))
+//            if (GetDataSnapshotExist(d_Snapshot))
 //            //If Exist Data to Read
 //            {
 //                string m_Json = d_Snapshot.GetRawJsonValue();
-//                //Read & Try Chance Single Data to JSON Data
+//                //Read & Try Chance Single Data to Json Data
 
 //                //if (m_Json == "")
-//                ////If there is not JSON Data
+//                ////If there is not Json Data
 //                //{
-//                //    GetDataSnapshot_Value_Debug(
+//                //    GetDataSnapshot_ValueDebug(
 //                //        d_Snapshot, "SetFirebaseDatabase_KeyList_ContinueWith: ");
 //                //}
 //                //else
-//                ////If there is JSON Data
+//                ////If there is Json Data
 //                //{
-//                //    GetDataSnapshot_Value_Debug(
+//                //    GetDataSnapshot_ValueDebug(
 //                //        d_Snapshot, m_Json, "SetFirebaseDatabase_KeyList_ContinueWith: ");
 
-//                //    cl_Data.SetIndex_Restart();
+//                //    cmData.SetIndexRestart();
 //                //    //Set Index Data to -1
 
 //                //    foreach (DataSnapshot child in d_Snapshot.Children)
 //                //    {
-//                //        cl_Data.SetIndex_Plus();
+//                //        cmData.SetIndex_Plus();
 //                //        //Plus Index Data by 1
 
-//                //        cl_Data.SetData(m_DataNameSave, cl_Data.GetIndex(), child.Key);
+//                //        cmData.SetData(m_DataNameSave, cmData.GetIndex(), child.Key);
 //                //        //Save Data (Key)
 //                //    }
 
-//                //    cl_Data.SetDataCount(m_DataNameSave, cl_Data.GetIndex() + 1);
+//                //    cmData.SetDataCount(m_DataNameSave, cmData.GetIndex() + 1);
 //                //    //Save Data (Count)
 //                //}
 
-//                GetDataSnapshot_Value_Debug(
+//                GetDataSnapshot_ValueDebug(
 //                    d_Snapshot, m_Json, "SetFirebaseDatabase_KeyList_ContinueWith: ");
 
-//                cl_Data.SetIndex_Restart();
+//                cmData.SetIndexRestart();
 //                //Set Index Data to -1
 
 //                foreach (DataSnapshot child in d_Snapshot.Children)
 //                {
-//                    cl_Data.SetIndex_Plus();
+//                    cmData.SetIndex_Plus();
 //                    //Plus Index Data by 1
 
-//                    cl_Data.SetData(m_DataNameSave, cl_Data.GetIndex(), child.Key);
+//                    cmData.SetData(m_DataNameSave, cmData.GetIndex(), child.Key);
 //                    //Save Data (Key)
 //                }
 
-//                cl_Data.SetDataCount(m_DataNameSave, cl_Data.GetIndex() + 1);
+//                cmData.SetDataCount(m_DataNameSave, cmData.GetIndex() + 1);
 //                //Save Data (Count)
 
 //            }
 //            else
 //            //If not Exist Data to Read
 //            {
-//                GetDataSnapshot_NotExist_Debug(
+//                GetDataSnapshot_NotExistDebug(
 //                    d_Snapshot, "SetFirebaseDatabase_KeyList_ContinueWith: ");
 //            }
 //        });
@@ -1598,14 +1598,14 @@
 //    /// <summary>
 //    /// Get Key Exist inside Key Get from Firebase Database, then Save Bool Data (Get Data from "GetData()")
 //    /// </summary>
-//    /// <param name="m_DatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
-//    /// <param name="m_DataNameSave"></param>
+//    /// <param name="mDatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
+//    /// <param name="mDataNameSave"></param>
 //    public void SetFirebaseDatabase_KeyExist_ContinueWith(string m_DatabaseAccess, string m_DataNameSave, string m_ProgessSaveName)
 //    {
 //        SetFirebaseDatabase_GetDone(m_ProgessSaveName, false);
 
-//        da_Reference.Child(m_DatabaseAccess).GetValueAsync().ContinueWith(task => {
-//            if (task.IsFaulted || task.IsCanceled)
+//        daReference.Child(m_DatabaseAccess).GetValueAsync().ContinueWith(task => {
+//            if (task.Faulted || task.Canceled)
 //            {
 //                if(m_Debug) Debug.LogError("SetFirebaseDatabase_KeyExist_ContinueWith: UnSuccessfully!");
 //                return;
@@ -1615,22 +1615,22 @@
 
 //            DataSnapshot d_Snapshot = task.Result;
 
-//            if (GetDataSnapshotIsExist(d_Snapshot))
+//            if (GetDataSnapshotExist(d_Snapshot))
 //            //If Exist Data to Read
 //            {
-//                GetDataSnapshot_Value_Debug(
+//                GetDataSnapshot_ValueDebug(
 //                    d_Snapshot, "SetFirebaseDatabase_KeyExist_ContinueWith: ");
 
-//                cl_Data.SetData(m_DataNameSave, true);
+//                cmData.SetData(m_DataNameSave, true);
 //                //Save Data (Value)
 //            }
 //            else
 //            //If not Exist Data to Read
 //            {
-//                GetDataSnapshot_NotExist_Debug(
+//                GetDataSnapshot_NotExistDebug(
 //                    d_Snapshot, "SetFirebaseDatabase_KeyExist_ContinueWith: ");
 
-//                cl_Data.SetData(m_DataNameSave, false);
+//                cmData.SetData(m_DataNameSave, false);
 //                //Save Data (Value)
 //            }
 //        });
@@ -1640,57 +1640,57 @@
 
 //    /// <summary>
 //    /// Get Signle Data inside Key Get from Firebase Database, then Save Data (Get Data from "GetData()"). 
-//    /// In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_Register(...));"
+//    /// In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumeratorRegister(...));"
 //    /// </summary>
-//    /// <param name="m_DatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
-//    /// <param name="m_DataNameSave"></param>
+//    /// <param name="mDatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
+//    /// <param name="mDataNameSave"></param>
 //    public IEnumerator SetFirebaseDatabase_ValueSingle_IEnumerator(string m_DatabaseAccess, string m_DataNameSave, string m_ProgessSaveName)
 //    {
 //        SetFirebaseDatabase_GetDone(m_ProgessSaveName, false);
 
-//        var v_Task = da_Reference.Child(m_DatabaseAccess).GetValueAsync();
+//        var v_Task = daReference.Child(m_DatabaseAccess).GetValueAsync();
 
-//        yield return new WaitUntil(() => v_Task.IsCompleted || v_Task.IsFaulted);
+//        yield return new WaitUntil(() => v_Task.Completed || v_Task.Faulted);
 
 //        SetFirebaseDatabase_GetDone(m_ProgessSaveName, true);
 
-//        if (v_Task.IsCompleted)
+//        if (v_Task.Completed)
 //        {
 //            DataSnapshot d_Snapshot = v_Task.Result;
 
-//            if (GetDataSnapshotIsExist(d_Snapshot))
+//            if (GetDataSnapshotExist(d_Snapshot))
 //            //If Exist Data to Read
 //            {
 //                string m_Json = d_Snapshot.GetRawJsonValue();
-//                //Read & Try Chance Single Data to JSON Data
+//                //Read & Try Chance Single Data to Json Data
 
 //                //if (m_Json == "")
-//                ////If there is not JSON Data
+//                ////If there is not Json Data
 //                //{
-//                //    GetDataSnapshot_Value_Debug(
+//                //    GetDataSnapshot_ValueDebug(
 //                //        d_Snapshot, "SetFirebaseDatabase_ValueSingle_IEnumerator: ");
 
-//                //    cl_Data.SetData(m_DataNameSave, d_Snapshot.Value);
+//                //    cmData.SetData(m_DataNameSave, d_Snapshot.Value);
 //                //    //Save Data (Value)
 //                //}
 //                //else
-//                ////If there is JSON Data
+//                ////If there is Json Data
 //                //{
-//                //    GetDataSnapshot_Value_Debug(
+//                //    GetDataSnapshot_ValueDebug(
 //                //        d_Snapshot, m_Json, "SetFirebaseDatabase_ValueSingle_IEnumerator: ");
 //                //}
 
-//                GetDataSnapshot_Value_Debug(
+//                GetDataSnapshot_ValueDebug(
 //                    d_Snapshot, "SetFirebaseDatabase_ValueSingle_IEnumerator: ");
 
-//                cl_Data.SetData(m_DataNameSave, d_Snapshot.Value);
+//                cmData.SetData(m_DataNameSave, d_Snapshot.Value);
 //                //Save Data (Value)
 
 //            }
 //            else
 //            //If not Exist Data to Read
 //            {
-//                GetDataSnapshot_NotExist_Debug(
+//                GetDataSnapshot_NotExistDebug(
 //                    d_Snapshot, "SetFirebaseDatabase_ValueSingle_IEnumerator: ");
 //            }
 //        }
@@ -1702,81 +1702,81 @@
 
 //    /// <summary>
 //    /// Get List of Key inside Key Get from Firebase Database, then Save Data (Get Data from "GetData()").
-//    /// In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_Register(...));"
+//    /// In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumeratorRegister(...));"
 //    /// </summary>
-//    /// <param name="m_DatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
-//    /// <param name="m_DataNameSave"></param>
+//    /// <param name="mDatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
+//    /// <param name="mDataNameSave"></param>
 //    public IEnumerator SetFirebaseDatabase_KeyList_IEnumerator(string m_DatabaseAccess, string m_DataNameSave, string m_ProgessSaveName)
 //    {
 //        SetFirebaseDatabase_GetDone(m_ProgessSaveName, false);
 
-//        var v_Task = da_Reference.Child(m_DatabaseAccess).GetValueAsync();
+//        var v_Task = daReference.Child(m_DatabaseAccess).GetValueAsync();
 
-//        yield return new WaitUntil(() => v_Task.IsCompleted || v_Task.IsFaulted);
+//        yield return new WaitUntil(() => v_Task.Completed || v_Task.Faulted);
 
 //        SetFirebaseDatabase_GetDone(m_ProgessSaveName, true);
 
-//        if (v_Task.IsCompleted)
+//        if (v_Task.Completed)
 //        {
 //            DataSnapshot d_Snapshot = v_Task.Result;
 
-//            if (GetDataSnapshotIsExist(d_Snapshot))
+//            if (GetDataSnapshotExist(d_Snapshot))
 //            //If Exist Data to Read
 //            {
 //                string m_Json = d_Snapshot.GetRawJsonValue();
-//                //Read & Try Chance Single Data to JSON Data
+//                //Read & Try Chance Single Data to Json Data
 
 //                //if (m_Json == "")
-//                ////If there is not JSON Data
+//                ////If there is not Json Data
 //                //{
-//                //    GetDataSnapshot_Value_Debug(
+//                //    GetDataSnapshot_ValueDebug(
 //                //        d_Snapshot, "SetFirebaseDatabase_KeyList_IEnumerator: ");
 //                //}
 //                //else
-//                ////If there is JSON Data
+//                ////If there is Json Data
 //                //{
-//                //    GetDataSnapshot_Value_Debug(
+//                //    GetDataSnapshot_ValueDebug(
 //                //        d_Snapshot, m_Json, "SetFirebaseDatabase_KeyList_IEnumerator: ");
 
-//                //    cl_Data.SetIndex_Restart();
+//                //    cmData.SetIndexRestart();
 //                //    //Set Index Data to -1
 
 //                //    foreach (DataSnapshot child in d_Snapshot.Children)
 //                //    {
-//                //        cl_Data.SetIndex_Plus();
+//                //        cmData.SetIndex_Plus();
 //                //        //Plus Index Data by 1
 
-//                //        cl_Data.SetData(m_DataNameSave, cl_Data.GetIndex(), child.Key);
+//                //        cmData.SetData(m_DataNameSave, cmData.GetIndex(), child.Key);
 //                //        //Save Data (Key)
 //                //    }
 
-//                //    cl_Data.SetDataCount(m_DataNameSave, cl_Data.GetIndex() + 1);
+//                //    cmData.SetDataCount(m_DataNameSave, cmData.GetIndex() + 1);
 //                //    //Save Data (Count)
 //                //}
 
-//                GetDataSnapshot_Value_Debug(
+//                GetDataSnapshot_ValueDebug(
 //                    d_Snapshot, m_Json, "SetFirebaseDatabase_KeyList_IEnumerator: ");
 
-//                cl_Data.SetIndex_Restart();
+//                cmData.SetIndexRestart();
 //                //Set Index Data to -1
 
 //                foreach (DataSnapshot child in d_Snapshot.Children)
 //                {
-//                    cl_Data.SetIndex_Plus();
+//                    cmData.SetIndex_Plus();
 //                    //Plus Index Data by 1
 
-//                    cl_Data.SetData(m_DataNameSave, cl_Data.GetIndex(), child.Key);
+//                    cmData.SetData(m_DataNameSave, cmData.GetIndex(), child.Key);
 //                    //Save Data (Key)
 //                }
 
-//                cl_Data.SetDataCount(m_DataNameSave, cl_Data.GetIndex() + 1);
+//                cmData.SetDataCount(m_DataNameSave, cmData.GetIndex() + 1);
 //                //Save Data (Count)
 
 //            }
 //            else
 //            //If not Exist Data to Read
 //            {
-//                GetDataSnapshot_NotExist_Debug(
+//                GetDataSnapshot_NotExistDebug(
 //                    d_Snapshot, "SetFirebaseDatabase_KeyList_IEnumerator: ");
 //            }
 //        }
@@ -1788,40 +1788,40 @@
 
 //    /// <summary>
 //    /// Get Key Exist inside Key Get from Firebase Database, then Save Bool Data (Get Data from "GetData()")
-//    /// In "MonoBehavior", use "StartCoroutine(SetFirebaseIEnumerator_Register(...));"
+//    /// In "MonoBehaviour", use "StartCoroutine(SetFirebaseIEnumeratorRegister(...));"
 //    /// </summary>
-//    /// <param name="m_DatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
-//    /// <param name="m_DataNameSave"></param>
+//    /// <param name="mDatabaseAccess">Parent/KeyGet" or "KeyGet"</param>
+//    /// <param name="mDataNameSave"></param>
 //    public IEnumerator SetFirebaseDatabase_KeyExist_IEnumerator(string m_DatabaseAccess, string m_DataNameSave, string m_ProgessSaveName)
 //    {
 //        SetFirebaseDatabase_GetDone(m_ProgessSaveName, false);
 
-//        var v_Task = da_Reference.Child(m_DatabaseAccess).GetValueAsync();
+//        var v_Task = daReference.Child(m_DatabaseAccess).GetValueAsync();
 
-//        yield return new WaitUntil(() => v_Task.IsCompleted || v_Task.IsFaulted);
+//        yield return new WaitUntil(() => v_Task.Completed || v_Task.Faulted);
 
 //        SetFirebaseDatabase_GetDone(m_ProgessSaveName, true);
 
-//        if (v_Task.IsCompleted)
+//        if (v_Task.Completed)
 //        {
 //            DataSnapshot d_Snapshot = v_Task.Result;
 
-//            if (GetDataSnapshotIsExist(d_Snapshot))
+//            if (GetDataSnapshotExist(d_Snapshot))
 //            //If Exist Data to Read
 //            {
-//                GetDataSnapshot_Value_Debug(
+//                GetDataSnapshot_ValueDebug(
 //                    d_Snapshot, "SetFirebaseDatabase_KeyExist_IEnumerator: ");
 
-//                cl_Data.SetData(m_DataNameSave, true);
+//                cmData.SetData(m_DataNameSave, true);
 //                //Save Data (Value)
 //            }
 //            else
 //            //If not Exist Data to Read
 //            {
-//                GetDataSnapshot_NotExist_Debug(
+//                GetDataSnapshot_NotExistDebug(
 //                    d_Snapshot, "SetFirebaseDatabase_KeyExist_IEnumerator: ");
 
-//                cl_Data.SetData(m_DataNameSave, false);
+//                cmData.SetData(m_DataNameSave, false);
 //                //Save Data (Value)
 //            }
 //        }

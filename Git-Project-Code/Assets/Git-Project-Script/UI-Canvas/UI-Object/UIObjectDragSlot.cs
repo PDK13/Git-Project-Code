@@ -13,10 +13,10 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     [Tooltip("Button Lock Status")]
     [SerializeField]
-    private bool m_UI_Lock = false;
+    private bool m_AllowUILock = false;
 
     [Tooltip("Rect Transform")]
-    private RectTransform r_RectTransform;
+    private RectTransform rRectTransform;
 
     [Header("Event")]
 
@@ -37,29 +37,29 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     [Tooltip("UI Drop Status")]
     //[SerializeField]
-    private bool m_UI_Drop_Status = false;
+    private bool m_AllowUIDropStatus = false;
 
     [Tooltip("Object in Slot")]
     //[SerializeField]
-    private GameObject g_UI_GameObject_InSlot;
+    private GameObject m_UI_GameObject_InSlot;
 
     [Tooltip("Button Ready Status")]
-    private bool m_UI_Ready = false;
+    private bool m_AllowUIReady = false;
 
     private void Start()
     {
-        r_RectTransform = GetComponent<RectTransform>();
+        rRectTransform = GetComponent<RectTransform>();
     }
 
     private void Update()
     {
-        if (GetUI_Drop())
+        if (GetCheckUIDrop())
         {
-            if (g_UI_GameObject_InSlot.GetComponent<RectTransform>().anchoredPosition != r_RectTransform.anchoredPosition)
+            if (m_UI_GameObject_InSlot.GetComponent<RectTransform>().anchoredPosition != rRectTransform.anchoredPosition)
             {
-                g_UI_GameObject_InSlot = null;
+                m_UI_GameObject_InSlot = null;
 
-                m_UI_Drop_Status = false;
+                m_AllowUIDropStatus = false;
             }
         }
     }
@@ -131,42 +131,42 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     private void SetEvent_PointerEnter()
     {
-        if (m_UI_Lock)
+        if (m_AllowUILock)
         {
             return;
         }
 
-        m_UI_Ready = true;
+        m_AllowUIReady = true;
 
         SetEvent_Invoke_PointerEnter();
     }
 
     private void SetEvent_PointerExit()
     {
-        if (m_UI_Lock)
+        if (m_AllowUILock)
         {
             return;
         }
 
-        m_UI_Ready = false;
+        m_AllowUIReady = false;
 
         SetEvent_Invoke_PointerExit();
     }
 
     private void SetEvent_OnDrop(PointerEventData eventData)
     {
-        if (m_UI_Lock)
+        if (m_AllowUILock)
         {
             return;
         }
 
         if (eventData.pointerDrag != null)
         {
-            g_UI_GameObject_InSlot = eventData.pointerDrag;
+            m_UI_GameObject_InSlot = eventData.pointerDrag;
 
-            g_UI_GameObject_InSlot.GetComponent<RectTransform>().anchoredPosition = r_RectTransform.anchoredPosition;
+            m_UI_GameObject_InSlot.GetComponent<RectTransform>().anchoredPosition = rRectTransform.anchoredPosition;
 
-            m_UI_Drop_Status = true;
+            m_AllowUIDropStatus = true;
         }
 
         SetEvent_Invoke_OnDrop();
@@ -197,38 +197,38 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     #region UI Status Set
 
-    public void SetButton_Lock(bool m_Lock_Status)
+    public void SetButtonLock(bool m_AllowLockStatus)
     {
-        m_UI_Lock = m_Lock_Status;
+        m_AllowUILock = m_AllowLockStatus;
     }
 
-    public void SetButton_Lock_True()
+    public void SetButtonLocm_KeyTrue()
     {
-        SetButton_Lock(true);
+        SetButtonLock(true);
     }
 
-    public void SetButton_Lock_False()
+    public void SetButtonLocm_KeyFalse()
     {
-        SetButton_Lock(false);
+        SetButtonLock(false);
     }
 
     #endregion
 
     #region UI Status Get
 
-    public bool GetUI_Ready()
+    public bool GetCheckUIReady()
     {
-        return m_UI_Ready;
+        return m_AllowUIReady;
     }
 
-    public bool GetUI_Drop()
+    public bool GetCheckUIDrop()
     {
-        return m_UI_Drop_Status;
+        return m_AllowUIDropStatus;
     }
 
-    public GameObject GetUI_GameObject_Drop()
+    public GameObject GetUI_GameObjectDrop()
     {
-        return g_UI_GameObject_InSlot;
+        return m_UI_GameObject_InSlot;
     }
 
     #endregion

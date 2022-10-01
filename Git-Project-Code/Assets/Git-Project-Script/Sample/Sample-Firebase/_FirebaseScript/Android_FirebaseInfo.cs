@@ -14,7 +14,7 @@
 //    /// </summary>
 //    public void Button_Back()
 //    {
-//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneBack);
+//        ClassScene cm_Scene = new ClassScene(m_SceneBack);
 //        //Chance Scene to "Menu"
 //    }
 

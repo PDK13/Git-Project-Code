@@ -6,39 +6,40 @@ public class Sample_2DSimplePlayer : MonoBehaviour
     [SerializeField] private float m_Jump = 1500f;
 
     [SerializeField] private float m_Mass = 4f;
-    [SerializeField] private float m_LinearDrag = 2f;
+    //[SerializeField] private float m_LinearDrag = 2f;
     [SerializeField] private float m_Angular = 2f;
     [SerializeField] private float m_Gravity = 3f;
 
     private Transform t_Parent;
 
-    private Rigidbody2D r_Rigidbody2D;
+    private Rigidbody2D com_Rigidbody2D;
 
     private void Awake()
     {
-        r_Rigidbody2D = GetComponent<Rigidbody2D>();
+        com_Rigidbody2D = GetComponent<Rigidbody2D>();
 
         t_Parent = transform.parent;
 
-        r_Rigidbody2D.gravityScale = m_Gravity;
-        r_Rigidbody2D.angularVelocity = m_Angular;
+        com_Rigidbody2D.mass = m_Mass;
+        com_Rigidbody2D.gravityScale = m_Gravity;
+        com_Rigidbody2D.angularVelocity = m_Angular;
     }
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            r_Rigidbody2D.AddForce(Vector2.right * m_Speed);
+            com_Rigidbody2D.AddForce(Vector2.right * m_Speed);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            r_Rigidbody2D.AddForce(Vector2.left * m_Speed);
+            com_Rigidbody2D.AddForce(Vector2.left * m_Speed);
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            r_Rigidbody2D.AddForce(Vector2.up * m_Jump);
+            com_Rigidbody2D.AddForce(Vector2.up * m_Jump);
         }
     }
 

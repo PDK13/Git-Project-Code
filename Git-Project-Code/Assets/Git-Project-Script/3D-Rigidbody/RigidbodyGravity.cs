@@ -38,9 +38,9 @@ public class RigidbodyGravity : MonoBehaviour
             return;
         }
 
-        Vector3 v3_Gravity = GetGravity_Global_toVector() * GetGravity_Scale();
+        Vector3 m_Gravity = GetGravity_Globam_toVector() * GetGravity_Scale();
 
-        com_Rigidbody.AddForce(v3_Gravity, ForceMode.Acceleration);
+        com_Rigidbody.AddForce(m_Gravity, ForceMode.Acceleration);
     }
 
     #region Set
@@ -55,9 +55,9 @@ public class RigidbodyGravity : MonoBehaviour
         this.m_Gravity_Global = m_Gravity_Global;
     }
 
-    public void SetRigidbody_Drag(float m_Gravity_Drag)
+    public void SetRigidbodyDrag(float m_GravityDrag)
     {
-        com_Rigidbody.drag = m_Gravity_Drag;
+        com_Rigidbody.drag = m_GravityDrag;
     }
 
     #endregion
@@ -69,17 +69,17 @@ public class RigidbodyGravity : MonoBehaviour
         return m_Gravity_Scale;
     }
 
-    public float GetGravity_Global_toFloat()
+    public float GetGravity_Globam_toFloat()
     {
         return m_Gravity_Global;
     }
 
-    public Vector3 GetGravity_Global_toVector()
+    public Vector3 GetGravity_Globam_toVector()
     {
-        return GetGravity_Global_toFloat() * Vector3.down;
+        return GetGravity_Globam_toFloat() * Vector3.down;
     }
 
-    public float GetRigidbody_Drag()
+    public float GetRigidbodyDrag()
     {
         return com_Rigidbody.drag;
     }

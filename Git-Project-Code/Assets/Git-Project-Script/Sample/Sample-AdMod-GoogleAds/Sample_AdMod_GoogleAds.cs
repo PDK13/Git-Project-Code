@@ -14,7 +14,7 @@
 //    {
 //        DontDestroyOnLoad(this);
 
-//        MobileAds.Initialize(initStatus => { });
+//        m_obileAds.Initialize(initStatus => { });
 
 //        //this.RequestBanner();
 
@@ -56,7 +56,7 @@
 //        // Load the interstitial with the request.
 //        this.interstitial.LoadAd(request);
 
-//        if (this.interstitial.IsLoaded())
+//        if (this.interstitial.Loaded())
 //        {
 //            this.interstitial.Show();
 //        }

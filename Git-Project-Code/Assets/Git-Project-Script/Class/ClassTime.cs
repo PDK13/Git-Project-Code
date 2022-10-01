@@ -7,34 +7,34 @@ public class ClassTime
         Time.timeScale = m_TimeScale;
     }
 
-    public static int GetTimeCompare(ClassTimeValue cm_TimeFrom, ClassTimeValue cm_TimeTo)
+    public static int GetTimeCompare(ClassTimeValue m_TimeFrom, ClassTimeValue m_TimeTo)
     {
-        if (cm_TimeFrom.GetTimeHour() > cm_TimeTo.GetTimeHour())
+        if (m_TimeFrom.GetTimeHour() > m_TimeTo.GetTimeHour())
         {
             return 1;
         }
         else
-        if (cm_TimeFrom.GetTimeHour() < cm_TimeTo.GetTimeHour())
+        if (m_TimeFrom.GetTimeHour() < m_TimeTo.GetTimeHour())
         {
             return -1;
         }
 
-        if (cm_TimeFrom.GetTimeMinute() > cm_TimeTo.GetTimeMinute())
+        if (m_TimeFrom.GetTimeMinute() > m_TimeTo.GetTimeMinute())
         {
             return 1;
         }
         else
-        if (cm_TimeFrom.GetTimeMinute() < cm_TimeTo.GetTimeMinute())
+        if (m_TimeFrom.GetTimeMinute() < m_TimeTo.GetTimeMinute())
         {
             return -1;
         }
 
-        if (cm_TimeFrom.GetTimeSecond() > cm_TimeTo.GetTimeSecond())
+        if (m_TimeFrom.GetTimeSecond() > m_TimeTo.GetTimeSecond())
         {
             return 1;
         }
         else
-        if (cm_TimeFrom.GetTimeSecond() < cm_TimeTo.GetTimeSecond())
+        if (m_TimeFrom.GetTimeSecond() < m_TimeTo.GetTimeSecond())
         {
             return -1;
         }
@@ -54,9 +54,9 @@ public class ClassTimeValue
 
     public ClassTimeValue()
     {
-        m_Hour = 0;
-        m_Minute = 0;
-        m_Second = 0;
+        SetTimeHour(0);
+        SetTimeMinute(0);
+        SetTimeSecond(0);
     }
 
     public ClassTimeValue(int m_Hour, int m_Minute, int m_Second)
@@ -66,14 +66,14 @@ public class ClassTimeValue
         SetTimeSecond(m_Second);
     }
 
-    public ClassTimeValue(ClassTimeValue cm_ClassTimeValue)
+    public ClassTimeValue(ClassTimeValue m_ClassTimeValue)
     {
-        m_Hour = cm_ClassTimeValue.GetTimeHour();
-        m_Minute = cm_ClassTimeValue.GetTimeMinute();
-        m_Second = cm_ClassTimeValue.GetTimeSecond();
+        SetTimeHour(m_ClassTimeValue.GetTimeHour());
+        SetTimeMinute(m_ClassTimeValue.GetTimeMinute());
+        SetTimeSecond(m_ClassTimeValue.GetTimeSecond());
     }
 
-    public bool GetTimeZero()
+    public bool GetCheckTimeZero()
     {
         return GetTimeSecond() == 0 && GetTimeMinute() == 0 && GetTimeHour() == 0;
     }
@@ -96,11 +96,11 @@ public class ClassTimeValue
     {
         if (m_Hour + m_HourChance < 0)
         {
-            m_Hour = 0;
+            this.m_Hour = 0;
         }
         else
         {
-            m_Hour += m_HourChance;
+            this.m_Hour += m_HourChance;
         }
     }
 
@@ -111,13 +111,13 @@ public class ClassTimeValue
 
     #endregion
 
-    #region Minute
+    #region m_inute
 
     public void SetTimeMinute(int m_Minute)
     {
         if (m_Minute < 0)
         {
-            this.m_Minute = 0;
+            m_Minute = 0;
         }
         else
         {

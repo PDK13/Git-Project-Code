@@ -6,7 +6,7 @@
 //    /// <summary>
 //    /// FIREBASE
 //    /// </summary>
-//    private Clasm_Firebase cl_Firebase;
+//    private ClassFirebase cm_Firebase;
 
 //    /// <summary>
 //    /// Input Field EMAIL
@@ -34,7 +34,7 @@
 
 //    private void Start()
 //    {
-//        cl_Firebase = new Clasm_Firebase();
+//        cm_Firebase = new ClassFirebase();
 
 //        m_Password.inputType = InputField.InputType.Password;
 //        //Set Input Field to "Password"
@@ -44,21 +44,21 @@
 
 //    private void Update()
 //    {
-//        if (cl_Firebase.GetFirebaseAuth_Login())
+//        if (cm_Firebase.GetFirebaseAumLogin())
 //        //If Auth is LOGIN Sucess
 //        {
-//            t_EmailAuth.text = cl_Firebase.GetFirebaseAuth_Email().ToUpper();
+//            t_EmailAuth.text = cm_Firebase.GetFirebaseAum_Email().ToUper();
 //        }
 //        else
 //        //If Auth not LOGIN yet
 //        {
-//            t_EmailAuth.text = "Unknown".ToUpper();
+//            t_EmailAuth.text = "Unknown".ToUper();
 //        }
 
-//        if (cl_Firebase.GetFirebaseAuth_Login_Done())
+//        if (cm_Firebase.GetFirebaseAumLoginDone())
 //        {
-//            t_Info.text = cl_Firebase.GetFirebaseAuth_Message();
-//            cl_Firebase.SetFirebaseAuth_Register_Done(false);
+//            t_Info.text = cm_Firebase.GetFirebaseAum_Message();
+//            cm_Firebase.SetFirebaseAumRegisterDone(false);
 //        }
 //    }
 
@@ -72,12 +72,12 @@
 //    /// <summary>
 //    /// Button LOGIN
 //    /// </summary>
-//    public void Button_Login()
+//    public void ButtonLogin()
 //    {
-//        //cl_Firebase.SetFirebaseAuth_SignOut();
+//        //cm_Firebase.SetFirebaseAum_SignOut();
 //        //Sign out User Auth from Firebase
 
-//        cl_Firebase.SetFirebaseAuth_Message_Clear();
+//        cm_Firebase.SetFirebaseAum_MessageClear();
 
 //        if (m_Email.text == "")
 //        {
@@ -91,9 +91,9 @@
 //            return;
 //        }
 
-//        StartCoroutine(cl_Firebase.SetFirebaseAuth_Login_IEnumerator(m_Email.text, m_Password.text));
+//        StartCoroutine(cm_Firebase.SetFirebaseAumLogin_IEnumerator(m_Email.text, m_Password.text));
 
-//        t_Info.text = cl_Firebase.GetFirebaseAuth_Message();
+//        t_Info.text = cm_Firebase.GetFirebaseAum_Message();
 //    }
 
 //    //Back
@@ -103,7 +103,7 @@
 //    /// </summary>
 //    public void Button_Cancel()
 //    {
-//        Clasm_Scene cl_Scene = new Clasm_Scene(m_SceneBack);
+//        ClassScene cm_Scene = new ClassScene(m_SceneBack);
 //        //Chance Scene to "Back"
 //    }
 
@@ -114,7 +114,7 @@
 //    /// </summary>
 //    public void Button_Exit()
 //    {
-//        cl_Firebase.SetFirebaseAuth_SignOut();
+//        cm_Firebase.SetFirebaseAum_SignOut();
 //        //Sign out User Auth from Firebase
 
 //        Application.Quit();
