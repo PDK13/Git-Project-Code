@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -169,6 +169,7 @@ TilemapRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -1112,7 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d23da1474f737647a5fe040c87f627d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f_Speed: 0.001
+  m_Speed: 0.001
 --- !u!4 &121004536
 Transform:
   m_ObjectHideFlags: 0
@@ -1200,6 +1201,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1332,7 +1334,6 @@ GameObject:
   - component: {fileID: 754522437}
   - component: {fileID: 754522436}
   - component: {fileID: 754522435}
-  - component: {fileID: 754522438}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1405,25 +1406,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &754522438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754522434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49e66de8f3166fe419b1f7c4e83838ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  t_Follow: {fileID: 1196724640}
-  v3_Follow: {x: 0, y: 0, z: 0}
-  b_FollowX: 1
-  b_FollowY: 1
-  b_FollowZ: 0
-  v3_Smooth: {x: 0.5, y: 0.5, z: 0.5}
-  v3_Rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &879532011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,6 +1541,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1641,6 +1624,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1712,6 +1696,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1815,12 +1800,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994a8aaa6ecdc34449e3b251b3fb7a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f_Speed: 10
-  f_Jump: 3000
-  f_Mass: 4
-  f_LinearDrag: 2
-  f_Angular: 2
-  f_Gravity: 3
+  m_Speed: 10
+  m_Jump: 1500
+  m_Mass: 4
+  m_Angular: 2
+  m_Gravity: 3
 --- !u!1 &1469160117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,6 +1936,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2034,6 +2019,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
