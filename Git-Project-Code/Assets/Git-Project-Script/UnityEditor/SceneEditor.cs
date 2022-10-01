@@ -16,7 +16,7 @@ internal class SceneEditor : EditorWindow
     private string path = "Assets/Game/Screenshot";
     private readonly GUIStyle _guiStyle;
 
-    [MenuItem("Tools/Scene m_anager")]
+    [MenuItem("Tools/Scene Manager")]
     public static void ShowWindow()
     {
         EditorWindow.GetWindow(typeof(SceneEditor));

@@ -18,7 +18,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     [Tooltip("Button for Canvas Alpha Lock Chance")]
     [SerializeField]
-    private UIButtonOnClick cm_ButtonLockChance;
+    private UIButtonOnClick cs_ButtonLockChance;
 
     [Header("Canvas Alpha")]
 
@@ -65,10 +65,10 @@ public class UIObjectCursonAlpha : MonoBehaviour,
             c_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
         }
 
-        if (cm_ButtonLockChance != null)
+        if (cs_ButtonLockChance != null)
         {
-            //cm_ButtonLockChance.SetEvent_Add_PointerD(SetUICanvasLockEnterChance);
-            cm_ButtonLockChance.SetButtonActive(m_AllowCavasLockEnter);
+            //cs_ButtonLockChance.SetEvent_Add_PointerD(SetUICanvasLockEnterChance);
+            cs_ButtonLockChance.SetButtonActive(m_AllowCavasLockEnter);
         }
     }
 

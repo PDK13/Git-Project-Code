@@ -10,7 +10,7 @@ public class Sample_VelocityHigh : MonoBehaviour
 
     private float m_Distance_Get;
 
-    private Vector2? v2_PomDrop;
+    private Vector2? v2_PosDrop;
 
     private void Start()
     {
@@ -35,11 +35,11 @@ public class Sample_VelocityHigh : MonoBehaviour
             com_Rigidbody2D.velocity.normalized,
             com_Rigidbody2D.velocity.magnitude);
 
-        if (v2_PomDrop != null)
+        if (v2_PosDrop != null)
         {
             com_Rigidbody2D.bodyType = RigidbodyType2D.Static;
 
-            transform.position = (Vector3)v2_PomDrop;
+            transform.position = (Vector3)v2_PosDrop;
         }
         else
         if (rayRaycast.collider != null)
@@ -53,7 +53,7 @@ public class Sample_VelocityHigh : MonoBehaviour
             {
                 if (com_Rigidbody2D.bodyType != RigidbodyType2D.Static)
                 {
-                    v2_PomDrop = rayRaycast.collider.ClosestPoint((Vector2)transform.position + com_Rigidbody2D.velocity.normalized * (com_CircleCollider2D.radius * 2 + 0.2f) + (Vector2)ClassVector.GetVector(com_Rigidbody2D.velocity.x, 0, 0) * Time.fixedDeltaTime);
+                    v2_PosDrop = rayRaycast.collider.ClosestPoint((Vector2)transform.position + com_Rigidbody2D.velocity.normalized * (com_CircleCollider2D.radius * 2 + 0.2f) + (Vector2)ClassVector.GetVector(com_Rigidbody2D.velocity.x, 0, 0) * Time.fixedDeltaTime);
                 }
             }
         }
@@ -76,11 +76,11 @@ public class Sample_VelocityHigh : MonoBehaviour
 
         Gizmos.color = Color.red;
 
-        if (v2_PomDrop != null)
+        if (v2_PosDrop != null)
         {
-            Gizmos.DrawLine(transform.position, (Vector2)v2_PomDrop);
+            Gizmos.DrawLine(transform.position, (Vector2)v2_PosDrop);
 
-            Gizmos.DrawWireSphere((Vector2)v2_PomDrop, GetComponent<CircleCollider2D>().radius);
+            Gizmos.DrawWireSphere((Vector2)v2_PosDrop, GetComponent<CircleCollider2D>().radius);
         }
     }
 }

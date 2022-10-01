@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour
     //Can call this Script instancely thought this Name of Script!
     private static SoundManager m_This;
 
-    [Header("Sound m_anager")]
+    [Header("Sound Manager")]
 
     [SerializeField] private GameObject m_SoundClone;
 

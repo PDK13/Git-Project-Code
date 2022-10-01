@@ -341,12 +341,12 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
         m_AllowButtonLock = m_AllowLockState;
     }
 
-    public void SetButtonLocm_KeyTrue()
+    public void SetButtonLocs_KeyTrue()
     {
         SetButtonLock(true);
     }
 
-    public void SetButtonLocm_KeyFalse()
+    public void SetButtonLocs_KeyFalse()
     {
         SetButtonLock(false);
     }
@@ -507,7 +507,7 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
         return Color.yellow;
     }
 
-    public Color GetColorLocm_KeyPrimary()
+    public Color GetColorLocs_KeyPrimary()
     {
         return Color.red;
     }

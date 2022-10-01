@@ -43,14 +43,14 @@ public class Sample_2DSimplePlatform : MonoBehaviour
 
     private void DoPlayerEnter(Collider2D collider)
     {
-        Sample_2DSimplePlayer cm_Player = collider.GetComponent<Sample_2DSimplePlayer>();
+        Sample_2DSimplePlayer cs_Player = collider.GetComponent<Sample_2DSimplePlayer>();
 
-        if (cm_Player == null)
+        if (cs_Player == null)
         {
             return;
         }
 
-        if (collider.transform.parent != cm_Player.GetPrimary_Parent())
+        if (collider.transform.parent != cs_Player.GetPrimary_Parent())
         {
             return;
         }
@@ -70,9 +70,9 @@ public class Sample_2DSimplePlatform : MonoBehaviour
 
     private void DoPlayerExit(Collider2D collider)
     {
-        Sample_2DSimplePlayer cm_Player = collider.GetComponent<Sample_2DSimplePlayer>();
+        Sample_2DSimplePlayer cs_Player = collider.GetComponent<Sample_2DSimplePlayer>();
 
-        if (cm_Player == null)
+        if (cs_Player == null)
         {
             return;
         }
@@ -82,6 +82,6 @@ public class Sample_2DSimplePlatform : MonoBehaviour
             return;
         }
 
-        cm_Player.Reset();
+        cs_Player.Reset();
     }
 }

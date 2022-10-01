@@ -19,19 +19,19 @@
 
 //    #region UI Anchor-Pos
 
-//    public static void SetUI_PomChanceTo(RectTransform comUI, Vector2 v2_PomChanceTo, float m_Duration = 1f, float m_Delay = 0f, bool m_AllowValueInt = false)
+//    public static void SetUI_PosChanceTo(RectTransform comUI, Vector2 v2_PosChanceTo, float m_Duration = 1f, float m_Delay = 0f, bool m_AllowValueInt = false)
 //    {
-//        comUI.DOAnchorPos(v2_PomChanceTo, m_Duration, m_ValueInt).SetDelay(m_Delay);
+//        comUI.DOAnchorPos(v2_PosChanceTo, m_Duration, m_ValueInt).SetDelay(m_Delay);
 //    }
 
-//    public static void SetUI_PomChanceToX(RectTransform comUI, float m_PomChanceToX, float m_Duration = 1f, float m_Delay = 0f, bool m_AllowValueInt = false)
+//    public static void SetUI_PosChanceToX(RectTransform comUI, float m_PosChanceToX, float m_Duration = 1f, float m_Delay = 0f, bool m_AllowValueInt = false)
 //    {
-//        comUI.DOAnchorPosX(m_PomChanceToX, m_Duration, m_ValueInt).SetDelay(m_Delay);
+//        comUI.DOAnchorPosX(m_PosChanceToX, m_Duration, m_ValueInt).SetDelay(m_Delay);
 //    }
 
-//    public static void SetUI_PomChanceToY(RectTransform comUI, float m_PomChanceToY, float m_Duration = 1f, float m_Delay = 0f, bool m_AllowValueInt = false)
+//    public static void SetUI_PosChanceToY(RectTransform comUI, float m_PosChanceToY, float m_Duration = 1f, float m_Delay = 0f, bool m_AllowValueInt = false)
 //    {
-//        comUI.DOAnchorPosY(m_PomChanceToY, m_Duration, m_ValueInt).SetDelay(m_Delay);
+//        comUI.DOAnchorPosY(m_PosChanceToY, m_Duration, m_ValueInt).SetDelay(m_Delay);
 //    }
 
 //    #endregion

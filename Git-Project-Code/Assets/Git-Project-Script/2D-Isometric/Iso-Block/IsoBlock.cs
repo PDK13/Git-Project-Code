@@ -4,31 +4,31 @@ public class oBlock : MonoBehaviour
 {
     #region Pos
 
-    [Header("Pos m_anager")]
+    [Header("Pos Manager")]
 
     [Tooltip("Pos on World")]
     [SerializeField]
     private Vector3 m_Pos = new Vector3();
 
-    [Header("Pos m_atrix m_anager")]
+    [Header("Pos Matrix Manager")]
 
-    [Tooltip("Round to Uper on m_atrix")]
+    [Tooltip("Round to Uper on Matrix")]
     [SerializeField]
     [Range(0.5f, 0.6f)]
-    private float m_Pom_Matrix_Max = 0.55f;
+    private float m_Pos_Matrix_Max = 0.55f;
 
-    [Tooltip("Round to Lower on m_atrix")]
+    [Tooltip("Round to Lower on Matrix")]
     [SerializeField]
     [Range(0.4f, 0.5f)]
-    private float m_Pom_Matrix_Min = 0.45f;
+    private float m_Pos_Matrix_Min = 0.45f;
 
-    [Tooltip("Pos Primary on m_atrix")]
+    [Tooltip("Pos Primary on Matrix")]
     private Vector3Int m_PosOnMatrix_Primary = new Vector3Int();
 
-    [Tooltip("Pos on m_atrix")]
+    [Tooltip("Pos on Matrix")]
     private Vector3Int m_PosOnMatrix = new Vector3Int();
 
-    [Header("Pos Fix m_anager")]
+    [Header("Pos Fix Manager")]
 
     [Tooltip("Fix Block Centre")]
     [SerializeField]
@@ -44,107 +44,99 @@ public class oBlock : MonoBehaviour
 
     #endregion
 
-    #region Type and Dir
-
-    [Header("Block m_anager")]
-
-    private oClassBlock cm_Block = new oClassBlock("...", "...");
-
-    #endregion
-
     private void FixedUpdate()
     {
-        SetPom_Transform();
+        SetPos_Transform();
     }
 
     #region Pos 
 
     #region Pos main 
 
-    private void SetPom_Transform()
+    private void SetPos_Transform()
     {
-        //if (cm_World != null)
+        //if (cs_World != null)
         //{
-        //    m_Offset = cm_World.GetFix_Offset();
-        //    m_Square = cm_World.GetFix_Square();
+        //    m_Offset = cs_World.GetFix_Offset();
+        //    m_Square = cs_World.GetFix_Square();
         //}
 
-        Vector3 m_Pom_Transform = GetPom_OnScene(m_Pos);
+        Vector3 m_Pos_Transform = GetPos_OnScene(m_Pos);
 
-        m_Pom_Transform.x *= m_Square.x;
-        m_Pom_Transform.y *= m_Square.y;
-        m_Pom_Transform.z *= m_Square.z;
+        m_Pos_Transform.x *= m_Square.x;
+        m_Pos_Transform.y *= m_Square.y;
+        m_Pos_Transform.z *= m_Square.z;
 
-        m_Pom_Transform += m_Offset;
+        m_Pos_Transform += m_Offset;
 
-        m_Pom_Transform += m_Fix;
+        m_Pos_Transform += m_Fix;
 
-        transform.position = m_Pom_Transform;
+        transform.position = m_Pos_Transform;
 
-        SetPom_onMatrix();
+        SetPos_onMatrix();
     }
 
-    private void SetPom_onMatrix()
+    private void SetPos_onMatrix()
     {
         float m_X = (Mathf.Abs((int)m_Pos.x - m_Pos.x));
 
-        if (m_X > m_Pom_Matrix_Max)
+        if (m_X > m_Pos_Matrix_Max)
         {
             m_PosOnMatrix.x = (int)m_Pos.x + 1;
         }
         else
-        if (m_X < m_Pom_Matrix_Min)
+        if (m_X < m_Pos_Matrix_Min)
         {
             m_PosOnMatrix.x = (int)m_Pos.x;
         }
 
         float m_Y = (Mathf.Abs((int)m_Pos.y - m_Pos.y));
 
-        if (m_Y > m_Pom_Matrix_Max)
+        if (m_Y > m_Pos_Matrix_Max)
         {
             m_PosOnMatrix.y = (int)m_Pos.y + 1;
         }
         else
-        if (m_Y < m_Pom_Matrix_Min)
+        if (m_Y < m_Pos_Matrix_Min)
         {
             m_PosOnMatrix.y = (int)m_Pos.y;
         }
 
-        float m_High = (Mathf.Abs((int)m_Pos.z - m_Pos.z));
+        float m_H = (Mathf.Abs((int)m_Pos.z - m_Pos.z));
 
-        if (m_High > m_Pom_Matrix_Max)
+        if (m_H > m_Pos_Matrix_Max)
         {
             m_PosOnMatrix.z = (int)m_Pos.z + 1;
         }
         else
-        if (m_High < m_Pom_Matrix_Min)
+        if (m_H < m_Pos_Matrix_Min)
         {
             m_PosOnMatrix.z = (int)m_Pos.z;
         }
     }
 
-    public static Vector3 GetPom_OnScene(Vector3 m_Pom_OnWorld)
+    public static Vector3 GetPos_OnScene(Vector3 m_Pos_OnWorld)
     {
         Vector3 m_FixTransform = new Vector3(
-            m_Pom_OnWorld.x + m_Pom_OnWorld.y,
-            0.5f * (m_Pom_OnWorld.y - m_Pom_OnWorld.x) + m_Pom_OnWorld.z,
-            (m_Pom_OnWorld.y - m_Pom_OnWorld.x) - m_Pom_OnWorld.z);
+            m_Pos_OnWorld.x + m_Pos_OnWorld.y,
+            0.5f * (m_Pos_OnWorld.y - m_Pos_OnWorld.x) + m_Pos_OnWorld.z,
+            (m_Pos_OnWorld.y - m_Pos_OnWorld.x) - m_Pos_OnWorld.z);
 
         return m_FixTransform;
     }
 
-    public static Vector2 GetPom_OnWorld(Vector2 m_Pom_OnScene)
+    public static Vector2 GetPos_OnWorld(Vector2 m_Pos_OnScene)
     {
-        float m_Y_OnWorld = m_Pom_OnScene.y + m_Pom_OnScene.x / 2;
+        float m_Y_OnWorld = m_Pos_OnScene.y + m_Pos_OnScene.x / 2;
 
-        float m_X_OnWorld = m_Pom_OnScene.x - m_Y_OnWorld;
+        float m_X_OnWorld = m_Pos_OnScene.x - m_Y_OnWorld;
 
         return new Vector3(m_X_OnWorld, m_Y_OnWorld, 0);
     }
 
     #endregion
 
-    #region Pos on m_atrix Float 
+    #region Pos on Matrix Float 
 
     #region Set Pos 
 
@@ -152,132 +144,132 @@ public class oBlock : MonoBehaviour
     {
         this.m_Pos = m_Pos;
 
-        SetPom_Transform();
+        SetPos_Transform();
     }
 
-    public void SetPos(float m_X, float m_Y, float m_High)
+    public void SetPos(float m_X, float m_Y, float m_H)
     {
-        SetPos(new Vector3(m_X, m_Y, m_High));
+        SetPos(new Vector3(m_X, m_Y, m_H));
     }
 
-    public void SetPomX(float m_X)
+    public void SetPosX(float m_X)
     {
         m_Pos.x = m_X;
 
-        SetPom_Transform();
+        SetPos_Transform();
     }
 
-    public void SetPomY(float m_Y)
+    public void SetPosY(float m_Y)
     {
         m_Pos.y = m_Y;
 
-        SetPom_Transform();
+        SetPos_Transform();
     }
 
-    public void SetPom_High(float m_High)
+    public void SetPosH(float m_H)
     {
-        m_Pos.z = m_High;
+        m_Pos.z = m_H;
 
-        SetPom_Transform();
+        SetPos_Transform();
     }
 
     #endregion
 
     #region Set Pos Add 
 
-    public void SetPom_Add(Vector3 m_Pom_Add)
+    public void SetPosAdd(Vector3 m_PosAdd)
     {
-        SetPos(GetPomCurrentrent() + m_Pom_Add);
+        SetPos(GetPosCurrentrent() + m_PosAdd);
     }
 
-    public void SetPom_Add(float m_X_Add, float m_Y_Add, float m_High_Add)
+    public void SetPosAdd(float m_XAdd, float m_YAdd, float m_HAdd)
     {
-        SetPom_Add(new Vector3(m_X_Add, m_Y_Add, m_High_Add));
+        SetPosAdd(new Vector3(m_XAdd, m_YAdd, m_HAdd));
     }
 
-    public void SetPom_AddX(float m_X_Add)
+    public void SetPosAddX(float m_XAdd)
     {
-        m_Pos.x += m_X_Add;
+        m_Pos.x += m_XAdd;
 
-        SetPom_Transform();
+        SetPos_Transform();
     }
 
-    public void SetPom_AddY(float m_Y_Add)
+    public void SetPosAddY(float m_YAdd)
     {
-        m_Pos.y += m_Y_Add;
+        m_Pos.y += m_YAdd;
 
-        SetPom_Transform();
+        SetPos_Transform();
     }
 
-    public void SetPom_Add_High(float m_High_Add)
+    public void SetPosAddH(float m_HAdd)
     {
-        m_Pos.z += m_High_Add;
+        m_Pos.z += m_HAdd;
 
-        SetPom_Transform();
+        SetPos_Transform();
     }
 
     #endregion
 
     #region Get Pos 
 
-    public Vector3 GetPomCurrentrent()
+    public Vector3 GetPosCurrentrent()
     {
         return m_Pos;
     }
 
-    public float GetPomCurrentrentX()
+    public float GetPosCurrentrentX()
     {
-        return GetPomCurrentrent().x;
+        return GetPosCurrentrent().x;
     }
 
-    public float GetPomCurrentrentY()
+    public float GetPosCurrentrentY()
     {
-        return GetPomCurrentrent().y;
+        return GetPosCurrentrent().y;
     }
 
-    public float GetPomCurrentrent_High()
+    public float GetPosCurrentrentH()
     {
-        return GetPomCurrentrent().z;
+        return GetPosCurrentrent().z;
     }
 
     #endregion
 
     #endregion
 
-    #region Pos on m_atrix Int 
+    #region Pos on Matrix Int 
 
-    public Vector3Int GetPosOnMatrixCurrentrent()
+    public Vector3Int GetPosOnMatrixCurrent()
     {
         return m_PosOnMatrix;
     }
 
-    #region Pos on m_atrix Primary 
+    #region Pos on Matrix Primary 
 
     public void SetPosOnMatrix_Primary(Vector3Int m_Pos)
     {
         m_PosOnMatrix_Primary = m_Pos;
     }
 
-    public Vector3Int GetPosOnMatrix_Primary()
+    public Vector3Int GetPosOnMatrixPrimary()
     {
         return m_PosOnMatrix_Primary;
     }
 
     /// <summary>
-    /// Check Pos on m_atrix Current same on Pos on m_atrix Primary
+    /// Check Pos on Matrix Current same on Pos on Matrix Primary
     /// </summary>
     /// <returns></returns>
     public bool GetCheckPosOnMatrix_StayOnPrimary()
     {
-        return GetPosOnMatrix_Primary() == GetPosOnMatrixCurrentrent();
+        return GetPosOnMatrixPrimary() == GetPosOnMatrixCurrent();
     }
 
     /// <summary>
-    /// Reset Pos Current to Pos on m_atrix Primary
+    /// Reset Pos Current to Pos on Matrix Primary
     /// </summary>
     public void SetPosOnMatrixResetToPrimary()
     {
-        SetPos(GetPosOnMatrix_Primary());
+        SetPos(GetPosOnMatrixPrimary());
     }
 
     #endregion

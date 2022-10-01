@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UIVerticalList : MonoBehaviour
 {
-    [Header("List-Vertical m_anager")]
+    [Header("List-Vertical Manager")]
 
     [SerializeField]
     [Tooltip("Transform to Hold Vertical Clone(s) of List")]
