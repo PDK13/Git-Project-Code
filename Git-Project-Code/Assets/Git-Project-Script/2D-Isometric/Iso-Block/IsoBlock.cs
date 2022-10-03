@@ -286,6 +286,16 @@ public class IsoBlock : MonoBehaviour
 
 public class IsoClassDir
 {
+    enum IsoDir
+    {
+        Up,
+        Down,
+        Left,
+        Right,
+        Top,
+        Bot
+    }
+
     /// <summary>
     /// Dir(0, 0, 0) on ometric Block
     /// </summary>
