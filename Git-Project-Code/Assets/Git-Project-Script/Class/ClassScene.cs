@@ -68,7 +68,7 @@ public class ClassScene
             return PlayerPrefs.GetString(m_ValueName);
         }
 
-        Debug.LogError("GetPlayerPrefs_String: Not Exist" + "\"" + m_ValueName + "\"");
+        Debug.LogError("GetPlayerPrefsString: Not Exist" + "\"" + m_ValueName + "\"");
         return null;
     }
 
@@ -79,7 +79,7 @@ public class ClassScene
             return PlayerPrefs.GetInt(m_ValueName);
         }
 
-        Debug.LogError("GetPlayerPrefs_Int: Not Exist" + "\"" + m_ValueName + "\"");
+        Debug.LogError("GetPlayerPrefsInt: Not Exist" + "\"" + m_ValueName + "\"");
         return 0;
     }
 
@@ -90,7 +90,7 @@ public class ClassScene
             return PlayerPrefs.GetFloat(m_ValueName);
         }
 
-        Debug.LogError("GetPlayerPrefs_Float: Not Exist" + "\"" + m_ValueName + "\"");
+        Debug.LogError("GetPlayerPrefsFloat: Not Exist" + "\"" + m_ValueName + "\"");
         return 0.0f;
     }
 
