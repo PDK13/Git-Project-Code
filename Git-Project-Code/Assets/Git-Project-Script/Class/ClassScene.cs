@@ -13,17 +13,17 @@ public class ClassScene
         return SceneManager.GetActiveScene().buildIndex;
     }
 
-    #region Player Pref
+    #region Player Prefs
 
-    #region Player Pref Set
+    #region Player Prefs Set
 
-    public static void SetPlayerPrefmClear_All()
+    public static void SetPlayerPrefsClearAll()
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
     }
 
-    public static void SetPlayerPrefmClear(string m_ValueName)
+    public static void SetPlayerPrefsClear(string m_ValueName)
     {
         if (GetCheckPlayerPrefsExist(m_ValueName))
         {
@@ -31,7 +31,7 @@ public class ClassScene
             PlayerPrefs.Save();
         }
 
-        Debug.LogError("SetPlayerPrefmClear: Not Exist" + "\"" + m_ValueName + "\"");
+        Debug.LogError("SetPlayerPrefsClear: Not Exist" + "\"" + m_ValueName + "\"");
     }
 
     public static void SetPlayerPrefs(string m_ValueName, string m_Value)
@@ -54,43 +54,43 @@ public class ClassScene
 
     #endregion
 
-    #region Player Pref Get
+    #region Player Prefs Get
 
     public static bool GetCheckPlayerPrefsExist(string m_ValueName)
     {
         return PlayerPrefs.HasKey(m_ValueName);
     }
 
-    public static string GetPlayerPrefString(string m_ValueName)
+    public static string GetPlayerPrefsString(string m_ValueName)
     {
         if (GetCheckPlayerPrefsExist(m_ValueName))
         {
             return PlayerPrefs.GetString(m_ValueName);
         }
 
-        Debug.LogError("GetPlayerPrefm_String: Not Exist" + "\"" + m_ValueName + "\"");
+        Debug.LogError("GetPlayerPrefs_String: Not Exist" + "\"" + m_ValueName + "\"");
         return null;
     }
 
-    public static int GetPlayerPrefInt(string m_ValueName)
+    public static int GetPlayerPrefsInt(string m_ValueName)
     {
         if (GetCheckPlayerPrefsExist(m_ValueName))
         {
             return PlayerPrefs.GetInt(m_ValueName);
         }
 
-        Debug.LogError("GetPlayerPrefm_Int: Not Exist" + "\"" + m_ValueName + "\"");
+        Debug.LogError("GetPlayerPrefs_Int: Not Exist" + "\"" + m_ValueName + "\"");
         return 0;
     }
 
-    public static float GetPlayerPrefFloat(string m_ValueName)
+    public static float GetPlayerPrefsFloat(string m_ValueName)
     {
         if (GetCheckPlayerPrefsExist(m_ValueName))
         {
             return PlayerPrefs.GetFloat(m_ValueName);
         }
 
-        Debug.LogError("GetPlayerPrefm_Float: Not Exist" + "\"" + m_ValueName + "\"");
+        Debug.LogError("GetPlayerPrefs_Float: Not Exist" + "\"" + m_ValueName + "\"");
         return 0.0f;
     }
 

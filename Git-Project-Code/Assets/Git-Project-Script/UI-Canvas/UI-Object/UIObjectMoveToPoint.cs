@@ -21,7 +21,7 @@ public class UIObjectMoveToPoint : MonoBehaviour
 
     [Tooltip("After Finish m_ove, set Depth to Zero")]
     [SerializeField]
-    private bool m_AllowDepthAutoZero = false;
+    private bool mAllowDepthAutoZero = false;
 
     [Header("Move To Point Debug")]
 
@@ -35,7 +35,7 @@ public class UIObjectMoveToPoint : MonoBehaviour
     private float m_Speed = 0f;
 
     [SerializeField]
-    private bool m_AllowMoveDone = true;
+    private bool mAllowMoveDone = true;
 
     private RectTransform com_Transform;
 
@@ -60,18 +60,18 @@ public class UIObjectMoveToPoint : MonoBehaviour
 
         m_Distance = Vector2.Distance(com_Transform.anchoredPosition, v2_MoveTo + v2_MoveTo_Offset);
 
-        if (m_AllowMoveDone && m_Distance > 1f)
+        if (mAllowMoveDone && m_Distance > 1f)
         {
             m_Speed = m_Distance / m_MoveTime;
 
-            m_AllowMoveDone = false;
+            mAllowMoveDone = false;
         }
         else
         if (m_Distance <= 1f)
         {
-            m_AllowMoveDone = true;
+            mAllowMoveDone = true;
 
-            if (m_AllowDepthAutoZero)
+            if (mAllowDepthAutoZero)
             {
                 com_Transform.anchoredPosition3D = new Vector3(
                     com_Transform.anchoredPosition3D.x,
@@ -121,6 +121,6 @@ public class UIObjectMoveToPoint : MonoBehaviour
 
     public bool GetCheckUI_MoveToDone()
     {
-        return m_AllowMoveDone;
+        return mAllowMoveDone;
     }
 }

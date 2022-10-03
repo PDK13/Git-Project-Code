@@ -9,7 +9,7 @@ public class RaycastFan : MonoBehaviour
 //Distance 0 m_ean not Cast (Even "INSIDE" other GameObject)
 {
     [Header("Fan in 'XZ' or 'XY'?")]
-    public bool m_AllowXZ = true;
+    public bool mAllowXZ = true;
     //World
 
     [Header("None - Line - Ray - Box - Sphere Cast")]
@@ -53,7 +53,7 @@ public class RaycastFan : MonoBehaviour
         RigidbodyComponent m_Rigid = GetComponent<RigidbodyComponent>();
         //Use this Script to get "Rotation" of this Object
 
-        if (!m_AllowXZ)
+        if (!mAllowXZ)
         {
             //LineCast
             if (m_Cast == 1)
@@ -129,7 +129,7 @@ public class RaycastFan : MonoBehaviour
             }
         }
         else
-    if (m_AllowXZ)
+    if (mAllowXZ)
         {
             //LineCast
             if (m_Cast == 1)
@@ -306,7 +306,7 @@ public class RaycastFan : MonoBehaviour
         ClassEye m_Eye = new ClassEye();
         RigidbodyComponent m_Rigid = GetComponent<RigidbodyComponent>();
 
-        if (m_AllowXZ)
+        if (mAllowXZ)
         {
             //LineCast
             if (m_Cast == 1)
@@ -438,7 +438,7 @@ public class RaycastFan : MonoBehaviour
             }
         }
         else
-        if (m_AllowXZ)
+        if (mAllowXZ)
         {
             //LineCast
             if (m_Cast == 1)

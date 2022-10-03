@@ -171,9 +171,9 @@ public class ClassString
         return m_Data + ((m_Data.Length != 0) ? m_Key.ToString() : "") + m_DataAdd.ToString();
     }
 
-    public static string GetDataEncyptAdd(string m_Data, bool m_AllowDataAdd, char m_Key)
+    public static string GetDataEncyptAdd(string m_Data, bool mAllowDataAdd, char m_Key)
     {
-        return m_Data + ((m_Data.Length != 0) ? m_Key.ToString() : "") + ((m_AllowDataAdd) ? "1" : "0");
+        return m_Data + ((m_Data.Length != 0) ? m_Key.ToString() : "") + ((mAllowDataAdd) ? "1" : "0");
     }
 
     #endregion
@@ -347,20 +347,20 @@ public class ClassString
         }
 
         //Check @
-        bool m_AllowCheckAAExist = false;
+        bool mAllowCheckAAExist = false;
         for (int i = 0; i < m_EmailCheck.Length; i++)
         {
-            if (!m_AllowCheckAAExist && m_EmailCheck[i] == '@')
+            if (!mAllowCheckAAExist && m_EmailCheck[i] == '@')
             {
-                m_AllowCheckAAExist = true;
+                mAllowCheckAAExist = true;
             }
             else
-            if (m_AllowCheckAAExist && m_EmailCheck[i] == '@')
+            if (mAllowCheckAAExist && m_EmailCheck[i] == '@')
             {
                 return false;
             }
         }
-        if (!m_AllowCheckAAExist)
+        if (!mAllowCheckAAExist)
         {
             return false;
         }

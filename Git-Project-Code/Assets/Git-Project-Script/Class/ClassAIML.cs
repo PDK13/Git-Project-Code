@@ -93,7 +93,7 @@ public class ClassAIML
     /// <param name="LayerCount"></param>
     public void SetInputLayerCount(int LayerCount)
     {
-        PlayerPrefs.SetInt("LC", (LayerCount < 0) ? 2 : LayerCount);
+        ClassScene.SetPlayerPrefs("LC", (LayerCount < 0) ? 2 : LayerCount);
     }
 
     /// <summary>
@@ -114,7 +114,7 @@ public class ClassAIML
     {
         if (Layer >= 0)
         {
-            PlayerPrefs.SetInt("NC_" + Layer.ToString(), (NeuralCount > 0) ? NeuralCount : 0);
+            ClassScene.SetPlayerPrefs("NC_" + Layer.ToString(), (NeuralCount > 0) ? NeuralCount : 0);
         }
     }
 
@@ -135,13 +135,13 @@ public class ClassAIML
     public void SetNeuralNetworkCreate(bool RandomNumber)
     {
         //LayerCount
-        m_LayerCount = PlayerPrefs.GetInt("LC");
+        m_LayerCount = ClassScene.GetPlayerPrefsInt("LC");
 
         //NeuralCount
         m_NeuralCount = new List<int>();
         for (int lay = 0; lay < m_LayerCount; lay++)
         {
-            m_NeuralCount.Add(PlayerPrefs.GetInt("NC_" + lay.ToString()));
+            m_NeuralCount.Add(ClassScene.GetPlayerPrefsInt("NC_" + lay.ToString()));
         }
 
         //Activation

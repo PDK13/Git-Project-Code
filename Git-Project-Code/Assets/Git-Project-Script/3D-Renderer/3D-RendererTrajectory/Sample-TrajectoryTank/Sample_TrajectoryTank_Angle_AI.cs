@@ -18,7 +18,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
 
     [SerializeField] private float m_DemCurrent = 0;
 
-    [SerializeField] private bool m_AllowDem_High = true;
+    [SerializeField] private bool mAllowDem_High = true;
 
     private void Awake()
     {
@@ -69,7 +69,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            m_AllowDem_High = !m_AllowDem_High;
+            mAllowDem_High = !mAllowDem_High;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -95,7 +95,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
             m_DemCurrent = (float)m_RendererTrajectory.GetTrajectoryAngleDeg(
                 m_RendererTrajectory.GetTrajectoryStartTransform().position,
                 com_Tarket.transform.position,
-                m_AllowDem_High);
+                mAllowDem_High);
         }
         catch
         {

@@ -28,7 +28,7 @@ public class RigidbodyPlatform : MonoBehaviour
     private float m_SpeedCur;
     //Current Speed m_ove
 
-    public bool m_AllowStopRAway = false;
+    public bool mAllowStopRAway = false;
     //Control Stop without Speed Stop Velocity
 
     public float m_SpeedStop = 3f;
@@ -81,7 +81,7 @@ public class RigidbodyPlatform : MonoBehaviour
     private void SetStop()
     //Control Stop
     {
-        if (m_AllowStopRAway)
+        if (mAllowStopRAway)
         {
             m_Rigid.SetStopX_Velocity();
         }

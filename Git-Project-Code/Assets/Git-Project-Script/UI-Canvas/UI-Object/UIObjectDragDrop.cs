@@ -47,7 +47,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     [Tooltip("Canvas Lock State")]
     [SerializeField]
-    private bool m_AllowCavasLock = false;
+    private bool mAllowCavasLock = false;
 
     [Tooltip("Unity Pointer Enter Event Handle")]
     [Space]
@@ -88,13 +88,13 @@ public class UIObjectDragDrop : MonoBehaviour,
     private CanvasGroup c_CanvasGroup;
 
     [Tooltip("UI Drag Status")]
-    private bool m_AllowUIDrag = false;
+    private bool mAllowUIDrag = false;
 
     [Tooltip("UI Hold Status")]
-    private bool m_AllowUIHold = false;
+    private bool mAllowUIHold = false;
 
     [Tooltip("Button Ready Status")]
-    private bool m_AllowUIReady = false;
+    private bool mAllowUIReady = false;
 
     private void Start()
     {
@@ -254,60 +254,60 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     private void SetEvent_PointerEnter()
     {
-        if (m_AllowCavasLock)
+        if (mAllowCavasLock)
         {
             return;
         }
 
-        m_AllowUIReady = true;
+        mAllowUIReady = true;
 
         SetEvent_Invoke_PointerEnter();
     }
 
     private void SetEvent_PointerExit()
     {
-        if (m_AllowCavasLock)
+        if (mAllowCavasLock)
         {
             return;
         }
 
-        m_AllowUIReady = false;
+        mAllowUIReady = false;
 
         SetEvent_Invoke_PointerExit();
     }
 
     private void SetEvent_PointerD()
     {
-        if (m_AllowCavasLock)
+        if (mAllowCavasLock)
         {
             return;
         }
 
-        m_AllowUIHold = true;
+        mAllowUIHold = true;
 
         SetEvent_Invoke_PointerD();
     }
 
     private void SetEvent_PointerU()
     {
-        if (m_AllowCavasLock)
+        if (mAllowCavasLock)
         {
             return;
         }
 
-        m_AllowUIHold = false;
+        mAllowUIHold = false;
 
         SetEvent_Invoke_PointerU();
     }
 
     private void SetEvent_OnBeginDrag()
     {
-        if (m_AllowCavasLock)
+        if (mAllowCavasLock)
         {
             return;
         }
 
-        m_AllowUIDrag = true;
+        mAllowUIDrag = true;
 
         c_CanvasGroup.alpha = m_Canvas_AlphaDrag;
 
@@ -318,7 +318,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     private void SetEvent_OnDrag(PointerEventData eventData)
     {
-        if (m_AllowCavasLock)
+        if (mAllowCavasLock)
         {
             return;
         }
@@ -330,12 +330,12 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     private void SetEvent_OnEndDrag()
     {
-        if (m_AllowCavasLock)
+        if (mAllowCavasLock)
         {
             return;
         }
 
-        m_AllowUIDrag = false;
+        mAllowUIDrag = false;
 
         c_CanvasGroup.alpha = m_Canvas_Alpha_Normal;
 
@@ -396,9 +396,9 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     #region UI Status Set
 
-    public void SetUICanvasLock(bool m_AllowLockStatus)
+    public void SetUICanvasLock(bool mAllowLockStatus)
     {
-        m_AllowCavasLock = m_AllowLockStatus;
+        mAllowCavasLock = mAllowLockStatus;
     }
 
     public void SetUICanvasLocs_KeyTrue()
@@ -417,22 +417,22 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     public bool GetCheckUICanvasDrag()
     {
-        return m_AllowUIDrag;
+        return mAllowUIDrag;
     }
 
     public bool GetCheckUICanvasHold()
     {
-        return m_AllowUIHold;
+        return mAllowUIHold;
     }
 
     public bool GetCheckUICanvasReady()
     {
-        return m_AllowUIReady;
+        return mAllowUIReady;
     }
 
     public bool GetCheckUICanvasLock()
     {
-        return m_AllowCavasLock;
+        return mAllowCavasLock;
     }
 
     #endregion

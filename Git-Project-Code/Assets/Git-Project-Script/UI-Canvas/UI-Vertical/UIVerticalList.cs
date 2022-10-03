@@ -16,7 +16,7 @@ public class UIVerticalList : MonoBehaviour
     private GameObject gClone;
 
     //[Tooltip("Check Component Required Exist in Clone")]
-    //private bool m_AllowComponent = true;
+    //private bool mAllowComponent = true;
 
     [Header("List-Vertical Data")]
 
@@ -108,7 +108,7 @@ public class UIVerticalList : MonoBehaviour
     /// <summary>
     /// Remove All Clone(s) in List Vertical
     /// </summary>
-    public void SetListVerticamRemove_All()
+    public void SetListVerticamRemoveAll()
     {
         //if (!m_Component)
         //{

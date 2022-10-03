@@ -19,17 +19,17 @@
 
 //    #region UI Anchor-Pos
 
-//    public static void SetUI_PosChanceTo(RectTransform comUI, Vector2 v2_PosChanceTo, float m_Duration = 1f, float m_Delay = 0f, bool m_AllowValueInt = false)
+//    public static void SetUI_PosChanceTo(RectTransform comUI, Vector2 v2_PosChanceTo, float m_Duration = 1f, float m_Delay = 0f, bool mAllowValueInt = false)
 //    {
 //        comUI.DOAnchorPos(v2_PosChanceTo, m_Duration, m_ValueInt).SetDelay(m_Delay);
 //    }
 
-//    public static void SetUI_PosChanceToX(RectTransform comUI, float m_PosChanceToX, float m_Duration = 1f, float m_Delay = 0f, bool m_AllowValueInt = false)
+//    public static void SetUI_PosChanceToX(RectTransform comUI, float m_PosChanceToX, float m_Duration = 1f, float m_Delay = 0f, bool mAllowValueInt = false)
 //    {
 //        comUI.DOAnchorPosX(m_PosChanceToX, m_Duration, m_ValueInt).SetDelay(m_Delay);
 //    }
 
-//    public static void SetUI_PosChanceToY(RectTransform comUI, float m_PosChanceToY, float m_Duration = 1f, float m_Delay = 0f, bool m_AllowValueInt = false)
+//    public static void SetUI_PosChanceToY(RectTransform comUI, float m_PosChanceToY, float m_Duration = 1f, float m_Delay = 0f, bool mAllowValueInt = false)
 //    {
 //        comUI.DOAnchorPosY(m_PosChanceToY, m_Duration, m_ValueInt).SetDelay(m_Delay);
 //    }
@@ -38,7 +38,7 @@
 
 //    #region UI Anchor Pos Shake
 
-//    public static void SetUI_Shake(RectTransform comUI, float m_Duration = 1f, float m_Strength = 50f, int m_Loop = 10, float m_Randomness = 0f, bool m_AllowFadeOut = true, bool m_AllowValueInt = false)
+//    public static void SetUI_Shake(RectTransform comUI, float m_Duration = 1f, float m_Strength = 50f, int m_Loop = 10, float m_Randomness = 0f, bool mAllowFadeOut = true, bool mAllowValueInt = false)
 //    {
 //        comUI.DOShakeAnchorPos(m_Duration, m_Strength, m_Loop, m_Randomness, m_ValueInt, m_FadeOut);
 //    }

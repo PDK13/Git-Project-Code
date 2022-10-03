@@ -52,7 +52,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// </summary>
     [Header("Network On Start")]
     [SerializeField]
-    private bool m_AllowAutoConnect = true;
+    private bool mAllowAutoConnect = true;
 
     /// <summary>
     /// Host to Connect or Connected
@@ -70,7 +70,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// Auto Read by Thread
     /// </summary>
     [SerializeField]
-    private bool m_AllowAutoRead = true;
+    private bool mAllowAutoRead = true;
 
     [Header("Socket m_essage")]
     [SerializeField]
@@ -96,12 +96,12 @@ public class Socket_ClientManager : MonoBehaviour
     /// <summary>
     /// Socket Connect OK?
     /// </summary>
-    private bool m_AllowSocketStart = false;
+    private bool mAllowSocketStart = false;
 
     /// <summary>
     /// Socket Auto Thread Read?
     /// </summary>
-    private bool m_AllowSocketRead = false;
+    private bool mAllowSocketRead = false;
 
     private TcpClient tcp_Socket;
     private NetworkStream net_Stream;
@@ -146,12 +146,12 @@ public class Socket_ClientManager : MonoBehaviour
 
         m_DataQueue = new List<string>();
 
-        if (m_AllowAutoConnect)
+        if (mAllowAutoConnect)
         {
             SetSocketStart();
         }
 
-        if (m_AllowAutoRead)
+        if (mAllowAutoRead)
         {
             SetSocketThreadRead(true);
         }
@@ -170,10 +170,10 @@ public class Socket_ClientManager : MonoBehaviour
         SetCloseApplication();
     }
 
-    private void OnApplicationPause(bool m_AllowOnPause)
+    private void OnApplicationPause(bool mAllowOnPause)
     {
         //Android Event onResume() and onPause()
-        if (m_AllowOnPause)
+        if (mAllowOnPause)
         {
             SetCloseApplication();
         }
@@ -205,10 +205,10 @@ public class Socket_ClientManager : MonoBehaviour
     {
         while (true)
         {
-            if (m_AllowSocketStart)
+            if (mAllowSocketStart)
             //If Socket Started
             {
-                if (m_AllowSocketRead)
+                if (mAllowSocketRead)
                 //If Socket Read
                 {
                     string m_DataGet = GetSocketReadData();
@@ -226,9 +226,9 @@ public class Socket_ClientManager : MonoBehaviour
     /// Set Socket Read by Thread
     /// </summary>
     /// <param name="m_SocketRead"></param>
-    public void SetSocketThreadRead(bool m_AllowSocketRead)
+    public void SetSocketThreadRead(bool mAllowSocketRead)
     {
-        this.m_AllowSocketRead = m_AllowSocketRead;
+        this.mAllowSocketRead = mAllowSocketRead;
     }
 
     /// <summary>
@@ -237,7 +237,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// <returns></returns>
     public bool GetCheckSocketThreadRead()
     {
-        return m_AllowSocketRead;
+        return mAllowSocketRead;
     }
 
     #endregion
@@ -290,7 +290,7 @@ public class Socket_ClientManager : MonoBehaviour
                 m_HostConnect = inp_Host.text;
                 m_PortConnect = inp_Port.text;
 
-                m_AllowSocketStart = true;
+                mAllowSocketStart = true;
 
                 Debug.LogWarning("SetSocketStart: Socket Start!");
 
@@ -318,7 +318,7 @@ public class Socket_ClientManager : MonoBehaviour
     /// <returns></returns>
     public bool GetCheckSocketStart()
     {
-        return m_AllowSocketStart;
+        return mAllowSocketStart;
     }
 
     #endregion
@@ -415,7 +415,7 @@ public class Socket_ClientManager : MonoBehaviour
         st_Writer.Close();
         stReader.Close();
         tcp_Socket.Close();
-        m_AllowSocketStart = false;
+        mAllowSocketStart = false;
 
         Debug.LogWarning("SetSocket_Close: Called!");
     }

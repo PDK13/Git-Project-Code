@@ -13,7 +13,7 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     [Tooltip("Button Lock Status")]
     [SerializeField]
-    private bool m_AllowUILock = false;
+    private bool mAllowUILock = false;
 
     [Tooltip("Rect Transform")]
     private RectTransform rRectTransform;
@@ -37,14 +37,14 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     [Tooltip("UI Drop Status")]
     //[SerializeField]
-    private bool m_AllowUIDropStatus = false;
+    private bool mAllowUIDropStatus = false;
 
     [Tooltip("Object in Slot")]
     //[SerializeField]
     private GameObject m_UI_GameObject_InSlot;
 
     [Tooltip("Button Ready Status")]
-    private bool m_AllowUIReady = false;
+    private bool mAllowUIReady = false;
 
     private void Start()
     {
@@ -59,7 +59,7 @@ public class UIObjectDragSlot : MonoBehaviour,
             {
                 m_UI_GameObject_InSlot = null;
 
-                m_AllowUIDropStatus = false;
+                mAllowUIDropStatus = false;
             }
         }
     }
@@ -131,31 +131,31 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     private void SetEvent_PointerEnter()
     {
-        if (m_AllowUILock)
+        if (mAllowUILock)
         {
             return;
         }
 
-        m_AllowUIReady = true;
+        mAllowUIReady = true;
 
         SetEvent_Invoke_PointerEnter();
     }
 
     private void SetEvent_PointerExit()
     {
-        if (m_AllowUILock)
+        if (mAllowUILock)
         {
             return;
         }
 
-        m_AllowUIReady = false;
+        mAllowUIReady = false;
 
         SetEvent_Invoke_PointerExit();
     }
 
     private void SetEvent_OnDrop(PointerEventData eventData)
     {
-        if (m_AllowUILock)
+        if (mAllowUILock)
         {
             return;
         }
@@ -166,7 +166,7 @@ public class UIObjectDragSlot : MonoBehaviour,
 
             m_UI_GameObject_InSlot.GetComponent<RectTransform>().anchoredPosition = rRectTransform.anchoredPosition;
 
-            m_AllowUIDropStatus = true;
+            mAllowUIDropStatus = true;
         }
 
         SetEvent_Invoke_OnDrop();
@@ -197,9 +197,9 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     #region UI Status Set
 
-    public void SetButtonLock(bool m_AllowLockStatus)
+    public void SetButtonLock(bool mAllowLockStatus)
     {
-        m_AllowUILock = m_AllowLockStatus;
+        mAllowUILock = mAllowLockStatus;
     }
 
     public void SetButtonLocs_KeyTrue()
@@ -218,12 +218,12 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     public bool GetCheckUIReady()
     {
-        return m_AllowUIReady;
+        return mAllowUIReady;
     }
 
     public bool GetCheckUIDrop()
     {
-        return m_AllowUIDropStatus;
+        return mAllowUIDropStatus;
     }
 
     public GameObject GetUI_GameObjectDrop()

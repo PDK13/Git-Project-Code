@@ -3,11 +3,11 @@ using UnityEngine;
 [AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody Rotate")]
 public class RigidbodyRotate : MonoBehaviour
 {
-    [SerializeField] [Tooltip("Vector R - Red Axis")] private bool m_AllowFollowR = true;
+    [SerializeField] [Tooltip("Vector R - Red Axis")] private bool mAllowFollowR = true;
 
-    [SerializeField] [Tooltip("Vector Forward - Blue Axis")] private bool m_AllowFollowForward = false;
+    [SerializeField] [Tooltip("Vector Forward - Blue Axis")] private bool mAllowFollowForward = false;
 
-    [SerializeField] [Tooltip("Vector U - Green Axis")] private bool m_AllowFollowU = false;
+    [SerializeField] [Tooltip("Vector U - Green Axis")] private bool mAllowFollowU = false;
 
     private Rigidbody com_Rigidbody;
 
@@ -34,17 +34,17 @@ public class RigidbodyRotate : MonoBehaviour
     {
         if (com_Rigidbody != null)
         {
-            if (m_AllowFollowR)
+            if (mAllowFollowR)
             {
                 transform.right = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
             }
 
-            if (m_AllowFollowU)
+            if (mAllowFollowU)
             {
                 transform.up = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
             }
 
-            if (m_AllowFollowForward)
+            if (mAllowFollowForward)
             {
                 transform.forward = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
             }
@@ -52,50 +52,50 @@ public class RigidbodyRotate : MonoBehaviour
         else
         if (com_Rigidbody2D != null)
         {
-            if (m_AllowFollowR)
+            if (mAllowFollowR)
             {
                 transform.right = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
             }
 
-            if (m_AllowFollowU)
+            if (mAllowFollowU)
             {
                 transform.up = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
             }
 
-            if (m_AllowFollowForward)
+            if (mAllowFollowForward)
             {
                 transform.forward = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
             }
         }
     }
 
-    public void SetFollowR(bool m_AllowFollowR)
+    public void SetFollowR(bool mAllowFollowR)
     {
-        this.m_AllowFollowR = m_AllowFollowR;
+        this.mAllowFollowR = mAllowFollowR;
     }
 
     public bool GetCheckFollowR()
     {
-        return m_AllowFollowR;
+        return mAllowFollowR;
     }
 
-    public void SetFollowU(bool m_AllowFollowU)
+    public void SetFollowU(bool mAllowFollowU)
     {
-        this.m_AllowFollowU = m_AllowFollowU ;
+        this.mAllowFollowU = mAllowFollowU ;
     }
 
     public bool GetCheckFollowU()
     {
-        return m_AllowFollowU;
+        return mAllowFollowU;
     }
 
-    public void SetFollowForward(bool m_AllowFollowForward)
+    public void SetFollowForward(bool mAllowFollowForward)
     {
-        this.m_AllowFollowForward = m_AllowFollowForward;
+        this.mAllowFollowForward = mAllowFollowForward;
     }
 
     public bool GetCheckFollowForward()
     {
-        return m_AllowFollowForward;
+        return mAllowFollowForward;
     }
 }

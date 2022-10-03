@@ -11,25 +11,25 @@ public class RigidbodyComponent : MonoBehaviour
     /// </summary>
     [Header("Rigid")]
     [SerializeField]
-    private bool m_AllowUseScriptStart = true;
+    private bool mAllowUseScriptStart = true;
 
     /// <summary>
     /// Set Kinematic (Static)
     /// </summary>
     [SerializeField]
-    private bool m_AllowKinematic = false;
+    private bool mAllowKinematic = false;
 
     /// <summary>
     /// Lock Rotation
     /// </summary>
     [SerializeField]
-    private bool m_AllowLockRot = true;
+    private bool mAllowLockRot = true;
 
     /// <summary>
     /// Lock Pos
     /// </summary>
     [SerializeField]
-    private bool m_AllowLockPos = false;
+    private bool mAllowLockPos = false;
 
     /// <summary>
     /// Layer m_ask to Check Foot and Head
@@ -43,7 +43,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// </summary>
     [Header("Foot Check")]
     [SerializeField]
-    private bool m_AllowFootDebug = true;
+    private bool mAllowFootDebug = true;
 
     /// <summary>
     /// Box Cast of Foot
@@ -61,7 +61,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Use Script Auto Gravity
     /// </summary>
     [SerializeField]
-    private bool m_AllowUseScriptGravity = true;
+    private bool mAllowUseScriptGravity = true;
 
     /// <summary>
     /// Auto Gravity Velocity
@@ -74,7 +74,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// </summary>
     [Header("Head Check")]
     [SerializeField]
-    private bool m_AllowHeadDebug = true;
+    private bool mAllowHeadDebug = true;
 
     /// <summary>
     /// Box Cast of Head
@@ -92,7 +92,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// Use Script Auto Bounce
     /// </summary>
     [SerializeField]
-    private bool m_AllowUseScriptBounce = true;
+    private bool mAllowUseScriptBounce = true;
 
     /// <summary>
     /// Auto Bounce Velocity
@@ -102,7 +102,7 @@ public class RigidbodyComponent : MonoBehaviour
 
     private void Awake()
     {
-        if (m_AllowUseScriptStart)
+        if (mAllowUseScriptStart)
         {
             SetRigid();
         }
@@ -110,7 +110,7 @@ public class RigidbodyComponent : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (m_AllowUseScriptBounce)
+        if (mAllowUseScriptBounce)
         {
             if (GetCheckHead() && !GetCheckFoot())
             {
@@ -119,7 +119,7 @@ public class RigidbodyComponent : MonoBehaviour
             }
         }
 
-        if (m_AllowUseScriptGravity)
+        if (mAllowUseScriptGravity)
         {
             if (!GetCheckFoot())
             {
@@ -135,15 +135,15 @@ public class RigidbodyComponent : MonoBehaviour
     public void SetRigid()
     {
         Rigidbody com_Rigidbody = GetComponent<Rigidbody>();
-        com_Rigidbody.isKinematic = m_AllowKinematic;
+        com_Rigidbody.isKinematic = mAllowKinematic;
         com_Rigidbody.useGravity = false;
 
-        if (m_AllowLockRot)
+        if (mAllowLockRot)
         {
             com_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
-        if (m_AllowLockPos)
+        if (mAllowLockPos)
         {
             com_Rigidbody.constraints = RigidbodyConstraints.FreezePosition;
         }
@@ -155,17 +155,17 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="m_Kinematic"></param>
     /// <param name="mLockRot">No Rotation</param>
     /// <param name="mLockPos">No m_ove</param>
-    public void SetRigid(bool m_AllowKinematic, bool m_AllowLockRot, bool m_AllowLockPos)
+    public void SetRigid(bool mAllowKinematic, bool mAllowLockRot, bool mAllowLockPos)
     {
         Rigidbody com_Rigidbody = GetComponent<Rigidbody>();
-        com_Rigidbody.isKinematic = m_AllowKinematic;
+        com_Rigidbody.isKinematic = mAllowKinematic;
         com_Rigidbody.useGravity = false;
-        if (m_AllowLockRot && !m_AllowLockPos)
+        if (mAllowLockRot && !mAllowLockPos)
         {
             com_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
         else
-        if (!m_AllowLockRot && m_AllowLockPos)
+        if (!mAllowLockRot && mAllowLockPos)
         {
             com_Rigidbody.constraints = RigidbodyConstraints.FreezePosition;
         }
@@ -451,7 +451,7 @@ public class RigidbodyComponent : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (m_AllowFootDebug)
+        if (mAllowFootDebug)
         {
             //Foot Check
             if (GetCheckFoot())
@@ -467,7 +467,7 @@ public class RigidbodyComponent : MonoBehaviour
             Gizmos.DrawWireCube(transform.position + Vector3.down * m_FootCastDistance, m_FootCastSize);
         }
 
-        if (m_AllowHeadDebug)
+        if (mAllowHeadDebug)
         {
             //Head Check
             if (GetCheckHead())

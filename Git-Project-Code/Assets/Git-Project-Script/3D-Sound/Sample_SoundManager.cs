@@ -10,7 +10,7 @@ public class Sample_SoundManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            SoundManager.SetSound_2D(au_Sound, false, 1f);
+            SoundManager.SetSound2D(au_Sound, false, 1f);
         }
         else
         if (Input.GetKeyDown(KeyCode.X))
@@ -20,12 +20,12 @@ public class Sample_SoundManager : MonoBehaviour
         else
         if (Input.GetKeyDown(KeyCode.M))
         {
-            SoundManager.SetSound_Mute(true);
+            SoundManager.SetSoundMute(true);
         }
         else
         if (Input.GetKeyDown(KeyCode.C))
         {
-            SoundManager.SetSound_Stop_All();
+            SoundManager.SetSoundStopAll();
         }
     }
 }

@@ -40,11 +40,11 @@ public class UIButtonOnClick : MonoBehaviour,
 
     [Tooltip("Button Lock Status")]
     [SerializeField]
-    private bool m_AllowButtonLock = false;
+    private bool mAllowButtonLock = false;
 
     [Tooltip("Button Active Status")]
     [SerializeField]
-    private bool m_AllowButtonActive = false;
+    private bool mAllowButtonActive = false;
 
     [Tooltip("Unity Pointer Enter Event Handle")]
     [Space]
@@ -72,10 +72,10 @@ public class UIButtonOnClick : MonoBehaviour,
     private UnityEvent EventActiveState;
 
     [Tooltip("Button Hold Status")]
-    private bool m_AllowButtonHold = false;
+    private bool mAllowButtonHold = false;
 
     [Tooltip("Button Ready Status")]
-    private bool m_AllowButtonReady = false;
+    private bool mAllowButtonReady = false;
 
     private void Update()
     {
@@ -88,7 +88,7 @@ public class UIButtonOnClick : MonoBehaviour,
 
     private void SetEvent_Keyboard()
     {
-        if (m_AllowButtonLock)
+        if (mAllowButtonLock)
         {
             return;
         }
@@ -106,12 +106,12 @@ public class UIButtonOnClick : MonoBehaviour,
 
     private void SetEventActive()
     {
-        if (m_AllowButtonLock)
+        if (mAllowButtonLock)
         {
             return;
         }
 
-        if (m_AllowButtonActive)
+        if (mAllowButtonActive)
         //If Active Pressed >> Do...
         {
             SetEvent_InvokeActiveState();
@@ -221,50 +221,50 @@ public class UIButtonOnClick : MonoBehaviour,
 
     private void SetEvent_PointerEnter()
     {
-        if (m_AllowButtonLock)
+        if (mAllowButtonLock)
         {
             return;
         }
 
-        m_AllowButtonReady = true;
+        mAllowButtonReady = true;
 
         SetEvent_Invoke_PointerEnter();
     }
 
     private void SetEvent_PointerExit()
     {
-        if (m_AllowButtonLock)
+        if (mAllowButtonLock)
         {
             return;
         }
 
-        m_AllowButtonReady = false;
+        mAllowButtonReady = false;
 
         SetEvent_Invoke_PointerExit();
     }
 
     private void SetEvent_PointerD()
     {
-        if (m_AllowButtonLock)
+        if (mAllowButtonLock)
         {
             return;
         }
 
-        m_AllowButtonActive = !m_AllowButtonActive;
+        mAllowButtonActive = !mAllowButtonActive;
 
-        m_AllowButtonHold = true;
+        mAllowButtonHold = true;
 
         SetEvent_Invoke_PointerD();
     }
 
     private void SetEvent_PointerU()
     {
-        if (m_AllowButtonLock)
+        if (mAllowButtonLock)
         {
             return;
         }
 
-        m_AllowButtonHold = false;
+        mAllowButtonHold = false;
 
         SetEvent_Invoke_PointerU();
     }
@@ -319,12 +319,12 @@ public class UIButtonOnClick : MonoBehaviour,
 
     public void SetButtonActiveChance()
     {
-        m_AllowButtonActive = !m_AllowButtonActive;
+        mAllowButtonActive = !mAllowButtonActive;
     }
 
-    public void SetButtonActive(bool m_AllowActiveState)
+    public void SetButtonActive(bool mAllowActiveState)
     {
-        m_AllowButtonActive = m_AllowActiveState;
+        mAllowButtonActive = mAllowActiveState;
     }
 
     public void SetButtonActive_True()
@@ -343,12 +343,12 @@ public class UIButtonOnClick : MonoBehaviour,
 
     public void SetButtonLockChance()
     {
-        m_AllowButtonLock = !m_AllowButtonLock;
+        mAllowButtonLock = !mAllowButtonLock;
     }
 
-    public void SetButtonLock(bool m_AllowLockState)
+    public void SetButtonLock(bool mAllowLockState)
     {
-        m_AllowButtonLock = m_AllowLockState;
+        mAllowButtonLock = mAllowLockState;
     }
 
     public void SetButtonLocs_KeyTrue()
@@ -369,22 +369,22 @@ public class UIButtonOnClick : MonoBehaviour,
 
     public bool GetCheckButtonActive()
     {
-        return m_AllowButtonActive;
+        return mAllowButtonActive;
     }
 
     public bool GetCheckButtonHold()
     {
-        return m_AllowButtonHold;
+        return mAllowButtonHold;
     }
 
     public bool GetCheckButtonReady()
     {
-        return m_AllowButtonReady;
+        return mAllowButtonReady;
     }
 
     public bool GetCheckButtonLock()
     {
-        return m_AllowButtonLock;
+        return mAllowButtonLock;
     }
 
     #endregion
@@ -397,25 +397,25 @@ public class UIButtonOnClick : MonoBehaviour,
 
     private void SetButton_Color()
     {
-        if (m_AllowButtonLock)
+        if (mAllowButtonLock)
         //If Lock Pressed >> Do...
         {
             SetButton_Color(c_ColorLock);
         }
         else
-        if (m_AllowButtonHold)
+        if (mAllowButtonHold)
         //If Hold Pressed >> Do...
         {
             SetButton_Color(c_ColorHold);
         }
         else
-        if (m_AllowButtonReady)
+        if (mAllowButtonReady)
         //If Ready Pressed >> Do...
         {
             SetButton_Color(c_ColorReady);
         }
         else
-        if (m_AllowButtonActive)
+        if (mAllowButtonActive)
         //If Active Pressed >> Do...
         {
             SetButton_Color(c_ColorActive);

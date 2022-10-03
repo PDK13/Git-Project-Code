@@ -20,7 +20,7 @@ public class SoundClone : MonoBehaviour
 
     #region Play
 
-    public void SetPlaySound_3D(SoundCloneData m_SoundCloneData, Vector2 v2_Pos, float m_Distance)
+    public void SetPlaySound3D(SoundCloneData m_SoundCloneData, Vector2 v2_Pos, float m_Distance)
     {
         SetComponentAdd();
 
@@ -40,11 +40,11 @@ public class SoundClone : MonoBehaviour
 
         if (!m_SoundCloneData.GetCheckLoop())
         {
-            StartCoroutine(SetSound_WhenStop());
+            StartCoroutine(SetSoundWhenStop());
         }
     }
 
-    public void SetPlaySound_2D(SoundCloneData m_SoundCloneData)
+    public void SetPlaySound2D(SoundCloneData m_SoundCloneData)
     {
         SetComponentAdd();
 
@@ -60,11 +60,11 @@ public class SoundClone : MonoBehaviour
 
         if (!m_SoundCloneData.GetCheckLoop())
         {
-            StartCoroutine(SetSound_WhenStop());
+            StartCoroutine(SetSoundWhenStop());
         }
     }
 
-    private IEnumerator SetSound_WhenStop()
+    private IEnumerator SetSoundWhenStop()
     {
         yield return new WaitUntil(() => GetCheckSoundStop() == true);
 
@@ -75,7 +75,7 @@ public class SoundClone : MonoBehaviour
 
     #region Set
 
-    public void SetSound_Volumn(float m_Volumn)
+    public void SetSoundVolumn(float m_Volumn)
     {
         if (m_VolumnPrimary * m_Volumn > 1f)
         {
@@ -92,12 +92,12 @@ public class SoundClone : MonoBehaviour
         }
     }
 
-    public void SetSound_Mute(bool bMute)
+    public void SetSoundMute(bool bMute)
     {
         com_AudioSource.mute = bMute;
     }
 
-    public void SetSound_Stop()
+    public void SetSoundStop()
     {
         com_AudioSource.Stop();
     }
@@ -133,13 +133,13 @@ public class SoundClone : MonoBehaviour
 public class SoundCloneData
 {
     private readonly AudioClip au_Clip;
-    private readonly bool m_AllowLoop;
+    private readonly bool mAllowLoop;
     private readonly float m_VolumnPrimary;
 
-    public SoundCloneData(AudioClip au_Clip, bool m_AllowLoop, float m_VolumnPrimary)
+    public SoundCloneData(AudioClip au_Clip, bool mAllowLoop, float m_VolumnPrimary)
     {
         this.au_Clip = au_Clip;
-        this.m_AllowLoop = m_AllowLoop;
+        this.mAllowLoop = mAllowLoop;
         this.m_VolumnPrimary = m_VolumnPrimary;
     }
 
@@ -150,7 +150,7 @@ public class SoundCloneData
 
     public bool GetCheckLoop()
     {
-        return m_AllowLoop;
+        return mAllowLoop;
     }
 
     public float GetVolumnPrimary()

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class UnityToolPlayerRef : EditorWindow
+public class UnityToolRef : EditorWindow
 {
     private string m_Name = "";
 
@@ -19,7 +19,7 @@ public class UnityToolPlayerRef : EditorWindow
     [MenuItem("Git-Project-Script Tools/Player-Ref Tool")]
     public static void Init()
     {
-        GetWindow<UnityToolPlayerRef>("[!] Player-Ref Tool");
+        GetWindow<UnityToolRef>("[!] Player-Ref Tool");
     }
 
     private void OnGUI()
@@ -74,7 +74,7 @@ public class UnityToolPlayerRef : EditorWindow
 
         SetGUI_ButtonClear();
 
-        SetGUI_ButtonClear_All();
+        SetGUI_ButtonClearAll();
 
         GUILayout.EndHorizontal();
 
@@ -149,7 +149,7 @@ public class UnityToolPlayerRef : EditorWindow
             {
                 if (ClassScene.GetCheckPlayerPrefsExist(m_Name))
                 {
-                    m_Value = ClassScene.GetPlayerPrefString(m_Name);
+                    m_Value = ClassScene.GetPlayerPrefsString(m_Name);
                 }
                 else
                 {
@@ -162,7 +162,7 @@ public class UnityToolPlayerRef : EditorWindow
             {
                 if (ClassScene.GetCheckPlayerPrefsExist(m_Name))
                 {
-                    m_Value = ClassScene.GetPlayerPrefInt(m_Name).ToString();
+                    m_Value = ClassScene.GetPlayerPrefsInt(m_Name).ToString();
                 }
                 else
                 {
@@ -175,7 +175,7 @@ public class UnityToolPlayerRef : EditorWindow
             {
                 if (ClassScene.GetCheckPlayerPrefsExist(m_Name))
                 {
-                    m_Value = ClassScene.GetPlayerPrefFloat(m_Name).ToString();
+                    m_Value = ClassScene.GetPlayerPrefsFloat(m_Name).ToString();
                 }
                 else
                 {
@@ -192,20 +192,20 @@ public class UnityToolPlayerRef : EditorWindow
         {
             Debug.LogWarningFormat("Tool: Clear {0} = {1} Value!", m_Name, m_Value);
 
-            ClassScene.SetPlayerPrefmClear(m_Name);
+            ClassScene.SetPlayerPrefsClear(m_Name);
 
             m_Name = "";
             m_Value = "";
         }
     }
 
-    public void SetGUI_ButtonClear_All()
+    public void SetGUI_ButtonClearAll()
     {
         if (GUILayout.Button("Clear All", GUILayout.Width(position.width / m_Button_HorizontalCount), GUILayout.Height(50f)))
         {
             Debug.LogWarning("Tool: Clear all Value!");
 
-            ClassScene.SetPlayerPrefmClear_All();
+            ClassScene.SetPlayerPrefsClearAll();
 
             m_Name = "";
             m_Value = "";
