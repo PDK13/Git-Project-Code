@@ -507,22 +507,22 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Color Button Primary
 
-    public Color GetColor_Normam_Primary()
+    public Color GetColor_NormamPrimary()
     {
         return Color.white;
     }
 
-    public Color GetColorReady_Primary()
+    public Color GetColorReadyPrimary()
     {
         return Color.gray;
     }
 
-    public Color GetColorHold_Primary()
+    public Color GetColorHoldPrimary()
     {
         return Color.yellow;
     }
 
-    public Color GetColorActive_Primary()
+    public Color GetColorActivePrimary()
     {
         return Color.green;
     }

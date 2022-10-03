@@ -8,7 +8,7 @@ public class CheckPointArea : MonoBehaviour
     [SerializeField] private Transform m_PointNext;
 
     //Size of Check-Point Cube
-    [SerializeField] private Vector3 m_PointSize = new Vector3(1f, 1f, 1f);
+    [SerializeField] private Vector3 mPointsize = new Vector3(1f, 1f, 1f);
 
     [Header("Check Tarket(s)")]
 
@@ -22,7 +22,7 @@ public class CheckPointArea : MonoBehaviour
 
     private void SetCheckPoint()
     {
-        Collider[] m_Collide = Physics.OverlapBox(transform.position, m_PointSize / 2f, ClassVector.GetRotationEulerToQuaternion(0, 0, 0), m_PointLayer);
+        Collider[] m_Collide = Physics.OverlapBox(transform.position, mPointsize / 2f, ClassVector.GetRotationEulerToQuaternion(0, 0, 0), m_PointLayer);
 
         for (int i = 0; i < m_Collide.Length; i++)
         {
@@ -40,7 +40,7 @@ public class CheckPointArea : MonoBehaviour
 
     public Vector3 GetCheckPointSize()
     {
-        return m_PointSize;
+        return mPointsize;
     }
 
     public LayerMask GetCheckPointLayer()
@@ -50,7 +50,7 @@ public class CheckPointArea : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (Physics.OverlapBox(transform.position, m_PointSize / 2f, ClassVector.GetRotationEulerToQuaternion(0, 0, 0), m_PointLayer).Length > 0)
+        if (Physics.OverlapBox(transform.position, mPointsize / 2f, ClassVector.GetRotationEulerToQuaternion(0, 0, 0), m_PointLayer).Length > 0)
         {
             Gizmos.color = Color.red;
         }
@@ -59,7 +59,7 @@ public class CheckPointArea : MonoBehaviour
             Gizmos.color = Color.green;
         }
 
-        Gizmos.DrawWireCube(transform.position, m_PointSize);
+        Gizmos.DrawWireCube(transform.position, mPointsize);
 
         Gizmos.color = Color.white;
 

@@ -269,13 +269,13 @@ public class RaycastFan : MonoBehaviour
         return l1Distance;
     }
 
-    public RaycastHit GetEye_Top(int m_Index)
+    public RaycastHit GetEyep(int m_Index)
     //Get EyeCast Top
     {
         return GetEye(m_Index * 2 - 1);
     }
 
-    public bool GetCheckEye_Top(int m_Index)
+    public bool GetCheckEyep(int m_Index)
     //Get Check EyeCast Top
     {
         return GetEye(m_Index * 2 - 1).collider != null;

@@ -5,7 +5,7 @@ public class Sample_TrajectoryBall : MonoBehaviour
 {
     private Vector2 v2_MouseDramStart;
 
-    private Vector2 v2_MouseDram_Next;
+    private Vector2 v2_MouseDramNext;
 
     private RendererTrajectory m_RendererTrajectory;
 
@@ -48,16 +48,16 @@ public class Sample_TrajectoryBall : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            v2_MouseDram_Next = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            v2_MouseDramNext = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            m_RendererTrajectory.SetTrajectory_Next(v2_MouseDram_Next);
+            m_RendererTrajectory.SetTrajectoryNext(v2_MouseDramNext);
 
-            m_RendererTrajectory.SetTrajectory_toLineRenderer(comLineRenderer, com_Rigidbody.drag, false);
+            m_RendererTrajectory.SetTrajectoryLineRenderer(comLineRenderer, com_Rigidbody.drag, false);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            m_RendererTrajectory.SetTrajectory_toRigidbody(com_Rigidbody, v2_MouseDramStart, v2_MouseDram_Next);
+            m_RendererTrajectory.SetTrajectoryRigidbody(com_Rigidbody, v2_MouseDramStart, v2_MouseDramNext);
         }
     }
 }

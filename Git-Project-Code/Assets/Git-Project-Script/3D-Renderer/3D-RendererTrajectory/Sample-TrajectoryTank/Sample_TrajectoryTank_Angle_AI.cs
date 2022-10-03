@@ -44,7 +44,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
         }
 
         m_RendererTrajectory = GetComponent<RendererTrajectory>();
-        m_RendererTrajectory.SetTrajectory_toLineRendererClear(comLineRenderer);
+        m_RendererTrajectory.SetTrajectoryLineRendererClear(comLineRenderer);
 
         if (GetComponent<RigidbodyRotation>() == null)
         {
@@ -59,12 +59,12 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
         //Power by X
         if (Input.GetKey(KeyCode.D))
         {
-            m_RendererTrajectory.SetTrajectory_PowerChance(0.1f);
+            m_RendererTrajectory.SetTrajectoryPowerChance(0.1f);
         }
         else
         if (Input.GetKey(KeyCode.A))
         {
-            m_RendererTrajectory.SetTrajectory_PowerChance(-0.1f);
+            m_RendererTrajectory.SetTrajectoryPowerChance(-0.1f);
         }
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -79,10 +79,10 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
             m_BulletClone.transform.position = m_RendererTrajectory.GetTrajectoryStart();
             m_BulletClone.SetActive(true);
 
-            m_RendererTrajectory.SetTrajectory_toRigidbody(
+            m_RendererTrajectory.SetTrajectoryRigidbody(
                 m_BulletClone.GetComponent<Rigidbody>(),
                 m_RendererTrajectory.GetTrajectoryStart(),
-                m_RendererTrajectory.GetTrajectory_Next());
+                m_RendererTrajectory.GetTrajectoryNext());
 
             m_RigidbodyRotation.SetControlLock(false);
         }
@@ -92,8 +92,8 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
     {
         try
         {
-            m_DemCurrent = (float)m_RendererTrajectory.GetTrajectory_Angle_toDeg(
-                m_RendererTrajectory.GetTrajectoryStart_toTransform().position,
+            m_DemCurrent = (float)m_RendererTrajectory.GetTrajectoryAngleDeg(
+                m_RendererTrajectory.GetTrajectoryStartTransform().position,
                 com_Tarket.transform.position,
                 m_AllowDem_High);
         }
@@ -104,6 +104,6 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
 
         com_Gun.rotation = ClassVector.GetRotationEulerToQuaternion(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, m_DemCurrent);
 
-        m_RendererTrajectory.SetTrajectory_toLineRenderer(comLineRenderer, com_Rigidbody.drag, true);
+        m_RendererTrajectory.SetTrajectoryLineRenderer(comLineRenderer, com_Rigidbody.drag, true);
     }
 }

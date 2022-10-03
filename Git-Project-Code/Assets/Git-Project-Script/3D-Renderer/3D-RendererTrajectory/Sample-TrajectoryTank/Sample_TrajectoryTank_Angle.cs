@@ -40,7 +40,7 @@ public class Sample_TrajectoryTanm_KeyAngle : MonoBehaviour
         }
 
         m_RendererTrajectory = GetComponent<RendererTrajectory>();
-        m_RendererTrajectory.SetTrajectory_toLineRendererClear(comLineRenderer);
+        m_RendererTrajectory.SetTrajectoryLineRendererClear(comLineRenderer);
 
         if (GetComponent<RigidbodyRotation>() == null)
         {
@@ -68,12 +68,12 @@ public class Sample_TrajectoryTanm_KeyAngle : MonoBehaviour
         //Power by X
         if (Input.GetKey(KeyCode.D))
         {
-            m_RendererTrajectory.SetTrajectory_PowerChance(0.1f);
+            m_RendererTrajectory.SetTrajectoryPowerChance(0.1f);
         }
         else
         if (Input.GetKey(KeyCode.A))
         {
-            m_RendererTrajectory.SetTrajectory_PowerChance(-0.1f);
+            m_RendererTrajectory.SetTrajectoryPowerChance(-0.1f);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -82,10 +82,10 @@ public class Sample_TrajectoryTanm_KeyAngle : MonoBehaviour
             m_BulletClone.transform.position = m_RendererTrajectory.GetTrajectoryStart();
             m_BulletClone.SetActive(true);
 
-            m_RendererTrajectory.SetTrajectory_toRigidbody(
+            m_RendererTrajectory.SetTrajectoryRigidbody(
                 m_BulletClone.GetComponent<Rigidbody>(),
                 m_RendererTrajectory.GetTrajectoryStart(),
-                m_RendererTrajectory.GetTrajectory_Next());
+                m_RendererTrajectory.GetTrajectoryNext());
 
             m_RigidbodyRotation.SetControlLock(false);
         }
@@ -93,6 +93,6 @@ public class Sample_TrajectoryTanm_KeyAngle : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_RendererTrajectory.SetTrajectory_toLineRenderer(comLineRenderer, com_Rigidbody.drag, true);
+        m_RendererTrajectory.SetTrajectoryLineRenderer(comLineRenderer, com_Rigidbody.drag, true);
     }
 }

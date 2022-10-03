@@ -6,7 +6,7 @@ public class SoundClone : MonoBehaviour
 {
     private AudioSource com_AudioSource;
 
-    private float m_Volumn_Primary = 1f;
+    private float m_VolumnPrimary = 1f;
 
     private void SetComponent_Add()
     {
@@ -28,7 +28,7 @@ public class SoundClone : MonoBehaviour
 
         com_AudioSource.loop = m_SoundCloneData.GetCheckLoop();
 
-        m_Volumn_Primary = m_SoundCloneData.GetVolumn_Primary();
+        m_VolumnPrimary = m_SoundCloneData.GetVolumnPrimary();
 
         com_AudioSource.spatialBlend = 1;
 
@@ -52,7 +52,7 @@ public class SoundClone : MonoBehaviour
 
         com_AudioSource.loop = m_SoundCloneData.GetCheckLoop();
 
-        m_Volumn_Primary = m_SoundCloneData.GetVolumn_Primary();
+        m_VolumnPrimary = m_SoundCloneData.GetVolumnPrimary();
 
         com_AudioSource.spatialBlend = 0;
 
@@ -77,18 +77,18 @@ public class SoundClone : MonoBehaviour
 
     public void SetSound_Volumn(float m_Volumn)
     {
-        if (m_Volumn_Primary * m_Volumn > 1f)
+        if (m_VolumnPrimary * m_Volumn > 1f)
         {
             com_AudioSource.volume = 1f;
         }
         else
-        if (m_Volumn_Primary * m_Volumn < 0f)
+        if (m_VolumnPrimary * m_Volumn < 0f)
         {
             com_AudioSource.volume = 0f;
         }
         else
         {
-            com_AudioSource.volume = m_Volumn_Primary * m_Volumn;
+            com_AudioSource.volume = m_VolumnPrimary * m_Volumn;
         }
     }
 
@@ -134,13 +134,13 @@ public class SoundCloneData
 {
     private readonly AudioClip au_Clip;
     private readonly bool m_AllowLoop;
-    private readonly float m_Volumn_Primary;
+    private readonly float m_VolumnPrimary;
 
-    public SoundCloneData(AudioClip au_Clip, bool m_AllowLoop, float m_Volumn_Primary)
+    public SoundCloneData(AudioClip au_Clip, bool m_AllowLoop, float m_VolumnPrimary)
     {
         this.au_Clip = au_Clip;
         this.m_AllowLoop = m_AllowLoop;
-        this.m_Volumn_Primary = m_Volumn_Primary;
+        this.m_VolumnPrimary = m_VolumnPrimary;
     }
 
     public AudioClip GetClip()
@@ -153,8 +153,8 @@ public class SoundCloneData
         return m_AllowLoop;
     }
 
-    public float GetVolumn_Primary()
+    public float GetVolumnPrimary()
     {
-        return m_Volumn_Primary;
+        return m_VolumnPrimary;
     }
 }

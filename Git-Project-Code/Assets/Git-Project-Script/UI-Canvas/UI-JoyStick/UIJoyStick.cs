@@ -13,7 +13,7 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     private Vector2 v2_JoyStickLimitPosPrimary;
 
-    [SerializeField] private RectTransform com_JoyStics_KeyButton;
+    [SerializeField] private RectTransform com_JoyStickButton;
 
     [Header("Lock")]
 
@@ -27,9 +27,9 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     [Header("Value")]
 
-    [SerializeField] private Vector2 v2_JoyStics_KeyValue_Primary;
+    [SerializeField] private Vector2 v2_JoyStickValuePrimary;
 
-    [SerializeField] private Vector2 v2_JoyStics_KeyValue_Fixed;
+    [SerializeField] private Vector2 v2_JoyStickValue_Fixed;
 
     private Canvas com_Canvas;
 
@@ -39,10 +39,10 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     {
         Vector2 center = new Vector2(0.5f, 0.5f);
         com_JoyStickLimit.pivot = center;
-        com_JoyStics_KeyButton.anchorMin = center;
-        com_JoyStics_KeyButton.anchorMax = center;
-        com_JoyStics_KeyButton.pivot = center;
-        com_JoyStics_KeyButton.anchoredPosition = Vector2.zero;
+        com_JoyStickButton.anchorMin = center;
+        com_JoyStickButton.anchorMax = center;
+        com_JoyStickButton.pivot = center;
+        com_JoyStickButton.anchoredPosition = Vector2.zero;
 
         v2_JoyStickLimitPosPrimary = com_JoyStickLimit.GetComponent<RectTransform>().anchoredPosition;
 
@@ -59,34 +59,34 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     #region Input Value
 
-    public Vector2 GetJoyStics_KeyFixed()
+    public Vector2 GetJoyStickFixed()
     {
-        return v2_JoyStics_KeyValue_Fixed;
+        return v2_JoyStickValue_Fixed;
     }
 
-    public float GetJoyStics_KeyFixedX()
+    public float GetJoyStickFixedX()
     {
-        return GetJoyStics_KeyFixed().x;
+        return GetJoyStickFixed().x;
     }
 
-    public float GetJoyStics_KeyFixedY()
+    public float GetJoyStickFixedY()
     {
-        return GetJoyStics_KeyFixed().y;
+        return GetJoyStickFixed().y;
     }
 
-    public Vector2 GetJoyStics_KeyPrimary()
+    public Vector2 GetJoyStickPrimary()
     {
-        return v2_JoyStics_KeyValue_Primary;
+        return v2_JoyStickValuePrimary;
     }
 
-    public float GetJoyStics_KeyPrimaryX()
+    public float GetJoyStickPrimaryX()
     {
-        return GetJoyStics_KeyPrimary().x;
+        return GetJoyStickPrimary().x;
     }
 
-    public float GetJoyStics_KeyPrimaryY_()
+    public float GetJoyStickPrimaryY()
     {
-        return GetJoyStics_KeyPrimary().y;
+        return GetJoyStickPrimary().y;
     }
 
     #endregion
@@ -116,58 +116,58 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         Vector2 v2_JoyStickLimit_Pos = RectTransformUtility.WorldToScreenPoint(com_Camera, com_JoyStickLimit.position);
         Vector2 v2_JoyStickLimitRadius = com_JoyStickLimit.sizeDelta / 2;
 
-        v2_JoyStics_KeyValue_Primary = (eventData.position - v2_JoyStickLimit_Pos) / (v2_JoyStickLimitRadius * com_Canvas.scaleFactor);
+        v2_JoyStickValuePrimary = (eventData.position - v2_JoyStickLimit_Pos) / (v2_JoyStickLimitRadius * com_Canvas.scaleFactor);
 
         //if (m_LockX)
         //{
-        //    v2_JoyStics_KeyValue_Primary.x = 0f;
+        //    v2_JoyStickValuePrimary.x = 0f;
         //}
 
         //if (m_LockY)
         //{
-        //    v2_JoyStics_KeyValue_Primary.y = 0f;
+        //    v2_JoyStickValuePrimary.y = 0f;
         //}
 
-        if (m_AllowLockXL && v2_JoyStics_KeyValue_Primary.x < 0)
+        if (m_AllowLockXL && v2_JoyStickValuePrimary.x < 0)
         {
-            v2_JoyStics_KeyValue_Primary.x = 0;
+            v2_JoyStickValuePrimary.x = 0;
         }
         else
-        if (m_AllowLockXR && v2_JoyStics_KeyValue_Primary.x > 0)
+        if (m_AllowLockXR && v2_JoyStickValuePrimary.x > 0)
         {
-            v2_JoyStics_KeyValue_Primary.x = 0;
+            v2_JoyStickValuePrimary.x = 0;
         }
 
-        if (m_AllowLockYU && v2_JoyStics_KeyValue_Primary.y > 0)
+        if (m_AllowLockYU && v2_JoyStickValuePrimary.y > 0)
         {
-            v2_JoyStics_KeyValue_Primary.y = 0;
+            v2_JoyStickValuePrimary.y = 0;
         }
         else
-        if (m_AllowLockYD && v2_JoyStics_KeyValue_Primary.y < 0)
+        if (m_AllowLockYD && v2_JoyStickValuePrimary.y < 0)
         {
-            v2_JoyStics_KeyValue_Primary.y = 0;
+            v2_JoyStickValuePrimary.y = 0;
         }
 
-        v2_JoyStics_KeyValue_Fixed = v2_JoyStics_KeyValue_Primary;
+        v2_JoyStickValue_Fixed = v2_JoyStickValuePrimary;
 
-        if (v2_JoyStics_KeyValue_Fixed.magnitude > 0)
+        if (v2_JoyStickValue_Fixed.magnitude > 0)
         {
-            if (v2_JoyStics_KeyValue_Fixed.magnitude > 1)
+            if (v2_JoyStickValue_Fixed.magnitude > 1)
             {
-                v2_JoyStics_KeyValue_Fixed = v2_JoyStics_KeyValue_Fixed.normalized;
+                v2_JoyStickValue_Fixed = v2_JoyStickValue_Fixed.normalized;
             }
         }
         else
         {
-            v2_JoyStics_KeyValue_Fixed = Vector2.zero;
+            v2_JoyStickValue_Fixed = Vector2.zero;
         }
 
-        com_JoyStics_KeyButton.anchoredPosition = v2_JoyStics_KeyValue_Fixed * v2_JoyStickLimitRadius * 1;
+        com_JoyStickButton.anchoredPosition = v2_JoyStickValue_Fixed * v2_JoyStickLimitRadius * 1;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        com_JoyStics_KeyButton.anchoredPosition = Vector2.zero;
+        com_JoyStickButton.anchoredPosition = Vector2.zero;
 
         if (m_AllowAutoReset)
         {

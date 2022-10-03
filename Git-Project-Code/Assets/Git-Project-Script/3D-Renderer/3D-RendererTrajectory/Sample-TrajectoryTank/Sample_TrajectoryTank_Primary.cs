@@ -36,7 +36,7 @@ public class Sample_TrajectoryTanm_KeyPrimary : MonoBehaviour
         }
 
         m_RendererTrajectory = GetComponent<RendererTrajectory>();
-        m_RendererTrajectory.SetTrajectory_toLineRendererClear(comLineRenderer);
+        m_RendererTrajectory.SetTrajectoryLineRendererClear(comLineRenderer);
 
         if (GetComponent<RigidbodyRotation>() == null)
         {
@@ -51,23 +51,23 @@ public class Sample_TrajectoryTanm_KeyPrimary : MonoBehaviour
         //High by Y
         if (Input.GetKey(KeyCode.W))
         {
-            m_RendererTrajectory.SetTrajectory_NextChance(Vector3.up * 0.01f);
+            m_RendererTrajectory.SetTrajectoryNextChance(Vector3.up * 0.01f);
         }
         else
         if (Input.GetKey(KeyCode.S))
         {
-            m_RendererTrajectory.SetTrajectory_NextChance(Vector3.down * 0.01f);
+            m_RendererTrajectory.SetTrajectoryNextChance(Vector3.down * 0.01f);
         }
 
         //Power by X
         if (Input.GetKey(KeyCode.D))
         {
-            m_RendererTrajectory.SetTrajectory_NextChance(transform.right * 0.01f);
+            m_RendererTrajectory.SetTrajectoryNextChance(transform.right * 0.01f);
         }
         else
         if (Input.GetKey(KeyCode.A))
         {
-            m_RendererTrajectory.SetTrajectory_NextChance(transform.right * 0.01f * -1);
+            m_RendererTrajectory.SetTrajectoryNextChance(transform.right * 0.01f * -1);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -76,10 +76,10 @@ public class Sample_TrajectoryTanm_KeyPrimary : MonoBehaviour
             m_BulletClone.transform.position = m_RendererTrajectory.GetTrajectoryStart();
             m_BulletClone.SetActive(true);
 
-            m_RendererTrajectory.SetTrajectory_toRigidbody(
+            m_RendererTrajectory.SetTrajectoryRigidbody(
                 m_BulletClone.GetComponent<Rigidbody>(),
                 m_RendererTrajectory.GetTrajectoryStart(),
-                m_RendererTrajectory.GetTrajectory_Next());
+                m_RendererTrajectory.GetTrajectoryNext());
 
             m_RigidbodyRotation.SetControlLock(false);
         }
@@ -87,6 +87,6 @@ public class Sample_TrajectoryTanm_KeyPrimary : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_RendererTrajectory.SetTrajectory_toLineRenderer(comLineRenderer, com_Rigidbody.drag, false);
+        m_RendererTrajectory.SetTrajectoryLineRenderer(comLineRenderer, com_Rigidbody.drag, false);
     }
 }
