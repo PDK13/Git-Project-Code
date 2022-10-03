@@ -41,9 +41,9 @@ public class ClassString
         return GetStringReplace(m_CloneName, "(Clone)", "");
     }
 
-    public static string GetStringReplaceResources(string m_Resourcem_Path)
+    public static string GetStringReplaceResources(string m_Resources_Path)
     {
-        return GetStringReplace(m_Resourcem_Path, "Assets/resources/", "");
+        return GetStringReplace(m_Resources_Path, "Assets/resources/", "");
     }
 
     #endregion

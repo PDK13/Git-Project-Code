@@ -46,7 +46,7 @@ public class ClassFileIO
         return GetPathApplication() + @"resources\";
     }
 
-    public static string GetPathApplicationResourcemFile(string m_PathFolder, string m_FileName)
+    public static string GetPathApplicationResourcesFile(string m_PathFolder, string m_FileName)
     {
         return GetPathApplicationResource() + m_PathFolder + (m_PathFolder.Equals("") ? "" : (@"\")) + m_FileName + ".txt";
     }
@@ -78,7 +78,7 @@ public class ClassFileIO
 
     public static bool GetCheckFileApplicationResourcesExist(string m_PathFolder, string m_FileName)
     {
-        return GetCheckFileExist(GetPathApplicationResourcemFile(m_PathFolder, m_FileName));
+        return GetCheckFileExist(GetPathApplicationResourcesFile(m_PathFolder, m_FileName));
     }
 
     public static bool GetCheckFileApplicationPersistentExist(string m_PathFolder, string m_FileName)
@@ -124,7 +124,7 @@ public class ClassFileIO
 
     public void SetWriteDataResourceStart(string m_PathFolder, string m_FileName)
     {
-        SetWriteDataStart(GetPathApplicationResourcemFile(m_PathFolder, m_FileName));
+        SetWriteDataStart(GetPathApplicationResourcesFile(m_PathFolder, m_FileName));
     }
 
     public void SetWriteDataPersistentStart(string m_PathFolder, string m_FileName)

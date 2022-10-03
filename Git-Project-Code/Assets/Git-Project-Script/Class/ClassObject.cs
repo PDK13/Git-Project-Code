@@ -41,7 +41,7 @@ public class ClassObject
     //BEWARD:
     //All content(s) in folder(s) "Resources" will be builded to Application, even they m_ightn't be used in Build-Game Application
 
-    public static List<GameObject> GetResourcemPrefab(string m_PathInResources)
+    public static List<GameObject> GetResourcesPrefab(string m_PathInResources)
     {
         GameObject[] m_Prefam_Array = Resources.LoadAll<GameObject>(ClassString.GetStringReplaceResources(m_PathInResources));
         List<GameObject> m_PrefamList = new List<GameObject>();
@@ -49,7 +49,7 @@ public class ClassObject
         return m_PrefamList;
     }
 
-    public static List<Sprite> GetResourcemSprite(string m_PathInResources)
+    public static List<Sprite> GetResourcesSprite(string m_PathInResources)
     {
         Sprite[] m_Sprite_Array = Resources.LoadAll<Sprite>(ClassString.GetStringReplaceResources(m_PathInResources));
         List<Sprite> m_SpriteList = new List<Sprite>();
@@ -57,7 +57,7 @@ public class ClassObject
         return m_SpriteList;
     }
 
-    public static List<TextAsset> GetResourcemTextAsset(string m_PathInResources)
+    public static List<TextAsset> GetResourcesTextAsset(string m_PathInResources)
     {
         TextAsset[] m_TextAsset_Array = Resources.LoadAll<TextAsset>(ClassString.GetStringReplaceResources(m_PathInResources));
         List<TextAsset> m_TextAssetList = new List<TextAsset>();
