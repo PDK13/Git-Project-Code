@@ -6,6 +6,8 @@ public class UIZoomDrag : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
     [SerializeField] private float m_Zoom_Speed = 0.01f;
 
+    private float m_Increment = 0;
+
 #if UNITY_EDITOR
 
     public void Update()
@@ -41,6 +43,8 @@ public class UIZoomDrag : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     private void SetZoom(float m_Increment)
     {
+        this.m_Increment = m_Increment;
+
         if (Camera.main.orthographic)
         {
             Camera.main.orthographicSize = Camera.main.orthographicSize - m_Increment;
@@ -49,5 +53,10 @@ public class UIZoomDrag : MonoBehaviour, IPointerDownHandler, IDragHandler
         {
             Camera.main.fieldOfView = Camera.main.fieldOfView - m_Increment;
         }
+    }
+
+    public float GetIncrement()
+    {
+        return m_Increment;
     }
 }

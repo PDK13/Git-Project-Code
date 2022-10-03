@@ -8,7 +8,7 @@ public class SoundClone : MonoBehaviour
 
     private float m_VolumnPrimary = 1f;
 
-    private void SetComponent_Add()
+    private void SetComponentAdd()
     {
         if (GetComponent<AudioSource>() == null)
         {
@@ -22,7 +22,7 @@ public class SoundClone : MonoBehaviour
 
     public void SetPlaySound_3D(SoundCloneData m_SoundCloneData, Vector2 v2_Pos, float m_Distance)
     {
-        SetComponent_Add();
+        SetComponentAdd();
 
         com_AudioSource.clip = m_SoundCloneData.GetClip();
 
@@ -46,7 +46,7 @@ public class SoundClone : MonoBehaviour
 
     public void SetPlaySound_2D(SoundCloneData m_SoundCloneData)
     {
-        SetComponent_Add();
+        SetComponentAdd();
 
         com_AudioSource.clip = m_SoundCloneData.GetClip();
 

@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody Gravity")]
+[AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody-Gravity")]
 public class RigidbodyGravity : MonoBehaviour
 {
-    [SerializeField] private float m_Gravity_Scale = 1.0f;
+    [SerializeField] private float m_GravityScale = 1.0f;
 
-    [SerializeField] private float m_Gravity_Global = 9.81f;
+    [SerializeField] private float m_GravityGlobal = 9.81f;
 
     private Rigidbody com_Rigidbody;
 
@@ -38,21 +38,21 @@ public class RigidbodyGravity : MonoBehaviour
             return;
         }
 
-        Vector3 m_Gravity = GetGravity_GlobamVector() * GetGravity_Scale();
+        Vector3 m_Gravity = GetGravityGlobamVector() * GetGravityScale();
 
         com_Rigidbody.AddForce(m_Gravity, ForceMode.Acceleration);
     }
 
     #region Set
 
-    public void SetGravity_Scale(float m_Gravity_Scale)
+    public void SetGravityScale(float m_GravityScale)
     {
-        this.m_Gravity_Scale = m_Gravity_Scale;
+        this.m_GravityScale = m_GravityScale;
     }
 
-    public void SetGravity_Global(float m_Gravity_Global)
+    public void SetGravityGlobal(float m_GravityGlobal)
     {
-        this.m_Gravity_Global = m_Gravity_Global;
+        this.m_GravityGlobal = m_GravityGlobal;
     }
 
     public void SetRigidbodyDrag(float m_GravityDrag)
@@ -64,19 +64,19 @@ public class RigidbodyGravity : MonoBehaviour
 
     #region Get
 
-    public float GetGravity_Scale()
+    public float GetGravityScale()
     {
-        return m_Gravity_Scale;
+        return m_GravityScale;
     }
 
-    public float GetGravity_GlobamFloat()
+    public float GetGravityGlobamFloat()
     {
-        return m_Gravity_Global;
+        return m_GravityGlobal;
     }
 
-    public Vector3 GetGravity_GlobamVector()
+    public Vector3 GetGravityGlobamVector()
     {
-        return GetGravity_GlobamFloat() * Vector3.down;
+        return GetGravityGlobamFloat() * Vector3.down;
     }
 
     public float GetRigidbodyDrag()

@@ -144,7 +144,7 @@ public class RendererTrajectory : MonoBehaviour
 
         float m_TimeStep = Time.fixedDeltaTime / Physics.defaultSolverVelocityIterations;
 
-        Vector3 m_Gravity_Accel = m_RigidbodyGravity.GetGravity_GlobamVector() * m_RigidbodyGravity.GetGravity_Scale() * m_TimeStep * m_TimeStep;
+        Vector3 m_GravityAccel = m_RigidbodyGravity.GetGravityGlobamVector() * m_RigidbodyGravity.GetGravityScale() * m_TimeStep * m_TimeStep;
 
         float m_Drag = 1f - m_TimeStep * m_RigidbodyDrag;
 
@@ -156,7 +156,7 @@ public class RendererTrajectory : MonoBehaviour
 
         for (int i = 0; i < m_TrajectoryStep; i++)
         {
-            m_MoveStep += m_Gravity_Accel;
+            m_MoveStep += m_GravityAccel;
 
             m_MoveStep *= m_Drag;
 
@@ -217,7 +217,7 @@ public class RendererTrajectory : MonoBehaviour
 
         float m_XDuration = m_TarketDir.magnitude;
 
-        float m_Gravity = m_RigidbodyGravity.GetGravity_GlobamFloat() * m_RigidbodyGravity.GetGravity_Scale();
+        float m_Gravity = m_RigidbodyGravity.GetGravityGlobamFloat() * m_RigidbodyGravity.GetGravityScale();
 
         float m_Speed_SQR = m_TrajectoryPower * m_TrajectoryPower;
 
@@ -253,7 +253,7 @@ public class RendererTrajectory : MonoBehaviour
             com_Rigidbody.gameObject.AddComponent<RigidbodyGravity>();
         }
 
-        com_Rigidbody.GetComponent<RigidbodyGravity>().SetGravity_Scale(m_RigidbodyGravity.GetGravity_Scale());
+        com_Rigidbody.GetComponent<RigidbodyGravity>().SetGravityScale(m_RigidbodyGravity.GetGravityScale());
         com_Rigidbody.GetComponent<RigidbodyGravity>().SetRigidbodyDrag(m_RigidbodyGravity.GetRigidbodyDrag());
 
         Vector3 m_TrajectoryDir = (m_TrajectoryNext - m_TrajectoryStart) * GetTrajectoryPower();
@@ -267,7 +267,7 @@ public class RendererTrajectory : MonoBehaviour
 
         //com_Rigidbody2D.drag = m_RigidbodyGravity.GetRigidbodyDrag();
         com_Rigidbody2D.mass = 0;
-        com_Rigidbody2D.gravityScale = m_RigidbodyGravity.GetGravity_Scale();
+        com_Rigidbody2D.gravityScale = m_RigidbodyGravity.GetGravityScale();
         com_Rigidbody2D.velocity = v2_TrajectoryDir;
     }
 

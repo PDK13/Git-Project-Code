@@ -179,7 +179,7 @@ public class RigidbodyComponent : MonoBehaviour
     /// m_ove by Velocity
     /// </summary>
     /// <param name="m_Velocity"></param>
-    public void SetRigidbody_Velocity(Vector3 m_Velocity)
+    public void SetRigidbodyVelocity(Vector3 m_Velocity)
     {
         Rigidbody com_Rigidbody = GetComponent<Rigidbody>();
         com_Rigidbody.velocity = m_Velocity;

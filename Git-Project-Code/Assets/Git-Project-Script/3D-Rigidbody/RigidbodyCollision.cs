@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody Collision")]
+[AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody-Collision")]
 public class RigidbodyCollision : MonoBehaviour
 {
-    [SerializeField] private bool m_AllowCollision_PassingThrough = true;
+    [SerializeField] private bool m_AllowCollisionPassingThrough = true;
 
-    [SerializeField] private bool m_AllowRigidbody_MovingFast = false;
+    [SerializeField] private bool m_AllowRigidbodyMovingFast = false;
 
     private Rigidbody com_Rigidbody;
 
@@ -17,14 +17,14 @@ public class RigidbodyCollision : MonoBehaviour
         {
             com_Rigidbody = GetComponent<Rigidbody>();
 
-            SetRigidbody_Component_3D();
+            SetRigidbodyComponent3D();
         }
         else
         if (GetComponent<Rigidbody2D>() != null)
         {
             com_Rigidbody2D = GetComponent<Rigidbody2D>();
 
-            SetRigidbody_Component_2D();
+            SetRigidbodyComponent2D();
         }
         else
         {
@@ -32,14 +32,14 @@ public class RigidbodyCollision : MonoBehaviour
         }
     }
 
-    private void SetRigidbody_Component_3D()
+    private void SetRigidbodyComponent3D()
     {
-        if (m_AllowCollision_PassingThrough && m_AllowRigidbody_MovingFast)
+        if (m_AllowCollisionPassingThrough && m_AllowRigidbodyMovingFast)
         {
             com_Rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         }
         else
-        if (m_AllowCollision_PassingThrough)
+        if (m_AllowCollisionPassingThrough)
         {
             com_Rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         }
@@ -49,14 +49,14 @@ public class RigidbodyCollision : MonoBehaviour
         }
     }
 
-    private void SetRigidbody_Component_2D()
+    private void SetRigidbodyComponent2D()
     {
-        if (m_AllowCollision_PassingThrough && m_AllowRigidbody_MovingFast)
+        if (m_AllowCollisionPassingThrough && m_AllowRigidbodyMovingFast)
         {
             com_Rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         }
         else
-        if (m_AllowCollision_PassingThrough)
+        if (m_AllowCollisionPassingThrough)
         {
             com_Rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         }
