@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
@@ -13,95 +14,57 @@ public class ClassFileIO
         SetReadDataClear();
     }
 
-    #region ================================================================== File Path 
+    #region ================================================================== File IO Path 
 
-    public static string GetPathDisk(char m_PathDisk)
+    public static string GetPath(FileIOPathType m_FileIOPathType, string m_FileIOName, params string[] m_FileIOPath)
     {
-        return m_PathDisk + @":\";
+        string m_Path = "";
+
+        for (int i = 0; i < m_FileIOPath.Length; i++)
+        {
+            m_Path += m_FileIOPath[i] + @"\";
+        }
+
+        m_Path += m_FileIOName + ".txt";
+
+        switch (m_FileIOPathType)
+        {
+            case FileIOPathType.Persistent:
+                m_Path = Application.persistentDataPath + @"\" + m_Path;
+                break;
+            case FileIOPathType.Resources:
+                m_Path = Application.dataPath + @"\resources\" + m_Path;
+                break;
+            case FileIOPathType.Document:
+                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + m_Path;
+                break;
+            case FileIOPathType.Picture:
+                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\" + m_Path;
+                break;
+            case FileIOPathType.Music:
+                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + @"\" + m_Path;
+                break;
+            case FileIOPathType.Video:
+                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + @"\" + m_Path;
+                break;
+        }
+
+        Debug.LogFormat("Get Path: {0}", m_Path);
+        return m_Path;
     }
 
-    public static string GetPathFile(string sName, string m_Type, string m_FileExtend)
-    {
-        return sName + ((m_Type != null) ? "_" : "") + m_Type + "." + m_FileExtend;
-    }
-
-    #region Application Data Path 
-
-    public static string GetPathApplication()
-    {
-        return Application.dataPath + @"\";
-    }
-
-    #endregion
-
-    #region Resource Data Path (Access Read / Write in Editor, but just Access Read in Application)
-
-    public static string GetPathApplication_ProjectData()
-    {
-        return GetPathApplication() + @"ProjectData\";
-    }
-
-    public static string GetPathApplicationResource()
-    {
-        return GetPathApplication() + @"resources\";
-    }
-
-    public static string GetPathApplicationResourcesFile(string m_PathFolder, string m_FileName)
-    {
-        return GetPathApplicationResource() + m_PathFolder + (m_PathFolder.Equals("") ? "" : (@"\")) + m_FileName + ".txt";
-    }
-
-    #endregion
-
-    #region Persistent Data Path (Access to Project or Application)
-
-    public static string GetPathApplicationPersistent()
-    {
-        return Application.persistentDataPath + @"\";
-    }
-
-    public static string GetPathApplicationPersistentFile(string m_PathFolder, string m_FileName)
-    {
-        return GetPathApplicationPersistent() + m_PathFolder + (m_PathFolder.Equals("") ? "" : (@"\")) + m_FileName + ".txt";
-    }
-
-    #endregion
-
-    #endregion
-
-    #region ================================================================== File Exist
-
-    public static bool GetCheckFileExist(string m_Path)
+    public static bool GetCheckPathExist(string m_Path)
     {
         return File.Exists(m_Path);
     }
 
-    public static bool GetCheckFileApplicationResourcesExist(string m_PathFolder, string m_FileName)
-    {
-        return GetCheckFileExist(GetPathApplicationResourcesFile(m_PathFolder, m_FileName));
-    }
-
-    public static bool GetCheckFileApplicationPersistentExist(string m_PathFolder, string m_FileName)
-    {
-        return GetCheckFileExist(GetPathApplicationPersistentFile(m_PathFolder, m_FileName));
-    }
-
     #endregion
 
-    #region ================================================================== File Custom
-
-    #region File Custom Write 
+    #region ================================================================== File IO Write 
 
     private string m_TextWrite = "";
 
-    public void SetWriteDataClear()
-    {
-        m_TextWrite = "";
-    }
-
-    #region File Custom Write Start
-
-    public static void SetWriteDatatoFile(string m_Path, string m_Data)
+    private void SetWriteDatatoFile(string m_Path, string m_Data)
     {
         using (FileStream m_yFile = File.Create(m_Path))
         {
@@ -117,24 +80,15 @@ public class ClassFileIO
         }
     }
 
+    public void SetWriteDataClear()
+    {
+        m_TextWrite = "";
+    }
+
     public void SetWriteDataStart(string m_Path)
     {
         SetWriteDatatoFile(m_Path, GetWriteDataString());
-    }
-
-    public void SetWriteDataResourceStart(string m_PathFolder, string m_FileName)
-    {
-        SetWriteDataStart(GetPathApplicationResourcesFile(m_PathFolder, m_FileName));
-    }
-
-    public void SetWriteDataPersistentStart(string m_PathFolder, string m_FileName)
-    {
-        SetWriteDataStart(GetPathApplicationPersistentFile(m_PathFolder, m_FileName));
-    }
-
-    #endregion
-
-    #region File Custom Write Set Data
+    } //Call Last
 
     public void SetWriteDataAdd(string m_DataAdd)
     {
@@ -206,10 +160,6 @@ public class ClassFileIO
         SetWriteDataAdd(ClassString.GetDataVector3IntEncypt(m_DataAdd, m_Key));
     }
 
-    #endregion
-
-    #region File Custom Write Get String
-
     public string GetWriteDataString()
     {
         return m_TextWrite;
@@ -217,22 +167,12 @@ public class ClassFileIO
 
     #endregion
 
-    #endregion
-
-    #region File Custom Read 
+    #region ================================================================== File IO Read 
 
     private List<string> lm_TextRead = new List<string>();
     private int m_ReadRun = -1;
 
-    public void SetReadDataClear()
-    {
-        lm_TextRead = new List<string>();
-        m_ReadRun = -1;
-    }
-
-    #region File Custom Read Start
-
-    public static List<string> GetReadDatafromFile(string m_Path)
+    private List<string> GetReadDatafromFile(string m_Path)
     {
         List<string> lm_TextRead = new List<string>();
 
@@ -257,30 +197,16 @@ public class ClassFileIO
         }
     }
 
+    public void SetReadDataClear()
+    {
+        lm_TextRead = new List<string>();
+        m_ReadRun = -1;
+    }
+
     public void SetReadDataStart(string m_Path)
     {
         lm_TextRead = GetReadDatafromFile(m_Path);
-    }
-
-    public void SetReadDataPersistentStart(string m_PathFolder, string m_FileName)
-    {
-        SetReadDataStart(GetPathApplicationPersistentFile(m_PathFolder, m_FileName));
-    }
-
-    public void SetReadDataResourceStart(string m_PathFolder, string m_FileName)
-    {
-        //Debug.Log("SetReadDataStart: " + m_PathFolder + (m_PathFolder.Equals("") ? "" : (@"\")) + m_FileName);
-
-        TextAsset t_TextFile = (TextAsset)Resources.Load(
-            m_PathFolder + (m_PathFolder.Equals("") ? "" : (@"\")) + m_FileName,
-            typeof(TextAsset));
-
-        lm_TextRead = ClassString.GetStrinm_SplitList(t_TextFile.text, '\n');
-    }
-
-    #endregion
-
-    #region File Custom Read Get Data
+    } //Call First
 
     public string GetReadDataAutoString()
     {
@@ -346,18 +272,10 @@ public class ClassFileIO
         return GetReadDataAutoCurrent() >= GetReadDataList().Count - 1;
     }
 
-    #endregion
-
-    #region File Custom Read Get List
-
     public List<string> GetReadDataList()
     {
         return lm_TextRead;
     }
-
-    #endregion
-
-    #endregion
 
     #endregion
 
@@ -367,7 +285,7 @@ public class ClassFileIO
     //Type "TextAsset" is a "Text Document" File or "*.txt" File
 
     //SAMPLE:
-    //ClassData m_yData = ClassFileIO.GetDatafromJson<ClassData>(m_JsonDataTextDocument);
+    //ClassData m_Data = ClassFileIO.GetDatafromJson<ClassData>(m_JsonDataTextDocument);
 
     public static ClassData GetDataJson<ClassData>(TextAsset m_JsonDataTextDocument)
     {
@@ -384,10 +302,16 @@ public class ClassFileIO
         return JsonUtility.ToJson(m_JsonDataClass);
     }
 
-    public static void SetDataJsonFile(string m_Path, object m_JsonDataClass)
-    {
-        SetWriteDatatoFile(m_Path, GetDataJson(m_JsonDataClass));
-    }
-
     #endregion
+}
+
+public enum FileIOPathType
+{
+    None        = 0,
+    Persistent  = 1,
+    Resources   = 2,
+    Document    = 3,
+    Picture     = 4,
+    Music       = 5,
+    Video       = 6
 }

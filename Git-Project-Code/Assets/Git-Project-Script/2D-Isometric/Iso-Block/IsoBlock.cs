@@ -46,14 +46,12 @@ public class IsoBlock : MonoBehaviour
 
     private void FixedUpdate()
     {
-        SetPosTransform();
+        SetIsoTransform();
     }
 
-    #region Pos 
+    #region ================================================================== Iso
 
-    #region Pos main 
-
-    private void SetPosTransform()
+    private void SetIsoTransform()
     {
         //if (cs_World != null)
         //{
@@ -61,7 +59,7 @@ public class IsoBlock : MonoBehaviour
         //    m_Square = cs_World.GetFix_Square();
         //}
 
-        Vector3 m_PosTransform = GetPosScene(m_Pos);
+        Vector3 m_PosTransform = GetIsoScene(m_Pos);
 
         m_PosTransform.x *= m_Square.x;
         m_PosTransform.y *= m_Square.y;
@@ -73,10 +71,10 @@ public class IsoBlock : MonoBehaviour
 
         transform.position = m_PosTransform;
 
-        SetPosMatrix();
+        SetIsoMatrix();
     }
 
-    private void SetPosMatrix()
+    private void SetIsoMatrix()
     {
         float m_X = (Mathf.Abs((int)m_Pos.x - m_Pos.x));
 
@@ -115,7 +113,7 @@ public class IsoBlock : MonoBehaviour
         }
     }
 
-    public static Vector3 GetPosScene(Vector3 m_PosWorld)
+    private Vector3 GetIsoScene(Vector3 m_PosWorld)
     {
         Vector3 m_FixTransform = new Vector3(
             m_PosWorld.x + m_PosWorld.y,
@@ -125,26 +123,20 @@ public class IsoBlock : MonoBehaviour
         return m_FixTransform;
     }
 
-    public static Vector2 GetPosWorld(Vector2 m_PosScene)
+    public void SetIsoFix(Vector3 m_Fix)
     {
-        float m_YWorld = m_PosScene.y + m_PosScene.x / 2;
-
-        float m_XWorld = m_PosScene.x - m_YWorld;
-
-        return new Vector3(m_XWorld, m_YWorld, 0);
+        this.m_Fix = m_Fix;
     }
 
     #endregion
 
-    #region Pos on Matrix Float 
-
-    #region Set Pos 
+    #region ================================================================== Pos Set
 
     public void SetPos(Vector3 m_Pos)
     {
         this.m_Pos = m_Pos;
 
-        SetPosTransform();
+        SetIsoTransform();
     }
 
     public void SetPos(float m_X, float m_Y, float m_H)
@@ -156,26 +148,26 @@ public class IsoBlock : MonoBehaviour
     {
         m_Pos.x = m_X;
 
-        SetPosTransform();
+        SetIsoTransform();
     }
 
     public void SetPosY(float m_Y)
     {
         m_Pos.y = m_Y;
 
-        SetPosTransform();
+        SetIsoTransform();
     }
 
     public void SetPosH(float m_H)
     {
         m_Pos.z = m_H;
 
-        SetPosTransform();
+        SetIsoTransform();
     }
 
     #endregion
 
-    #region Set Pos Add 
+    #region ================================================================== Pos Add 
 
     public void SetPosAdd(Vector3 m_PosAdd)
     {
@@ -191,26 +183,31 @@ public class IsoBlock : MonoBehaviour
     {
         m_Pos.x += m_AddX;
 
-        SetPosTransform();
+        SetIsoTransform();
     }
 
     public void SetPosAddY(float m_AddY)
     {
         m_Pos.y += m_AddY;
 
-        SetPosTransform();
+        SetIsoTransform();
     }
 
     public void SetPosAddH(float m_AddH)
     {
         m_Pos.z += m_AddH;
 
-        SetPosTransform();
+        SetIsoTransform();
     }
 
     #endregion
 
-    #region Get Pos 
+    #region ================================================================== Get Pos 
+
+    public Vector3Int GetPosOnMatrixCurrent()
+    {
+        return m_PosMatrix;
+    }
 
     public Vector3 GetPosCurrent()
     {
@@ -234,230 +231,128 @@ public class IsoBlock : MonoBehaviour
 
     #endregion
 
-    #endregion
+    #region ================================================================== Pos Primary
 
-    #region Pos on Matrix Int 
-
-    public Vector3Int GetPosOnMatrixCurrent()
-    {
-        return m_PosMatrix;
-    }
-
-    #region Pos on Matrix Primary 
-
-    public void SetPosOnMatrixPrimary(Vector3Int m_Pos)
+    public void SetPrimary(Vector3Int m_Pos)
     {
         m_PosMatrixPrimary = m_Pos;
     }
 
-    public Vector3Int GetPosOnMatrixPrimary()
+    public void SetPrimaryReset()
+    {
+        SetPos(GetPrimary());
+    }
+
+    public Vector3Int GetPrimary()
     {
         return m_PosMatrixPrimary;
     }
 
-    /// <summary>
-    /// Check Pos on Matrix Current same on Pos on Matrix Primary
-    /// </summary>
-    /// <returns></returns>
-    public bool GetCheckPosMatrixStayPrimary()
+    public bool GetCheckPrimaryStay()
     {
-        return GetPosOnMatrixPrimary() == GetPosOnMatrixCurrent();
-    }
-
-    /// <summary>
-    /// Reset Pos Current to Pos on Matrix Primary
-    /// </summary>
-    public void SetPosMatrixResetPrimary()
-    {
-        SetPos(GetPosOnMatrixPrimary());
-    }
-
-    #endregion
-
-    #endregion
-
-    public void SetFix(Vector3 m_Fix)
-    {
-        this.m_Fix = m_Fix;
+        return GetPrimary() == GetPosOnMatrixCurrent();
     }
 
     #endregion
 }
 
-public class IsoClassDir
+public enum IsoDir
 {
-    enum IsoDir
+    None    = 0,
+    Up      = 1,
+    Down    = 2,
+    Left    = 3,
+    Right   = 4,
+    Top     = 5,
+    Bot     = 6,
+}
+
+[System.Serializable]
+public class IsoPos
+{
+    public float m_PosUDX = 0;
+    public float m_PosLRY = 0;
+    public float m_PosTBH = 0;
+}
+
+public class IsoDirVector
+{
+    public static readonly Vector3Int m_DirN  = new Vector3Int( 0,  0,  0);
+    public static readonly Vector3Int m_DirUX = new Vector3Int(-1,  0,  0);
+    public static readonly Vector3Int m_DirDX = new Vector3Int(+1,  0,  0);
+    public static readonly Vector3Int m_DirLY = new Vector3Int( 0, -1,  0);
+    public static readonly Vector3Int m_DirRY = new Vector3Int( 0, +1,  0);
+    public static readonly Vector3Int m_DirTH = new Vector3Int( 0,  0, +1);
+    public static readonly Vector3Int m_DirBH = new Vector3Int( 0,  0, -1);
+
+    public static IsoDir GetDir(Vector3Int m_Dir)
     {
-        Up,
-        Down,
-        Left,
-        Right,
-        Top,
-        Bot
+        if (m_Dir == m_DirUX)
+        {
+            return IsoDir.Up;
+        }
+
+        if (m_Dir == m_DirDX)
+        {
+            return IsoDir.Down;
+        }
+
+        if (m_Dir == m_DirLY)
+        {
+            return IsoDir.Left;
+        }
+
+        if (m_Dir == m_DirRY)
+        {
+            return IsoDir.Right;
+        }
+
+        if (m_Dir == m_DirTH)
+        {
+            return IsoDir.Top;
+        }
+
+        if (m_Dir == m_DirBH)
+        {
+            return IsoDir.Bot;
+        }
+
+        return IsoDir.None;
     }
 
-    /// <summary>
-    /// Dir(0, 0, 0) on ometric Block
-    /// </summary>
-    public static readonly Vector3Int m_DirNone = new Vector3Int(0, 0, 0);
-
-    /// <summary>
-    /// Dir(0, 0, 0) on ometric Block
-    /// </summary>
-    public static readonly string m_None = "N";
-
-    /// <summary>
-    /// Dir(-1, 0, 0) on ometric Block
-    /// </summary>
-    public static readonly Vector3Int m_DirUX = new Vector3Int(-1, 0, 0);
-
-    /// <summary>
-    /// Dir(-1, 0, 0) on ometric Block
-    /// </summary>
-    public static readonly string m_UX = "U";
-
-    /// <summary>
-    /// Dir(+1, 0, 0) on ometric Block
-    /// </summary>
-    /// <returns></returns>
-    public static readonly Vector3Int m_DirDX = new Vector3Int(1, 0, 0);
-
-    /// <summary>
-    /// Dir(+1, 0, 0) on ometric Block
-    /// </summary>
-    /// <returns></returns>
-    public static readonly string m_DX = "D";
-
-    /// <summary>
-    /// Dir(+1, 0, 0) on ometric Block
-    /// </summary>
-    /// <returns></returns>
-    public static readonly Vector3Int m_DirLY = new Vector3Int(0, -1, 0);
-
-    /// <summary>
-    /// Dir(0, -1, 0) on ometric Block
-    /// </summary>
-    public static readonly string m_LY = "L";
-
-    /// <summary>
-    /// Dir(0, +1, 0) on ometric Block
-    /// </summary>
-    public static readonly Vector3Int m_DirRY = new Vector3Int(0, 1, 0);
-
-    /// <summary>
-    /// Dir(0, +1, 0) on ometric Block
-    /// </summary>
-    public static readonly string m_RY = "R";
-
-    /// <summary>
-    /// Dir(0, 0, +1) on ometric Block
-    /// </summary>
-    public static readonly Vector3Int m_DirTH = new Vector3Int(0, 0, 1);
-
-    /// <summary>
-    /// Dir(0, 0, +1) on ometric Block
-    /// </summary>
-    public static readonly string m_TH = "T";
-
-    /// <summary>
-    /// Dir(0, 0, -1) on ometric Block
-    /// </summary>
-    public static readonly Vector3Int m_DirBH = new Vector3Int(0, 0, -1);
-
-    /// <summary>
-    /// Dir(0, 0, -1) on ometric Block
-    /// </summary>
-    public static readonly string m_BH = "B";
-
-    public static string GetDirEncypt(Vector3Int m_Dir)
+    public static Vector3Int GetDir(IsoDir m_Dir)
     {
-        if (m_Dir == IsoClassDir.m_DirUX)
+        if (m_Dir == IsoDir.Up)
         {
-            return m_UX;
+            return m_DirUX;
         }
 
-        if (m_Dir == IsoClassDir.m_DirDX)
+        if (m_Dir == IsoDir.Down)
         {
-            return m_DX;
+            return m_DirDX;
         }
 
-        if (m_Dir == IsoClassDir.m_DirLY)
+        if (m_Dir == IsoDir.Left)
         {
-            return m_LY;
+            return m_DirLY;
         }
 
-        if (m_Dir == IsoClassDir.m_DirRY)
+        if (m_Dir == IsoDir.Right)
         {
-            return m_RY;
+            return m_DirRY;
         }
 
-        if (m_Dir == IsoClassDir.m_DirTH)
+        if (m_Dir == IsoDir.Top)
         {
-            return m_TH;
+            return m_DirTH;
         }
 
-        if (m_Dir == IsoClassDir.m_DirBH)
+        if (m_Dir == IsoDir.Bot)
         {
-            return m_BH;
+            return m_DirBH;
         }
 
-        return m_None;
+        return m_DirN;
     }
 
-    public static Vector3Int GetDirDencyt(string m_Dir)
-    {
-        if (m_Dir == m_UX)
-        {
-            return IsoClassDir.m_DirUX;
-        }
-
-        if (m_Dir == m_DX)
-        {
-            return IsoClassDir.m_DirDX;
-        }
-
-        if (m_Dir == m_LY)
-        {
-            return IsoClassDir.m_DirLY;
-        }
-
-        if (m_Dir == m_RY)
-        {
-            return IsoClassDir.m_DirRY;
-        }
-
-        if (m_Dir == m_BH)
-        {
-            return IsoClassDir.m_DirBH;
-        }
-
-        if (m_Dir == m_TH)
-        {
-            return IsoClassDir.m_DirTH;
-        }
-
-        return new Vector3Int();
-    }
-
-    public static Vector3 GetVectorOne(Vector3 m_Vector)
-    {
-        Vector3 m_VectorChance = m_Vector;
-
-        if (m_VectorChance.x != 0)
-        {
-            m_VectorChance.x /= Mathf.Abs(m_VectorChance.x);
-        }
-
-        if (m_VectorChance.y != 0)
-        {
-            m_VectorChance.y /= Mathf.Abs(m_VectorChance.y);
-        }
-
-        if (m_VectorChance.z != 0)
-        {
-            m_VectorChance.z /= Mathf.Abs(m_VectorChance.z);
-        }
-
-        return m_VectorChance;
-    }
 }

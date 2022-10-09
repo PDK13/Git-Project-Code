@@ -402,7 +402,7 @@ public class ClassAIML
     /// <returns></returns>
     public bool GetCheckFileExist(string m_Path)
     {
-        return ClassFileIO.GetCheckFileExist(m_Path);
+        return ClassFileIO.GetCheckPathExist(m_Path);
     }
 
     /// <summary>

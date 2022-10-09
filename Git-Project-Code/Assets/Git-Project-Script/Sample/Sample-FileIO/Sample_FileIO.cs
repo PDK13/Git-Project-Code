@@ -18,7 +18,7 @@ public class Sample_FileIO : MonoBehaviour
     {
         cs_File = new ClassFileIO();
 
-        m_PathFile = ClassFileIO.GetPathApplicationPersistent() + ClassFileIO.GetPathFile("HelloWorld", "", "txt");
+        m_PathFile = ClassFileIO.GetPath(FileIOPathType.Document, "HelloWorld");
 
         //m_PathFile = ClassFileIO.GetPathFileWriteToResources("GameSaved", "HelloWorld");
     }
