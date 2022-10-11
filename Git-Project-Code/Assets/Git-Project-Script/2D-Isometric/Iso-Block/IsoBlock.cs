@@ -131,27 +131,6 @@ public class IsoBlock : MonoBehaviour
         SetIsoTransform();
     }
 
-    public void SetPosX(float m_PosX)
-    {
-        m_Pos.m_PosUDX = m_PosX;
-
-        SetIsoTransform();
-    }
-
-    public void SetPosY(float m_PosY)
-    {
-        m_Pos.m_PosLRY = m_PosY;
-
-        SetIsoTransform();
-    }
-
-    public void SetPosH(float m_PosH)
-    {
-        m_Pos.m_PosTBH = m_PosH;
-
-        SetIsoTransform();
-    }
-
     #endregion
 
     #region ================================================================== Pos Add 
@@ -170,25 +149,18 @@ public class IsoBlock : MonoBehaviour
         SetIsoTransform();
     }
 
-    public void SetPosAddX(float m_PosAddX)
-    {
-        m_Pos.m_PosUDX += m_PosAddX;
+    #endregion
 
-        SetIsoTransform();
+    #region ================================================================== Pos Primary
+
+    public void SetPosPrimary(IsoPos m_Pos)
+    {
+        m_PosPrimary = m_Pos;
     }
 
-    public void SetPosAddY(float m_PosAddY)
+    public void SetPosPrimaryReset()
     {
-        m_Pos.m_PosLRY += m_PosAddY;
-
-        SetIsoTransform();
-    }
-
-    public void SetPosAddH(float m_PosAddH)
-    {
-        m_Pos.m_PosTBH += m_PosAddH;
-
-        SetIsoTransform();
+        SetPos(GetPosPrimary());
     }
 
     #endregion
@@ -203,35 +175,6 @@ public class IsoBlock : MonoBehaviour
     public IsoPos GetPosMatrixCurrent()
     {
         return m_PosMatrix;
-    }
-
-    public float GetPosCurrentX()
-    {
-        return GetPosCurrent().m_PosUDX;
-    }
-
-    public float GetPosCurrentY()
-    {
-        return GetPosCurrent().m_PosLRY;
-    }
-
-    public float GetPosCurrentH()
-    {
-        return GetPosCurrent().m_PosTBH;
-    }
-
-    #endregion
-
-    #region ================================================================== Pos Primary
-
-    public void SetPosPrimary(IsoPos m_Pos)
-    {
-        m_PosPrimary = m_Pos;
-    }
-
-    public void SetPosPrimaryReset()
-    {
-        SetPos(GetPosPrimary());
     }
 
     public IsoPos GetPosPrimary()
@@ -275,21 +218,14 @@ public class IsoPos
         this.m_PosTBH = 0;
     }
 
-    public IsoPos(float m_PosUDX, float m_PosLRY, float m_PosTBH)
-    {
-        SetPos(m_PosUDX, m_PosLRY, m_PosTBH);
-    }
-
     public IsoPos(IsoPos m_Pos)
     {
         SetPos(m_Pos);
     }
 
-    public void SetPos(float m_PosUDX, float m_PosLRY, float m_PosTBH)
+    public IsoPos(float m_PosUDX, float m_PosLRY, float m_PosTBH)
     {
-        this.m_PosUDX = m_PosUDX;
-        this.m_PosLRY = m_PosLRY;
-        this.m_PosTBH = m_PosTBH;
+        SetPos(m_PosUDX, m_PosLRY, m_PosTBH);
     }
 
     public void SetPos(IsoPos m_Pos)
@@ -299,11 +235,11 @@ public class IsoPos
         this.m_PosTBH = m_Pos.m_PosTBH;
     }
 
-    public void SetPosAdd(float m_PosUDX, float m_PosLRY, float m_PosTBH)
+    public void SetPos(float m_PosUDX, float m_PosLRY, float m_PosTBH)
     {
-        this.m_PosUDX += m_PosUDX;
-        this.m_PosLRY += m_PosLRY;
-        this.m_PosTBH += m_PosTBH;
+        this.m_PosUDX = m_PosUDX;
+        this.m_PosLRY = m_PosLRY;
+        this.m_PosTBH = m_PosTBH;
     }
 
     public void SetPosAdd(IsoPos m_Pos)
@@ -311,6 +247,13 @@ public class IsoPos
         this.m_PosUDX += m_Pos.m_PosUDX;
         this.m_PosLRY += m_Pos.m_PosLRY;
         this.m_PosTBH += m_Pos.m_PosTBH;
+    }
+
+    public void SetPosAdd(float m_PosUDX, float m_PosLRY, float m_PosTBH)
+    {
+        this.m_PosUDX += m_PosUDX;
+        this.m_PosLRY += m_PosLRY;
+        this.m_PosTBH += m_PosTBH;
     }
 
     public IsoPos GetPos()
