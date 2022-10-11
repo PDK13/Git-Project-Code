@@ -1,55 +1,52 @@
 using UnityEngine;
 
+#if UNITY_EDITOR
+
+[ExecuteAlways]
+
+#endif
+
 public class IsoBlock : MonoBehaviour
 {
-    #region Pos
-
     [Header("Pos Manager")]
 
     [Tooltip("Pos on World")]
-    [SerializeField]
-    private Vector3 m_Pos = new Vector3();
 
-    [Header("Pos Matrix Manager")]
+    [SerializeField] private IsoPos m_Pos = new IsoPos();
 
-    [Tooltip("Round to Uper on Matrix")]
-    [SerializeField]
-    [Range(0.5f, 0.6f)]
-    private float m_PosMatrixMax = 0.55f;
+    [SerializeField] private Vector3 m_Centre = new Vector3(0f, 0f, 0f);
 
-    [Tooltip("Round to Lower on Matrix")]
-    [SerializeField]
-    [Range(0.4f, 0.5f)]
-    private float m_PosMatrixMin = 0.45f;
+    [Header("Pos on Matrix")]
 
-    [Tooltip("Pos Primary on Matrix")]
-    private Vector3Int m_PosMatrixPrimary = new Vector3Int();
+    [SerializeField] private IsoPos m_PosMatrix = new IsoPos();
 
-    [Tooltip("Pos on Matrix")]
-    private Vector3Int m_PosMatrix = new Vector3Int();
+    [SerializeField] [Range(0.5f, 0.6f)] private float m_RoundUpper = 0.55f;
 
-    [Header("Pos Fix Manager")]
+    [SerializeField] [Range(0.4f, 0.5f)] private float m_RoundLower = 0.45f;
 
-    [Tooltip("Fix Block Centre")]
-    [SerializeField]
-    private Vector3 m_Fix = new Vector3(0f, 0f, 0f);
+    [SerializeField] private Vector3 m_Scale = new Vector3(1f, 1f, 1f);
 
-    [Tooltip("Fix Block Distance")]
-    [SerializeField]
-    private Vector3 m_Square = new Vector3(1f, 1f, 1f);
+    private IsoPos m_PosPrimary = new IsoPos();
 
-    [Tooltip("Pos Block Offset")]
-    [SerializeField]
-    private Vector3 m_Offset = new Vector3(0f, 0f, 0f);
-
-    #endregion
+#if UNITY_EDITOR
 
     private void FixedUpdate()
     {
         SetIsoTransform();
     }
 
+#endif
+
     #region ================================================================== Iso
+
+    private Vector3 GetIsoScene(IsoPos m_PosWorld)
+    {
+        float m_PosX = m_PosWorld.m_PosUDX + m_PosWorld.m_PosLRY;
+        float m_PosY = 0.5f * (m_PosWorld.m_PosLRY - m_PosWorld.m_PosUDX) + m_PosWorld.m_PosTBH;
+        float m_Z = (m_PosWorld.m_PosLRY - m_PosWorld.m_PosUDX) - m_PosWorld.m_PosTBH;
+
+        return new Vector3(m_PosX, m_PosY, m_Z);
+    }
 
     private void SetIsoTransform()
     {
@@ -61,13 +58,11 @@ public class IsoBlock : MonoBehaviour
 
         Vector3 m_PosTransform = GetIsoScene(m_Pos);
 
-        m_PosTransform.x *= m_Square.x;
-        m_PosTransform.y *= m_Square.y;
-        m_PosTransform.z *= m_Square.z;
+        m_PosTransform.x *= m_Scale.x;
+        m_PosTransform.y *= m_Scale.y;
+        m_PosTransform.z *= m_Scale.z;
 
-        m_PosTransform += m_Offset;
-
-        m_PosTransform += m_Fix;
+        m_PosTransform += m_Centre;
 
         transform.position = m_PosTransform;
 
@@ -76,91 +71,83 @@ public class IsoBlock : MonoBehaviour
 
     private void SetIsoMatrix()
     {
-        float m_X = (Mathf.Abs((int)m_Pos.x - m_Pos.x));
+        float m_PosX = (Mathf.Abs((int)m_Pos.m_PosUDX - m_Pos.m_PosUDX));
 
-        if (m_X > m_PosMatrixMax)
+        if (m_PosX > m_RoundUpper)
         {
-            m_PosMatrix.x = (int)m_Pos.x + 1;
+            m_PosMatrix.m_PosUDX = (int)m_Pos.m_PosUDX + 1;
         }
         else
-        if (m_X < m_PosMatrixMin)
+        if (m_PosX < m_RoundLower)
         {
-            m_PosMatrix.x = (int)m_Pos.x;
+            m_PosMatrix.m_PosUDX = (int)m_Pos.m_PosUDX;
         }
 
-        float m_Y = (Mathf.Abs((int)m_Pos.y - m_Pos.y));
+        float m_PosY = (Mathf.Abs((int)m_Pos.m_PosLRY - m_Pos.m_PosLRY));
 
-        if (m_Y > m_PosMatrixMax)
+        if (m_PosY > m_RoundUpper)
         {
-            m_PosMatrix.y = (int)m_Pos.y + 1;
-        }
-        else
-        if (m_Y < m_PosMatrixMin)
-        {
-            m_PosMatrix.y = (int)m_Pos.y;
-        }
-
-        float m_H = (Mathf.Abs((int)m_Pos.z - m_Pos.z));
-
-        if (m_H > m_PosMatrixMax)
-        {
-            m_PosMatrix.z = (int)m_Pos.z + 1;
+            m_PosMatrix.m_PosLRY = (int)m_Pos.m_PosLRY + 1;
         }
         else
-        if (m_H < m_PosMatrixMin)
+        if (m_PosY < m_RoundLower)
         {
-            m_PosMatrix.z = (int)m_Pos.z;
+            m_PosMatrix.m_PosLRY = (int)m_Pos.m_PosLRY;
         }
-    }
 
-    private Vector3 GetIsoScene(Vector3 m_PosWorld)
-    {
-        Vector3 m_FixTransform = new Vector3(
-            m_PosWorld.x + m_PosWorld.y,
-            0.5f * (m_PosWorld.y - m_PosWorld.x) + m_PosWorld.z,
-            (m_PosWorld.y - m_PosWorld.x) - m_PosWorld.z);
+        float m_PosH = (Mathf.Abs((int)m_Pos.m_PosTBH - m_Pos.m_PosTBH));
 
-        return m_FixTransform;
+        if (m_PosH > m_RoundUpper)
+        {
+            m_PosMatrix.m_PosTBH = (int)m_Pos.m_PosTBH + 1;
+        }
+        else
+        if (m_PosH < m_RoundLower)
+        {
+            m_PosMatrix.m_PosTBH = (int)m_Pos.m_PosTBH;
+        }
     }
 
     public void SetIsoFix(Vector3 m_Fix)
     {
-        this.m_Fix = m_Fix;
+        this.m_Centre = m_Fix;
     }
 
     #endregion
 
     #region ================================================================== Pos Set
 
-    public void SetPos(Vector3 m_Pos)
+    public void SetPos(IsoPos m_Pos)
     {
-        this.m_Pos = m_Pos;
+        this.m_Pos.SetPos(m_Pos);
 
         SetIsoTransform();
     }
 
-    public void SetPos(float m_X, float m_Y, float m_H)
+    public void SetPos(float m_PosX, float m_PosY, float m_PosH)
     {
-        SetPos(new Vector3(m_X, m_Y, m_H));
-    }
-
-    public void SetPosX(float m_X)
-    {
-        m_Pos.x = m_X;
+        this.m_Pos.SetPos(m_PosX, m_PosY, m_PosH);
 
         SetIsoTransform();
     }
 
-    public void SetPosY(float m_Y)
+    public void SetPosX(float m_PosX)
     {
-        m_Pos.y = m_Y;
+        m_Pos.m_PosUDX = m_PosX;
 
         SetIsoTransform();
     }
 
-    public void SetPosH(float m_H)
+    public void SetPosY(float m_PosY)
     {
-        m_Pos.z = m_H;
+        m_Pos.m_PosLRY = m_PosY;
+
+        SetIsoTransform();
+    }
+
+    public void SetPosH(float m_PosH)
+    {
+        m_Pos.m_PosTBH = m_PosH;
 
         SetIsoTransform();
     }
@@ -169,33 +156,37 @@ public class IsoBlock : MonoBehaviour
 
     #region ================================================================== Pos Add 
 
-    public void SetPosAdd(Vector3 m_PosAdd)
+    public void SetPosAdd(IsoPos m_PosAdd)
     {
-        SetPos(GetPosCurrent() + m_PosAdd);
-    }
-
-    public void SetPosAdd(float m_AddX, float m_AddY, float m_AddH)
-    {
-        SetPosAdd(new Vector3(m_AddX, m_AddY, m_AddH));
-    }
-
-    public void SetPosAddX(float m_AddX)
-    {
-        m_Pos.x += m_AddX;
+        m_Pos.SetPosAdd(m_PosAdd);
 
         SetIsoTransform();
     }
 
-    public void SetPosAddY(float m_AddY)
+    public void SetPosAdd(float m_PosAddX, float m_PosAddY, float m_PosAddH)
     {
-        m_Pos.y += m_AddY;
+        m_Pos.SetPosAdd(m_PosAddX, m_PosAddY, m_PosAddH);
 
         SetIsoTransform();
     }
 
-    public void SetPosAddH(float m_AddH)
+    public void SetPosAddX(float m_PosAddX)
     {
-        m_Pos.z += m_AddH;
+        m_Pos.m_PosUDX += m_PosAddX;
+
+        SetIsoTransform();
+    }
+
+    public void SetPosAddY(float m_PosAddY)
+    {
+        m_Pos.m_PosLRY += m_PosAddY;
+
+        SetIsoTransform();
+    }
+
+    public void SetPosAddH(float m_PosAddH)
+    {
+        m_Pos.m_PosTBH += m_PosAddH;
 
         SetIsoTransform();
     }
@@ -204,53 +195,56 @@ public class IsoBlock : MonoBehaviour
 
     #region ================================================================== Get Pos 
 
-    public Vector3Int GetPosOnMatrixCurrent()
-    {
-        return m_PosMatrix;
-    }
-
-    public Vector3 GetPosCurrent()
+    public IsoPos GetPosCurrent()
     {
         return m_Pos;
     }
 
+    public IsoPos GetPosMatrixCurrent()
+    {
+        return m_PosMatrix;
+    }
+
     public float GetPosCurrentX()
     {
-        return GetPosCurrent().x;
+        return GetPosCurrent().m_PosUDX;
     }
 
     public float GetPosCurrentY()
     {
-        return GetPosCurrent().y;
+        return GetPosCurrent().m_PosLRY;
     }
 
     public float GetPosCurrentH()
     {
-        return GetPosCurrent().z;
+        return GetPosCurrent().m_PosTBH;
     }
 
     #endregion
 
     #region ================================================================== Pos Primary
 
-    public void SetPrimary(Vector3Int m_Pos)
+    public void SetPosPrimary(IsoPos m_Pos)
     {
-        m_PosMatrixPrimary = m_Pos;
+        m_PosPrimary = m_Pos;
     }
 
-    public void SetPrimaryReset()
+    public void SetPosPrimaryReset()
     {
-        SetPos(GetPrimary());
+        SetPos(GetPosPrimary());
     }
 
-    public Vector3Int GetPrimary()
+    public IsoPos GetPosPrimary()
     {
-        return m_PosMatrixPrimary;
+        return m_PosPrimary;
     }
 
-    public bool GetCheckPrimaryStay()
+    public bool GetCheckPosPrimaryStay()
     {
-        return GetPrimary() == GetPosOnMatrixCurrent();
+        IsoPos m_PosPrimary = GetPosPrimary();
+        IsoPos m_PosMatrixCurrent = GetPosMatrixCurrent();
+
+        return m_PosPrimary.m_PosUDX == m_PosMatrixCurrent.m_PosUDX && m_PosPrimary.m_PosLRY == m_PosMatrixCurrent.m_PosLRY && m_PosPrimary.m_PosTBH == m_PosMatrixCurrent.m_PosTBH;
     }
 
     #endregion
@@ -273,6 +267,56 @@ public class IsoPos
     public float m_PosUDX = 0;
     public float m_PosLRY = 0;
     public float m_PosTBH = 0;
+
+    public IsoPos()
+    {
+        this.m_PosUDX = 0;
+        this.m_PosLRY = 0;
+        this.m_PosTBH = 0;
+    }
+
+    public IsoPos(float m_PosUDX, float m_PosLRY, float m_PosTBH)
+    {
+        SetPos(m_PosUDX, m_PosLRY, m_PosTBH);
+    }
+
+    public IsoPos(IsoPos m_Pos)
+    {
+        SetPos(m_Pos);
+    }
+
+    public void SetPos(float m_PosUDX, float m_PosLRY, float m_PosTBH)
+    {
+        this.m_PosUDX = m_PosUDX;
+        this.m_PosLRY = m_PosLRY;
+        this.m_PosTBH = m_PosTBH;
+    }
+
+    public void SetPos(IsoPos m_Pos)
+    {
+        this.m_PosUDX = m_Pos.m_PosUDX;
+        this.m_PosLRY = m_Pos.m_PosLRY;
+        this.m_PosTBH = m_Pos.m_PosTBH;
+    }
+
+    public void SetPosAdd(float m_PosUDX, float m_PosLRY, float m_PosTBH)
+    {
+        this.m_PosUDX += m_PosUDX;
+        this.m_PosLRY += m_PosLRY;
+        this.m_PosTBH += m_PosTBH;
+    }
+
+    public void SetPosAdd(IsoPos m_Pos)
+    {
+        this.m_PosUDX += m_Pos.m_PosUDX;
+        this.m_PosLRY += m_Pos.m_PosLRY;
+        this.m_PosTBH += m_Pos.m_PosTBH;
+    }
+
+    public IsoPos GetPos()
+    {
+        return this;
+    }
 }
 
 public class IsoDirVector
@@ -354,5 +398,4 @@ public class IsoDirVector
 
         return m_DirN;
     }
-
 }
