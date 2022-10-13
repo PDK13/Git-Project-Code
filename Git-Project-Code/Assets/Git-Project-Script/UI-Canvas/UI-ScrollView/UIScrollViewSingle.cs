@@ -6,6 +6,8 @@ using UnityEngine.UI;
 [ExecuteAlways]
 public class UIScrollViewSingle : MonoBehaviour
 {
+    public int m_Index = 0;
+
     [Header("Setting")]
 
     [SerializeField] private ScrollViewType m_ScrollViewType;
@@ -38,6 +40,8 @@ public class UIScrollViewSingle : MonoBehaviour
     private void Update()
     {
         SetScrollViewFix();
+
+        SetContent(m_Index);
     }
 
 #endif
@@ -91,7 +95,19 @@ public class UIScrollViewSingle : MonoBehaviour
 
     public void SetContent(int m_ItemInContent)
     {
-        com_Content.anchoredPosition = GetContent(m_ItemInContent);
+        if (m_ItemInContent < 0)
+        {
+            com_Content.anchoredPosition = GetContent(0);
+        }
+        else
+        if (m_ItemInContent > com_Content.childCount - 1)
+        {
+            com_Content.anchoredPosition = GetContent(com_Content.childCount - 1);
+        }
+        else
+        {
+            com_Content.anchoredPosition = GetContent(m_ItemInContent);
+        }
     }
 
     public Vector2 GetContent(int m_ItemInContent)
@@ -99,9 +115,9 @@ public class UIScrollViewSingle : MonoBehaviour
         switch (m_ScrollViewType)
         {
             case ScrollViewType.Vertical:
-                return (+1) * m_ItemInContent * new Vector2(0, m_ItemSize.y * m_ItemSpacing.y);
+                return (+1) * m_ItemInContent * new Vector2(0, m_ItemSize.y + m_ItemSpacing.y);
             case ScrollViewType.Horizontal:
-                return (-1) * m_ItemInContent * new Vector2(m_ItemSize.x * m_ItemSpacing.x, 0);
+                return (-1) * m_ItemInContent * new Vector2(m_ItemSize.x + m_ItemSpacing.x, 0);
         }
         return new Vector2();
     }
