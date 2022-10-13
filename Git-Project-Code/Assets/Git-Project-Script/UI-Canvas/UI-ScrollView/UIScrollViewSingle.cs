@@ -6,8 +6,6 @@ using UnityEngine.UI;
 [ExecuteAlways]
 public class UIScrollViewSingle : MonoBehaviour
 {
-    public int m_Index = 0;
-
     [Header("Setting")]
 
     [SerializeField] private ScrollViewType m_ScrollViewType;
@@ -40,8 +38,6 @@ public class UIScrollViewSingle : MonoBehaviour
     private void Update()
     {
         SetScrollViewFix();
-
-        SetContent(m_Index);
     }
 
 #endif
@@ -125,6 +121,23 @@ public class UIScrollViewSingle : MonoBehaviour
     public RectTransform GetContent()
     {
         return com_Content;
+    }
+
+    public RectTransform GetContentItem(int m_ItemInContent)
+    {
+        if (m_ItemInContent < 0)
+        {
+            return com_Content.GetChild(0).GetComponent<RectTransform>();
+        }
+        else
+        if (m_ItemInContent > com_Content.childCount - 1)
+        {
+            return com_Content.GetChild(com_Content.childCount - 1).GetComponent<RectTransform>();
+        }
+        else
+        {
+            return com_Content.GetChild(m_ItemInContent).GetComponent<RectTransform>();
+        }
     }
 }
 
