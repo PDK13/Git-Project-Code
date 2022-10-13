@@ -14,6 +14,12 @@ public class UIScrollViewSingle : MonoBehaviour
 
     [SerializeField] private Vector2 m_ItemSpacing = new Vector2(5f, 5f);
 
+    [Header("Testing")]
+
+    [SerializeField] [Range(0, 10)] float m_IndexTesting = 0;
+
+    [SerializeField] bool m_CheckTesting = false;
+
     [Header("Component")]
 
     [SerializeField] private ScrollRect com_ScrollRect;
@@ -26,10 +32,52 @@ public class UIScrollViewSingle : MonoBehaviour
 
     private void Awake()
     {
-        com_ScrollRect = this.GetComponent<ScrollRect>();
-        com_ContentSizeFitter = this.transform.Find("Viewport/Content").gameObject.AddComponent<ContentSizeFitter>();
-        com_GridLayoutGroup = this.transform.Find("Viewport/Content").gameObject.AddComponent<GridLayoutGroup>();
-        com_Content = this.transform.Find("Viewport/Content").GetComponent<RectTransform>();
+        if (this.GetComponent<ScrollRect>() == null)
+        {
+            Debug.LogWarningFormat("{0}: Script not attach to Scroll View GameObject?!", name);
+        }
+        else
+        {
+            //Scroll Rect
+
+            com_ScrollRect = this.GetComponent<ScrollRect>();
+        }
+
+        if (this.transform.Find("Viewport/Content") == null)
+        {
+            Debug.LogWarningFormat("{0}: Something went wrong to get child Viewport/Content of Scroll View!", name);
+
+            return;
+        }
+        else
+        {
+            com_Content = this.transform.Find("Viewport/Content").GetComponent<RectTransform>();
+
+            //Grid Layout Group
+
+            if (com_Content.gameObject.GetComponent<ContentSizeFitter>() == null)
+            {
+                com_ContentSizeFitter = com_Content.gameObject.AddComponent<ContentSizeFitter>();
+            }
+
+            if (com_ContentSizeFitter == null)
+            {
+                com_ContentSizeFitter = com_Content.gameObject.GetComponent<ContentSizeFitter>();
+            }
+
+            //Content Size Fitter
+
+            if (com_Content.gameObject.GetComponent<GridLayoutGroup>() == null)
+            {
+                com_GridLayoutGroup = com_Content.gameObject.AddComponent<GridLayoutGroup>();
+            }
+
+            if (com_GridLayoutGroup == null)
+            {
+                com_GridLayoutGroup = com_Content.gameObject.GetComponent<GridLayoutGroup>();
+            }
+        }
+
         SetScrollViewFix();
     }
 
@@ -38,58 +86,80 @@ public class UIScrollViewSingle : MonoBehaviour
     private void Update()
     {
         SetScrollViewFix();
+
+        if (m_CheckTesting)
+        {
+            SetContent(m_IndexTesting);
+        }
     }
 
 #endif
 
     private void SetScrollViewFix()
     {
-        if (com_ScrollRect == null)
-            return;
-
-        if (com_ContentSizeFitter == null)
-            return;
-
-        if (com_GridLayoutGroup == null)
-            return;
-
         switch (m_ScrollViewType)
         {
             case ScrollViewType.Vertical:
                 //Content
-                com_Content.anchoredPosition = new Vector2(0, com_Content.anchoredPosition.y);
+                if (com_ScrollRect != null)
+                {
+                    com_Content.anchoredPosition = new Vector2(0, com_Content.anchoredPosition.y);
+                }
                 //Scroll Rect
-                com_ScrollRect.vertical = true;
-                com_ScrollRect.horizontal = false;
+                if (com_ContentSizeFitter != null)
+                {
+                    com_ScrollRect.vertical = true;
+                    com_ScrollRect.horizontal = false;
+                }
                 //Grid Layout Group
-                com_GridLayoutGroup.startAxis = GridLayoutGroup.Axis.Horizontal;
-                com_GridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-                com_GridLayoutGroup.constraintCount = 1;
+                if (com_GridLayoutGroup != null)
+                {
+                    com_GridLayoutGroup.startAxis = GridLayoutGroup.Axis.Horizontal;
+                    com_GridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+                    com_GridLayoutGroup.constraintCount = 1;
+                }
                 //Content Size Fitter
-                com_ContentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-                com_ContentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+                if (com_GridLayoutGroup == null)
+                {
+                    com_ContentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+                    com_ContentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+                }
                 break;
             case ScrollViewType.Horizontal:
-                //Content
-                com_Content.anchoredPosition = new Vector2(com_Content.anchoredPosition.x, 0);
+                if (com_ScrollRect != null)
+                {
+                    com_Content.anchoredPosition = new Vector2(com_Content.anchoredPosition.x, 0);
+                }
                 //Scroll Rect
-                com_ScrollRect.vertical = false;
-                com_ScrollRect.horizontal = true;
+                if (com_ContentSizeFitter != null)
+                {
+                    com_ScrollRect.vertical = false;
+                    com_ScrollRect.horizontal = true;
+                }
                 //Grid Layout Group
-                com_GridLayoutGroup.startAxis = GridLayoutGroup.Axis.Vertical;
-                com_GridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedRowCount;
-                com_GridLayoutGroup.constraintCount = 1;
+                if (com_GridLayoutGroup != null)
+                {
+                    com_GridLayoutGroup.startAxis = GridLayoutGroup.Axis.Vertical;
+                    com_GridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedRowCount;
+                    com_GridLayoutGroup.constraintCount = 1;
+                }
                 //Content Size Fitter
-                com_ContentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-                com_ContentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+                if (com_GridLayoutGroup != null)
+                {
+                    com_ContentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+                    com_ContentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+                }
                 break;
         }
 
-        com_GridLayoutGroup.cellSize = m_ItemSize;
-        com_GridLayoutGroup.spacing = m_ItemSpacing;
+        if (com_GridLayoutGroup != null)
+        {
+            com_GridLayoutGroup.cellSize = m_ItemSize;
+            com_GridLayoutGroup.spacing = m_ItemSpacing;
+        }  
     }
 
-    public void SetContent(int m_ItemInContent)
+    public void SetContent(float m_ItemInContent)
     {
         if (m_ItemInContent < 0)
         {
@@ -106,7 +176,7 @@ public class UIScrollViewSingle : MonoBehaviour
         }
     }
 
-    public Vector2 GetContent(int m_ItemInContent)
+    public Vector2 GetContent(float m_ItemInContent)
     {
         switch (m_ScrollViewType)
         {
