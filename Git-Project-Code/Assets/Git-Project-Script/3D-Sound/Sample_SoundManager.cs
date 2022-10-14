@@ -20,7 +20,7 @@ public class Sample_SoundManager : MonoBehaviour
         else
         if (Input.GetKeyDown(KeyCode.M))
         {
-            SoundManager.SetSoundMute(true);
+            SoundManager.SetMute(true);
         }
         else
         if (Input.GetKeyDown(KeyCode.C))
