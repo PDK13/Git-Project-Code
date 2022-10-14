@@ -169,12 +169,12 @@ public class ClassFileIO
 
     #region ================================================================== File IO Read 
 
-    private List<string> lm_TextRead = new List<string>();
+    private List<string> m_TextRead = new List<string>();
     private int m_ReadRun = -1;
 
     private List<string> GetReadDatafromFile(string m_Path)
     {
-        List<string> lm_TextRead = new List<string>();
+        List<string> m_TextRead = new List<string>();
 
         try
         {
@@ -183,11 +183,11 @@ public class ClassFileIO
                 string m_ReadRun = "";
                 while ((m_ReadRun = sr.ReadLine()) != null)
                 {
-                    lm_TextRead.Add(m_ReadRun);
+                    m_TextRead.Add(m_ReadRun);
                 }
             }
 
-            return lm_TextRead;
+            return m_TextRead;
         }
         catch
         {
@@ -199,67 +199,67 @@ public class ClassFileIO
 
     public void SetReadDataClear()
     {
-        lm_TextRead = new List<string>();
+        m_TextRead = new List<string>();
         m_ReadRun = -1;
     }
 
     public void SetReadDataStart(string m_Path)
     {
-        lm_TextRead = GetReadDatafromFile(m_Path);
+        m_TextRead = GetReadDatafromFile(m_Path);
     } //Call First
 
     public string GetReadDataAutoString()
     {
         m_ReadRun++;
-        return lm_TextRead[m_ReadRun];
+        return m_TextRead[m_ReadRun];
     }
 
     public int GetReadDataAutoInt()
     {
         m_ReadRun++;
-        return int.Parse(lm_TextRead[m_ReadRun]);
+        return int.Parse(m_TextRead[m_ReadRun]);
     }
 
     public float GetReadDataAutoFloat()
     {
         m_ReadRun++;
-        return float.Parse(lm_TextRead[m_ReadRun]);
+        return float.Parse(m_TextRead[m_ReadRun]);
     }
 
     public double GetReadDataAutoDouble()
     {
         m_ReadRun++;
-        return double.Parse(lm_TextRead[m_ReadRun]);
+        return double.Parse(m_TextRead[m_ReadRun]);
     }
 
     public bool GetCheckReadDataAutoBool()
     {
         m_ReadRun++;
-        return lm_TextRead[m_ReadRun] == "True";
+        return m_TextRead[m_ReadRun] == "True";
     }
 
     public Vector2 GetReadDataAutoVector2(char m_Key)
     {
         m_ReadRun++;
-        return ClassString.GetDataVector2Dencypt(lm_TextRead[m_ReadRun], m_Key);
+        return ClassString.GetDataVector2Dencypt(m_TextRead[m_ReadRun], m_Key);
     }
 
     public Vector2Int GetReadDataAutoVector2Int(char m_Key)
     {
         m_ReadRun++;
-        return ClassString.GetDataVector2IntDencypt(lm_TextRead[m_ReadRun], m_Key);
+        return ClassString.GetDataVector2IntDencypt(m_TextRead[m_ReadRun], m_Key);
     }
 
     public Vector3 GetReadDataAutoVector3(char m_Key)
     {
         m_ReadRun++;
-        return ClassString.GetDataVector3Dencypt(lm_TextRead[m_ReadRun], m_Key);
+        return ClassString.GetDataVector3Dencypt(m_TextRead[m_ReadRun], m_Key);
     }
 
     public Vector3Int GetReadDataAutoVector3Int(char m_Key)
     {
         m_ReadRun++;
-        return ClassString.GetDataVector3IntDencypt(lm_TextRead[m_ReadRun], m_Key);
+        return ClassString.GetDataVector3IntDencypt(m_TextRead[m_ReadRun], m_Key);
     }
 
     public int GetReadDataAutoCurrent()
@@ -274,7 +274,7 @@ public class ClassFileIO
 
     public List<string> GetReadDataList()
     {
-        return lm_TextRead;
+        return m_TextRead;
     }
 
     #endregion

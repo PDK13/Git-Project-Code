@@ -14,8 +14,8 @@ public class SoundManager : MonoBehaviour
 
     [Header("Sound List")]
 
-    //First Index is Background m_usic
-    private List<GameObject> lm_SoundClone = new List<GameObject>() { null };
+    //First Index is Background music
+    private List<GameObject> m_SoundCloneList = new List<GameObject>() { null };
 
     private void Awake()
     {
@@ -44,29 +44,29 @@ public class SoundManager : MonoBehaviour
 
         m_SoundClone.GetComponent<SoundClone>().SetSoundMute(m_This.m_CheckMute);
 
-        m_This.lm_SoundClone[0] = m_SoundClone;
+        m_This.m_SoundCloneList[0] = m_SoundClone;
 
         return m_SoundClone.GetComponent<SoundClone>();
     }
 
     public static void SetBackgroundMusicStop()
     {
-        if (m_This.lm_SoundClone[0] == null)
+        if (m_This.m_SoundCloneList[0] == null)
         {
             return;
         }
 
-        Destroy(m_This.lm_SoundClone[0]);
+        Destroy(m_This.m_SoundCloneList[0]);
     }
 
     public static void SetBackgroundMusicMute(bool m_CheckMute)
     {
-        if (m_This.lm_SoundClone[0] == null)
+        if (m_This.m_SoundCloneList[0] == null)
         {
             return;
         }
 
-        m_This.lm_SoundClone[0].GetComponent<SoundClone>().SetSoundMute(m_CheckMute);
+        m_This.m_SoundCloneList[0].GetComponent<SoundClone>().SetSoundMute(m_CheckMute);
     }
 
     #endregion
@@ -88,7 +88,7 @@ public class SoundManager : MonoBehaviour
 
         if (m_CheckLoop)
         {
-            m_This.lm_SoundClone.Add(m_SoundClone);
+            m_This.m_SoundCloneList.Add(m_SoundClone);
         }
 
         return m_SoundClone;
@@ -109,7 +109,7 @@ public class SoundManager : MonoBehaviour
 
         if (m_CheckLoop)
         {
-            m_This.lm_SoundClone.Add(m_SoundClone);
+            m_This.m_SoundCloneList.Add(m_SoundClone);
         }
 
         return m_SoundClone;
@@ -117,13 +117,13 @@ public class SoundManager : MonoBehaviour
 
     public static bool SetSoundStop(AudioClip m_Clip)
     {
-        for (int i = 1; i < m_This.lm_SoundClone.Count; i++)
+        for (int i = 1; i < m_This.m_SoundCloneList.Count; i++)
         {
-            if (m_This.lm_SoundClone[i].GetComponent<SoundClone>().GetSound().name.Equals(m_Clip.name))
+            if (m_This.m_SoundCloneList[i].GetComponent<SoundClone>().GetSound().name.Equals(m_Clip.name))
             {
-                Destroy(m_This.lm_SoundClone[i]);
+                Destroy(m_This.m_SoundCloneList[i]);
 
-                m_This.lm_SoundClone.RemoveAt(i);
+                m_This.m_SoundCloneList.RemoveAt(i);
 
                 return true;
             }
@@ -135,19 +135,19 @@ public class SoundManager : MonoBehaviour
 
     public static void SetSoundStopAll()
     {
-        for (int i = 1; i < m_This.lm_SoundClone.Count; i++)
+        for (int i = 1; i < m_This.m_SoundCloneList.Count; i++)
         {
-            Destroy(m_This.lm_SoundClone[i]);
+            Destroy(m_This.m_SoundCloneList[i]);
         }
 
-        m_This.lm_SoundClone = new List<GameObject>();
+        m_This.m_SoundCloneList = new List<GameObject>();
     }
 
     public static void SetSoundMute(bool m_CheckMute)
     {
-        for (int i = 1; i < m_This.lm_SoundClone.Count; i++)
+        for (int i = 1; i < m_This.m_SoundCloneList.Count; i++)
         {
-            m_This.lm_SoundClone[i].GetComponent<SoundClone>().SetSoundMute(m_CheckMute);
+            m_This.m_SoundCloneList[i].GetComponent<SoundClone>().SetSoundMute(m_CheckMute);
         }
     }
 
