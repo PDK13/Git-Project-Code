@@ -4,11 +4,10 @@
 [RequireComponent(typeof(RigidbodyComponent))]
 
 public class RigidbodySurface : MonoBehaviour
-//Move Control Surface (X & Z)
 {
     [Header("Keyboard")]
 
-    [SerializeField] private bool mAllowLockControl = false;
+    [SerializeField] private bool m_AllowLockControl = false;
 
     [SerializeField] private KeyCode m_KeyMoveU = KeyCode.UpArrow;
 
@@ -18,7 +17,7 @@ public class RigidbodySurface : MonoBehaviour
 
     [SerializeField] private KeyCode m_KeyMoveR = KeyCode.RightArrow;
 
-    [SerializeField] private bool mAllowMutiButton = true;
+    [SerializeField] private bool m_AllowMutiButton = true;
 
     [SerializeField] private KeyCode m_KeySpeedChance = KeyCode.LeftShift;
 
@@ -30,7 +29,7 @@ public class RigidbodySurface : MonoBehaviour
 
     private float m_SpeedCur;
 
-    [SerializeField] private bool mAllowStopRAway = false;
+    [SerializeField] private bool m_AllowStopRAway = false;
 
     [SerializeField] private float m_SpeedStop = 3f;
 
@@ -40,7 +39,7 @@ public class RigidbodySurface : MonoBehaviour
 
     private int m_ButtonMoveZForward = 0;
 
-    private bool mAllowSpeedChance = false;
+    private bool m_AllowSpeedChance = false;
 
     private void Awake()
     {
@@ -49,7 +48,7 @@ public class RigidbodySurface : MonoBehaviour
 
     private void Update()
     {
-        if (mAllowLockControl)
+        if (m_AllowLockControl)
         {
             return;
         }
@@ -68,7 +67,7 @@ public class RigidbodySurface : MonoBehaviour
     {
         SetControlMoveSpeedChance(Input.GetKey(m_KeySpeedChance) ? true : false);
 
-        if (!mAllowMutiButton)
+        if (!m_AllowMutiButton)
         {
             if ((Input.GetKey(m_KeyMoveL) || Input.GetKey(m_KeyMoveR)) &&
                 (Input.GetKey(m_KeyMoveU) || Input.GetKey(m_KeyMoveD)))
@@ -135,7 +134,7 @@ public class RigidbodySurface : MonoBehaviour
 
     private void SetControlMoveSpeedChance(bool mAllowSpeedChance)
     {
-        this.mAllowSpeedChance = mAllowSpeedChance;
+        this.m_AllowSpeedChance = mAllowSpeedChance;
     }
 
     #endregion
@@ -144,7 +143,7 @@ public class RigidbodySurface : MonoBehaviour
 
     private void SetMoveControl()
     {
-        m_SpeedCur = (mAllowSpeedChance) ? m_SpeedChance : m_SpeedNormal;
+        m_SpeedCur = (m_AllowSpeedChance) ? m_SpeedChance : m_SpeedNormal;
 
         if (m_ButtonMoveXR != 0)
         {
@@ -152,7 +151,7 @@ public class RigidbodySurface : MonoBehaviour
         }
         else
         {
-            if (mAllowStopRAway)
+            if (m_AllowStopRAway)
             {
                 m_Rigid.SetStopX_Velocity();
             }
@@ -168,7 +167,7 @@ public class RigidbodySurface : MonoBehaviour
         }
         else
         {
-            if (mAllowStopRAway)
+            if (m_AllowStopRAway)
             {
                 m_Rigid.SetStopZ_Velocity();
             }
@@ -185,12 +184,12 @@ public class RigidbodySurface : MonoBehaviour
 
     public void SetControlLock(bool mAllowLockControl)
     {
-        this.mAllowLockControl = mAllowLockControl;
+        this.m_AllowLockControl = mAllowLockControl;
     }
 
     public bool GetCheckControlLock()
     {
-        return mAllowLockControl;
+        return m_AllowLockControl;
     }
 
     #endregion

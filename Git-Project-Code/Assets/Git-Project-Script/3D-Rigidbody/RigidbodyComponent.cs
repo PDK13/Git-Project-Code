@@ -6,103 +6,61 @@
 [RequireComponent(typeof(Rigidbody))]
 public class RigidbodyComponent : MonoBehaviour
 {
-    /// <summary>
-    /// Use Script Auto Set at Start
-    /// </summary>
     [Header("Rigid")]
-    [SerializeField]
-    private bool mAllowUseScriptStart = true;
 
-    /// <summary>
-    /// Set Kinematic (Static)
-    /// </summary>
     [SerializeField]
-    private bool mAllowKinematic = false;
+    private bool m_AllowUseScriptStart = true;
 
-    /// <summary>
-    /// Lock Rotation
-    /// </summary>
     [SerializeField]
-    private bool mAllowLockRot = true;
+    private bool m_AllowKinematic = false;
 
-    /// <summary>
-    /// Lock Pos
-    /// </summary>
     [SerializeField]
-    private bool mAllowLockPos = false;
+    private bool m_AllowLockRot = true;
 
-    /// <summary>
-    /// Layer m_ask to Check Foot and Head
-    /// </summary>
+    [SerializeField]
+    private bool m_AllowLockPos = false;
+
     [Header("Layer Check")]
+
     [SerializeField]
     private LayerMask m_GroundCheck;
 
-    /// <summary>
-    /// Debug Foot Check
-    /// </summary>
     [Header("Foot Check")]
     [SerializeField]
-    private bool mAllowFootDebug = true;
+    private bool m_AllowFootDebug = true;
 
-    /// <summary>
-    /// Box Cast of Foot
-    /// </summary>
     [SerializeField]
     private Vector3 m_FootCastSize = new Vector3(1f, 0.1f, 1f);
 
-    /// <summary>
-    /// Box Cast Distance of Foot
-    /// </summary>
     [SerializeField]
     private float m_FootCastDistance = 1f;
 
-    /// <summary>
-    /// Use Script Auto Gravity
-    /// </summary>
     [SerializeField]
-    private bool mAllowUseScriptGravity = true;
+    private bool m_AllowUseScriptGravity = true;
 
-    /// <summary>
-    /// Auto Gravity Velocity
-    /// </summary>
     [SerializeField]
     private float m_GravityFall = 20f;
 
-    /// <summary>
-    /// Debug Head Check
-    /// </summary>
     [Header("Head Check")]
-    [SerializeField]
-    private bool mAllowHeadDebug = true;
 
-    /// <summary>
-    /// Box Cast of Head
-    /// </summary>
+    [SerializeField]
+    private bool m_AllowHeadDebug = true;
+
     [SerializeField]
     private Vector3 m_HeadCastSize = new Vector3(1f, 0.1f, 1f);
 
-    /// <summary>
-    /// Box Cast Distance of Foot
-    /// </summary>
     [SerializeField]
     private float m_HeadCastDistance = 1f;
 
-    /// <summary>
-    /// Use Script Auto Bounce
-    /// </summary>
     [SerializeField]
-    private bool mAllowUseScriptBounce = true;
+    private bool m_AllowUseScriptBounce = true;
 
-    /// <summary>
-    /// Auto Bounce Velocity
-    /// </summary>
     [SerializeField]
     private float m_HeadBounce = 10f;
 
     private void Awake()
     {
-        if (mAllowUseScriptStart)
+        if (m_AllowUseScriptStart)
         {
             SetRigid();
         }
@@ -110,7 +68,7 @@ public class RigidbodyComponent : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (mAllowUseScriptBounce)
+        if (m_AllowUseScriptBounce)
         {
             if (GetCheckHead() && !GetCheckFoot())
             {
@@ -119,7 +77,7 @@ public class RigidbodyComponent : MonoBehaviour
             }
         }
 
-        if (mAllowUseScriptGravity)
+        if (m_AllowUseScriptGravity)
         {
             if (!GetCheckFoot())
             {
@@ -135,15 +93,15 @@ public class RigidbodyComponent : MonoBehaviour
     public void SetRigid()
     {
         Rigidbody com_Rigidbody = GetComponent<Rigidbody>();
-        com_Rigidbody.isKinematic = mAllowKinematic;
+        com_Rigidbody.isKinematic = m_AllowKinematic;
         com_Rigidbody.useGravity = false;
 
-        if (mAllowLockRot)
+        if (m_AllowLockRot)
         {
             com_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
-        if (mAllowLockPos)
+        if (m_AllowLockPos)
         {
             com_Rigidbody.constraints = RigidbodyConstraints.FreezePosition;
         }
@@ -451,7 +409,7 @@ public class RigidbodyComponent : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (mAllowFootDebug)
+        if (m_AllowFootDebug)
         {
             //Foot Check
             if (GetCheckFoot())
@@ -467,7 +425,7 @@ public class RigidbodyComponent : MonoBehaviour
             Gizmos.DrawWireCube(transform.position + Vector3.down * m_FootCastDistance, m_FootCastSize);
         }
 
-        if (mAllowHeadDebug)
+        if (m_AllowHeadDebug)
         {
             //Head Check
             if (GetCheckHead())

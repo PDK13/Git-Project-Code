@@ -4,13 +4,12 @@
 [RequireComponent(typeof(RigidbodyComponent))]
 
 public class RigidbodyRotation : MonoBehaviour
-//Move Control Surface (X & Z & Rotation)
 {
     private RigidbodyComponent m_Rigid;
 
     [Header("Keyboard")]
 
-    [SerializeField] private bool mAllowLockControl = false;
+    [SerializeField] private bool m_AllowLockControl = false;
 
     [SerializeField] private KeyCode m_KeyMoveForward = KeyCode.UpArrow;
 
@@ -20,7 +19,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     [SerializeField] private KeyCode m_KeyTurnR = KeyCode.RightArrow;
 
-    [SerializeField] private bool mAllowMutiButton = true;
+    [SerializeField] private bool m_AllowMutiButton = true;
 
     [SerializeField] private KeyCode m_KeySpeedChance = KeyCode.LeftShift;
 
@@ -37,11 +36,11 @@ public class RigidbodyRotation : MonoBehaviour
     [Range(0.1f, 5f)]
     [SerializeField] private float m_SpeedRotate = 1f;
 
-    [SerializeField] private bool mAllowStopRAway = false;
+    [SerializeField] private bool m_AllowStopRAway = false;
 
     //[SerializeField] private float m_SpeedStop = 3f;
 
-    [SerializeField] private bool mAllowSlowWhenTurn = true;
+    [SerializeField] private bool m_AllowSlowWhenTurn = true;
 
     [SerializeField] private float m_SpeedSlow = 5f;
 
@@ -52,7 +51,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     private void Update()
     {
-        if (mAllowLockControl)
+        if (m_AllowLockControl)
         {
             return;
         }
@@ -87,7 +86,7 @@ public class RigidbodyRotation : MonoBehaviour
             return;
         }
 
-        if (mAllowMutiButton)
+        if (m_AllowMutiButton)
         {
             if (Input.GetKey(m_KeyTurnL))
             {
@@ -152,7 +151,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     private void SetControlMoveStop()
     {
-        if (mAllowStopRAway)
+        if (m_AllowStopRAway)
         {
             m_Rigid.SetStopX_Velocity();
             m_Rigid.SetStopZ_Velocity();
@@ -167,7 +166,7 @@ public class RigidbodyRotation : MonoBehaviour
 
     private void SetContromRotate(int m_RotationDir)
     {
-        if (mAllowSlowWhenTurn)
+        if (m_AllowSlowWhenTurn)
         {
             SetControlMoveSlow();
         }
@@ -181,12 +180,12 @@ public class RigidbodyRotation : MonoBehaviour
 
     public void SetControlLock(bool mAllowLockControl)
     {
-        this.mAllowLockControl = mAllowLockControl;
+        this.m_AllowLockControl = mAllowLockControl;
     }
 
     public bool GetCheckControlLock()
     {
-        return mAllowLockControl;
+        return m_AllowLockControl;
     }
 
     #endregion
