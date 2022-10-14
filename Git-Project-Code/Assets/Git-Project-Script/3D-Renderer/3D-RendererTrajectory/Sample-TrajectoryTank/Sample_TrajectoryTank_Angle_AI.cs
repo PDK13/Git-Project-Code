@@ -10,7 +10,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
 
     private RendererTrajectory m_RendererTrajectory;
 
-    private LineRenderer comLineRenderer;
+    private LineRenderer com_LineRenderer;
 
     private Rigidbody com_Rigidbody;
 
@@ -18,7 +18,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
 
     [SerializeField] private float m_DemCurrent = 0;
 
-    [SerializeField] private bool mAllowDem_High = true;
+    [SerializeField] private bool m_AllowAngleHigh = true;
 
     private void Awake()
     {
@@ -34,9 +34,9 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
             gameObject.AddComponent<LineRenderer>();
         }
 
-        comLineRenderer = GetComponent<LineRenderer>();
-        comLineRenderer.startWidth = 0.2f;
-        comLineRenderer.endWidth = 0.2f;
+        com_LineRenderer = GetComponent<LineRenderer>();
+        com_LineRenderer.startWidth = 0.2f;
+        com_LineRenderer.endWidth = 0.2f;
 
         if (GetComponent<RendererTrajectory>() == null)
         {
@@ -44,7 +44,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
         }
 
         m_RendererTrajectory = GetComponent<RendererTrajectory>();
-        m_RendererTrajectory.SetTrajectoryLineRendererClear(comLineRenderer);
+        m_RendererTrajectory.SetTrajectoryLineRendererClear(com_LineRenderer);
 
         if (GetComponent<RigidbodyRotation>() == null)
         {
@@ -69,7 +69,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            mAllowDem_High = !mAllowDem_High;
+            m_AllowAngleHigh = !m_AllowAngleHigh;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -95,7 +95,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
             m_DemCurrent = (float)m_RendererTrajectory.GetTrajectoryAngleDeg(
                 m_RendererTrajectory.GetTrajectoryStartTransform().position,
                 com_Tarket.transform.position,
-                mAllowDem_High);
+                m_AllowAngleHigh);
         }
         catch
         {
@@ -104,6 +104,6 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
 
         com_Gun.rotation = ClassVector.GetRotationEulerToQuaternion(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, m_DemCurrent);
 
-        m_RendererTrajectory.SetTrajectoryLineRenderer(comLineRenderer, com_Rigidbody.drag, true);
+        m_RendererTrajectory.SetTrajectoryLineRenderer(com_LineRenderer, com_Rigidbody.drag, true);
     }
 }

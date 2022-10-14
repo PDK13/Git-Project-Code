@@ -20,7 +20,7 @@ public class RendererTrajectory : MonoBehaviour
 
     [Header("Trajectory Raycast")]
 
-    [SerializeField] private bool mAllowTrajectoryRaycast = false;
+    [SerializeField] private bool m_AllowTrajectoryRaycast = false;
 
     [SerializeField] private LayerMask m_TrajectoryRaycastLayerMask;
 
@@ -162,7 +162,7 @@ public class RendererTrajectory : MonoBehaviour
 
             m_PosPoint += m_MoveStep;
 
-            if (mAllowTrajectoryRaycast)
+            if (m_AllowTrajectoryRaycast)
             {
                 bool rayRaycast = Physics.Linecast(m_PosPoint + Vector3.down * m_TrajectoryRaycastSize, m_PosPoint - Vector3.down * m_TrajectoryRaycastSize, m_TrajectoryRaycastLayerMask);
 

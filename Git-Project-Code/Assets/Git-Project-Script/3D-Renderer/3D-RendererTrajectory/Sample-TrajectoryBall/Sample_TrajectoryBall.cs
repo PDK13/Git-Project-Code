@@ -9,7 +9,7 @@ public class Sample_TrajectoryBall : MonoBehaviour
 
     private RendererTrajectory m_RendererTrajectory;
 
-    private LineRenderer comLineRenderer;
+    private LineRenderer com_LineRenderer;
 
     private Rigidbody com_Rigidbody;
 
@@ -34,7 +34,7 @@ public class Sample_TrajectoryBall : MonoBehaviour
             gameObject.AddComponent<LineRenderer>();
         }
 
-        comLineRenderer = GetComponent<LineRenderer>();
+        com_LineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
@@ -52,7 +52,7 @@ public class Sample_TrajectoryBall : MonoBehaviour
 
             m_RendererTrajectory.SetTrajectoryNext(v2_MouseDramNext);
 
-            m_RendererTrajectory.SetTrajectoryLineRenderer(comLineRenderer, com_Rigidbody.drag, false);
+            m_RendererTrajectory.SetTrajectoryLineRenderer(com_LineRenderer, com_Rigidbody.drag, false);
         }
 
         if (Input.GetMouseButtonUp(0))

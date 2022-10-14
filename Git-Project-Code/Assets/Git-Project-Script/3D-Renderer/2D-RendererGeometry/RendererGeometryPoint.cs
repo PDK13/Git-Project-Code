@@ -1,25 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-//Script này dùng để nhận toạ độ các điểm để vẽ trên cung tròn, ứng dụng công thức lượng giác trong việc xác định điểm
 public class RendererGeometryPoint : MonoBehaviour
 {
-    public bool mAllowDebug = true;
+    public bool m_AllowDebug = true;
 
     public float m_Duration = 2;
 
     [Range(0, 360)]
     public float m_DegStart = 0;
 
-    //Số lượng điểm quyết định hình dạng của hình vẽ (Tam giác đều, Tứ giác đều, Lục giác đều,...)
-    //Khi số lượng điểm đạt tối đa, sẽ vẽ được Hình tròn (Không được vượt quá 36 điểm để tránh vị lỗi)
     [Range(3, 36)]
     public int m_PointCount = 3;
 
     #region Renderer
 
-    //Hàm này khi được gọi sẽ trả về danh sách các điểm để vẽ trên cung tròn với tâm O có toạ độ gốc là O(0;0)
-    //Khi vẽ các điểm này với tâm có góc toạ độ không là O(0;0), cần cộng cho chúng 1 Vector tâm A(x;y)
     public List<Vector2> ActiveCreatePoint(float m_Duration, float m_DegStart, int m_PointCount)
     {
         List<Vector2> m_Point = new List<Vector2>();
@@ -46,7 +41,6 @@ public class RendererGeometryPoint : MonoBehaviour
         return m_Point;
     }
 
-    //Hàm này trả nhanh về danh sách các điểm dựa theo thông số hiện có
     public List<Vector2> Receive_PointList()
     {
         return ActiveCreatePoint(m_Duration, m_DegStart, m_PointCount);
@@ -59,7 +53,7 @@ public class RendererGeometryPoint : MonoBehaviour
         //Thể hiện hình vẽ m_ẫu trên chính GameObject. Và đây cũng là gợi ý cho cách sử dụng danh sách điểm.
         //Đường vẽ m_àu "Vàng" là giữa điểm Kết thúc và Bắt đầu
 
-        if (!mAllowDebug)
+        if (!m_AllowDebug)
         {
             return;
         }
