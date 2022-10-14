@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private GameObject m_SoundClone;
 
-    private readonly bool mAllowSoundMute = false;
+    private bool m_CheckMute = false;
 
     [Header("Sound List")]
 
@@ -42,7 +42,7 @@ public class SoundManager : MonoBehaviour
 
         m_SoundClone.GetComponent<SoundClone>().SetPlaySound2D(new SoundCloneData(au_Clip, true, m_VolumnPrimary));
 
-        m_SoundClone.GetComponent<SoundClone>().SetSoundMute(GetCheckSoundMute());
+        m_SoundClone.GetComponent<SoundClone>().SetSoundMute(m_This.m_CheckMute);
 
         m_This.lm_SoundClone[0] = m_SoundClone;
 
@@ -59,11 +59,21 @@ public class SoundManager : MonoBehaviour
         Destroy(m_This.lm_SoundClone[0]);
     }
 
+    public static void SetBackgroundMusicMute(bool m_CheckMute)
+    {
+        if (m_This.lm_SoundClone[0] == null)
+        {
+            return;
+        }
+
+        m_This.lm_SoundClone[0].GetComponent<SoundClone>().SetSoundMute(m_CheckMute);
+    }
+
     #endregion
 
     #region Sound Primary
 
-    public static GameObject SetSound3D(AudioClip au_Clip, bool mAllowLoop, float m_VolumnPrimary, Vector2 v2_Pos, float m_Distance)
+    public static GameObject SetSound3D(AudioClip au_Clip, bool m_CheckLoop, float m_VolumnPrimary, Vector2 v2_Pos, float m_Distance)
     {
         GameObject m_SoundClone = ClassObject.SetGameObjectCreate(m_This.m_SoundClone);
 
@@ -72,11 +82,11 @@ public class SoundManager : MonoBehaviour
             m_SoundClone.AddComponent<SoundClone>();
         }
 
-        m_SoundClone.GetComponent<SoundClone>().SetPlaySound3D(new SoundCloneData(au_Clip, mAllowLoop, m_VolumnPrimary), v2_Pos, m_Distance);
+        m_SoundClone.GetComponent<SoundClone>().SetPlaySound3D(new SoundCloneData(au_Clip, m_CheckLoop, m_VolumnPrimary), v2_Pos, m_Distance);
 
-        m_SoundClone.GetComponent<SoundClone>().SetSoundMute(GetCheckSoundMute());
+        m_SoundClone.GetComponent<SoundClone>().SetSoundMute(m_This.m_CheckMute);
 
-        if (mAllowLoop)
+        if (m_CheckLoop)
         {
             m_This.lm_SoundClone.Add(m_SoundClone);
         }
@@ -84,7 +94,7 @@ public class SoundManager : MonoBehaviour
         return m_SoundClone;
     }
 
-    public static GameObject SetSound2D(AudioClip au_Clip, bool mAllowLoop, float m_VolumnPrimary)
+    public static GameObject SetSound2D(AudioClip au_Clip, bool m_CheckLoop, float m_VolumnPrimary)
     {
         GameObject m_SoundClone = ClassObject.SetGameObjectCreate(m_This.m_SoundClone);
 
@@ -93,11 +103,11 @@ public class SoundManager : MonoBehaviour
             m_SoundClone.AddComponent<SoundClone>();
         }
 
-        m_SoundClone.GetComponent<SoundClone>().SetPlaySound2D(new SoundCloneData(au_Clip, mAllowLoop, m_VolumnPrimary));
+        m_SoundClone.GetComponent<SoundClone>().SetPlaySound2D(new SoundCloneData(au_Clip, m_CheckLoop, m_VolumnPrimary));
 
-        m_SoundClone.GetComponent<SoundClone>().SetSoundMute(GetCheckSoundMute());
+        m_SoundClone.GetComponent<SoundClone>().SetSoundMute(m_This.m_CheckMute);
 
-        if (mAllowLoop)
+        if (m_CheckLoop)
         {
             m_This.lm_SoundClone.Add(m_SoundClone);
         }
@@ -133,21 +143,30 @@ public class SoundManager : MonoBehaviour
         m_This.lm_SoundClone = new List<GameObject>();
     }
 
-    #endregion
-
-    #region Sound Primary Mute
-
-    public static void SetSoundMute(bool mAllowSoundMute)
+    public static void SetSoundMute(bool m_CheckMute)
     {
-        for (int i = 0; i < m_This.lm_SoundClone.Count; i++)
+        for (int i = 1; i < m_This.lm_SoundClone.Count; i++)
         {
-            m_This.lm_SoundClone[i].GetComponent<SoundClone>().SetSoundMute(mAllowSoundMute);
+            m_This.lm_SoundClone[i].GetComponent<SoundClone>().SetSoundMute(m_CheckMute);
         }
     }
 
-    public static bool GetCheckSoundMute()
+    #endregion
+
+    #region Mute
+
+    public static void SetMute(bool m_CheckMute)
     {
-        return m_This.mAllowSoundMute;
+        m_This.m_CheckMute = m_CheckMute;
+
+        SetBackgroundMusicMute(m_CheckMute);
+
+        SetSoundMute(m_CheckMute);
+    }
+
+    public static bool GetCheckMute()
+    {
+        return m_This.m_CheckMute;
     }
 
     #endregion

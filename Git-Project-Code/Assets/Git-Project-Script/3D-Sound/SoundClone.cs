@@ -92,9 +92,9 @@ public class SoundClone : MonoBehaviour
         }
     }
 
-    public void SetSoundMute(bool bMute)
+    public void SetSoundMute(bool b_CheckMute)
     {
-        com_AudioSource.mute = bMute;
+        com_AudioSource.mute = b_CheckMute;
     }
 
     public void SetSoundStop()
