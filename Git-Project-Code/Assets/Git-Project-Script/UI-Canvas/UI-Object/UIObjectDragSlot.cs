@@ -202,12 +202,12 @@ public class UIObjectDragSlot : MonoBehaviour,
         mAllowUILock = mAllowLockStatus;
     }
 
-    public void SetButtonLocs_KeyTrue()
+    public void SetButtonLom_KeyTrue()
     {
         SetButtonLock(true);
     }
 
-    public void SetButtonLocs_KeyFalse()
+    public void SetButtonLom_KeyFalse()
     {
         SetButtonLock(false);
     }

@@ -11,7 +11,7 @@ public class UIObjectMoveToPoint : MonoBehaviour
     [Header("This RecTransform")]
 
     [SerializeField]
-    private RectTransform com_MoveTo;
+    private RectTransform m_RecTransform;
 
     [SerializeField]
     private float m_MoveTime = 1f;
@@ -37,7 +37,7 @@ public class UIObjectMoveToPoint : MonoBehaviour
     [SerializeField]
     private bool mAllowMoveDone = true;
 
-    private RectTransform com_Transform;
+    private RectTransform m_Transform;
 
     private void Awake()
     {
@@ -46,19 +46,19 @@ public class UIObjectMoveToPoint : MonoBehaviour
             c_ParentCanvas = GetComponentInParent<Canvas>();
         }
 
-        com_Transform = GetComponent<RectTransform>();
+        m_Transform = GetComponent<RectTransform>();
     }
 
     private void Update()
     {
-        if (com_MoveTo != null)
+        if (m_RecTransform != null)
         {
-            SetUI_MoveTo(com_MoveTo.anchoredPosition3D);
+            SetUI_MoveTo(m_RecTransform.anchoredPosition3D);
         }
 
         Vector2 v2_MoveTo = new Vector2(m_MoveTo.x, m_MoveTo.y);
 
-        m_Distance = Vector2.Distance(com_Transform.anchoredPosition, v2_MoveTo + v2_MoveTo_Offset);
+        m_Distance = Vector2.Distance(m_Transform.anchoredPosition, v2_MoveTo + v2_MoveTo_Offset);
 
         if (mAllowMoveDone && m_Distance > 1f)
         {
@@ -73,39 +73,39 @@ public class UIObjectMoveToPoint : MonoBehaviour
 
             if (mAllowDepthAutoZero)
             {
-                com_Transform.anchoredPosition3D = new Vector3(
-                    com_Transform.anchoredPosition3D.x,
-                    com_Transform.anchoredPosition3D.y,
+                m_Transform.anchoredPosition3D = new Vector3(
+                    m_Transform.anchoredPosition3D.x,
+                    m_Transform.anchoredPosition3D.y,
                     0);
             }
         }
 
         if (m_Distance > 0f)
         {
-            com_Transform.anchoredPosition = Vector2.MoveTowards(
-                com_Transform.anchoredPosition,
+            m_Transform.anchoredPosition = Vector2.MoveTowards(
+                m_Transform.anchoredPosition,
                 v2_MoveTo + v2_MoveTo_Offset,
                 m_Speed * Time.deltaTime);
 
-            com_Transform.anchoredPosition3D = new Vector3(
-                com_Transform.anchoredPosition3D.x,
-                com_Transform.anchoredPosition3D.y,
+            m_Transform.anchoredPosition3D = new Vector3(
+                m_Transform.anchoredPosition3D.x,
+                m_Transform.anchoredPosition3D.y,
                 m_MoveTo.z);
         }
     }
 
-    public void SetUI_MoveTo(RectTransform com_MoveTo)
+    public void SetUI_MoveTo(RectTransform m_MoveTo)
     {
-        this.com_MoveTo = com_MoveTo;
+        this.m_RecTransform = m_MoveTo;
     }
 
     public void SetUI_MoveTo(Vector3 m_MoveTo)
     {
         this.m_MoveTo = m_MoveTo;
 
-        com_Transform.anchoredPosition3D = new Vector3(
-            com_Transform.anchoredPosition3D.x,
-            com_Transform.anchoredPosition3D.y,
+        m_Transform.anchoredPosition3D = new Vector3(
+            m_Transform.anchoredPosition3D.x,
+            m_Transform.anchoredPosition3D.y,
             m_MoveTo.z);
     }
 

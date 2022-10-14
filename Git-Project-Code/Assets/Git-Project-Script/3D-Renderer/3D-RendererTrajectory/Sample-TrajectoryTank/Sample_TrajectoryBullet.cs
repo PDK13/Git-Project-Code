@@ -17,7 +17,7 @@ public class Sample_TrajectoryBullet : MonoBehaviour
 
     [SerializeField] private float m_CoroutineDestroyHit = 1f;
 
-    private MeshRenderer com_MessRenderer;
+    private MeshRenderer m_MessRenderer;
 
     private RigidbodyRotate m_RigidbodyRotate;
 
@@ -28,8 +28,8 @@ public class Sample_TrajectoryBullet : MonoBehaviour
             gameObject.AddComponent<MeshRenderer>();
         }
 
-        com_MessRenderer = GetComponent<MeshRenderer>();
-        com_MessRenderer.material = m_MaterialNotHit;
+        m_MessRenderer = GetComponent<MeshRenderer>();
+        m_MessRenderer.material = m_MaterialNotHit;
 
         if (GetComponent<RigidbodyRotate>() == null)
         {
@@ -49,7 +49,7 @@ public class Sample_TrajectoryBullet : MonoBehaviour
             Debug.Log("Hit Tarket!");
         }
 
-        com_MessRenderer.material = m_MaterialHit;
+        m_MessRenderer.material = m_MaterialHit;
 
         m_RigidbodyRotate.SetFollowR(false);
 

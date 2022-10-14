@@ -12,34 +12,34 @@ public class Sample_2DSimplePlayer : MonoBehaviour
 
     private Transform t_Parent;
 
-    private Rigidbody2D com_Rigidbody2D;
+    private Rigidbody2D m_Rigidbody2D;
 
     private void Awake()
     {
-        com_Rigidbody2D = GetComponent<Rigidbody2D>();
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
         t_Parent = transform.parent;
 
-        com_Rigidbody2D.mass = m_Mass;
-        com_Rigidbody2D.gravityScale = m_Gravity;
-        com_Rigidbody2D.angularVelocity = m_Angular;
+        m_Rigidbody2D.mass = m_Mass;
+        m_Rigidbody2D.gravityScale = m_Gravity;
+        m_Rigidbody2D.angularVelocity = m_Angular;
     }
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            com_Rigidbody2D.AddForce(Vector2.right * m_Speed);
+            m_Rigidbody2D.AddForce(Vector2.right * m_Speed);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            com_Rigidbody2D.AddForce(Vector2.left * m_Speed);
+            m_Rigidbody2D.AddForce(Vector2.left * m_Speed);
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            com_Rigidbody2D.AddForce(Vector2.up * m_Jump);
+            m_Rigidbody2D.AddForce(Vector2.up * m_Jump);
         }
     }
 

@@ -9,20 +9,20 @@ public class RigidbodyRotate : MonoBehaviour
 
     [SerializeField] [Tooltip("Vector Up - Green Axis")] private bool m_AllowFollowUp = false;
 
-    private Rigidbody com_Rigidbody;
+    private Rigidbody m_Rigidbody;
 
-    private Rigidbody2D com_Rigidbody2D;
+    private Rigidbody2D m_Rigidbody2D;
 
     private void Awake()
     {
         if (GetComponent<Rigidbody>() != null)
         {
-            com_Rigidbody = GetComponent<Rigidbody>();
+            m_Rigidbody = GetComponent<Rigidbody>();
         }
         else
         if (GetComponent<Rigidbody2D>() != null)
         {
-            com_Rigidbody2D = GetComponent<Rigidbody2D>();
+            m_Rigidbody2D = GetComponent<Rigidbody2D>();
         }
         else
         {
@@ -32,39 +32,39 @@ public class RigidbodyRotate : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (com_Rigidbody != null)
+        if (m_Rigidbody != null)
         {
             if (m_AllowFollowRight)
             {
-                transform.right = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
+                transform.right = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
             }
 
             if (m_AllowFollowUp)
             {
-                transform.up = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
+                transform.up = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
             }
 
             if (m_AllowFollowForward)
             {
-                transform.forward = new Vector3(com_Rigidbody.velocity.x, com_Rigidbody.velocity.y, com_Rigidbody.velocity.z);
+                transform.forward = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
             }
         }
         else
-        if (com_Rigidbody2D != null)
+        if (m_Rigidbody2D != null)
         {
             if (m_AllowFollowRight)
             {
-                transform.right = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
+                transform.right = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y);
             }
 
             if (m_AllowFollowUp)
             {
-                transform.up = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
+                transform.up = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y);
             }
 
             if (m_AllowFollowForward)
             {
-                transform.forward = new Vector3(com_Rigidbody2D.velocity.x, com_Rigidbody2D.velocity.y);
+                transform.forward = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y);
             }
         }
     }

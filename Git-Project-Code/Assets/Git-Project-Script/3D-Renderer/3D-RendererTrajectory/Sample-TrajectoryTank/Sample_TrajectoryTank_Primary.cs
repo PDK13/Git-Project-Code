@@ -6,9 +6,9 @@ public class Sample_TrajectoryTanm_KeyPrimary : MonoBehaviour
 
     private RendererTrajectory m_RendererTrajectory;
 
-    private LineRenderer com_LineRenderer;
+    private LineRenderer m_LineRenderer;
 
-    private Rigidbody com_Rigidbody;
+    private Rigidbody m_Rigidbody;
 
     private RigidbodyRotation m_RigidbodyRotation;
 
@@ -19,16 +19,16 @@ public class Sample_TrajectoryTanm_KeyPrimary : MonoBehaviour
             gameObject.AddComponent<Rigidbody>();
         }
 
-        com_Rigidbody = GetComponent<Rigidbody>();
+        m_Rigidbody = GetComponent<Rigidbody>();
 
         if (GetComponent<LineRenderer>() == null)
         {
             gameObject.AddComponent<LineRenderer>();
         }
 
-        com_LineRenderer = GetComponent<LineRenderer>();
-        com_LineRenderer.startWidth = 0.2f;
-        com_LineRenderer.endWidth = 0.2f;
+        m_LineRenderer = GetComponent<LineRenderer>();
+        m_LineRenderer.startWidth = 0.2f;
+        m_LineRenderer.endWidth = 0.2f;
 
         if (GetComponent<RendererTrajectory>() == null)
         {
@@ -36,7 +36,7 @@ public class Sample_TrajectoryTanm_KeyPrimary : MonoBehaviour
         }
 
         m_RendererTrajectory = GetComponent<RendererTrajectory>();
-        m_RendererTrajectory.SetTrajectoryLineRendererClear(com_LineRenderer);
+        m_RendererTrajectory.SetTrajectoryLineRendererClear(m_LineRenderer);
 
         if (GetComponent<RigidbodyRotation>() == null)
         {
@@ -87,6 +87,6 @@ public class Sample_TrajectoryTanm_KeyPrimary : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_RendererTrajectory.SetTrajectoryLineRenderer(com_LineRenderer, com_Rigidbody.drag, false);
+        m_RendererTrajectory.SetTrajectoryLineRenderer(m_LineRenderer, m_Rigidbody.drag, false);
     }
 }

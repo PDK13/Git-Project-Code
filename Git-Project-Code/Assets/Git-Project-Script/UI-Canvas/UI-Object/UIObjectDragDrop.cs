@@ -401,12 +401,12 @@ public class UIObjectDragDrop : MonoBehaviour,
         mAllowCavasLock = mAllowLockStatus;
     }
 
-    public void SetUICanvasLocs_KeyTrue()
+    public void SetUICanvasLom_KeyTrue()
     {
         SetUICanvasLock(true);
     }
 
-    public void SetUICanvasLocs_KeyFalse()
+    public void SetUICanvasLom_KeyFalse()
     {
         SetUICanvasLock(false);
     }

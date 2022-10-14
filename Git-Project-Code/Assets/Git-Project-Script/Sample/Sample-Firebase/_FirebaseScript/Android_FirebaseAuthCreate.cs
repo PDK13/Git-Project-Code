@@ -6,7 +6,7 @@
 //    /// <summary>
 //    /// FIREBASE
 //    /// </summary>
-//    private ClassFirebase cs_Firebase;
+//    private ClassFirebase m_Firebase;
 
 //    /// <summary>
 //    /// Input Field EMAIL
@@ -42,7 +42,7 @@
 
 //    private void Start()
 //    {
-//        cs_Firebase = new ClassFirebase();
+//        m_Firebase = new ClassFirebase();
 
 //        m_Password.inputType = InputField.InputType.Password;
 //        m_PasswordRe.inputType = InputField.InputType.Password;
@@ -53,10 +53,10 @@
 
 //    private void Update()
 //    {
-//        if (cs_Firebase.GetFirebaseAumLogin())
+//        if (m_Firebase.GetFirebaseAumLogin())
 //        //If Auth LOGIN or CREATE Success
 //        {
-//            t_EmailAuth.text = cs_Firebase.GetFirebaseAum_Email().ToUper();
+//            t_EmailAuth.text = m_Firebase.GetFirebaseAum_Email().ToUper();
 //        }
 //        else
 //        //If Auth not LOGIN or CREATE yet
@@ -64,10 +64,10 @@
 //            t_EmailAuth.text = "Unknown".ToUper();
 //        }
 
-//        if (cs_Firebase.GetFirebaseAumRegisterDone())
+//        if (m_Firebase.GetFirebaseAumRegisterDone())
 //        {
-//            t_Info.text = cs_Firebase.GetFirebaseAum_Message();
-//            cs_Firebase.SetFirebaseAumRegisterDone(false);
+//            t_Info.text = m_Firebase.GetFirebaseAum_Message();
+//            m_Firebase.SetFirebaseAumRegisterDone(false);
 //        } 
 //    }
 
@@ -83,10 +83,10 @@
 //    /// </summary>
 //    public void ButtonCreate()
 //    {
-//        //cs_Firebase.SetFirebaseAum_SignOut();
+//        //m_Firebase.SetFirebaseAum_SignOut();
 //        //Sign out User Auth from Firebase
 
-//        cs_Firebase.SetFirebaseAum_MessageClear();
+//        m_Firebase.SetFirebaseAum_MessageClear();
 
 //        if(m_Email.text == "")
 //        {
@@ -121,7 +121,7 @@
 //        m_DisplayName.text = m_DisplayName.text.ToUper();
 
 //        StartCoroutine(
-//            cs_Firebase.SetFirebaseAumRegister_IEnumerator(
+//            m_Firebase.SetFirebaseAumRegister_IEnumerator(
 //                m_Email.text,
 //                m_Password.text,
 //                m_PasswordRe.text,
@@ -130,7 +130,7 @@
 //                new Android_FirebasePlayerData(m_DisplayName.text)));
 //        //Create Primary User Auth Profile in Firebase Database at "_Player/$UserAuthID/"
 
-//        t_Info.text = cs_Firebase.GetFirebaseAum_Message();
+//        t_Info.text = m_Firebase.GetFirebaseAum_Message();
 //    }
 
 //    //Back
@@ -140,7 +140,7 @@
 //    /// </summary>
 //    public void Button_Cancel()
 //    {
-//        ClassScene cs_Scene = new ClassScene(m_SceneBack);
+//        ClassScene m_Scene = new ClassScene(m_SceneBack);
 //        //Chance Scene to "Back"
 //    }
 

@@ -4,7 +4,7 @@ public class Sample_BackgroundMove : MonoBehaviour
 {
     [Header("Camera")]
 
-    [SerializeField] private Transform com_Camera;
+    [SerializeField] private Transform m_Camera;
 
     private Vector2 v2_MoveDir;
 
@@ -23,9 +23,9 @@ public class Sample_BackgroundMove : MonoBehaviour
 
     private void Start()
     {
-        if (com_Camera == null)
+        if (m_Camera == null)
         {
-            com_Camera = Camera.main.transform;
+            m_Camera = Camera.main.transform;
         }
     }
 
@@ -74,6 +74,6 @@ public class Sample_BackgroundMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        com_Camera.transform.position = com_Camera.transform.position + (Vector3)v2_MoveDir;
+        m_Camera.transform.position = m_Camera.transform.position + (Vector3)v2_MoveDir;
     }
 }

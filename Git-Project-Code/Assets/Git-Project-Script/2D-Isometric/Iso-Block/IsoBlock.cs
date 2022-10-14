@@ -50,10 +50,10 @@ public class IsoBlock : MonoBehaviour
 
     private void SetIsoTransform()
     {
-        //if (cs_World != null)
+        //if (m_World != null)
         //{
-        //    m_Offset = cs_World.GetFix_Offset();
-        //    m_Square = cs_World.GetFix_Square();
+        //    m_Offset = m_World.GetFix_Offset();
+        //    m_Square = m_World.GetFix_Square();
         //}
 
         Vector3 m_PosTransform = GetIsoScene(m_Pos);

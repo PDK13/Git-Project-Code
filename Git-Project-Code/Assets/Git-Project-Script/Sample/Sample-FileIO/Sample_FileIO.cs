@@ -10,13 +10,13 @@ public class Sample_FileIO : MonoBehaviour
 
     public Text t_Error;
 
-    private ClassFileIO cs_File;
+    private ClassFileIO m_File;
 
     private string m_PathFile = "";
 
     private void Start()
     {
-        cs_File = new ClassFileIO();
+        m_File = new ClassFileIO();
 
         m_PathFile = ClassFileIO.GetPath(FileIOPathType.Document, "HelloWorld");
 
@@ -27,11 +27,11 @@ public class Sample_FileIO : MonoBehaviour
     {
         try
         {
-            cs_File.SetWriteDataClear();
+            m_File.SetWriteDataClear();
 
-            cs_File.SetWriteDataAdd(m_Send.text);
+            m_File.SetWriteDataAdd(m_Send.text);
 
-            cs_File.SetWriteDataStart(m_PathFile);
+            m_File.SetWriteDataStart(m_PathFile);
 
             t_Error.text = "WRITE OK: \n" + m_PathFile;
         }
@@ -45,11 +45,11 @@ public class Sample_FileIO : MonoBehaviour
     {
         try
         {
-            cs_File.SetReadDataClear();
+            m_File.SetReadDataClear();
 
-            cs_File.SetReadDataStart(m_PathFile);
+            m_File.SetReadDataStart(m_PathFile);
 
-            tReceive.text = cs_File.GetReadDataAutoString();
+            tReceive.text = m_File.GetReadDataAutoString();
 
             t_Error.text = "READ OK: \n" + m_PathFile;
         }

@@ -351,12 +351,12 @@ public class UIButtonOnClick : MonoBehaviour,
         mAllowButtonLock = mAllowLockState;
     }
 
-    public void SetButtonLocs_KeyTrue()
+    public void SetButtonLom_KeyTrue()
     {
         SetButtonLock(true);
     }
 
-    public void SetButtonLocs_KeyFalse()
+    public void SetButtonLom_KeyFalse()
     {
         SetButtonLock(false);
     }
@@ -527,7 +527,7 @@ public class UIButtonOnClick : MonoBehaviour,
         return Color.green;
     }
 
-    public Color GetColorLocs_KeyPrimary()
+    public Color GetColorLom_KeyPrimary()
     {
         return Color.red;
     }

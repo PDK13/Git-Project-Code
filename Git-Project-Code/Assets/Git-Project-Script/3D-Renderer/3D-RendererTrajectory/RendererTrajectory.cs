@@ -14,9 +14,9 @@ public class RendererTrajectory : MonoBehaviour
 
     [Header("Trajectory Point")]
 
-    [SerializeField] private Transform com_TrajectoryStart;
+    [SerializeField] private Transform m_TransformStart;
 
-    [SerializeField] private Transform com_TrajectoryNext;
+    [SerializeField] private Transform m_TransformNext;
 
     [Header("Trajectory Raycast")]
 
@@ -42,14 +42,14 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Trajectory Start Point and Next Point
 
-    public void SetTrajectoryStart(Transform com_TrajectoryStart)
+    public void SetTrajectoryStart(Transform m_TrajectoryStart)
     {
-        this.com_TrajectoryStart = com_TrajectoryStart;
+        this.m_TransformStart = m_TrajectoryStart;
     }
 
     public void SetTrajectoryStart(Vector3 m_TrajectoryStart)
     {
-        com_TrajectoryStart.position = m_TrajectoryStart;
+        m_TransformStart.position = m_TrajectoryStart;
     }
 
     public void SetTrajectoryStartChance(Vector3 m_TrajectoryStartChance)
@@ -57,14 +57,14 @@ public class RendererTrajectory : MonoBehaviour
         SetTrajectoryStart(GetTrajectoryStart() + m_TrajectoryStartChance);
     }
 
-    public void SetTrajectoryNext(Transform com_TrajectoryNext)
+    public void SetTrajectoryNext(Transform m_TrajectoryNext)
     {
-        this.com_TrajectoryNext = com_TrajectoryNext;
+        this.m_TransformNext = m_TrajectoryNext;
     }
 
     public void SetTrajectoryNext(Vector3 m_TrajectoryNext)
     {
-        com_TrajectoryNext.position = m_TrajectoryNext;
+        m_TransformNext.position = m_TrajectoryNext;
     }
 
     public void SetTrajectoryNextChance(Vector3 m_TrajectoryNextChance)
@@ -74,22 +74,22 @@ public class RendererTrajectory : MonoBehaviour
 
     public Transform GetTrajectoryStartTransform()
     {
-        return com_TrajectoryStart;
+        return m_TransformStart;
     }
 
     public Vector3 GetTrajectoryStart()
     {
-        return com_TrajectoryStart.position;
+        return m_TransformStart.position;
     }
 
     public Transform GetTrajectoryNextTransform()
     {
-        return com_TrajectoryNext;
+        return m_TransformNext;
     }
 
     public Vector3 GetTrajectoryNext()
     {
-        return com_TrajectoryNext.position;
+        return m_TransformNext.position;
     }
 
     public float GetTrajectoryDuration()
@@ -246,29 +246,29 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Rigidbody Velocity with Trajectory
 
-    public void SetTrajectoryRigidbody(Rigidbody com_Rigidbody, Vector3 m_TrajectoryStart, Vector3 m_TrajectoryNext)
+    public void SetTrajectoryRigidbody(Rigidbody m_Rigidbody, Vector3 m_TrajectoryStart, Vector3 m_TrajectoryNext)
     {
-        if (com_Rigidbody.GetComponent<RigidbodyGravity>() == null)
+        if (m_Rigidbody.GetComponent<RigidbodyGravity>() == null)
         {
-            com_Rigidbody.gameObject.AddComponent<RigidbodyGravity>();
+            m_Rigidbody.gameObject.AddComponent<RigidbodyGravity>();
         }
 
-        com_Rigidbody.GetComponent<RigidbodyGravity>().SetGravityScale(m_RigidbodyGravity.GetGravityScale());
-        com_Rigidbody.GetComponent<RigidbodyGravity>().SetRigidbodyDrag(m_RigidbodyGravity.GetRigidbodyDrag());
+        m_Rigidbody.GetComponent<RigidbodyGravity>().SetGravityScale(m_RigidbodyGravity.GetGravityScale());
+        m_Rigidbody.GetComponent<RigidbodyGravity>().SetRigidbodyDrag(m_RigidbodyGravity.GetRigidbodyDrag());
 
         Vector3 m_TrajectoryDir = (m_TrajectoryNext - m_TrajectoryStart) * GetTrajectoryPower();
 
-        com_Rigidbody.velocity = m_TrajectoryDir;
+        m_Rigidbody.velocity = m_TrajectoryDir;
     }
 
-    public void SetTrajectoryRigidbody(Rigidbody2D com_Rigidbody2D, Vector2 v2_TrajectoryStart, Vector2 v2_TrajectoryNext)
+    public void SetTrajectoryRigidbody(Rigidbody2D m_Rigidbody2D, Vector2 v2_TrajectoryStart, Vector2 v2_TrajectoryNext)
     {
         Vector2 v2_TrajectoryDir = (v2_TrajectoryNext - v2_TrajectoryStart) * GetTrajectoryPower();
 
-        //com_Rigidbody2D.drag = m_RigidbodyGravity.GetRigidbodyDrag();
-        com_Rigidbody2D.mass = 0;
-        com_Rigidbody2D.gravityScale = m_RigidbodyGravity.GetGravityScale();
-        com_Rigidbody2D.velocity = v2_TrajectoryDir;
+        //m_Rigidbody2D.drag = m_RigidbodyGravity.GetRigidbodyDrag();
+        m_Rigidbody2D.mass = 0;
+        m_Rigidbody2D.gravityScale = m_RigidbodyGravity.GetGravityScale();
+        m_Rigidbody2D.velocity = v2_TrajectoryDir;
     }
 
     #endregion

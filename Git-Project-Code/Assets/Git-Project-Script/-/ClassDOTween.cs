@@ -92,20 +92,20 @@
 
 //    #region UI Fade
 
-//    public static void SetUI_FadeChanceTo(CanvasGroup com_CanvasGroup, float m_Fade = 1f, float m_Duration = 1f)
+//    public static void SetUI_FadeChanceTo(CanvasGroup m_CanvasGroup, float m_Fade = 1f, float m_Duration = 1f)
 //    {
 //        if (m_Fade > 1f)
 //        {
-//            com_CanvasGroup.DOFade(1f, m_Duration);
+//            m_CanvasGroup.DOFade(1f, m_Duration);
 //        }
 //        else
 //        if (m_Fade < 0f)
 //        {
-//            com_CanvasGroup.DOFade(0f, m_Duration);
+//            m_CanvasGroup.DOFade(0f, m_Duration);
 //        }
 //        else
 //        {
-//            com_CanvasGroup.DOFade(m_Fade, m_Duration);
+//            m_CanvasGroup.DOFade(m_Fade, m_Duration);
 //        }
 //    }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SimpleCountdownTime : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI com_Text;
+    [SerializeField] private TextMeshProUGUI m_Text;
 
     [SerializeField] private float m_TimePassed = 1f;
 
@@ -25,7 +25,7 @@ public class SimpleCountdownTime : MonoBehaviour
     {
         yield return null;
 
-        com_Text.text = csCountdownTime.GetMessage();
+        m_Text.text = csCountdownTime.GetMessage();
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
 
@@ -33,7 +33,7 @@ public class SimpleCountdownTime : MonoBehaviour
         {
             csCountdownTime.SetTimeOut(m_TimePassed);
 
-            com_Text.text = csCountdownTime.GetTimeOutCurrent() + " / " + csCountdownTime.GetTime();
+            m_Text.text = csCountdownTime.GetTimeOutCurrent() + " / " + csCountdownTime.GetTime();
 
             yield return new WaitForSeconds(m_TimePassed);
         }
@@ -47,7 +47,7 @@ public class SimpleCountdownTime : MonoBehaviour
         }
         else
         {
-            com_Text.text = "We're done!";
+            m_Text.text = "We're done!";
         }
     }
 }

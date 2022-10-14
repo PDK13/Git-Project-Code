@@ -4,15 +4,15 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
 {
     [SerializeField] private GameObject m_Bullet;
 
-    [SerializeField] private Transform com_Gun;
+    [SerializeField] private Transform m_Gun;
 
-    [SerializeField] private Transform com_Tarket;
+    [SerializeField] private Transform m_Tarket;
 
     private RendererTrajectory m_RendererTrajectory;
 
-    private LineRenderer com_LineRenderer;
+    private LineRenderer m_LineRenderer;
 
-    private Rigidbody com_Rigidbody;
+    private Rigidbody m_Rigidbody;
 
     private RigidbodyRotation m_RigidbodyRotation;
 
@@ -27,16 +27,16 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
             gameObject.AddComponent<Rigidbody>();
         }
 
-        com_Rigidbody = GetComponent<Rigidbody>();
+        m_Rigidbody = GetComponent<Rigidbody>();
 
         if (GetComponent<LineRenderer>() == null)
         {
             gameObject.AddComponent<LineRenderer>();
         }
 
-        com_LineRenderer = GetComponent<LineRenderer>();
-        com_LineRenderer.startWidth = 0.2f;
-        com_LineRenderer.endWidth = 0.2f;
+        m_LineRenderer = GetComponent<LineRenderer>();
+        m_LineRenderer.startWidth = 0.2f;
+        m_LineRenderer.endWidth = 0.2f;
 
         if (GetComponent<RendererTrajectory>() == null)
         {
@@ -44,7 +44,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
         }
 
         m_RendererTrajectory = GetComponent<RendererTrajectory>();
-        m_RendererTrajectory.SetTrajectoryLineRendererClear(com_LineRenderer);
+        m_RendererTrajectory.SetTrajectoryLineRendererClear(m_LineRenderer);
 
         if (GetComponent<RigidbodyRotation>() == null)
         {
@@ -75,7 +75,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject m_BulletClone = ClassObject.SetGameObjectCreate(m_Bullet);
-            m_BulletClone.GetComponent<Sample_TrajectoryBullet>().SetTarket(com_Tarket.gameObject);
+            m_BulletClone.GetComponent<Sample_TrajectoryBullet>().SetTarket(m_Tarket.gameObject);
             m_BulletClone.transform.position = m_RendererTrajectory.GetTrajectoryStart();
             m_BulletClone.SetActive(true);
 
@@ -94,7 +94,7 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
         {
             m_DemCurrent = (float)m_RendererTrajectory.GetTrajectoryAngleDeg(
                 m_RendererTrajectory.GetTrajectoryStartTransform().position,
-                com_Tarket.transform.position,
+                m_Tarket.transform.position,
                 m_AllowAngleHigh);
         }
         catch
@@ -102,8 +102,8 @@ public class Sample_TrajectoryTanm_KeyAngle_AI : MonoBehaviour
 
         }
 
-        com_Gun.rotation = ClassVector.GetRotationEulerToQuaternion(com_Gun.rotation.eulerAngles.x, com_Gun.rotation.eulerAngles.y, m_DemCurrent);
+        m_Gun.rotation = ClassVector.GetRotationEulerToQuaternion(m_Gun.rotation.eulerAngles.x, m_Gun.rotation.eulerAngles.y, m_DemCurrent);
 
-        m_RendererTrajectory.SetTrajectoryLineRenderer(com_LineRenderer, com_Rigidbody.drag, true);
+        m_RendererTrajectory.SetTrajectoryLineRenderer(m_LineRenderer, m_Rigidbody.drag, true);
     }
 }

@@ -7,15 +7,15 @@ public class ClassObject
 
     #region Create
 
-    public static GameObject SetGameObjectCreate(GameObject m_Prepab, Transform com_Parent = null)
+    public static GameObject SetGameObjectCreate(GameObject m_Prepab, Transform m_Parent = null)
     {
-        if (com_Parent == null)
+        if (m_Parent == null)
         {
             return MonoBehaviour.Instantiate(m_Prepab);
         }
         else
         {
-            return MonoBehaviour.Instantiate(m_Prepab, com_Parent);
+            return MonoBehaviour.Instantiate(m_Prepab, m_Parent);
         }
     }
 

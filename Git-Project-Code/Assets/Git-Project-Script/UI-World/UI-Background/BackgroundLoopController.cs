@@ -7,13 +7,13 @@ public class BackgroundLoopController : MonoBehaviour
 
     //[SerializeField] private bool mAllowCameraLoopX = true;
 
-    [SerializeField] private Transform com_Camera;
+    [SerializeField] private Transform m_Camera;
 
     private float m_CameraX;
 
     [Header("Background")]
 
-    [SerializeField] private SpriteRenderer com_Background;
+    [SerializeField] private SpriteRenderer m_Background;
 
     private float m_BackgroundBoundX;
 
@@ -25,15 +25,15 @@ public class BackgroundLoopController : MonoBehaviour
 
     private void Start()
     {
-        if (com_Camera == null)
+        if (m_Camera == null)
         {
-            com_Camera = Camera.main.transform;
+            m_Camera = Camera.main.transform;
         }
 
-        m_BackgroundBoundX = com_Background.GetComponent<SpriteRenderer>().bounds.size.x;
-        m_BackgroundLocamX = com_Background.transform.localScale.x;
+        m_BackgroundBoundX = m_Background.GetComponent<SpriteRenderer>().bounds.size.x;
+        m_BackgroundLocamX = m_Background.transform.localScale.x;
 
-        m_CameraX = com_Camera.position.x;
+        m_CameraX = m_Camera.position.x;
 
         for (int i = 0; i < m_BackgroundLayer.Count; i++)
         {
@@ -65,12 +65,12 @@ public class BackgroundLoopController : MonoBehaviour
 
     private float GetCameraX()
     {
-        return com_Camera.position.x - m_CameraX;
+        return m_Camera.position.x - m_CameraX;
     }
 
     private float GetCameraY(BackgroundLoopLayer m_Layer)
     {
-        return (m_Layer.GetCheckLayerFollowY()) ? com_Camera.position.y : m_Layer.GetTransform().transform.position.y;
+        return (m_Layer.GetCheckLayerFollowY()) ? m_Camera.position.y : m_Layer.GetTransform().transform.position.y;
     }
 }
 

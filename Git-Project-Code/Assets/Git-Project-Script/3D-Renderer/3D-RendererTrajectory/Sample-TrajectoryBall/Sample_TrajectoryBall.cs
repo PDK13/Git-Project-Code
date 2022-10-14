@@ -9,9 +9,9 @@ public class Sample_TrajectoryBall : MonoBehaviour
 
     private RendererTrajectory m_RendererTrajectory;
 
-    private LineRenderer com_LineRenderer;
+    private LineRenderer m_LineRenderer;
 
-    private Rigidbody com_Rigidbody;
+    private Rigidbody m_Rigidbody;
 
     private void Awake()
     {
@@ -27,14 +27,14 @@ public class Sample_TrajectoryBall : MonoBehaviour
             gameObject.AddComponent<Rigidbody>();
         }
 
-        com_Rigidbody = GetComponent<Rigidbody>();
+        m_Rigidbody = GetComponent<Rigidbody>();
 
         if (GetComponent<LineRenderer>() == null)
         {
             gameObject.AddComponent<LineRenderer>();
         }
 
-        com_LineRenderer = GetComponent<LineRenderer>();
+        m_LineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update()
@@ -52,12 +52,12 @@ public class Sample_TrajectoryBall : MonoBehaviour
 
             m_RendererTrajectory.SetTrajectoryNext(v2_MouseDramNext);
 
-            m_RendererTrajectory.SetTrajectoryLineRenderer(com_LineRenderer, com_Rigidbody.drag, false);
+            m_RendererTrajectory.SetTrajectoryLineRenderer(m_LineRenderer, m_Rigidbody.drag, false);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            m_RendererTrajectory.SetTrajectoryRigidbody(com_Rigidbody, v2_MouseDramStart, v2_MouseDramNext);
+            m_RendererTrajectory.SetTrajectoryRigidbody(m_Rigidbody, v2_MouseDramStart, v2_MouseDramNext);
         }
     }
 }

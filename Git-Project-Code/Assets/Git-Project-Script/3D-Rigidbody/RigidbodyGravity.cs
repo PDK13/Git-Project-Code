@@ -7,7 +7,7 @@ public class RigidbodyGravity : MonoBehaviour
 
     [SerializeField] private float m_GravityGlobal = 9.81f;
 
-    private Rigidbody com_Rigidbody;
+    private Rigidbody m_Rigidbody;
 
     private void Awake()
     {
@@ -23,24 +23,24 @@ public class RigidbodyGravity : MonoBehaviour
             Debug.LogErrorFormat("{0}: Detect Rigidbody2D Component, please remove it!", name);
         }
 
-        com_Rigidbody = GetComponent<Rigidbody>();
+        m_Rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
-        com_Rigidbody.useGravity = false;
+        m_Rigidbody.useGravity = false;
     }
 
     private void FixedUpdate()
     {
-        if (com_Rigidbody == null)
+        if (m_Rigidbody == null)
         {
             return;
         }
 
         Vector3 m_Gravity = GetGravityGlobamVector() * GetGravityScale();
 
-        com_Rigidbody.AddForce(m_Gravity, ForceMode.Acceleration);
+        m_Rigidbody.AddForce(m_Gravity, ForceMode.Acceleration);
     }
 
     #region Set
@@ -57,7 +57,7 @@ public class RigidbodyGravity : MonoBehaviour
 
     public void SetRigidbodyDrag(float m_GravityDrag)
     {
-        com_Rigidbody.drag = m_GravityDrag;
+        m_Rigidbody.drag = m_GravityDrag;
     }
 
     #endregion
@@ -81,7 +81,7 @@ public class RigidbodyGravity : MonoBehaviour
 
     public float GetRigidbodyDrag()
     {
-        return com_Rigidbody.drag;
+        return m_Rigidbody.drag;
     }
 
     #endregion

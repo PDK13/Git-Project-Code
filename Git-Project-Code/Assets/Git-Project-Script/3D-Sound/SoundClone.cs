@@ -4,7 +4,7 @@ using UnityEngine;
 //[RequireComponent(typeof(AudioSource))]
 public class SoundClone : MonoBehaviour
 {
-    private AudioSource com_AudioSource;
+    private AudioSource m_AudioSource;
 
     private float m_VolumnPrimary = 1f;
 
@@ -15,7 +15,7 @@ public class SoundClone : MonoBehaviour
             gameObject.AddComponent<AudioSource>();
         }
 
-        com_AudioSource = GetComponent<AudioSource>();
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     #region Play
@@ -24,19 +24,19 @@ public class SoundClone : MonoBehaviour
     {
         SetComponentAdd();
 
-        com_AudioSource.clip = m_SoundCloneData.GetClip();
+        m_AudioSource.clip = m_SoundCloneData.GetClip();
 
-        com_AudioSource.loop = m_SoundCloneData.GetCheckLoop();
+        m_AudioSource.loop = m_SoundCloneData.GetCheckLoop();
 
         m_VolumnPrimary = m_SoundCloneData.GetVolumnPrimary();
 
-        com_AudioSource.spatialBlend = 1;
+        m_AudioSource.spatialBlend = 1;
 
         transform.position = v2_Pos;
 
-        com_AudioSource.maxDistance = m_Distance;
+        m_AudioSource.maxDistance = m_Distance;
 
-        com_AudioSource.Play();
+        m_AudioSource.Play();
 
         if (!m_SoundCloneData.GetCheckLoop())
         {
@@ -48,15 +48,15 @@ public class SoundClone : MonoBehaviour
     {
         SetComponentAdd();
 
-        com_AudioSource.clip = m_SoundCloneData.GetClip();
+        m_AudioSource.clip = m_SoundCloneData.GetClip();
 
-        com_AudioSource.loop = m_SoundCloneData.GetCheckLoop();
+        m_AudioSource.loop = m_SoundCloneData.GetCheckLoop();
 
         m_VolumnPrimary = m_SoundCloneData.GetVolumnPrimary();
 
-        com_AudioSource.spatialBlend = 0;
+        m_AudioSource.spatialBlend = 0;
 
-        com_AudioSource.Play();
+        m_AudioSource.Play();
 
         if (!m_SoundCloneData.GetCheckLoop())
         {
@@ -79,27 +79,27 @@ public class SoundClone : MonoBehaviour
     {
         if (m_VolumnPrimary * m_Volumn > 1f)
         {
-            com_AudioSource.volume = 1f;
+            m_AudioSource.volume = 1f;
         }
         else
         if (m_VolumnPrimary * m_Volumn < 0f)
         {
-            com_AudioSource.volume = 0f;
+            m_AudioSource.volume = 0f;
         }
         else
         {
-            com_AudioSource.volume = m_VolumnPrimary * m_Volumn;
+            m_AudioSource.volume = m_VolumnPrimary * m_Volumn;
         }
     }
 
     public void SetSoundMute(bool b_CheckMute)
     {
-        com_AudioSource.mute = b_CheckMute;
+        m_AudioSource.mute = b_CheckMute;
     }
 
     public void SetSoundStop()
     {
-        com_AudioSource.Stop();
+        m_AudioSource.Stop();
     }
 
     #endregion
@@ -108,22 +108,22 @@ public class SoundClone : MonoBehaviour
 
     public AudioClip GetSound()
     {
-        return com_AudioSource.clip;
+        return m_AudioSource.clip;
     }
 
     public bool GetCheckSoundMute()
     {
-        return com_AudioSource.mute;
+        return m_AudioSource.mute;
     }
 
     public bool GetCheckSoundStop()
     {
-        return com_AudioSource.isPlaying == false;
+        return m_AudioSource.isPlaying == false;
     }
 
     public bool GetCheckSoundPlay()
     {
-        return com_AudioSource.isPlaying == true;
+        return m_AudioSource.isPlaying == true;
     }
 
     #endregion
