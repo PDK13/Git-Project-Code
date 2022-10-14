@@ -6,7 +6,7 @@ public class Sample_BackgroundMove : MonoBehaviour
 
     [SerializeField] private Transform m_Camera;
 
-    private Vector2 v2_MoveDir;
+    private Vector2 m_MoveDir;
 
     [Header("Keyboard")]
 
@@ -33,47 +33,47 @@ public class Sample_BackgroundMove : MonoBehaviour
     {
         if (Input.GetKey(m_KeyMoveU))
         {
-            if (v2_MoveDir.y < m_MoveSpeedMax)
+            if (m_MoveDir.y < m_MoveSpeedMax)
             {
-                v2_MoveDir.y += m_MoveSpeed;
+                m_MoveDir.y += m_MoveSpeed;
             }
         }
         else
         if (Input.GetKey(m_KeyMoveD))
         {
-            if (v2_MoveDir.y > -m_MoveSpeedMax)
+            if (m_MoveDir.y > -m_MoveSpeedMax)
             {
-                v2_MoveDir.y -= m_MoveSpeed;
+                m_MoveDir.y -= m_MoveSpeed;
             }
         }
         else
         {
-            v2_MoveDir.y = 0;
+            m_MoveDir.y = 0;
         }
 
         if (Input.GetKey(m_KeyMoveL))
         {
-            if (v2_MoveDir.x > -m_MoveSpeedMax)
+            if (m_MoveDir.x > -m_MoveSpeedMax)
             {
-                v2_MoveDir.x -= m_MoveSpeed;
+                m_MoveDir.x -= m_MoveSpeed;
             }
         }
         else
         if (Input.GetKey(m_KeyMoveR))
         {
-            if (v2_MoveDir.x < m_MoveSpeedMax)
+            if (m_MoveDir.x < m_MoveSpeedMax)
             {
-                v2_MoveDir.x += m_MoveSpeed;
+                m_MoveDir.x += m_MoveSpeed;
             }
         }
         else
         {
-            v2_MoveDir.x = 0;
+            m_MoveDir.x = 0;
         }
     }
 
     private void FixedUpdate()
     {
-        m_Camera.transform.position = m_Camera.transform.position + (Vector3)v2_MoveDir;
+        m_Camera.transform.position = m_Camera.transform.position + (Vector3)m_MoveDir;
     }
 }

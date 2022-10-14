@@ -261,14 +261,14 @@ public class RendererTrajectory : MonoBehaviour
         m_Rigidbody.velocity = m_TrajectoryDir;
     }
 
-    public void SetTrajectoryRigidbody(Rigidbody2D m_Rigidbody2D, Vector2 v2_TrajectoryStart, Vector2 v2_TrajectoryNext)
+    public void SetTrajectoryRigidbody(Rigidbody2D m_Rigidbody2D, Vector2 m_TrajectoryStart, Vector2 m_TrajectoryNext)
     {
-        Vector2 v2_TrajectoryDir = (v2_TrajectoryNext - v2_TrajectoryStart) * GetTrajectoryPower();
+        Vector2 m_TrajectoryDir = (m_TrajectoryNext - m_TrajectoryStart) * GetTrajectoryPower();
 
         //m_Rigidbody2D.drag = m_RigidbodyGravity.GetRigidbodyDrag();
         m_Rigidbody2D.mass = 0;
         m_Rigidbody2D.gravityScale = m_RigidbodyGravity.GetGravityScale();
-        m_Rigidbody2D.velocity = v2_TrajectoryDir;
+        m_Rigidbody2D.velocity = m_TrajectoryDir;
     }
 
     #endregion

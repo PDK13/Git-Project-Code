@@ -28,9 +28,9 @@ public class Sample_2DSimplePlatform : MonoBehaviour
             m_TimeChanceCurrent = m_TimeChance;
         }
 
-        Vector2 v2_Pos = Vector2.MoveTowards(transform.position, transform.position + Vector3.right * m_MoveDir, m_Speed);
+        Vector2 m_Pos = Vector2.MoveTowards(transform.position, transform.position + Vector3.right * m_MoveDir, m_Speed);
 
-        transform.position = v2_Pos;
+        transform.position = m_Pos;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

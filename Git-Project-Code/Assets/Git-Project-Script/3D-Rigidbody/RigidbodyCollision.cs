@@ -3,9 +3,9 @@ using UnityEngine;
 [AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody-Collision")]
 public class RigidbodyCollision : MonoBehaviour
 {
-    [SerializeField] private bool mAllowCollisionPassingThrough = true;
+    [SerializeField] private bool m_AllowCollisionPassingThrough = true;
 
-    [SerializeField] private bool mAllowRigidbodyMovingFast = false;
+    [SerializeField] private bool m_AllowRigidbodyMovingFast = false;
 
     private Rigidbody m_Rigidbody;
 
@@ -34,12 +34,12 @@ public class RigidbodyCollision : MonoBehaviour
 
     private void SetRigidbodyComponent3D()
     {
-        if (mAllowCollisionPassingThrough && mAllowRigidbodyMovingFast)
+        if (m_AllowCollisionPassingThrough && m_AllowRigidbodyMovingFast)
         {
             m_Rigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         }
         else
-        if (mAllowCollisionPassingThrough)
+        if (m_AllowCollisionPassingThrough)
         {
             m_Rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         }
@@ -51,12 +51,12 @@ public class RigidbodyCollision : MonoBehaviour
 
     private void SetRigidbodyComponent2D()
     {
-        if (mAllowCollisionPassingThrough && mAllowRigidbodyMovingFast)
+        if (m_AllowCollisionPassingThrough && m_AllowRigidbodyMovingFast)
         {
             m_Rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         }
         else
-        if (mAllowCollisionPassingThrough)
+        if (m_AllowCollisionPassingThrough)
         {
             m_Rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         }

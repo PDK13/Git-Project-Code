@@ -29,7 +29,7 @@ public class SoundManager : MonoBehaviour
 
     #region m_usic
 
-    public static SoundClone SetBackgroundMusic(AudioClip au_Clip, float m_VolumnPrimary)
+    public static SoundClone SetBackgroundMusic(AudioClip m_Clip, float m_VolumnPrimary)
     {
         SetBackgroundMusicStop();
 
@@ -40,7 +40,7 @@ public class SoundManager : MonoBehaviour
             m_SoundClone.AddComponent<SoundClone>();
         }
 
-        m_SoundClone.GetComponent<SoundClone>().SetPlaySound2D(new SoundCloneData(au_Clip, true, m_VolumnPrimary));
+        m_SoundClone.GetComponent<SoundClone>().SetPlaySound2D(new SoundCloneData(m_Clip, true, m_VolumnPrimary));
 
         m_SoundClone.GetComponent<SoundClone>().SetSoundMute(m_This.m_CheckMute);
 
@@ -73,7 +73,7 @@ public class SoundManager : MonoBehaviour
 
     #region Sound Primary
 
-    public static GameObject SetSound3D(AudioClip au_Clip, bool m_CheckLoop, float m_VolumnPrimary, Vector2 v2_Pos, float m_Distance)
+    public static GameObject SetSound3D(AudioClip m_Clip, bool m_CheckLoop, float m_VolumnPrimary, Vector2 m_Pos, float m_Distance)
     {
         GameObject m_SoundClone = ClassObject.SetGameObjectCreate(m_This.m_SoundClone);
 
@@ -82,7 +82,7 @@ public class SoundManager : MonoBehaviour
             m_SoundClone.AddComponent<SoundClone>();
         }
 
-        m_SoundClone.GetComponent<SoundClone>().SetPlaySound3D(new SoundCloneData(au_Clip, m_CheckLoop, m_VolumnPrimary), v2_Pos, m_Distance);
+        m_SoundClone.GetComponent<SoundClone>().SetPlaySound3D(new SoundCloneData(m_Clip, m_CheckLoop, m_VolumnPrimary), m_Pos, m_Distance);
 
         m_SoundClone.GetComponent<SoundClone>().SetSoundMute(m_This.m_CheckMute);
 
@@ -94,7 +94,7 @@ public class SoundManager : MonoBehaviour
         return m_SoundClone;
     }
 
-    public static GameObject SetSound2D(AudioClip au_Clip, bool m_CheckLoop, float m_VolumnPrimary)
+    public static GameObject SetSound2D(AudioClip m_Clip, bool m_CheckLoop, float m_VolumnPrimary)
     {
         GameObject m_SoundClone = ClassObject.SetGameObjectCreate(m_This.m_SoundClone);
 
@@ -103,7 +103,7 @@ public class SoundManager : MonoBehaviour
             m_SoundClone.AddComponent<SoundClone>();
         }
 
-        m_SoundClone.GetComponent<SoundClone>().SetPlaySound2D(new SoundCloneData(au_Clip, m_CheckLoop, m_VolumnPrimary));
+        m_SoundClone.GetComponent<SoundClone>().SetPlaySound2D(new SoundCloneData(m_Clip, m_CheckLoop, m_VolumnPrimary));
 
         m_SoundClone.GetComponent<SoundClone>().SetSoundMute(m_This.m_CheckMute);
 
@@ -115,11 +115,11 @@ public class SoundManager : MonoBehaviour
         return m_SoundClone;
     }
 
-    public static bool SetSoundStop(AudioClip au_Clip)
+    public static bool SetSoundStop(AudioClip m_Clip)
     {
         for (int i = 1; i < m_This.lm_SoundClone.Count; i++)
         {
-            if (m_This.lm_SoundClone[i].GetComponent<SoundClone>().GetSound().name.Equals(au_Clip.name))
+            if (m_This.lm_SoundClone[i].GetComponent<SoundClone>().GetSound().name.Equals(m_Clip.name))
             {
                 Destroy(m_This.lm_SoundClone[i]);
 
@@ -129,7 +129,7 @@ public class SoundManager : MonoBehaviour
             }
         }
 
-        Debug.LogWarningFormat("{0}: Not found Sound {1} to Stop it!", m_This.name, au_Clip.name);
+        Debug.LogWarningFormat("{0}: Not found Sound {1} to Stop it!", m_This.name, m_Clip.name);
         return false;
     }
 

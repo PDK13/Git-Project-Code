@@ -5,46 +5,44 @@ using UnityEngine;
 [RequireComponent(typeof(RigidbodyComponent))]
 
 public class RaycastFan : MonoBehaviour
-//Eye Fan Cast
-//Distance 0 m_ean not Cast (Even "INSIDE" other GameObject)
 {
     [Header("Fan in 'XZ' or 'XY'?")]
-    public bool mAllowXZ = true;
-    //World
+
+    public bool m_AllowXZ = true;
 
     [Header("None - Line - Ray - Box - Sphere Cast")]
+
     [Range(0, 4)]
     public int m_Cast = 0;
-    //Cast Type
 
     public LayerMask m_Barrier;
-    //Layer Cast
 
     [Header("Centre")]
+
     public float m_Distance = 2f;
-    //Radius Cast
 
     [Header("Fan")]
+
     public int m_Fan = 1;
-    //Half of Cast from Centre Cast
+
     [Range(0, 360)]
     public float m_OffFan = 15f;
-    //Offset between Cast
 
     [Header("Chance")]
+
     public Vector3 m_OffPos = new Vector3();
-    //Offset Eye
 
     [Header("BoxCast")]
+
     public Vector3 m_Square = new Vector3(0.1f, 0.1f, 0.1f);
 
     [Header("SphereCast")]
+
     public float m_Sphere = 0.1f;
 
     //Eye
 
     private RaycastHit GetEye(int m_CastIndex)
-    //Get EyeCast (0: Centre; +1: Top; -1: Bot)
     {
         List<RaycastHit> m_RaycastHit = new List<RaycastHit>();
 
@@ -53,7 +51,7 @@ public class RaycastFan : MonoBehaviour
         RigidbodyComponent m_Rigid = GetComponent<RigidbodyComponent>();
         //Use this Script to get "Rotation" of this Object
 
-        if (!mAllowXZ)
+        if (!m_AllowXZ)
         {
             //LineCast
             if (m_Cast == 1)
@@ -129,7 +127,7 @@ public class RaycastFan : MonoBehaviour
             }
         }
         else
-    if (mAllowXZ)
+    if (m_AllowXZ)
         {
             //LineCast
             if (m_Cast == 1)
@@ -207,7 +205,6 @@ public class RaycastFan : MonoBehaviour
     }
 
     public List<RaycastHit> GetList()
-    //Get List EyeCast (0:Centre; %2!=0: Top; %2==0: Bot)
     {
         List<RaycastHit> m_RaycastHit = new List<RaycastHit>
         {
@@ -228,7 +225,6 @@ public class RaycastFan : MonoBehaviour
     }
 
     public List<float> GetListDistance(int mMinimize)
-    //Get List Distance (Decrease by m_inimize)
     {
         List<RaycastHit> l1Ray = GetList();
 
@@ -249,7 +245,6 @@ public class RaycastFan : MonoBehaviour
     }
 
     public List<float> GetListDistance()
-    //Get List Distance
     {
         List<RaycastHit> l1Ray = GetList();
 
@@ -270,31 +265,26 @@ public class RaycastFan : MonoBehaviour
     }
 
     public RaycastHit GetEyep(int m_Index)
-    //Get EyeCast Top
     {
         return GetEye(m_Index * 2 - 1);
     }
 
     public bool GetCheckEyep(int m_Index)
-    //Get Check EyeCast Top
     {
         return GetEye(m_Index * 2 - 1).collider != null;
     }
 
     public RaycastHit GetEye_Bot(int m_Index)
-    //Get EyeCast Bot
     {
         return GetEye(m_Index * 2);
     }
 
     public bool GetCheckEye_Bot(int m_Index)
-    //Get Check EyeCast Bot
     {
         return GetEye(m_Index * 2).collider != null;
     }
 
     public int GetFanCount()
-    //Get Count Fan Eye (Always have 1 Fan Centre)
     {
         return 1 + m_Fan * 2;
     }
@@ -306,7 +296,7 @@ public class RaycastFan : MonoBehaviour
         ClassEye m_Eye = new ClassEye();
         RigidbodyComponent m_Rigid = GetComponent<RigidbodyComponent>();
 
-        if (mAllowXZ)
+        if (m_AllowXZ)
         {
             //LineCast
             if (m_Cast == 1)
@@ -438,7 +428,7 @@ public class RaycastFan : MonoBehaviour
             }
         }
         else
-        if (mAllowXZ)
+        if (m_AllowXZ)
         {
             //LineCast
             if (m_Cast == 1)

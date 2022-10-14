@@ -3,9 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(RendererTrajectory))]
 public class Sample_TrajectoryBall : MonoBehaviour
 {
-    private Vector2 v2_MouseDramStart;
+    private Vector2 m_MouseDramStart;
 
-    private Vector2 v2_MouseDramNext;
+    private Vector2 m_MouseDramNext;
 
     private RendererTrajectory m_RendererTrajectory;
 
@@ -41,23 +41,23 @@ public class Sample_TrajectoryBall : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            v2_MouseDramStart = transform.position;
+            m_MouseDramStart = transform.position;
 
-            m_RendererTrajectory.SetTrajectoryStart(v2_MouseDramStart);
+            m_RendererTrajectory.SetTrajectoryStart(m_MouseDramStart);
         }
 
         if (Input.GetMouseButton(0))
         {
-            v2_MouseDramNext = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            m_MouseDramNext = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            m_RendererTrajectory.SetTrajectoryNext(v2_MouseDramNext);
+            m_RendererTrajectory.SetTrajectoryNext(m_MouseDramNext);
 
             m_RendererTrajectory.SetTrajectoryLineRenderer(m_LineRenderer, m_Rigidbody.drag, false);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            m_RendererTrajectory.SetTrajectoryRigidbody(m_Rigidbody, v2_MouseDramStart, v2_MouseDramNext);
+            m_RendererTrajectory.SetTrajectoryRigidbody(m_Rigidbody, m_MouseDramStart, m_MouseDramNext);
         }
     }
 }

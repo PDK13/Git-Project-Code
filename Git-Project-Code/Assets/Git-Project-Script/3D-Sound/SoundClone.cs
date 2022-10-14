@@ -20,7 +20,7 @@ public class SoundClone : MonoBehaviour
 
     #region Play
 
-    public void SetPlaySound3D(SoundCloneData m_SoundCloneData, Vector2 v2_Pos, float m_Distance)
+    public void SetPlaySound3D(SoundCloneData m_SoundCloneData, Vector2 m_Pos, float m_Distance)
     {
         SetComponentAdd();
 
@@ -32,7 +32,7 @@ public class SoundClone : MonoBehaviour
 
         m_AudioSource.spatialBlend = 1;
 
-        transform.position = v2_Pos;
+        transform.position = m_Pos;
 
         m_AudioSource.maxDistance = m_Distance;
 
@@ -132,20 +132,20 @@ public class SoundClone : MonoBehaviour
 [System.Serializable]
 public class SoundCloneData
 {
-    private readonly AudioClip au_Clip;
+    private readonly AudioClip m_Clip;
     private readonly bool mAllowLoop;
     private readonly float m_VolumnPrimary;
 
-    public SoundCloneData(AudioClip au_Clip, bool mAllowLoop, float m_VolumnPrimary)
+    public SoundCloneData(AudioClip m_Clip, bool mAllowLoop, float m_VolumnPrimary)
     {
-        this.au_Clip = au_Clip;
+        this.m_Clip = m_Clip;
         this.mAllowLoop = mAllowLoop;
         this.m_VolumnPrimary = m_VolumnPrimary;
     }
 
     public AudioClip GetClip()
     {
-        return au_Clip;
+        return m_Clip;
     }
 
     public bool GetCheckLoop()
