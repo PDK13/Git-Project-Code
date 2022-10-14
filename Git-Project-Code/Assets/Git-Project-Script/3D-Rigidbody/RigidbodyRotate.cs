@@ -69,9 +69,9 @@ public class RigidbodyRotate : MonoBehaviour
         }
     }
 
-    public void SetFollowR(bool mAllowFollowR)
+    public void SetFollowR(bool m_AllowFollowR)
     {
-        this.m_AllowFollowRight = mAllowFollowR;
+        this.m_AllowFollowRight = m_AllowFollowR;
     }
 
     public bool GetCheckFollowR()
@@ -79,9 +79,9 @@ public class RigidbodyRotate : MonoBehaviour
         return m_AllowFollowRight;
     }
 
-    public void SetFollowU(bool mAllowFollowU)
+    public void SetFollowU(bool m_AllowFollowU)
     {
-        this.m_AllowFollowUp = mAllowFollowU ;
+        this.m_AllowFollowUp = m_AllowFollowU ;
     }
 
     public bool GetCheckFollowU()
@@ -89,9 +89,9 @@ public class RigidbodyRotate : MonoBehaviour
         return m_AllowFollowUp;
     }
 
-    public void SetFollowForward(bool mAllowFollowForward)
+    public void SetFollowForward(bool m_AllowFollowForward)
     {
-        this.m_AllowFollowForward = mAllowFollowForward;
+        this.m_AllowFollowForward = m_AllowFollowForward;
     }
 
     public bool GetCheckFollowForward()

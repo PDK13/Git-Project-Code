@@ -17,11 +17,11 @@ public class UIObjectMoveToPoint : MonoBehaviour
     private float m_MoveTime = 1f;
 
     [SerializeField]
-    private Vector2 m_MoveTo_Offset = new Vector2();
+    private Vector2 m_MoveToOffset = new Vector2();
 
     [Tooltip("After Finish m_ove, set Depth to Zero")]
     [SerializeField]
-    private bool mAllowDepthAutoZero = false;
+    private bool m_AllowDepthAutoZero = false;
 
     [Header("Move To Point Debug")]
 
@@ -35,7 +35,7 @@ public class UIObjectMoveToPoint : MonoBehaviour
     private float m_Speed = 0f;
 
     [SerializeField]
-    private bool mAllowMoveDone = true;
+    private bool m_AllowMoveDone = true;
 
     private RectTransform m_Transform;
 
@@ -56,22 +56,22 @@ public class UIObjectMoveToPoint : MonoBehaviour
             SetUI_MoveTo(m_RecTransform.anchoredPosition3D);
         }
 
-        Vector2 m_MoveTo = new Vector2(m_MoveTo.x, m_MoveTo.y);
+        Vector2 m_MoveTo = new Vector2(this.m_MoveTo.x, this.m_MoveTo.y);
 
-        m_Distance = Vector2.Distance(m_Transform.anchoredPosition, m_MoveTo + m_MoveTo_Offset);
+        m_Distance = Vector2.Distance(m_Transform.anchoredPosition, m_MoveTo + m_MoveToOffset);
 
-        if (mAllowMoveDone && m_Distance > 1f)
+        if (m_AllowMoveDone && m_Distance > 1f)
         {
             m_Speed = m_Distance / m_MoveTime;
 
-            mAllowMoveDone = false;
+            m_AllowMoveDone = false;
         }
         else
         if (m_Distance <= 1f)
         {
-            mAllowMoveDone = true;
+            m_AllowMoveDone = true;
 
-            if (mAllowDepthAutoZero)
+            if (m_AllowDepthAutoZero)
             {
                 m_Transform.anchoredPosition3D = new Vector3(
                     m_Transform.anchoredPosition3D.x,
@@ -84,13 +84,13 @@ public class UIObjectMoveToPoint : MonoBehaviour
         {
             m_Transform.anchoredPosition = Vector2.MoveTowards(
                 m_Transform.anchoredPosition,
-                m_MoveTo + m_MoveTo_Offset,
+                m_MoveTo + m_MoveToOffset,
                 m_Speed * Time.deltaTime);
 
             m_Transform.anchoredPosition3D = new Vector3(
                 m_Transform.anchoredPosition3D.x,
                 m_Transform.anchoredPosition3D.y,
-                m_MoveTo.z);
+                this.m_MoveTo.z);
         }
     }
 
@@ -116,11 +116,11 @@ public class UIObjectMoveToPoint : MonoBehaviour
 
     public void SetUI_MoveTo_Offset(Vector2 m_MoveTo_Offset)
     {
-        this.m_MoveTo_Offset = m_MoveTo_Offset;
+        this.m_MoveToOffset = m_MoveTo_Offset;
     }
 
     public bool GetCheckUI_MoveToDone()
     {
-        return mAllowMoveDone;
+        return m_AllowMoveDone;
     }
 }

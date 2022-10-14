@@ -113,17 +113,17 @@ public class RigidbodyComponent : MonoBehaviour
     /// <param name="m_Kinematic"></param>
     /// <param name="mLockRot">No Rotation</param>
     /// <param name="mLockPos">No m_ove</param>
-    public void SetRigid(bool mAllowKinematic, bool mAllowLockRot, bool mAllowLockPos)
+    public void SetRigid(bool m_AllowKinematic, bool m_AllowLockRot, bool m_AllowLockPos)
     {
         Rigidbody m_Rigidbody = GetComponent<Rigidbody>();
-        m_Rigidbody.isKinematic = mAllowKinematic;
+        m_Rigidbody.isKinematic = m_AllowKinematic;
         m_Rigidbody.useGravity = false;
-        if (mAllowLockRot && !mAllowLockPos)
+        if (m_AllowLockRot && !m_AllowLockPos)
         {
             m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
         else
-        if (!mAllowLockRot && mAllowLockPos)
+        if (!m_AllowLockRot && m_AllowLockPos)
         {
             m_Rigidbody.constraints = RigidbodyConstraints.FreezePosition;
         }

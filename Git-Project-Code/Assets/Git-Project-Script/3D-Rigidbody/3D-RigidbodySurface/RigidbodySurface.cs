@@ -132,9 +132,9 @@ public class RigidbodySurface : MonoBehaviour
         this.m_ButtonMoveZForward = m_ButtonMoveZForward;
     }
 
-    private void SetControlMoveSpeedChance(bool mAllowSpeedChance)
+    private void SetControlMoveSpeedChance(bool m_AllowSpeedChance)
     {
-        this.m_AllowSpeedChance = mAllowSpeedChance;
+        this.m_AllowSpeedChance = m_AllowSpeedChance;
     }
 
     #endregion
@@ -182,9 +182,9 @@ public class RigidbodySurface : MonoBehaviour
 
     #region Control is Lock
 
-    public void SetControlLock(bool mAllowLockControl)
+    public void SetControlLock(bool m_AllowLockControl)
     {
-        this.m_AllowLockControl = mAllowLockControl;
+        this.m_AllowLockControl = m_AllowLockControl;
     }
 
     public bool GetCheckControlLock()

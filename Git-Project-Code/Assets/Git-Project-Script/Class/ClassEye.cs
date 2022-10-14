@@ -23,12 +23,12 @@ public class ClassEye
     /// <returns></returns>
     public bool GetCheckLineCast(Vector3 m_Start, Vector3 m_End, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
-        mAllowHit = Physics.Linecast(m_Start, m_End, out ray_Hit, m_Tarket);
+        m_AllowHit = Physics.Linecast(m_Start, m_End, out ray_Hit, m_Tarket);
 
-        return mAllowHit;
+        return m_AllowHit;
     }
 
     /// <sum_m_ary>
@@ -40,10 +40,10 @@ public class ClassEye
     /// <returns></returns>
     public RaycastHit GetLineCastRaycastHit(Vector3 m_Start, Vector3 m_End, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
-        mAllowHit = Physics.Linecast(m_Start, m_End, out ray_Hit, m_Tarket);
+        m_AllowHit = Physics.Linecast(m_Start, m_End, out ray_Hit, m_Tarket);
 
         return ray_Hit;
     }
@@ -76,12 +76,12 @@ public class ClassEye
     /// <returns></returns>
     public bool GetCheckRayCastDir(Vector3 m_Start, Vector3 m_Forward, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
-        mAllowHit = Physics.Raycast(m_Start, m_Forward, out ray_Hit, m_Distance, m_Tarket);
+        m_AllowHit = Physics.Raycast(m_Start, m_Forward, out ray_Hit, m_Distance, m_Tarket);
 
-        return mAllowHit;
+        return m_AllowHit;
     }
 
     /// <sum_m_ary>
@@ -94,10 +94,10 @@ public class ClassEye
     /// <returns></returns>
     public RaycastHit GetRayCastDirRaycastHit(Vector3 m_Start, Vector3 m_Forward, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
-        mAllowHit = Physics.Raycast(m_Start, m_Forward, out ray_Hit, m_Distance, m_Tarket);
+        m_AllowHit = Physics.Raycast(m_Start, m_Forward, out ray_Hit, m_Distance, m_Tarket);
 
         return ray_Hit;
     }
@@ -112,13 +112,13 @@ public class ClassEye
     /// <returns></returns>
     public bool GetCheckRayCastVector(Vector3 m_Start, Vector3 m_End, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
         Vector3 m_Forward = (m_End - m_Start).normalized;
-        mAllowHit = Physics.Raycast(m_Start, m_Forward, out ray_Hit, m_Distance, m_Tarket);
+        m_AllowHit = Physics.Raycast(m_Start, m_Forward, out ray_Hit, m_Distance, m_Tarket);
 
-        return mAllowHit;
+        return m_AllowHit;
     }
 
     /// <sum_m_ary>
@@ -131,11 +131,11 @@ public class ClassEye
     /// <returns></returns>
     public RaycastHit GetRayCastVectorRaycastHit(Vector3 m_Start, Vector3 m_End, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
         Vector3 m_Forward = (m_End - m_Start).normalized;
-        mAllowHit = Physics.Raycast(m_Start, m_Forward, out ray_Hit, m_Distance, m_Tarket);
+        m_AllowHit = Physics.Raycast(m_Start, m_Forward, out ray_Hit, m_Distance, m_Tarket);
 
         return ray_Hit;
     }
@@ -203,13 +203,13 @@ public class ClassEye
     /// <returns></returns>
     public bool GetCheckBoxCastDir(Vector3 m_Start, Vector3 m_Size, Vector3 m_Forward, Vector3 m_Rotation, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
         Quaternion qRotation = Quaternion.Euler(m_Rotation);
-        mAllowHit = Physics.BoxCast(m_Start, m_Size, m_Forward, out ray_Hit, qRotation, m_Distance, m_Tarket);
+        m_AllowHit = Physics.BoxCast(m_Start, m_Size, m_Forward, out ray_Hit, qRotation, m_Distance, m_Tarket);
 
-        return mAllowHit;
+        return m_AllowHit;
     }
 
     /// <sum_m_ary>
@@ -224,11 +224,11 @@ public class ClassEye
     /// <returns></returns>
     public RaycastHit GetBoxCastDirRaycastHit(Vector3 m_Start, Vector3 m_Size, Vector3 m_Forward, Vector3 m_Rotation, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
         Quaternion qRotation = Quaternion.Euler(m_Rotation);
-        mAllowHit = Physics.BoxCast(m_Start, m_Size, m_Forward, out ray_Hit, qRotation, m_Distance, m_Tarket);
+        m_AllowHit = Physics.BoxCast(m_Start, m_Size, m_Forward, out ray_Hit, qRotation, m_Distance, m_Tarket);
 
         return ray_Hit;
     }
@@ -245,14 +245,14 @@ public class ClassEye
     /// <returns></returns>
     public bool GetCheckBoxCastVector(Vector3 m_Start, Vector3 m_Size, Vector3 m_End, Vector3 m_Rotation, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
         Vector3 m_Forward = (m_End - m_Start).normalized;
         Quaternion qRotation = Quaternion.Euler(m_Rotation);
-        mAllowHit = Physics.BoxCast(m_Start, m_Size, m_Forward, out ray_Hit, qRotation, m_Distance, m_Tarket);
+        m_AllowHit = Physics.BoxCast(m_Start, m_Size, m_Forward, out ray_Hit, qRotation, m_Distance, m_Tarket);
 
-        return mAllowHit;
+        return m_AllowHit;
     }
 
     /// <sum_m_ary>
@@ -267,12 +267,12 @@ public class ClassEye
     /// <returns></returns>
     public RaycastHit GetBoxCastVectorRaycastHit(Vector3 m_Start, Vector3 m_Size, Vector3 m_End, Vector3 m_Rotation, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
         Vector3 m_Forward = (m_End - m_Start).normalized;
         Quaternion qRotation = Quaternion.Euler(m_Rotation);
-        mAllowHit = Physics.BoxCast(m_Start, m_Size, m_Forward, out ray_Hit, qRotation, m_Distance, m_Tarket);
+        m_AllowHit = Physics.BoxCast(m_Start, m_Size, m_Forward, out ray_Hit, qRotation, m_Distance, m_Tarket);
 
         return ray_Hit;
     }
@@ -343,12 +343,12 @@ public class ClassEye
     /// <returns></returns>
     public bool GetCheckSphereCastDir(Vector3 m_Start, float m_Radius, Vector3 m_Forward, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
-        mAllowHit = Physics.SphereCast(m_Start, m_Radius, m_Forward, out ray_Hit, m_Distance, m_Tarket);
+        m_AllowHit = Physics.SphereCast(m_Start, m_Radius, m_Forward, out ray_Hit, m_Distance, m_Tarket);
 
-        return mAllowHit;
+        return m_AllowHit;
     }
 
     /// <sum_m_ary>
@@ -362,10 +362,10 @@ public class ClassEye
     /// <returns></returns>
     public RaycastHit GetSphereCastDirRaycastHit(Vector3 m_Start, float m_Radius, Vector3 m_Forward, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
-        mAllowHit = Physics.SphereCast(m_Start, m_Radius, m_Forward, out ray_Hit, m_Distance, m_Tarket);
+        m_AllowHit = Physics.SphereCast(m_Start, m_Radius, m_Forward, out ray_Hit, m_Distance, m_Tarket);
 
         return ray_Hit;
     }
@@ -381,13 +381,13 @@ public class ClassEye
     /// <returns></returns>
     public bool GetCheckSphereCastVector(Vector3 m_Start, float m_Radius, Vector3 m_End, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
         Vector3 m_Forward = (m_End - m_Start).normalized;
-        mAllowHit = Physics.SphereCast(m_Start, m_Radius / 2, m_Forward, out ray_Hit, m_Distance, m_Tarket);
+        m_AllowHit = Physics.SphereCast(m_Start, m_Radius / 2, m_Forward, out ray_Hit, m_Distance, m_Tarket);
 
-        return mAllowHit;
+        return m_AllowHit;
     }
 
     /// <sum_m_ary>
@@ -401,11 +401,11 @@ public class ClassEye
     /// <returns></returns>
     public RaycastHit GetSphereCastVectorRaycastHit(Vector3 m_Start, float m_Radius, Vector3 m_End, float m_Distance, LayerMask m_Tarket)
     {
-        bool mAllowHit = false;
+        bool m_AllowHit = false;
         RaycastHit ray_Hit = new RaycastHit();
 
         Vector3 m_Forward = (m_End - m_Start).normalized;
-        mAllowHit = Physics.SphereCast(m_Start, m_Radius / 2, m_Forward, out ray_Hit, m_Distance, m_Tarket);
+        m_AllowHit = Physics.SphereCast(m_Start, m_Radius / 2, m_Forward, out ray_Hit, m_Distance, m_Tarket);
 
         return ray_Hit;
     }

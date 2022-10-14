@@ -133,13 +133,13 @@ public class SoundClone : MonoBehaviour
 public class SoundCloneData
 {
     private readonly AudioClip m_Clip;
-    private readonly bool mAllowLoop;
+    private readonly bool m_AllowLoop;
     private readonly float m_VolumnPrimary;
 
-    public SoundCloneData(AudioClip m_Clip, bool mAllowLoop, float m_VolumnPrimary)
+    public SoundCloneData(AudioClip m_Clip, bool m_AllowLoop, float m_VolumnPrimary)
     {
         this.m_Clip = m_Clip;
-        this.mAllowLoop = mAllowLoop;
+        this.m_AllowLoop = m_AllowLoop;
         this.m_VolumnPrimary = m_VolumnPrimary;
     }
 
@@ -150,7 +150,7 @@ public class SoundCloneData
 
     public bool GetCheckLoop()
     {
-        return mAllowLoop;
+        return m_AllowLoop;
     }
 
     public float GetVolumnPrimary()

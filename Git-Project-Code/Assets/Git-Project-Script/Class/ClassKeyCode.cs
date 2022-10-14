@@ -57,9 +57,9 @@ public class ClassKeyCode
 
     #region Mouse
 
-    public static void SetMouseVisible(bool mAllowMouseVisble)
+    public static void SetMouseVisible(bool m_AllowMouseVisble)
     {
-        Cursor.visible = mAllowMouseVisble;
+        Cursor.visible = m_AllowMouseVisble;
     }
 
     /// <summary>

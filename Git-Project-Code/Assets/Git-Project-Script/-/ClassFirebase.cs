@@ -12,7 +12,7 @@
 //public class ClassFirebase
 ////Firebasee Primary for Android
 //{
-//    public bool mAllowDebug = false;
+//    public bool m_AllowDebug = false;
 
 //    /// <summary>
 //    /// Working on Firebasee Primary for Android
@@ -26,7 +26,7 @@
 //    /// <summary>
 //    /// Working on Firebasee Primary for Android
 //    /// </summary>
-//    public ClassFirebase(bool mAllowDebug)
+//    public ClassFirebase(bool m_AllowDebug)
 //    {
 //        SetFirebaseStart();
 //        mDebug = m_Debug;
@@ -135,7 +135,7 @@
 //    /// <summary>
 //    /// Check if Register is Done
 //    /// </summary>
-//    private bool mAllowFirebaseAumRegisterDone = false;
+//    private bool m_AllowFirebaseAumRegisterDone = false;
 
 //    /// <summary>
 //    /// Check if Register is Done
@@ -150,7 +150,7 @@
 //    /// Set Register Done check
 //    /// </summary>
 //    /// <param name="mChance"></param>
-//    public void SetFirebaseAumRegisterDone(bool mAllowChance)
+//    public void SetFirebaseAumRegisterDone(bool m_AllowChance)
 //    {
 //        m_FirebaseAumRegisterDone = m_Chance;
 //    }
@@ -276,7 +276,7 @@
 //    /// Set Login Done check
 //    /// </summary>
 //    /// <param name="mChance"></param>
-//    public void SetFirebaseAumLoginDone(bool mAllowChance)
+//    public void SetFirebaseAumLoginDone(bool m_AllowChance)
 //    {
 //        this.FirebaseListenLoginDone = m_Chance;
 //    }
@@ -431,7 +431,7 @@
 //    /// <summary>
 //    /// Check if Send Email is Done
 //    /// </summary>
-//    private bool mAllowFirebaseAum_SendEmaimDone = false;
+//    private bool m_AllowFirebaseAum_SendEmaimDone = false;
 
 //    /// <summary>
 //    /// Check if Send Email is Done
@@ -446,7 +446,7 @@
 //    /// Set Send Email Done check
 //    /// </summary>
 //    /// <param name="mChance"></param>
-//    public void SetFirebaseAum_SendEmaimDone(bool mAllowChance)
+//    public void SetFirebaseAum_SendEmaimDone(bool m_AllowChance)
 //    {
 //        m_FirebaseAum_SendEmaimDone = m_Chance;
 //    }
@@ -534,7 +534,7 @@
 //    /// <param name="m_EmailVerification">If "True", Firebase will send an Email Verification</param>
 //    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_Player/UserAuthID"</param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAumRegister_IEnumerator(string m_Email, string m_Password, string m_DisplayName, bool mAllowEmailVerification, object o_Class)
+//    public IEnumerator SetFirebaseAumRegister_IEnumerator(string m_Email, string m_Password, string m_DisplayName, bool m_AllowEmailVerification, object o_Class)
 //    {
 //        ClassString m_String = new ClassString();
 //        if (!m_String.GetCheckEmail(m_Email))
@@ -647,7 +647,7 @@
 //    /// <param name="m_EmailVerification">If "True", Firebase will send an Email Verification</param>
 //    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_ID$UserAuthID/"</param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAumRegister_IEnumerator(string m_Email, string m_Password, string m_PasswordRe, string m_DisplayName, bool mAllowEmailVerification, object o_Class)
+//    public IEnumerator SetFirebaseAumRegister_IEnumerator(string m_Email, string m_Password, string m_PasswordRe, string m_DisplayName, bool m_AllowEmailVerification, object o_Class)
 //    {
 //        ClassString m_String = new ClassString();
 //        if (!m_String.GetCheckEmail(m_Email))
@@ -1370,7 +1370,7 @@
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
 //    /// <param name="m_Value"></param>
-//    public void SetFirebaseDatabase_Value(string m_DatabaseAcess, bool mAllowValue)
+//    public void SetFirebaseDatabase_Value(string m_DatabaseAcess, bool m_AllowValue)
 //    {
 //        daReference.Child(m_DatabaseAcess).SetValueAsync(m_Value);
 //        if(m_Debug) Debug.Log("SetFirebaseDatabase_Value: " + "\"" + m_DatabaseAcess + "\" : \"" + m_Value + "\"");
@@ -1451,7 +1451,7 @@
 //    /// Set Get from Firebase Database Done check
 //    /// </summary>
 //    /// <param name="m_ProgessChance"></param>
-//    public void SetFirebaseDatabase_GetDone(string m_ProgessSaveName, bool mAllowProgessChance)
+//    public void SetFirebaseDatabase_GetDone(string m_ProgessSaveName, bool m_AllowProgessChance)
 //    {
 //        GetData().SetData(m_ProgessSaveName, m_ProgessChance);
 //    }

@@ -178,9 +178,9 @@ public class RigidbodyRotation : MonoBehaviour
 
     #region Control is Lock
 
-    public void SetControlLock(bool mAllowLockControl)
+    public void SetControlLock(bool m_AllowLockControl)
     {
-        this.m_AllowLockControl = mAllowLockControl;
+        this.m_AllowLockControl = m_AllowLockControl;
     }
 
     public bool GetCheckControlLock()

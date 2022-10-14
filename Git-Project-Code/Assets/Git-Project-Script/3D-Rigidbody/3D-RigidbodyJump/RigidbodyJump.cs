@@ -46,9 +46,9 @@ public class RigidbodyJump : MonoBehaviour
         }
     }
 
-    public void SetJumpAuto(bool mAllowJumpHold)
+    public void SetJumpAuto(bool m_AllowJumpHold)
     {
-        if (mAllowJumpHold)
+        if (m_AllowJumpHold)
         {
             SetJump();
         }

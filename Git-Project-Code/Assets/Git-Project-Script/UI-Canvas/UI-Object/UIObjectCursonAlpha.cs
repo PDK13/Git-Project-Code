@@ -14,7 +14,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     [Tooltip("Canvas Alpha when is Exit State on Start")]
     [SerializeField]
-    private bool mAllowCavasLockEnter = false;
+    private bool m_AllowCavasLockEnter = false;
 
     [Tooltip("Button for Canvas Alpha Lock Chance")]
     [SerializeField]
@@ -56,7 +56,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
         c_CanvasGroup = GetComponent<CanvasGroup>();
 
-        if (mAllowCavasLockEnter)
+        if (m_AllowCavasLockEnter)
         {
             c_CanvasGroup.alpha = m_Canvas_AlphaEnter;
         }
@@ -68,7 +68,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
         if (m_ButtonLockChance != null)
         {
             //m_ButtonLockChance.SetEvent_Add_PointerD(SetUICanvasLockEnterChance);
-            m_ButtonLockChance.SetButtonActive(mAllowCavasLockEnter);
+            m_ButtonLockChance.SetButtonActive(m_AllowCavasLockEnter);
         }
     }
 
@@ -123,7 +123,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     private void SetEvent_PointerExit()
     {
-        if (mAllowCavasLockEnter)
+        if (m_AllowCavasLockEnter)
         {
             c_CanvasGroup.alpha = m_Canvas_AlphaEnter;
 
@@ -163,9 +163,9 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     #region UI Canvas Lock
 
-    public void SetUICanvasLockEnter(bool mAllowCavasLockEnter)
+    public void SetUICanvasLockEnter(bool m_AllowCavasLockEnter)
     {
-        this.mAllowCavasLockEnter = mAllowCavasLockEnter;
+        this.m_AllowCavasLockEnter = m_AllowCavasLockEnter;
     }
 
     public void SetUICanvasLockEnterChance()
@@ -175,7 +175,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     public bool GetCheckUICanvasLockEnter()
     {
-        return mAllowCavasLockEnter;
+        return m_AllowCavasLockEnter;
     }
 
     #endregion
