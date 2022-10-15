@@ -17,7 +17,7 @@ public class Sample_BackgroundChance : MonoBehaviour
     {
         for (int i = 0; i < LayerObject.Length; i++)
         {
-            LayerObject[i] = GameObject.Find("Layer" + i);
+            LayerObject[i] = GameObject.Find("Layer_" + i);
         }
 
         ChangeSprite();
