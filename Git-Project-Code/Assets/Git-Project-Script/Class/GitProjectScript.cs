@@ -420,9 +420,9 @@ public class GitFileIO
         SetReadDataClear();
     }
 
-    #region ================================================================== File IO Path 
+    #region File IO Path 
 
-    public static string GetPath(FileIOPathType m_FileIOPathType, string m_FileIOName, params string[] m_FileIOPath)
+    public static string GetPath(GitPathType m_FileIOPathType, string m_FileIOName, params string[] m_FileIOPath)
     {
         string m_Path = "";
 
@@ -435,22 +435,22 @@ public class GitFileIO
 
         switch (m_FileIOPathType)
         {
-            case FileIOPathType.Persistent:
+            case GitPathType.Persistent:
                 m_Path = Application.persistentDataPath + @"\" + m_Path;
                 break;
-            case FileIOPathType.Resources:
+            case GitPathType.Resources:
                 m_Path = Application.dataPath + @"\resources\" + m_Path;
                 break;
-            case FileIOPathType.Document:
+            case GitPathType.Document:
                 m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + m_Path;
                 break;
-            case FileIOPathType.Picture:
+            case GitPathType.Picture:
                 m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\" + m_Path;
                 break;
-            case FileIOPathType.Music:
+            case GitPathType.Music:
                 m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + @"\" + m_Path;
                 break;
-            case FileIOPathType.Video:
+            case GitPathType.Video:
                 m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + @"\" + m_Path;
                 break;
         }
@@ -466,7 +466,7 @@ public class GitFileIO
 
     #endregion
 
-    #region ================================================================== File IO Write 
+    #region File IO Write 
 
     private string m_TextWrite = "";
 
@@ -573,7 +573,7 @@ public class GitFileIO
 
     #endregion
 
-    #region ================================================================== File IO Read 
+    #region File IO Read 
 
     private List<string> m_TextRead = new List<string>();
     private int m_ReadRun = -1;
@@ -685,7 +685,7 @@ public class GitFileIO
 
     #endregion
 
-    #region ================================================================== File Json
+    #region File Json
 
     //NOTE:
     //Type "TextAsset" is a "Text Document" File or "*.txt" File
@@ -967,11 +967,15 @@ public class GitEncypt
     #endregion
 }
 
-public enum FileIOPathType
+public enum GitPathType
 {
     None = 0,
+
+    //Project & Application
     Persistent = 1,
     Resources = 2,
+
+    //PC
     Document = 3,
     Picture = 4,
     Music = 5,
