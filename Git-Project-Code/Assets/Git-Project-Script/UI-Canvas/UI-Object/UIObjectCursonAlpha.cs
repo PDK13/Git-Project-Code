@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class UIObjectCursonAlpha : MonoBehaviour,
-    IPointerEnterHandler, IPointerExitHandler
+public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("This Canvas")]
 

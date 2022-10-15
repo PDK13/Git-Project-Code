@@ -12,12 +12,12 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     [Tooltip("Color Normal Button")]
     [SerializeField]
-    private Color m_Color_Normal = Color.white;
+    private Color m_ColorNormal = Color.white;
 
     [Tooltip("Color Ready Button")]
     [SerializeField]
     private Color m_ColorReady = Color.gray;
-
+    
     [SerializeField]
     private Color m_ColorHold = Color.yellow;
 
@@ -418,7 +418,7 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
         else
         //If Not Hold Pressed >> Do...
         {
-            SetButton_Color(m_Color_Normal);
+            SetButton_Color(m_ColorNormal);
         }
     }
 
@@ -444,9 +444,9 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     #region Color Button Set
 
-    public void SetButton_Color_Normal(Color m_Color_Normal)
+    public void SetButton_ColorNormal(Color m_ColorNormal)
     {
-        this.m_Color_Normal = m_Color_Normal;
+        this.m_ColorNormal = m_ColorNormal;
     }
 
     public void SetButton_ColorReady(Color m_ColorReady)
@@ -468,9 +468,9 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     #region Color Button Get
 
-    public Color GetButton_Color_Normal()
+    public Color GetButton_ColorNormal()
     {
-        return m_Color_Normal;
+        return m_ColorNormal;
     }
 
     public Color GetButton_ColorReady()
@@ -492,7 +492,7 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     #region Color Button Primary
 
-    public Color GetColor_NormamPrimary()
+    public Color GetColorNormamPrimary()
     {
         return Color.white;
     }

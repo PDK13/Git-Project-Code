@@ -6,15 +6,13 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIButtonOnClick : MonoBehaviour,
-    IPointerEnterHandler, IPointerExitHandler,
-    IPointerDownHandler, IPointerUpHandler
+public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     [Header("Color Button")]
 
     [Tooltip("Color Normal Button")]
     [SerializeField]
-    private Color m_Color_Normal = Color.white;
+    private Color m_ColorNormal = Color.white;
 
     [Tooltip("Color Ready Button")]
     [SerializeField]
@@ -423,7 +421,7 @@ public class UIButtonOnClick : MonoBehaviour,
         else
         //If Not Active Pressed >> Do...
         {
-            SetButton_Color(m_Color_Normal);
+            SetButton_Color(m_ColorNormal);
         }
     }
 
@@ -449,9 +447,9 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Color Button Set
 
-    public void SetButton_Color_Normal(Color m_Color_Normal)
+    public void SetButton_ColorNormal(Color m_ColorNormal)
     {
-        this.m_Color_Normal = m_Color_Normal;
+        this.m_ColorNormal = m_ColorNormal;
     }
 
     public void SetButton_ColorReady(Color m_ColorReady)
@@ -478,9 +476,9 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Color Button Get
 
-    public Color GetButton_Color_Normal()
+    public Color GetButton_ColorNormal()
     {
-        return m_Color_Normal;
+        return m_ColorNormal;
     }
 
     public Color GetButton_ColorReady()
@@ -507,7 +505,7 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Color Button Primary
 
-    public Color GetColor_NormamPrimary()
+    public Color GetColorNormamPrimary()
     {
         return Color.white;
     }
