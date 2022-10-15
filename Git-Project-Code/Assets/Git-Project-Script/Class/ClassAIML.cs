@@ -400,9 +400,9 @@ public class ClassAIML
     /// </summary>
     /// <param name="m_Path"></param>
     /// <returns></returns>
-    public bool GetCheckFileExist(string m_Path)
+    public bool GetFileExist(string m_Path)
     {
-        return GitFileIO.GetCheckPathExist(m_Path);
+        return GitFileIO.GetPathExist(m_Path);
     }
 
     /// <summary>
@@ -819,7 +819,7 @@ public class ClassAIML
     /// Check Delay Time
     /// </summary>
     /// <returns>Will return "True" if Delay Time = 0</returns>
-    public bool GetCheckBoom_myBrainDelayTimeValue()
+    public bool GetBoom_myBrainDelayTimeValue()
     {
         if (m_BrainDelayTimeCurrent > 0)
         {
@@ -832,7 +832,7 @@ public class ClassAIML
     /// Check Delay Time & Continue work on Delay Time
     /// </summary>
     /// <returns>Will return "True" if Delay Time = 0</returns>
-    public bool GetCheckBoom_myBrainDelayTimeOver()
+    public bool GetBoom_myBrainDelayTimeOver()
     {
         if (m_BrainDelayTimeCurrent > 0)
         {

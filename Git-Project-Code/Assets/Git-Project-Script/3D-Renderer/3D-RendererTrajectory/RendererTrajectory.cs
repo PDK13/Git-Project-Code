@@ -20,7 +20,7 @@ public class RendererTrajectory : MonoBehaviour
 
     [Header("Trajectory Raycast")]
 
-    [SerializeField] private bool m_AllowTrajectoryRaycast = false;
+    [SerializeField] private bool m_TrajectoryRaycast = false;
 
     [SerializeField] private LayerMask m_TrajectoryRaycastLayerMask;
 
@@ -136,7 +136,7 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Trajectory
 
-    public Vector3[] GetTrajectoryPoints(float m_RigidbodyDrag, bool m_AllowDir_Normalized)
+    public Vector3[] GetTrajectoryPoints(float m_RigidbodyDrag, bool m_Dir_Normalized)
     {
         Vector3[] m_TrajectoryResult;
 
@@ -148,7 +148,7 @@ public class RendererTrajectory : MonoBehaviour
 
         float m_Drag = 1f - m_TimeStep * m_RigidbodyDrag;
 
-        Vector3 m_TrajectoryDir = GetTrajectoryDirPrimary(m_AllowDir_Normalized);
+        Vector3 m_TrajectoryDir = GetTrajectoryDirPrimary(m_Dir_Normalized);
 
         Vector3 m_MoveStep = m_TrajectoryDir * m_TimeStep;
 
@@ -162,7 +162,7 @@ public class RendererTrajectory : MonoBehaviour
 
             m_PosPoint += m_MoveStep;
 
-            if (m_AllowTrajectoryRaycast)
+            if (m_TrajectoryRaycast)
             {
                 bool rayRaycast = Physics.Linecast(m_PosPoint + Vector3.down * m_TrajectoryRaycastSize, m_PosPoint - Vector3.down * m_TrajectoryRaycastSize, m_TrajectoryRaycastLayerMask);
 
@@ -188,9 +188,9 @@ public class RendererTrajectory : MonoBehaviour
         return m_TrajectoryResult;
     }
 
-    public Vector3 GetTrajectoryDirPrimary(bool m_AllowDir_Normalized)
+    public Vector3 GetTrajectoryDirPrimary(bool m_Dir_Normalized)
     {
-        if (m_AllowDir_Normalized)
+        if (m_Dir_Normalized)
         {
             return (GetTrajectoryNext() - GetTrajectoryStart()).normalized * m_TrajectoryPower;
         }
@@ -207,7 +207,7 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Angle for hit Trajectory
 
-    public float? GetTrajectoryAngleDeg(Vector3 m_PosStart, Vector3 m_PosTarket, bool m_AllowAngleHighAllow)
+    public float? GetTrajectoryAngleDeg(Vector3 m_PosStart, Vector3 m_PosTarket, bool m_AngleHighAllow)
     {
         Vector3 m_TarketDir = m_PosTarket - m_PosStart;
 
@@ -229,7 +229,7 @@ public class RendererTrajectory : MonoBehaviour
             float m_Angle_High = m_Speed_SQR + m_Under_SQRT;
             float m_AngleLow = m_Speed_SQR - m_Under_SQRT;
 
-            if (m_AllowAngleHighAllow)
+            if (m_AngleHighAllow)
             {
                 return Mathf.Atan2(m_Angle_High, m_Gravity * m_XDuration) * Mathf.Rad2Deg;
             }
@@ -275,9 +275,9 @@ public class RendererTrajectory : MonoBehaviour
 
     #region Line Renderer with Trajectory
 
-    public void SetTrajectoryLineRenderer(LineRenderer comLineRenderer, float m_RigidbodyDrag, bool m_AllowDir_Normalized)
+    public void SetTrajectoryLineRenderer(LineRenderer comLineRenderer, float m_RigidbodyDrag, bool m_Dir_Normalized)
     {
-        Vector3[] trajectory = GetTrajectoryPoints(m_RigidbodyDrag, m_AllowDir_Normalized);
+        Vector3[] trajectory = GetTrajectoryPoints(m_RigidbodyDrag, m_Dir_Normalized);
 
         comLineRenderer.positionCount = trajectory.Length;
         Vector3[] position = new Vector3[trajectory.Length];

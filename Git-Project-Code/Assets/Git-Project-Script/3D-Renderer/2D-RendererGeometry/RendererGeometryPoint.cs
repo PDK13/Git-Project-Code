@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RendererGeometryPoint : MonoBehaviour
 {
-    public bool m_AllowDebug = true;
+    public bool m_Debug = true;
 
     public float m_Duration = 2;
 
@@ -53,7 +53,7 @@ public class RendererGeometryPoint : MonoBehaviour
         //Thể hiện hình vẽ m_ẫu trên chính GameObject. Và đây cũng là gợi ý cho cách sử dụng danh sách điểm.
         //Đường vẽ m_àu "Vàng" là giữa điểm Kết thúc và Bắt đầu
 
-        if (!m_AllowDebug)
+        if (!m_Debug)
         {
             return;
         }

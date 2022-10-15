@@ -12,7 +12,7 @@
 //public class ClassFirebase
 ////Firebasee Primary for Android
 //{
-//    public bool m_AllowDebug = false;
+//    public bool m_Debug = false;
 
 //    /// <summary>
 //    /// Working on Firebasee Primary for Android
@@ -26,7 +26,7 @@
 //    /// <summary>
 //    /// Working on Firebasee Primary for Android
 //    /// </summary>
-//    public ClassFirebase(bool m_AllowDebug)
+//    public ClassFirebase(bool m_Debug)
 //    {
 //        SetFirebaseStart();
 //        mDebug = m_Debug;
@@ -79,7 +79,7 @@
 //    /// Get Auth Login
 //    /// </summary>
 //    /// <returns></returns>
-//    public bool GetCheckFirebaseAumLogin()
+//    public bool GetFirebaseAumLogin()
 //    {
 //        if(m_Debug) Debug.Log("GetFirebaseAumLogIn: " + (fm_Auth.CurrentUser != null).ToString());
 //        return fm_Auth.CurrentUser != null;
@@ -135,13 +135,13 @@
 //    /// <summary>
 //    /// Check if Register is Done
 //    /// </summary>
-//    private bool m_AllowFirebaseAumRegisterDone = false;
+//    private bool m_FirebaseAumRegisterDone = false;
 
 //    /// <summary>
 //    /// Check if Register is Done
 //    /// </summary>
 //    /// <returns></returns>
-//    public bool GetCheckFirebaseAumRegisterDone()
+//    public bool GetFirebaseAumRegisterDone()
 //    {
 //        return m_FirebaseAumRegisterDone;
 //    }
@@ -150,7 +150,7 @@
 //    /// Set Register Done check
 //    /// </summary>
 //    /// <param name="mChance"></param>
-//    public void SetFirebaseAumRegisterDone(bool m_AllowChance)
+//    public void SetFirebaseAumRegisterDone(bool m_Chance)
 //    {
 //        m_FirebaseAumRegisterDone = m_Chance;
 //    }
@@ -164,7 +164,7 @@
 //    public void SetFirebaseAumRegister_ContinueWith(string m_Email, string m_Password, object o_Class)
 //    {
 //        ClassString m_String = new ClassString();
-//        if (!m_String.GetCheckEmail(m_Email))
+//        if (!m_String.GetEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
 //            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
@@ -211,7 +211,7 @@
 //    public void SetFirebaseAumRegister_ContinueWith(string m_Email, string m_Password, string m_RePassword, object o_Class)
 //    {
 //        ClassString m_String = new ClassString();
-//        if (!m_String.GetCheckEmail(m_Email))
+//        if (!m_String.GetEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
 //            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
@@ -267,7 +267,7 @@
 //    /// Check if Login is Done
 //    /// </summary>
 //    /// <returns></returns>
-//    public bool GetCheckFirebaseAumLoginDone()
+//    public bool GetFirebaseAumLoginDone()
 //    {
 //        return FirebaseListenLoginDone;
 //    }
@@ -276,7 +276,7 @@
 //    /// Set Login Done check
 //    /// </summary>
 //    /// <param name="mChance"></param>
-//    public void SetFirebaseAumLoginDone(bool m_AllowChance)
+//    public void SetFirebaseAumLoginDone(bool m_Chance)
 //    {
 //        this.FirebaseListenLoginDone = m_Chance;
 //    }
@@ -289,7 +289,7 @@
 //    public void SetFirebaseListenLogin_ContinueWith(string m_Email, string m_Password)
 //    {
 //        ClassString m_String = new ClassString();
-//        if (!m_String.GetCheckEmail(m_Email))
+//        if (!m_String.GetEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
 //            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
@@ -431,13 +431,13 @@
 //    /// <summary>
 //    /// Check if Send Email is Done
 //    /// </summary>
-//    private bool m_AllowFirebaseAum_SendEmaimDone = false;
+//    private bool m_FirebaseAum_SendEmaimDone = false;
 
 //    /// <summary>
 //    /// Check if Send Email is Done
 //    /// </summary>
 //    /// <returns></returns>
-//    public bool GetCheckFirebaseAum_SendEmaimDone()
+//    public bool GetFirebaseAum_SendEmaimDone()
 //    {
 //        return m_FirebaseAum_SendEmaimDone;
 //    }
@@ -446,7 +446,7 @@
 //    /// Set Send Email Done check
 //    /// </summary>
 //    /// <param name="mChance"></param>
-//    public void SetFirebaseAum_SendEmaimDone(bool m_AllowChance)
+//    public void SetFirebaseAum_SendEmaimDone(bool m_Chance)
 //    {
 //        m_FirebaseAum_SendEmaimDone = m_Chance;
 //    }
@@ -455,7 +455,7 @@
 //    /// Get Email Verified after Send Email
 //    /// </summary>
 //    /// <returns></returns>
-//    public bool GetCheckFirebaseAum_EmailVerification()
+//    public bool GetFirebaseAum_EmailVerification()
 //    {
 //        if (GetFirebaseAumLogin())
 //        {
@@ -534,10 +534,10 @@
 //    /// <param name="m_EmailVerification">If "True", Firebase will send an Email Verification</param>
 //    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_Player/UserAuthID"</param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAumRegister_IEnumerator(string m_Email, string m_Password, string m_DisplayName, bool m_AllowEmailVerification, object o_Class)
+//    public IEnumerator SetFirebaseAumRegister_IEnumerator(string m_Email, string m_Password, string m_DisplayName, bool m_EmailVerification, object o_Class)
 //    {
 //        ClassString m_String = new ClassString();
-//        if (!m_String.GetCheckEmail(m_Email))
+//        if (!m_String.GetEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
 //            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
@@ -647,10 +647,10 @@
 //    /// <param name="m_EmailVerification">If "True", Firebase will send an Email Verification</param>
 //    /// <param name="o_Class">Add "new m_yClass()" to Firebase Database at "_ID$UserAuthID/"</param>
 //    /// <returns></returns>
-//    public IEnumerator SetFirebaseAumRegister_IEnumerator(string m_Email, string m_Password, string m_PasswordRe, string m_DisplayName, bool m_AllowEmailVerification, object o_Class)
+//    public IEnumerator SetFirebaseAumRegister_IEnumerator(string m_Email, string m_Password, string m_PasswordRe, string m_DisplayName, bool m_EmailVerification, object o_Class)
 //    {
 //        ClassString m_String = new ClassString();
-//        if (!m_String.GetCheckEmail(m_Email))
+//        if (!m_String.GetEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
 //            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
@@ -779,7 +779,7 @@
 //    public IEnumerator SetFirebaseAumLogin_IEnumerator(string m_Email, string m_Password)
 //    {
 //        ClassString m_String = new ClassString();
-//        if (!m_String.GetCheckEmail(m_Email))
+//        if (!m_String.GetEmail(m_Email))
 //        {
 //            SetFirebase_Message("Invalid Email...");
 //            if(m_Debug) Debug.LogError("SetFirebaseAumRegister_ContinueWith: Invalid Email");
@@ -1370,7 +1370,7 @@
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyUpdate" or "KeyUpdate"</param>
 //    /// <param name="m_Value"></param>
-//    public void SetFirebaseDatabase_Value(string m_DatabaseAcess, bool m_AllowValue)
+//    public void SetFirebaseDatabase_Value(string m_DatabaseAcess, bool m_Value)
 //    {
 //        daReference.Child(m_DatabaseAcess).SetValueAsync(m_Value);
 //        if(m_Debug) Debug.Log("SetFirebaseDatabase_Value: " + "\"" + m_DatabaseAcess + "\" : \"" + m_Value + "\"");
@@ -1431,7 +1431,7 @@
 //        if(m_Debug) Debug.LogError(m_Debug + "\"" + d_Snapshot.Key.ToString() + "\"" + ":" + "\"" + cmData.GetDataNotFound() + "\"");
 //    }
 
-//    private bool GetCheckDataSnapshotExist(DataSnapshot d_Snapshot)
+//    private bool GetDataSnapshotExist(DataSnapshot d_Snapshot)
 //    {
 //        return d_Snapshot.Exists;
 //    }
@@ -1442,7 +1442,7 @@
 //    /// Check if Get from Firebase Database is Done
 //    /// </summary>
 //    /// <returns>If Convert fail, return FALSE</returns>
-//    public bool GetCheckFirebaseDatabase_GetDone(string m_ProgessSaveName)
+//    public bool GetFirebaseDatabase_GetDone(string m_ProgessSaveName)
 //    {
 //        return GetData().GetConvert_Bool(GetData().GetData(m_ProgessSaveName));
 //    }
@@ -1451,7 +1451,7 @@
 //    /// Set Get from Firebase Database Done check
 //    /// </summary>
 //    /// <param name="m_ProgessChance"></param>
-//    public void SetFirebaseDatabase_GetDone(string m_ProgessSaveName, bool m_AllowProgessChance)
+//    public void SetFirebaseDatabase_GetDone(string m_ProgessSaveName, bool m_ProgessChance)
 //    {
 //        GetData().SetData(m_ProgessSaveName, m_ProgessChance);
 //    }

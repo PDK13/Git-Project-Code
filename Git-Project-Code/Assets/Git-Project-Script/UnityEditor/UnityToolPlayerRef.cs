@@ -147,7 +147,7 @@ public class UnityToolRef : EditorWindow
             else
             if (m_ChoiceCurrent == m_Choice[0])
             {
-                if (GitPlayerRef.GetCheckPlayerPrefsExist(m_Name))
+                if (GitPlayerRef.GetPlayerPrefsExist(m_Name))
                 {
                     m_Value = GitPlayerRef.GetPlayerPrefsString(m_Name);
                 }
@@ -160,7 +160,7 @@ public class UnityToolRef : EditorWindow
             else
             if (m_ChoiceCurrent == m_Choice[1])
             {
-                if (GitPlayerRef.GetCheckPlayerPrefsExist(m_Name))
+                if (GitPlayerRef.GetPlayerPrefsExist(m_Name))
                 {
                     m_Value = GitPlayerRef.GetPlayerPrefsInt(m_Name).ToString();
                 }
@@ -173,7 +173,7 @@ public class UnityToolRef : EditorWindow
             else
             if (m_ChoiceCurrent == m_Choice[2])
             {
-                if (GitPlayerRef.GetCheckPlayerPrefsExist(m_Name))
+                if (GitPlayerRef.GetPlayerPrefsExist(m_Name))
                 {
                     m_Value = GitPlayerRef.GetPlayerPrefsFloat(m_Name).ToString();
                 }

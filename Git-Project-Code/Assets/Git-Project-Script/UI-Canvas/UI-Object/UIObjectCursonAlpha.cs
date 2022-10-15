@@ -14,7 +14,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     [Tooltip("Canvas Alpha when is Exit State on Start")]
     [SerializeField]
-    private bool m_AllowCavasLockEnter = false;
+    private bool m_CavasLockEnter = false;
 
     [Tooltip("Button for Canvas Alpha Lock Chance")]
     [SerializeField]
@@ -56,7 +56,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
         c_CanvasGroup = GetComponent<CanvasGroup>();
 
-        if (m_AllowCavasLockEnter)
+        if (m_CavasLockEnter)
         {
             c_CanvasGroup.alpha = m_Canvas_AlphaEnter;
         }
@@ -68,7 +68,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
         if (m_ButtonLockChance != null)
         {
             //m_ButtonLockChance.SetEvent_Add_PointerD(SetUICanvasLockEnterChance);
-            m_ButtonLockChance.SetButtonActive(m_AllowCavasLockEnter);
+            m_ButtonLockChance.SetButtonActive(m_CavasLockEnter);
         }
     }
 
@@ -123,7 +123,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     private void SetEvent_PointerExit()
     {
-        if (m_AllowCavasLockEnter)
+        if (m_CavasLockEnter)
         {
             c_CanvasGroup.alpha = m_Canvas_AlphaEnter;
 
@@ -132,7 +132,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
         if (GetComponent<UIObjectDragDrop>() != null)
         {
-            if (GetComponent<UIObjectDragDrop>().GetCheckUICanvasDrag())
+            if (GetComponent<UIObjectDragDrop>().GetUICanvasDrag())
             {
                 return;
             }
@@ -163,19 +163,19 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     #region UI Canvas Lock
 
-    public void SetUICanvasLockEnter(bool m_AllowCavasLockEnter)
+    public void SetUICanvasLockEnter(bool m_CavasLockEnter)
     {
-        this.m_AllowCavasLockEnter = m_AllowCavasLockEnter;
+        this.m_CavasLockEnter = m_CavasLockEnter;
     }
 
     public void SetUICanvasLockEnterChance()
     {
-        SetUICanvasLockEnter(!GetCheckUICanvasLockEnter());
+        SetUICanvasLockEnter(!GetUICanvasLockEnter());
     }
 
-    public bool GetCheckUICanvasLockEnter()
+    public bool GetUICanvasLockEnter()
     {
-        return m_AllowCavasLockEnter;
+        return m_CavasLockEnter;
     }
 
     #endregion

@@ -29,7 +29,7 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     [Tooltip("Event After Hold Time")]
     [SerializeField]
-    private bool m_AllowHoldTime= false;
+    private bool m_HoldTimeActive = false;
 
     [Tooltip("Hold Time")]
     [SerializeField]
@@ -46,7 +46,7 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     [Tooltip("Button Lock Status")]
     [SerializeField]
-    private bool m_AllowButtonLock = false;
+    private bool m_ButtonLock = false;
 
     [Tooltip("Unity Hold-State Event Handle")]
     [Space]
@@ -74,10 +74,10 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
     private UnityEvent Event_PointerExit;
 
     [Tooltip("Button Hold Status")]
-    private bool m_AllowButtonHold;
+    private bool m_ButtonHold;
 
     [Tooltip("Button Ready Status")]
-    private bool m_AllowButtonReady = false;
+    private bool m_ButtonReady = false;
 
     private void Update()
     {
@@ -90,7 +90,7 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     private void SetEvent_Keyboard()
     {
-        if (m_AllowButtonLock)
+        if (m_ButtonLock)
         {
             return;
         }
@@ -108,15 +108,15 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     private void SetEventActive()
     {
-        if (m_AllowButtonLock)
+        if (m_ButtonLock)
         {
             return;
         }
 
-        if (m_AllowButtonHold)
+        if (m_ButtonHold)
         //If Hold Pressed >> Do...
         {
-            if (m_AllowHoldTime)
+            if (m_HoldTimeActive)
             //If Need Time to do Event >> Do...
             {
                 m_HoldTimeRemain -= Time.deltaTime;
@@ -240,48 +240,48 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     private void SetEvent_PointerEnter()
     {
-        if (m_AllowButtonLock)
+        if (m_ButtonLock)
         {
             return;
         }
 
-        m_AllowButtonReady = true;
+        m_ButtonReady = true;
 
         SetEvent_Invoke_PointerEnter();
     }
 
     private void SetEvent_PointerExit()
     {
-        if (m_AllowButtonLock)
+        if (m_ButtonLock)
         {
             return;
         }
 
-        m_AllowButtonReady = false;
+        m_ButtonReady = false;
 
         SetEvent_Invoke_PointerExit();
     }
 
     private void SetEvent_PointerD()
     {
-        if (m_AllowButtonLock)
+        if (m_ButtonLock)
         {
             return;
         }
 
-        m_AllowButtonHold = true;
+        m_ButtonHold = true;
 
         SetEvent_Invoke_PointerD();
     }
 
     private void SetEvent_PointerU()
     {
-        if (m_AllowButtonLock)
+        if (m_ButtonLock)
         {
             return;
         }
 
-        m_AllowButtonHold = false;
+        m_ButtonHold = false;
         m_HoldTimeRemain = m_HoldTime;
 
         SetEvent_Invoke_PointerU();
@@ -333,12 +333,12 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void SetButtonLockChance()
     {
-        m_AllowButtonLock = !m_AllowButtonLock;
+        m_ButtonLock = !m_ButtonLock;
     }
 
-    public void SetButtonLock(bool m_AllowLockState)
+    public void SetButtonLock(bool m_LockState)
     {
-        m_AllowButtonLock = m_AllowLockState;
+        m_ButtonLock = m_LockState;
     }
 
     public void SetButtonLom_KeyTrue()
@@ -355,9 +355,9 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     #region Button Status Get
 
-    public bool GetCheckButtonHold()
+    public bool GetButtonHold()
     {
-        return m_AllowButtonHold;
+        return m_ButtonHold;
     }
 
     public float GetHoldTimeRemain()
@@ -366,14 +366,14 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     }
 
-    public bool GetCheckButtonReady()
+    public bool GetButtonReady()
     {
-        return m_AllowButtonReady;
+        return m_ButtonReady;
     }
 
-    public bool GetCheckButtonLock()
+    public bool GetButtonLock()
     {
-        return m_AllowButtonLock;
+        return m_ButtonLock;
     }
 
     #endregion
@@ -386,15 +386,15 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     private void SetButton_Color()
     {
-        if (m_AllowButtonLock)
+        if (m_ButtonLock)
         {
             return;
         }
 
-        if (m_AllowButtonHold)
+        if (m_ButtonHold)
         //If Hold Pressed >> Do...
         {
-            if (m_AllowHoldTime)
+            if (m_HoldTimeActive)
             //If Need Time to do Event >> Do...
             {
                 if (m_HoldTimeRemain < 0)
@@ -410,7 +410,7 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
             }
         }
         else
-        if (m_AllowButtonReady)
+        if (m_ButtonReady)
         //If Ready Pressed >> Do...
         {
             SetButton_Color(c_ColorReady);

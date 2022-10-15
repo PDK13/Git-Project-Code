@@ -182,7 +182,7 @@ public class IsoBlock : MonoBehaviour
         return m_PosPrimary;
     }
 
-    public bool GetCheckPosPrimaryStay()
+    public bool GetPosPrimaryStay()
     {
         IsoPos m_PosPrimary = GetPosPrimary();
         IsoPos m_PosMatrixCurrent = GetPosMatrixCurrent();

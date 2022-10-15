@@ -5,9 +5,9 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 {
     [Header("UI")]
 
-    [SerializeField] private bool m_AllowLockPos = true;
+    [SerializeField] private bool m_LockPos = true;
 
-    [SerializeField] private bool m_AllowAutoReset = true;
+    [SerializeField] private bool m_AutoReset = true;
 
     [SerializeField] private RectTransform m_JoyStickLimit;
 
@@ -17,13 +17,13 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     [Header("Lock")]
 
-    [SerializeField] private bool m_AllowLockXL = false;
+    [SerializeField] private bool m_LockXL = false;
 
-    [SerializeField] private bool m_AllowLockXR = false;
+    [SerializeField] private bool m_LockXR = false;
 
-    [SerializeField] private bool m_AllowLockYU = false;
+    [SerializeField] private bool m_LockYU = false;
 
-    [SerializeField] private bool m_AllowLockYD = false;
+    [SerializeField] private bool m_LockYD = false;
 
     [Header("Value")]
 
@@ -100,7 +100,7 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             m_Camera = m_Canvas.worldCamera;
         }
 
-        if (!m_AllowLockPos)
+        if (!m_LockPos)
         {
             Vector2 m_JoyStickLimit_Pos = RectTransformUtility.WorldToScreenPoint(m_Camera, this.m_JoyStickLimit.position);
             Vector2 m_JoyStickLimit = (eventData.position - m_JoyStickLimit_Pos) / m_Canvas.scaleFactor;
@@ -128,22 +128,22 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         //    m_JoyStickValuePrimary.y = 0f;
         //}
 
-        if (m_AllowLockXL && m_JoyStickValuePrimary.x < 0)
+        if (m_LockXL && m_JoyStickValuePrimary.x < 0)
         {
             m_JoyStickValuePrimary.x = 0;
         }
         else
-        if (m_AllowLockXR && m_JoyStickValuePrimary.x > 0)
+        if (m_LockXR && m_JoyStickValuePrimary.x > 0)
         {
             m_JoyStickValuePrimary.x = 0;
         }
 
-        if (m_AllowLockYU && m_JoyStickValuePrimary.y > 0)
+        if (m_LockYU && m_JoyStickValuePrimary.y > 0)
         {
             m_JoyStickValuePrimary.y = 0;
         }
         else
-        if (m_AllowLockYD && m_JoyStickValuePrimary.y < 0)
+        if (m_LockYD && m_JoyStickValuePrimary.y < 0)
         {
             m_JoyStickValuePrimary.y = 0;
         }
@@ -169,7 +169,7 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     {
         m_JoyStickButton.anchoredPosition = Vector2.zero;
 
-        if (m_AllowAutoReset)
+        if (m_AutoReset)
         {
             m_JoyStickLimit.anchoredPosition = m_JoyStickLimitPosPrimary;
         }
@@ -179,44 +179,44 @@ public class UIJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     #region Lock JoyStick
 
-    public void SetLockXL(bool m_AllowLockXL)
+    public void SetLockXL(bool m_LockXL)
     {
-        this.m_AllowLockXL = m_AllowLockXL;
+        this.m_LockXL = m_LockXL;
     }
 
-    public void SetLockXR(bool m_AllowLockXR)
+    public void SetLockXR(bool m_LockXR)
     {
-        this.m_AllowLockXR = m_AllowLockXR;
+        this.m_LockXR = m_LockXR;
     }
 
-    public void SetLockYU(bool m_AllowLockYU)
+    public void SetLockYU(bool m_LockYU)
     {
-        this.m_AllowLockYU = m_AllowLockYU;
+        this.m_LockYU = m_LockYU;
     }
 
-    public void SetLockYD(bool m_AllowLockYD)
+    public void SetLockYD(bool m_LockYD)
     {
-        this.m_AllowLockYD = m_AllowLockYD;
+        this.m_LockYD = m_LockYD;
     }
 
-    public bool GetCheckLockXL()
+    public bool GetLockXL()
     {
-        return m_AllowLockXL;
+        return m_LockXL;
     }
 
-    public bool GetCheckLockXR()
+    public bool GetLockXR()
     {
-        return m_AllowLockXR;
+        return m_LockXR;
     }
 
-    public bool GetCheckLockYU()
+    public bool GetLockYU()
     {
-        return m_AllowLockYU;
+        return m_LockYU;
     }
 
-    public bool GetCheckLockYD()
+    public bool GetLockYD()
     {
-        return m_AllowLockYD;
+        return m_LockYD;
     }
 
     #endregion

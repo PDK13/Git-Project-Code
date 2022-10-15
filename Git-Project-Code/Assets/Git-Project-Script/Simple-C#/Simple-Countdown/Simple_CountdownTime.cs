@@ -37,7 +37,7 @@ public class SimpleCountdownTime : MonoBehaviour
 
             yield return new WaitForSeconds(m_TimePassed);
         }
-        while (!csCountdownTime.GetCheckTimeOut());
+        while (!csCountdownTime.GetTimeOut());
 
         lCountdownTime.Remove(csCountdownTime);
 
@@ -90,7 +90,7 @@ public class SampleCountdownTimeClass
         return m_TimeCurrent;
     }
 
-    public bool GetCheckTimeOut()
+    public bool GetTimeOut()
     {
         return m_TimeCurrent <= 0;
     }

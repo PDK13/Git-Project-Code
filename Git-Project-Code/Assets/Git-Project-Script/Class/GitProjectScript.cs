@@ -302,7 +302,7 @@ public class GitPlayerRef
 
     public static void SetPlayerPrefsClear(string m_ValueName)
     {
-        if (GetCheckPlayerPrefsExist(m_ValueName))
+        if (GetPlayerPrefsExist(m_ValueName))
         {
             PlayerPrefs.DeleteKey(m_ValueName);
             PlayerPrefs.Save();
@@ -333,14 +333,14 @@ public class GitPlayerRef
 
     #region Player Prefs Get
 
-    public static bool GetCheckPlayerPrefsExist(string m_ValueName)
+    public static bool GetPlayerPrefsExist(string m_ValueName)
     {
         return PlayerPrefs.HasKey(m_ValueName);
     }
 
     public static string GetPlayerPrefsString(string m_ValueName)
     {
-        if (GetCheckPlayerPrefsExist(m_ValueName))
+        if (GetPlayerPrefsExist(m_ValueName))
         {
             return PlayerPrefs.GetString(m_ValueName);
         }
@@ -351,7 +351,7 @@ public class GitPlayerRef
 
     public static int GetPlayerPrefsInt(string m_ValueName)
     {
-        if (GetCheckPlayerPrefsExist(m_ValueName))
+        if (GetPlayerPrefsExist(m_ValueName))
         {
             return PlayerPrefs.GetInt(m_ValueName);
         }
@@ -362,7 +362,7 @@ public class GitPlayerRef
 
     public static float GetPlayerPrefsFloat(string m_ValueName)
     {
-        if (GetCheckPlayerPrefsExist(m_ValueName))
+        if (GetPlayerPrefsExist(m_ValueName))
         {
             return PlayerPrefs.GetFloat(m_ValueName);
         }
@@ -459,7 +459,7 @@ public class GitFileIO
         return m_Path;
     }
 
-    public static bool GetCheckPathExist(string m_Path)
+    public static bool GetPathExist(string m_Path)
     {
         return File.Exists(m_Path);
     }
@@ -638,7 +638,7 @@ public class GitFileIO
         return double.Parse(m_TextRead[m_ReadRun]);
     }
 
-    public bool GetCheckReadDataAutoBool()
+    public bool GetReadDataAutoBool()
     {
         m_ReadRun++;
         return m_TextRead[m_ReadRun] == "True";
@@ -806,9 +806,9 @@ public class GitEncypt
         return m_Data + ((m_Data.Length != 0) ? m_Key.ToString() : "") + m_DataAdd.ToString();
     }
 
-    public static string GetDataEncyptAdd(string m_Data, bool m_AllowDataAdd, char m_Key)
+    public static string GetDataEncyptAdd(string m_Data, bool m_DataAdd, char m_Key)
     {
-        return m_Data + ((m_Data.Length != 0) ? m_Key.ToString() : "") + ((m_AllowDataAdd) ? "1" : "0");
+        return m_Data + ((m_Data.Length != 0) ? m_Key.ToString() : "") + ((m_DataAdd) ? "1" : "0");
     }
 
     #endregion
@@ -986,10 +986,10 @@ public enum GitOpption
 
 public class GitEmail
 {
-    public static bool GetCheckEmail(string m_EmailCheck)
+    public static bool GetEmail(string m_EmailCheck)
     {
         //Check Not Invalid
-        if (!GetCheckEmailNotInvalid(m_EmailCheck))
+        if (!GetEmailNotInvalid(m_EmailCheck))
         {
             return false;
         }
@@ -998,11 +998,11 @@ public class GitEmail
         m_EmailCheck = m_EmailCheck.ToLower();
 
         return
-            GetCheckEmailGmail(m_EmailCheck) &&
-            GetCheckEmailYahoo(m_EmailCheck);
+            GetEmailGmail(m_EmailCheck) &&
+            GetEmailYahoo(m_EmailCheck);
     }
 
-    private static bool GetCheckEmailNotInvalid(string m_EmailCheck)
+    private static bool GetEmailNotInvalid(string m_EmailCheck)
     {
         //Check SPACE
         if (m_EmailCheck.Contains(" "))
@@ -1011,20 +1011,20 @@ public class GitEmail
         }
 
         //Check @
-        bool m_AllowCheckAAExist = false;
+        bool m_CheckAAExist = false;
         for (int i = 0; i < m_EmailCheck.Length; i++)
         {
-            if (!m_AllowCheckAAExist && m_EmailCheck[i] == '@')
+            if (!m_CheckAAExist && m_EmailCheck[i] == '@')
             {
-                m_AllowCheckAAExist = true;
+                m_CheckAAExist = true;
             }
             else
-            if (m_AllowCheckAAExist && m_EmailCheck[i] == '@')
+            if (m_CheckAAExist && m_EmailCheck[i] == '@')
             {
                 return false;
             }
         }
-        if (!m_AllowCheckAAExist)
+        if (!m_CheckAAExist)
         {
             return false;
         }
@@ -1033,7 +1033,7 @@ public class GitEmail
         return true;
     }
 
-    private static bool GetCheckEmailGmail(string m_EmailCheck)
+    private static bool GetEmailGmail(string m_EmailCheck)
     {
         //Check if GMAIL
         if (m_EmailCheck.Contains("@gmail.com"))
@@ -1075,7 +1075,7 @@ public class GitEmail
         return true;
     }
 
-    private static bool GetCheckEmailYahoo(string m_EmailCheck)
+    private static bool GetEmailYahoo(string m_EmailCheck)
     {
         //Check if GMAIL
         if (m_EmailCheck.Contains("@yahoo.com"))

@@ -5,7 +5,7 @@ public class BackgroundLoopController : MonoBehaviour
 {
     [Header("Camera")]
 
-    //[SerializeField] private bool m_AllowCameraLoopX = true;
+    //[SerializeField] private bool m_CameraLoopX = true;
 
     [SerializeField] private Transform m_Camera;
 
@@ -70,7 +70,7 @@ public class BackgroundLoopController : MonoBehaviour
 
     private float GetCameraY(BackgroundLoopLayer m_Layer)
     {
-        return (m_Layer.GetCheckLayerFollowY()) ? m_Camera.position.y : m_Layer.GetTransform().transform.position.y;
+        return (m_Layer.GetLayerFollowY()) ? m_Camera.position.y : m_Layer.GetTransform().transform.position.y;
     }
 }
 
@@ -83,7 +83,7 @@ public class BackgroundLoopLayer
 
     private float m_LayerPosStartX;
 
-    [SerializeField] private bool m_AllowBackgroundLayerFollowY = true;
+    [SerializeField] private bool m_BackgroundLayerFollowY = true;
 
     public Transform GetTransform()
     {
@@ -122,14 +122,14 @@ public class BackgroundLoopLayer
         return m_LayerPosStartX;
     }
 
-    public void SetLayerFollowY(bool m_AllowBackgroundLayerFollowY)
+    public void SetLayerFollowY(bool m_BackgroundLayerFollowY)
     {
-        this.m_AllowBackgroundLayerFollowY = m_AllowBackgroundLayerFollowY;
+        this.m_BackgroundLayerFollowY = m_BackgroundLayerFollowY;
     }
 
-    public bool GetCheckLayerFollowY()
+    public bool GetLayerFollowY()
     {
-        return m_AllowBackgroundLayerFollowY;
+        return m_BackgroundLayerFollowY;
     }
 
     #endregion

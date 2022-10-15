@@ -164,7 +164,7 @@ public class SoundManager : MonoBehaviour
         SetSoundMute(m_CheckMute);
     }
 
-    public static bool GetCheckMute()
+    public static bool GetMute()
     {
         return m_This.m_CheckMute;
     }

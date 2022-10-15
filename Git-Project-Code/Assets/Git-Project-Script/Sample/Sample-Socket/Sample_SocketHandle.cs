@@ -65,7 +65,7 @@ public class Sample_SocketHandle : MonoBehaviour
         m_SocketManager.SetSocket_Write(m_SocketManager.GetDeviceID() + ":" + m_Plus.ToString());
     }
 
-    private bool GetCheckExist_ID(string m_IDCheck)
+    private bool GetExist_ID(string m_IDCheck)
     {
         for (int i = 0; i < m_ID.Count; i++)
         {

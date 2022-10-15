@@ -33,17 +33,17 @@ public class CheckPointArea : MonoBehaviour
         }
     }
 
-    public Transform GetCheckPointNext()
+    public Transform GetPointNext()
     {
         return m_PointNext;
     }
 
-    public Vector3 GetCheckPointSize()
+    public Vector3 GetPointSize()
     {
         return m_Pointsize;
     }
 
-    public LayerMask GetCheckPointLayer()
+    public LayerMask GetPointLayer()
     {
         return m_PointLayer;
     }

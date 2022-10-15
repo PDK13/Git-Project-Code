@@ -22,7 +22,7 @@ public class CheckPointGet : MonoBehaviour
         this.m_PointNext = m_PointNext;
     }
 
-    public float GetCheckPointNextOffsetRotate()
+    public float GetPointNextOffsetRotate()
     {
         return GitVector.GetDegOnRotationXZ(transform, m_PointNext.transform);
     }
@@ -33,18 +33,18 @@ public class CheckPointGet : MonoBehaviour
     }
 
 
-    public float GetCheckPointOffsetDirection()
+    public float GetPointOffsetDirection()
     {
         return m_CheckPointOffsetDirection;
     }
 
-    public bool GetCheckPointNextRonDirection(float m_PointOffsetAngleHigher)
+    public bool GetPointNextRonDirection(float m_PointOffsetAngleHigher)
     {
-        return GetCheckPointNextOffsetRotate() >= m_PointOffsetAngleHigher;
+        return GetPointNextOffsetRotate() >= m_PointOffsetAngleHigher;
     }
 
-    public bool GetCheckPointNextRDirection(float m_PointOffsetAngleLower)
+    public bool GetPointNextRDirection(float m_PointOffsetAngleLower)
     {
-        return GetCheckPointNextOffsetRotate() <= m_PointOffsetAngleLower;
+        return GetPointNextOffsetRotate() <= m_PointOffsetAngleLower;
     }
 }

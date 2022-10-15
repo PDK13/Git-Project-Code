@@ -73,7 +73,7 @@ public class ClassTimeValue
         SetTimeSecond(m_ClassTimeValue.GetTimeSecond());
     }
 
-    public bool GetCheckTimeZero()
+    public bool GetTimeZero()
     {
         return GetTimeSecond() == 0 && GetTimeMinute() == 0 && GetTimeHour() == 0;
     }

@@ -26,7 +26,7 @@ public class SoundClone : MonoBehaviour
 
         m_AudioSource.clip = m_SoundCloneData.GetClip();
 
-        m_AudioSource.loop = m_SoundCloneData.GetCheckLoop();
+        m_AudioSource.loop = m_SoundCloneData.GetLoop();
 
         m_VolumnPrimary = m_SoundCloneData.GetVolumnPrimary();
 
@@ -38,7 +38,7 @@ public class SoundClone : MonoBehaviour
 
         m_AudioSource.Play();
 
-        if (!m_SoundCloneData.GetCheckLoop())
+        if (!m_SoundCloneData.GetLoop())
         {
             StartCoroutine(SetSoundWhenStop());
         }
@@ -50,7 +50,7 @@ public class SoundClone : MonoBehaviour
 
         m_AudioSource.clip = m_SoundCloneData.GetClip();
 
-        m_AudioSource.loop = m_SoundCloneData.GetCheckLoop();
+        m_AudioSource.loop = m_SoundCloneData.GetLoop();
 
         m_VolumnPrimary = m_SoundCloneData.GetVolumnPrimary();
 
@@ -58,7 +58,7 @@ public class SoundClone : MonoBehaviour
 
         m_AudioSource.Play();
 
-        if (!m_SoundCloneData.GetCheckLoop())
+        if (!m_SoundCloneData.GetLoop())
         {
             StartCoroutine(SetSoundWhenStop());
         }
@@ -66,7 +66,7 @@ public class SoundClone : MonoBehaviour
 
     private IEnumerator SetSoundWhenStop()
     {
-        yield return new WaitUntil(() => GetCheckSoundStop() == true);
+        yield return new WaitUntil(() => GetSoundStop() == true);
 
         Destroy(gameObject);
     }
@@ -111,17 +111,17 @@ public class SoundClone : MonoBehaviour
         return m_AudioSource.clip;
     }
 
-    public bool GetCheckSoundMute()
+    public bool GetSoundMute()
     {
         return m_AudioSource.mute;
     }
 
-    public bool GetCheckSoundStop()
+    public bool GetSoundStop()
     {
         return m_AudioSource.isPlaying == false;
     }
 
-    public bool GetCheckSoundPlay()
+    public bool GetSoundPlay()
     {
         return m_AudioSource.isPlaying == true;
     }
@@ -133,13 +133,13 @@ public class SoundClone : MonoBehaviour
 public class SoundCloneData
 {
     private readonly AudioClip m_Clip;
-    private readonly bool m_AllowLoop;
+    private readonly bool m_Loop;
     private readonly float m_VolumnPrimary;
 
-    public SoundCloneData(AudioClip m_Clip, bool m_AllowLoop, float m_VolumnPrimary)
+    public SoundCloneData(AudioClip m_Clip, bool m_Loop, float m_VolumnPrimary)
     {
         this.m_Clip = m_Clip;
-        this.m_AllowLoop = m_AllowLoop;
+        this.m_Loop = m_Loop;
         this.m_VolumnPrimary = m_VolumnPrimary;
     }
 
@@ -148,9 +148,9 @@ public class SoundCloneData
         return m_Clip;
     }
 
-    public bool GetCheckLoop()
+    public bool GetLoop()
     {
-        return m_AllowLoop;
+        return m_Loop;
     }
 
     public float GetVolumnPrimary()
