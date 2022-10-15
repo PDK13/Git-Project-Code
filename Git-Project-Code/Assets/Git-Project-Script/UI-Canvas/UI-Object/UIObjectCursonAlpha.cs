@@ -45,7 +45,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     private UnityEvent Event_PointerExit;
 
     [Tooltip("Canvas Group")]
-    private CanvasGroup c_CanvasGroup;
+    private CanvasGroup m_CanvasGroup;
 
     private void Start()
     {
@@ -54,15 +54,15 @@ public class UIObjectCursonAlpha : MonoBehaviour,
             gameObject.AddComponent<CanvasGroup>();
         }
 
-        c_CanvasGroup = GetComponent<CanvasGroup>();
+        m_CanvasGroup = GetComponent<CanvasGroup>();
 
         if (m_CavasLockEnter)
         {
-            c_CanvasGroup.alpha = m_Canvas_AlphaEnter;
+            m_CanvasGroup.alpha = m_Canvas_AlphaEnter;
         }
         else
         {
-            c_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
+            m_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
         }
 
         if (m_ButtonLockChance != null)
@@ -116,7 +116,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
 
     private void SetEvent_PointerEnter()
     {
-        c_CanvasGroup.alpha = m_Canvas_AlphaEnter;
+        m_CanvasGroup.alpha = m_Canvas_AlphaEnter;
 
         SetEvent_Invoke_PointerEnter();
     }
@@ -125,7 +125,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
     {
         if (m_CavasLockEnter)
         {
-            c_CanvasGroup.alpha = m_Canvas_AlphaEnter;
+            m_CanvasGroup.alpha = m_Canvas_AlphaEnter;
 
             return;
         }
@@ -138,7 +138,7 @@ public class UIObjectCursonAlpha : MonoBehaviour,
             }
         }
 
-        c_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
+        m_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
 
         SetEvent_Invoke_PointerExit();
     }

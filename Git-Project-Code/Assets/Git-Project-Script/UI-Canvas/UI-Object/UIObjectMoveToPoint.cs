@@ -6,7 +6,7 @@ public class UIObjectMoveToPoint : MonoBehaviour
 
     [Tooltip("Parent Canvas")]
     [SerializeField]
-    private Canvas c_ParentCanvas;
+    private Canvas m_ParentCanvas;
 
     [Header("This RecTransform")]
 
@@ -41,9 +41,9 @@ public class UIObjectMoveToPoint : MonoBehaviour
 
     private void Awake()
     {
-        if (c_ParentCanvas == null)
+        if (m_ParentCanvas == null)
         {
-            c_ParentCanvas = GetComponentInParent<Canvas>();
+            m_ParentCanvas = GetComponentInParent<Canvas>();
         }
 
         m_Transform = GetComponent<RectTransform>();

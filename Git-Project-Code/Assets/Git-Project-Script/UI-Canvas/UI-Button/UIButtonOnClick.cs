@@ -14,23 +14,23 @@ public class UIButtonOnClick : MonoBehaviour,
 
     [Tooltip("Color Normal Button")]
     [SerializeField]
-    private Color c_Color_Normal = Color.white;
+    private Color m_Color_Normal = Color.white;
 
     [Tooltip("Color Ready Button")]
     [SerializeField]
-    private Color c_ColorReady = Color.gray;
+    private Color m_ColorReady = Color.gray;
 
     [Tooltip("Color Hold Button")]
     [SerializeField]
-    private Color c_ColorHold = Color.yellow;
+    private Color m_ColorHold = Color.yellow;
 
     [Tooltip("Color Active Button")]
     [SerializeField]
-    private Color c_ColorActive = Color.green;
+    private Color m_ColorActive = Color.green;
 
     [Tooltip("Color Active Button")]
     [SerializeField]
-    private Color c_ColorLock = Color.red;
+    private Color m_ColorLock = Color.red;
 
     [Header("Event")]
 
@@ -400,48 +400,48 @@ public class UIButtonOnClick : MonoBehaviour,
         if (m_ButtonLock)
         //If Lock Pressed >> Do...
         {
-            SetButton_Color(c_ColorLock);
+            SetButton_Color(m_ColorLock);
         }
         else
         if (m_ButtonHold)
         //If Hold Pressed >> Do...
         {
-            SetButton_Color(c_ColorHold);
+            SetButton_Color(m_ColorHold);
         }
         else
         if (m_ButtonReady)
         //If Ready Pressed >> Do...
         {
-            SetButton_Color(c_ColorReady);
+            SetButton_Color(m_ColorReady);
         }
         else
         if (m_ButtonActive)
         //If Active Pressed >> Do...
         {
-            SetButton_Color(c_ColorActive);
+            SetButton_Color(m_ColorActive);
         }
         else
         //If Not Active Pressed >> Do...
         {
-            SetButton_Color(c_Color_Normal);
+            SetButton_Color(m_Color_Normal);
         }
     }
 
-    private void SetButton_Color(Color c_Color)
+    private void SetButton_Color(Color m_Color)
     {
         if (GetComponent<Image>() != null)
         {
-            GetComponent<Image>().color = c_Color;
+            GetComponent<Image>().color = m_Color;
         }
         else
         if (GetComponent<SpriteRenderer>() != null)
         {
-            GetComponent<SpriteRenderer>().color = c_Color;
+            GetComponent<SpriteRenderer>().color = m_Color;
         }
         else
         {
             gameObject.AddComponent<Image>();
-            GetComponent<Image>().color = c_Color;
+            GetComponent<Image>().color = m_Color;
         }
     }
 
@@ -449,29 +449,29 @@ public class UIButtonOnClick : MonoBehaviour,
 
     #region Color Button Set
 
-    public void SetButton_Color_Normal(Color c_Color_Normal)
+    public void SetButton_Color_Normal(Color m_Color_Normal)
     {
-        this.c_Color_Normal = c_Color_Normal;
+        this.m_Color_Normal = m_Color_Normal;
     }
 
-    public void SetButton_ColorReady(Color c_ColorReady)
+    public void SetButton_ColorReady(Color m_ColorReady)
     {
-        this.c_ColorReady = c_ColorReady;
+        this.m_ColorReady = m_ColorReady;
     }
 
-    public void SetButton_ColorHold(Color c_ColorHold)
+    public void SetButton_ColorHold(Color m_ColorHold)
     {
-        this.c_ColorHold = c_ColorHold;
+        this.m_ColorHold = m_ColorHold;
     }
 
-    public void SetButton_ColorActive(Color c_ColorActive)
+    public void SetButton_ColorActive(Color m_ColorActive)
     {
-        this.c_ColorActive = c_ColorActive;
+        this.m_ColorActive = m_ColorActive;
     }
 
-    public void SetButton_ColorLock(Color c_ColorLock)
+    public void SetButton_ColorLock(Color m_ColorLock)
     {
-        this.c_ColorLock = c_ColorLock;
+        this.m_ColorLock = m_ColorLock;
     }
 
     #endregion
@@ -480,27 +480,27 @@ public class UIButtonOnClick : MonoBehaviour,
 
     public Color GetButton_Color_Normal()
     {
-        return c_Color_Normal;
+        return m_Color_Normal;
     }
 
     public Color GetButton_ColorReady()
     {
-        return c_ColorReady;
+        return m_ColorReady;
     }
 
     public Color GetButton_ColorHoldl()
     {
-        return c_ColorHold;
+        return m_ColorHold;
     }
 
     public Color GetButton_ColorActive()
     {
-        return c_ColorActive;
+        return m_ColorActive;
     }
 
     public Color GetButton_ColorLock()
     {
-        return c_ColorLock;
+        return m_ColorLock;
     }
 
     #endregion

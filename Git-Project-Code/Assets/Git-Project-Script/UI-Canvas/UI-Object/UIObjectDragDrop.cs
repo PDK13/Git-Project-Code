@@ -14,7 +14,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     [Tooltip("Parent Canvas")]
     [SerializeField]
-    private Canvas c_ParentCanvas;
+    private Canvas m_ParentCanvas;
 
     [Header("This RecTransform")]
 
@@ -85,7 +85,7 @@ public class UIObjectDragDrop : MonoBehaviour,
     private UnityEvent Event_OnEndDrag;
 
     [Tooltip("Canvas Group")]
-    private CanvasGroup c_CanvasGroup;
+    private CanvasGroup m_CanvasGroup;
 
     [Tooltip("UI Drag Status")]
     private bool m_UIDrag = false;
@@ -98,9 +98,9 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     private void Start()
     {
-        if (c_ParentCanvas == null)
+        if (m_ParentCanvas == null)
         {
-            c_ParentCanvas = GetComponentInParent<Canvas>();
+            m_ParentCanvas = GetComponentInParent<Canvas>();
         }
 
         rRectTransform = GetComponent<RectTransform>();
@@ -114,7 +114,7 @@ public class UIObjectDragDrop : MonoBehaviour,
             gameObject.AddComponent<CanvasGroup>();
         }
 
-        c_CanvasGroup = GetComponent<CanvasGroup>();
+        m_CanvasGroup = GetComponent<CanvasGroup>();
     }
 
     #region Set Event
@@ -309,9 +309,9 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         m_UIDrag = true;
 
-        c_CanvasGroup.alpha = m_Canvas_AlphaDrag;
+        m_CanvasGroup.alpha = m_Canvas_AlphaDrag;
 
-        c_CanvasGroup.blocksRaycasts = false;
+        m_CanvasGroup.blocksRaycasts = false;
 
         SetEvent_Invoke_OnBeginDrag();
     }
@@ -323,7 +323,7 @@ public class UIObjectDragDrop : MonoBehaviour,
             return;
         }
 
-        rRectTransform.anchoredPosition += eventData.delta / c_ParentCanvas.scaleFactor;
+        rRectTransform.anchoredPosition += eventData.delta / m_ParentCanvas.scaleFactor;
 
         SetEvent_Invoke_OnDrag();
     }
@@ -337,9 +337,9 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         m_UIDrag = false;
 
-        c_CanvasGroup.alpha = m_Canvas_Alpha_Normal;
+        m_CanvasGroup.alpha = m_Canvas_Alpha_Normal;
 
-        c_CanvasGroup.blocksRaycasts = true;
+        m_CanvasGroup.blocksRaycasts = true;
 
         SetEvent_Invoke_OnEndDrag();
     }

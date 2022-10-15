@@ -12,18 +12,18 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     [Tooltip("Color Normal Button")]
     [SerializeField]
-    private Color c_Color_Normal = Color.white;
+    private Color m_Color_Normal = Color.white;
 
     [Tooltip("Color Ready Button")]
     [SerializeField]
-    private Color c_ColorReady = Color.gray;
+    private Color m_ColorReady = Color.gray;
 
     [SerializeField]
-    private Color c_ColorHold = Color.yellow;
+    private Color m_ColorHold = Color.yellow;
 
     [Tooltip("Color Active Button")]
     [SerializeField]
-    private Color c_ColorLock = Color.red;
+    private Color m_ColorLock = Color.red;
 
     [Header("Event After Hold Time")]
 
@@ -400,43 +400,43 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
                 if (m_HoldTimeRemain < 0)
                 //If out of Time Hold >> Do Event
                 {
-                    SetButton_Color(c_ColorHold);
+                    SetButton_Color(m_ColorHold);
                 }
             }
             else
             //If NOT Need Time to do Event >> Do Event R away
             {
-                SetButton_Color(c_ColorHold);
+                SetButton_Color(m_ColorHold);
             }
         }
         else
         if (m_ButtonReady)
         //If Ready Pressed >> Do...
         {
-            SetButton_Color(c_ColorReady);
+            SetButton_Color(m_ColorReady);
         }
         else
         //If Not Hold Pressed >> Do...
         {
-            SetButton_Color(c_Color_Normal);
+            SetButton_Color(m_Color_Normal);
         }
     }
 
-    private void SetButton_Color(Color c_Color)
+    private void SetButton_Color(Color m_Color)
     {
         if (GetComponent<Image>() != null)
         {
-            GetComponent<Image>().color = c_Color;
+            GetComponent<Image>().color = m_Color;
         }
         else
         if (GetComponent<SpriteRenderer>() != null)
         {
-            GetComponent<SpriteRenderer>().color = c_Color;
+            GetComponent<SpriteRenderer>().color = m_Color;
         }
         else
         {
             gameObject.AddComponent<Image>();
-            GetComponent<SpriteRenderer>().color = c_Color;
+            GetComponent<SpriteRenderer>().color = m_Color;
         }
     }
 
@@ -444,24 +444,24 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     #region Color Button Set
 
-    public void SetButton_Color_Normal(Color c_Color_Normal)
+    public void SetButton_Color_Normal(Color m_Color_Normal)
     {
-        this.c_Color_Normal = c_Color_Normal;
+        this.m_Color_Normal = m_Color_Normal;
     }
 
-    public void SetButton_ColorReady(Color c_ColorReady)
+    public void SetButton_ColorReady(Color m_ColorReady)
     {
-        this.c_ColorReady = c_ColorReady;
+        this.m_ColorReady = m_ColorReady;
     }
 
-    public void SetButton_ColorHold(Color c_ColorHold)
+    public void SetButton_ColorHold(Color m_ColorHold)
     {
-        this.c_ColorHold = c_ColorHold;
+        this.m_ColorHold = m_ColorHold;
     }
 
-    public void SetButton_ColorLock(Color c_ColorLock)
+    public void SetButton_ColorLock(Color m_ColorLock)
     {
-        this.c_ColorLock = c_ColorLock;
+        this.m_ColorLock = m_ColorLock;
     }
 
     #endregion
@@ -470,22 +470,22 @@ public class UIButtonHoldClick : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public Color GetButton_Color_Normal()
     {
-        return c_Color_Normal;
+        return m_Color_Normal;
     }
 
     public Color GetButton_ColorReady()
     {
-        return c_ColorReady;
+        return m_ColorReady;
     }
 
     public Color GetButton_ColorHoldl()
     {
-        return c_ColorHold;
+        return m_ColorHold;
     }
 
     public Color GetButton_ColorLock()
     {
-        return c_ColorLock;
+        return m_ColorLock;
     }
 
     #endregion
