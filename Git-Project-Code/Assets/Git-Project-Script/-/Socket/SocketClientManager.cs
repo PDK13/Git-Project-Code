@@ -17,62 +17,40 @@ using UnityEngine.UI;
  * - onDestroy()     | OnApplicationQuit()
  */
 
-public class Socket_ClientManager : MonoBehaviour
+public class SocketClientManager : MonoBehaviour
 {
-    #region Public
-
-    /// <summary>
-    /// Tag with Host
-    /// </summary>
     [Header("Network Host Server")]
-    [SerializeField]
-    private string m_Tam_Host = "SocketHost";
 
-    /// <summary>
-    /// Host to Connect
-    /// </summary>
+    [SerializeField]
+    private string m_Host = "SocketHost";
+
     [SerializeField]
     private InputField inp_Host;
 
-    /// <summary>
-    /// Tag with Port
-    /// </summary>
     [Header("Network Port Server")]
-    [SerializeField]
-    private string m_Tam_Port = "SocketPort";
 
-    /// <summary>
-    /// Port for Connect to Host
-    /// </summary>
     [SerializeField]
-    private InputField inp_Port;
+    private string m_Port = "SocketPort";
 
-    /// <summary>
-    /// Auto Connect on Start
-    /// </summary>
+    [SerializeField]
+    private InputField m_InputPort;
+
     [Header("Network On Start")]
+
     [SerializeField]
     private bool m_AutoConnect = true;
 
-    /// <summary>
-    /// Host to Connect or Connected
-    /// </summary>
     [SerializeField]
     private string m_HostConnect = "192.168.100.38";
 
-    /// <summary>
-    /// Port to Connect or Connected
-    /// </summary>
     [SerializeField]
     private string m_PortConnect = "5000";
 
-    /// <summary>
-    /// Auto Read by Thread
-    /// </summary>
     [SerializeField]
     private bool m_AutoRead = true;
 
     [Header("Socket m_essage")]
+
     [SerializeField]
     private List<Text> m_SocketMessage;
 
@@ -82,25 +60,12 @@ public class Socket_ClientManager : MonoBehaviour
     [SerializeField]
     private string m_ConnectFailed = "Connect Failed!";
 
-    #endregion
-
-    #region Private
-
     //Socket
 
-    /// <summary>
-    /// IP on this Device or this Server
-    /// </summary>
     private readonly string m_LocalHost = "localhost";
 
-    /// <summary>
-    /// Socket Connect OK?
-    /// </summary>
     private bool m_SocketStart = false;
 
-    /// <summary>
-    /// Socket Auto Thread Read?
-    /// </summary>
     private bool m_SocketRead = false;
 
     private TcpClient tcp_Socket;
@@ -113,16 +78,15 @@ public class Socket_ClientManager : MonoBehaviour
     private Thread m_GetData;
 
     [Header("Network Auto Read")]
+
     [SerializeField]
     private List<string> m_DataQueue;
-
-    #endregion
 
     private void Start()
     {
         if (inp_Host == null)
         {
-            inp_Host = GameObject.FindGameObjectWithTag(m_Tam_Host).GetComponent<InputField>();
+            inp_Host = GameObject.FindGameObjectWithTag(m_Host).GetComponent<InputField>();
         }
         if (inp_Host != null)
         {
@@ -132,15 +96,15 @@ public class Socket_ClientManager : MonoBehaviour
             }
         }
 
-        if (inp_Port == null)
+        if (m_InputPort == null)
         {
-            inp_Port = GameObject.FindGameObjectWithTag(m_Tam_Port).GetComponent<InputField>();
+            m_InputPort = GameObject.FindGameObjectWithTag(m_Port).GetComponent<InputField>();
         }
-        if (inp_Port != null)
+        if (m_InputPort != null)
         {
-            if (inp_Port.text == "")
+            if (m_InputPort.text == "")
             {
-                inp_Port.text = m_PortConnect;
+                m_InputPort.text = m_PortConnect;
             }
         }
 
@@ -255,14 +219,14 @@ public class Socket_ClientManager : MonoBehaviour
             {
                 tcp_Socket = new TcpClient();
 
-                if (inp_Port == null || inp_Port == null)
+                if (m_InputPort == null || m_InputPort == null)
                 {
                     Debug.LogError("SetSocketStart: Require Input Field!");
                     return;
                 }
                 else
                 {
-                    if (inp_Port.text == "")
+                    if (m_InputPort.text == "")
                     {
                         Debug.LogWarning("SetSocketStart: Port Require!");
                         return;
@@ -272,13 +236,13 @@ public class Socket_ClientManager : MonoBehaviour
                     {
                         Debug.LogWarning("SetSocketStart: Local Host Instead!");
                         Debug.LogWarning("SetSocketStart: Device " + SystemInfo.deviceUniqueIdentifier);
-                        tcp_Socket.Connect(m_LocalHost, int.Parse(inp_Port.text));
+                        tcp_Socket.Connect(m_LocalHost, int.Parse(m_InputPort.text));
                     }
                     else
                     {
                         Debug.LogWarning("SetSocketStart: Host " + inp_Host.text);
                         Debug.LogWarning("SetSocketStart: Device " + SystemInfo.deviceUniqueIdentifier);
-                        tcp_Socket.Connect(inp_Host.text, int.Parse(inp_Port.text));
+                        tcp_Socket.Connect(inp_Host.text, int.Parse(m_InputPort.text));
                     }
                 }
 
@@ -288,7 +252,7 @@ public class Socket_ClientManager : MonoBehaviour
                 stReader = new StreamReader(net_Stream);
 
                 m_HostConnect = inp_Host.text;
-                m_PortConnect = inp_Port.text;
+                m_PortConnect = m_InputPort.text;
 
                 m_SocketStart = true;
 

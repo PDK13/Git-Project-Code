@@ -6,7 +6,7 @@ public class Sample_SocketHandle : MonoBehaviour
 {
     [Header("Socket Manager")]
     [SerializeField]
-    private Socket_ClientManager m_SocketManager;
+    private SocketClientManager m_SocketManager;
 
     [Header("Debug List")]
     [SerializeField]
