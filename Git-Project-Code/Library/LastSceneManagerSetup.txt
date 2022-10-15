@@ -1,5 +1,1 @@
-sceneSetups:
-- path: Assets/Git-Project-Script/2D-Isometric/Iso-Editor/Iso-Editor.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
+sceneSetups: []
