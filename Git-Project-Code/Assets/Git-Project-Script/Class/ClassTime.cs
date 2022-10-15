@@ -111,7 +111,7 @@ public class ClassTimeValue
 
     #endregion
 
-    #region m_inute
+    #region Minute
 
     public void SetTimeMinute(int m_Minute)
     {

@@ -93,7 +93,7 @@ public class ClassAIML
     /// <param name="LayerCount"></param>
     public void SetInputLayerCount(int LayerCount)
     {
-        ClassScene.SetPlayerPrefs("LC", (LayerCount < 0) ? 2 : LayerCount);
+        GitPlayerRef.SetPlayerPrefs("LC", (LayerCount < 0) ? 2 : LayerCount);
     }
 
     /// <summary>
@@ -114,7 +114,7 @@ public class ClassAIML
     {
         if (Layer >= 0)
         {
-            ClassScene.SetPlayerPrefs("NC_" + Layer.ToString(), (NeuralCount > 0) ? NeuralCount : 0);
+            GitPlayerRef.SetPlayerPrefs("NC_" + Layer.ToString(), (NeuralCount > 0) ? NeuralCount : 0);
         }
     }
 
@@ -135,13 +135,13 @@ public class ClassAIML
     public void SetNeuralNetworkCreate(bool RandomNumber)
     {
         //LayerCount
-        m_LayerCount = ClassScene.GetPlayerPrefsInt("LC");
+        m_LayerCount = GitPlayerRef.GetPlayerPrefsInt("LC");
 
         //NeuralCount
         m_NeuralCount = new List<int>();
         for (int lay = 0; lay < m_LayerCount; lay++)
         {
-            m_NeuralCount.Add(ClassScene.GetPlayerPrefsInt("NC_" + lay.ToString()));
+            m_NeuralCount.Add(GitPlayerRef.GetPlayerPrefsInt("NC_" + lay.ToString()));
         }
 
         //Activation
@@ -402,7 +402,7 @@ public class ClassAIML
     /// <returns></returns>
     public bool GetCheckFileExist(string m_Path)
     {
-        return ClassFileIO.GetCheckPathExist(m_Path);
+        return GitFileIO.GetCheckPathExist(m_Path);
     }
 
     /// <summary>
@@ -411,7 +411,7 @@ public class ClassAIML
     /// <param name="m_Path"></param>
     public void SetFileSave(string m_Path)
     {
-        ClassFileIO m_yFile = new ClassFileIO();
+        GitFileIO m_yFile = new GitFileIO();
 
         m_yFile.SetWriteDataAdd("LayerCount:");
         m_yFile.SetWriteDataAdd(m_LayerCount);
@@ -485,7 +485,7 @@ public class ClassAIML
     /// <param name="m_Path"></param>
     public void SetFileOpen(string m_Path)
     {
-        ClassFileIO m_FileIO = new ClassFileIO();
+        GitFileIO m_FileIO = new GitFileIO();
 
         //Kích hoạt đọc File
         m_FileIO.SetReadDataStart(m_Path);

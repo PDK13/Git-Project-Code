@@ -22,7 +22,7 @@ public class CheckPointArea : MonoBehaviour
 
     private void SetCheckPoint()
     {
-        Collider[] m_Collide = Physics.OverlapBox(transform.position, m_Pointsize / 2f, ClassVector.GetRotationEulerToQuaternion(0, 0, 0), m_PointLayer);
+        Collider[] m_Collide = Physics.OverlapBox(transform.position, m_Pointsize / 2f, GitVector.GetRotationEulerToQuaternion(0, 0, 0), m_PointLayer);
 
         for (int i = 0; i < m_Collide.Length; i++)
         {
@@ -50,7 +50,7 @@ public class CheckPointArea : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (Physics.OverlapBox(transform.position, m_Pointsize / 2f, ClassVector.GetRotationEulerToQuaternion(0, 0, 0), m_PointLayer).Length > 0)
+        if (Physics.OverlapBox(transform.position, m_Pointsize / 2f, GitVector.GetRotationEulerToQuaternion(0, 0, 0), m_PointLayer).Length > 0)
         {
             Gizmos.color = Color.red;
         }

@@ -10,15 +10,15 @@ public class Sample_FileIO : MonoBehaviour
 
     public Text t_Error;
 
-    private ClassFileIO m_File;
+    private GitFileIO m_File;
 
     private string m_PathFile = "";
 
     private void Start()
     {
-        m_File = new ClassFileIO();
+        m_File = new GitFileIO();
 
-        m_PathFile = ClassFileIO.GetPath(FileIOPathType.Document, "HelloWorld");
+        m_PathFile = GitFileIO.GetPath(FileIOPathType.Document, "HelloWorld");
 
         //m_PathFile = ClassFileIO.GetPathFileWriteToResources("GameSaved", "HelloWorld");
     }
