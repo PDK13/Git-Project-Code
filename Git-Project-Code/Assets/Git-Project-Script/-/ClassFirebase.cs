@@ -1054,46 +1054,46 @@
 //    //Value Changed
 
 //    /// <summary>
-//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(m_yEvent);"
+//    /// Add Event Value Changed Listener by "SetFirebaseEventValueChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ValueChanged(System.EventHandler<ValueChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventValueChanged(System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged");
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChanged");
 //        daReference.ValueChanged += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(m_yEvent);"
+//    /// Add Event Value Changed Listener by "SetFirebaseEventValueChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ValueChangedReset(System.EventHandler<ValueChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventValueChangedReset(System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset");
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChangedReset");
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
 //            daReference.ValueChanged -= e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(m_yEvent);"
+//    /// Add Event Value Changed Listener by "SetFirebaseEventValueChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ValueChanged(string m_DatabaseAcess, System.EventHandler<ValueChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventValueChanged(string m_DatabaseAcess, System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChanged: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChanged: " + m_DatabaseAcess);
 //        daReference.Child(m_DatabaseAcess).ValueChanged += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Value Changed Listener by "SetFirebaseEvent_ValueChanged(m_yEvent);"
+//    /// Add Event Value Changed Listener by "SetFirebaseEventValueChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ValueChangedReset(string m_DatabaseAcess, System.EventHandler<ValueChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventValueChangedReset(string m_DatabaseAcess, System.EventHandler<ValueChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChangedReset: " + m_DatabaseAcess);
 
 //        for (int i = 0; i < m_ResetEventTime; i++) 
 //            daReference.Child(m_DatabaseAcess).ValueChanged -= e_EventHandler;
@@ -1102,46 +1102,46 @@
 //    //Child Added
 
 //    /// <summary>
-//    /// Add Event Child Added Listener by "SetFirebaseEvent_ChildAdded(m_yEvent);"
+//    /// Add Event Child Added Listener by "SetFirebaseEventChildAdded(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildAdded(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildAdded(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildAdded");
+//        if(m_Debug) Debug.Log("SetFirebaseEventChildAdded");
 //        daReference.ChildAdded += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Added Listener by "SetFirebaseEvent_ChildAdded(m_yEvent);"
+//    /// Remove Event Child Added Listener by "SetFirebaseEventChildAdded(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildAddedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildAddedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset");
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChangedReset");
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
 //            daReference.ChildAdded -= e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Child Added Listener by "SetFirebaseEvent_ChildAdded(m_yEvent);"
+//    /// Add Event Child Added Listener by "SetFirebaseEventChildAdded(m_yEvent);"
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildAdded(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildAdded(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildAdded: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEventChildAdded: " + m_DatabaseAcess);
 //        daReference.Child(m_DatabaseAcess).ChildAdded += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Added Listener by "SetFirebaseEvent_ChildAdded(m_yEvent);"
+//    /// Remove Event Child Added Listener by "SetFirebaseEventChildAdded(m_yEvent);"
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildAddedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildAddedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChangedReset: " + m_DatabaseAcess);
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
 //            daReference.Child(m_DatabaseAcess).ChildAdded -= e_EventHandler;
@@ -1150,46 +1150,46 @@
 //    //Child Changed
 
 //    /// <summary>
-//    /// Add Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(m_yEvent);"
+//    /// Add Event Child Changed Listener by "SetFirebaseEventChildChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildChanged(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildChanged(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildChanged");
+//        if(m_Debug) Debug.Log("SetFirebaseEventChildChanged");
 //        daReference.ChildChanged += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(m_yEvent);"
+//    /// Remove Event Child Changed Listener by "SetFirebaseEventChildChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildChangedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildChangedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset");
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChangedReset");
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
 //            daReference.ChildChanged -= e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(m_yEvent);"
+//    /// Add Event Child Changed Listener by "SetFirebaseEventChildChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildChanged(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildChanged(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildChanged: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEventChildChanged: " + m_DatabaseAcess);
 //        daReference.Child(m_DatabaseAcess).ChildChanged += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Changed Listener by "SetFirebaseEvent_ChildChanged(m_yEvent);"
+//    /// Remove Event Child Changed Listener by "SetFirebaseEventChildChanged(m_yEvent);"
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildChangedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildChangedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChangedReset: " + m_DatabaseAcess);
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
 //            daReference.Child(m_DatabaseAcess).ChildChanged -= e_EventHandler;
@@ -1198,46 +1198,46 @@
 //    //Child m_oved
 
 //    /// <summary>
-//    /// Add Event Child m_oved Listener by "SetFirebaseEvent_ChildMoved(m_yEvent);"
+//    /// Add Event Child m_oved Listener by "SetFirebaseEventChildMoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildMoved(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildMoved(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildMoved");
+//        if(m_Debug) Debug.Log("SetFirebaseEventChildMoved");
 //        daReference.ChildMoved += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child m_oved Listener by "SetFirebaseEvent_ChildMoved(m_yEvent);"
+//    /// Remove Event Child m_oved Listener by "SetFirebaseEventChildMoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildMovedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildMovedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset");
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChangedReset");
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
 //            daReference.ChildMoved -= e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Child m_oved Listener by "SetFirebaseEvent_ChildMoved(m_yEvent);"
+//    /// Add Event Child m_oved Listener by "SetFirebaseEventChildMoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildMoved(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildMoved(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildMoved: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEventChildMoved: " + m_DatabaseAcess);
 //        daReference.Child(m_DatabaseAcess).ChildMoved += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child m_oved Listener by "SetFirebaseEvent_ChildMoved(m_yEvent);"
+//    /// Remove Event Child m_oved Listener by "SetFirebaseEventChildMoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildMovedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildMovedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChangedReset: " + m_DatabaseAcess);
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
 //            daReference.Child(m_DatabaseAcess).ChildMoved -= e_EventHandler;
@@ -1246,46 +1246,46 @@
 //    //Child Removed
 
 //    /// <summary>
-//    /// Add Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(m_yEvent);"
+//    /// Add Event Child Removed Listener by "SetFirebaseEventChildRemoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildRemoved(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildRemoved(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildRemoved");
+//        if(m_Debug) Debug.Log("SetFirebaseEventChildRemoved");
 //        daReference.ChildRemoved += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(m_yEvent);"
+//    /// Remove Event Child Removed Listener by "SetFirebaseEventChildRemoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildRemovedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildRemovedReset(System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset");
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChangedReset");
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
 //            daReference.ChildRemoved -= e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Add Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(m_yEvent);"
+//    /// Add Event Child Removed Listener by "SetFirebaseEventChildRemoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildRemoved(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildRemoved(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ChildRemoved: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEventChildRemoved: " + m_DatabaseAcess);
 //        daReference.Child(m_DatabaseAcess).ChildRemoved += e_EventHandler;
 //    }
 
 //    /// <summary>
-//    /// Remove Event Child Removed Listener by "SetFirebaseEvent_ChildRemoved(m_yEvent);"
+//    /// Remove Event Child Removed Listener by "SetFirebaseEventChildRemoved(m_yEvent);"
 //    /// </summary>
 //    /// <param name="mDatabaseAcess">"Parent/KeyEvent" or "KeyEvent"</param>
 //    /// <param name="e_EventHandler">Add  "void m_yEvent(object sender, ValueChangedEventArgs e)"</param>
-//    public void SetFirebaseEvent_ChildRemovedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
+//    public void SetFirebaseEventChildRemovedReset(string m_DatabaseAcess, System.EventHandler<ChildChangedEventArgs> e_EventHandler)
 //    {
-//        if(m_Debug) Debug.Log("SetFirebaseEvent_ValueChangedReset: " + m_DatabaseAcess);
+//        if(m_Debug) Debug.Log("SetFirebaseEventValueChangedReset: " + m_DatabaseAcess);
 
 //        for (int i = 0; i < m_ResetEventTime; i++)
 //            daReference.Child(m_DatabaseAcess).ChildRemoved -= e_EventHandler;

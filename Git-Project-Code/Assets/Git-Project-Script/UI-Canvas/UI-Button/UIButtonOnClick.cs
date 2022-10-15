@@ -47,22 +47,22 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [Tooltip("Unity Pointer Enter Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerEnter;
+    private UnityEvent EventPointerEnter;
 
     [Tooltip("Unity Pointer Exit Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerExit;
+    private UnityEvent EventPointerExit;
 
     [Tooltip("Unity Pointer D Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerD;
+    private UnityEvent EventPointerD;
 
     [Tooltip("Unity Pointer U Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerU;
+    private UnityEvent EventPointerU;
 
     [Tooltip("Unity Active-State (Same as Hold-State) Event Handle")]
     [Space]
@@ -77,14 +77,14 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void Update()
     {
-        SetEvent_Keyboard();
+        SetEventKeyboard();
 
         SetEventActive();
 
         SetButton_Color();
     }
 
-    private void SetEvent_Keyboard()
+    private void SetEventKeyboard()
     {
         if (m_ButtonLock)
         {
@@ -93,12 +93,12 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         if (Input.GetKeyDown(m_KeyButton_Keyboard))
         {
-            SetEvent_PointerD();
+            SetEventPointerD();
         }
 
         if (Input.GetKeyUp(m_KeyButton_Keyboard))
         {
-            SetEvent_PointerU();
+            SetEventPointerU();
         }
     }
 
@@ -112,7 +112,7 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (m_ButtonActive)
         //If Active Pressed >> Do...
         {
-            SetEvent_InvokeActiveState();
+            SetEventInvokeActiveState();
         }
     }
 
@@ -125,46 +125,46 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerEnter(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddPointerEnter(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerEnter, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerEnter, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerExit(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddPointerExit(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerExit, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerExit, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerD(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddPointerD(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerD, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerD, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerU(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddPointerU(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerU, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerU, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_AddActiveState(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddActiveState(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(EventActiveState, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventActiveState, m_Methode);
     }
 
 #endif
@@ -173,39 +173,39 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     #region Set Event Invoke
 
-    private void SetEvent_Invoke_PointerEnter()
+    private void SetEventInvokePointerEnter()
     {
-        if (Event_PointerEnter != null)
+        if (EventPointerEnter != null)
         {
-            Event_PointerEnter.Invoke();
+            EventPointerEnter.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_PointerExit()
+    private void SetEventInvokePointerExit()
     {
-        if (Event_PointerExit != null)
+        if (EventPointerExit != null)
         {
-            Event_PointerExit.Invoke();
+            EventPointerExit.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_PointerD()
+    private void SetEventInvokePointerD()
     {
-        if (Event_PointerD != null)
+        if (EventPointerD != null)
         {
-            Event_PointerD.Invoke();
+            EventPointerD.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_PointerU()
+    private void SetEventInvokePointerU()
     {
-        if (Event_PointerU != null)
+        if (EventPointerU != null)
         {
-            Event_PointerU.Invoke();
+            EventPointerU.Invoke();
         }
     }
 
-    private void SetEvent_InvokeActiveState()
+    private void SetEventInvokeActiveState()
     {
         if (EventActiveState != null)
         {
@@ -217,7 +217,7 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     #region Set Event Button
 
-    private void SetEvent_PointerEnter()
+    private void SetEventPointerEnter()
     {
         if (m_ButtonLock)
         {
@@ -226,10 +226,10 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         m_ButtonReady = true;
 
-        SetEvent_Invoke_PointerEnter();
+        SetEventInvokePointerEnter();
     }
 
-    private void SetEvent_PointerExit()
+    private void SetEventPointerExit()
     {
         if (m_ButtonLock)
         {
@@ -238,10 +238,10 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         m_ButtonReady = false;
 
-        SetEvent_Invoke_PointerExit();
+        SetEventInvokePointerExit();
     }
 
-    private void SetEvent_PointerD()
+    private void SetEventPointerD()
     {
         if (m_ButtonLock)
         {
@@ -252,10 +252,10 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         m_ButtonHold = true;
 
-        SetEvent_Invoke_PointerD();
+        SetEventInvokePointerD();
     }
 
-    private void SetEvent_PointerU()
+    private void SetEventPointerU()
     {
         if (m_ButtonLock)
         {
@@ -264,7 +264,7 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         m_ButtonHold = false;
 
-        SetEvent_Invoke_PointerU();
+        SetEventInvokePointerU();
     }
 
     #endregion
@@ -275,22 +275,22 @@ public class UIButtonOnClick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        SetEvent_PointerEnter();
+        SetEventPointerEnter();
     }
 
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        SetEvent_PointerExit();
+        SetEventPointerExit();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        SetEvent_PointerD();
+        SetEventPointerD();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        SetEvent_PointerU();
+        SetEventPointerU();
     }
 
     #endregion

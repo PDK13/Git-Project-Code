@@ -24,24 +24,24 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
     [Tooltip("Canvas Alpha when Pointer Enter")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float m_Canvas_AlphaEnter = 1f;
+    private float m_CanvasAlphaEnter = 1f;
 
     [Tooltip("Canvas Alpha when Pointer Exit")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float m_Canvas_Alpha_Exit = 0.2f;
+    private float m_CanvasAlphaExit = 0.2f;
 
     [Header("Event")]
 
     [Tooltip("Unity Pointer Enter Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerEnter;
+    private UnityEvent EventPointerEnter;
 
     [Tooltip("Unity Pointer Exit Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerExit;
+    private UnityEvent EventPointerExit;
 
     [Tooltip("Canvas Group")]
     private CanvasGroup m_CanvasGroup;
@@ -57,16 +57,16 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
 
         if (m_CavasLockEnter)
         {
-            m_CanvasGroup.alpha = m_Canvas_AlphaEnter;
+            m_CanvasGroup.alpha = m_CanvasAlphaEnter;
         }
         else
         {
-            m_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
+            m_CanvasGroup.alpha = m_CanvasAlphaExit;
         }
 
         if (m_ButtonLockChance != null)
         {
-            //m_ButtonLockChance.SetEvent_Add_PointerD(SetUICanvasLockEnterChance);
+            //m_ButtonLockChance.SetEventAddPointerD(SetUICanvasLockEnterChance);
             m_ButtonLockChance.SetButtonActive(m_CavasLockEnter);
         }
     }
@@ -77,14 +77,14 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
 
 #if UNITY_EDITOR
 
-    public void SetEvent_Add_PointerEnter(UnityAction ua_Methode)
+    public void SetEventAddPointerEnter(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerEnter, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerEnter, m_Methode);
     }
 
-    public void SetEvent_Add_PointerExit(UnityAction ua_Methode)
+    public void SetEventAddPointerExit(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerExit, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerExit, m_Methode);
     }
 
 #endif
@@ -93,19 +93,19 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
 
     #region Set Event Invoke
 
-    private void SetEvent_Invoke_PointerEnter()
+    private void SetEventInvokePointerEnter()
     {
-        if (Event_PointerEnter != null)
+        if (EventPointerEnter != null)
         {
-            Event_PointerEnter.Invoke();
+            EventPointerEnter.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_PointerExit()
+    private void SetEventInvokePointerExit()
     {
-        if (Event_PointerExit != null)
+        if (EventPointerExit != null)
         {
-            Event_PointerExit.Invoke();
+            EventPointerExit.Invoke();
         }
     }
 
@@ -113,18 +113,18 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
 
     #region Set Event Button
 
-    private void SetEvent_PointerEnter()
+    private void SetEventPointerEnter()
     {
-        m_CanvasGroup.alpha = m_Canvas_AlphaEnter;
+        m_CanvasGroup.alpha = m_CanvasAlphaEnter;
 
-        SetEvent_Invoke_PointerEnter();
+        SetEventInvokePointerEnter();
     }
 
-    private void SetEvent_PointerExit()
+    private void SetEventPointerExit()
     {
         if (m_CavasLockEnter)
         {
-            m_CanvasGroup.alpha = m_Canvas_AlphaEnter;
+            m_CanvasGroup.alpha = m_CanvasAlphaEnter;
 
             return;
         }
@@ -137,9 +137,9 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
             }
         }
 
-        m_CanvasGroup.alpha = m_Canvas_Alpha_Exit;
+        m_CanvasGroup.alpha = m_CanvasAlphaExit;
 
-        SetEvent_Invoke_PointerExit();
+        SetEventInvokePointerExit();
     }
 
     #endregion
@@ -150,12 +150,12 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        SetEvent_PointerEnter();
+        SetEventPointerEnter();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        SetEvent_PointerExit();
+        SetEventPointerExit();
     }
 
     #endregion
@@ -186,21 +186,21 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
     /// <summary>
     /// Set Alpha Canvas when in Curson Enter State (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="m_Canvas_AlphaEnter"></param>
-    public void SetUICanvas_AlphaEnter(float m_Canvas_AlphaEnter)
+    /// <param name="m_CanvasAlphaEnter"></param>
+    public void SetUICanvasAlphaEnter(float m_CanvasAlphaEnter)
     {
-        if (m_Canvas_AlphaEnter < 0)
+        if (m_CanvasAlphaEnter < 0)
         {
-            m_Canvas_AlphaEnter = 0;
+            m_CanvasAlphaEnter = 0;
         }
         else
-        if (m_Canvas_AlphaEnter > 1)
+        if (m_CanvasAlphaEnter > 1)
         {
-            m_Canvas_AlphaEnter = 1;
+            m_CanvasAlphaEnter = 1;
         }
         else
         {
-            this.m_Canvas_AlphaEnter = m_Canvas_AlphaEnter;
+            this.m_CanvasAlphaEnter = m_CanvasAlphaEnter;
         }
     }
 
@@ -208,9 +208,9 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
     /// Get Alpha Canvas when in Curson Enter State
     /// </summary>
     /// <returns></returns>
-    public float GetUICanvas_AlphaEnter()
+    public float GetUICanvasAlphaEnter()
     {
-        return m_Canvas_AlphaEnter;
+        return m_CanvasAlphaEnter;
     }
 
     #endregion
@@ -220,21 +220,21 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
     /// <summary>
     /// Set Alpha Canvas when in Curson Exit State (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="mCanvas_Alpha_Exit"></param>
-    public void SetUICanvas_Alpha_Exit(float m_Canvas_Alpha_Exit)
+    /// <param name="mCanvasAlphaExit"></param>
+    public void SetUICanvasAlphaExit(float m_CanvasAlphaExit)
     {
-        if (m_Canvas_Alpha_Exit < 0)
+        if (m_CanvasAlphaExit < 0)
         {
-            m_Canvas_Alpha_Exit = 0;
+            m_CanvasAlphaExit = 0;
         }
         else
-        if (m_Canvas_Alpha_Exit > 1)
+        if (m_CanvasAlphaExit > 1)
         {
-            m_Canvas_Alpha_Exit = 1;
+            m_CanvasAlphaExit = 1;
         }
         else
         {
-            this.m_Canvas_Alpha_Exit = m_Canvas_Alpha_Exit;
+            this.m_CanvasAlphaExit = m_CanvasAlphaExit;
         }
     }
 
@@ -242,9 +242,9 @@ public class UIObjectCursonAlpha : MonoBehaviour, IPointerEnterHandler, IPointer
     /// Get Alpha Canvas when in Curson Exit State
     /// </summary>
     /// <returns></returns>
-    public float GetUICanvas_Alpha_Exit()
+    public float GetUICanvasAlphaExit()
     {
-        return m_Canvas_Alpha_Exit;
+        return m_CanvasAlphaExit;
     }
 
     #endregion

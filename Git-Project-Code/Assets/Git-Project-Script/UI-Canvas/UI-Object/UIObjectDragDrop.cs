@@ -36,12 +36,12 @@ public class UIObjectDragDrop : MonoBehaviour,
     [Tooltip("Canvas Alpha when Normal (Not Drag)")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float m_Canvas_Alpha_Normal = 1f;
+    private float m_CanvasAlphaNormal = 1f;
 
     [Tooltip("Canvas Alpha when Drag")]
     [SerializeField]
     [Range(0f, 1f)]
-    private float m_Canvas_AlphaDrag = 0.6f;
+    private float m_CanvasAlphaDrag = 0.6f;
 
     [Header("Event")]
 
@@ -52,37 +52,37 @@ public class UIObjectDragDrop : MonoBehaviour,
     [Tooltip("Unity Pointer Enter Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerEnter;
+    private UnityEvent EventPointerEnter;
 
     [Tooltip("Unity Pointer Exit Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerExit;
+    private UnityEvent EventPointerExit;
 
     [Tooltip("Unity Pointer D Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerD;
+    private UnityEvent EventPointerD;
 
     [Tooltip("Unity Pointer U Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerU;
+    private UnityEvent EventPointerU;
 
     [Tooltip("Unity On Begin Drag Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_OnBeginDrag;
+    private UnityEvent EventOnBeginDrag;
 
     [Tooltip("Unity On Drag Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_OnDrag;
+    private UnityEvent EventOnDrag;
 
     [Tooltip("Unity On End Drag Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_OnEndDrag;
+    private UnityEvent EventOnEndDrag;
 
     [Tooltip("Canvas Group")]
     private CanvasGroup m_CanvasGroup;
@@ -126,64 +126,64 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerEnter(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddPointerEnter(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerEnter, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerEnter, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerExit(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddPointerExit(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerExit, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerExit, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerD(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddPointerD(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerD, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerD, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerU(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddPointerU(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerU, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerU, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_OnBeginDrag(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddOnBeginDrag(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_OnBeginDrag, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventOnBeginDrag, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_OnDrag(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddOnDrag(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_OnDrag, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventOnDrag, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_OnEndDrag(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddOnEndDrag(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_OnEndDrag, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventOnEndDrag, m_Methode);
     }
 
 #endif
@@ -192,59 +192,59 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     #region Set Event Invoke
 
-    private void SetEvent_Invoke_PointerEnter()
+    private void SetEventInvokePointerEnter()
     {
-        if (Event_PointerEnter != null)
+        if (EventPointerEnter != null)
         {
-            Event_PointerEnter.Invoke();
+            EventPointerEnter.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_PointerExit()
+    private void SetEventInvokePointerExit()
     {
-        if (Event_PointerExit != null)
+        if (EventPointerExit != null)
         {
-            Event_PointerExit.Invoke();
+            EventPointerExit.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_PointerD()
+    private void SetEventInvokePointerD()
     {
-        if (Event_PointerD != null)
+        if (EventPointerD != null)
         {
-            Event_PointerD.Invoke();
+            EventPointerD.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_PointerU()
+    private void SetEventInvokePointerU()
     {
-        if (Event_PointerU != null)
+        if (EventPointerU != null)
         {
-            Event_PointerU.Invoke();
+            EventPointerU.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_OnBeginDrag()
+    private void SetEventInvokeOnBeginDrag()
     {
-        if (Event_OnBeginDrag != null)
+        if (EventOnBeginDrag != null)
         {
-            Event_OnBeginDrag.Invoke();
+            EventOnBeginDrag.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_OnDrag()
+    private void SetEventInvokeOnDrag()
     {
-        if (Event_OnDrag != null)
+        if (EventOnDrag != null)
         {
-            Event_OnDrag.Invoke();
+            EventOnDrag.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_OnEndDrag()
+    private void SetEventInvokeOnEndDrag()
     {
-        if (Event_OnEndDrag != null)
+        if (EventOnEndDrag != null)
         {
-            Event_OnEndDrag.Invoke();
+            EventOnEndDrag.Invoke();
         }
     }
 
@@ -252,7 +252,7 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     #region Set Event Button
 
-    private void SetEvent_PointerEnter()
+    private void SetEventPointerEnter()
     {
         if (m_CavasLock)
         {
@@ -261,10 +261,10 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         m_UIReady = true;
 
-        SetEvent_Invoke_PointerEnter();
+        SetEventInvokePointerEnter();
     }
 
-    private void SetEvent_PointerExit()
+    private void SetEventPointerExit()
     {
         if (m_CavasLock)
         {
@@ -273,10 +273,10 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         m_UIReady = false;
 
-        SetEvent_Invoke_PointerExit();
+        SetEventInvokePointerExit();
     }
 
-    private void SetEvent_PointerD()
+    private void SetEventPointerD()
     {
         if (m_CavasLock)
         {
@@ -285,10 +285,10 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         m_UIHold = true;
 
-        SetEvent_Invoke_PointerD();
+        SetEventInvokePointerD();
     }
 
-    private void SetEvent_PointerU()
+    private void SetEventPointerU()
     {
         if (m_CavasLock)
         {
@@ -297,10 +297,10 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         m_UIHold = false;
 
-        SetEvent_Invoke_PointerU();
+        SetEventInvokePointerU();
     }
 
-    private void SetEvent_OnBeginDrag()
+    private void SetEventOnBeginDrag()
     {
         if (m_CavasLock)
         {
@@ -309,14 +309,14 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         m_UIDrag = true;
 
-        m_CanvasGroup.alpha = m_Canvas_AlphaDrag;
+        m_CanvasGroup.alpha = m_CanvasAlphaDrag;
 
         m_CanvasGroup.blocksRaycasts = false;
 
-        SetEvent_Invoke_OnBeginDrag();
+        SetEventInvokeOnBeginDrag();
     }
 
-    private void SetEvent_OnDrag(PointerEventData eventData)
+    private void SetEventOnDrag(PointerEventData eventData)
     {
         if (m_CavasLock)
         {
@@ -325,10 +325,10 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         rRectTransform.anchoredPosition += eventData.delta / m_ParentCanvas.scaleFactor;
 
-        SetEvent_Invoke_OnDrag();
+        SetEventInvokeOnDrag();
     }
 
-    private void SetEvent_OnEndDrag()
+    private void SetEventOnEndDrag()
     {
         if (m_CavasLock)
         {
@@ -337,11 +337,11 @@ public class UIObjectDragDrop : MonoBehaviour,
 
         m_UIDrag = false;
 
-        m_CanvasGroup.alpha = m_Canvas_Alpha_Normal;
+        m_CanvasGroup.alpha = m_CanvasAlphaNormal;
 
         m_CanvasGroup.blocksRaycasts = true;
 
-        SetEvent_Invoke_OnEndDrag();
+        SetEventInvokeOnEndDrag();
     }
 
     #endregion
@@ -352,37 +352,37 @@ public class UIObjectDragDrop : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        SetEvent_PointerEnter();
+        SetEventPointerEnter();
     }
 
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        SetEvent_PointerExit();
+        SetEventPointerExit();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        SetEvent_PointerD();
+        SetEventPointerD();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        SetEvent_PointerU();
+        SetEventPointerU();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        SetEvent_OnBeginDrag();
+        SetEventOnBeginDrag();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        SetEvent_OnDrag(eventData);
+        SetEventOnDrag(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        SetEvent_OnEndDrag();
+        SetEventOnEndDrag();
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -446,21 +446,21 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <summary>
     /// Set Alpha Canvas when in Normal State (Not Drag State) (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="mCanvas_Alpha_Normal"></param>
-    public void SetUICanvas_Alpha_Normal(float m_Canvas_Alpha_Normal)
+    /// <param name="mCanvasAlphaNormal"></param>
+    public void SetUICanvasAlphaNormal(float m_CanvasAlphaNormal)
     {
-        if (m_Canvas_Alpha_Normal < 0)
+        if (m_CanvasAlphaNormal < 0)
         {
-            m_Canvas_Alpha_Normal = 0;
+            m_CanvasAlphaNormal = 0;
         }
         else
-        if (m_Canvas_Alpha_Normal > 1)
+        if (m_CanvasAlphaNormal > 1)
         {
-            m_Canvas_Alpha_Normal = 1;
+            m_CanvasAlphaNormal = 1;
         }
         else
         {
-            this.m_Canvas_Alpha_Normal = m_Canvas_Alpha_Normal;
+            this.m_CanvasAlphaNormal = m_CanvasAlphaNormal;
         }
     }
 
@@ -468,9 +468,9 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// Get Alpha Canvas when in Drag State
     /// </summary>
     /// <returns></returns>
-    public float GetUICanvas_Alpha_Normal()
+    public float GetUICanvasAlphaNormal()
     {
-        return m_Canvas_Alpha_Normal;
+        return m_CanvasAlphaNormal;
     }
 
     #endregion
@@ -480,21 +480,21 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// <summary>
     /// Set Alpha Canvas when in Drag State (Alpha value from 0 to 1)
     /// </summary>
-    /// <param name="mCanvas_AlphaDrag"></param>
-    public void SetUICanvas_AlphaDrag(float m_Canvas_AlphaDrag)
+    /// <param name="mCanvasAlphaDrag"></param>
+    public void SetUICanvasAlphaDrag(float m_CanvasAlphaDrag)
     {
-        if (m_Canvas_AlphaDrag < 0)
+        if (m_CanvasAlphaDrag < 0)
         {
-            m_Canvas_AlphaDrag = 0;
+            m_CanvasAlphaDrag = 0;
         }
         else
-        if (m_Canvas_AlphaDrag > 1)
+        if (m_CanvasAlphaDrag > 1)
         {
-            m_Canvas_AlphaDrag = 1;
+            m_CanvasAlphaDrag = 1;
         }
         else
         {
-            this.m_Canvas_AlphaDrag = m_Canvas_AlphaDrag;
+            this.m_CanvasAlphaDrag = m_CanvasAlphaDrag;
         }
     }
 
@@ -502,9 +502,9 @@ public class UIObjectDragDrop : MonoBehaviour,
     /// Get Alpha Canvas when in Drag State
     /// </summary>
     /// <returns></returns>
-    public float GetUICanvas_AlphaDrag()
+    public float GetUICanvasAlphaDrag()
     {
-        return m_Canvas_AlphaDrag;
+        return m_CanvasAlphaDrag;
     }
 
     #endregion

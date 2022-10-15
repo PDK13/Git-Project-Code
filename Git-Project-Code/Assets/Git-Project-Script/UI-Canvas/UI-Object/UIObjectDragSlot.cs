@@ -23,17 +23,17 @@ public class UIObjectDragSlot : MonoBehaviour,
     [Tooltip("Unity Pointer Enter Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerEnter;
+    private UnityEvent EventPointerEnter;
 
     [Tooltip("Unity Pointer Exit Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_PointerExit;
+    private UnityEvent EventPointerExit;
 
     [Tooltip("Unity On Drop Event Handle")]
     [Space]
     [SerializeField]
-    private UnityEvent Event_OnDrop;
+    private UnityEvent EventOnDrop;
 
     [Tooltip("UI Drop Status")]
     //[SerializeField]
@@ -71,28 +71,28 @@ public class UIObjectDragSlot : MonoBehaviour,
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerEnter(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddPointerEnter(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerEnter, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerEnter, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_PointerExit(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddPointerExit(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_PointerExit, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventPointerExit, m_Methode);
     }
 
     /// <summary>
     /// This just work in Editor and not work in Build
     /// </summary>
-    /// <param name="ua_Methode"></param>
-    public void SetEvent_Add_OnDrop(UnityAction ua_Methode)
+    /// <param name="m_Methode"></param>
+    public void SetEventAddOnDrop(UnityAction m_Methode)
     {
-        UnityEventTools.AddPersistentListener(Event_OnDrop, ua_Methode);
+        UnityEventTools.AddPersistentListener(EventOnDrop, m_Methode);
     }
 
 #endif
@@ -101,27 +101,27 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     #region Set Event Invoke
 
-    private void SetEvent_Invoke_PointerEnter()
+    private void SetEventInvokePointerEnter()
     {
-        if (Event_PointerEnter != null)
+        if (EventPointerEnter != null)
         {
-            Event_PointerEnter.Invoke();
+            EventPointerEnter.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_PointerExit()
+    private void SetEventInvokePointerExit()
     {
-        if (Event_PointerExit != null)
+        if (EventPointerExit != null)
         {
-            Event_PointerExit.Invoke();
+            EventPointerExit.Invoke();
         }
     }
 
-    private void SetEvent_Invoke_OnDrop()
+    private void SetEventInvokeOnDrop()
     {
-        if (Event_OnDrop != null)
+        if (EventOnDrop != null)
         {
-            Event_OnDrop.Invoke();
+            EventOnDrop.Invoke();
         }
     }
 
@@ -129,7 +129,7 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     #region Set Event Button
 
-    private void SetEvent_PointerEnter()
+    private void SetEventPointerEnter()
     {
         if (m_UILock)
         {
@@ -138,10 +138,10 @@ public class UIObjectDragSlot : MonoBehaviour,
 
         m_UIReady = true;
 
-        SetEvent_Invoke_PointerEnter();
+        SetEventInvokePointerEnter();
     }
 
-    private void SetEvent_PointerExit()
+    private void SetEventPointerExit()
     {
         if (m_UILock)
         {
@@ -150,10 +150,10 @@ public class UIObjectDragSlot : MonoBehaviour,
 
         m_UIReady = false;
 
-        SetEvent_Invoke_PointerExit();
+        SetEventInvokePointerExit();
     }
 
-    private void SetEvent_OnDrop(PointerEventData eventData)
+    private void SetEventOnDrop(PointerEventData eventData)
     {
         if (m_UILock)
         {
@@ -169,7 +169,7 @@ public class UIObjectDragSlot : MonoBehaviour,
             m_UIDropStatus = true;
         }
 
-        SetEvent_Invoke_OnDrop();
+        SetEventInvokeOnDrop();
     }
 
     #endregion
@@ -178,17 +178,17 @@ public class UIObjectDragSlot : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        SetEvent_PointerEnter();
+        SetEventPointerEnter();
     }
 
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        SetEvent_PointerExit();
+        SetEventPointerExit();
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        SetEvent_OnDrop(eventData);
+        SetEventOnDrop(eventData);
     }
 
     #endregion
