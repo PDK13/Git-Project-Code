@@ -199,7 +199,7 @@ public class GitRaycast
 
         m_CheckRaycastHit = Physics.Linecast(m_PosStart, m_PosEnd, out m_RaycastHit, m_Tarket);
 
-        return new GitRaycastData(m_RaycastHit, m_CheckRaycastHit);
+        return new GitRaycastData(m_RaycastHit);
     }
 
     public GitRaycastData GetRaycast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Distance, LayerMask m_Tarket)
@@ -210,7 +210,7 @@ public class GitRaycast
         Vector3 m_Forward = (m_PosEnd - m_PosStart).normalized;
         m_CheckRaycastHit = Physics.Raycast(m_PosStart, m_Forward, out m_RaycastHit, m_Distance, m_Tarket);
 
-        return new GitRaycastData(m_RaycastHit, m_CheckRaycastHit);
+        return new GitRaycastData(m_RaycastHit);
     }
 
     public GitRaycastData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, Vector3 m_Size, Vector3 m_Rotation, float m_Distance, LayerMask m_Tarket)
@@ -222,10 +222,10 @@ public class GitRaycast
         Quaternion m_Quaternion = Quaternion.Euler(m_Rotation);
         m_CheckRaycastHit = Physics.BoxCast(m_PosStart, m_Size, m_Forward, out m_RaycastHit, m_Quaternion, m_Distance, m_Tarket);
 
-        return new GitRaycastData(m_RaycastHit, m_CheckRaycastHit);
+        return new GitRaycastData(m_RaycastHit);
     }
 
-    public GitRaycastData GetSphereCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance, LayerMask m_Tarket)
+    public GitRaycastData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance, LayerMask m_Tarket)
     {
         RaycastHit m_RaycastHit = new RaycastHit();
         bool m_CheckRaycastHit = false;
@@ -233,22 +233,101 @@ public class GitRaycast
         Vector3 m_Forward = (m_PosEnd - m_PosStart).normalized;
         m_CheckRaycastHit = Physics.SphereCast(m_PosStart, m_Radius / 2, m_Forward, out m_RaycastHit, m_Distance, m_Tarket);
 
-        return new GitRaycastData(m_RaycastHit, m_CheckRaycastHit);
+        return new GitRaycastData(m_RaycastHit);
     }
 }
 
 public class GitRaycastData
 {
     public RaycastHit m_RaycastHit;
-    public bool m_CheckRaycastHit;
 
-    public GitRaycastData(RaycastHit m_RaycastHit, bool m_CheckRaycastHit)
+    public GitRaycastData(RaycastHit m_RaycastHit)
     {
         this.m_RaycastHit = m_RaycastHit;
-        this.m_CheckRaycastHit = m_CheckRaycastHit;
+    }
+
+    public bool GetHit()
+    {
+        return m_RaycastHit.collider != null;
+    }
+
+    public string GetName()
+    {
+        if (!GetHit())
+        {
+            return "";
+        }
+
+        return m_RaycastHit.collider.name;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return m_RaycastHit.collider.gameObject;
     }
 }
- 
+
+public class GitOverlap
+{
+    public static List<GitOverlapData> GetBoxOverlap(Vector3 m_PosStart, Vector3 m_Size, float m_Rotation, LayerMask m_Tarket)
+    {
+        Collider2D[] m_ObjectsHit = Physics2D.OverlapBoxAll(m_PosStart, m_Size, m_Rotation, m_Tarket);
+
+        List<GitOverlapData> m_ObjectsHitList = new List<GitOverlapData>();
+
+        foreach (Collider2D m_ObjectHit in m_ObjectsHit)
+        {
+            m_ObjectsHitList.Add(new GitOverlapData(m_ObjectHit));
+        }
+
+        return m_ObjectsHitList;
+    }
+
+    public static List<GitOverlapData> GetCircleOverlap(Vector3 m_PosStart, float m_Size, LayerMask m_Tarket)
+    {
+        Collider2D[] m_ObjectsHit = Physics2D.OverlapCircleAll(m_PosStart, m_Size, m_Tarket);
+
+        List<GitOverlapData> m_ObjectsHitList = new List<GitOverlapData>();
+
+        foreach (Collider2D m_ObjectHit in m_ObjectsHit)
+        {
+            m_ObjectsHitList.Add(new GitOverlapData(m_ObjectHit));
+        }
+
+        return m_ObjectsHitList;
+    }
+}
+
+public class GitOverlapData
+{
+    public Collider2D m_OverlapHit;
+
+    public GitOverlapData(Collider2D m_OverlapHit)
+    {
+        this.m_OverlapHit = m_OverlapHit;
+    }
+
+    public bool GetHit()
+    {
+        return m_OverlapHit.gameObject != null;
+    }
+
+    public string GetName()
+    {
+        if (!GetHit())
+        {
+            return "";
+        }
+
+        return m_OverlapHit.gameObject.name;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return m_OverlapHit.gameObject;
+    }
+}
+
 public class GitScene
 {
     public static void SetChanceScene(string m_SceneName, LoadSceneMode enumLoadSceneMode = LoadSceneMode.Single)
@@ -274,6 +353,11 @@ public class GitGameObject
         {
             return MonoBehaviour.Instantiate(m_Prepab, m_Parent);
         }
+    }
+
+    public static GameObject SetGameObjectCreate(string m_Prefab_Name, Transform m_Parent = null)
+    {
+        return SetGameObjectCreate(new GameObject(m_Prefab_Name), m_Parent);
     }
 
     public static void SetGameObjectDestroy(GameObject m_GameObject)
@@ -1156,7 +1240,7 @@ public class GitEmail
     }
 }
 
-public class GitKeyboard 
+public class GitKeyboard
 {
     public static void SetMouseVisible(bool m_MouseVisble)
     {
@@ -1183,34 +1267,34 @@ public class GitKeyboard
             case KeyCode.Mouse2:
                 return "M-Mouse";
 
-            case KeyCode.LeftBracket: 
+            case KeyCode.LeftBracket:
                 return "[";
-            case KeyCode.RightBracket: 
+            case KeyCode.RightBracket:
                 return "]";
 
-            case KeyCode.LeftCurlyBracket: 
+            case KeyCode.LeftCurlyBracket:
                 return "{";
-            case KeyCode.RightCurlyBracket: 
+            case KeyCode.RightCurlyBracket:
                 return "}";
 
-            case KeyCode.LeftParen: 
+            case KeyCode.LeftParen:
                 return "(";
-            case KeyCode.RightParen: 
+            case KeyCode.RightParen:
                 return ")";
 
             case KeyCode.LeftShift:
                 return "L-Shift";
-            case KeyCode.RightShift: 
+            case KeyCode.RightShift:
                 return "R-Shift";
 
-            case KeyCode.LeftAlt: 
+            case KeyCode.LeftAlt:
                 return "L-Alt";
-            case KeyCode.RightAlt: 
+            case KeyCode.RightAlt:
                 return "R-Alt";
 
-            case KeyCode.PageUp: 
+            case KeyCode.PageUp:
                 return "Page-U";
-            case KeyCode.PageDown: 
+            case KeyCode.PageDown:
                 return "Page-D";
         }
 
