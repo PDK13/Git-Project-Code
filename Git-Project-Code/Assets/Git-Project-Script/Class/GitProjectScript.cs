@@ -248,7 +248,7 @@ public class GitRaycastData
         this.m_CheckRaycastHit = m_CheckRaycastHit;
     }
 }
-
+ 
 public class GitScene
 {
     public static void SetChanceScene(string m_SceneName, LoadSceneMode enumLoadSceneMode = LoadSceneMode.Single)
@@ -329,6 +329,19 @@ public class GitPlayerRef
         PlayerPrefs.Save();
     }
 
+    public static void SetPlayerRefs(string m_ValueName, Vector2 m_Value)
+    {
+        SetPlayerPrefs(m_ValueName + "X", m_Value.x);
+        SetPlayerPrefs(m_ValueName + "Y", m_Value.y);
+    }
+
+    public static void SetPlayerRefs(string m_ValueName, Vector3 m_Value)
+    {
+        SetPlayerPrefs(m_ValueName + "X", m_Value.x);
+        SetPlayerPrefs(m_ValueName + "Y", m_Value.y);
+        SetPlayerPrefs(m_ValueName + "Z", m_Value.z);
+    }
+
     #endregion
 
     #region Player Prefs Get
@@ -369,6 +382,27 @@ public class GitPlayerRef
 
         Debug.LogError("GetPlayerPrefsFloat: Not Exist" + "\"" + m_ValueName + "\"");
         return 0.0f;
+    }
+
+    public static Vector2 SetPlayerRefsVector2(string m_ValueName)
+    {
+        Vector2 m_Value = new Vector2();
+
+        m_Value.x = GetPlayerPrefsFloat(m_ValueName + "X");
+        m_Value.y = GetPlayerPrefsFloat(m_ValueName + "Y");
+
+        return m_Value;
+    }
+
+    public static Vector3 SetPlayerRefsVector3(string m_ValueName)
+    {
+        Vector3 m_Value = new Vector2();
+
+        m_Value.x = GetPlayerPrefsFloat(m_ValueName + "X");
+        m_Value.y = GetPlayerPrefsFloat(m_ValueName + "Y");
+        m_Value.z = GetPlayerPrefsFloat(m_ValueName + "Z");
+
+        return m_Value;
     }
 
     #endregion
