@@ -13,6 +13,8 @@ public class IsoWorldManager : MonoBehaviour
 
     private IsoWorld m_World;
 
+    private bool m_WorldGenerated = false;
+
     [Header("Block(s) Manager")]
 
     private List<GameObject> m_Blocks;
@@ -33,7 +35,7 @@ public class IsoWorldManager : MonoBehaviour
         }
     }
 
-    #region World Generate
+    #region World Manager
 
     public static void SetWorldGenerate(IsoWorldImformation m_WorldImformation)
     {
@@ -41,19 +43,65 @@ public class IsoWorldManager : MonoBehaviour
 
         foreach(IsoBlockImformation m_BlockImformation in m_WorldImformation.m_BlocksImformation)
         {
-            GameObject m_Block = GetBlock(m_BlockImformation.m_BlockName);
+            GameObject m_BlockClone = GetBlock(m_BlockImformation.m_BlockName);
 
-            //Add Componenet(s)
+            GameObject m_Block = GitGameObject.SetGameObjectCreate(m_BlockClone, m_This.transform);
 
-            m_This.m_World.SetWorld(m_BlockImformation.m_Pos, m_Block, m_This.m_Scale);
+            if (m_Block.GetComponent<IsoBlock>() == null) 
+                m_Block.AddComponent<IsoBlock>();
+
+            m_Block.GetComponent<IsoBlock>().SetImformation(m_BlockImformation);
+            m_Block.GetComponent<IsoBlock>().SetPosPrimary(m_BlockImformation.m_PosPrimary);
+            m_Block.GetComponent<IsoBlock>().SetPos(m_BlockImformation.m_PosPrimary);
+
+            m_Block.GetComponent<IsoBlock>().SetScale(m_This.m_Scale);
+            m_Block.SetActive(true);
+
+            m_This.m_World.SetWorld(m_BlockImformation.m_PosPrimary, m_Block);
         }
 
         m_This.act_WorldGenerated?.Invoke();
     }
 
+    public static IsoWorld GetWorld()
+    {
+        if (!m_This.m_WorldGenerated)
+        {
+            return null;
+        }
+
+        return m_This.m_World;
+    }
+
+    public static bool GetWorldGenerated()
+    {
+        return m_This.m_WorldGenerated;
+    }
+
+    public static void SetWorldDestroy()
+    {
+        if (!m_This.m_WorldGenerated)
+        {
+            return;
+        }
+
+        for (int h = 0; h < m_This.m_World.GetSize().m_TBHInt; h++)
+        {
+            for (int x = 0; x < m_This.m_World.GetSize().m_UDXInt; x++)
+            {
+                for (int y = 0; y < m_This.m_World.GetSize().m_LRYInt; y++)
+                {
+                    GitGameObject.SetGameObjectDestroy(m_This.m_World.GetWorld(new IsoVector(x, y, h)));
+                }
+            }
+        }
+
+
+    }
+
     #endregion
 
-    #region Block(s) Updated
+    #region Block(s) Manager
 
     public static void SetBlocksUpdate(List<GameObject> m_Blocks)
     {
@@ -122,20 +170,12 @@ public class IsoWorld
         }
     }
 
-    public void SetWorld(IsoVector m_Pos, GameObject m_Block, IsoVector m_Scale)
+    public void SetWorld(IsoVector m_Pos, GameObject m_Block)
     {
         if (!GetLimit(m_Pos))
         {
             return;
         }
-
-        if (m_Block.GetComponent<IsoBlock>() == null) m_Block.AddComponent<IsoBlock>();
-
-        m_Block.GetComponent<IsoBlock>().SetIsoScale(m_Scale);
-        m_Block.GetComponent<IsoBlock>().SetPosPrimary(m_Pos);
-        m_Block.GetComponent<IsoBlock>().SetPos(m_Pos);
-
-        m_Block.SetActive(true);
 
         m_World[m_Pos.m_TBHInt][m_Pos.m_UDXInt][m_Pos.m_LRYInt] = m_Block;
     }
@@ -187,7 +227,7 @@ public class IsoBlockImformation
 {
     public string m_BlockName;
 
-    public IsoVector m_Pos;
+    public IsoVector m_PosPrimary;
 
     public List<IsoBlockMoveImformation> m_Moves;
 

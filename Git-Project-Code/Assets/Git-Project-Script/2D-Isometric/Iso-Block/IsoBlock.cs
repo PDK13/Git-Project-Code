@@ -2,15 +2,13 @@ using UnityEngine;
 
 #if UNITY_EDITOR
 
-//[ExecuteAlways]
+[ExecuteAlways]
 
 #endif
-[ExecuteAlways]
+
 public class IsoBlock : MonoBehaviour
 {
-    [Header("Pos Manager")]
-
-    [Tooltip("Pos on World")]
+    [Header("World Manager")]
 
     [SerializeField] private IsoVector m_Pos = new IsoVector();
 
@@ -18,7 +16,7 @@ public class IsoBlock : MonoBehaviour
 
     [SerializeField] private IsoVector m_Scale = new IsoVector(1f, 1f, 1f);
 
-    [Header("Pos on Matrix")]
+    [Header("Matrix Manager")]
 
     [SerializeField] private IsoVector m_PosMatrix = new IsoVector();
 
@@ -27,6 +25,10 @@ public class IsoBlock : MonoBehaviour
     [SerializeField] [Range(0.4f, 0.5f)] private float m_RoundLower = 0.45f;
 
     private IsoVector m_PosPrimary = new IsoVector();
+
+    [Header("Block Manager")]
+
+    private IsoBlockImformation m_Imformation;
 
 #if UNITY_EDITOR
 
@@ -108,12 +110,12 @@ public class IsoBlock : MonoBehaviour
         }
     }
 
-    public void SetIsoScale(IsoVector m_Scale)
+    public void SetScale(IsoVector m_Scale)
     {
         this.m_Scale = m_Scale;
     }
 
-    public void SetIsoFix(Vector3 m_Fix)
+    public void SetFix(Vector3 m_Fix)
     {
         this.m_Centre = m_Fix;
     }
@@ -193,6 +195,20 @@ public class IsoBlock : MonoBehaviour
         IsoVector m_PosMatrixCurrent = GetPosMatrixCurrent();
 
         return m_PosPrimary.m_UDX == m_PosMatrixCurrent.m_UDX && m_PosPrimary.m_LRY == m_PosMatrixCurrent.m_LRY && m_PosPrimary.m_TBH == m_PosMatrixCurrent.m_TBH;
+    }
+
+    #endregion
+
+    #region ================================================================== Imformation
+
+    public void SetImformation(IsoBlockImformation m_BlockImformation)
+    {
+        this.m_Imformation = m_BlockImformation;
+    }
+
+    public IsoBlockImformation GetImformation()
+    {
+        return this.m_Imformation;
     }
 
     #endregion

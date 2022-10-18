@@ -368,9 +368,9 @@ public class GitGameObject
         }
     }
 
-    public static string GetStringReplaceClone(GameObject m_GameObject)
+    public static string GetNameReplaceClone(string m_GameObjectName)
     {
-        return m_GameObject.name.Replace(m_GameObject.name, "(Clone)");
+        return m_GameObjectName.Replace(m_GameObjectName, "(Clone)");
     }
 }
 
