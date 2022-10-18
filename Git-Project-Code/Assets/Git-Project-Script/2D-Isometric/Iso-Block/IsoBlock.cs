@@ -2,10 +2,10 @@ using UnityEngine;
 
 #if UNITY_EDITOR
 
-[ExecuteAlways]
+//[ExecuteAlways]
 
 #endif
-
+[ExecuteAlways]
 public class IsoBlock : MonoBehaviour
 {
     [Header("Pos Manager")]
@@ -30,7 +30,7 @@ public class IsoBlock : MonoBehaviour
 
 #if UNITY_EDITOR
 
-    private void FixedUpdate()
+    private void Update()
     {
         SetIsoTransform();
     }
