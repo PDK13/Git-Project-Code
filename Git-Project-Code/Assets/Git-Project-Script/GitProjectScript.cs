@@ -330,6 +330,8 @@ public class GitOverlapData
 
 public class GitScene
 {
+
+
     public static void SetChanceScene(string m_SceneName, LoadSceneMode enumLoadSceneMode = LoadSceneMode.Single)
     {
         SceneManager.LoadScene(m_SceneName, enumLoadSceneMode);
