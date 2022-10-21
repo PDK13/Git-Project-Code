@@ -63,7 +63,7 @@ public class IsoWorldManager : MonoBehaviour
             m_BlockInWorld.m_RY = GetWorldIndex(m_Pos.GetVectorAdd(0, 1, 0));
             m_BlockInWorld.m_TH = GetWorldIndex(m_Pos.GetVectorAdd(0, 0, 1));
             m_BlockInWorld.m_BH = GetWorldIndex(m_Pos.GetVectorAdd(0, 0, -1));
-            m_This.m_World.Add(m_BlockInWorld);
+            m_This.m_World.Add(m_BlockInWorld); //Check???
         }
     }
 

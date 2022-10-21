@@ -376,7 +376,7 @@ public class GitGameObject
     }
 }
 
-public class GitPlayerRef
+public class GitPlayerPref
 {
     #region Player Prefs Set
 
@@ -415,13 +415,19 @@ public class GitPlayerRef
         PlayerPrefs.Save();
     }
 
-    public static void SetPlayerRefs(string m_ValueName, Vector2 m_Value)
+    public static void SetPlayerPrefs(string m_ValueName, bool m_Value)
+    {
+        PlayerPrefs.SetInt(m_ValueName, (m_Value) ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    public static void SetPlayerPrefs(string m_ValueName, Vector2 m_Value)
     {
         SetPlayerPrefs(m_ValueName + "X", m_Value.x);
         SetPlayerPrefs(m_ValueName + "Y", m_Value.y);
     }
 
-    public static void SetPlayerRefs(string m_ValueName, Vector3 m_Value)
+    public static void SetPlayerPrefs(string m_ValueName, Vector3 m_Value)
     {
         SetPlayerPrefs(m_ValueName + "X", m_Value.x);
         SetPlayerPrefs(m_ValueName + "Y", m_Value.y);
@@ -470,7 +476,18 @@ public class GitPlayerRef
         return 0.0f;
     }
 
-    public static Vector2 SetPlayerRefsVector2(string m_ValueName)
+    public static bool GetPlayerPrefsBool(string m_ValueName)
+    {
+        if (GetPlayerPrefsExist(m_ValueName))
+        {
+            return PlayerPrefs.GetInt(m_ValueName) == 1;
+        }
+
+        Debug.LogError("GetPlayerPrefsBool: Not Exist" + "\"" + m_ValueName + "\"");
+        return false;
+    }
+
+    public static Vector2 SetPlayerPrefsVector2(string m_ValueName)
     {
         Vector2 m_Value = new Vector2();
 
@@ -480,7 +497,7 @@ public class GitPlayerRef
         return m_Value;
     }
 
-    public static Vector3 SetPlayerRefsVector3(string m_ValueName)
+    public static Vector3 SetPlayerPrefsVector3(string m_ValueName)
     {
         Vector3 m_Value = new Vector2();
 
@@ -489,6 +506,22 @@ public class GitPlayerRef
         m_Value.z = GetPlayerPrefsFloat(m_ValueName + "Z");
 
         return m_Value;
+    }
+
+    #endregion
+
+    #region App First Run
+
+    public static bool SetPlayerPrefFirstRun(string m_PlayerPref = "-First-Run")
+    {
+        if (GetPlayerPrefsExist(Application.productName + m_PlayerPref))
+        {
+            return true;
+        }
+
+        SetPlayerPrefs(Application.productName + m_PlayerPref, true);
+
+        return false;
     }
 
     #endregion
