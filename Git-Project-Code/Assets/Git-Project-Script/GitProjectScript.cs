@@ -516,12 +516,12 @@ public class GitPlayerPref
     {
         if (GetPlayerPrefsExist(Application.productName + m_PlayerPref))
         {
-            return true;
+            return false;
         }
 
         SetPlayerPrefs(Application.productName + m_PlayerPref, true);
 
-        return false;
+        return true;
     }
 
     #endregion

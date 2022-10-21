@@ -121,17 +121,17 @@ public class UnityToolRef : EditorWindow
             else
             if (m_ChoiceCurrent == m_Choice[0])
             {
-                GitPlayerRef.SetPlayerPrefs(m_Name, m_Value);
+                GitPlayerPref.SetPlayerPrefs(m_Name, m_Value);
             }
             else
                 if (m_ChoiceCurrent == m_Choice[1])
             {
-                GitPlayerRef.SetPlayerPrefs(m_Name, int.Parse(m_Value));
+                GitPlayerPref.SetPlayerPrefs(m_Name, int.Parse(m_Value));
             }
             else
                 if (m_ChoiceCurrent == m_Choice[2])
             {
-                GitPlayerRef.SetPlayerPrefs(m_Name, float.Parse(m_Value));
+                GitPlayerPref.SetPlayerPrefs(m_Name, float.Parse(m_Value));
             }
         }
     }
@@ -147,9 +147,9 @@ public class UnityToolRef : EditorWindow
             else
             if (m_ChoiceCurrent == m_Choice[0])
             {
-                if (GitPlayerRef.GetPlayerPrefsExist(m_Name))
+                if (GitPlayerPref.GetPlayerPrefsExist(m_Name))
                 {
-                    m_Value = GitPlayerRef.GetPlayerPrefsString(m_Name);
+                    m_Value = GitPlayerPref.GetPlayerPrefsString(m_Name);
                 }
                 else
                 {
@@ -160,9 +160,9 @@ public class UnityToolRef : EditorWindow
             else
             if (m_ChoiceCurrent == m_Choice[1])
             {
-                if (GitPlayerRef.GetPlayerPrefsExist(m_Name))
+                if (GitPlayerPref.GetPlayerPrefsExist(m_Name))
                 {
-                    m_Value = GitPlayerRef.GetPlayerPrefsInt(m_Name).ToString();
+                    m_Value = GitPlayerPref.GetPlayerPrefsInt(m_Name).ToString();
                 }
                 else
                 {
@@ -173,9 +173,9 @@ public class UnityToolRef : EditorWindow
             else
             if (m_ChoiceCurrent == m_Choice[2])
             {
-                if (GitPlayerRef.GetPlayerPrefsExist(m_Name))
+                if (GitPlayerPref.GetPlayerPrefsExist(m_Name))
                 {
-                    m_Value = GitPlayerRef.GetPlayerPrefsFloat(m_Name).ToString();
+                    m_Value = GitPlayerPref.GetPlayerPrefsFloat(m_Name).ToString();
                 }
                 else
                 {
@@ -192,7 +192,7 @@ public class UnityToolRef : EditorWindow
         {
             Debug.LogWarningFormat("Tool: Clear {0} = {1} Value!", m_Name, m_Value);
 
-            GitPlayerRef.SetPlayerPrefsClear(m_Name);
+            GitPlayerPref.SetPlayerPrefsClear(m_Name);
 
             //m_Name = "";
             //m_Value = "";
@@ -205,7 +205,7 @@ public class UnityToolRef : EditorWindow
         {
             Debug.LogWarning("Tool: Clear all Value!");
 
-            GitPlayerRef.SetPlayerPrefsClearAll();
+            GitPlayerPref.SetPlayerPrefsClearAll();
 
             //m_Name = "";
             //m_Value = "";

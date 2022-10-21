@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
+
+//[ExecuteAlways]
+
+#endif
+
 public class IsoWorldManager : MonoBehaviour
 {
     private static IsoWorldManager m_This;
@@ -17,13 +23,13 @@ public class IsoWorldManager : MonoBehaviour
 
     //private List<>
 
-    private List<IsoBlockMatrix> m_World;
+    [SerializeField] private List<IsoBlockMatrix> m_World;
 
     private bool m_WorldGenerated = false;
 
     [Header("Block(s) Manager")]
 
-    private List<GameObject> m_Blocks;
+    [SerializeField] private List<GameObject> m_Blocks;
 
     private bool m_BlocksUpdated = false;
 
@@ -39,7 +45,33 @@ public class IsoWorldManager : MonoBehaviour
         {
             m_This = this;
         }
+
+        m_World = new List<IsoBlockMatrix>();
     }
+
+//#if UNITY_EDITOR
+
+    private void Start()
+    {
+        m_Blocks = GitResources.GetResourcesPrefab("Blocks");
+
+        SetWorldBlock(new IsoVector(0, 0, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[0], this.transform).GetComponent<IsoBlock>());
+        SetWorldBlock(new IsoVector(0, 1, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[1], this.transform).GetComponent<IsoBlock>());
+        SetWorldBlock(new IsoVector(0, 2, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[2], this.transform).GetComponent<IsoBlock>());
+        SetWorldBlock(new IsoVector(1, 0, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[3], this.transform).GetComponent<IsoBlock>());
+        SetWorldBlock(new IsoVector(1, 1, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[4], this.transform).GetComponent<IsoBlock>());
+        SetWorldBlock(new IsoVector(1, 2, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[5], this.transform).GetComponent<IsoBlock>());
+        SetWorldBlock(new IsoVector(2, 0, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[6], this.transform).GetComponent<IsoBlock>());
+        SetWorldBlock(new IsoVector(2, 1, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[7], this.transform).GetComponent<IsoBlock>());
+        SetWorldBlock(new IsoVector(2, 2, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[8], this.transform).GetComponent<IsoBlock>());
+    }
+
+    private void Update()
+    {
+        
+    }
+
+//#endif
 
     #region World Manager
 
@@ -57,17 +89,70 @@ public class IsoWorldManager : MonoBehaviour
         else
         {
             IsoBlockMatrix m_BlockInWorld = new IsoBlockMatrix(m_Block);
-            m_BlockInWorld.m_UX = GetWorldIndex(m_Pos.GetVectorAdd(1, 0, 0));
-            m_BlockInWorld.m_DX = GetWorldIndex(m_Pos.GetVectorAdd(-1, 0, 0));
-            m_BlockInWorld.m_LY = GetWorldIndex(m_Pos.GetVectorAdd(0, -1, 0));
-            m_BlockInWorld.m_RY = GetWorldIndex(m_Pos.GetVectorAdd(0, 1, 0));
-            m_BlockInWorld.m_TH = GetWorldIndex(m_Pos.GetVectorAdd(0, 0, 1));
-            m_BlockInWorld.m_BH = GetWorldIndex(m_Pos.GetVectorAdd(0, 0, -1));
+
+            m_BlockInWorld.m_Block.SetScale(m_This.m_Scale);
+            m_BlockInWorld.m_Block.SetPosPrimary(m_Pos);
+            m_BlockInWorld.m_Block.SetPos(m_Pos);
+
+            //U
+
+            m_BlockInWorld.m_UX = GetWorldIndex(m_Pos.GetVectorAdd(1, 0, 0), m_This.m_World.Count);
+
+            if (m_BlockInWorld.m_UX != -1)
+            {
+                m_This.m_World[m_BlockInWorld.m_UX].m_DX = m_This.m_World.Count;
+            }
+
+            //D
+
+            m_BlockInWorld.m_DX = GetWorldIndex(m_Pos.GetVectorAdd(-1, 0, 0), m_This.m_World.Count);
+
+            if (m_BlockInWorld.m_DX != -1)
+            {
+                m_This.m_World[m_BlockInWorld.m_DX].m_UX = m_This.m_World.Count;
+            }
+
+            //L
+
+            m_BlockInWorld.m_LY = GetWorldIndex(m_Pos.GetVectorAdd(0, -1, 0), m_This.m_World.Count);
+
+            if (m_BlockInWorld.m_LY != -1)
+            {
+                m_This.m_World[m_BlockInWorld.m_LY].m_RY = m_This.m_World.Count;
+            }
+
+            //R
+
+            m_BlockInWorld.m_RY = GetWorldIndex(m_Pos.GetVectorAdd(0, 1, 0), m_This.m_World.Count);
+
+            if (m_BlockInWorld.m_RY != -1)
+            {
+                m_This.m_World[m_BlockInWorld.m_RY].m_LY = m_This.m_World.Count;
+            }
+
+            //T
+
+            m_BlockInWorld.m_TH = GetWorldIndex(m_Pos.GetVectorAdd(0, 0, 1), m_This.m_World.Count);
+
+            if (m_BlockInWorld.m_TH != -1)
+            {
+                m_This.m_World[m_BlockInWorld.m_TH].m_BH = m_This.m_World.Count;
+            }
+
+            //B
+
+            m_BlockInWorld.m_BH = GetWorldIndex(m_Pos.GetVectorAdd(0, 0, -1), m_This.m_World.Count);
+
+            if (m_BlockInWorld.m_BH != -1)
+            {
+                m_This.m_World[m_BlockInWorld.m_BH].m_TH = m_This.m_World.Count;
+            }
+
             m_This.m_World.Add(m_BlockInWorld); //Check???
         }
     }
 
-    public static int GetWorldIndex(IsoVector m_Pos)
+    public static int GetWorldIndex(IsoVector m_Pos, int m_BlockIndexAcess = -1)
     {
         //Check if out of matrix
 
@@ -78,36 +163,53 @@ public class IsoWorldManager : MonoBehaviour
             {
                 return i;
             }
-            else
             //Neighbor Pos
-            if (m_This.m_World[m_This.m_World[i].m_UX].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+            if (m_This.m_World[i].m_UX != -1 && m_BlockIndexAcess != m_This.m_World[i].m_UX)
             {
-                return m_This.m_World[i].m_UX;
+                if (m_This.m_World[m_This.m_World[i].m_UX].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                {
+                    return m_This.m_World[i].m_UX;
+                }
             }
             else
-            if (m_This.m_World[m_This.m_World[i].m_DX].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+            if (m_This.m_World[i].m_DX != -1 && m_BlockIndexAcess != m_This.m_World[i].m_DX)
             {
-                return m_This.m_World[i].m_DX;
+                if (m_This.m_World[m_This.m_World[i].m_DX].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                {
+                    return m_This.m_World[i].m_DX;
+                }
             }
             else
-            if (m_This.m_World[m_This.m_World[i].m_LY].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+            if (m_This.m_World[i].m_LY != -1 && m_BlockIndexAcess != m_This.m_World[i].m_LY)
             {
-                return m_This.m_World[i].m_LY;
+                if (m_This.m_World[m_This.m_World[i].m_LY].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                {
+                    return m_This.m_World[i].m_LY;
+                }
             }
             else
-            if (m_This.m_World[m_This.m_World[i].m_RY].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+            if (m_This.m_World[i].m_RY != -1 && m_BlockIndexAcess != m_This.m_World[i].m_RY)
             {
-                return m_This.m_World[i].m_RY;
+                if (m_This.m_World[m_This.m_World[i].m_RY].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                {
+                    return m_This.m_World[i].m_RY;
+                }
             }
             else
-            if (m_This.m_World[m_This.m_World[i].m_TH].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+            if (m_This.m_World[i].m_TH != -1 && m_BlockIndexAcess != m_This.m_World[i].m_TH)
             {
-                return m_This.m_World[i].m_TH;
+                if (m_This.m_World[m_This.m_World[i].m_TH].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                {
+                    return m_This.m_World[i].m_TH;
+                }
             }
             else
-            if (m_This.m_World[m_This.m_World[i].m_BH].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+            if (m_This.m_World[i].m_BH != -1 && m_BlockIndexAcess != m_This.m_World[i].m_BH)
             {
-                return m_This.m_World[i].m_BH;
+                if (m_This.m_World[m_This.m_World[i].m_BH].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                {
+                    return m_This.m_World[i].m_BH;
+                }
             }
         }
 
@@ -314,6 +416,7 @@ public class IsoWorld
     }
 }
 
+[System.Serializable]
 public class IsoBlockMatrix
 {
     public IsoBlock m_Block;
