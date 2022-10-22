@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+[ExecuteAlways]
 public class IsoBlock : MonoBehaviour
 {
     [Header("World Manager")]
@@ -27,6 +28,11 @@ public class IsoBlock : MonoBehaviour
 
     //private IsoBlockImformation m_Imformation;
 
+    private void Update()
+    {
+        SetIsoTransform();
+    }
+
     #region ================================================================== Iso
 
     public void SetDepth(IsoDepth m_Depth)
@@ -40,7 +46,7 @@ public class IsoBlock : MonoBehaviour
         {
             case IsoDepth.Fixed:
                 IsoVector m_PosWorldScale = new IsoVector(m_PosWorld);
-                m_PosWorldScale.X_UD *= m_Scale.X_UD;
+                m_PosWorldScale.X_UD *= m_Scale.X_UD * -1;
                 m_PosWorldScale.Y_LR *= m_Scale.Y_LR;
                 m_PosWorldScale.H_TB *= m_Scale.H_TB;
 
@@ -458,24 +464,24 @@ public struct IsoVector
     public override string ToString() => $"({X_UD}, {Y_LR}, {H_TB})";
 }
 
-[CustomEditor(typeof(IsoBlock))]
-[CanEditMultipleObjects]
-public class CustomIsoVector : Editor
-{
-    SerializedProperty Pos;
-    SerializedProperty X;
-    SerializedProperty Y;
-    SerializedProperty H;
+//[CustomEditor(typeof(IsoBlock))]
+//[CanEditMultipleObjects]
+//public class CustomIsoVector : Editor
+//{
+//    SerializedProperty Pos;
+//    SerializedProperty X;
+//    SerializedProperty Y;
+//    SerializedProperty H;
 
-    private void OnEnable()
-    {
-        Pos = serializedObject.FindProperty("Pos");
-    }
+//    private void OnEnable()
+//    {
+//        Pos = serializedObject.FindProperty("Pos");
+//    }
 
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
-        EditorGUILayout.PropertyField(Pos);
-        serializedObject.ApplyModifiedProperties();
-    }
-}
+//    public override void OnInspectorGUI()
+//    {
+//        serializedObject.Update();
+//        EditorGUILayout.PropertyField(Pos);
+//        serializedObject.ApplyModifiedProperties();
+//    }
+//}
