@@ -1,10 +1,5 @@
+using UnityEditor;
 using UnityEngine;
-
-#if UNITY_EDITOR
-
-[ExecuteAlways]
-
-#endif
 
 public class IsoBlock : MonoBehaviour
 {
@@ -32,15 +27,6 @@ public class IsoBlock : MonoBehaviour
 
     //private IsoBlockImformation m_Imformation;
 
-#if UNITY_EDITOR
-
-    private void Update()
-    {
-        SetIsoTransform();
-    }
-
-#endif
-
     #region ================================================================== Iso
 
     public void SetDepth(IsoDepth m_Depth)
@@ -54,13 +40,13 @@ public class IsoBlock : MonoBehaviour
         {
             case IsoDepth.Fixed:
                 IsoVector m_PosWorldScale = new IsoVector(m_PosWorld);
-                m_PosWorldScale.m_UDX *= m_Scale.m_UDX;
-                m_PosWorldScale.m_LRY *= m_Scale.m_LRY;
-                m_PosWorldScale.m_TBH *= m_Scale.m_TBH;
+                m_PosWorldScale.X_UD *= m_Scale.X_UD;
+                m_PosWorldScale.Y_LR *= m_Scale.Y_LR;
+                m_PosWorldScale.H_TB *= m_Scale.H_TB;
 
-                float m_PosX = m_PosWorldScale.m_UDX + m_PosWorldScale.m_LRY;
-                float m_PosY = 0.5f * (m_PosWorldScale.m_LRY - m_PosWorldScale.m_UDX) + m_PosWorldScale.m_TBH;
-                float m_PosZ = (m_PosWorldScale.m_LRY - m_PosWorldScale.m_UDX) - m_PosWorldScale.m_TBH;
+                float m_PosX = m_PosWorldScale.X_UD + m_PosWorldScale.Y_LR;
+                float m_PosY = 0.5f * (m_PosWorldScale.Y_LR - m_PosWorldScale.X_UD) + m_PosWorldScale.H_TB;
+                float m_PosZ = (m_PosWorldScale.Y_LR - m_PosWorldScale.X_UD) - m_PosWorldScale.H_TB;
 
                 return new Vector3(m_PosX, m_PosY, m_PosZ);
         }
@@ -87,40 +73,40 @@ public class IsoBlock : MonoBehaviour
 
     private void SetIsoMatrix()
     {
-        float m_PosX = (Mathf.Abs((int)m_Pos.m_UDX - m_Pos.m_UDX));
+        float m_PosX = (Mathf.Abs((int)m_Pos.X_UD - m_Pos.X_UD));
 
         if (m_PosX > m_RoundUpper)
         {
-            m_PosMatrix.m_UDX = (int)m_Pos.m_UDX + 1;
+            m_PosMatrix.X_UD = (int)m_Pos.X_UD + 1;
         }
         else
         if (m_PosX < m_RoundLower)
         {
-            m_PosMatrix.m_UDX = (int)m_Pos.m_UDX;
+            m_PosMatrix.X_UD = (int)m_Pos.X_UD;
         }
 
-        float m_PosY = (Mathf.Abs((int)m_Pos.m_LRY - m_Pos.m_LRY));
+        float m_PosY = (Mathf.Abs((int)m_Pos.Y_LR - m_Pos.Y_LR));
 
         if (m_PosY > m_RoundUpper)
         {
-            m_PosMatrix.m_LRY = (int)m_Pos.m_LRY + 1;
+            m_PosMatrix.Y_LR = (int)m_Pos.Y_LR + 1;
         }
         else
         if (m_PosY < m_RoundLower)
         {
-            m_PosMatrix.m_LRY = (int)m_Pos.m_LRY;
+            m_PosMatrix.Y_LR = (int)m_Pos.Y_LR;
         }
 
-        float m_PosH = (Mathf.Abs((int)m_Pos.m_TBH - m_Pos.m_TBH));
+        float m_PosH = (Mathf.Abs((int)m_Pos.H_TB - m_Pos.H_TB));
 
         if (m_PosH > m_RoundUpper)
         {
-            m_PosMatrix.m_TBH = (int)m_Pos.m_TBH + 1;
+            m_PosMatrix.H_TB = (int)m_Pos.H_TB + 1;
         }
         else
         if (m_PosH < m_RoundLower)
         {
-            m_PosMatrix.m_TBH = (int)m_Pos.m_TBH;
+            m_PosMatrix.H_TB = (int)m_Pos.H_TB;
         }
     }
 
@@ -138,64 +124,26 @@ public class IsoBlock : MonoBehaviour
 
     #region ================================================================== Pos Set
 
-    public void SetPos(IsoVector m_Pos)
+    public IsoVector Pos
     {
-        this.m_Pos.SetVector(m_Pos);
-
-        SetIsoTransform();
-    }
-
-    public void SetPos(float m_PosX, float m_PosY, float m_PosH)
-    {
-        this.m_Pos.SetVector(m_PosX, m_PosY, m_PosH);
-
-        SetIsoTransform();
-    }
-
-    #endregion
-
-    #region ================================================================== Pos Add 
-
-    public void SetPosAdd(IsoVector m_PosAdd)
-    {
-        m_Pos.SetVectorAdd(m_PosAdd);
-
-        SetIsoTransform();
-    }
-
-    public void SetPosAdd(float m_PosAddX, float m_PosAddY, float m_PosAddH)
-    {
-        m_Pos.SetVectorAdd(m_PosAddX, m_PosAddY, m_PosAddH);
-
-        SetIsoTransform();
+        get
+        {
+            return this.m_Pos;
+        }
+        set
+        {
+            this.m_Pos = value;
+            SetIsoTransform();
+        }
     }
 
     #endregion
 
-    #region ================================================================== Pos Primary
+    #region ================================================================== Pos Primary & Matrix
 
     public void SetPosPrimary(IsoVector m_Pos)
     {
         m_PosPrimary = m_Pos;
-    }
-
-    public void SetPosPrimaryReset()
-    {
-        SetPos(GetPosPrimary());
-    }
-
-    #endregion
-
-    #region ================================================================== Get Pos 
-
-    public IsoVector GetPosCurrent()
-    {
-        return m_Pos;
-    }
-
-    public IsoVector GetPosMatrixCurrent()
-    {
-        return m_PosMatrix;
     }
 
     public IsoVector GetPosPrimary()
@@ -203,12 +151,22 @@ public class IsoBlock : MonoBehaviour
         return m_PosPrimary;
     }
 
+    public void SetPosPrimaryReset()
+    {
+        this.m_Pos = GetPosPrimary();
+    }
+
     public bool GetPosPrimaryStay()
     {
         IsoVector m_PosPrimary = GetPosPrimary();
         IsoVector m_PosMatrixCurrent = GetPosMatrixCurrent();
 
-        return m_PosPrimary.m_UDX == m_PosMatrixCurrent.m_UDX && m_PosPrimary.m_LRY == m_PosMatrixCurrent.m_LRY && m_PosPrimary.m_TBH == m_PosMatrixCurrent.m_TBH;
+        return m_PosPrimary.X_UD == m_PosMatrixCurrent.X_UD && m_PosPrimary.Y_LR == m_PosMatrixCurrent.Y_LR && m_PosPrimary.H_TB == m_PosMatrixCurrent.H_TB;
+    }
+
+    public IsoVector GetPosMatrixCurrent()
+    {
+        return m_PosMatrix;
     }
 
     #endregion
@@ -230,16 +188,16 @@ public class IsoBlock : MonoBehaviour
 
 public enum IsoDir
 {
-    None    = 0,
+    None = 0,
     //X
-    Up      = 1,
-    Down    = 2,
+    Up = 1,
+    Down = 2,
     //Y
-    Left    = 3,
-    Right   = 4,
+    Left = 3,
+    Right = 4,
     //H
-    Top     = 5,
-    Bot     = 6,
+    Top = 5,
+    Bot = 6,
 }
 
 public enum IsoDepth
@@ -248,119 +206,276 @@ public enum IsoDepth
 }
 
 [System.Serializable]
-public class IsoVector
+public struct IsoVector
 {
-    public float m_UDX = 0;
+    //Primary
 
-    public float m_LRY = 0;
+    public float X_UD;
 
-    public float m_TBH = 0;
+    public float Y_LR;
 
-    public int m_UDXInt
+    public float H_TB;
+
+    public IsoVector(float m_XUD, float m_YLR, float m_HTB)
+    {
+        X_UD = m_XUD;
+        Y_LR = m_YLR;
+        H_TB = m_HTB;
+    }
+
+    public IsoVector(IsoVector m_IsoVector)
+    {
+        X_UD = m_IsoVector.X_UD;
+        Y_LR = m_IsoVector.Y_LR;
+        H_TB = m_IsoVector.H_TB;
+    }
+
+    //Value Int
+
+    public int X_UDInt
     {
         get
         {
-            return (int)m_UDX;
+            return (int)X_UD;
         }
     }
 
-    public int m_LRYInt
+    public int Y_LRInt
     {
         get
         {
-            return (int)m_LRY;
+            return (int)Y_LR;
         }
     }
 
-    public int m_TBHInt
+    public int H_TBInt
     {
         get
         {
-            return (int)m_TBH;
+            return (int)H_TB;
         }
     }
 
-    public IsoVector()
-    {
-        this.m_UDX = 0;
-        this.m_LRY = 0;
-        this.m_TBH = 0;
-    }
+    //Primary Dir
 
-    public IsoVector(IsoVector m_Vector)
+    public IsoVector Up
     {
-        SetVector(m_Vector);
-    }
-
-    public IsoVector(float m_UDX, float m_LRY, float m_TBH)
-    {
-        SetVector(m_UDX, m_LRY, m_TBH);
-    }
-
-    public void SetVector(IsoVector m_Vector)
-    {
-        this.m_UDX = m_Vector.m_UDX;
-        this.m_LRY = m_Vector.m_LRY;
-        this.m_TBH = m_Vector.m_TBH;
-    }
-
-    public void SetVector(float m_UDX, float m_LRY, float m_TBH)
-    {
-        this.m_UDX = m_UDX;
-        this.m_LRY = m_LRY;
-        this.m_TBH = m_TBH;
-    }
-
-    public void SetVectorAdd(IsoVector m_Vector)
-    {
-        this.m_UDX += m_Vector.m_UDX;
-        this.m_LRY += m_Vector.m_LRY;
-        this.m_TBH += m_Vector.m_TBH;
-    }
-
-    public void SetVectorAdd(float m_UDX, float m_LRY, float m_TBH)
-    {
-        this.m_UDX += m_UDX;
-        this.m_LRY += m_LRY;
-        this.m_TBH += m_TBH;
-    }
-
-    public IsoVector GetVector()
-    {
-        return this;
-    }
-
-    public bool GetVectorEqual(IsoVector m_Vector)
-    {
-        if (this.m_UDX != m_Vector.m_UDX)
+        get
         {
-            return false;
+            return new IsoVector(1, 0, 0);
         }
-
-        if (this.m_LRY != m_Vector.m_LRY)
-        {
-            return false;
-        }
-
-        if (this.m_TBH != m_Vector.m_TBH)
-        {
-            return false;
-        }
-
-        return true;
     }
 
-    public IsoVector GetVectorAdd(IsoVector m_Vector)
+    public IsoVector Down
     {
-        IsoVector m_VectorNew = new IsoVector(this);
-        m_VectorNew.SetVectorAdd(m_Vector);
-        return m_VectorNew;
+        get
+        {
+            return new IsoVector(-1, 0, 0);
+        }
     }
 
-    public IsoVector GetVectorAdd(float m_UDX, float m_LRY, float m_TBH)
+    public IsoVector Left
     {
-        IsoVector m_VectorNew = new IsoVector(this);
-        m_VectorNew.SetVectorAdd(m_UDX, m_LRY, m_TBH);
-        return m_VectorNew;
+        get
+        {
+            return new IsoVector(0, -1, 0);
+        }
+    }
+
+    public IsoVector Right
+    {
+        get
+        {
+            return new IsoVector(0, 1, 0);
+        }
+    }
+
+    public IsoVector Top
+    {
+        get
+        {
+            return new IsoVector(0, 0, 1);
+        }
+    }
+
+    public IsoVector Bot
+    {
+        get
+        {
+            return new IsoVector(0, 0, -1);
+        }
+    }
+
+    //If Move-To Dir
+
+    public IsoVector IfUp
+    {
+        get
+        {
+            return this + Up;
+        }
+    }
+
+    public IsoVector IfDown
+    {
+        get
+        {
+            return this + Down;
+        }
+    }
+
+    public IsoVector IfLeft
+    {
+        get
+        {
+            return this + Left;
+        }
+    }
+
+    public IsoVector IfRight
+    {
+        get
+        {
+            return this + Right;
+        }
+    }
+
+    public IsoVector IfTop
+    {
+        get
+        {
+            return this + Top;
+        }
+    }
+
+    public IsoVector IfBot
+    {
+        get
+        {
+            return this + Bot;
+        }
+    }
+
+
+    //Move-To Dir
+
+    public IsoVector ToUp
+    {
+        get
+        {
+            this = this + Up;
+            return this;
+        }
+    }
+
+    public IsoVector ToDown
+    {
+        get
+        {
+            this = this + Down;
+            return this;
+        }
+    }
+
+    public IsoVector ToLeft
+    {
+        get
+        {
+            this = this + Left;
+            return this;
+        }
+    }
+
+    public IsoVector ToRight
+    {
+        get
+        {
+            this = this + Right;
+            return this;
+        }
+    }
+
+    public IsoVector ToTop
+    {
+        get
+        {
+            this = this + Top;
+            return this;
+        }
+    }
+
+    public IsoVector ToBot
+    {
+        get
+        {
+            this = this + Bot;
+            return this;
+        }
+    }
+
+    //Operator
+
+    public static IsoVector operator +(IsoVector m_IsoVector)
+        => m_IsoVector;
+
+    public static IsoVector operator -(IsoVector m_IsoVector)
+        => new IsoVector(m_IsoVector.X_UD * -1, m_IsoVector.Y_LR * -1, m_IsoVector.H_TB * -1);
+
+    public static IsoVector operator +(IsoVector m_IsoVectorA, IsoVector m_IsoVectorB)
+        => new IsoVector(m_IsoVectorA.X_UD + m_IsoVectorB.X_UD, m_IsoVectorA.Y_LR + m_IsoVectorB.Y_LR, m_IsoVectorA.H_TB + m_IsoVectorB.H_TB);
+
+    public static IsoVector operator -(IsoVector m_IsoVectorA, IsoVector m_IsoVectorB)
+        => new IsoVector(m_IsoVectorA.X_UD - m_IsoVectorB.X_UD, m_IsoVectorA.Y_LR - m_IsoVectorB.Y_LR, m_IsoVectorA.H_TB - m_IsoVectorB.H_TB);
+
+    public static IsoVector operator *(IsoVector m_IsoVectorA, float m_Number)
+        => new IsoVector(m_IsoVectorA.X_UD * m_Number, m_IsoVectorA.Y_LR * m_Number, m_IsoVectorA.H_TB * m_Number);
+
+    public static IsoVector operator /(IsoVector m_IsoVectorA, float m_Number)
+        => new IsoVector(m_IsoVectorA.X_UD / m_Number, m_IsoVectorA.Y_LR / m_Number, m_IsoVectorA.H_TB / m_Number);
+
+    public static bool operator ==(IsoVector m_IsoVectorA, IsoVector m_IsoVectorB)
+    {
+        return m_IsoVectorA.X_UD == m_IsoVectorB.X_UD && m_IsoVectorA.Y_LR == m_IsoVectorB.Y_LR && m_IsoVectorA.H_TB == m_IsoVectorB.H_TB;
+    }
+
+    public static bool operator !=(IsoVector m_IsoVectorA, IsoVector m_IsoVectorB)
+    {
+        return m_IsoVectorA.X_UD != m_IsoVectorB.X_UD && m_IsoVectorA.Y_LR != m_IsoVectorB.Y_LR && m_IsoVectorA.H_TB != m_IsoVectorB.H_TB;
+    }
+
+    //Overide
+
+    public override bool Equals(object obj)
+    {
+        return base.Equals(obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+    public override string ToString() => $"({X_UD}, {Y_LR}, {H_TB})";
+}
+
+[CustomEditor(typeof(IsoBlock))]
+[CanEditMultipleObjects]
+public class CustomIsoVector : Editor
+{
+    SerializedProperty Pos;
+    SerializedProperty X;
+    SerializedProperty Y;
+    SerializedProperty H;
+
+    private void OnEnable()
+    {
+        Pos = serializedObject.FindProperty("Pos");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(Pos);
+        serializedObject.ApplyModifiedProperties();
     }
 }

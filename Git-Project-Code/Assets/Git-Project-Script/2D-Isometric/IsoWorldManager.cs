@@ -55,23 +55,52 @@ public class IsoWorldManager : MonoBehaviour
     {
         m_Blocks = GitResources.GetResourcesPrefab("Blocks");
 
+        //StartCoroutine(Set());
+            
         SetWorldBlock(new IsoVector(0, 0, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[0], this.transform).GetComponent<IsoBlock>());
-        SetWorldBlock(new IsoVector(0, 1, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[1], this.transform).GetComponent<IsoBlock>());
-        SetWorldBlock(new IsoVector(0, 2, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[2], this.transform).GetComponent<IsoBlock>());
-        SetWorldBlock(new IsoVector(1, 0, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[3], this.transform).GetComponent<IsoBlock>());
-        SetWorldBlock(new IsoVector(1, 1, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[4], this.transform).GetComponent<IsoBlock>());
-        SetWorldBlock(new IsoVector(1, 2, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[5], this.transform).GetComponent<IsoBlock>());
-        SetWorldBlock(new IsoVector(2, 0, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[6], this.transform).GetComponent<IsoBlock>());
-        SetWorldBlock(new IsoVector(2, 1, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[7], this.transform).GetComponent<IsoBlock>());
-        SetWorldBlock(new IsoVector(2, 2, 0), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[8], this.transform).GetComponent<IsoBlock>());
     }
 
-    private void Update()
+    private IEnumerator Set()
     {
-        
+        yield return null;
+
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                for (int t = 0; t < 10; t++)
+                {
+                    SetWorldBlock(new IsoVector(i, j, t), GitGameObject.SetGameObjectCreate(m_This.m_Blocks[0], this.transform).GetComponent<IsoBlock>());
+
+                    yield return null;
+                }
+            }
+        }
+
+        yield return null;
+
+        do
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                GetWorldBlock(new IsoVector(0, 0, 0)).Pos = new IsoVector(i * 1.0f / 10, 0, 0);
+
+                yield return null;
+            }
+
+            for (int i = 10; i > 0; i--)
+            {
+                GetWorldBlock(new IsoVector(0, 0, 0)).Pos = new IsoVector(i * 1.0f / 10, 0, 0);
+
+                yield return null;
+            }
+        }
+        while (1 == 1);
+
+        yield return null;
     }
 
-//#endif
+    //#endif
 
     #region World Manager
 
@@ -92,11 +121,11 @@ public class IsoWorldManager : MonoBehaviour
 
             m_BlockInWorld.m_Block.SetScale(m_This.m_Scale);
             m_BlockInWorld.m_Block.SetPosPrimary(m_Pos);
-            m_BlockInWorld.m_Block.SetPos(m_Pos);
+            m_BlockInWorld.m_Block.Pos += m_Pos;
 
             //U
 
-            m_BlockInWorld.m_UX = GetWorldIndex(m_Pos.GetVectorAdd(1, 0, 0), m_This.m_World.Count);
+            m_BlockInWorld.m_UX = GetWorldIndex(m_Pos.IfUp, m_This.m_World.Count);
 
             if (m_BlockInWorld.m_UX != -1)
             {
@@ -105,7 +134,7 @@ public class IsoWorldManager : MonoBehaviour
 
             //D
 
-            m_BlockInWorld.m_DX = GetWorldIndex(m_Pos.GetVectorAdd(-1, 0, 0), m_This.m_World.Count);
+            m_BlockInWorld.m_DX = GetWorldIndex(m_Pos.IfDown, m_This.m_World.Count);
 
             if (m_BlockInWorld.m_DX != -1)
             {
@@ -114,7 +143,7 @@ public class IsoWorldManager : MonoBehaviour
 
             //L
 
-            m_BlockInWorld.m_LY = GetWorldIndex(m_Pos.GetVectorAdd(0, -1, 0), m_This.m_World.Count);
+            m_BlockInWorld.m_LY = GetWorldIndex(m_Pos.IfLeft, m_This.m_World.Count);
 
             if (m_BlockInWorld.m_LY != -1)
             {
@@ -123,7 +152,7 @@ public class IsoWorldManager : MonoBehaviour
 
             //R
 
-            m_BlockInWorld.m_RY = GetWorldIndex(m_Pos.GetVectorAdd(0, 1, 0), m_This.m_World.Count);
+            m_BlockInWorld.m_RY = GetWorldIndex(m_Pos.IfRight, m_This.m_World.Count);
 
             if (m_BlockInWorld.m_RY != -1)
             {
@@ -132,7 +161,7 @@ public class IsoWorldManager : MonoBehaviour
 
             //T
 
-            m_BlockInWorld.m_TH = GetWorldIndex(m_Pos.GetVectorAdd(0, 0, 1), m_This.m_World.Count);
+            m_BlockInWorld.m_TH = GetWorldIndex(m_Pos.IfTop, m_This.m_World.Count);
 
             if (m_BlockInWorld.m_TH != -1)
             {
@@ -141,7 +170,7 @@ public class IsoWorldManager : MonoBehaviour
 
             //B
 
-            m_BlockInWorld.m_BH = GetWorldIndex(m_Pos.GetVectorAdd(0, 0, -1), m_This.m_World.Count);
+            m_BlockInWorld.m_BH = GetWorldIndex(m_Pos.IfBot, m_This.m_World.Count);
 
             if (m_BlockInWorld.m_BH != -1)
             {
@@ -159,14 +188,14 @@ public class IsoWorldManager : MonoBehaviour
         for (int i = 0; i < m_This.m_World.Count; i++)
         {
             //This Pos
-            if (m_This.m_World[i].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+            if (m_This.m_World[i].m_Block.GetPosPrimary() == m_Pos)
             {
                 return i;
             }
             //Neighbor Pos
             if (m_This.m_World[i].m_UX != -1 && m_BlockIndexAcess != m_This.m_World[i].m_UX)
             {
-                if (m_This.m_World[m_This.m_World[i].m_UX].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                if (m_This.m_World[m_This.m_World[i].m_UX].m_Block.GetPosPrimary()== m_Pos)
                 {
                     return m_This.m_World[i].m_UX;
                 }
@@ -174,7 +203,7 @@ public class IsoWorldManager : MonoBehaviour
             else
             if (m_This.m_World[i].m_DX != -1 && m_BlockIndexAcess != m_This.m_World[i].m_DX)
             {
-                if (m_This.m_World[m_This.m_World[i].m_DX].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                if (m_This.m_World[m_This.m_World[i].m_DX].m_Block.GetPosPrimary()== m_Pos)
                 {
                     return m_This.m_World[i].m_DX;
                 }
@@ -182,7 +211,7 @@ public class IsoWorldManager : MonoBehaviour
             else
             if (m_This.m_World[i].m_LY != -1 && m_BlockIndexAcess != m_This.m_World[i].m_LY)
             {
-                if (m_This.m_World[m_This.m_World[i].m_LY].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                if (m_This.m_World[m_This.m_World[i].m_LY].m_Block.GetPosPrimary()== m_Pos)
                 {
                     return m_This.m_World[i].m_LY;
                 }
@@ -190,7 +219,7 @@ public class IsoWorldManager : MonoBehaviour
             else
             if (m_This.m_World[i].m_RY != -1 && m_BlockIndexAcess != m_This.m_World[i].m_RY)
             {
-                if (m_This.m_World[m_This.m_World[i].m_RY].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                if (m_This.m_World[m_This.m_World[i].m_RY].m_Block.GetPosPrimary()== m_Pos)
                 {
                     return m_This.m_World[i].m_RY;
                 }
@@ -198,7 +227,7 @@ public class IsoWorldManager : MonoBehaviour
             else
             if (m_This.m_World[i].m_TH != -1 && m_BlockIndexAcess != m_This.m_World[i].m_TH)
             {
-                if (m_This.m_World[m_This.m_World[i].m_TH].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                if (m_This.m_World[m_This.m_World[i].m_TH].m_Block.GetPosPrimary()== m_Pos)
                 {
                     return m_This.m_World[i].m_TH;
                 }
@@ -206,7 +235,7 @@ public class IsoWorldManager : MonoBehaviour
             else
             if (m_This.m_World[i].m_BH != -1 && m_BlockIndexAcess != m_This.m_World[i].m_BH)
             {
-                if (m_This.m_World[m_This.m_World[i].m_BH].m_Block.GetPosPrimary().GetVectorEqual(m_Pos))
+                if (m_This.m_World[m_This.m_World[i].m_BH].m_Block.GetPosPrimary()== m_Pos)
                 {
                     return m_This.m_World[i].m_BH;
                 }
@@ -342,79 +371,79 @@ public class IsoWorldManager : MonoBehaviour
     #endregion
 }
 
-public class IsoWorld
-{
-    private List<List<List<GameObject>>> m_World;
+//public class IsoWorld
+//{
+//    private List<List<List<GameObject>>> m_World;
 
-    private IsoVector m_Size;
+//    private IsoVector m_Size;
 
-    public IsoWorld(IsoVector m_Size)
-    {
-        this.m_Size = new IsoVector(m_Size);
+//    public IsoWorld(IsoVector m_Size)
+//    {
+//        this.m_Size = new IsoVector(m_Size);
 
-        m_World = new List<List<List<GameObject>>>();
+//        m_World = new List<List<List<GameObject>>>();
 
-        for (int h = 0; h < m_Size.m_TBHInt; h++)
-        {
-            m_World.Add(new List<List<GameObject>>());
+//        for (int h = 0; h < m_Size.m_TBHInt; h++)
+//        {
+//            m_World.Add(new List<List<GameObject>>());
 
-            for (int x = 0; x < m_Size.m_UDXInt; x++)
-            {
-                m_World[h].Add(new List<GameObject>());
+//            for (int x = 0; x < m_Size.m_UDXInt; x++)
+//            {
+//                m_World[h].Add(new List<GameObject>());
 
-                for (int y = 0; y < m_Size.m_LRYInt; y++)
-                {
-                    m_World[h][x].Add(new GameObject());
-                }
-            }
-        }
-    }
+//                for (int y = 0; y < m_Size.m_LRYInt; y++)
+//                {
+//                    m_World[h][x].Add(new GameObject());
+//                }
+//            }
+//        }
+//    }
 
-    public void SetWorld(IsoVector m_Pos, GameObject m_Block)
-    {
-        if (!GetLimit(m_Pos))
-        {
-            return;
-        }
+//    public void SetWorld(IsoVector m_Pos, GameObject m_Block)
+//    {
+//        if (!GetLimit(m_Pos))
+//        {
+//            return;
+//        }
 
-        m_World[m_Pos.m_TBHInt][m_Pos.m_UDXInt][m_Pos.m_LRYInt] = m_Block;
-    }
+//        m_World[m_Pos.m_TBHInt][m_Pos.m_UDXInt][m_Pos.m_LRYInt] = m_Block;
+//    }
 
-    public GameObject GetWorld(IsoVector m_Pos)
-    {
-        if (!GetLimit(m_Pos))
-        {
-            return null;
-        }
+//    public GameObject GetWorld(IsoVector m_Pos)
+//    {
+//        if (!GetLimit(m_Pos))
+//        {
+//            return null;
+//        }
 
-        return m_World[m_Pos.m_TBHInt][m_Pos.m_UDXInt][m_Pos.m_LRYInt];
-    }
+//        return m_World[m_Pos.m_TBHInt][m_Pos.m_UDXInt][m_Pos.m_LRYInt];
+//    }
 
-    public IsoVector GetSize()
-    {
-        return m_Size;
-    }
+//    public IsoVector GetSize()
+//    {
+//        return m_Size;
+//    }
 
-    public bool GetLimit(IsoVector m_Pos)
-    {
-        if (m_Pos.m_UDXInt < 0 || m_Pos.m_UDXInt > m_Size.m_UDXInt - 1)
-        {
-            return false;
-        }
+//    public bool GetLimit(IsoVector m_Pos)
+//    {
+//        if (m_Pos.m_UDXInt < 0 || m_Pos.m_UDXInt > m_Size.m_UDXInt - 1)
+//        {
+//            return false;
+//        }
 
-        if (m_Pos.m_LRYInt < 0 || m_Pos.m_LRYInt > m_Size.m_LRYInt - 1)
-        {
-            return false;
-        }
+//        if (m_Pos.m_LRYInt < 0 || m_Pos.m_LRYInt > m_Size.m_LRYInt - 1)
+//        {
+//            return false;
+//        }
 
-        if (m_Pos.m_TBHInt < 0 || m_Pos.m_TBHInt > m_Size.m_TBHInt - 1)
-        {
-            return false;
-        }
+//        if (m_Pos.m_TBHInt < 0 || m_Pos.m_TBHInt > m_Size.m_TBHInt - 1)
+//        {
+//            return false;
+//        }
 
-        return true;
-    }
-}
+//        return true;
+//    }
+//}
 
 [System.Serializable]
 public class IsoBlockMatrix
