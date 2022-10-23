@@ -39,11 +39,21 @@ public class IsoWorldManager : MonoBehaviour
     {
         m_Blocks = GitResources.GetResourcesPrefab("Blocks");
 
-        StartCoroutine(Set());
+        //StartCoroutine(Set());
     }
 
     private IEnumerator Set()
     {
+        SetWorld(new IsoVector(2, 2, 5), m_Blocks[0]);
+        SetWorld(new IsoVector(2, 2, 2), m_Blocks[0]);
+        SetWorld(new IsoVector(2, 2, 7), m_Blocks[0]);
+
+        yield return null;
+
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+
+        yield return null;
+
         int m_Color = 0;
 
         for (int i = 0; i < 3; i++)
@@ -201,9 +211,14 @@ public class IsoWorldManager : MonoBehaviour
         m_This.act_BlocksUpdated?.Invoke();
     }
 
+    public static bool GetBlocksUpdated()
+    {
+        return m_This.m_BlocksUpdated;
+    }
+
     public static GameObject GetBlock(string m_BlockName)
     {
-        foreach(GameObject m_Block in m_This.m_Blocks)
+        foreach (GameObject m_Block in m_This.m_Blocks)
         {
             if (m_Block.name == m_BlockName)
             {
@@ -214,11 +229,6 @@ public class IsoWorldManager : MonoBehaviour
         Debug.LogWarningFormat("{0}: Not found block {1}!", m_This.name, m_BlockName);
 
         return null;
-    }
-
-    public static bool GetBlocksUpdated()
-    {
-        return m_This.m_BlocksUpdated;
     }
 
     #endregion
