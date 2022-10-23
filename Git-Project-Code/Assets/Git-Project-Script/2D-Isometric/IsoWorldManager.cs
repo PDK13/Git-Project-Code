@@ -5,20 +5,14 @@ using UnityEngine;
 
 public class IsoWorldManager : MonoBehaviour
 {
-    private static readonly IsoWorldManager m_This = new IsoWorldManager();
-
-    public static IsoWorldManager GetThis()
-    {
-        return m_This;
-    }
+    private static IsoWorldManager m_This;
 
     [Header("World Manager")]
 
     [SerializeField] private IsoVector m_Scale = new IsoVector(1f, 1f, 1f);
 
+    [SerializeField]
     private List<IsoWorldFloor> m_World = new List<IsoWorldFloor>() { new IsoWorldFloor(0) };
-
-    private int m_WorldPrimaryH = 0;
 
     private bool m_WorldGenerated = false;
 
@@ -35,6 +29,8 @@ public class IsoWorldManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+
+        m_This = this;
     }
 
 //#if UNITY_EDITOR
@@ -43,7 +39,33 @@ public class IsoWorldManager : MonoBehaviour
     {
         m_Blocks = GitResources.GetResourcesPrefab("Blocks");
 
-        //StartCoroutine(Set());
+        StartCoroutine(Set());
+    }
+
+    private IEnumerator Set()
+    {
+        int m_Color = 0;
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                for (int t = 0; t < 3; t++)
+                {
+                    SetWorld(new IsoVector(i, j, t), m_Blocks[m_Color]);
+                    m_Color++;
+
+                    if (m_Color > m_Blocks.Count - 1)
+                    {
+                        m_Color = 0;
+                    }
+
+                    yield return null;
+
+                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+                }
+            }
+        }
     }
 
     //#endif
@@ -113,8 +135,18 @@ public class IsoWorldManager : MonoBehaviour
             {
                 return m_FloorIndexFound;
             }
+            else
+            if (m_World[m_FloorIndexFound].m_Floor > m_Pos.H_TBInt)
+            {
+                m_FloorIndexB = m_FloorIndexFound - 1;
+            }
+            else
+            if (m_World[m_FloorIndexFound].m_Floor < m_Pos.H_TBInt)
+            {
+                m_FloorIndexA = m_FloorIndexFound + 1;
+            }
         }
-        while (m_FloorIndexA < m_FloorIndexB);
+        while (m_FloorIndexA <= m_FloorIndexB);
 
         return -1;
     }
@@ -134,17 +166,15 @@ public class IsoWorldManager : MonoBehaviour
                     IsoWorldFloor m_Temp = m_World[i];
                     m_World[i] = m_World[j];
                     m_World[j] = m_Temp;
-
-                    if (m_World[i].m_Floor == m_Pos.H_TBInt)
-                    {
-                        m_FloorIndex = i;
-                    }
-                    else
-                    if (m_World[j].m_Floor == m_Pos.H_TBInt)
-                    {
-                        m_FloorIndex = j;
-                    }
                 }
+            }
+        }
+
+        for (int i = 0; i < m_World.Count; i++) 
+        {
+            if (m_World[i].m_Floor == m_Pos.H_TBInt)
+            {
+                m_FloorIndex = i;
             }
         }
 
@@ -208,6 +238,7 @@ public class IsoWorldIndex
     }
 }
 
+[Serializable]
 public class IsoWorldFloor
 {
     public List<GameObject> m_WorldFloor = new List<GameObject>();

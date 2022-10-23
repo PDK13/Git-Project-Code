@@ -162,6 +162,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Block-C (0)
       objectReference: {fileID: 0}
+    - target: {fileID: 44393240911007885, guid: dc639698b19ef444ca3a1988012e2506, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 44393240911007886, guid: dc639698b19ef444ca3a1988012e2506, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -246,6 +250,10 @@ PrefabInstance:
     - target: {fileID: 44393240911007885, guid: dc639698b19ef444ca3a1988012e2506, type: 3}
       propertyPath: m_Name
       value: Block-C (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 44393240911007885, guid: dc639698b19ef444ca3a1988012e2506, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 44393240911007886, guid: dc639698b19ef444ca3a1988012e2506, type: 3}
       propertyPath: m_RootOrder
@@ -423,4 +431,7 @@ MonoBehaviour:
     X_UD: 0.5
     Y_LR: 0.5
     H_TB: 0.5
+  m_World:
+  - m_WorldFloor: []
+    m_Floor: 0
   m_Blocks: []
