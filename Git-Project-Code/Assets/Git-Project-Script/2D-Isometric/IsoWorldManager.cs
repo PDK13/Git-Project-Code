@@ -82,6 +82,11 @@ public class IsoWorldManager : MonoBehaviour
 
     #region World Manager
 
+    public static void SetWorldGenerate()
+    {
+
+    }
+
     public static void SetWorld(IsoVector m_Pos, GameObject m_Block)
     {
         IsoWorldIndex m_BlockPosFound = m_This.GetWorldIndex(m_Pos);
