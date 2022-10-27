@@ -190,19 +190,19 @@ public class GitVector
     #endregion
 }
 
-public class GitRaycast
+public class GitCast
 {
-    public GitRaycastData GetLineCast(Vector3 m_PosStart, Vector3 m_PosEnd, LayerMask m_Tarket)
+    public static GitCastData GetLineCast(Vector3 m_PosStart, Vector3 m_PosEnd, LayerMask m_Tarket)
     {
         RaycastHit m_RaycastHit = new RaycastHit();
         bool m_CheckRaycastHit = false;
 
         m_CheckRaycastHit = Physics.Linecast(m_PosStart, m_PosEnd, out m_RaycastHit, m_Tarket);
 
-        return new GitRaycastData(m_RaycastHit);
+        return new GitCastData(m_RaycastHit);
     }
 
-    public GitRaycastData GetRaycast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Distance, LayerMask m_Tarket)
+    public static GitCastData GetRaycast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Distance, LayerMask m_Tarket)
     {
         RaycastHit m_RaycastHit = new RaycastHit();
         bool m_CheckRaycastHit = false;
@@ -210,10 +210,10 @@ public class GitRaycast
         Vector3 m_Forward = (m_PosEnd - m_PosStart).normalized;
         m_CheckRaycastHit = Physics.Raycast(m_PosStart, m_Forward, out m_RaycastHit, m_Distance, m_Tarket);
 
-        return new GitRaycastData(m_RaycastHit);
+        return new GitCastData(m_RaycastHit);
     }
 
-    public GitRaycastData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, Vector3 m_Size, Vector3 m_Rotation, float m_Distance, LayerMask m_Tarket)
+    public static GitCastData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, Vector3 m_Size, Vector3 m_Rotation, float m_Distance, LayerMask m_Tarket)
     {
         RaycastHit m_RaycastHit = new RaycastHit();
         bool m_CheckRaycastHit = false;
@@ -222,10 +222,10 @@ public class GitRaycast
         Quaternion m_Quaternion = Quaternion.Euler(m_Rotation);
         m_CheckRaycastHit = Physics.BoxCast(m_PosStart, m_Size, m_Forward, out m_RaycastHit, m_Quaternion, m_Distance, m_Tarket);
 
-        return new GitRaycastData(m_RaycastHit);
+        return new GitCastData(m_RaycastHit);
     }
 
-    public GitRaycastData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance, LayerMask m_Tarket)
+    public static GitCastData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance, LayerMask m_Tarket)
     {
         RaycastHit m_RaycastHit = new RaycastHit();
         bool m_CheckRaycastHit = false;
@@ -233,15 +233,15 @@ public class GitRaycast
         Vector3 m_Forward = (m_PosEnd - m_PosStart).normalized;
         m_CheckRaycastHit = Physics.SphereCast(m_PosStart, m_Radius / 2, m_Forward, out m_RaycastHit, m_Distance, m_Tarket);
 
-        return new GitRaycastData(m_RaycastHit);
+        return new GitCastData(m_RaycastHit);
     }
 }
 
-public class GitRaycastData
+public class GitCastData
 {
     public RaycastHit m_RaycastHit;
 
-    public GitRaycastData(RaycastHit m_RaycastHit)
+    public GitCastData(RaycastHit m_RaycastHit)
     {
         this.m_RaycastHit = m_RaycastHit;
     }
