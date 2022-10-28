@@ -192,6 +192,54 @@ public class GitVector
 
 public class GitCast
 {
+    //None LayerMask
+
+    public static GitCastData GetLineCast(Vector3 m_PosStart, Vector3 m_PosEnd)
+    {
+        RaycastHit m_RaycastHit = new RaycastHit();
+        bool m_CheckRaycastHit = false;
+
+        m_CheckRaycastHit = Physics.Linecast(m_PosStart, m_PosEnd, out m_RaycastHit);
+
+        return new GitCastData(m_RaycastHit);
+    }
+
+    public static GitCastData GetRaycast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Distance)
+    {
+        RaycastHit m_RaycastHit = new RaycastHit();
+        bool m_CheckRaycastHit = false;
+
+        Vector3 m_Forward = (m_PosEnd - m_PosStart).normalized;
+        m_CheckRaycastHit = Physics.Raycast(m_PosStart, m_Forward, out m_RaycastHit, m_Distance);
+
+        return new GitCastData(m_RaycastHit);
+    }
+
+    public static GitCastData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, Vector3 m_Size, Vector3 m_Rotation, float m_Distance)
+    {
+        RaycastHit m_RaycastHit = new RaycastHit();
+        bool m_CheckRaycastHit = false;
+
+        Vector3 m_Forward = (m_PosEnd - m_PosStart).normalized;
+        Quaternion m_Quaternion = Quaternion.Euler(m_Rotation);
+        m_CheckRaycastHit = Physics.BoxCast(m_PosStart, m_Size, m_Forward, out m_RaycastHit, m_Quaternion, m_Distance);
+
+        return new GitCastData(m_RaycastHit);
+    }
+
+    public static GitCastData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance)
+    {
+        RaycastHit m_RaycastHit = new RaycastHit();
+        bool m_CheckRaycastHit = false;
+
+        Vector3 m_Forward = (m_PosEnd - m_PosStart).normalized;
+        m_CheckRaycastHit = Physics.SphereCast(m_PosStart, m_Radius / 2, m_Forward, out m_RaycastHit, m_Distance);
+
+        return new GitCastData(m_RaycastHit);
+    }
+
+    //LayerMask
+
     public static GitCastData GetLineCast(Vector3 m_PosStart, Vector3 m_PosEnd, LayerMask m_Tarket)
     {
         RaycastHit m_RaycastHit = new RaycastHit();
@@ -269,6 +317,38 @@ public class GitCastData
 
 public class GitOverlap
 {
+    //None LayerMask
+
+    public static List<GitOverlapData> GetBoxOverlap(Vector3 m_PosStart, Vector3 m_Size, float m_Rotation)
+    {
+        Collider2D[] m_ObjectsHit = Physics2D.OverlapBoxAll(m_PosStart, m_Size, m_Rotation);
+
+        List<GitOverlapData> m_ObjectsHitList = new List<GitOverlapData>();
+
+        foreach (Collider2D m_ObjectHit in m_ObjectsHit)
+        {
+            m_ObjectsHitList.Add(new GitOverlapData(m_ObjectHit));
+        }
+
+        return m_ObjectsHitList;
+    }
+
+    public static List<GitOverlapData> GetCircleOverlap(Vector3 m_PosStart, float m_Size)
+    {
+        Collider2D[] m_ObjectsHit = Physics2D.OverlapCircleAll(m_PosStart, m_Size);
+
+        List<GitOverlapData> m_ObjectsHitList = new List<GitOverlapData>();
+
+        foreach (Collider2D m_ObjectHit in m_ObjectsHit)
+        {
+            m_ObjectsHitList.Add(new GitOverlapData(m_ObjectHit));
+        }
+
+        return m_ObjectsHitList;
+    }
+
+    //LayerMask
+
     public static List<GitOverlapData> GetBoxOverlap(Vector3 m_PosStart, Vector3 m_Size, float m_Rotation, LayerMask m_Tarket)
     {
         Collider2D[] m_ObjectsHit = Physics2D.OverlapBoxAll(m_PosStart, m_Size, m_Rotation, m_Tarket);
