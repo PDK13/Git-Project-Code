@@ -8,6 +8,8 @@ public class IsoBlock : MonoBehaviour
 
     [SerializeField] private IsoType m_Type = IsoType.Block;
 
+    [SerializeField] private string m_Tag = "";
+
     [SerializeField] private IsoVector m_Pos = new IsoVector();
 
     [SerializeField] private IsoVector m_Scale = new IsoVector(1f, 1f, 1f);
@@ -46,6 +48,18 @@ public class IsoBlock : MonoBehaviour
         set
         {
             m_Type = value;
+        }
+    }
+
+    public string Tag
+    {
+        get
+        {
+            return m_Tag;
+        }
+        set
+        {
+            m_Tag = value;
         }
     }
 

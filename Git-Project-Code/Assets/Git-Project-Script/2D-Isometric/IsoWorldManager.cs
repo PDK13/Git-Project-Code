@@ -87,6 +87,8 @@ public class IsoWorldManager : MonoBehaviour
 
     #region World Manager
 
+    #region World Main Manager
+
     public static void SetWorldGenerate()
     {
 
@@ -111,59 +113,79 @@ public class IsoWorldManager : MonoBehaviour
         switch (m_IsoBlock.Type)
         {
             case IsoType.Block:
-                {
-                    IsoWorldIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_Pos);
-
-                    if (m_BlockPosFound.m_FloorFound == false)
-                    {
-                        m_BlockPosFound.m_FloorIndex = m_This.SetWorldBlockFloorAdd(m_Pos);
-                    }
-
-                    if (m_BlockPosFound.m_BlockIndex != -1)
-                    {
-                        Destroy(m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex]);
-                    }
-
-                    GameObject m_BlockClone = GitGameObject.SetGameObjectCreate(m_Block, m_This.transform);
-                    m_BlockClone.GetComponent<IsoBlock>().Scale = m_This.m_Scale;
-                    m_BlockClone.GetComponent<IsoBlock>().PosPrimary = m_Pos;
-                    m_BlockClone.GetComponent<IsoBlock>().Pos = m_Pos;
-
-                    if (m_BlockPosFound.m_BlockIndex != -1)
-                    {
-                        m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex] = m_BlockClone;
-                    }
-                    else
-                    {
-                        m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor.Add(m_BlockClone);
-                    }
-                }
+                m_This.SetWorldBlock(m_Pos, m_Block);
                 break;
             case IsoType.Player:
             case IsoType.Friend:
             case IsoType.Neutral:
             case IsoType.Enermy:
             case IsoType.Object:
-                {
-                    GameObject m_BlockClone = GitGameObject.SetGameObjectCreate(m_Block, m_This.transform);
-                    m_BlockClone.GetComponent<IsoBlock>().Scale = m_This.m_Scale;
-                    m_BlockClone.GetComponent<IsoBlock>().PosPrimary = m_Pos;
-                    m_BlockClone.GetComponent<IsoBlock>().Pos = m_Pos;
-
-                    switch (m_IsoBlock.Type)
-                    {
-
-                    }
-                }
+                m_This.SetWorldNoneBlock(m_Pos, m_Block, m_IsoBlock.Type);
                 break;
         }
     }
 
+    public static List<GameObject> GetWorld(IsoVector m_Pos, IsoType m_Type)
+    {
+        List<GameObject> m_Blocks = new List<GameObject>();
+
+        switch (m_Type)
+        {
+            case IsoType.Block:
+                m_Blocks.Add(m_This.GetWorldBlock(m_Pos));
+                break;
+            case IsoType.Player:
+                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldPlayer);
+            case IsoType.Friend:
+                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldPlayer);
+            case IsoType.Neutral:
+                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldPlayer);
+            case IsoType.Enermy:
+                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldPlayer);
+            case IsoType.Object:
+                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldPlayer);
+        }
+        return m_Blocks;
+    }
+
+    public static void SetWorldDestroy()
+    {
+
+    }
+
+    #endregion
+
     #region World Type Block Manager
+
+    //Set
 
     private void SetWorldBlock(IsoVector m_Pos, GameObject m_Block)
     {
-        
+        IsoWorldIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_Pos);
+
+        if (m_BlockPosFound.m_FloorFound == false)
+        {
+            m_BlockPosFound.m_FloorIndex = m_This.SetWorldBlockFloorAdd(m_Pos);
+        }
+
+        if (m_BlockPosFound.m_BlockIndex != -1)
+        {
+            Destroy(m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex]);
+        }
+
+        GameObject m_BlockClone = GitGameObject.SetGameObjectCreate(m_Block, m_This.transform);
+        m_BlockClone.GetComponent<IsoBlock>().Scale = m_This.m_Scale;
+        m_BlockClone.GetComponent<IsoBlock>().PosPrimary = m_Pos;
+        m_BlockClone.GetComponent<IsoBlock>().Pos = m_Pos;
+
+        if (m_BlockPosFound.m_BlockIndex != -1)
+        {
+            m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex] = m_BlockClone;
+        }
+        else
+        {
+            m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor.Add(m_BlockClone);
+        }
     }
 
     private IsoWorldIndex GetWorldBlockIndex(IsoVector m_Pos)
@@ -244,6 +266,74 @@ public class IsoWorldManager : MonoBehaviour
         }
 
         return m_FloorIndex;
+    }
+
+    //Get
+
+    private GameObject GetWorldBlock(IsoVector m_Pos)
+    {
+        IsoWorldIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_Pos);
+
+        if (m_BlockPosFound.m_FloorFound == false)
+        {
+            m_BlockPosFound.m_FloorIndex = m_This.SetWorldBlockFloorAdd(m_Pos);
+        }
+
+        if (m_BlockPosFound.m_BlockIndex != -1)
+        {
+            return m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex];
+        }
+
+        return null;
+    }
+
+    #endregion
+
+    #region World Type None Block Manager
+
+    //Set
+
+    private void SetWorldNoneBlock(IsoVector m_Pos, GameObject m_Block, IsoType m_IsoType)
+    {
+        GameObject m_BlockClone = GitGameObject.SetGameObjectCreate(m_Block, m_This.transform);
+        m_BlockClone.GetComponent<IsoBlock>().Scale = m_This.m_Scale;
+        m_BlockClone.GetComponent<IsoBlock>().PosPrimary = m_Pos;
+        m_BlockClone.GetComponent<IsoBlock>().Pos = m_Pos;
+
+        switch (m_IsoType)
+        {
+            case IsoType.Player:
+                m_This.m_WorldPlayer.Add(m_BlockClone);
+                break;
+            case IsoType.Friend:
+                m_This.m_WorldFriend.Add(m_BlockClone);
+                break;
+            case IsoType.Neutral:
+                m_This.m_WorldNeutral.Add(m_BlockClone);
+                break;
+            case IsoType.Enermy:
+                m_This.m_WorldEnermy.Add(m_BlockClone);
+                break;
+            case IsoType.Object:
+                m_This.m_WorldObject.Add(m_BlockClone);
+                break;
+        }
+    }
+
+    //Get
+
+    private List<GameObject> GetWorldNoneBlock(IsoVector m_Pos, List<GameObject> m_World)
+    {
+        List<GameObject> m_Blocks = new List<GameObject>();
+
+        foreach (GameObject m_Block in m_World)
+        {
+            if (m_Block.GetComponent<IsoBlock>().Pos == m_Pos)
+            {
+                m_Blocks.Add(m_Block);
+            }
+        }
+        return m_Blocks;
     }
 
     #endregion
