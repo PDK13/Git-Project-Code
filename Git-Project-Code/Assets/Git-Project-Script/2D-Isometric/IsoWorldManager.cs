@@ -106,13 +106,13 @@ public class IsoWorldManager : MonoBehaviour
         m_BlockClone.GetComponent<IsoBlock>().SetPosPrimary(m_Pos);
         m_BlockClone.GetComponent<IsoBlock>().Pos = m_Pos;
 
-        if (m_BlockPosFound.m_BlockIndex == -1)
+        if (m_BlockPosFound.m_BlockIndex != -1)
         {
-            m_This.m_World[m_BlockPosFound.m_FloorIndex].m_WorldFloor.Add(m_BlockClone);
+            m_This.m_World[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex] = m_BlockClone;
         }
         else
         {
-            m_This.m_World[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex] = m_BlockClone;
+            m_This.m_World[m_BlockPosFound.m_FloorIndex].m_WorldFloor.Add(m_BlockClone);
         }
     }
 
@@ -264,6 +264,12 @@ public class IsoWorldFloor
         this.m_Floor = m_Floor;
     }
 }
+
+public enum IsoWorldOption { Replace,  }
+
+
+
+
 
 public class IsoBlockImformation
 {

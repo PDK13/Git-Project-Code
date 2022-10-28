@@ -6,7 +6,7 @@ public class IsoBlock : MonoBehaviour
 {
     [Header("World Manager")]
 
-    [SerializeField] private IsoDepth m_Depth = IsoDepth.Fixed;
+    [SerializeField] private IsoType m_Type = IsoType.Block;
 
     [SerializeField] private IsoVector m_Pos = new IsoVector();
 
@@ -28,36 +28,63 @@ public class IsoBlock : MonoBehaviour
 
     //private IsoBlockImformation m_Imformation;
 
+#if UNITY_EDITOR
+
     private void Update()
     {
         SetIsoTransform();
     }
 
-    #region ================================================================== Iso
+#endif
 
-    public void SetDepth(IsoDepth m_Depth)
+    public IsoType Type 
     {
-        this.m_Depth = m_Depth;
+        get
+        {
+            return m_Type;
+        }
+        set
+        {
+            m_Type = value;
+        }
+    }
+
+    public IsoVector Scale
+    {
+        get
+        {
+            return m_Scale;
+        }
+        set
+        {
+            this.m_Scale = value;
+        }
+    }
+
+    public Vector3 Centre
+    {
+        get
+        {
+            return m_Centre;
+        }
+        set
+        {
+            m_Centre = value;
+        }
     }
 
     private Vector3 GetIsoScene(IsoVector m_PosWorld)
     {
-        switch (m_Depth)
-        {
-            case IsoDepth.Fixed:
-                IsoVector m_PosWorldScale = new IsoVector(m_PosWorld);
-                m_PosWorldScale.X_UD *= m_Scale.X_UD * -1;
-                m_PosWorldScale.Y_LR *= m_Scale.Y_LR;
-                m_PosWorldScale.H_TB *= m_Scale.H_TB;
+        IsoVector m_PosWorldScale = new IsoVector(m_PosWorld);
+        m_PosWorldScale.X_UD *= m_Scale.X_UD * -1;
+        m_PosWorldScale.Y_LR *= m_Scale.Y_LR;
+        m_PosWorldScale.H_TB *= m_Scale.H_TB;
 
-                float m_PosX = m_PosWorldScale.X_UD + m_PosWorldScale.Y_LR;
-                float m_PosY = 0.5f * (m_PosWorldScale.Y_LR - m_PosWorldScale.X_UD) + m_PosWorldScale.H_TB;
-                float m_PosZ = (m_PosWorldScale.Y_LR - m_PosWorldScale.X_UD) - m_PosWorldScale.H_TB;
+        float m_PosX = m_PosWorldScale.X_UD + m_PosWorldScale.Y_LR;
+        float m_PosY = 0.5f * (m_PosWorldScale.Y_LR - m_PosWorldScale.X_UD) + m_PosWorldScale.H_TB;
+        float m_PosZ = (m_PosWorldScale.Y_LR - m_PosWorldScale.X_UD) - m_PosWorldScale.H_TB;
 
-                return new Vector3(m_PosX, m_PosY, m_PosZ);
-        }
-
-        return new Vector3(0, 0, 0);
+        return new Vector3(m_PosX, m_PosY, m_PosZ);
     }
 
     private void SetIsoTransform()
@@ -116,18 +143,6 @@ public class IsoBlock : MonoBehaviour
         }
     }
 
-    public void SetScale(IsoVector m_Scale)
-    {
-        this.m_Scale = m_Scale;
-    }
-
-    public void SetFix(Vector3 m_Fix)
-    {
-        this.m_Centre = m_Fix;
-    }
-
-    #endregion
-
     #region ================================================================== Pos Set
 
     public IsoVector Pos
@@ -143,36 +158,24 @@ public class IsoBlock : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region ================================================================== Pos Primary & Matrix
-
-    public void SetPosPrimary(IsoVector m_Pos)
+    public IsoVector PosPrimary
     {
-        m_PosPrimary = m_Pos;
+        get
+        {
+            return this.m_PosPrimary;
+        }
+        set
+        {
+            m_PosPrimary = value;
+        }
     }
 
-    public IsoVector GetPosPrimary()
+    public IsoVector PosMatrix
     {
-        return m_PosPrimary;
-    }
-
-    public void SetPosPrimaryReset()
-    {
-        this.m_Pos = GetPosPrimary();
-    }
-
-    public bool GetPosPrimaryStay()
-    {
-        IsoVector m_PosPrimary = GetPosPrimary();
-        IsoVector m_PosMatrixCurrent = GetPosMatrixCurrent();
-
-        return m_PosPrimary.X_UD == m_PosMatrixCurrent.X_UD && m_PosPrimary.Y_LR == m_PosMatrixCurrent.Y_LR && m_PosPrimary.H_TB == m_PosMatrixCurrent.H_TB;
-    }
-
-    public IsoVector GetPosMatrixCurrent()
-    {
-        return m_PosMatrix;
+        get
+        {
+            return this.m_PosMatrix;
+        }
     }
 
     #endregion
@@ -192,24 +195,11 @@ public class IsoBlock : MonoBehaviour
     #endregion
 }
 
-public enum IsoDir
-{
-    None = 0,
-    //X
-    Up = 1,
-    Down = 2,
-    //Y
-    Left = 3,
-    Right = 4,
-    //H
-    Top = 5,
-    Bot = 6,
-}
+public enum IsoType { Block, Player, Friend, Neutral, Enermy, Object }
 
-public enum IsoDepth
-{
-    Fixed,
-}
+public enum IsoDir { None, Up, Down, Left, Right, Top, Bot }
+
+public enum IsoDepth { Fixed }
 
 [System.Serializable]
 public struct IsoVector
@@ -463,25 +453,3 @@ public struct IsoVector
 
     public override string ToString() => $"({X_UD}, {Y_LR}, {H_TB})";
 }
-
-//[CustomEditor(typeof(IsoBlock))]
-//[CanEditMultipleObjects]
-//public class CustomIsoVector : Editor
-//{
-//    SerializedProperty Pos;
-//    SerializedProperty X;
-//    SerializedProperty Y;
-//    SerializedProperty H;
-
-//    private void OnEnable()
-//    {
-//        Pos = serializedObject.FindProperty("Pos");
-//    }
-
-//    public override void OnInspectorGUI()
-//    {
-//        serializedObject.Update();
-//        EditorGUILayout.PropertyField(Pos);
-//        serializedObject.ApplyModifiedProperties();
-//    }
-//}
