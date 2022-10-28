@@ -96,19 +96,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b51ca1839d85a47a182808b3636847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Depth: 0
+  m_Type: 2
+  m_Tag: 
   m_Pos:
-    m_UDX: 0
-    m_LRY: 0
-    m_TBH: 0
+    X_UD: 0
+    Y_LR: 0
+    H_TB: 0
   m_Scale:
-    m_UDX: 0.5
-    m_LRY: 0.5
-    m_TBH: 0.5
+    X_UD: 1
+    Y_LR: 1
+    H_TB: 1
   m_Centre: {x: 0, y: 0, z: 0}
   m_PosMatrix:
-    m_UDX: 2
-    m_LRY: 2
-    m_TBH: 0
+    X_UD: 0
+    Y_LR: 0
+    H_TB: 0
   m_RoundUpper: 0.55
   m_RoundLower: 0.45

@@ -431,7 +431,11 @@ MonoBehaviour:
     X_UD: 0.5
     Y_LR: 0.5
     H_TB: 0.5
-  m_World:
+  m_WorldBlock:
   - m_WorldFloor: []
     m_Floor: 0
-  m_Blocks: []
+  m_WorldPlayer: []
+  m_WorldFriend: []
+  m_WorldNeutral: []
+  m_WorldEnermy: []
+  m_WorldObject: []
