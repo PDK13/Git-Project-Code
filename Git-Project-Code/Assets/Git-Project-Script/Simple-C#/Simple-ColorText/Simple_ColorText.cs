@@ -15,13 +15,15 @@ public class Simple_ColorText : MonoBehaviour
 
         //Option 1:
 
-        //string m_TextString = string.Format("Chance <#{0}>Color</color> in run-time!", m_ColorHexCode);
-
-        //m_Text.text = m_TextString;
+        string m_TextString = string.Format("Chance {0} in run-time!", GitColor.GetColorHexFormat(m_Color, "Color"));
 
         //Option 2:
 
-        string m_TextString = string.Format("Chance {0} in run-time!", GitColor.GetColorHexFormat(m_Color, "Color"));
+        //string m_TextString = string.Format("Chance <#{0}>Color</color> in run-time!", m_ColorHexCode);
+
+        //Option 3:
+
+        //string m_TextString = string.Format("Chance <color={0}>Color</color> in run-time!", "white");
 
         m_Text.text = m_TextString;
     }
