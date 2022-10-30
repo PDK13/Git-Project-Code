@@ -1437,6 +1437,95 @@ public class GitEncypt
     #endregion
 }
 
+
+//=================================================== Keyboard
+
+public class GitKeyboard
+{
+    public static void SetMouseVisible(bool m_MouseVisble)
+    {
+        Cursor.visible = m_MouseVisble;
+    }
+
+    public static string GetKeyCodeSimple(KeyCode m_KeyKey)
+    {
+        switch (m_KeyKey)
+        {
+            case KeyCode.Escape:
+                return "Esc";
+            case KeyCode.Return:
+                return "Enter";
+            case KeyCode.Delete:
+                return "Del";
+            case KeyCode.Backspace:
+                return "B-Space";
+
+            case KeyCode.Mouse0:
+                return "L-Mouse";
+            case KeyCode.Mouse1:
+                return "R-Mouse";
+            case KeyCode.Mouse2:
+                return "M-Mouse";
+
+            case KeyCode.LeftBracket:
+                return "[";
+            case KeyCode.RightBracket:
+                return "]";
+
+            case KeyCode.LeftCurlyBracket:
+                return "{";
+            case KeyCode.RightCurlyBracket:
+                return "}";
+
+            case KeyCode.LeftParen:
+                return "(";
+            case KeyCode.RightParen:
+                return ")";
+
+            case KeyCode.LeftShift:
+                return "L-Shift";
+            case KeyCode.RightShift:
+                return "R-Shift";
+
+            case KeyCode.LeftAlt:
+                return "L-Alt";
+            case KeyCode.RightAlt:
+                return "R-Alt";
+
+            case KeyCode.PageUp:
+                return "Page-U";
+            case KeyCode.PageDown:
+                return "Page-D";
+        }
+
+        return m_KeyKey.ToString();
+    }
+}
+
+//=================================================== Color
+
+public class GitColor
+{
+    private static string GetColorHex(Color m_ColorRGBA)
+    {
+        return ColorUtility.ToHtmlStringRGB(m_ColorRGBA);
+    }
+
+    public static string GetColorHexCode(Color m_ColorRGBA)
+    {
+        string m_ColorHex = GetColorHex(m_ColorRGBA);
+        string m_ColorHexCode = string.Format("#{0}", m_ColorHex);
+        return m_ColorHexCode;
+    }
+
+    public static string GetColorHexFormat(Color m_ColorRGBA, string m_Text)
+    {
+        string m_ColorHex = GetColorHex(m_ColorRGBA);
+        string m_TextFormat = string.Format("<#{0}>{1}</color>", m_ColorHex, m_Text);
+        return m_TextFormat;
+    }
+}
+
 //=================================================== Email
 
 public class GitEmail
@@ -1570,70 +1659,6 @@ public class GitEmail
 
         //All Check Done
         return true;
-    }
-}
-
-//=================================================== Keyboard
-
-public class GitKeyboard
-{
-    public static void SetMouseVisible(bool m_MouseVisble)
-    {
-        Cursor.visible = m_MouseVisble;
-    }
-
-    public static string GetKeyCodeSimple(KeyCode m_KeyKey)
-    {
-        switch (m_KeyKey)
-        {
-            case KeyCode.Escape:
-                return "Esc";
-            case KeyCode.Return:
-                return "Enter";
-            case KeyCode.Delete:
-                return "Del";
-            case KeyCode.Backspace:
-                return "B-Space";
-
-            case KeyCode.Mouse0:
-                return "L-Mouse";
-            case KeyCode.Mouse1:
-                return "R-Mouse";
-            case KeyCode.Mouse2:
-                return "M-Mouse";
-
-            case KeyCode.LeftBracket:
-                return "[";
-            case KeyCode.RightBracket:
-                return "]";
-
-            case KeyCode.LeftCurlyBracket:
-                return "{";
-            case KeyCode.RightCurlyBracket:
-                return "}";
-
-            case KeyCode.LeftParen:
-                return "(";
-            case KeyCode.RightParen:
-                return ")";
-
-            case KeyCode.LeftShift:
-                return "L-Shift";
-            case KeyCode.RightShift:
-                return "R-Shift";
-
-            case KeyCode.LeftAlt:
-                return "L-Alt";
-            case KeyCode.RightAlt:
-                return "R-Alt";
-
-            case KeyCode.PageUp:
-                return "Page-U";
-            case KeyCode.PageDown:
-                return "Page-D";
-        }
-
-        return m_KeyKey.ToString();
     }
 }
 
