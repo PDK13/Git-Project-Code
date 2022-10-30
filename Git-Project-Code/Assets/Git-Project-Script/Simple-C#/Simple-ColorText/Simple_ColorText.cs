@@ -11,8 +11,6 @@ public class Simple_ColorText : MonoBehaviour
 
     private void FixedUpdate()
     {
-        string m_ColorHexCode = GitColor.GetColorHexCode(m_Color);
-
         //Option 1:
 
         string m_TextString = string.Format("Chance {0} in run-time!", GitColor.GetColorHexFormat(m_Color, "Color"));
