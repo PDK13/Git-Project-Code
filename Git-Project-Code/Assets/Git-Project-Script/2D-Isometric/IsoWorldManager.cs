@@ -11,18 +11,18 @@ public class IsoWorldManager : MonoBehaviour
 
     [SerializeField] private IsoVector m_Scale = new IsoVector(1f, 1f, 1f);
 
-    [SerializeField]
+    //[SerializeField]
     private List<IsoWorldFloor> m_WorldBlock = new List<IsoWorldFloor>() { new IsoWorldFloor(0) };
 
-    [SerializeField]
+    //[SerializeField]
     private List<GameObject> m_WorldPlayer = new List<GameObject>();
-    [SerializeField]
+    //[SerializeField]
     private List<GameObject> m_WorldFriend = new List<GameObject>();
-    [SerializeField]
+    //[SerializeField]
     private List<GameObject> m_WorldNeutral = new List<GameObject>();
-    [SerializeField]
+    //[SerializeField]
     private List<GameObject> m_WorldEnermy = new List<GameObject>();
-    [SerializeField]
+    //[SerializeField]
     private List<GameObject> m_WorldObject = new List<GameObject>();
 
     public static List<GameObject> WorldPlayer
@@ -65,6 +65,7 @@ public class IsoWorldManager : MonoBehaviour
 
     [Header("Block(s) Manager")]
 
+    //[SerializeField]
     private List<GameObject> m_Blocks;
 
     private bool m_BlocksUpdated = false;
@@ -86,7 +87,7 @@ public class IsoWorldManager : MonoBehaviour
     {
         m_Blocks = GitResources.GetResourcesPrefab("Blocks");
 
-        StartCoroutine(Set());
+        //StartCoroutine(Set());
     }
 
     private IEnumerator Set()
