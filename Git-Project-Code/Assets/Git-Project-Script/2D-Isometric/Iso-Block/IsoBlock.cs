@@ -65,7 +65,7 @@ public class IsoBlock : MonoBehaviour
         get => m_Scale;
         set
         {
-            this.m_Scale = value;
+            m_Scale = value;
         }
     }
 
@@ -152,17 +152,17 @@ public class IsoBlock : MonoBehaviour
 
     public IsoVector Pos
     {
-        get => this.m_Pos;
+        get => m_Pos;
         set
         {
-            this.m_Pos = value;
+            m_Pos = value;
             SetIsoTransform();
         }
     }
 
     public IsoVector PosPrimary
     {
-        get => this.m_PosPrimary;
+        get => m_PosPrimary;
         set
         {
             m_PosPrimary = value;
@@ -171,7 +171,11 @@ public class IsoBlock : MonoBehaviour
 
     public IsoVector PosMatrix
     {
-        get => this.m_PosMatrix;
+        get => m_PosMatrix;
+        private set
+        {
+            m_PosMatrix = value;
+        }
     }
 
     #endregion
@@ -180,12 +184,12 @@ public class IsoBlock : MonoBehaviour
 
     //public void SetImformation(IsoBlockImformation m_BlockImformation)
     //{
-    //    this.m_Imformation = m_BlockImformation;
+    //    m_Imformation = m_BlockImformation;
     //}
 
     //public IsoBlockImformation GetImformation()
     //{
-    //    return this.m_Imformation;
+    //    return m_Imformation;
     //}
 
     #endregion
