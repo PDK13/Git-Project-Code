@@ -53,10 +53,7 @@ public class IsoBlock : MonoBehaviour
 
     public string Tag
     {
-        get
-        {
-            return m_Tag;
-        }
+        get => m_Tag;
         set
         {
             m_Tag = value;
@@ -65,10 +62,7 @@ public class IsoBlock : MonoBehaviour
 
     public IsoVector Scale
     {
-        get
-        {
-            return m_Scale;
-        }
+        get => m_Scale;
         set
         {
             this.m_Scale = value;
@@ -77,10 +71,7 @@ public class IsoBlock : MonoBehaviour
 
     public Vector3 Centre
     {
-        get
-        {
-            return m_Centre;
-        }
+        get => m_Centre;
         set
         {
             m_Centre = value;
@@ -161,10 +152,7 @@ public class IsoBlock : MonoBehaviour
 
     public IsoVector Pos
     {
-        get
-        {
-            return this.m_Pos;
-        }
+        get => this.m_Pos;
         set
         {
             this.m_Pos = value;
@@ -174,10 +162,7 @@ public class IsoBlock : MonoBehaviour
 
     public IsoVector PosPrimary
     {
-        get
-        {
-            return this.m_PosPrimary;
-        }
+        get => this.m_PosPrimary;
         set
         {
             m_PosPrimary = value;
@@ -186,10 +171,7 @@ public class IsoBlock : MonoBehaviour
 
     public IsoVector PosMatrix
     {
-        get
-        {
-            return this.m_PosMatrix;
-        }
+        get => this.m_PosMatrix;
     }
 
     #endregion
@@ -244,126 +226,81 @@ public struct IsoVector
 
     public int X_UDInt
     {
-        get
-        {
-            return (int)X_UD;
-        }
+        get => (int)X_UD;
     }
 
     public int Y_LRInt
     {
-        get
-        {
-            return (int)Y_LR;
-        }
+        get => (int)Y_LR;
     }
 
     public int H_TBInt
     {
-        get
-        {
-            return (int)H_TB;
-        }
+        get => (int)H_TB;
     }
 
     //Primary Dir
 
     public IsoVector Up
     {
-        get
-        {
-            return new IsoVector(1, 0, 0);
-        }
+        get => new IsoVector(1, 0, 0);
     }
 
     public IsoVector Down
     {
-        get
-        {
-            return new IsoVector(-1, 0, 0);
-        }
+        get => new IsoVector(-1, 0, 0);
     }
 
     public IsoVector Left
     {
-        get
-        {
-            return new IsoVector(0, -1, 0);
-        }
+        get => new IsoVector(0, -1, 0);
     }
 
     public IsoVector Right
     {
-        get
-        {
-            return new IsoVector(0, 1, 0);
-        }
+        get => new IsoVector(0, 1, 0);
     }
 
     public IsoVector Top
     {
-        get
-        {
-            return new IsoVector(0, 0, 1);
-        }
+        get => new IsoVector(0, 0, 1);
     }
 
     public IsoVector Bot
     {
-        get
-        {
-            return new IsoVector(0, 0, -1);
-        }
+        get => new IsoVector(0, 0, -1);
     }
 
     //If Move-To Dir
 
     public IsoVector IfUp
     {
-        get
-        {
-            return this + Up;
-        }
+        get => this + Up;
     }
 
     public IsoVector IfDown
     {
-        get
-        {
-            return this + Down;
-        }
+        get => this + Down;
     }
 
     public IsoVector IfLeft
     {
-        get
-        {
-            return this + Left;
-        }
+        get => this + Left;
     }
 
     public IsoVector IfRight
     {
-        get
-        {
-            return this + Right;
-        }
+        get => this + Right;
     }
 
     public IsoVector IfTop
     {
-        get
-        {
-            return this + Top;
-        }
+        get => this + Top;
     }
 
     public IsoVector IfBot
     {
-        get
-        {
-            return this + Bot;
-        }
+        get => this + Bot;
     }
 
 
