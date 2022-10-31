@@ -89,6 +89,8 @@ public class IsoBlock : MonoBehaviour
         get => m_Type == IsoType.Object;
     }
 
+    #endregion
+
     #region ================================================================== Iso
 
     public string Tag
@@ -187,6 +189,8 @@ public class IsoBlock : MonoBehaviour
             m_PosMatrix.H_TB = (int)m_Pos.H_TB;
         }
     }
+
+    #endregion
 
     #region ================================================================== Pos Set
 
