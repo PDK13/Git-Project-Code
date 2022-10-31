@@ -81,11 +81,6 @@ public class IsoWorldManager : MonoBehaviour
         m_This = this;
     }
 
-    private void Start()
-    {
-        m_Blocks = GitResources.GetResourcesPrefab("Blocks");
-    }
-
     #region World Manager
 
     #region World Main Manager

@@ -40,7 +40,9 @@ public class IsoBlock : MonoBehaviour
 
 #endif
 
-    public IsoType Type 
+    #region ================================================================== Type
+
+    public IsoType Type
     {
         get
         {
@@ -51,6 +53,43 @@ public class IsoBlock : MonoBehaviour
             m_Type = value;
         }
     }
+
+    public bool TypeIsBlock
+    {
+        get => m_Type == IsoType.Block;
+    }
+
+    public bool TypeIsPlayer
+    {
+        get => m_Type == IsoType.Player;
+    }
+
+    public bool TypeIsFriend
+    {
+        get => m_Type == IsoType.Friend;
+    }
+
+    public bool TypeIsNeutral
+    {
+        get => m_Type == IsoType.Neutral;
+    }
+
+    public bool TypeIsEnermy
+    {
+        get => m_Type == IsoType.Enermy;
+    }
+
+    public bool TypeIsCharacter
+    {
+        get => TypeIsPlayer || TypeIsFriend || TypeIsNeutral || TypeIsEnermy;
+    }
+
+    public bool TypeIsObject
+    {
+        get => m_Type == IsoType.Object;
+    }
+
+    #region ================================================================== Iso
 
     public string Tag
     {
