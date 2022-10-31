@@ -81,66 +81,10 @@ public class IsoWorldManager : MonoBehaviour
         m_This = this;
     }
 
-//#if UNITY_EDITOR
-
     private void Start()
     {
         m_Blocks = GitResources.GetResourcesPrefab("Blocks");
-
-        //StartCoroutine(Set());
     }
-
-    private IEnumerator Set()
-    {
-        //SetWorld(new IsoVector(2, 2, 5), m_Blocks[0]);
-        //SetWorld(new IsoVector(2, 2, 2), m_Blocks[0]);
-        //SetWorld(new IsoVector(2, 2, 7), m_Blocks[0]);
-
-        yield return null;
-
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-
-        yield return null;
-
-        int m_Color = 0;
-
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                for (int t = 0; t < 3; t++)
-                {
-                    SetWorld(new IsoVector(i, j, t), m_Blocks[m_Color]);
-                    m_Color++;
-
-                    if (m_Color > m_Blocks.Count - 1)
-                    {
-                        m_Color = 0;
-                    }
-
-                    yield return null;
-
-                    //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-                }
-            }
-        }
-
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-
-        Debug.LogFormat("[Debug] Block {0}", GetWorld(new IsoVector(0, 0, 0), IsoType.Block)[0].name);
-        Debug.LogFormat("[Debug] None Block {0}", GetWorld(new IsoVector(0, 1, 1), IsoType.Player)[0].name);
-
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-
-        SetWorldDestroy(new IsoVector(0, 1, 1), IsoType.Player);
-
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-
-        GameObject m_Block = WorldPlayer[0].gameObject;
-        SetWorldDestroy(m_Block);
-    }
-
-    //#endif
 
     #region World Manager
 
@@ -258,64 +202,6 @@ public class IsoWorldManager : MonoBehaviour
             case IsoType.Object:
                 m_This.m_WorldObject.Remove(m_BlockCheck);
                 Destroy(m_BlockCheck);
-                break;
-        }
-    }
-
-    public static void SetWorldDestroy(IsoVector m_Pos, IsoType m_Type)
-    {
-        switch (m_Type)
-        {
-            case IsoType.Block:
-                {
-                    IsoWorldIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_Pos);
-
-                    if (m_BlockPosFound.m_FloorFound == false)
-                    {
-                        return;
-                    }
-
-                    if (m_BlockPosFound.m_BlockIndex != -1 && m_BlockPosFound.m_BlockFound == true)
-                    {
-                        Destroy(m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex]);
-                        m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor.RemoveAt(m_BlockPosFound.m_BlockIndex);
-                    }
-                }
-                break;
-            case IsoType.Player:
-                foreach(GameObject m_Block in m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldPlayer))
-                {
-                    m_This.m_WorldPlayer.Remove(m_Block);
-                    Destroy(m_Block);
-                }
-                break;
-            case IsoType.Friend:
-                foreach (GameObject m_Block in m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldFriend))
-                {
-                    m_This.m_WorldFriend.Remove(m_Block);
-                    Destroy(m_Block);
-                }
-                break;
-            case IsoType.Neutral:
-                foreach (GameObject m_Block in m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldNeutral))
-                {
-                    m_This.m_WorldNeutral.Remove(m_Block);
-                    Destroy(m_Block);
-                }
-                break;
-            case IsoType.Enermy:
-                foreach (GameObject m_Block in m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldEnermy))
-                {
-                    m_This.m_WorldEnermy.Remove(m_Block);
-                    Destroy(m_Block);
-                }
-                break;
-            case IsoType.Object:
-                foreach (GameObject m_Block in m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldObject))
-                {
-                    m_This.m_WorldObject.Remove(m_Block);
-                    Destroy(m_Block);
-                }
                 break;
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -26,9 +27,9 @@ public class IsoBlock : MonoBehaviour
 
     private IsoVector m_PosPrimary = new IsoVector();
 
-    //[Header("Block Manager")]
+    [Header("Code Manager")]
 
-    //private IsoBlockImformation m_Imformation;
+    private List<IsoCode> m_Code = new List<IsoCode>();
 
 #if UNITY_EDITOR
 
@@ -180,17 +181,12 @@ public class IsoBlock : MonoBehaviour
 
     #endregion
 
-    #region ================================================================== Imformation
+    #region ================================================================== Code
 
-    //public void SetImformation(IsoBlockImformation m_BlockImformation)
-    //{
-    //    m_Imformation = m_BlockImformation;
-    //}
-
-    //public IsoBlockImformation GetImformation()
-    //{
-    //    return m_Imformation;
-    //}
+    public List<IsoCode> Code
+    {
+        get => m_Code;
+    }
 
     #endregion
 }
@@ -200,6 +196,37 @@ public enum IsoType { Block, Player, Friend, Neutral, Enermy, Object }
 public enum IsoDir { None, Up, Down, Left, Right, Top, Bot }
 
 public enum IsoDepth { Fixed }
+
+[System.Serializable]
+public struct IsoCode
+{
+    private string m_Type;
+    private string m_Command;
+
+    public string Type
+    {
+        get => m_Type;
+        set
+        {
+            m_Type = value;
+        }
+    }
+
+    public string Command
+    {
+        get => m_Command;
+        set
+        {
+            m_Command = value;
+        }
+    }
+
+    public IsoCode(string m_Type, string m_Command)
+    {
+        this.m_Type = m_Type;
+        this.m_Command = m_Command;
+    }
+}
 
 [System.Serializable]
 public struct IsoVector
