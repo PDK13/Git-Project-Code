@@ -67,6 +67,12 @@ public class IsoWorldManager : MonoBehaviour
     }
 
     private bool m_WorldGenerated = false;
+    private bool m_WorldGenerating = false;
+    private bool m_WorldDestroying = false;
+    public Action act_WorldGeneratedStart;
+    public Action act_WorldGeneratedEnd;
+    public Action act_WorldDestroyedStart;
+    public Action act_WorldDestroyedEnd;
 
     [Header("Block(s) Manager")]
 
@@ -74,11 +80,8 @@ public class IsoWorldManager : MonoBehaviour
     private List<GameObject> m_Blocks;
 
     private bool m_BlocksUpdated = false;
-
     public Action act_BlocksUpdated;
-    public Action act_WorldGenerated;
-    public Action act_WorldDestroyed;
-
+    
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -90,9 +93,178 @@ public class IsoWorldManager : MonoBehaviour
 
     #region World Main Manager
 
-    public static void SetWorldGenerate()
+    public static IEnumerator ISetWorldGenerate(List<IsoWorldBlockData> m_WorldData, int m_YieldDelayEvery = 10)
     {
+        if (!m_This.m_WorldGenerated && !m_This.m_WorldGenerating)
+        {
+            m_This.m_WorldGenerating = true;
 
+            m_This.act_WorldGeneratedStart?.Invoke();
+
+            int m_YieldCount = 0;
+
+            yield return null;
+
+            foreach (IsoWorldBlockData m_BlockData in m_WorldData)
+            {
+                //Create!
+
+                SetWorldCreate(m_BlockData.m_PosPrimary, GetBlock(m_BlockData.m_BlockName));
+
+                //Slowdown!
+
+                if (m_YieldDelayEvery > 0)
+                {
+                    m_YieldCount++;
+
+                    if (m_YieldCount % m_YieldDelayEvery == 0)
+                    {
+                        m_YieldCount = 0;
+
+                        yield return null;
+                    }
+                }
+            }
+
+            yield return null;
+
+            m_This.m_WorldGenerated = true;
+
+            m_This.m_WorldGenerating = false;
+
+            m_This.act_WorldGeneratedEnd?.Invoke();
+        }
+    }
+
+    public static IEnumerator ISetWorldDestroy(int m_YieldDelayEvery = 10)
+    {
+        if (m_This.m_WorldGenerated && !m_This.m_WorldDestroying)
+        {
+            m_This.m_WorldDestroying = true;
+
+            m_This.m_WorldGenerated = false;
+
+            m_This.act_WorldDestroyedStart?.Invoke();
+
+            int m_YieldCount = 0;
+
+            yield return null;
+
+            //Block(s)
+
+            for (int i = 0; i < m_This.m_WorldBlock.Count; i++)
+            {
+                for (int j = 0; j < m_This.m_WorldBlock[i].m_BlocksFloor.Count; j++)
+                {
+                    Destroy(GetWorldBlock(i, j));
+
+                    if (m_YieldDelayEvery > 0)
+                    {
+                        m_YieldCount++;
+
+                        if (m_YieldCount % m_YieldDelayEvery == 0)
+                        {
+                            m_YieldCount = 0;
+
+                            yield return null;
+                        }
+                    }
+                }
+            }
+
+            //None-Block(s)
+
+            foreach (GameObject m_Block in m_This.m_WorldPlayer)
+            {
+                Destroy(m_Block);
+
+                if (m_YieldDelayEvery > 0)
+                {
+                    m_YieldCount++;
+
+                    if (m_YieldCount % m_YieldDelayEvery == 0)
+                    {
+                        m_YieldCount = 0;
+
+                        yield return null;
+                    }
+                }
+            }
+
+            foreach (GameObject m_Block in m_This.m_WorldFriend)
+            {
+                Destroy(m_Block);
+
+                if (m_YieldDelayEvery > 0)
+                {
+                    m_YieldCount++;
+
+                    if (m_YieldCount % m_YieldDelayEvery == 0)
+                    {
+                        m_YieldCount = 0;
+
+                        yield return null;
+                    }
+                }
+            }
+
+            foreach (GameObject m_Block in m_This.m_WorldNeutral)
+            {
+                Destroy(m_Block);
+
+                if (m_YieldDelayEvery > 0)
+                {
+                    m_YieldCount++;
+
+                    if (m_YieldCount % m_YieldDelayEvery == 0)
+                    {
+                        m_YieldCount = 0;
+
+                        yield return null;
+                    }
+                }
+            }
+
+            foreach (GameObject m_Block in m_This.m_WorldEnermy)
+            {
+                Destroy(m_Block);
+
+                if (m_YieldDelayEvery > 0)
+                {
+                    m_YieldCount++;
+
+                    if (m_YieldCount % m_YieldDelayEvery == 0)
+                    {
+                        m_YieldCount = 0;
+
+                        yield return null;
+                    }
+                }
+            }
+
+            foreach (GameObject m_Block in m_This.m_WorldObject)
+            {
+                Destroy(m_Block);
+
+                if (m_YieldDelayEvery > 0)
+                {
+                    m_YieldCount++;
+
+                    if (m_YieldCount % m_YieldDelayEvery == 0)
+                    {
+                        m_YieldCount = 0;
+
+                        yield return null;
+                    }
+                }
+            }
+
+            yield return null;
+
+            m_This.m_WorldDestroying = false;
+
+            m_This.act_WorldDestroyedEnd?.Invoke();
+        }
     }
 
     #endregion
@@ -479,6 +651,20 @@ public class IsoWorldManager : MonoBehaviour
     #endregion
 }
 
+[System.Serializable]
+public struct IsoWorldBlockData
+{
+    public string m_BlockName;
+    public IsoVector m_PosPrimary;
+
+    public IsoWorldBlockData(string m_BlockName, IsoVector m_PosPrimary)
+    {
+        this.m_BlockName = m_BlockName;
+        this.m_PosPrimary = m_PosPrimary;
+    }
+}
+
+[System.Serializable]
 public struct IsoWorldBlockIndex
 {
     public bool m_FloorFound;
@@ -507,45 +693,4 @@ public struct IsoWorldBlockFloor
         this.m_BlocksFloor = new List<GameObject>();
         this.m_WorldFloor = m_Floor;
     }
-}
-
-
-
-
-public class IsoBlockImformation
-{
-    public string m_BlockName;
-
-    public IsoVector m_PosPrimary;
-
-    public List<IsoBlockMoveImformation> m_Moves;
-
-    public IsoVector m_Join;
-
-    public List<IsoVector> m_Links;
-
-    public List<IsoBlockEventImformation> m_Events;
-}
-
-public class IsoBlockMoveImformation
-{
-    public IsoVector m_Dir;
-
-    public int m_Step;
-
-    public float m_Speed;
-}
-
-public class IsoBlockEventImformation
-{
-    public string m_Type;
-
-    public List<string> m_Codes;
-}
-
-public class IsoBlockMessageImformation
-{
-    public string m_From;
-
-    public string m_Content;
 }
