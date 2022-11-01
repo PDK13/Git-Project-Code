@@ -12,7 +12,7 @@ public class IsoWorldManager : MonoBehaviour
     [SerializeField] private IsoVector m_Scale = new IsoVector(1f, 1f, 1f);
 
     //[SerializeField]
-    private List<IsoWorldFloor> m_WorldBlock = new List<IsoWorldFloor>() { new IsoWorldFloor(0) };
+    private List<IsoWorldBlockFloor> m_WorldBlock = new List<IsoWorldBlockFloor>() { new IsoWorldBlockFloor(0) };
 
     //[SerializeField]
     private List<GameObject> m_WorldPlayer = new List<GameObject>();
@@ -92,22 +92,14 @@ public class IsoWorldManager : MonoBehaviour
 
     public static void SetWorld(IsoVector m_Pos, GameObject m_Block)
     {
-        if (m_Block == null)
-        {
-            Debug.LogWarningFormat("{0}: Not found block?!.", m_This.name);
-            return;
-        }
+        SetWorld(m_Pos, m_Block, m_Block.GetComponent<IsoBlock>().Type);
+    }
 
-        IsoBlock m_IsoBlock = m_Block.GetComponent<IsoBlock>();
-
-        if (m_IsoBlock == null)
+    public static void SetWorld(IsoVector m_Pos, GameObject m_Block, IsoType m_Type)
+    {
+        switch (m_Type)
         {
-            Debug.LogWarningFormat("{0}: Not found Iso Block component on block {1}.", m_This.name, m_Block.name);
-            return;
-        }
-
-        switch (m_IsoBlock.Type)
-        {
+            case IsoType.None:
             case IsoType.Block:
                 m_This.SetWorldBlock(m_Pos, m_Block);
                 break;
@@ -116,55 +108,20 @@ public class IsoWorldManager : MonoBehaviour
             case IsoType.Neutral:
             case IsoType.Enermy:
             case IsoType.Object:
-                m_This.SetWorldNoneBlock(m_Pos, m_Block, m_IsoBlock.Type);
+                m_This.SetWorldNoneBlock(m_Pos, m_Block, m_Type);
                 break;
         }
-    }
-
-    public static List<GameObject> GetWorld(IsoVector m_Pos, IsoType m_Type)
-    {
-        List<GameObject> m_Blocks = new List<GameObject>();
-
-        switch (m_Type)
-        {
-            case IsoType.Block:
-                m_Blocks.Add(m_This.GetWorldBlock(m_Pos));
-                break;
-            case IsoType.Player:
-                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldPlayer);
-            case IsoType.Friend:
-                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldFriend);
-            case IsoType.Neutral:
-                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldNeutral);
-            case IsoType.Enermy:
-                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldEnermy);
-            case IsoType.Object:
-                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldObject);
-        }
-        return m_Blocks;
     }
 
     public static void SetWorldDestroy(GameObject m_BlockCheck)
     {
-        if (m_BlockCheck == null)
-        {
-            Debug.LogWarningFormat("{0}: Not found block?!.", m_This.name);
-            return;
-        }
-
         IsoBlock m_IsoBlock = m_BlockCheck.GetComponent<IsoBlock>();
-
-        if (m_IsoBlock == null)
-        {
-            Debug.LogWarningFormat("{0}: Not found Iso Block component on block {1}.", m_This.name, m_BlockCheck.name);
-            return;
-        }
 
         switch (m_IsoBlock.Type)
         {
             case IsoType.Block:
                 {
-                    IsoWorldIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_IsoBlock.Pos);
+                    IsoWorldBlockIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_IsoBlock.Pos);
 
                     if (m_BlockPosFound.m_FloorFound == false)
                     {
@@ -173,8 +130,8 @@ public class IsoWorldManager : MonoBehaviour
 
                     if (m_BlockPosFound.m_BlockFound == true)
                     {
-                        Destroy(m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex]);
-                        m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor.RemoveAt(m_BlockPosFound.m_BlockIndex);
+                        Destroy(m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_BlocksFloor[m_BlockPosFound.m_BlockIndex]);
+                        m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_BlocksFloor.RemoveAt(m_BlockPosFound.m_BlockIndex);
                     }
                 }
                 break;
@@ -209,7 +166,7 @@ public class IsoWorldManager : MonoBehaviour
 
     private void SetWorldBlock(IsoVector m_Pos, GameObject m_Block)
     {
-        IsoWorldIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_Pos);
+        IsoWorldBlockIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_Pos);
 
         if (m_BlockPosFound.m_FloorFound == false)
         {
@@ -218,7 +175,7 @@ public class IsoWorldManager : MonoBehaviour
 
         if (m_BlockPosFound.m_BlockFound == true)
         {
-            Destroy(m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex]);
+            Destroy(m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_BlocksFloor[m_BlockPosFound.m_BlockIndex]);
         }
 
         GameObject m_BlockClone = GitGameObject.SetGameObjectCreate(m_Block, m_This.transform);
@@ -228,32 +185,34 @@ public class IsoWorldManager : MonoBehaviour
 
         if (m_BlockPosFound.m_BlockFound == true)
         {
-            m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex] = m_BlockClone;
+            m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_BlocksFloor[m_BlockPosFound.m_BlockIndex] = m_BlockClone;
         }
         else
         {
-            m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor.Add(m_BlockClone);
+            m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_BlocksFloor.Add(m_BlockClone);
         }
     }
 
-    private IsoWorldIndex GetWorldBlockIndex(IsoVector m_Pos)
+    //Find & Range
+
+    public IsoWorldBlockIndex GetWorldBlockIndex(IsoVector m_Pos)
     {
         int m_FloorFoundIndex = GetWorldBlockFloorIndex(m_Pos);
 
         if (m_FloorFoundIndex == -1)
         {
-            return new IsoWorldIndex();
+            return new IsoWorldBlockIndex();
         }
 
-        for (int i = 0; i < m_WorldBlock[m_FloorFoundIndex].m_WorldFloor.Count; i++) 
+        for (int i = 0; i < m_WorldBlock[m_FloorFoundIndex].m_BlocksFloor.Count; i++)
         {
-            if (m_WorldBlock[m_FloorFoundIndex].m_WorldFloor[i].GetComponent<IsoBlock>().Pos == m_Pos)
+            if (m_WorldBlock[m_FloorFoundIndex].m_BlocksFloor[i].GetComponent<IsoBlock>().Pos == m_Pos)
             {
-                return new IsoWorldIndex(true, m_FloorFoundIndex, true, i);
+                return new IsoWorldBlockIndex(true, m_FloorFoundIndex, true, i);
             }
         }
 
-        return new IsoWorldIndex(true, m_FloorFoundIndex, false);
+        return new IsoWorldBlockIndex(true, m_FloorFoundIndex, false);
     }
 
     private int GetWorldBlockFloorIndex(IsoVector m_Pos)
@@ -266,17 +225,17 @@ public class IsoWorldManager : MonoBehaviour
         {
             m_FloorIndexFound = (m_FloorIndexA + m_FloorIndexB) / 2;
 
-            if (m_WorldBlock[m_FloorIndexFound].m_Floor == m_Pos.H_TB)
+            if (m_WorldBlock[m_FloorIndexFound].m_WorldFloor == m_Pos.H_TB)
             {
                 return m_FloorIndexFound;
             }
             else
-            if (m_WorldBlock[m_FloorIndexFound].m_Floor > m_Pos.H_TBInt)
+            if (m_WorldBlock[m_FloorIndexFound].m_WorldFloor > m_Pos.H_TBInt)
             {
                 m_FloorIndexB = m_FloorIndexFound - 1;
             }
             else
-            if (m_WorldBlock[m_FloorIndexFound].m_Floor < m_Pos.H_TBInt)
+            if (m_WorldBlock[m_FloorIndexFound].m_WorldFloor < m_Pos.H_TBInt)
             {
                 m_FloorIndexA = m_FloorIndexFound + 1;
             }
@@ -288,7 +247,7 @@ public class IsoWorldManager : MonoBehaviour
 
     private int SetWorldBlockFloorAdd(IsoVector m_Pos)
     {
-        m_WorldBlock.Add(new IsoWorldFloor(m_Pos.H_TBInt));
+        m_WorldBlock.Add(new IsoWorldBlockFloor(m_Pos.H_TBInt));
 
         int m_FloorIndex = m_WorldBlock.Count - 1;
 
@@ -296,9 +255,9 @@ public class IsoWorldManager : MonoBehaviour
         {
             for (int j = i + 1; j < m_WorldBlock.Count; j++)
             {
-                if (m_WorldBlock[i].m_Floor > m_WorldBlock[j].m_Floor)
+                if (m_WorldBlock[i].m_WorldFloor > m_WorldBlock[j].m_WorldFloor)
                 {
-                    IsoWorldFloor m_Temp = m_WorldBlock[i];
+                    IsoWorldBlockFloor m_Temp = m_WorldBlock[i];
                     m_WorldBlock[i] = m_WorldBlock[j];
                     m_WorldBlock[j] = m_Temp;
                 }
@@ -307,7 +266,7 @@ public class IsoWorldManager : MonoBehaviour
 
         for (int i = 0; i < m_WorldBlock.Count; i++) 
         {
-            if (m_WorldBlock[i].m_Floor == m_Pos.H_TBInt)
+            if (m_WorldBlock[i].m_WorldFloor == m_Pos.H_TBInt)
             {
                 m_FloorIndex = i;
             }
@@ -318,9 +277,9 @@ public class IsoWorldManager : MonoBehaviour
 
     //Get
 
-    private GameObject GetWorldBlock(IsoVector m_Pos)
+    public GameObject GetWorldBlock(IsoVector m_Pos)
     {
-        IsoWorldIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_Pos);
+        IsoWorldBlockIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_Pos);
 
         if (m_BlockPosFound.m_FloorFound == false)
         {
@@ -329,7 +288,7 @@ public class IsoWorldManager : MonoBehaviour
 
         if (m_BlockPosFound.m_BlockIndex != -1)
         {
-            return m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_WorldFloor[m_BlockPosFound.m_BlockIndex];
+            return m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_BlocksFloor[m_BlockPosFound.m_BlockIndex];
         }
 
         return null;
@@ -366,22 +325,6 @@ public class IsoWorldManager : MonoBehaviour
                 m_This.m_WorldObject.Add(m_BlockClone);
                 break;
         }
-    }
-
-    //Get
-
-    private List<GameObject> GetWorldNoneBlock(IsoVector m_Pos, List<GameObject> m_World)
-    {
-        List<GameObject> m_Blocks = new List<GameObject>();
-
-        foreach (GameObject m_Block in m_World)
-        {
-            if (m_Block.GetComponent<IsoBlock>().Pos == m_Pos)
-            {
-                m_Blocks.Add(m_Block);
-            }
-        }
-        return m_Blocks;
     }
 
     #endregion
@@ -429,14 +372,15 @@ public class IsoWorldManager : MonoBehaviour
     #endregion
 }
 
-public struct IsoWorldIndex
+public struct IsoWorldBlockIndex
 {
     public bool m_FloorFound;
     public int m_FloorIndex;
+
     public bool m_BlockFound;
     public int m_BlockIndex;
     
-    public IsoWorldIndex(bool m_FloorFound = false, int m_FloorIndex = -1, bool m_BlockFound = false, int m_BlockIndex = -1)
+    public IsoWorldBlockIndex(bool m_FloorFound = false, int m_FloorIndex = -1, bool m_BlockFound = false, int m_BlockIndex = -1)
     {
         this.m_FloorFound = m_FloorFound;
         this.m_FloorIndex = m_FloorIndex;
@@ -446,15 +390,15 @@ public struct IsoWorldIndex
 }
 
 [System.Serializable]
-public struct IsoWorldFloor
+public struct IsoWorldBlockFloor
 {
-    public List<GameObject> m_WorldFloor;
-    public int m_Floor;
+    public List<GameObject> m_BlocksFloor;
+    public int m_WorldFloor;
 
-    public IsoWorldFloor(int m_Floor)
+    public IsoWorldBlockFloor(int m_Floor)
     {
-        this.m_WorldFloor = new List<GameObject>();
-        this.m_Floor = m_Floor;
+        this.m_BlocksFloor = new List<GameObject>();
+        this.m_WorldFloor = m_Floor;
     }
 }
 

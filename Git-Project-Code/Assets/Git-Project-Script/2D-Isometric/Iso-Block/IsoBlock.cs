@@ -234,7 +234,7 @@ public class IsoBlock : MonoBehaviour
     #endregion
 }
 
-public enum IsoType { Block, Player, Friend, Neutral, Enermy, Object }
+public enum IsoType { None, Block, Player, Friend, Neutral, Enermy, Object }
 
 public enum IsoDir { None, Up, Down, Left, Right, Top, Bot }
 
