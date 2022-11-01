@@ -14,6 +14,11 @@ public class IsoWorldManager : MonoBehaviour
     //[SerializeField]
     private List<IsoWorldBlockFloor> m_WorldBlock = new List<IsoWorldBlockFloor>() { new IsoWorldBlockFloor(0) };
 
+    public static List<IsoWorldBlockFloor> WorldBlock
+    {
+        get => m_This.m_WorldBlock;
+    }
+
     //[SerializeField]
     private List<GameObject> m_WorldPlayer = new List<GameObject>();
     //[SerializeField]
@@ -90,12 +95,16 @@ public class IsoWorldManager : MonoBehaviour
 
     }
 
-    public static void SetWorld(IsoVector m_Pos, GameObject m_Block)
+    #endregion
+
+    #region World Block(s) Manager
+
+    public static void SetWorldCreate(IsoVector m_Pos, GameObject m_Block)
     {
-        SetWorld(m_Pos, m_Block, m_Block.GetComponent<IsoBlock>().Type);
+        SetWorldCreate(m_Pos, m_Block, m_Block.GetComponent<IsoBlock>().Type);
     }
 
-    public static void SetWorld(IsoVector m_Pos, GameObject m_Block, IsoType m_Type)
+    public static void SetWorldCreate(IsoVector m_Pos, GameObject m_Block, IsoType m_Type)
     {
         switch (m_Type)
         {
@@ -112,75 +121,108 @@ public class IsoWorldManager : MonoBehaviour
         }
     }
 
-    public static void SetWorldDestroy(GameObject m_BlockCheck)
+    public static void SetWorldRemove(IsoVector m_Pos, IsoType m_Type)
     {
-        IsoBlock m_IsoBlock = m_BlockCheck.GetComponent<IsoBlock>();
-
-        switch (m_IsoBlock.Type)
+        switch (m_Type)
         {
             case IsoType.Block:
                 {
-                    IsoWorldBlockIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_IsoBlock.Pos);
+                    IsoWorldBlockIndex m_BlockPosFound = GetWorldBlockIndex(m_Pos);
 
                     if (m_BlockPosFound.m_FloorFound == true && m_BlockPosFound.m_BlockFound == true)
                     {
-                        Destroy(m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_BlocksFloor[m_BlockPosFound.m_BlockIndex]);
+                        Destroy(GetWorldBlock(m_BlockPosFound.m_FloorIndex, m_BlockPosFound.m_BlockIndex));
                         m_This.m_WorldBlock[m_BlockPosFound.m_FloorIndex].m_BlocksFloor.RemoveAt(m_BlockPosFound.m_BlockIndex);
                     }
                 }
                 break;
             case IsoType.Player:
-                m_This.m_WorldPlayer.Remove(m_BlockCheck);
-                Destroy(m_BlockCheck);
+                {
+                    List<GameObject> m_BlocksFound = GetWorldCurrent(m_Pos, IsoType.Player);
+
+                    foreach(GameObject m_BlockFound in m_BlocksFound)
+                    {
+                        m_This.m_WorldPlayer.Remove(m_BlockFound);
+                        Destroy(m_BlockFound);
+                    }
+                }
                 break;
             case IsoType.Friend:
-                m_This.m_WorldFriend.Remove(m_BlockCheck);
-                Destroy(m_BlockCheck);
+                {
+                    List<GameObject> m_BlocksFound = GetWorldCurrent(m_Pos, IsoType.Friend);
+
+                    foreach (GameObject m_BlockFound in m_BlocksFound)
+                    {
+                        m_This.m_WorldPlayer.Remove(m_BlockFound);
+                        Destroy(m_BlockFound);
+                    }
+                }
                 break;
             case IsoType.Neutral:
-                m_This.m_WorldNeutral.Remove(m_BlockCheck);
-                Destroy(m_BlockCheck);
+                {
+                    List<GameObject> m_BlocksFound = GetWorldCurrent(m_Pos, IsoType.Neutral);
+
+                    foreach (GameObject m_BlockFound in m_BlocksFound)
+                    {
+                        m_This.m_WorldPlayer.Remove(m_BlockFound);
+                        Destroy(m_BlockFound);
+                    }
+                }
                 break;
             case IsoType.Enermy:
-                m_This.m_WorldEnermy.Remove(m_BlockCheck);
-                Destroy(m_BlockCheck);
+                {
+                    List<GameObject> m_BlocksFound = GetWorldCurrent(m_Pos, IsoType.Enermy);
+
+                    foreach (GameObject m_BlockFound in m_BlocksFound)
+                    {
+                        m_This.m_WorldPlayer.Remove(m_BlockFound);
+                        Destroy(m_BlockFound);
+                    }
+                }
                 break;
             case IsoType.Object:
-                m_This.m_WorldObject.Remove(m_BlockCheck);
-                Destroy(m_BlockCheck);
+                {
+                    List<GameObject> m_BlocksFound = GetWorldCurrent(m_Pos, IsoType.Object);
+
+                    foreach (GameObject m_BlockFound in m_BlocksFound)
+                    {
+                        m_This.m_WorldPlayer.Remove(m_BlockFound);
+                        Destroy(m_BlockFound);
+                    }
+                }
                 break;
         }
     }
 
-    public static List<GameObject> GetWorld(IsoVector m_Pos, IsoType m_Type)
+    public static List<GameObject> GetWorldCurrent(IsoVector m_Pos, IsoType m_Type)
     {
         switch (m_Type)
         {
             case IsoType.Block:
-                return new List<GameObject>() { m_This.GetWorldBlock(m_Pos) };
+                return new List<GameObject>() { GetWorldBlock(m_Pos) };
             case IsoType.Player:
-                return m_This.GetWorldBlock(m_Pos, m_This.m_WorldPlayer);
+                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldPlayer);
             case IsoType.Friend:
-                return m_This.GetWorldBlock(m_Pos, m_This.m_WorldFriend);
+                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldFriend);
             case IsoType.Neutral:
-                return m_This.GetWorldBlock(m_Pos, m_This.m_WorldNeutral);
+                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldNeutral);
             case IsoType.Enermy:
-                return m_This.GetWorldBlock(m_Pos, m_This.m_WorldEnermy);
+                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldEnermy);
             case IsoType.Object:
-                return m_This.GetWorldBlock(m_Pos, m_This.m_WorldObject);
+                return m_This.GetWorldNoneBlock(m_Pos, m_This.m_WorldObject);
         }
         return null;
     }
 
     #endregion
 
-    #region World Type Block Manager
+    #region World Type Block(s) Manager
 
     //Set
 
     private void SetWorldBlock(IsoVector m_Pos, GameObject m_Block)
     {
-        IsoWorldBlockIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_Pos);
+        IsoWorldBlockIndex m_BlockPosFound = GetWorldBlockIndex(m_Pos);
 
         if (m_BlockPosFound.m_FloorFound == false)
         {
@@ -189,7 +231,7 @@ public class IsoWorldManager : MonoBehaviour
 
         if (m_BlockPosFound.m_BlockFound == true)
         {
-            Destroy(m_This.GetWorldBlock(m_BlockPosFound.m_FloorIndex, m_BlockPosFound.m_BlockIndex));
+            Destroy(GetWorldBlock(m_BlockPosFound.m_FloorIndex, m_BlockPosFound.m_BlockIndex));
         }
 
         GameObject m_BlockClone = GitGameObject.SetGameObjectCreate(m_Block, m_This.transform);
@@ -209,16 +251,16 @@ public class IsoWorldManager : MonoBehaviour
 
     //Find & Range
 
-    private IsoWorldBlockIndex GetWorldBlockIndex(IsoVector m_Pos)
+    public static IsoWorldBlockIndex GetWorldBlockIndex(IsoVector m_Pos)
     {
-        int m_FloorFoundIndex = GetWorldBlockFloorIndex(m_Pos);
+        int m_FloorFoundIndex = m_This.GetWorldBlockFloorIndex(m_Pos);
 
         if (m_FloorFoundIndex == -1)
         {
             return new IsoWorldBlockIndex();
         }
 
-        for (int i = 0; i < m_WorldBlock[m_FloorFoundIndex].m_BlocksFloor.Count; i++)
+        for (int i = 0; i < m_This.m_WorldBlock[m_FloorFoundIndex].m_BlocksFloor.Count; i++)
         {
             if (GetWorldBlock(m_FloorFoundIndex, i).GetComponent<IsoBlock>().Pos == m_Pos)
             {
@@ -227,11 +269,6 @@ public class IsoWorldManager : MonoBehaviour
         }
 
         return new IsoWorldBlockIndex(true, m_FloorFoundIndex, false);
-    }
-
-    private GameObject GetWorldBlock(int m_FloorIndex, int m_BlockIndex)
-    {
-        return m_WorldBlock[m_FloorIndex].m_BlocksFloor[m_BlockIndex];
     }
 
     private int GetWorldBlockFloorIndex(IsoVector m_Pos)
@@ -294,21 +331,28 @@ public class IsoWorldManager : MonoBehaviour
         return m_FloorIndex;
     }
 
-    private GameObject GetWorldBlock(IsoVector m_Pos)
+    //Get
+
+    public static GameObject GetWorldBlock(IsoVector m_Pos)
     {
-        IsoWorldBlockIndex m_BlockPosFound = m_This.GetWorldBlockIndex(m_Pos);
+        IsoWorldBlockIndex m_BlockPosFound = GetWorldBlockIndex(m_Pos);
 
         if (m_BlockPosFound.m_FloorFound == true && m_BlockPosFound.m_BlockFound == true)
         {
-            return m_This.GetWorldBlock(m_BlockPosFound.m_FloorIndex, m_BlockPosFound.m_BlockIndex);
+            return GetWorldBlock(m_BlockPosFound.m_FloorIndex, m_BlockPosFound.m_BlockIndex);
         }
 
         return null;
     }
 
+    public static GameObject GetWorldBlock(int m_FloorIndex, int m_BlockIndex)
+    {
+        return m_This.m_WorldBlock[m_FloorIndex].m_BlocksFloor[m_BlockIndex];
+    }
+
     #endregion
 
-    #region World Type None Block Manager
+    #region World Type None-Block(s) Manager
 
     //Set
 
@@ -321,6 +365,9 @@ public class IsoWorldManager : MonoBehaviour
 
         switch (m_IsoType)
         {
+            case IsoType.Block:
+                //...
+                break;
             case IsoType.Player:
                 m_This.m_WorldPlayer.Add(m_BlockClone);
                 break;
@@ -341,7 +388,7 @@ public class IsoWorldManager : MonoBehaviour
 
     //Get
 
-    private List<GameObject> GetWorldBlock(IsoVector m_Pos, List<GameObject> m_World)
+    private List<GameObject> GetWorldNoneBlock(IsoVector m_Pos, List<GameObject> m_World)
     {
         List<GameObject> m_WorldFound = new List<GameObject>();
 
@@ -360,9 +407,9 @@ public class IsoWorldManager : MonoBehaviour
 
     #endregion
 
-    #region Block(s) Manager
+    #region Renderer Block(s) Manager
 
-    public static void SetBlocksUpdate(List<GameObject> m_Blocks)
+    public static void SetBlock(List<GameObject> m_Blocks)
     {
         if (m_This.m_BlocksUpdated)
         {
@@ -378,7 +425,7 @@ public class IsoWorldManager : MonoBehaviour
         m_This.act_BlocksUpdated?.Invoke();
     }
 
-    public static bool GetBlocksUpdated()
+    public static bool GetBlock()
     {
         return m_This.m_BlocksUpdated;
     }
