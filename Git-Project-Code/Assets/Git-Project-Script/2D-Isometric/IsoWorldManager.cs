@@ -267,6 +267,11 @@ public class IsoWorldManager : MonoBehaviour
         }
     }
 
+    public static bool GetWorldGenerated()
+    {
+        return m_This.m_WorldGenerated && !m_This.m_WorldGenerating && !m_This.m_WorldDestroying;
+    }
+
     #endregion
 
     #region World Block(s) Manager
