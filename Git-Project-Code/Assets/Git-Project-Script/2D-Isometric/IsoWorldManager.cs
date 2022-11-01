@@ -99,13 +99,25 @@ public class IsoWorldManager : MonoBehaviour
 
     #region World Block(s) Manager
 
+    //Create
+
     public static void SetWorldCreate(IsoVector m_Pos, GameObject m_Block)
     {
-        SetWorldCreate(m_Pos, m_Block, m_Block.GetComponent<IsoBlock>().Type);
+        if (!GetBlockCheck(m_Block))
+        {
+            return;
+        }
+
+        m_This.SetWorldCreate(m_Pos, m_Block, m_Block.GetComponent<IsoBlock>().Type);
     }
 
-    public static void SetWorldCreate(IsoVector m_Pos, GameObject m_Block, IsoType m_Type)
+    private void SetWorldCreate(IsoVector m_Pos, GameObject m_Block, IsoType m_Type)
     {
+        if (!GetBlockCheck(m_Block))
+        {
+            return;
+        }
+
         switch (m_Type)
         {
             case IsoType.Block:
@@ -120,6 +132,8 @@ public class IsoWorldManager : MonoBehaviour
                 break;
         }
     }
+
+    //Remove
 
     public static void SetWorldRemove(IsoVector m_Pos, IsoType m_Type)
     {
@@ -194,6 +208,8 @@ public class IsoWorldManager : MonoBehaviour
         }
     }
 
+    //Get
+
     public static List<GameObject> GetWorldCurrent(IsoVector m_Pos, IsoType m_Type)
     {
         switch (m_Type)
@@ -216,7 +232,7 @@ public class IsoWorldManager : MonoBehaviour
 
     #endregion
 
-    #region World Type Block(s) Manager
+    #region World Type Block(s) Progess
 
     //Set
 
@@ -352,7 +368,7 @@ public class IsoWorldManager : MonoBehaviour
 
     #endregion
 
-    #region World Type None-Block(s) Manager
+    #region World Type None-Block(s) Progess
 
     //Set
 
@@ -443,6 +459,21 @@ public class IsoWorldManager : MonoBehaviour
         Debug.LogWarningFormat("{0}: Not found block {1}!", m_This.name, m_BlockName);
 
         return null;
+    }
+
+    public static bool GetBlockCheck(GameObject m_Block)
+    {
+        if (m_Block == null)
+        {
+            return false;
+        }
+
+        if (m_Block.GetComponent<IsoBlock>() == null)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     #endregion
