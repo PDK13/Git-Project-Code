@@ -71,3 +71,23 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Git-Project-Code/Library/APIUpdater/project-dependencies.graph
+Git-Project-Code/Library/ArtifactDB
+Git-Project-Code/Library/ArtifactDB-lock
+Git-Project-Code/Library/CurrentLayout-default.dwlt
+Git-Project-Code/Library/EditorOnlyScriptingSettings.json
+Git-Project-Code/Library/LastSceneManagerSetup.txt
+Git-Project-Code/Library/SceneVisibilityState.asset
+Git-Project-Code/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll
+Git-Project-Code/Library/ScriptAssemblies/Unity.Rider.Editor.dll
+Git-Project-Code/Library/ScriptAssemblies/Unity.TextMeshPro.dll
+Git-Project-Code/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
+Git-Project-Code/Library/ScriptAssemblies/Unity.VSCode.Editor.dll
+Git-Project-Code/Library/ScriptAssemblies/UnityEditor.TestRunner.dll
+Git-Project-Code/Library/ScriptAssemblies/UnityEditor.UI.dll
+Git-Project-Code/Library/ScriptAssemblies/UnityEngine.TestRunner.dll
+Git-Project-Code/Library/ScriptAssemblies/UnityEngine.UI.dll
+Git-Project-Code/Library/ShaderCache.db
+Git-Project-Code/Library/SourceAssetDB
+Git-Project-Code/Library/SourceAssetDB-lock
+Git-Project-Code/UserSettings/EditorUserSettings.asset
