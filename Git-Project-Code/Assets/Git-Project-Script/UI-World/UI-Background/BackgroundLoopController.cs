@@ -17,7 +17,7 @@ public class BackgroundLoopController : MonoBehaviour
 
     private float m_BackgroundBoundX;
 
-    private float m_BackgroundLocamX;
+    private float m_BackgroundLocalX;
 
     [Header("Background Layer")]
 
@@ -34,7 +34,9 @@ public class BackgroundLoopController : MonoBehaviour
         {
             case BackgroundLoopType.Horizontal:
                 m_BackgroundBoundX = m_BackgroundMain.GetComponent<SpriteRenderer>().bounds.size.x;
-                m_BackgroundLocamX = m_BackgroundMain.transform.localScale.x;
+                //m_BackgroundBoundX = GitSprite.GetSizeUnit(m_BackgroundMain.GetComponent<SpriteRenderer>().sprite).x;
+                //m_BackgroundBoundX = GitCamera.GetSizeUnit(m_Camera.GetComponent<Camera>()).x;
+                m_BackgroundLocalX = m_BackgroundMain.transform.localScale.x;
 
                 m_CameraX = m_Camera.position.x;
 
@@ -45,7 +47,7 @@ public class BackgroundLoopController : MonoBehaviour
                 break;
             case BackgroundLoopType.Vertical:
                 m_BackgroundBoundX = m_BackgroundMain.GetComponent<SpriteRenderer>().bounds.size.y;
-                m_BackgroundLocamX = m_BackgroundMain.transform.localScale.y;
+                m_BackgroundLocalX = m_BackgroundMain.transform.localScale.y;
 
                 m_CameraX = m_Camera.position.y;
 
@@ -70,14 +72,14 @@ public class BackgroundLoopController : MonoBehaviour
 
                     m_BackgroundLayer[i].GetTransform().transform.position = new Vector2(m_BackgroundLayer[i].GetLayerPosStartX() + m_Distance + m_CameraX, GetCameraY(m_BackgroundLayer[i]));
 
-                    if (m_Temp > m_BackgroundLayer[i].GetLayerPosStartX() + m_BackgroundBoundX * m_BackgroundLocamX)
+                    if (m_Temp > m_BackgroundLayer[i].GetLayerPosStartX() + m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].SetLayerPosStartXChance(m_BackgroundBoundX * m_BackgroundLocamX);
+                        m_BackgroundLayer[i].SetLayerPosStartXChance(m_BackgroundBoundX * m_BackgroundLocalX);
                     }
                     else
-                    if (m_Temp < m_BackgroundLayer[i].GetLayerPosStartX() - m_BackgroundBoundX * m_BackgroundLocamX)
+                    if (m_Temp < m_BackgroundLayer[i].GetLayerPosStartX() - m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].SetLayerPosStartXChance(-m_BackgroundBoundX * m_BackgroundLocamX);
+                        m_BackgroundLayer[i].SetLayerPosStartXChance(-m_BackgroundBoundX * m_BackgroundLocalX);
                     }
                 }
                 break;
@@ -90,14 +92,14 @@ public class BackgroundLoopController : MonoBehaviour
 
                     m_BackgroundLayer[i].GetTransform().transform.position = new Vector2(GetCameraY(m_BackgroundLayer[i]), m_BackgroundLayer[i].GetLayerPosStartX() + m_Distance + m_CameraX);
 
-                    if (m_Temp > m_BackgroundLayer[i].GetLayerPosStartX() + m_BackgroundBoundX * m_BackgroundLocamX)
+                    if (m_Temp > m_BackgroundLayer[i].GetLayerPosStartX() + m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].SetLayerPosStartXChance(m_BackgroundBoundX * m_BackgroundLocamX);
+                        m_BackgroundLayer[i].SetLayerPosStartXChance(m_BackgroundBoundX * m_BackgroundLocalX);
                     }
                     else
-                    if (m_Temp < m_BackgroundLayer[i].GetLayerPosStartX() - m_BackgroundBoundX * m_BackgroundLocamX)
+                    if (m_Temp < m_BackgroundLayer[i].GetLayerPosStartX() - m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].SetLayerPosStartXChance(-m_BackgroundBoundX * m_BackgroundLocamX);
+                        m_BackgroundLayer[i].SetLayerPosStartXChance(-m_BackgroundBoundX * m_BackgroundLocalX);
                     }
                 }
                 break;
