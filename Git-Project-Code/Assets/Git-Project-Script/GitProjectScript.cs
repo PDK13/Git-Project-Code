@@ -635,6 +635,70 @@ public class GitScene
     }
 }
 
+//=================================================== Screen
+
+public class GitScreen
+{
+    //CAMERA mode ORTHOGRAPHIC - SIZE is a HALF number of UNIT WORLD HEIGHT from Scene to Screen.
+    //EX: If Camera orthographic Size is 1, mean need 2 Square 1x1 Unit world to fill full HEIGHT of screen.
+
+    //Get
+
+    public static Vector2 GetSizePixel()
+    {
+        return new Vector2(Screen.width, Screen.height);
+    }
+}
+
+//=================================================== Camera
+
+public class GitCamera
+{
+    //CAMERA mode ORTHOGRAPHIC - SIZE is a HALF number of UNIT WORLD HEIGHT from Scene to Screen.
+    //EX: If Camera orthographic Size is 1, mean need 2 Square 1x1 Unit world to fill full HEIGHT of screen.
+
+    //Get
+
+    public static Vector2 GetSizePixel(Camera m_Camera)
+    {
+        return new Vector2(m_Camera.pixelWidth, m_Camera.pixelHeight);
+    }
+
+    public static Vector2 GetSizeUnit(Camera m_Camera)
+    {
+        Vector2 m_SizePixel = GetSizePixel(m_Camera);
+        float m_HeightUnit = m_Camera.orthographicSize * 2;
+        float m_WidthUnit = m_HeightUnit * (m_SizePixel.x / m_SizePixel.y);
+
+        return new Vector2(m_WidthUnit, m_HeightUnit);
+    }
+}
+
+//=================================================== Sprite
+
+public class GitSprite
+{
+    //CAMERA mode ORTHOGRAPHIC - SIZE is a HALF number of UNIT WORLD HEIGHT from Scene to Screen.
+    //EX: If Camera orthographic Size is 1, mean need 2 Square 1x1 Unit world to fill full HEIGHT of screen.
+
+    //Get
+
+    public static Vector2 GetSizePixel(Sprite m_Sprite)
+    {
+        return GetSizeUnit(m_Sprite) * GetPixelPerUnit(m_Sprite) * 1.0f;
+    }
+
+    public static Vector2 GetSizeUnit(Sprite m_Sprite)
+    {
+        return m_Sprite.bounds.size * 1.0f;
+    }
+
+    public static float GetPixelPerUnit(Sprite m_Sprite)
+    {
+        return m_Sprite.pixelsPerUnit * 1.0f;
+    }
+}
+
 //=================================================== GameObject
 
 public class GitGameObject
@@ -1166,17 +1230,31 @@ public class GitFileIO
 
 public enum GitPathType
 {
-    None = 0,
+    None = 0, Persistent = 1, Resources = 2, Document = 3, Picture = 4, Music = 5, Video = 6
+}
 
-    //Project & Application
-    Persistent = 1,
-    Resources = 2,
+//=================================================== Color
 
-    //PC
-    Document = 3,
-    Picture = 4,
-    Music = 5,
-    Video = 6
+public class GitColor
+{
+    private static string GetColorHex(Color m_ColorRGBA)
+    {
+        return ColorUtility.ToHtmlStringRGB(m_ColorRGBA);
+    }
+
+    public static string GetColorHexCode(Color m_ColorRGBA)
+    {
+        string m_ColorHex = GetColorHex(m_ColorRGBA);
+        string m_ColorHexCode = string.Format("#{0}", m_ColorHex);
+        return m_ColorHexCode;
+    }
+
+    public static string GetColorHexFormat(Color m_ColorRGBA, string m_Text)
+    {
+        string m_ColorHex = GetColorHex(m_ColorRGBA);
+        string m_TextFormat = string.Format("<#{0}>{1}</color>", m_ColorHex, m_Text);
+        return m_TextFormat;
+    }
 }
 
 //=================================================== Encypt
@@ -1499,30 +1577,6 @@ public class GitKeyboard
         }
 
         return m_KeyKey.ToString();
-    }
-}
-
-//=================================================== Color
-
-public class GitColor
-{
-    private static string GetColorHex(Color m_ColorRGBA)
-    {
-        return ColorUtility.ToHtmlStringRGB(m_ColorRGBA);
-    }
-
-    public static string GetColorHexCode(Color m_ColorRGBA)
-    {
-        string m_ColorHex = GetColorHex(m_ColorRGBA);
-        string m_ColorHexCode = string.Format("#{0}", m_ColorHex);
-        return m_ColorHexCode;
-    }
-
-    public static string GetColorHexFormat(Color m_ColorRGBA, string m_Text)
-    {
-        string m_ColorHex = GetColorHex(m_ColorRGBA);
-        string m_TextFormat = string.Format("<#{0}>{1}</color>", m_ColorHex, m_Text);
-        return m_TextFormat;
     }
 }
 

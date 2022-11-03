@@ -17,7 +17,8 @@ public class Sample_BackgroundChance : MonoBehaviour
     {
         for (int i = 0; i < LayerObject.Length; i++)
         {
-            LayerObject[i] = GameObject.Find("Layer_" + i);
+            //LayerObject[i] = GameObject.Find("Layer_" + i);
+            LayerObject[i] = GameObject.Find("Background").transform.GetChild(i).gameObject;
         }
 
         ChangeSprite();
@@ -46,8 +47,8 @@ public class Sample_BackgroundChance : MonoBehaviour
             //Change Layer1->7
             LayerObject[i].GetComponent<SpriteRenderer>().sprite = changeSprite;
             //Change "Layer(*)x" sprites in children of Layer1->7
-            LayerObject[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = changeSprite;
-            LayerObject[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = changeSprite;
+            //LayerObject[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = changeSprite;
+            //LayerObject[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = changeSprite;
         }
     }
 

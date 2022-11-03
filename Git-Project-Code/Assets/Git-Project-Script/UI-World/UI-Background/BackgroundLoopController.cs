@@ -193,8 +193,4 @@ public class BackgroundLoopLayer
     #endregion
 }
 
-public enum BackgroundLoopType
-{
-    Vertical,
-    Horizontal
-}
+public enum BackgroundLoopType { Horizontal, Vertical }
