@@ -13,11 +13,13 @@ public class BackgroundLoopController : MonoBehaviour
 
     [Header("Background")]
 
-    [SerializeField] private SpriteRenderer m_BackgroundMain;
+    [SerializeField] private BackgroundLoopMain m_BackgroundMain;
 
     private float m_BackgroundBoundX;
 
     private float m_BackgroundLocalX;
+
+    private Vector2 m_SizeUnitBackground;
 
     [Header("Background Layer")]
 
@@ -30,76 +32,92 @@ public class BackgroundLoopController : MonoBehaviour
             m_Camera = Camera.main.transform;
         }
 
+        m_SizeUnitBackground = GitResolution.GetSpriteSizeUnit(m_BackgroundMain.Background.sprite);
+
         switch (m_CameraLoop)
         {
             case BackgroundLoopType.Horizontal:
-                m_BackgroundBoundX = m_BackgroundMain.GetComponent<SpriteRenderer>().bounds.size.x;
-                //m_BackgroundBoundX = GitSprite.GetSizeUnit(m_BackgroundMain.GetComponent<SpriteRenderer>().sprite).x;
-                //m_BackgroundBoundX = GitCamera.GetSizeUnit(m_Camera.GetComponent<Camera>()).x;
-                m_BackgroundLocalX = m_BackgroundMain.transform.localScale.x;
-
+                m_BackgroundBoundX = m_SizeUnitBackground.x;
+                m_BackgroundLocalX = m_BackgroundMain.Background.transform.localScale.x;
                 m_CameraX = m_Camera.position.x;
-
                 for (int i = 0; i < m_BackgroundLayer.Count; i++)
                 {
-                    m_BackgroundLayer[i].SetLayerPosStartX(GetCameraX());
+                    m_BackgroundLayer[i].PosPrimaryX = GetCameraX();
                 }
                 break;
             case BackgroundLoopType.Vertical:
-                m_BackgroundBoundX = m_BackgroundMain.GetComponent<SpriteRenderer>().bounds.size.y;
-                m_BackgroundLocalX = m_BackgroundMain.transform.localScale.y;
-
+                m_BackgroundBoundX = m_SizeUnitBackground.y;
+                m_BackgroundLocalX = m_BackgroundMain.Background.transform.localScale.y;
                 m_CameraX = m_Camera.position.y;
-
                 for (int i = 0; i < m_BackgroundLayer.Count; i++)
                 {
-                    m_BackgroundLayer[i].SetLayerPosStartX(GetCameraX());
+                    m_BackgroundLayer[i].PosPrimaryX = GetCameraX();
                 }
                 break;
         }
+
+        if (m_BackgroundMain.FixedCamera)
+        {
+            m_BackgroundMain.Background.drawMode = SpriteDrawMode.Sliced;
+
+            m_BackgroundMain.Background.size = GitResolution.GetSizeUnitScaled(
+                m_SizeUnitBackground,
+                GitResolution.GetCameraSizeUnit(),
+                GitSizeUnitScaleType.Span);
+        }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+        if (m_BackgroundMain.FixedCamera)
+        {
+            m_BackgroundMain.Background.size = GitResolution.GetSizeUnitScaled(
+                m_SizeUnitBackground,
+                GitResolution.GetCameraSizeUnit(),
+                GitSizeUnitScaleType.Span);
+        }
+
         switch (m_CameraLoop)
         {
             case BackgroundLoopType.Horizontal:
+                //Moving X
                 for (int i = 0; i < m_BackgroundLayer.Count; i++)
                 {
-                    float m_Temp = GetCameraX() * (1 - m_BackgroundLayer[i].GetLayerSpeedX());
+                    float m_Temp = GetCameraX() * (1 - m_BackgroundLayer[i].LayerSpeedX);
 
-                    float m_Distance = GetCameraX() * m_BackgroundLayer[i].GetLayerSpeedX();
+                    float m_Distance = GetCameraX() * m_BackgroundLayer[i].LayerSpeedX;
 
-                    m_BackgroundLayer[i].GetTransform().transform.position = new Vector2(m_BackgroundLayer[i].GetLayerPosStartX() + m_Distance + m_CameraX, GetCameraY(m_BackgroundLayer[i]));
+                    m_BackgroundLayer[i].Transform.transform.position = new Vector2(m_BackgroundLayer[i].PosPrimaryX + m_Distance + m_CameraX, GetCameraY(m_BackgroundLayer[i]));
 
-                    if (m_Temp > m_BackgroundLayer[i].GetLayerPosStartX() + m_BackgroundBoundX * m_BackgroundLocalX)
+                    if (m_Temp > m_BackgroundLayer[i].PosPrimaryX + m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].SetLayerPosStartXChance(m_BackgroundBoundX * m_BackgroundLocalX);
+                        m_BackgroundLayer[i].PosPrimaryX = m_BackgroundBoundX * m_BackgroundLocalX;
                     }
                     else
-                    if (m_Temp < m_BackgroundLayer[i].GetLayerPosStartX() - m_BackgroundBoundX * m_BackgroundLocalX)
+                    if (m_Temp < m_BackgroundLayer[i].PosPrimaryX - m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].SetLayerPosStartXChance(-m_BackgroundBoundX * m_BackgroundLocalX);
+                        m_BackgroundLayer[i].PosPrimaryX = -m_BackgroundBoundX * m_BackgroundLocalX;
                     }
                 }
                 break;
             case BackgroundLoopType.Vertical:
+                //Moving Y
                 for (int i = 0; i < m_BackgroundLayer.Count; i++)
                 {
-                    float m_Temp = GetCameraX() * (1 - m_BackgroundLayer[i].GetLayerSpeedX());
+                    float m_Temp = GetCameraX() * (1 - m_BackgroundLayer[i].LayerSpeedX);
 
-                    float m_Distance = GetCameraX() * m_BackgroundLayer[i].GetLayerSpeedX();
+                    float m_Distance = GetCameraX() * m_BackgroundLayer[i].LayerSpeedX;
 
-                    m_BackgroundLayer[i].GetTransform().transform.position = new Vector2(GetCameraY(m_BackgroundLayer[i]), m_BackgroundLayer[i].GetLayerPosStartX() + m_Distance + m_CameraX);
+                    m_BackgroundLayer[i].Transform.transform.position = new Vector2(GetCameraY(m_BackgroundLayer[i]), m_BackgroundLayer[i].PosPrimaryX + m_Distance + m_CameraX);
 
-                    if (m_Temp > m_BackgroundLayer[i].GetLayerPosStartX() + m_BackgroundBoundX * m_BackgroundLocalX)
+                    if (m_Temp > m_BackgroundLayer[i].PosPrimaryX + m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].SetLayerPosStartXChance(m_BackgroundBoundX * m_BackgroundLocalX);
+                        m_BackgroundLayer[i].PosPrimaryX = m_BackgroundBoundX * m_BackgroundLocalX;
                     }
                     else
-                    if (m_Temp < m_BackgroundLayer[i].GetLayerPosStartX() - m_BackgroundBoundX * m_BackgroundLocalX)
+                    if (m_Temp < m_BackgroundLayer[i].PosPrimaryX - m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].SetLayerPosStartXChance(-m_BackgroundBoundX * m_BackgroundLocalX);
+                        m_BackgroundLayer[i].PosPrimaryX = - m_BackgroundBoundX * m_BackgroundLocalX;
                     }
                 }
                 break;
@@ -124,12 +142,10 @@ public class BackgroundLoopController : MonoBehaviour
         switch (m_CameraLoop)
         {
             case BackgroundLoopType.Horizontal:
-                return (m_Layer.GetLayerFollowY()) ? m_Camera.position.y : m_Layer.GetTransform().transform.position.y;
+                return (m_Layer.FollowY) ? m_Camera.position.y : m_Layer.Transform.transform.position.y;
             case BackgroundLoopType.Vertical:
-                return (m_Layer.GetLayerFollowY()) ? m_Camera.position.x : m_Layer.GetTransform().transform.position.x;
-
+                return (m_Layer.FollowY) ? m_Camera.position.x : m_Layer.Transform.transform.position.x;
         }
-
         return 0;
     }
 }
@@ -137,62 +153,68 @@ public class BackgroundLoopController : MonoBehaviour
 [System.Serializable]
 public class BackgroundLoopLayer
 {
-    [SerializeField] private GameObject m_Layer;
+    [SerializeField] private SpriteRenderer m_Layer;
 
-    [SerializeField] [Range(0, 1)] private float m_LayerSpeedX;
+    [SerializeField] [Range(0, 1)] private float m_SpeedX = 0.5f;
 
-    private float m_LayerPosStartX;
+    private float m_PosPrimaryX;
 
-    [SerializeField] private bool m_BackgroundLayerFollowY = true;
+    [SerializeField] private bool m_FollowY = true;
 
-    public Transform GetTransform()
+    public SpriteRenderer Layer
     {
-        return m_Layer.transform;
+        get => m_Layer;
     }
 
-    public SpriteRenderer GetSpriteRenderer()
+    public Transform Transform
     {
-        return m_Layer.GetComponent<SpriteRenderer>();
+        get => m_Layer.transform;
     }
 
-    #region Loop X
-
-    public void SetLayerSpeedX(float m_BackgroundLayerSpeedX)
+    public float LayerSpeedX
     {
-        m_LayerSpeedX = m_BackgroundLayerSpeedX;
+        get => m_SpeedX;
+        set
+        {
+            m_SpeedX = value;
+        }
     }
 
-    public float GetLayerSpeedX()
+    public float PosPrimaryX
     {
-        return m_LayerSpeedX;
+        get => m_PosPrimaryX;
+        set
+        {
+            m_PosPrimaryX = value;
+        }
     }
 
-    public void SetLayerPosStartX(float m_BackgroundLayerPosStartX)
+    public bool FollowY
     {
-        m_LayerPosStartX = m_BackgroundLayerPosStartX;
+        get => m_FollowY;
+        set
+        {
+            m_FollowY = value;
+        }
     }
-
-    public void SetLayerPosStartXChance(float m_BackgroundLayerPosStartXChance)
-    {
-        m_LayerPosStartX += m_BackgroundLayerPosStartXChance;
-    }
-
-    public float GetLayerPosStartX()
-    {
-        return m_LayerPosStartX;
-    }
-
-    public void SetLayerFollowY(bool m_BackgroundLayerFollowY)
-    {
-        this.m_BackgroundLayerFollowY = m_BackgroundLayerFollowY;
-    }
-
-    public bool GetLayerFollowY()
-    {
-        return m_BackgroundLayerFollowY;
-    }
-
-    #endregion
 }
 
 public enum BackgroundLoopType { Horizontal, Vertical }
+
+[System.Serializable]
+public class BackgroundLoopMain
+{
+    [SerializeField] private SpriteRenderer m_Background;
+
+    [SerializeField] private bool m_FixedCamera = true;
+
+    public SpriteRenderer Background
+    {
+        get => m_Background;
+    }
+
+    public bool FixedCamera
+    {
+        get => m_FixedCamera;
+    }
+}

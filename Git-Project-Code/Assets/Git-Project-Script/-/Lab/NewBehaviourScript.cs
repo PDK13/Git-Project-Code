@@ -4,29 +4,19 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public Sprite m_Sprite;
+    [SerializeField] GitSizeUnitScaleType m_SpriteScale;
 
-    public SpriteRenderer m_SpriteRenderer;
+    private SpriteRenderer m_SpriteRendererPrimary;
 
-    public Camera m_Camera;
-
-    public Canvas m_Canvas;
+    [SerializeField] SpriteRenderer m_SpriteRendererTarket;
 
     private void Start()
     {
-        //Debug.LogFormat("[Debug] Sprite: {0} || {1}", GitSprite.GetSizePixel(m_Sprite), GitSprite.GetSizeUnit(m_Sprite));
-
-        //Othor:
-        //SIZE = 2 UNIT WORLD in HEIGHT (1 Square 1x1 Unit WORLD take 2 Unit Height on screen to fill full)
-
-        //1 x 1080 / 1920 = 0.5625
-        //0.5625 x 2 = 1.125
+        m_SpriteRendererPrimary = GetComponent<SpriteRenderer>();
     }
 
     private void LateUpdate()
     {
-        //Debug.LogFormat("[Debug] Screen: {0} || Camera: {1} | {2}", GitScreen.GetSizePixel(), GitCamera.GetSizePixel(m_Camera), GitCamera.GetSizeUnit(m_Camera));
-
-        //GitSprite.SetFixedCamera(m_SpriteRenderer, m_Camera, new Vector2(1, 1));
+        m_SpriteRendererPrimary.size = GitResolution.GetSizeUnitScaled( m_SpriteRendererPrimary.sprite, m_SpriteRendererTarket.sprite, m_SpriteScale);
     }
 }
