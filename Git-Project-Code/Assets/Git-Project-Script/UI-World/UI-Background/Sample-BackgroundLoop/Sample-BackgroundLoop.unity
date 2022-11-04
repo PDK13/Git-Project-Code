@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 1462807008}
   - component: {fileID: 1462807007}
   - component: {fileID: 1462807006}
+  - component: {fileID: 1462807010}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -325,6 +326,8 @@ MonoBehaviour:
   m_KeyMoveD: 115
   m_KeyMoveL: 97
   m_KeyMoveR: 100
+  m_KeyZoomIn: 280
+  m_KeyZoomOut: 281
   m_MoveSpeed: 0.01
   m_MoveSpeedMax: 1
 --- !u!114 &1462807007
@@ -413,6 +416,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1462807010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462807005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 635b43c2b9081ce40b60cd863ce11ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpriteScale: 2
+  m_Primarys:
+  - {fileID: 1510829100}
+  m_Tarket: {fileID: 2073728965}
 --- !u!1 &1510829099
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +442,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1510829101}
   - component: {fileID: 1510829100}
-  - component: {fileID: 1510829102}
   m_Layer: 0
   m_Name: Layer_Sky
   m_TagString: Untagged
@@ -497,21 +515,6 @@ Transform:
   m_Father: {fileID: 1462807009}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1510829102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1510829099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 635b43c2b9081ce40b60cd863ce11ed6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SpriteScale: 2
-  m_Primary: {fileID: 1510829100}
-  m_Tarket: {fileID: 2073728965}
 --- !u!1 &1593407318
 GameObject:
   m_ObjectHideFlags: 0

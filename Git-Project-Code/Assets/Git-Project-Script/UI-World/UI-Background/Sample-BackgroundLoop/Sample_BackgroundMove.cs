@@ -15,6 +15,9 @@ public class Sample_BackgroundMove : MonoBehaviour
     [SerializeField] private KeyCode m_KeyMoveL = KeyCode.A;
     [SerializeField] private KeyCode m_KeyMoveR = KeyCode.D;
 
+    [SerializeField] private KeyCode m_KeyZoomIn = KeyCode.PageUp;
+    [SerializeField] private KeyCode m_KeyZoomOut = KeyCode.PageDown;
+
     [Header("Speed")]
 
     [SerializeField] private float m_MoveSpeed = 0.01f;
@@ -69,6 +72,16 @@ public class Sample_BackgroundMove : MonoBehaviour
         else
         {
             m_MoveDir.x = 0;
+        }
+
+        if (Input.GetKeyDown(m_KeyZoomIn))
+        {
+            m_Camera.GetComponent<Camera>().orthographicSize = m_Camera.GetComponent<Camera>().orthographicSize + 2f;
+        }
+
+        if (Input.GetKeyDown(m_KeyZoomOut))
+        {
+            m_Camera.GetComponent<Camera>().orthographicSize = m_Camera.GetComponent<Camera>().orthographicSize - 2f;
         }
     }
 
