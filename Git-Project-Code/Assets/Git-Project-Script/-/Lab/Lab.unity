@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 1095291197}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -472,7 +472,7 @@ Camera:
   far clip plane: 1000
   field of view: 80
   orthographic: 1
-  orthographic size: 11.2
+  orthographic size: 9
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -581,19 +581,19 @@ MonoBehaviour:
     m_FixedCamera: 1
   m_BackgroundLayer:
   - m_Layer: {fileID: 1505570834}
-    m_SpeedX: 0.5
+    m_SpeedX: 1
     m_FollowY: 1
   - m_Layer: {fileID: 800891815}
-    m_SpeedX: 0.4
+    m_SpeedX: 0.8
     m_FollowY: 1
   - m_Layer: {fileID: 1177743360}
-    m_SpeedX: 0.3
+    m_SpeedX: 0.6
     m_FollowY: 1
   - m_Layer: {fileID: 579675034}
-    m_SpeedX: 0.2
+    m_SpeedX: 0.4
     m_FollowY: 1
   - m_Layer: {fileID: 1271259760}
-    m_SpeedX: 0.1
+    m_SpeedX: 0.2
     m_FollowY: 1
 --- !u!4 &1101743575
 Transform:

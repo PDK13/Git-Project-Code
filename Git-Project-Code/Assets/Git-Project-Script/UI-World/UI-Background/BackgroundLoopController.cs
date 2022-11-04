@@ -19,7 +19,7 @@ public class BackgroundLoopController : MonoBehaviour
 
     private float m_BackgroundLocalX;
 
-    private Vector2 m_SizeUnitBackground;
+    private Vector2 m_SizeUnitBackground = new Vector2();
 
     [Header("Background Layer")]
 
@@ -37,7 +37,7 @@ public class BackgroundLoopController : MonoBehaviour
         switch (m_CameraLoop)
         {
             case BackgroundLoopType.Horizontal:
-                m_BackgroundBoundX = m_SizeUnitBackground.x;
+                m_BackgroundBoundX = m_BackgroundMain.Background.GetComponent<SpriteRenderer>().bounds.size.x;
                 m_BackgroundLocalX = m_BackgroundMain.Background.transform.localScale.x;
                 m_CameraX = m_Camera.position.x;
                 for (int i = 0; i < m_BackgroundLayer.Count; i++)
@@ -46,7 +46,7 @@ public class BackgroundLoopController : MonoBehaviour
                 }
                 break;
             case BackgroundLoopType.Vertical:
-                m_BackgroundBoundX = m_SizeUnitBackground.y;
+                m_BackgroundBoundX = m_BackgroundMain.Background.GetComponent<SpriteRenderer>().bounds.size.y;
                 m_BackgroundLocalX = m_BackgroundMain.Background.transform.localScale.y;
                 m_CameraX = m_Camera.position.y;
                 for (int i = 0; i < m_BackgroundLayer.Count; i++)
@@ -80,7 +80,6 @@ public class BackgroundLoopController : MonoBehaviour
         switch (m_CameraLoop)
         {
             case BackgroundLoopType.Horizontal:
-                //Moving X
                 for (int i = 0; i < m_BackgroundLayer.Count; i++)
                 {
                     float m_Temp = GetCameraX() * (1 - m_BackgroundLayer[i].LayerSpeedX);
@@ -91,17 +90,16 @@ public class BackgroundLoopController : MonoBehaviour
 
                     if (m_Temp > m_BackgroundLayer[i].PosPrimaryX + m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].PosPrimaryX = m_BackgroundBoundX * m_BackgroundLocalX;
+                        m_BackgroundLayer[i].PosPrimaryX += (m_BackgroundBoundX * m_BackgroundLocalX);
                     }
                     else
                     if (m_Temp < m_BackgroundLayer[i].PosPrimaryX - m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].PosPrimaryX = -m_BackgroundBoundX * m_BackgroundLocalX;
+                        m_BackgroundLayer[i].PosPrimaryX += (-m_BackgroundBoundX * m_BackgroundLocalX);
                     }
                 }
                 break;
             case BackgroundLoopType.Vertical:
-                //Moving Y
                 for (int i = 0; i < m_BackgroundLayer.Count; i++)
                 {
                     float m_Temp = GetCameraX() * (1 - m_BackgroundLayer[i].LayerSpeedX);
@@ -112,12 +110,12 @@ public class BackgroundLoopController : MonoBehaviour
 
                     if (m_Temp > m_BackgroundLayer[i].PosPrimaryX + m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].PosPrimaryX = m_BackgroundBoundX * m_BackgroundLocalX;
+                        m_BackgroundLayer[i].PosPrimaryX += (m_BackgroundBoundX * m_BackgroundLocalX);
                     }
                     else
                     if (m_Temp < m_BackgroundLayer[i].PosPrimaryX - m_BackgroundBoundX * m_BackgroundLocalX)
                     {
-                        m_BackgroundLayer[i].PosPrimaryX = - m_BackgroundBoundX * m_BackgroundLocalX;
+                        m_BackgroundLayer[i].PosPrimaryX += (-m_BackgroundBoundX * m_BackgroundLocalX);
                     }
                 }
                 break;
