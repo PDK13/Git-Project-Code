@@ -13,13 +13,11 @@ public class BackgroundLoopController : MonoBehaviour
 
     [Header("Background")]
 
-    [SerializeField] private BackgroundLoopMain m_BackgroundMain;
+    [SerializeField] private SpriteRenderer m_Background;
 
     private float m_BackgroundBoundX;
 
     private float m_BackgroundLocalX;
-
-    private Vector2 m_SizeUnitBackground = new Vector2();
 
     [Header("Background Layer")]
 
@@ -32,13 +30,11 @@ public class BackgroundLoopController : MonoBehaviour
             m_Camera = Camera.main.transform;
         }
 
-        m_SizeUnitBackground = GitResolution.GetSpriteSizeUnit(m_BackgroundMain.Background.sprite);
-
         switch (m_CameraLoop)
         {
             case BackgroundLoopType.Horizontal:
-                m_BackgroundBoundX = m_BackgroundMain.Background.GetComponent<SpriteRenderer>().bounds.size.x;
-                m_BackgroundLocalX = m_BackgroundMain.Background.transform.localScale.x;
+                m_BackgroundBoundX = m_Background.bounds.size.x;
+                m_BackgroundLocalX = m_Background.transform.localScale.x;
                 m_CameraX = m_Camera.position.x;
                 for (int i = 0; i < m_BackgroundLayer.Count; i++)
                 {
@@ -46,8 +42,8 @@ public class BackgroundLoopController : MonoBehaviour
                 }
                 break;
             case BackgroundLoopType.Vertical:
-                m_BackgroundBoundX = m_BackgroundMain.Background.GetComponent<SpriteRenderer>().bounds.size.y;
-                m_BackgroundLocalX = m_BackgroundMain.Background.transform.localScale.y;
+                m_BackgroundBoundX = m_Background.bounds.size.y;
+                m_BackgroundLocalX = m_Background.transform.localScale.y;
                 m_CameraX = m_Camera.position.y;
                 for (int i = 0; i < m_BackgroundLayer.Count; i++)
                 {
@@ -55,28 +51,10 @@ public class BackgroundLoopController : MonoBehaviour
                 }
                 break;
         }
-
-        if (m_BackgroundMain.FixedCamera)
-        {
-            m_BackgroundMain.Background.drawMode = SpriteDrawMode.Sliced;
-
-            m_BackgroundMain.Background.size = GitResolution.GetSizeUnitScaled(
-                m_SizeUnitBackground,
-                GitResolution.GetCameraSizeUnit(),
-                GitSizeUnitScaleType.Span);
-        }
     }
 
     private void LateUpdate()
     {
-        if (m_BackgroundMain.FixedCamera)
-        {
-            m_BackgroundMain.Background.size = GitResolution.GetSizeUnitScaled(
-                m_SizeUnitBackground,
-                GitResolution.GetCameraSizeUnit(),
-                GitSizeUnitScaleType.Span);
-        }
-
         switch (m_CameraLoop)
         {
             case BackgroundLoopType.Horizontal:
@@ -198,21 +176,3 @@ public class BackgroundLoopLayer
 }
 
 public enum BackgroundLoopType { Horizontal, Vertical }
-
-[System.Serializable]
-public class BackgroundLoopMain
-{
-    [SerializeField] private SpriteRenderer m_Background;
-
-    [SerializeField] private bool m_FixedCamera = true;
-
-    public SpriteRenderer Background
-    {
-        get => m_Background;
-    }
-
-    public bool FixedCamera
-    {
-        get => m_FixedCamera;
-    }
-}
