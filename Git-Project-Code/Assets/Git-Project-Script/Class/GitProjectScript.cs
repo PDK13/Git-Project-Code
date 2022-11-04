@@ -709,6 +709,8 @@ public class GitResolution
     //CAMERA mode ORTHOGRAPHIC - SIZE is a HALF number of UNIT WORLD HEIGHT from Scene to Screen.
     //EX: If Camera orthographic Size is 1, mean need 2 Square 1x1 Unit world to fill full HEIGHT of screen.
 
+    //MAIN CAMERA need tag MAIN CAMERA to find!
+
     public static Vector2 GetCameraSizePixel()
     {
         return GetCameraSizePixel(Camera.main);
@@ -751,6 +753,12 @@ public class GitResolution
     {
         return m_Sprite.pixelsPerUnit * 1.0f;
     }
+
+    #endregion
+
+    #region Sprite-Renderer
+
+
 
     #endregion
 }
