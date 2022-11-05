@@ -38,7 +38,7 @@ public class UnityToolRef : EditorWindow
         GUILayout.Label(m_ChoiceCurrent.ToUpper(), m_Style);
         GUILayout.Space(10);
 
-        SetGUIButton_Type();
+        SetGUIButtonType();
 
         GUILayout.Space(10);
         GUILayout.Label("------ REF ------", m_Style);
@@ -60,9 +60,9 @@ public class UnityToolRef : EditorWindow
 
         GUILayout.BeginHorizontal();
 
-        SetGUIButton_Set();
+        SetGUIButtonSet();
 
-        SetGUIButton_Get();
+        SetGUIButtonGet();
 
         GUILayout.EndHorizontal();
 
@@ -81,7 +81,7 @@ public class UnityToolRef : EditorWindow
         GUILayout.Space(5f);
     }
 
-    private void SetGUIButton_Type()
+    private void SetGUIButtonType()
     {
         GUILayout.BeginHorizontal();
 
@@ -89,9 +89,9 @@ public class UnityToolRef : EditorWindow
         {
             if (m_Choice[i].Equals(m_ChoiceCurrent))
             {
-                string m_Button_Text = "[ " + m_Choice[i] + " ]";
+                string m_ButtonText = "[ " + m_Choice[i] + " ]";
 
-                GUILayout.Button(m_Button_Text, GUILayout.Width(position.width / m_Choice.Count), GUILayout.Height(50f));
+                GUILayout.Button(m_ButtonText, GUILayout.Width(position.width / m_Choice.Count), GUILayout.Height(50f));
             }
             else
             {
@@ -105,7 +105,7 @@ public class UnityToolRef : EditorWindow
         GUILayout.EndHorizontal();
     }
 
-    private void SetGUIButton_Set()
+    private void SetGUIButtonSet()
     {
         if (GUILayout.Button("Set", GUILayout.Width(position.width / m_ButtonHorizontalCount), GUILayout.Height(50f)))
         {
@@ -136,7 +136,7 @@ public class UnityToolRef : EditorWindow
         }
     }
 
-    private void SetGUIButton_Get()
+    private void SetGUIButtonGet()
     {
         if (GUILayout.Button("Get", GUILayout.Width(position.width / m_ButtonHorizontalCount), GUILayout.Height(50f)))
         {
