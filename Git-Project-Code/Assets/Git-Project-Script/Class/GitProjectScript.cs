@@ -1005,7 +1005,7 @@ public class GitFileIO
 
     #region File IO Path 
 
-    public static string GetPath(GitPathType m_FileIOPathType, string m_FileIOName, params string[] m_FileIOPath)
+    public static string GetPath(GitPathType m_FileIOPathType, string m_FileIOName = "", params string[] m_FileIOPath)
     {
         string m_Path = "";
 
@@ -1014,7 +1014,10 @@ public class GitFileIO
             m_Path += m_FileIOPath[i] + @"\";
         }
 
-        m_Path += m_FileIOName + ".txt";
+        if (m_FileIOName != "")
+        {
+            m_Path += m_FileIOName + ".txt";
+        }
 
         switch (m_FileIOPathType)
         {

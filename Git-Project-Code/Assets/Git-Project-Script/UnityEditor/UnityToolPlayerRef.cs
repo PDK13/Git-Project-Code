@@ -24,39 +24,47 @@ public class UnityToolRef : EditorWindow
 
     private void OnGUI()
     {
+        GUIStyle m_StyleLabel = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontStyle = FontStyle.Bold,
+        };
+
         GUIStyle m_Style = new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
-            fontStyle = FontStyle.Bold
         };
 
-        GUILayout.Space(10);
-        GUILayout.Label("------ TYPE ------", m_Style);
-        GUILayout.Space(10);
+        GUILayout.Label("TYPE", m_StyleLabel);
 
-        GUILayout.Space(10);
         GUILayout.Label(m_ChoiceCurrent.ToUpper(), m_Style);
-        GUILayout.Space(10);
 
         SetGUIButtonType();
 
-        GUILayout.Space(10);
-        GUILayout.Label("------ REF ------", m_Style);
-        GUILayout.Space(10);
+        GUILayout.Label("REF", m_StyleLabel);
 
-        m_Name = EditorGUILayout.TextField("Name", m_Name);
+        GUILayout.BeginHorizontal();
 
-        GUILayout.Space(5f);
+        GUILayout.Label("Name", m_Style, GUILayout.Width(position.width / 5));
 
-        m_Value = EditorGUILayout.TextField("Value", m_Value);
+        //m_Name = EditorGUILayout.TextField("", m_Name, GUILayout.Height(m_ButtonHeight));
+        m_Name = EditorGUILayout.TextField("", m_Name);
 
-        GUILayout.Space(10);
-        GUILayout.Label("------ OPPTION ------", m_Style);
-        GUILayout.Space(10);
+        GUILayout.EndHorizontal();
 
-        GUILayout.Space(10);
-        GUILayout.Label("SET & GET", m_Style);
-        GUILayout.Space(10);
+        GUILayout.BeginHorizontal();
+
+        GUILayout.Label("Value", m_Style, GUILayout.Width(position.width / 5));
+
+        m_Value = EditorGUILayout.TextField("", m_Value);
+
+        GUILayout.EndHorizontal();
+
+        GUILayout.Label("OPPTION", m_StyleLabel);
+
+        //GUILayout.Space(m_SpaceHeight);
+        //GUILayout.Label("SET & GET", m_Style);
+        //GUILayout.Space(m_SpaceHeight);
 
         GUILayout.BeginHorizontal();
 
@@ -66,9 +74,9 @@ public class UnityToolRef : EditorWindow
 
         GUILayout.EndHorizontal();
 
-        GUILayout.Space(10);
-        GUILayout.Label("CLEAR", m_Style);
-        GUILayout.Space(10);
+        //GUILayout.Space(m_SpaceHeight);
+        //GUILayout.Label("CLEAR", m_Style);
+        //GUILayout.Space(m_SpaceHeight);
 
         GUILayout.BeginHorizontal();
 
@@ -77,8 +85,6 @@ public class UnityToolRef : EditorWindow
         SetGUIButtonClearAll();
 
         GUILayout.EndHorizontal();
-
-        GUILayout.Space(5f);
     }
 
     private void SetGUIButtonType()
@@ -91,11 +97,11 @@ public class UnityToolRef : EditorWindow
             {
                 string m_ButtonText = "[ " + m_Choice[i] + " ]";
 
-                GUILayout.Button(m_ButtonText, GUILayout.Width(position.width / m_Choice.Count), GUILayout.Height(50f));
+                GUILayout.Button(m_ButtonText, GUILayout.Width(position.width / m_Choice.Count));
             }
             else
             {
-                if (GUILayout.Button(m_Choice[i], GUILayout.Width(position.width / m_Choice.Count), GUILayout.Height(50f)))
+                if (GUILayout.Button(m_Choice[i], GUILayout.Width(position.width / m_Choice.Count)))
                 {
                     m_ChoiceCurrent = m_Choice[i];
                 }
@@ -107,7 +113,7 @@ public class UnityToolRef : EditorWindow
 
     private void SetGUIButtonSet()
     {
-        if (GUILayout.Button("Set", GUILayout.Width(position.width / m_ButtonHorizontalCount), GUILayout.Height(50f)))
+        if (GUILayout.Button("Set", GUILayout.Width(position.width / m_ButtonHorizontalCount)))
         {
             if (m_Name.Equals(""))
             {
@@ -138,7 +144,7 @@ public class UnityToolRef : EditorWindow
 
     private void SetGUIButtonGet()
     {
-        if (GUILayout.Button("Get", GUILayout.Width(position.width / m_ButtonHorizontalCount), GUILayout.Height(50f)))
+        if (GUILayout.Button("Get", GUILayout.Width(position.width / m_ButtonHorizontalCount)))
         {
             if (m_Name.Equals(""))
             {
@@ -188,7 +194,7 @@ public class UnityToolRef : EditorWindow
 
     public void SetGUIButtonClear()
     {
-        if (GUILayout.Button("Clear", GUILayout.Width(position.width / m_ButtonHorizontalCount), GUILayout.Height(50f)))
+        if (GUILayout.Button("Clear", GUILayout.Width(position.width / m_ButtonHorizontalCount)))
         {
             Debug.LogWarningFormat("Tool: Clear {0} = {1} Value!", m_Name, m_Value);
 
@@ -201,7 +207,7 @@ public class UnityToolRef : EditorWindow
 
     public void SetGUIButtonClearAll()
     {
-        if (GUILayout.Button("Clear All", GUILayout.Width(position.width / m_ButtonHorizontalCount), GUILayout.Height(50f)))
+        if (GUILayout.Button("Clear All", GUILayout.Width(position.width / m_ButtonHorizontalCount)))
         {
             Debug.LogWarning("Tool: Clear all Value!");
 
