@@ -786,11 +786,19 @@ public class GitGameObject
         return SetGameObjectCreate(new GameObject(m_Prefab_Name), m_Parent);
     }
 
-    public static void SetGameObjectDestroy(GameObject m_GameObject)
+    public static void SetGameObjectDestroy(UnityEngine.Object m_Object)
     {
-        if (m_GameObject != null)
+        if (m_Object != null)
         {
-            MonoBehaviour.Destroy(m_GameObject);
+            MonoBehaviour.Destroy(m_Object);
+        }
+    }
+
+    public static void SetComponentDestroy(UnityEngine.Object m_Object)
+    {
+        if (m_Object != null)
+        {
+            MonoBehaviour.Destroy(m_Object);
         }
     }
 
