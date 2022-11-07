@@ -79,6 +79,11 @@ public class IsoWorldManager : MonoBehaviour
     //[SerializeField]
     private List<GameObject> m_Blocks;
 
+    public static List<GameObject> Blocks
+    {
+        get => m_This.m_Blocks;
+    }
+
     private bool m_BlocksUpdated = false;
     public Action act_BlocksUpdated;
     
@@ -86,7 +91,15 @@ public class IsoWorldManager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
 
-        m_This = this;
+        SetWorldManagerStatic();
+    }
+
+    public void SetWorldManagerStatic()
+    {
+        if (m_This == null)
+        {
+            m_This = this;
+        }
     }
 
     #region World Manager

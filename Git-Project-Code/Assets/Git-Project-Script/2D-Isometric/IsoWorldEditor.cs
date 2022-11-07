@@ -54,6 +54,8 @@ public class IsoWorldEditor : EditorWindow
 
             if (m_IsoWorldManager != null)
             {
+                m_IsoWorldManager.SetWorldManagerStatic();
+
                 GUILayout.Label("WORLD EDITOR", m_StyleLabel);
 
                 //Editor!
@@ -73,7 +75,13 @@ public class IsoWorldEditor : EditorWindow
 
     #region Block(s)
 
-    private string m_BlocksPath = "/Blocks";
+    private string m_BlocksPath = "Blocks";
+
+    private const int c_BlockHorizontalMax = 4;
+
+    private const int c_BlockVerticallMax = 4;
+
+    private int m_Page = 0;
 
     private void SetGUIBlocksPath()
     {
@@ -94,9 +102,21 @@ public class IsoWorldEditor : EditorWindow
 
         GUILayout.EndHorizontal();
 
-        if (GUILayout.Button("Get Block(s)", GUILayout.Width(position.width / 3)))
+        if (GUILayout.Button("Get Block(s)"))
         {
-            Debug.LogFormat("{0}: Button {1} Pressed!", this.name, i);
+            IsoWorldManager.SetBlock(GitResources.GetResourcesPrefab(m_BlocksPath));
+        }
+
+        if (IsoWorldManager.Blocks.Count > 0)
+        {
+            int m_HorizontalCount = 0;
+
+            for (int i = 0; i < IsoWorldManager.Blocks.Count; i++) 
+            {
+                m_HorizontalCount++;
+
+
+            }
         }
     }
 
