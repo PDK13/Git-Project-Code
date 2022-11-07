@@ -17,9 +17,15 @@ public class Simple_WindowEditor : EditorWindow
     {
         SetGUIMain();
 
+        GUILayout.Space(10);
+
         SetGUIHorizontal();
 
+        GUILayout.Space(10);
+
         SetGUIOption();
+
+        GUILayout.Space(10);
 
         SetGUIBrowser();
     }
@@ -38,7 +44,7 @@ public class Simple_WindowEditor : EditorWindow
 
     #endregion
 
-    #region GUI Horizontal
+    #region GUI Horizontal (And Button)
 
     private void SetGUIHorizontal()
     {

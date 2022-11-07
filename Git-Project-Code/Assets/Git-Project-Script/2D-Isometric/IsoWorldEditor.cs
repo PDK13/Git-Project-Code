@@ -14,8 +14,6 @@ public class IsoWorldEditor : EditorWindow
 
     private IsoWorldManager m_IsoWorldManager;
 
-    private string m_BlocksPath = "/Blocks";
-
     [MenuItem("Git-Project-Script Tools/Iso-Map Tool")]
     public static void Init()
     {
@@ -73,12 +71,18 @@ public class IsoWorldEditor : EditorWindow
         }
     }
 
+    #region Block(s)
+
+    private string m_BlocksPath = "/Blocks";
+
     private void SetGUIBlocksPath()
     {
         GUIStyle m_Style = new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
         };
+
+        GUILayout.Space(10);
 
         GUILayout.Label("BLOCKS", m_Style);
 
@@ -89,7 +93,14 @@ public class IsoWorldEditor : EditorWindow
         m_BlocksPath = EditorGUILayout.TextField("", m_BlocksPath);
 
         GUILayout.EndHorizontal();
+
+        if (GUILayout.Button("Get Block(s)", GUILayout.Width(position.width / 3)))
+        {
+            Debug.LogFormat("{0}: Button {1} Pressed!", this.name, i);
+        }
     }
+
+    #endregion
 }
 
 #endif
