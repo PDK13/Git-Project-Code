@@ -18,7 +18,7 @@ public class Sample_FileIO : MonoBehaviour
     {
         m_File = new GitFileIO();
 
-        m_PathFile = GitFileIO.GetPath(GitPathType.Document, "HelloWorld");
+        m_PathFile = GitFileIO.GetPath(GitFileIO.Path.Document, "HelloWorld");
 
         //m_PathFile = ClassFileIO.GetPathFileWriteToResources("GameSaved", "HelloWorld");
     }

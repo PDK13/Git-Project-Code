@@ -22,6 +22,33 @@ public class GitVector
         return (m_PointB.position - m_PointA.position).normalized;
     }
 
+    public enum Axis { Up, Right, Forward, }
+
+    public static Vector3 GetDir(Vector3 m_DirPrimary, float m_DegRotation, Axis m_VectorAxis)
+    {
+        Vector3 m_Axis = new Vector3();
+
+        switch (m_VectorAxis)
+        {
+            case Axis.Up:
+                m_Axis = Vector3.up;
+                break;
+            case Axis.Forward:
+                m_Axis = Vector3.forward;
+                break;
+            case Axis.Right:
+                m_Axis = Vector3.right;
+                break;
+        }
+
+        return Quaternion.AngleAxis(m_DegRotation, m_Axis) * m_DirPrimary;
+    }
+
+    public static Vector3 GetPos(Vector3 m_PosPrimary, Vector3 m_DirPrimary, float m_DegRotation, Axis m_VectorAxis)
+    {
+        return m_PosPrimary + GetDir(m_DirPrimary, m_DegRotation, m_VectorAxis);
+    }
+
     #endregion
 
     #region Duration
@@ -141,14 +168,14 @@ public class GitVector
 
     #region Circle
 
-    public static Vector3 GetPosOnCircleXY(float m_Deg, float m_Duration)
+    public static Vector3 GetPosOnCircleXY(float m_Deg, float m_Radius)
     {
-        return new Vector3(Mathf.Cos(m_Deg * Mathf.Deg2Rad), Mathf.Sin(m_Deg * Mathf.Deg2Rad), 0) * m_Duration;
+        return new Vector3(Mathf.Cos(m_Deg * Mathf.Deg2Rad), Mathf.Sin(m_Deg * Mathf.Deg2Rad), 0) * m_Radius;
     }
 
-    public static Vector3 GetPosOnCircleXZ(float m_Deg, float m_Duration)
+    public static Vector3 GetPosOnCircleXZ(float m_Deg, float m_Radius)
     {
-        return new Vector3(Mathf.Cos(m_Deg * Mathf.Deg2Rad), 0, Mathf.Sin(m_Deg * Mathf.Deg2Rad)) * m_Duration;
+        return new Vector3(Mathf.Cos(m_Deg * Mathf.Deg2Rad), 0, Mathf.Sin(m_Deg * Mathf.Deg2Rad)) * m_Radius;
     }
 
     public static float GetDegOnRotationXZ(Transform m_TransformMain, Transform m_TransformTarket)
@@ -1003,6 +1030,8 @@ public class GitResources
 
 public class GitFileIO
 {
+    public enum Path { None, Persistent, Resources, Document, Picture, Music, Video, }
+
     public const string m_ExamplePath = @"D:\ClassFileIO.txt";
 
     public GitFileIO()
@@ -1013,7 +1042,7 @@ public class GitFileIO
 
     #region File IO Path 
 
-    public static string GetPath(GitPathType m_FileIOPathType, string m_FileIOName = "", params string[] m_FileIOPath)
+    public static string GetPath(Path m_FileIOPathType, string m_FileIOName = "", params string[] m_FileIOPath)
     {
         string m_Path = "";
 
@@ -1029,22 +1058,22 @@ public class GitFileIO
 
         switch (m_FileIOPathType)
         {
-            case GitPathType.Persistent:
+            case Path.Persistent:
                 m_Path = Application.persistentDataPath + @"\" + m_Path;
                 break;
-            case GitPathType.Resources:
+            case Path.Resources:
                 m_Path = Application.dataPath + @"\resources\" + m_Path;
                 break;
-            case GitPathType.Document:
+            case Path.Document:
                 m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + m_Path;
                 break;
-            case GitPathType.Picture:
+            case Path.Picture:
                 m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\" + m_Path;
                 break;
-            case GitPathType.Music:
+            case Path.Music:
                 m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + @"\" + m_Path;
                 break;
-            case GitPathType.Video:
+            case Path.Video:
                 m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + @"\" + m_Path;
                 break;
         }
@@ -1304,8 +1333,6 @@ public class GitFileIO
 
     #endregion
 }
-
-public enum GitPathType { None, Persistent, Resources, Document, Picture, Music, Video, }
 
 //=================================================== Color
 

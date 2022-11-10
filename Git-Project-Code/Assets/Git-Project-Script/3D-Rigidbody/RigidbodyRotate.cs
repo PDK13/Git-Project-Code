@@ -3,11 +3,11 @@ using UnityEngine;
 [AddComponentMenu("Git-Project-Code/Rigidbody/Rigidbody Rotate")]
 public class RigidbodyRotate : MonoBehaviour
 {
-    [SerializeField] [Tooltip("Vector Right - Red Axis")] private bool m_FollowRight = true;
+    public GitVector.Axis m_Axis = GitVector.Axis.Right;
 
-    [SerializeField] [Tooltip("Vector Forward - Blue Axis")] private bool m_FollowForward = false;
+    public enum RigidbodyType { Rigidbody2D, Rigidbody3D, }
 
-    [SerializeField] [Tooltip("Vector Up - Green Axis")] private bool m_FollowUp = false;
+    [SerializeField] private RigidbodyType m_RigidbodyType;
 
     private Rigidbody m_Rigidbody;
 
@@ -15,16 +15,17 @@ public class RigidbodyRotate : MonoBehaviour
 
     private void Awake()
     {
-        if (GetComponent<Rigidbody>() != null)
+        switch (m_RigidbodyType)
         {
-            m_Rigidbody = GetComponent<Rigidbody>();
+            case RigidbodyType.Rigidbody2D:
+                m_Rigidbody2D = GetComponent<Rigidbody2D>();
+                break;
+            case RigidbodyType.Rigidbody3D:
+                m_Rigidbody = GetComponent<Rigidbody>();
+                break;
         }
-        else
-        if (GetComponent<Rigidbody2D>() != null)
-        {
-            m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        }
-        else
+
+        if (m_Rigidbody2D  == null && m_Rigidbody == null)
         {
             Debug.LogErrorFormat("{0}: Require Componenet Rigidbody or Rigidbody2D.", name);
         }
@@ -32,70 +33,50 @@ public class RigidbodyRotate : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (m_Rigidbody != null)
+        switch (m_RigidbodyType)
         {
-            if (m_FollowRight)
-            {
-                transform.right = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
-            }
-
-            if (m_FollowUp)
-            {
-                transform.up = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
-            }
-
-            if (m_FollowForward)
-            {
-                transform.forward = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
-            }
+            case RigidbodyType.Rigidbody2D:
+                { 
+                    switch (m_Axis)
+                    {
+                        case GitVector.Axis.Right:
+                            transform.right = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
+                            break;
+                        case GitVector.Axis.Up:
+                            transform.up = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
+                            break;
+                        case GitVector.Axis.Forward:
+                            transform.forward = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
+                            break;
+                    }
+                }
+                break;
+            case RigidbodyType.Rigidbody3D:
+                {
+                    switch (m_Axis)
+                    {
+                        case GitVector.Axis.Right:
+                            transform.right = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y);
+                            break;
+                        case GitVector.Axis.Up:
+                            transform.up = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y);
+                            break;
+                        case GitVector.Axis.Forward:
+                            transform.forward = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y);
+                            break;
+                    }
+                }
+                break;
         }
-        else
-        if (m_Rigidbody2D != null)
-        {
-            if (m_FollowRight)
-            {
-                transform.right = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y);
-            }
-
-            if (m_FollowUp)
-            {
-                transform.up = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y);
-            }
-
-            if (m_FollowForward)
-            {
-                transform.forward = new Vector3(m_Rigidbody2D.velocity.x, m_Rigidbody2D.velocity.y);
-            }
-        }
     }
 
-    public void SetFollowR(bool m_FollowR)
+    public void SetFollow(GitVector.Axis m_Axis)
     {
-        this.m_FollowRight = m_FollowR;
+        this.m_Axis = m_Axis;
     }
 
-    public bool GetFollowR()
+    public GitVector.Axis GetFollow()
     {
-        return m_FollowRight;
-    }
-
-    public void SetFollowU(bool m_FollowU)
-    {
-        this.m_FollowUp = m_FollowU ;
-    }
-
-    public bool GetFollowU()
-    {
-        return m_FollowUp;
-    }
-
-    public void SetFollowForward(bool m_FollowForward)
-    {
-        this.m_FollowForward = m_FollowForward;
-    }
-
-    public bool GetFollowForward()
-    {
-        return m_FollowForward;
+        return m_Axis;
     }
 }
