@@ -1681,6 +1681,39 @@ public class GitKeyboard
     }
 }
 
+//=================================================== Gizmos
+
+public class GitGizmos
+{
+    //Camera
+
+    public static void GizmosCamera(Color m_Color)
+    {
+        GizmosCamera(Camera.main, m_Color);
+    }
+
+    public static void GizmosCamera(Camera m_Camera, Color m_Color)
+    {
+        Gizmos.color = m_Color;
+
+        Vector2 m_Resolution = GitResolution.GetCameraSizeUnit();
+        Gizmos.DrawWireCube((Vector2)m_Camera.transform.position, m_Resolution);
+    }
+
+    //Collider
+
+    public static void GizmosPolygonCollider2D(PolygonCollider2D m_PolygonCollider2D, Color m_Color)
+    {
+        Gizmos.color = m_Color;
+
+        for (int i = 1; i < m_PolygonCollider2D.points.Length; i++)
+        {
+            Gizmos.DrawLine(m_PolygonCollider2D.points[i - 1], m_PolygonCollider2D.points[i]);
+        }
+        Gizmos.DrawLine(m_PolygonCollider2D.points[0], m_PolygonCollider2D.points[m_PolygonCollider2D.points.Length - 1]);
+    }
+}
+
 //=================================================== Email
 
 public class GitEmail
