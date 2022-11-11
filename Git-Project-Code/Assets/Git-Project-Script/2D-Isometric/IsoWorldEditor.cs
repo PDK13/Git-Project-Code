@@ -107,57 +107,85 @@ public class IsoWorldEditor : EditorWindow
             IsoWorldManager.SetBlock(GitResources.GetResourcesPrefab(m_BlocksPath));
         }
 
-        if (IsoWorldManager.Blocks.Count > 0)
+        SetGUIBlocksMatrix();
+    }
+
+    private void SetGUIBlocksMatrix()
+    {
+        if (IsoWorldManager.Blocks == null)
         {
-            GUILayout.BeginVertical();
+            m_Page = 0;
+            return;
+        }
 
-            int m_Index = m_Page * c_BlockHorizontalMax * c_BlockVerticallMax;
+        if (IsoWorldManager.Blocks.Count == 0)
+        {
+            m_Page = 0;
+            return;
+        }
 
-            float m_Width = position.width / c_BlockHorizontalMax - 4f;
-            float m_Height = m_Width;
+        GUIStyle m_StyleLabel = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+        };
 
-            for (int i = 0; i < c_BlockVerticallMax; i++)
+        GUILayout.BeginVertical();
+
+        int m_Index = m_Page * c_BlockHorizontalMax * c_BlockVerticallMax;
+
+        float m_Width = position.width / c_BlockHorizontalMax - 4f;
+        float m_Height = m_Width;
+
+        for (int i = 0; i < c_BlockVerticallMax; i++)
+        {
+            GUILayout.BeginHorizontal();
+
+            for (int j = 0; j < c_BlockHorizontalMax; j++)
             {
-                GUILayout.BeginHorizontal();
-
-                for (int j = 0; j < c_BlockHorizontalMax; j++)
+                if (m_Index > IsoWorldManager.Blocks.Count - 1)
                 {
-                    if (m_Index > IsoWorldManager.Blocks.Count - 1)
+                    GUILayout.Button("...", GUILayout.Width(m_Width), GUILayout.Height(m_Height));
+                }
+                else
+                {
+                    Sprite m_Sprite = IsoWorldManager.Blocks[m_Index].GetComponent<SpriteRenderer>().sprite;
+
+                    if (m_Sprite.texture.isReadable == true)
                     {
-                        GUILayout.Button("...", GUILayout.Width(m_Width), GUILayout.Height(m_Height));
+                        Texture2D m_Texture = new Texture2D((int)m_Sprite.rect.width, (int)m_Sprite.rect.height);
+
+                        var pixels = m_Sprite.texture.GetPixels(
+                            (int)m_Sprite.textureRect.x,
+                            (int)m_Sprite.textureRect.y,
+                            (int)m_Sprite.textureRect.width,
+                            (int)m_Sprite.textureRect.height);
+                        m_Texture.SetPixels(pixels);
+                        m_Texture.Apply();
+
+                        GUIContent m_Content = new GUIContent(string.Format(" -{0}", m_Index), (Texture)m_Texture);
+
+                        GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height));
                     }
                     else
                     {
-                        Sprite m_Sprite = IsoWorldManager.Blocks[m_Index].GetComponent<SpriteRenderer>().sprite;
-
-                        //var croppedTexture = new Texture2D((int)m_Sprite.rect.width, (int)m_Sprite.rect.height);
-                        //var pixels = m_Sprite.texture.GetPixels((int)m_Sprite.textureRect.x,
-                        //                                         (int)m_Sprite.textureRect.y,
-                        //                                         (int)m_Sprite.textureRect.width,
-                        //                                         (int)m_Sprite.textureRect.height);
-                        //croppedTexture.SetPixels(pixels);
-                        //croppedTexture.Apply();
-
-                        //GUIContent m_Content = new GUIContent((Texture)croppedTexture);
-
-                        GUIContent m_Content = new GUIContent(m_Sprite.associatedAlphaSplitTexture);
-
-                        //GUILayout.Button("", GUILayout.Width(m_Width), GUILayout.Height(m_Height));
-                        GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height));
+                        GUILayout.Button("", GUILayout.Width(m_Width), GUILayout.Height(m_Height));
+                        Debug.LogFormat("{0}: Need enable \"Read/Write Enable\" in Inspector.", m_Sprite.texture.name);
                     }
-
-                    m_Index++;
                 }
 
-                GUILayout.EndHorizontal();
+                m_Index++;
             }
 
-            GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
         }
-        else 
-        {
-            m_Page = 0;
-        }
+
+        GUILayout.EndVertical();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Button("Prev", GUILayout.Width(m_Width));
+        GUILayout.Label(string.Format("Page {0}", m_Page), m_StyleLabel);
+        GUILayout.Button("Next", GUILayout.Width(m_Width));
+        GUILayout.EndHorizontal();
     }
 
     #endregion
