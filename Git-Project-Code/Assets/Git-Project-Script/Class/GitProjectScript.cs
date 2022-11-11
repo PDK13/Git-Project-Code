@@ -662,15 +662,17 @@ public class GitScene
     }
 }
 
-//=================================================== Screen
+//=================================================== Resolution
 
 public class GitResolution
 {
     #region Convert
 
+    public enum GitSizeUnitScaleType { Width, Height, Span, Primary, Tarket, }
+
     public static Vector2 GetSizeUnitScaled(Sprite m_SpritePrimary, Sprite m_SpriteTarket, GitSizeUnitScaleType m_SpriteScale)
     {
-        return GetSizeUnitScaled(GetSpriteSizeUnit(m_SpritePrimary), GetSpriteSizeUnit(m_SpriteTarket), m_SpriteScale);
+        return GetSizeUnitScaled(GitSprite.GetSpriteSizeUnit(m_SpritePrimary), GitSprite.GetSpriteSizeUnit(m_SpriteTarket), m_SpriteScale);
     }
 
     public static Vector2 GetSizeUnitScaled(Vector2 m_SizeUnitPrimary, Vector2 m_SizeUnitTarket, GitSizeUnitScaleType m_SpriteScale)
@@ -763,7 +765,12 @@ public class GitResolution
     }
 
     #endregion
+}
 
+//=================================================== Sprite & Sprite Renderer
+
+public class GitSprite
+{
     #region Sprite
 
     public static Vector2 GetSpriteSizePixel(Sprite m_Sprite)
@@ -785,12 +792,28 @@ public class GitResolution
 
     #region Sprite-Renderer
 
+    #endregion
 
+    #region Texture
+
+    public static Texture2D GetTextureConvert(Sprite m_Sprite)
+    {
+        Texture2D m_Texture = new Texture2D((int)m_Sprite.rect.width, (int)m_Sprite.rect.height);
+
+        Color[] m_ColorPixel = m_Sprite.texture.GetPixels(
+            (int)m_Sprite.textureRect.x,
+            (int)m_Sprite.textureRect.y,
+            (int)m_Sprite.textureRect.width,
+            (int)m_Sprite.textureRect.height);
+        m_Texture.SetPixels(m_ColorPixel);
+        m_Texture.Apply();
+
+        return m_Texture;
+    }
 
     #endregion
 }
 
-public enum GitSizeUnitScaleType { Width, Height, Span, Primary, Tarket, }
 
 //=================================================== GameObject
 

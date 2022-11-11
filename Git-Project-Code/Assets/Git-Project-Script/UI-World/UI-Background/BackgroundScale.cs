@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackgroundScale : MonoBehaviour
 {
-    [SerializeField] private GitSizeUnitScaleType m_SpriteScale = GitSizeUnitScaleType.Span;
+    [SerializeField] private GitResolution.GitSizeUnitScaleType m_SpriteScale = GitResolution.GitSizeUnitScaleType.Span;
 
     [SerializeField] private List<SpriteRenderer> m_Primarys;
 
@@ -17,7 +17,7 @@ public class BackgroundScale : MonoBehaviour
             foreach(SpriteRenderer m_Primary in m_Primarys)
             {
                 m_Primary.size = GitResolution.GetSizeUnitScaled(
-                    GitResolution.GetSpriteSizeUnit(m_Primary.sprite),
+                    GitSprite.GetSpriteSizeUnit(m_Primary.sprite),
                     GitResolution.GetCameraSizeUnit(),
                     m_SpriteScale);
             }
@@ -28,8 +28,8 @@ public class BackgroundScale : MonoBehaviour
             foreach (SpriteRenderer m_Primary in m_Primarys)
             {
                 m_Primary.size = GitResolution.GetSizeUnitScaled(
-                    GitResolution.GetSpriteSizeUnit(m_Primary.sprite),
-                    GitResolution.GetSpriteSizeUnit(m_Tarket.GetComponent<SpriteRenderer>().sprite),
+                    GitSprite.GetSpriteSizeUnit(m_Primary.sprite),
+                    GitSprite.GetSpriteSizeUnit(m_Tarket.GetComponent<SpriteRenderer>().sprite),
                     m_SpriteScale);
             }
         }

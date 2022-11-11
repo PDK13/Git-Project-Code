@@ -152,17 +152,9 @@ public class IsoWorldEditor : EditorWindow
 
                     if (m_Sprite.texture.isReadable == true)
                     {
-                        Texture2D m_Texture = new Texture2D((int)m_Sprite.rect.width, (int)m_Sprite.rect.height);
+                        Texture2D m_Texture = GitSprite.GetTextureConvert(m_Sprite);
 
-                        var pixels = m_Sprite.texture.GetPixels(
-                            (int)m_Sprite.textureRect.x,
-                            (int)m_Sprite.textureRect.y,
-                            (int)m_Sprite.textureRect.width,
-                            (int)m_Sprite.textureRect.height);
-                        m_Texture.SetPixels(pixels);
-                        m_Texture.Apply();
-
-                        GUIContent m_Content = new GUIContent(string.Format(" -{0}", m_Index), (Texture)m_Texture);
+                        GUIContent m_Content = new GUIContent("", (Texture)m_Texture);
 
                         GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height));
                     }
