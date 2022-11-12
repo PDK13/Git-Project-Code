@@ -261,8 +261,8 @@ public class IsoWorldEditor : EditorWindow
             {
                 if (m_Index > IsoWorldManager.Blocks.Count - 1)
                 {
-                    GUI.backgroundColor = Color.white;
-                    GUILayout.Button("...", GUILayout.Width(m_Width), GUILayout.Height(m_Height));
+                    GUI.backgroundColor = Color.clear;
+                    GUILayout.Button("", GUILayout.Width(m_Width), GUILayout.Height(m_Height));
                 }
                 else
                 {
@@ -276,13 +276,13 @@ public class IsoWorldEditor : EditorWindow
 
                         if (m_Index == m_ChoiceIndex)
                         {
-                            GUI.backgroundColor = Color.cyan;
+                            GUI.backgroundColor = Color.white;
 
                             GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height));
                         }
                         else
                         {
-                            GUI.backgroundColor = Color.white;
+                            GUI.backgroundColor = Color.clear;
 
                             if (GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height)))
                             {
@@ -292,7 +292,7 @@ public class IsoWorldEditor : EditorWindow
                     }
                     else
                     {
-                        GUI.backgroundColor = Color.white;
+                        GUI.backgroundColor = Color.clear;
                         GUILayout.Button("", GUILayout.Width(m_Width), GUILayout.Height(m_Height));
                         Debug.LogFormat("{0}: Need enable \"Read/Write Enable\" in Inspector.", m_Sprite.texture.name);
                     }
@@ -303,6 +303,8 @@ public class IsoWorldEditor : EditorWindow
 
             GUILayout.EndHorizontal();
         }
+
+        GUI.backgroundColor = Color.white;
 
         GUILayout.EndVertical();
 
