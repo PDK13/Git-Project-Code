@@ -844,7 +844,14 @@ public class GitGameObject
 
     public static GameObject SetGameObjectCreate(string m_Prefab_Name, Transform m_Parent = null)
     {
-        return SetGameObjectCreate(new GameObject(m_Prefab_Name), m_Parent);
+        GameObject m_GameObject = new GameObject(m_Prefab_Name);
+
+        if (m_Parent != null)
+        {
+            m_GameObject.transform.SetParent(m_Parent);
+        }
+
+        return m_GameObject;
     }
 
     public static void SetGameObjectDestroy(UnityEngine.Object m_Object)

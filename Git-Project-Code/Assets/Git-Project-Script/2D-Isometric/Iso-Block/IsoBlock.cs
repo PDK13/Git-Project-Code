@@ -27,6 +27,17 @@ public class IsoBlock : MonoBehaviour
 
     private IsoVector m_PosPrimary = new IsoVector();
 
+    private IsoWorldManager m_WorldManager;
+
+    public IsoWorldManager WorldManager
+    {
+        set
+        {
+            m_WorldManager = value;
+        }
+        get => m_WorldManager;
+    }
+
     [Header("Code Manager")]
 
     private List<IsoCode> m_Code = new List<IsoCode>();
@@ -136,12 +147,6 @@ public class IsoBlock : MonoBehaviour
 
     private void SetIsoTransform()
     {
-        //if (m_World != null)
-        //{
-        //    m_Offset = m_World.GetFix_Offset();
-        //    m_Square = m_World.GetFix_Square();
-        //}
-
         Vector3 m_PosTransform = GetIsoScene(m_Pos);
 
         m_PosTransform += m_Centre;

@@ -11,6 +11,8 @@ public class IsoWorldManager : MonoBehaviour
 
     [SerializeField] private IsoVector m_Scale = new IsoVector(1f, 1f, 1f);
 
+    public static IsoVector Scale { get => m_This.m_Scale; }
+
     //[SerializeField]
     private List<IsoWorldBlockFloor> m_WorldBlock = new List<IsoWorldBlockFloor>() { new IsoWorldBlockFloor(0) };
 
