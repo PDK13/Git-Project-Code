@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEditor;
 
+[ExecuteAlways]
 public class IsoWorldEditor : EditorWindow
 {
     private GameObject m_IsoWorldManagerGameObject;
@@ -22,6 +23,8 @@ public class IsoWorldEditor : EditorWindow
 
     private void OnGUI()
     {
+        SetGUIKeyboard();
+
         GUIStyle m_StyleLabel = new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
@@ -37,6 +40,8 @@ public class IsoWorldEditor : EditorWindow
         {
             alignment = TextAnchor.MiddleCenter,
         };
+
+        GUILayout.Space(10);
 
         GUILayout.Label("WORLD MANAGER", m_StyleLabel);
 
@@ -74,6 +79,83 @@ public class IsoWorldEditor : EditorWindow
             GUILayout.Label("Require GameObject", m_StyleMessage);
         }
     }
+
+    #region Input Keyboard
+
+    private string m_KeyboardCode = "";
+
+    private const string KEY_U = "w";
+    private const string KEY_D = "s";
+    private const string KEY_L = "a";
+    private const string KEY_R = "d";
+
+    private const string KEY_ADD = "j";
+    private const string KEY_DEL = "k";
+
+    private const string KEY_LOCK = "l";
+
+    private void SetGUIKeyboard()
+    {
+        GUIStyle m_StyleLabel = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+            fontStyle = FontStyle.Bold,
+        };
+
+        GUIStyle m_Style = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+        };
+
+        GUIStyle m_StyleInstrctionL = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleRight,
+        };
+
+        GUIStyle m_StyleInstrctionR = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleLeft,
+        };
+
+        GUILayout.Label("KEYBOARD", m_StyleLabel);
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Input", m_Style, GUILayout.Width(position.width / 5));
+        m_KeyboardCode = GUILayout.TextField("");
+        GUILayout.Label("LOCK", m_Style, GUILayout.Width(position.width / 5));
+        GUILayout.EndHorizontal();
+
+        switch (m_KeyboardCode)
+        {
+            case KEY_U:
+                Debug.Log("U");
+                break;
+        }
+
+        GUILayout.Label("Instruction:");
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(string.Format("Move", GUILayout.Width(position.width / 2)), m_StyleInstrctionL);
+        GUILayout.Label(string.Format("{0} {1} {2} {3}", KEY_U.ToUpper(), KEY_D.ToUpper(), KEY_L.ToUpper(), KEY_R.ToUpper()), m_StyleInstrctionR, GUILayout.Width(position.width / 2));
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(string.Format("Add", GUILayout.Width(position.width / 2)), m_StyleInstrctionL);
+        GUILayout.Label(string.Format("{0}", KEY_ADD.ToUpper()), m_StyleInstrctionR, GUILayout.Width(position.width / 2));
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(string.Format("Del", GUILayout.Width(position.width / 2)), m_StyleInstrctionL);
+        GUILayout.Label(string.Format("{0}", KEY_DEL.ToUpper()), m_StyleInstrctionR, GUILayout.Width(position.width / 2));
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(string.Format("Lock", GUILayout.Width(position.width / 2)), m_StyleInstrctionL);
+        GUILayout.Label(string.Format("{0}", KEY_LOCK.ToUpper()), m_StyleInstrctionR, GUILayout.Width(position.width / 2));
+        GUILayout.EndHorizontal();
+    }
+
+    #endregion
 
     #region Block(s)
 
