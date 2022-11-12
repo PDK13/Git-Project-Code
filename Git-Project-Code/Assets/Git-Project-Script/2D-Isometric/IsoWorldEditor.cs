@@ -368,7 +368,7 @@ public class IsoWorldEditor : EditorWindow
         GUILayout.BeginHorizontal();
         GUILayout.Label("Input", m_Style, GUILayout.Width(position.width / 5));
         m_KeyboardCode = GUILayout.TextField("");
-        GUILayout.Label(m_Lock ? "LOCK" : "UN-LOCK", m_Style, GUILayout.Width(position.width / 5));
+        GUILayout.Label(m_Lock ? "LOCK" : "", m_Style, GUILayout.Width(position.width / 5));
         GUILayout.EndHorizontal();
 
         if (m_KeyboardCode == KEY_LOCK)
