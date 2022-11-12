@@ -23,8 +23,6 @@ public class IsoWorldEditor : EditorWindow
 
     private void OnGUI()
     {
-        SetGUIKeyboard();
-
         GUIStyle m_StyleLabel = new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
@@ -68,6 +66,10 @@ public class IsoWorldEditor : EditorWindow
                 //Editor!
 
                 SetGUIBlocksPath();
+
+                SetGUIFile();
+
+                SetGUIKeyboard();
             }
             else
             {
@@ -118,7 +120,9 @@ public class IsoWorldEditor : EditorWindow
             alignment = TextAnchor.MiddleLeft,
         };
 
-        GUILayout.Label("KEYBOARD", m_StyleLabel);
+        GUILayout.Space(10);
+
+        GUILayout.Label("KEYBOARD", m_Style);
 
         GUILayout.BeginHorizontal();
         GUILayout.Label("Input", m_Style, GUILayout.Width(position.width / 5));
@@ -210,9 +214,7 @@ public class IsoWorldEditor : EditorWindow
         GUILayout.Label("BLOCKS", m_Style);
 
         GUILayout.BeginHorizontal();
-
         GUILayout.Label("Path", m_Style, GUILayout.Width(position.width / 5));
-
         m_BlocksPath = EditorGUILayout.TextField("", m_BlocksPath);
 
         GUILayout.EndHorizontal();
@@ -312,7 +314,61 @@ public class IsoWorldEditor : EditorWindow
         GUILayout.Button("Next", GUILayout.Width(m_Width));
         GUILayout.EndHorizontal();
 
-        //Thông tin đã chọn
+        GUILayout.BeginHorizontal();
+        GUILayout.Label(IsoWorldManager.Blocks[m_ChoiceIndex].name, m_StyleLabel, GUILayout.Width(position.width / 2));
+        GUILayout.Label(IsoWorldManager.Blocks[m_ChoiceIndex].GetComponent<IsoBlock>().Type.ToString(), m_StyleLabel, GUILayout.Width(position.width / 2));
+        GUILayout.EndHorizontal();
+    }
+
+    #endregion
+
+    #region File
+
+    private string m_Path = "";
+
+    private string m_File = "";
+
+    private void SetGUIFile()
+    {
+        GUIStyle m_Style = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+        };
+
+        GUIStyle m_StyleInstrctionL = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleRight,
+        };
+
+        GUILayout.Space(10);
+
+        GUILayout.Label("FILE", m_Style);
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("Path", m_Style, GUILayout.Width(position.width / 5));
+        m_Path = EditorGUILayout.TextField("", m_Path);
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("File", m_Style, GUILayout.Width(position.width / 5));
+        m_File = EditorGUILayout.TextField("", m_File);
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("", m_Style, GUILayout.Width(position.width / 5));
+        if (GUILayout.Button("New"))
+        {
+
+        }
+        if (GUILayout.Button("Open"))
+        {
+
+        }
+        if (GUILayout.Button("Save"))
+        {
+
+        }
+        GUILayout.EndHorizontal();
     }
 
     #endregion

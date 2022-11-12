@@ -820,7 +820,6 @@ public class GitSprite
             (int)m_Sprite.textureRect.height);
         m_Texture.SetPixels(m_ColorPixel);
         m_Texture.Apply();
-
         return m_Texture;
     }
 

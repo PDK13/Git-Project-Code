@@ -36,6 +36,8 @@ public class Simple_WindowEditor : EditorWindow
 
     #region GUI Main
 
+    private string m_Input;
+
     private void SetGUIMain()
     {
         GUIStyle m_Style = new GUIStyle(GUI.skin.label)
@@ -44,6 +46,8 @@ public class Simple_WindowEditor : EditorWindow
         };
 
         GUILayout.Label("Label", m_Style, GUILayout.Width(10), GUILayout.Height(10));
+
+        m_Input = EditorGUILayout.TextField("", m_Input);
     }
 
     #endregion
