@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 
 using System.Collections;
 using System.Collections.Generic;
@@ -268,22 +268,20 @@ public class IsoWorldEditor : EditorWindow
                 {
                     Sprite m_Sprite = IsoWorldManager.Blocks[m_Index].GetComponent<SpriteRenderer>().sprite;
 
-                    if (m_Sprite.texture.isReadable == true)
-                    {
-                        Texture2D m_Texture = GitSprite.GetTextureConvert(m_Sprite);
+                    Texture2D m_Texture = GitSprite.GetTextureConvert(m_Sprite);
 
+                    if (m_Texture != null)
+                    {
                         GUIContent m_Content = new GUIContent("", (Texture)m_Texture);
 
                         if (m_Index == m_ChoiceIndex)
                         {
                             GUI.backgroundColor = Color.white;
-
                             GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height));
                         }
                         else
                         {
                             GUI.backgroundColor = Color.clear;
-
                             if (GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height)))
                             {
                                 m_ChoiceIndex = m_Index;
@@ -313,6 +311,8 @@ public class IsoWorldEditor : EditorWindow
         GUILayout.Label(string.Format("Page {0}", m_Page), m_StyleLabel);
         GUILayout.Button("Next", GUILayout.Width(m_Width));
         GUILayout.EndHorizontal();
+
+        //Thông tin đã chọn
     }
 
     #endregion

@@ -796,8 +796,21 @@ public class GitSprite
 
     #region Texture
 
+    //Texture can be used for Window Editor (Button)
+
+    //Ex:
+    //Window Editor:
+    //Texture2D m_Texture = GitSprite.GetTextureConvert(m_Sprite);
+    //GUIContent m_Content = new GUIContent("", (Texture)m_Texture);
+    //GUILayout.Button(m_Content());
+
     public static Texture2D GetTextureConvert(Sprite m_Sprite)
     {
+        if (m_Sprite.texture.isReadable == false)
+        {
+            return null;
+        }
+
         Texture2D m_Texture = new Texture2D((int)m_Sprite.rect.width, (int)m_Sprite.rect.height);
 
         Color[] m_ColorPixel = m_Sprite.texture.GetPixels(
@@ -813,7 +826,6 @@ public class GitSprite
 
     #endregion
 }
-
 
 //=================================================== GameObject
 
