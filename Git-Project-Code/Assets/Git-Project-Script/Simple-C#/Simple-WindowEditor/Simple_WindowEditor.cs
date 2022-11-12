@@ -28,6 +28,10 @@ public class Simple_WindowEditor : EditorWindow
         GUILayout.Space(10);
 
         SetGUIBrowser();
+
+        GUILayout.Space(10);
+
+        SetGUIColor();
     }
 
     #region GUI Main
@@ -91,6 +95,20 @@ public class Simple_WindowEditor : EditorWindow
         {
             m_Path = EditorUtility.OpenFilePanel("Blocks Folder", "", "");
         }
+    }
+
+    #endregion
+
+    #region GUI Color
+
+    private void SetGUIColor()
+    {
+        GUI.backgroundColor = Color.cyan;
+        GUILayout.Button("Chance Color all render UI...");
+        GUILayout.Button("Chance Color all render UI...");
+
+        GUI.backgroundColor = Color.white;
+        GUILayout.Button("Reset Color all render UI...");
     }
 
     #endregion
