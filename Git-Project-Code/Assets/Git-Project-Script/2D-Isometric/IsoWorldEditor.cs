@@ -93,6 +93,7 @@ public class IsoWorldEditor : EditorWindow
     private const string KEY_DEL = "k";
 
     private const string KEY_LOCK = "l";
+    private bool m_Lock = false;
 
     private void SetGUIKeyboard()
     {
@@ -122,17 +123,47 @@ public class IsoWorldEditor : EditorWindow
         GUILayout.BeginHorizontal();
         GUILayout.Label("Input", m_Style, GUILayout.Width(position.width / 5));
         m_KeyboardCode = GUILayout.TextField("");
-        GUILayout.Label("LOCK", m_Style, GUILayout.Width(position.width / 5));
+        GUILayout.Label(m_Lock ? "LOCK" : "UN-LOCK", m_Style, GUILayout.Width(position.width / 5));
         GUILayout.EndHorizontal();
 
-        switch (m_KeyboardCode)
+        if (m_KeyboardCode == KEY_LOCK)
         {
-            case KEY_U:
-                Debug.Log("U");
-                break;
+            m_Lock = !m_Lock;
         }
 
-        GUILayout.Label("Instruction:");
+        if (m_Lock == false)
+        {
+            switch (m_KeyboardCode)
+            {
+                case KEY_U:
+                    //...
+                    Debug.Log(KEY_U);
+                    break;
+                case KEY_D:
+                    //...
+                    Debug.Log(KEY_D);
+                    break;
+                case KEY_L:
+                    //...
+                    Debug.Log(KEY_L);
+                    break;
+                case KEY_R:
+                    //...
+                    Debug.Log(KEY_R);
+                    break;
+
+                case KEY_ADD:
+                    //...
+                    Debug.Log(KEY_ADD);
+                    break;
+                case KEY_DEL:
+                    //...
+                    Debug.Log(KEY_DEL);
+                    break;
+            }
+        }
+
+        GUILayout.Label("Instruction", m_Style);
 
         GUILayout.BeginHorizontal();
         GUILayout.Label(string.Format("Move", GUILayout.Width(position.width / 2)), m_StyleInstrctionL);
@@ -167,6 +198,8 @@ public class IsoWorldEditor : EditorWindow
 
     private int m_Page = 0;
 
+    private int m_ChoiceIndex = 0;
+
     private void SetGUIBlocksPath()
     {
         GUIStyle m_Style = new GUIStyle(GUI.skin.label)
@@ -197,12 +230,14 @@ public class IsoWorldEditor : EditorWindow
         if (IsoWorldManager.Blocks == null)
         {
             m_Page = 0;
+            m_ChoiceIndex = 0;
             return;
         }
 
         if (IsoWorldManager.Blocks.Count == 0)
         {
             m_Page = 0;
+            m_ChoiceIndex = 0;
             return;
         }
 
@@ -226,6 +261,7 @@ public class IsoWorldEditor : EditorWindow
             {
                 if (m_Index > IsoWorldManager.Blocks.Count - 1)
                 {
+                    GUI.backgroundColor = Color.white;
                     GUILayout.Button("...", GUILayout.Width(m_Width), GUILayout.Height(m_Height));
                 }
                 else
@@ -238,10 +274,25 @@ public class IsoWorldEditor : EditorWindow
 
                         GUIContent m_Content = new GUIContent("", (Texture)m_Texture);
 
-                        GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height));
+                        if (m_Index == m_ChoiceIndex)
+                        {
+                            GUI.backgroundColor = Color.cyan;
+
+                            GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height));
+                        }
+                        else
+                        {
+                            GUI.backgroundColor = Color.white;
+
+                            if (GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height)))
+                            {
+                                m_ChoiceIndex = m_Index;
+                            }
+                        }
                     }
                     else
                     {
+                        GUI.backgroundColor = Color.white;
                         GUILayout.Button("", GUILayout.Width(m_Width), GUILayout.Height(m_Height));
                         Debug.LogFormat("{0}: Need enable \"Read/Write Enable\" in Inspector.", m_Sprite.texture.name);
                     }
