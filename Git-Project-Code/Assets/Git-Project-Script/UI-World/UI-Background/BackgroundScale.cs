@@ -8,11 +8,19 @@ public class BackgroundScale : MonoBehaviour
 
     [SerializeField] private List<SpriteRenderer> m_Primarys;
 
-    [SerializeField] private GameObject m_Tarket;
+    [SerializeField] private GameObject m_Camera;
+
+    private void Start()
+    {
+        if (m_Camera == null)
+        {
+            m_Camera = Camera.main.gameObject;
+        }
+    }
 
     private void LateUpdate()
     {
-        if (m_Tarket.GetComponent<Camera>())
+        if (m_Camera.GetComponent<Camera>())
         {
             foreach(SpriteRenderer m_Primary in m_Primarys)
             {
@@ -23,13 +31,13 @@ public class BackgroundScale : MonoBehaviour
             }
         }
         else
-        if (m_Tarket.GetComponent<SpriteRenderer>())
+        if (m_Camera.GetComponent<SpriteRenderer>())
         {
             foreach (SpriteRenderer m_Primary in m_Primarys)
             {
                 m_Primary.size = GitResolution.GetSizeUnitScaled(
                     GitSprite.GetSpriteSizeUnit(m_Primary.sprite),
-                    GitSprite.GetSpriteSizeUnit(m_Tarket.GetComponent<SpriteRenderer>().sprite),
+                    GitSprite.GetSpriteSizeUnit(m_Camera.GetComponent<SpriteRenderer>().sprite),
                     m_SpriteScale);
             }
         }
