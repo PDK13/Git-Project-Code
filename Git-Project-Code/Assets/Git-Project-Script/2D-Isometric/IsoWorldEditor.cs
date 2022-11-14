@@ -248,10 +248,13 @@ public class IsoWorldEditor : EditorWindow
         GUILayout.Button("Next", GUILayout.Width(m_Width));
         GUILayout.EndHorizontal();
 
-        //GUILayout.BeginHorizontal();
-        GUILayout.Label(IsoWorldManager.Blocks[m_ChoiceIndex].name, m_StyleLabel, GUILayout.Width(position.width / 1));
-        GUILayout.Label(IsoWorldManager.Blocks[m_ChoiceIndex].GetComponent<IsoBlock>().Type.ToString(), m_StyleLabel, GUILayout.Width(position.width / 1));
-        //GUILayout.EndHorizontal();
+        GUILayout.BeginHorizontal();
+        GUI.backgroundColor = Color.clear;
+        GUILayout.Button(IsoWorldManager.Blocks[m_ChoiceIndex].name);
+        GUILayout.Button(IsoWorldManager.Blocks[m_ChoiceIndex].GetComponent<IsoBlock>().Type.ToString(),  GUILayout.Width(position.width / 3));
+        GUILayout.EndHorizontal();
+
+        GUI.backgroundColor = Color.white;
     }
 
     #endregion
@@ -321,6 +324,8 @@ public class IsoWorldEditor : EditorWindow
     private const string KEY_D = "s";
     private const string KEY_L = "a";
     private const string KEY_R = "d";
+    private const string KEY_T = "r";
+    private const string KEY_B = "f";
 
     private const string KEY_ADD = "j";
     private const string KEY_DEL = "k";
@@ -381,20 +386,28 @@ public class IsoWorldEditor : EditorWindow
             switch (m_KeyboardCode)
             {
                 case KEY_U:
-                    //...
+                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Up;
                     Debug.Log(KEY_U);
                     break;
                 case KEY_D:
-                    //...
+                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Down;
                     Debug.Log(KEY_D);
                     break;
                 case KEY_L:
-                    //...
+                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Left;
                     Debug.Log(KEY_L);
                     break;
                 case KEY_R:
-                    //...
+                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Right;
                     Debug.Log(KEY_R);
+                    break;
+                case KEY_T:
+                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Top;
+                    Debug.Log(KEY_T);
+                    break;
+                case KEY_B:
+                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Bot;
+                    Debug.Log(KEY_B);
                     break;
 
                 case KEY_ADD:
@@ -412,7 +425,15 @@ public class IsoWorldEditor : EditorWindow
 
         GUILayout.BeginHorizontal();
         GUILayout.Label(string.Format("Move", GUILayout.Width(position.width / 2)), m_StyleInstrctionL);
-        GUILayout.Label(string.Format("{0} {1} {2} {3}", KEY_U.ToUpper(), KEY_D.ToUpper(), KEY_L.ToUpper(), KEY_R.ToUpper()), m_StyleInstrctionR, GUILayout.Width(position.width / 2));
+        GUILayout.Label(string.Format("{0} {1} {2} {3} - {4} {5}",
+            KEY_U.ToUpper(), 
+            KEY_D.ToUpper(), 
+            KEY_L.ToUpper(), 
+            KEY_R.ToUpper(), 
+            KEY_T.ToUpper(), 
+            KEY_B.ToUpper()), 
+            m_StyleInstrctionR, 
+            GUILayout.Width(position.width / 2));
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();

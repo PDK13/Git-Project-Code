@@ -320,32 +320,32 @@ public struct IsoVector
 
     //Primary Dir
 
-    public IsoVector Up
+    public static IsoVector Up
     {
         get => new IsoVector(1, 0, 0);
     }
 
-    public IsoVector Down
+    public static IsoVector Down
     {
         get => new IsoVector(-1, 0, 0);
     }
 
-    public IsoVector Left
+    public static IsoVector Left
     {
         get => new IsoVector(0, -1, 0);
     }
 
-    public IsoVector Right
+    public static IsoVector Right
     {
         get => new IsoVector(0, 1, 0);
     }
 
-    public IsoVector Top
+    public static IsoVector Top
     {
         get => new IsoVector(0, 0, 1);
     }
 
-    public IsoVector Bot
+    public static IsoVector Bot
     {
         get => new IsoVector(0, 0, -1);
     }
@@ -380,63 +380,6 @@ public struct IsoVector
     public IsoVector IfBot
     {
         get => this + Bot;
-    }
-
-
-    //Move-To Dir
-
-    public IsoVector ToUp
-    {
-        get
-        {
-            this = this + Up;
-            return this;
-        }
-    }
-
-    public IsoVector ToDown
-    {
-        get
-        {
-            this = this + Down;
-            return this;
-        }
-    }
-
-    public IsoVector ToLeft
-    {
-        get
-        {
-            this = this + Left;
-            return this;
-        }
-    }
-
-    public IsoVector ToRight
-    {
-        get
-        {
-            this = this + Right;
-            return this;
-        }
-    }
-
-    public IsoVector ToTop
-    {
-        get
-        {
-            this = this + Top;
-            return this;
-        }
-    }
-
-    public IsoVector ToBot
-    {
-        get
-        {
-            this = this + Bot;
-            return this;
-        }
     }
 
     //Operator
