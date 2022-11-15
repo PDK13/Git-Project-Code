@@ -1,5 +1,10 @@
 ﻿public class Simple_Singleton
 {
+    //(Không nên sài nếu đéo hieu3 rõ)
+
+    //Class chỉ có một instance (ko thể new)
+    //Gọi ở đâu cũng dc
+
     //Xác nhận chỉ 1 lớp này tồn tại trong hệ thống
     private static readonly Simple_Singleton instance = new Simple_Singleton();
 
