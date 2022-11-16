@@ -7,14 +7,15 @@ public class Simple_Coroutine : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SetCoroutne_1());
-        StartCoroutine(SetCoroutne_2());
-        StartCoroutine(SetCoroutne_3());
+        StartCoroutine(SetCoroutine1());
+        StartCoroutine(SetCoroutine2());
+        StartCoroutine(SetCoroutine3());
+        StartCoroutine(SetCoroutine4());
 
-        m_Coroutine = StartCoroutine(SetCoroutine_Final());
+        m_Coroutine = StartCoroutine(SetCoroutineFinal());
     }
 
-    private IEnumerator SetCoroutne_1()
+    private IEnumerator SetCoroutine1()
     {
         //Skip 1 frame
         yield return null;
@@ -22,7 +23,7 @@ public class Simple_Coroutine : MonoBehaviour
         Debug.LogFormat("{0}: Coroutine 1 Done!", name);
     }
 
-    private IEnumerator SetCoroutne_2()
+    private IEnumerator SetCoroutine2()
     {
         yield return null;
         yield return null;
@@ -30,7 +31,7 @@ public class Simple_Coroutine : MonoBehaviour
         Debug.LogFormat("{0}: Coroutine 2 Done!", name);
     }
 
-    private IEnumerator SetCoroutne_3()
+    private IEnumerator SetCoroutine3()
     {
         yield return null;
         yield return null;
@@ -43,7 +44,7 @@ public class Simple_Coroutine : MonoBehaviour
         Debug.LogFormat("{0}: All Coroutine End!", name);
     }
 
-    private IEnumerator SetCoroutine_Final()
+    private IEnumerator SetCoroutineFinal()
     {
         yield return null;
         yield return null;
@@ -61,5 +62,13 @@ public class Simple_Coroutine : MonoBehaviour
         //yield return new WaitForSeconds(10f);
 
         Debug.LogFormat("{0}: Coroutine Final Done!", name);
+    }
+
+    private IEnumerator SetCoroutine4()
+    {
+        //Stop this coroutine!
+        yield break;
+
+        Debug.LogFormat("{0}: Coroutine would not run to here!", name);
     }
 }
