@@ -725,7 +725,7 @@ public class GitResolution
     #endregion
 
     #region Screen
-    
+
     public static Vector2 GetScreenSizePixel()
     {
         return new Vector2(Screen.width, Screen.height);
@@ -890,13 +890,13 @@ public class GitPlayerPref
 
     public static void SetPlayerPrefsClear(string m_ValueName)
     {
-        if (GetPlayerPrefsExist(m_ValueName))
+        if (!GetPlayerPrefsExist(m_ValueName))
         {
-            PlayerPrefs.DeleteKey(m_ValueName);
-            PlayerPrefs.Save();
+            Debug.LogError("SetPlayerPrefsClear: Not Exist" + "\"" + m_ValueName + "\"");
+            return;
         }
-
-        Debug.LogError("SetPlayerPrefsClear: Not Exist" + "\"" + m_ValueName + "\"");
+        PlayerPrefs.DeleteKey(m_ValueName);
+        PlayerPrefs.Save();
     }
 
     public static void SetPlayerPrefs(string m_ValueName, string m_Value)
@@ -945,48 +945,28 @@ public class GitPlayerPref
         return PlayerPrefs.HasKey(m_ValueName);
     }
 
-    public static string GetPlayerPrefsString(string m_ValueName)
+    public static string GetPlayerPrefsString(string m_ValueName, string m_ValueDefault = "")
     {
-        if (GetPlayerPrefsExist(m_ValueName))
-        {
-            return PlayerPrefs.GetString(m_ValueName);
-        }
-
-        Debug.LogError("GetPlayerPrefsString: Not Exist" + "\"" + m_ValueName + "\"");
-        return null;
+        return PlayerPrefs.GetString(m_ValueName, m_ValueDefault);
     }
 
-    public static int GetPlayerPrefsInt(string m_ValueName)
+    public static int GetPlayerPrefsInt(string m_ValueName, int m_ValueDefault = 0)
     {
-        if (GetPlayerPrefsExist(m_ValueName))
-        {
-            return PlayerPrefs.GetInt(m_ValueName);
-        }
-
-        Debug.LogError("GetPlayerPrefsInt: Not Exist" + "\"" + m_ValueName + "\"");
-        return 0;
+        return PlayerPrefs.GetInt(m_ValueName, m_ValueDefault);
     }
 
-    public static float GetPlayerPrefsFloat(string m_ValueName)
+    public static float GetPlayerPrefsFloat(string m_ValueName, float m_ValueDefault = 0.0f)
     {
-        if (GetPlayerPrefsExist(m_ValueName))
-        {
-            return PlayerPrefs.GetFloat(m_ValueName);
-        }
-
-        Debug.LogError("GetPlayerPrefsFloat: Not Exist" + "\"" + m_ValueName + "\"");
-        return 0.0f;
+        return PlayerPrefs.GetFloat(m_ValueName, m_ValueDefault);
     }
 
-    public static bool GetPlayerPrefsBool(string m_ValueName)
+    public static bool GetPlayerPrefsBool(string m_ValueName, bool m_ValueDefault = false)
     {
-        if (GetPlayerPrefsExist(m_ValueName))
+        if (PlayerPrefs.GetInt(m_ValueName, 0) == 1)
         {
-            return PlayerPrefs.GetInt(m_ValueName) == 1;
+            return true;
         }
-
-        Debug.LogError("GetPlayerPrefsBool: Not Exist" + "\"" + m_ValueName + "\"");
-        return false;
+        return m_ValueDefault;
     }
 
     public static Vector2 SetPlayerPrefsVector2(string m_ValueName)
