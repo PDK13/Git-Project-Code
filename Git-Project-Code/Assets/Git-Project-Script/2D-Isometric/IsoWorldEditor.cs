@@ -83,13 +83,22 @@ public class IsoWorldEditor : EditorWindow
 
     #region Curson
 
+    private const string CURSON_NAME = "Iso-Map-Curson";
+
     private GameObject m_Curson;
 
     private void SetGUICurson()
     {
         if (m_Curson == null)
         {
-            m_Curson = GitGameObject.SetGameObjectCreate("Iso-Map-Curson", m_IsoWorldManagerGameObject.transform);
+            if (m_IsoWorldManagerGameObject.transform.GetChild(0).name == CURSON_NAME)
+            {
+                m_Curson = m_IsoWorldManagerGameObject.transform.GetChild(0).gameObject;
+            }
+            else
+            {
+                m_Curson = GitGameObject.SetGameObjectCreate(CURSON_NAME, m_IsoWorldManagerGameObject.transform);
+            }
         }
 
         if (IsoWorldManager.Blocks == null)

@@ -231,9 +231,13 @@ public class IsoBlock : MonoBehaviour
 
     #region ================================================================== Code
 
-    public List<IsoCode> Code
+    public List<IsoCode> Codes
     {
         get => m_Code;
+        set
+        {
+            m_Code = value;
+        }
     }
 
     #endregion
@@ -246,10 +250,10 @@ public enum IsoDir { None, Up, Down, Left, Right, Top, Bot }
 public enum IsoDepth { Fixed }
 
 [System.Serializable]
-public struct IsoCode
+public class IsoCode
 {
-    private string m_Type;
-    private string m_Command;
+    [SerializeField] private string m_Type = "";
+    [SerializeField] private string m_Commands = "";
 
     public string Type
     {
@@ -260,19 +264,19 @@ public struct IsoCode
         }
     }
 
-    public string Command
+    public string Commands
     {
-        get => m_Command;
+        get => m_Commands;
         set
         {
-            m_Command = value;
+            m_Commands = value;
         }
     }
 
-    public IsoCode(string m_Type, string m_Command)
+    public IsoCode(string m_Type, string m_Commands)
     {
         this.m_Type = m_Type;
-        this.m_Command = m_Command;
+        this.m_Commands = m_Commands;
     }
 }
 

@@ -110,88 +110,67 @@ public class IsoWorldManager : MonoBehaviour
 
     public static IEnumerator ISetWorldGenerate(List<IsoWorldBlockData> m_WorldData, int m_YieldDelayEvery = 10)
     {
-        if (!m_This.m_WorldGenerated && !m_This.m_WorldGenerating)
+        if (m_This.m_WorldGenerated || m_This.m_WorldGenerating) yield break;
+
+        m_This.m_WorldGenerating = true;
+
+        m_This.act_WorldGeneratedStart?.Invoke();
+
+        int m_YieldCount = 0;
+
+        yield return null;
+
+        foreach (IsoWorldBlockData m_BlockData in m_WorldData)
         {
-            m_This.m_WorldGenerating = true;
+            //Create!
 
-            m_This.act_WorldGeneratedStart?.Invoke();
+            SetWorldCreate(m_BlockData.PosPrimary, GetBlock(m_BlockData.Name), m_BlockData.Codes);
 
-            int m_YieldCount = 0;
+            //Slowdown!
 
-            yield return null;
-
-            foreach (IsoWorldBlockData m_BlockData in m_WorldData)
+            if (m_YieldDelayEvery > 0)
             {
-                //Create!
+                m_YieldCount++;
 
-                SetWorldCreate(m_BlockData.m_PosPrimary, GetBlock(m_BlockData.m_BlockName));
-
-                //Slowdown!
-
-                if (m_YieldDelayEvery > 0)
+                if (m_YieldCount % m_YieldDelayEvery == 0)
                 {
-                    m_YieldCount++;
+                    m_YieldCount = 0;
 
-                    if (m_YieldCount % m_YieldDelayEvery == 0)
-                    {
-                        m_YieldCount = 0;
-
-                        yield return null;
-                    }
+                    yield return null;
                 }
             }
-
-            yield return null;
-
-            m_This.m_WorldGenerated = true;
-
-            m_This.m_WorldGenerating = false;
-
-            m_This.act_WorldGeneratedEnd?.Invoke();
         }
+
+        yield return null;
+
+        m_This.m_WorldGenerated = true;
+
+        m_This.m_WorldGenerating = false;
+
+        m_This.act_WorldGeneratedEnd?.Invoke();
     }
 
     public static IEnumerator ISetWorldDestroy(int m_YieldDelayEvery = 10)
     {
-        if (m_This.m_WorldGenerated && !m_This.m_WorldDestroying)
+        if (!m_This.m_WorldGenerated || m_This.m_WorldDestroying) yield break;
+
+        m_This.m_WorldDestroying = true;
+
+        m_This.m_WorldGenerated = false;
+
+        m_This.act_WorldDestroyedStart?.Invoke();
+
+        int m_YieldCount = 0;
+
+        yield return null;
+
+        //Block(s)
+
+        for (int i = 0; i < m_This.m_WorldBlock.Count; i++)
         {
-            m_This.m_WorldDestroying = true;
-
-            m_This.m_WorldGenerated = false;
-
-            m_This.act_WorldDestroyedStart?.Invoke();
-
-            int m_YieldCount = 0;
-
-            yield return null;
-
-            //Block(s)
-
-            for (int i = 0; i < m_This.m_WorldBlock.Count; i++)
+            for (int j = 0; j < m_This.m_WorldBlock[i].m_BlocksFloor.Count; j++)
             {
-                for (int j = 0; j < m_This.m_WorldBlock[i].m_BlocksFloor.Count; j++)
-                {
-                    Destroy(GetWorldBlock(i, j));
-
-                    if (m_YieldDelayEvery > 0)
-                    {
-                        m_YieldCount++;
-
-                        if (m_YieldCount % m_YieldDelayEvery == 0)
-                        {
-                            m_YieldCount = 0;
-
-                            yield return null;
-                        }
-                    }
-                }
-            }
-
-            //None-Block(s)
-
-            foreach (GameObject m_Block in m_This.m_WorldPlayer)
-            {
-                Destroy(m_Block);
+                Destroy(GetWorldBlock(i, j));
 
                 if (m_YieldDelayEvery > 0)
                 {
@@ -205,81 +184,100 @@ public class IsoWorldManager : MonoBehaviour
                     }
                 }
             }
-
-            foreach (GameObject m_Block in m_This.m_WorldFriend)
-            {
-                Destroy(m_Block);
-
-                if (m_YieldDelayEvery > 0)
-                {
-                    m_YieldCount++;
-
-                    if (m_YieldCount % m_YieldDelayEvery == 0)
-                    {
-                        m_YieldCount = 0;
-
-                        yield return null;
-                    }
-                }
-            }
-
-            foreach (GameObject m_Block in m_This.m_WorldNeutral)
-            {
-                Destroy(m_Block);
-
-                if (m_YieldDelayEvery > 0)
-                {
-                    m_YieldCount++;
-
-                    if (m_YieldCount % m_YieldDelayEvery == 0)
-                    {
-                        m_YieldCount = 0;
-
-                        yield return null;
-                    }
-                }
-            }
-
-            foreach (GameObject m_Block in m_This.m_WorldEnermy)
-            {
-                Destroy(m_Block);
-
-                if (m_YieldDelayEvery > 0)
-                {
-                    m_YieldCount++;
-
-                    if (m_YieldCount % m_YieldDelayEvery == 0)
-                    {
-                        m_YieldCount = 0;
-
-                        yield return null;
-                    }
-                }
-            }
-
-            foreach (GameObject m_Block in m_This.m_WorldObject)
-            {
-                Destroy(m_Block);
-
-                if (m_YieldDelayEvery > 0)
-                {
-                    m_YieldCount++;
-
-                    if (m_YieldCount % m_YieldDelayEvery == 0)
-                    {
-                        m_YieldCount = 0;
-
-                        yield return null;
-                    }
-                }
-            }
-
-            yield return null;
-
-            m_This.m_WorldDestroying = false;
-
-            m_This.act_WorldDestroyedEnd?.Invoke();
         }
+
+        //None-Block(s)
+
+        foreach (GameObject m_Block in m_This.m_WorldPlayer)
+        {
+            Destroy(m_Block);
+
+            if (m_YieldDelayEvery > 0)
+            {
+                m_YieldCount++;
+
+                if (m_YieldCount % m_YieldDelayEvery == 0)
+                {
+                    m_YieldCount = 0;
+
+                    yield return null;
+                }
+            }
+        }
+
+        foreach (GameObject m_Block in m_This.m_WorldFriend)
+        {
+            Destroy(m_Block);
+
+            if (m_YieldDelayEvery > 0)
+            {
+                m_YieldCount++;
+
+                if (m_YieldCount % m_YieldDelayEvery == 0)
+                {
+                    m_YieldCount = 0;
+
+                    yield return null;
+                }
+            }
+        }
+
+        foreach (GameObject m_Block in m_This.m_WorldNeutral)
+        {
+            Destroy(m_Block);
+
+            if (m_YieldDelayEvery > 0)
+            {
+                m_YieldCount++;
+
+                if (m_YieldCount % m_YieldDelayEvery == 0)
+                {
+                    m_YieldCount = 0;
+
+                    yield return null;
+                }
+            }
+        }
+
+        foreach (GameObject m_Block in m_This.m_WorldEnermy)
+        {
+            Destroy(m_Block);
+
+            if (m_YieldDelayEvery > 0)
+            {
+                m_YieldCount++;
+
+                if (m_YieldCount % m_YieldDelayEvery == 0)
+                {
+                    m_YieldCount = 0;
+
+                    yield return null;
+                }
+            }
+        }
+
+        foreach (GameObject m_Block in m_This.m_WorldObject)
+        {
+            Destroy(m_Block);
+
+            if (m_YieldDelayEvery > 0)
+            {
+                m_YieldCount++;
+
+                if (m_YieldCount % m_YieldDelayEvery == 0)
+                {
+                    m_YieldCount = 0;
+
+                    yield return null;
+                }
+            }
+        }
+
+        yield return null;
+
+        m_This.m_WorldDestroying = false;
+
+        m_This.act_WorldDestroyedEnd?.Invoke();
     }
 
     public static bool GetWorldGenerated()
@@ -293,17 +291,17 @@ public class IsoWorldManager : MonoBehaviour
 
     //Create
 
-    public static void SetWorldCreate(IsoVector m_Pos, GameObject m_Block)
+    public static void SetWorldCreate(IsoVector m_Pos, GameObject m_Block, List<IsoCode> m_Codes)
     {
         if (!GetBlockCheck(m_Block))
         {
             return;
         }
 
-        m_This.SetWorldCreate(m_Pos, m_Block, m_Block.GetComponent<IsoBlock>().Type);
+        m_This.SetWorldCreate(m_Pos, m_Block, m_Block.GetComponent<IsoBlock>().Type, m_Codes);
     }
 
-    private void SetWorldCreate(IsoVector m_Pos, GameObject m_Block, IsoType m_Type)
+    private void SetWorldCreate(IsoVector m_Pos, GameObject m_Block, IsoType m_Type, List<IsoCode> m_Codes)
     {
         if (!GetBlockCheck(m_Block))
         {
@@ -313,14 +311,14 @@ public class IsoWorldManager : MonoBehaviour
         switch (m_Type)
         {
             case IsoType.Block:
-                m_This.SetWorldBlock(m_Pos, m_Block);
+                m_This.SetWorldBlock(m_Pos, m_Block, m_Codes);
                 break;
             case IsoType.Player:
             case IsoType.Friend:
             case IsoType.Neutral:
             case IsoType.Enermy:
             case IsoType.Object:
-                m_This.SetWorldNoneBlock(m_Pos, m_Block, m_Type);
+                m_This.SetWorldNoneBlock(m_Pos, m_Block, m_Type, m_Codes);
                 break;
         }
     }
@@ -428,7 +426,7 @@ public class IsoWorldManager : MonoBehaviour
 
     //Set
 
-    private void SetWorldBlock(IsoVector m_Pos, GameObject m_Block)
+    private void SetWorldBlock(IsoVector m_Pos, GameObject m_Block, List<IsoCode> m_Codes)
     {
         IsoWorldBlockIndex m_BlockPosFound = GetWorldBlockIndex(m_Pos);
 
@@ -446,6 +444,11 @@ public class IsoWorldManager : MonoBehaviour
         m_BlockClone.GetComponent<IsoBlock>().Scale = m_This.m_Scale;
         m_BlockClone.GetComponent<IsoBlock>().PosPrimary = m_Pos;
         m_BlockClone.GetComponent<IsoBlock>().Pos = m_Pos;
+
+        if (m_Codes != null)
+        {
+            m_BlockClone.GetComponent<IsoBlock>().Codes = m_Codes;
+        }
 
         if (m_BlockPosFound.m_BlockFound == true)
         {
@@ -564,12 +567,17 @@ public class IsoWorldManager : MonoBehaviour
 
     //Set
 
-    private void SetWorldNoneBlock(IsoVector m_Pos, GameObject m_Block, IsoType m_IsoType)
+    private void SetWorldNoneBlock(IsoVector m_Pos, GameObject m_Block, IsoType m_IsoType, List<IsoCode> m_Codes)
     {
         GameObject m_BlockClone = GitGameObject.SetGameObjectCreate(m_Block, m_This.transform);
         m_BlockClone.GetComponent<IsoBlock>().Scale = m_This.m_Scale;
         m_BlockClone.GetComponent<IsoBlock>().PosPrimary = m_Pos;
         m_BlockClone.GetComponent<IsoBlock>().Pos = m_Pos;
+
+        if (m_Codes != null)
+        {
+            m_BlockClone.GetComponent<IsoBlock>().Codes = m_Codes;
+        }
 
         switch (m_IsoType)
         {
@@ -672,15 +680,21 @@ public class IsoWorldManager : MonoBehaviour
 }
 
 [System.Serializable]
-public struct IsoWorldBlockData
+public class IsoWorldBlockData
 {
-    public string m_BlockName;
-    public IsoVector m_PosPrimary;
+    [SerializeField] private string m_Name;
+    [SerializeField] private IsoVector m_Pos;
+    [SerializeField] private List<IsoCode> m_Codes;
 
-    public IsoWorldBlockData(string m_BlockName, IsoVector m_PosPrimary)
+    public string Name { get => m_Name; }
+    public IsoVector PosPrimary { get => m_Pos; }
+    public List<IsoCode> Codes { get => m_Codes; }
+
+    public IsoWorldBlockData(string m_Name, IsoVector m_Pos, List<IsoCode> m_Codes)
     {
-        this.m_BlockName = m_BlockName;
-        this.m_PosPrimary = m_PosPrimary;
+        this.m_Name = m_Name;
+        this.m_Pos = m_Pos;
+        this.m_Codes = m_Codes;
     }
 }
 
