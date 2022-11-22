@@ -76,6 +76,8 @@ public class IsoWorldManager : MonoBehaviour
     public Action act_WorldDestroyedStart;
     public Action act_WorldDestroyedEnd;
 
+    public static List<IsoWorldBlockData> WorldData;
+
     [Header("Block(s) Manager")]
 
     //[SerializeField]
@@ -108,40 +110,20 @@ public class IsoWorldManager : MonoBehaviour
 
     #region World Main Manager
 
-    public static IEnumerator ISetWorldGenerate(List<IsoWorldBlockData> m_WorldData, int m_YieldDelayEvery = 10)
+    public static void SetWorldGenerate()
     {
-        if (m_This.m_WorldGenerated || m_This.m_WorldGenerating) yield break;
+        if (m_This.m_WorldGenerated || m_This.m_WorldGenerating) return;
 
         m_This.m_WorldGenerating = true;
 
         m_This.act_WorldGeneratedStart?.Invoke();
-
-        int m_YieldCount = 0;
-
-        yield return null;
-
-        foreach (IsoWorldBlockData m_BlockData in m_WorldData)
+        
+        foreach (IsoWorldBlockData m_BlockData in WorldData)
         {
             //Create!
 
             SetWorldCreate(m_BlockData.PosPrimary, GetBlock(m_BlockData.Name), m_BlockData.Codes);
-
-            //Slowdown!
-
-            if (m_YieldDelayEvery > 0)
-            {
-                m_YieldCount++;
-
-                if (m_YieldCount % m_YieldDelayEvery == 0)
-                {
-                    m_YieldCount = 0;
-
-                    yield return null;
-                }
-            }
         }
-
-        yield return null;
 
         m_This.m_WorldGenerated = true;
 
@@ -150,19 +132,15 @@ public class IsoWorldManager : MonoBehaviour
         m_This.act_WorldGeneratedEnd?.Invoke();
     }
 
-    public static IEnumerator ISetWorldDestroy(int m_YieldDelayEvery = 10)
+    public static void SetWorldDestroy()
     {
-        if (!m_This.m_WorldGenerated || m_This.m_WorldDestroying) yield break;
+        if (!m_This.m_WorldGenerated || m_This.m_WorldDestroying) return;
 
         m_This.m_WorldDestroying = true;
 
         m_This.m_WorldGenerated = false;
 
         m_This.act_WorldDestroyedStart?.Invoke();
-
-        int m_YieldCount = 0;
-
-        yield return null;
 
         //Block(s)
 
@@ -171,109 +149,20 @@ public class IsoWorldManager : MonoBehaviour
             for (int j = 0; j < m_This.m_WorldBlock[i].m_BlocksFloor.Count; j++)
             {
                 Destroy(GetWorldBlock(i, j));
-
-                if (m_YieldDelayEvery > 0)
-                {
-                    m_YieldCount++;
-
-                    if (m_YieldCount % m_YieldDelayEvery == 0)
-                    {
-                        m_YieldCount = 0;
-
-                        yield return null;
-                    }
-                }
             }
         }
 
         //None-Block(s)
 
-        foreach (GameObject m_Block in m_This.m_WorldPlayer)
-        {
-            Destroy(m_Block);
+        foreach (GameObject m_Block in m_This.m_WorldPlayer) Destroy(m_Block);
 
-            if (m_YieldDelayEvery > 0)
-            {
-                m_YieldCount++;
+        foreach (GameObject m_Block in m_This.m_WorldFriend) Destroy(m_Block);
 
-                if (m_YieldCount % m_YieldDelayEvery == 0)
-                {
-                    m_YieldCount = 0;
+        foreach (GameObject m_Block in m_This.m_WorldNeutral) Destroy(m_Block);
 
-                    yield return null;
-                }
-            }
-        }
+        foreach (GameObject m_Block in m_This.m_WorldEnermy) Destroy(m_Block);
 
-        foreach (GameObject m_Block in m_This.m_WorldFriend)
-        {
-            Destroy(m_Block);
-
-            if (m_YieldDelayEvery > 0)
-            {
-                m_YieldCount++;
-
-                if (m_YieldCount % m_YieldDelayEvery == 0)
-                {
-                    m_YieldCount = 0;
-
-                    yield return null;
-                }
-            }
-        }
-
-        foreach (GameObject m_Block in m_This.m_WorldNeutral)
-        {
-            Destroy(m_Block);
-
-            if (m_YieldDelayEvery > 0)
-            {
-                m_YieldCount++;
-
-                if (m_YieldCount % m_YieldDelayEvery == 0)
-                {
-                    m_YieldCount = 0;
-
-                    yield return null;
-                }
-            }
-        }
-
-        foreach (GameObject m_Block in m_This.m_WorldEnermy)
-        {
-            Destroy(m_Block);
-
-            if (m_YieldDelayEvery > 0)
-            {
-                m_YieldCount++;
-
-                if (m_YieldCount % m_YieldDelayEvery == 0)
-                {
-                    m_YieldCount = 0;
-
-                    yield return null;
-                }
-            }
-        }
-
-        foreach (GameObject m_Block in m_This.m_WorldObject)
-        {
-            Destroy(m_Block);
-
-            if (m_YieldDelayEvery > 0)
-            {
-                m_YieldCount++;
-
-                if (m_YieldCount % m_YieldDelayEvery == 0)
-                {
-                    m_YieldCount = 0;
-
-                    yield return null;
-                }
-            }
-        }
-
-        yield return null;
+        foreach (GameObject m_Block in m_This.m_WorldObject) Destroy(m_Block);
 
         m_This.m_WorldDestroying = false;
 

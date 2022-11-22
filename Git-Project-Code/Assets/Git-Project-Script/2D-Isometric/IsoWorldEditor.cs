@@ -310,6 +310,8 @@ public class IsoWorldEditor : EditorWindow
         if (GUILayout.Button("New"))
         {
             //...
+            IsoWorldManager.SetWorldDestroy();
+            IsoWorldManager.SetWorldGenerate();
         }
         if (GUILayout.Button("Open"))
         {
