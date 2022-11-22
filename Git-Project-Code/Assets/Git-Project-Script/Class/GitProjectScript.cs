@@ -1355,6 +1355,21 @@ public class GitFileIO
     #endregion
 }
 
+//=================================================== Enum
+
+public class GitEnum
+{
+    public static string[] GetEnumArray<EnumType>()
+    {
+        return Enum.GetNames(typeof(EnumType));
+    }
+
+    public static List<string> GetEnumList<EnumType>()
+    {
+        return new List<string>(GetEnumArray<EnumType>());
+    }
+}
+
 //=================================================== Color
 
 public class GitColor
