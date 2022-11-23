@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -1368,6 +1369,16 @@ public class GitEnum
     {
         return new List<string>(GetEnumArray<EnumType>());
     }
+
+    public static List<int> GetEnumListIndex<EnumType>()
+    {
+        return Enum.GetValues(typeof(EnumType)).Cast<int>().ToList();
+    }
+
+    public static string GetEnumString<EnumType>(int m_Index)
+    {
+        return Enum.GetName(typeof(EnumType), m_Index);
+    }
 }
 
 //=================================================== Color
@@ -1888,4 +1899,4 @@ public class GitEmail
 
 //=================================================== Enum
 
-public enum GitOpption { Yes, No }
+public enum GitOpption { Yes = 1, No = -1 }
