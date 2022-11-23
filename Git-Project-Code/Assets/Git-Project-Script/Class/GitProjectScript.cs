@@ -1370,6 +1370,11 @@ public class GitEnum
         return new List<string>(GetEnumArray<EnumType>());
     }
 
+    public static int[] GetEnumArrayIndex<EnumType>()
+    {
+        return Enum.GetValues(typeof(EnumType)).Cast<int>().ToArray();
+    }
+
     public static List<int> GetEnumListIndex<EnumType>()
     {
         return Enum.GetValues(typeof(EnumType)).Cast<int>().ToList();
@@ -1899,4 +1904,4 @@ public class GitEmail
 
 //=================================================== Enum
 
-public enum GitOpption { Yes = 1, No = -1 }
+public enum GitOpption { Yes = 1, No = -1}
