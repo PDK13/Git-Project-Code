@@ -256,7 +256,7 @@ public class GitCast
         return new GitCastData(m_RaycastHit);
     }
 
-    public static GitCastData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance)
+    public static GitCastData GetSphereCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance)
     {
         RaycastHit m_RaycastHit = new RaycastHit();
 
@@ -298,7 +298,7 @@ public class GitCast
         return new GitCastData(m_RaycastHit);
     }
 
-    public static GitCastData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance, LayerMask m_Tarket)
+    public static GitCastData GetSphereCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance, LayerMask m_Tarket)
     {
         RaycastHit m_RaycastHit = new RaycastHit();
 
@@ -374,7 +374,7 @@ public class GitCast2D
         return new GitCast2DData(m_RaycastHit);
     }
 
-    public static GitCast2DData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance)
+    public static GitCast2DData GetCircleCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance)
     {
         RaycastHit2D m_RaycastHit = new RaycastHit2D();
 
@@ -415,7 +415,7 @@ public class GitCast2D
         return new GitCast2DData(m_RaycastHit);
     }
 
-    public static GitCast2DData GetBoxCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance, LayerMask m_Tarket)
+    public static GitCast2DData GetCircleCast(Vector3 m_PosStart, Vector3 m_PosEnd, float m_Radius, float m_Distance, LayerMask m_Tarket)
     {
         RaycastHit2D m_RaycastHit = new RaycastHit2D();
 
@@ -1904,4 +1904,4 @@ public class GitEmail
 
 //=================================================== Enum
 
-public enum GitOpption { Yes = 1, No = -1}
+public enum GitOpption { Yes = 1, No = -1 }
