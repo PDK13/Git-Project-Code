@@ -395,7 +395,7 @@ MonoBehaviour:
     m_SpeedX: 0.4
     m_FollowY: 1
   - m_Layer: {fileID: 80299489}
-    m_SpeedX: 0.2
+    m_SpeedX: 0
     m_FollowY: 1
 --- !u!4 &1462807009
 Transform:
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_SpriteScale: 2
   m_Primarys:
   - {fileID: 1510829100}
-  m_Tarket: {fileID: 2073728965}
+  m_Camera: {fileID: 0}
 --- !u!1 &1510829099
 GameObject:
   m_ObjectHideFlags: 0
