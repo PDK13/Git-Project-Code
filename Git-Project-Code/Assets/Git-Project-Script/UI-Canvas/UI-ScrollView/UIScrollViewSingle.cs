@@ -103,6 +103,11 @@ public class UIScrollViewSingle : MonoBehaviour
 
 #endif
 
+    public void SetScrollViewTouch(bool m_ScrollViewTouch)
+    {
+        com_ScrollRect.enabled = m_ScrollViewTouch;
+    }
+
     private void SetScrollViewFix()
     {
         switch (m_ScrollViewType)
@@ -164,7 +169,7 @@ public class UIScrollViewSingle : MonoBehaviour
         {
             com_GridLayoutGroup.cellSize = m_ItemSize;
             com_GridLayoutGroup.spacing = m_ItemSpacing;
-        }  
+        }
     }
 
     public void SetContent(float m_ItemInContent)
