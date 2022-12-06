@@ -10,36 +10,32 @@ public class BackgroundScale : MonoBehaviour
 
     [SerializeField] private GameObject m_Camera;
 
+    private Vector2 m_ResolutionPrimary = new Vector2();
+
     private void Start()
     {
-        if (m_Camera == null)
+        if (m_Camera == null) m_Camera = Camera.main.gameObject;
+
+        if (m_Camera != null)
         {
-            m_Camera = Camera.main.gameObject;
+            m_ResolutionPrimary = GitResolution.GetCameraSizeUnit(m_Camera.GetComponent<Camera>());
         }
     }
 
     private void LateUpdate()
     {
-        if (m_Camera.GetComponent<Camera>())
+        if (m_Camera == null) return;
+
+        if (GitResolution.GetCameraSizeUnit(m_Camera.GetComponent<Camera>()) == m_ResolutionPrimary) return;
+
+        m_ResolutionPrimary = GitResolution.GetCameraSizeUnit(m_Camera.GetComponent<Camera>());
+
+        foreach (SpriteRenderer m_Primary in m_Primarys)
         {
-            foreach(SpriteRenderer m_Primary in m_Primarys)
-            {
-                m_Primary.size = GitResolution.GetSizeUnitScaled(
-                    GitSprite.GetSpriteSizeUnit(m_Primary.sprite),
-                    GitResolution.GetCameraSizeUnit(),
-                    m_SpriteScale);
-            }
-        }
-        else
-        if (m_Camera.GetComponent<SpriteRenderer>())
-        {
-            foreach (SpriteRenderer m_Primary in m_Primarys)
-            {
-                m_Primary.size = GitResolution.GetSizeUnitScaled(
-                    GitSprite.GetSpriteSizeUnit(m_Primary.sprite),
-                    GitSprite.GetSpriteSizeUnit(m_Camera.GetComponent<SpriteRenderer>().sprite),
-                    m_SpriteScale);
-            }
+            m_Primary.size = GitResolution.GetSizeUnitScaled(
+                GitSprite.GetSpriteSizeUnit(m_Primary.sprite),
+                m_ResolutionPrimary,
+                m_SpriteScale);
         }
     }
 }
