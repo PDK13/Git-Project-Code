@@ -15,11 +15,6 @@ public class BackgroundScale : MonoBehaviour
     private void Start()
     {
         if (m_Camera == null) m_Camera = Camera.main.gameObject;
-
-        if (m_Camera != null)
-        {
-            m_ResolutionPrimary = GitResolution.GetCameraSizeUnit(m_Camera.GetComponent<Camera>());
-        }
     }
 
     private void LateUpdate()
