@@ -402,7 +402,7 @@ public class ClassAIML
     /// <returns></returns>
     public bool GetFileExist(string m_Path)
     {
-        return GitFileIO.GetPathExist(m_Path);
+        return GitFileIO.GetPathFileExist(m_Path);
     }
 
     /// <summary>
