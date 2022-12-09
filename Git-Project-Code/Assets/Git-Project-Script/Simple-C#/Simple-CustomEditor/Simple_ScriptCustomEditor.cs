@@ -37,8 +37,10 @@ public class Simple_ScriptCustomEditor : Editor
 
         if (m_Temp.m_VaribleA == Simple_Script.Option.Option1) 
         {
-            m_Temp.SetOptionDebug(); //Call Methode from Sript or Component
+            EditorGUILayout.PropertyField(m_AnotherVaribleB);
         }
+
+        m_Temp.SetOptionDebug(); //Call Methode from Sript or Component
 
         EditorGUI.EndChangeCheck();
 
