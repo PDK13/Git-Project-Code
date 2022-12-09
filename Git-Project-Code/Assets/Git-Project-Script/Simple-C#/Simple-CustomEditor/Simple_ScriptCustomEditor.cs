@@ -33,17 +33,14 @@ public class Simple_ScriptCustomEditor : Editor
 
         EditorGUILayout.PropertyField(m_AnotherVaribleA); //Show varible
 
-        serializedObject.ApplyModifiedProperties(); //Apply show called
+        Simple_Script m_Temp = (target as Simple_Script); //"Target" mean GameObject
 
-        if (EditorGUI.EndChangeCheck()) //If End Check
+        if (m_Temp.m_VaribleA == Simple_Script.Option.Option1) 
         {
-            Simple_Script m_Temp = (target as Simple_Script); //"Target" mean GameObject
-            
-            if (m_Temp != null)
-            {
-                m_Temp.SetOptionDebug(); //Call Methode from Sript or Component
-            }
+            m_Temp.SetOptionDebug(); //Call Methode from Sript or Component
         }
+
+        EditorGUI.EndChangeCheck();
 
         //=================================================== End Check
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Simple_Script : MonoBehaviour
 {
-    [SerializeField] private Option m_VaribleA = Option.Option1;
+    public Option m_VaribleA = Option.Option1;
 
     [SerializeField] private string m_VaribleB;
     [SerializeField] private string m_VaribleC;
