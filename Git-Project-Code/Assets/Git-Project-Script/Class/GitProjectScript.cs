@@ -962,6 +962,38 @@ public class GitFile
     }
 }
 
+//=================================================== Assets Database
+
+#if UNITY_EDITOR
+
+public class GitAssetsDatabase : GitFile
+{
+    //NOTE:
+    //Folder "Assets" is the main root of all assets in project, that can find any assets from it.
+
+    public const string m_ExamplePathAssets = "Assets/Scene";
+
+    public static List<GameObject> GetAssetsPrefab(string m_PathFolderFromAssets)
+    {
+        if (!GetPathFolderExist(m_PathFolderFromAssets)) return new List<GameObject>();
+
+        List<GameObject> m_ObjectsFound = new List<GameObject>();
+
+        string[] m_GUIDPathUnityFound = AssetDatabase.FindAssets("t:prefab", new string[] { m_PathFolderFromAssets });
+
+        foreach (string m_GUIDPath in m_GUIDPathUnityFound)
+        {
+            string m_AssetsSinglePath = AssetDatabase.GUIDToAssetPath(m_GUIDPath);
+            GameObject m_ObjectFound = AssetDatabase.LoadAssetAtPath<GameObject>(m_AssetsSinglePath);
+            m_ObjectsFound.Add(m_ObjectFound);
+        }
+
+        return m_ObjectsFound;
+    }
+}
+
+#endif
+
 //=================================================== FileIO
 
 public class GitFileIO : GitFile
@@ -1811,35 +1843,3 @@ public class GitEmail
 //=================================================== Enum
 
 public enum GitOpption { Yes = 1, No = -1 }
-
-//=================================================== Assets Database
-
-#if UNITY_EDITOR
-
-public class GitAssetsDatabase : GitFile
-{
-    //NOTE:
-    //Folder "Assets" is the main root of all assets in project, that can find any assets from it.
-
-    public const string m_ExamplePathAssets = "Assets/Scene";
-
-    public static List<GameObject> GetAssetsPrefab(string m_PathFolderFromAssets)
-    {
-        if (!GetPathFolderExist(m_PathFolderFromAssets)) return new List<GameObject>();
-
-        List<GameObject> m_ObjectsFound = new List<GameObject>();
-
-        string[] m_GUIDPathUnityFound = AssetDatabase.FindAssets("t:prefab", new string[] { m_PathFolderFromAssets });
-
-        foreach (string m_GUIDPath in m_GUIDPathUnityFound)
-        {
-            string m_AssetsSinglePath = AssetDatabase.GUIDToAssetPath(m_GUIDPath);
-            GameObject m_ObjectFound = AssetDatabase.LoadAssetAtPath<GameObject>(m_AssetsSinglePath);
-            m_ObjectsFound.Add(m_ObjectFound);
-        }
-
-        return m_ObjectsFound;
-    }
-}
-
-#endif
