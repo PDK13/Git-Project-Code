@@ -398,35 +398,35 @@ public class IsoWorldEditor : EditorWindow
             {
                 case KEY_U:
                     m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Up;
-                    Debug.Log(KEY_U);
+                    //Debug.Log(KEY_U);
                     break;
                 case KEY_D:
                     m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Down;
-                    Debug.Log(KEY_D);
+                    //Debug.Log(KEY_D);
                     break;
                 case KEY_L:
                     m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Left;
-                    Debug.Log(KEY_L);
+                    //Debug.Log(KEY_L);
                     break;
                 case KEY_R:
                     m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Right;
-                    Debug.Log(KEY_R);
+                    //Debug.Log(KEY_R);
                     break;
                 case KEY_T:
                     m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Top;
-                    Debug.Log(KEY_T);
+                    //Debug.Log(KEY_T);
                     break;
                 case KEY_B:
                     m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Bot;
-                    Debug.Log(KEY_B);
+                    //Debug.Log(KEY_B);
                     break;
 
                 case KEY_ADD:
-                    //...
+                    IsoWorldManager.SetWorldCreate(m_Curson.GetComponent<IsoBlock>().Pos, IsoWorldManager.Blocks[m_ChoiceIndex], null);
                     Debug.Log(KEY_ADD);
                     break;
                 case KEY_DEL:
-                    //...
+                    IsoWorldManager.SetWorldRemove(m_Curson.GetComponent<IsoBlock>().Pos, IsoWorldManager.Blocks[m_ChoiceIndex].GetComponent<IsoBlock>().Type);
                     Debug.Log(KEY_DEL);
                     break;
             }

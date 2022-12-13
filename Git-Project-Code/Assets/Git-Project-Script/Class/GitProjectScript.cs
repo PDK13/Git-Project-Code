@@ -947,9 +947,53 @@ public class GitResources
 
 public class GitFile
 {
-    public enum Path { None, Persistent, Resources, Document, Picture, Music, Video, }
+    public const string m_ExamplePath = @"D:/ClassFileIO.txt";
 
-    public const string m_ExamplePath = @"D:\ClassFileIO.txt";
+    public enum Path { None, Persistent, Resources, Document, Picture, Music, Video, Assets, }
+
+    public static string GetPath(Path m_FileIOPathType, string m_FileIOName = "", params string[] m_FileIOPath)
+    {
+        string m_Path = "";
+
+        for (int i = 0; i < m_FileIOPath.Length; i++)
+        {
+            m_Path += m_FileIOPath[i] + @"/";
+        }
+
+        if (m_FileIOName != "")
+        {
+            //m_Path += m_FileIOName + ".txt";
+            m_Path += m_FileIOName;
+        }
+
+        switch (m_FileIOPathType)
+        {
+            case Path.Assets:
+                m_Path = Application.dataPath + @"/" + m_Path;
+                break;
+            case Path.Persistent:
+                m_Path = Application.persistentDataPath + @"/" + m_Path;
+                break;
+            case Path.Resources:
+                m_Path = Application.dataPath + @"/resources/" + m_Path;
+                break;
+            case Path.Document:
+                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"/" + m_Path;
+                break;
+            case Path.Picture:
+                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"/" + m_Path;
+                break;
+            case Path.Music:
+                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + @"/" + m_Path;
+                break;
+            case Path.Video:
+                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + @"/" + m_Path;
+                break;
+        }
+
+        Debug.LogFormat("Get Path: {0}", m_Path);
+        return m_Path;
+    }
 
     public static bool GetPathFileExist(string m_PathFile)
     {
@@ -1003,50 +1047,6 @@ public class GitFileIO : GitFile
         SetWriteDataClear();
         SetReadDataClear();
     }
-
-    #region File IO Path 
-
-    public static string GetPath(Path m_FileIOPathType, string m_FileIOName = "", params string[] m_FileIOPath)
-    {
-        string m_Path = "";
-
-        for (int i = 0; i < m_FileIOPath.Length; i++)
-        {
-            m_Path += m_FileIOPath[i] + @"\";
-        }
-
-        if (m_FileIOName != "")
-        {
-            m_Path += m_FileIOName + ".txt";
-        }
-
-        switch (m_FileIOPathType)
-        {
-            case Path.Persistent:
-                m_Path = Application.persistentDataPath + @"\" + m_Path;
-                break;
-            case Path.Resources:
-                m_Path = Application.dataPath + @"\resources\" + m_Path;
-                break;
-            case Path.Document:
-                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + m_Path;
-                break;
-            case Path.Picture:
-                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\" + m_Path;
-                break;
-            case Path.Music:
-                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) + @"\" + m_Path;
-                break;
-            case Path.Video:
-                m_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + @"\" + m_Path;
-                break;
-        }
-
-        Debug.LogFormat("Get Path: {0}", m_Path);
-        return m_Path;
-    }
-
-    #endregion
 
     #region File IO Write 
 
@@ -1198,54 +1198,63 @@ public class GitFileIO : GitFile
 
     public string GetReadDataAutoString()
     {
+        if (m_ReadRun >= m_TextRead.Count - 1) return "";
         m_ReadRun++;
         return m_TextRead[m_ReadRun];
     }
 
     public int GetReadDataAutoInt()
     {
+        if (m_ReadRun >= m_TextRead.Count - 1) return 0;
         m_ReadRun++;
         return int.Parse(m_TextRead[m_ReadRun]);
     }
 
     public float GetReadDataAutoFloat()
     {
+        if (m_ReadRun >= m_TextRead.Count - 1) return 0f;
         m_ReadRun++;
         return float.Parse(m_TextRead[m_ReadRun]);
     }
 
     public double GetReadDataAutoDouble()
     {
+        if (m_ReadRun >= m_TextRead.Count - 1) return 0f;
         m_ReadRun++;
         return double.Parse(m_TextRead[m_ReadRun]);
     }
 
     public bool GetReadDataAutoBool()
     {
+        if (m_ReadRun >= m_TextRead.Count - 1) return false;
         m_ReadRun++;
         return m_TextRead[m_ReadRun] == "True";
     }
 
     public Vector2 GetReadDataAutoVector2(char m_Key)
     {
+        if (m_ReadRun >= m_TextRead.Count - 1) return new Vector2();
         m_ReadRun++;
         return GitEncypt.GetDataVector2Dencypt(m_TextRead[m_ReadRun], m_Key);
     }
 
     public Vector2Int GetReadDataAutoVector2Int(char m_Key)
     {
+        if (m_ReadRun >= m_TextRead.Count - 1) return new Vector2Int();
         m_ReadRun++;
         return GitEncypt.GetDataVector2IntDencypt(m_TextRead[m_ReadRun], m_Key);
     }
 
     public Vector3 GetReadDataAutoVector3(char m_Key)
     {
+        if (m_ReadRun >= m_TextRead.Count - 1) return new Vector3();
         m_ReadRun++;
         return GitEncypt.GetDataVector3Dencypt(m_TextRead[m_ReadRun], m_Key);
     }
 
     public Vector3Int GetReadDataAutoVector3Int(char m_Key)
     {
+        if (m_ReadRun >= m_TextRead.Count - 1) return new Vector3Int();
         m_ReadRun++;
         return GitEncypt.GetDataVector3IntDencypt(m_TextRead[m_ReadRun], m_Key);
     }
