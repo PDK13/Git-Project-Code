@@ -159,8 +159,10 @@ public class IsoWorldEditor : EditorWindow
         m_BlocksPath = EditorGUILayout.TextField("", m_BlocksPath);
         GUILayout.EndHorizontal();
 
-        if (GUILayout.Button("Get"))
+        if (GUILayout.Button("Refresh"))
             IsoWorldManager.SetBlock(GitResources.GetResourcesPrefab(m_BlocksPath));
+
+        GUILayout.Space(10);
     }
 
     //Types
