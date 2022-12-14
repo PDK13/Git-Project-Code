@@ -535,6 +535,8 @@ public class IsoWorldManager : MonoBehaviour
 
     #region Renderer Block(s) Manager
 
+    //List
+
     public static void SetBlock(List<GameObject> m_Blocks)
     {
         if (m_This.m_BlocksUpdated)
@@ -555,6 +557,23 @@ public class IsoWorldManager : MonoBehaviour
     {
         return m_This.m_BlocksUpdated;
     }
+
+    public static List<GameObject> GetBlock(IsoType m_IsoType)
+    {
+        List<GameObject> m_BlockList = new List<GameObject>();
+
+        foreach (GameObject m_Block in m_This.m_Blocks)
+        {
+            if (m_Block.GetComponent<IsoBlock>().Type == m_IsoType)
+            {
+                m_BlockList.Add(m_Block);
+            }
+        }
+
+        return m_BlockList;
+    }
+
+    //Block
 
     public static GameObject GetBlock(string m_BlockName)
     {
