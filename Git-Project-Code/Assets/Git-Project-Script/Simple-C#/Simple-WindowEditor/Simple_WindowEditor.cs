@@ -10,7 +10,7 @@ public class Simple_WindowEditor : EditorWindow
     //[MenuItem("Git-Project-Script Tools/Simple Window-Editor")]
     public static void Init()
     {
-        GetWindow<IsoWorldEditor>("[!] Simple Window-Editor");
+        GetWindow<UnityToolIsoEditor>("[!] Simple Window-Editor");
     }
 
     private void OnGUI()

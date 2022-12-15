@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 
 [ExecuteAlways]
-public class IsoWorldEditor : EditorWindow
+public class UnityToolIsoEditor : EditorWindow
 {
     private GameObject m_IsoWorldManagerGameObject;
 
@@ -18,7 +18,12 @@ public class IsoWorldEditor : EditorWindow
     [MenuItem("Git-Project-Script Tools/Iso-Map Tool")]
     public static void Init()
     {
-        GetWindow<IsoWorldEditor>("[!] Iso-Map Tool");
+        GetWindow<UnityToolIsoEditor>("[!] Iso-Map Tool");
+    }
+
+    private void Update()
+    {
+
     }
 
     private void OnGUI()
@@ -452,86 +457,43 @@ public class IsoWorldEditor : EditorWindow
 
         GUILayout.Label("KEYBOARD", m_Style);
 
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Input", m_Style, GUILayout.Width(position.width / 5));
-        m_KeyboardCode = GUILayout.TextField("");
-        GUILayout.Label(m_Lock ? "LOCK" : "", m_Style, GUILayout.Width(position.width / 5));
-        GUILayout.EndHorizontal();
-
-        if (m_KeyboardCode == KEY_LOCK)
+        //Event Keyboard when Tool on focus!!
+        Event e = Event.current;
+        switch (e.type)
         {
-            m_Lock = !m_Lock;
+            case EventType.KeyDown:
+                {
+                    switch (Event.current.keyCode)
+                    {
+                        //Move Curson!!
+                        case KeyCode.UpArrow:
+                            m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Up;
+                            e.Use();
+                            break;
+                        case KeyCode.DownArrow:
+                            m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Down;
+                            e.Use();
+                            break;
+                        case KeyCode.LeftArrow:
+                            m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Left;
+                            e.Use();
+                            break;
+                        case KeyCode.RightArrow:
+                            m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Right;
+                            e.Use();
+                            break;
+                        //Block Curson!!
+                        case KeyCode.Insert:
+                            IsoWorldManager.SetWorldCreate(m_Curson.GetComponent<IsoBlock>().Pos, m_BlockListByType[m_BlockChoiceIndex], null);
+                            break;
+                        case KeyCode.Delete:
+                            IsoWorldManager.SetWorldRemove(m_Curson.GetComponent<IsoBlock>().Pos, m_BlockListByType[m_BlockChoiceIndex].GetComponent<IsoBlock>().Type);
+                            break;
+                    }
+                }
+                break;
         }
-
-        if (m_Lock == false)
-        {
-            switch (m_KeyboardCode)
-            {
-                case KEY_U:
-                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Up;
-                    //Debug.Log(KEY_U);
-                    break;
-                case KEY_D:
-                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Down;
-                    //Debug.Log(KEY_D);
-                    break;
-                case KEY_L:
-                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Left;
-                    //Debug.Log(KEY_L);
-                    break;
-                case KEY_R:
-                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Right;
-                    //Debug.Log(KEY_R);
-                    break;
-                case KEY_T:
-                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Top;
-                    //Debug.Log(KEY_T);
-                    break;
-                case KEY_B:
-                    m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Bot;
-                    //Debug.Log(KEY_B);
-                    break;
-
-                case KEY_ADD:
-                    IsoWorldManager.SetWorldCreate(m_Curson.GetComponent<IsoBlock>().Pos, m_BlockListByType[m_BlockChoiceIndex], null);
-                    Debug.Log(KEY_ADD);
-                    break;
-                case KEY_DEL:
-                    IsoWorldManager.SetWorldRemove(m_Curson.GetComponent<IsoBlock>().Pos, m_BlockListByType[m_BlockChoiceIndex].GetComponent<IsoBlock>().Type);
-                    Debug.Log(KEY_DEL);
-                    break;
-            }
-        }
-
-        GUILayout.Label("Instruction", m_Style);
-
-        GUILayout.BeginHorizontal();
-        GUILayout.Label(string.Format("Move", GUILayout.Width(position.width / 2)), m_StyleInstrctionL);
-        GUILayout.Label(string.Format("{0} {1} {2} {3} - {4} {5}",
-            KEY_U.ToUpper(), 
-            KEY_D.ToUpper(), 
-            KEY_L.ToUpper(), 
-            KEY_R.ToUpper(), 
-            KEY_T.ToUpper(), 
-            KEY_B.ToUpper()), 
-            m_StyleInstrctionR, 
-            GUILayout.Width(position.width / 2));
-        GUILayout.EndHorizontal();
-
-        GUILayout.BeginHorizontal();
-        GUILayout.Label(string.Format("Add", GUILayout.Width(position.width / 2)), m_StyleInstrctionL);
-        GUILayout.Label(string.Format("{0}", KEY_ADD.ToUpper()), m_StyleInstrctionR, GUILayout.Width(position.width / 2));
-        GUILayout.EndHorizontal();
-
-        GUILayout.BeginHorizontal();
-        GUILayout.Label(string.Format("Del", GUILayout.Width(position.width / 2)), m_StyleInstrctionL);
-        GUILayout.Label(string.Format("{0}", KEY_DEL.ToUpper()), m_StyleInstrctionR, GUILayout.Width(position.width / 2));
-        GUILayout.EndHorizontal();
-
-        GUILayout.BeginHorizontal();
-        GUILayout.Label(string.Format("Lock", GUILayout.Width(position.width / 2)), m_StyleInstrctionL);
-        GUILayout.Label(string.Format("{0}", KEY_LOCK.ToUpper()), m_StyleInstrctionR, GUILayout.Width(position.width / 2));
-        GUILayout.EndHorizontal();
+        //Event Keyboard when Tool on focus!!
     }
 
     #endregion
