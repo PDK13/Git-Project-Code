@@ -6,18 +6,14 @@ using UnityEngine;
 
 public class UnityToolRef : EditorWindow
 {
-    private const int m_ButtonMainHorizontalCount = 2;
-
-    [MenuItem("Git-Project-Script Tools/Player-Ref Tool")]
+    [MenuItem("Tool/PLAYER-REF")]
     public static void Init()
     {
-        GetWindow<UnityToolRef>("[!] Player-Ref Tool");
+        GetWindow<UnityToolRef>("PLAYER-REF");
     }
 
     private void OnGUI()
     {
-        SetGUIType();
-
         SetGUIRef();
 
         SetGUIOption();
@@ -25,80 +21,10 @@ public class UnityToolRef : EditorWindow
         SetGUIList();
     }
 
-    #region Type
-
-    private readonly List<string> m_Choice = new List<string>() { "String", "Int", "Float" };
-
-    private string m_ChoiceCurrent = "String";
-
-    private void SetGUIType()
-    {
-        GUIStyle m_StyleLabel = new GUIStyle(GUI.skin.label)
-        {
-            alignment = TextAnchor.MiddleCenter,
-            fontStyle = FontStyle.Bold,
-        };
-
-        GUIStyle m_Style = new GUIStyle(GUI.skin.label)
-        {
-            alignment = TextAnchor.MiddleCenter,
-        };
-
-        GUILayout.Label("TYPE", m_StyleLabel);
-
-        GUILayout.Label(m_ChoiceCurrent.ToUpper(), m_Style);
-
-        SetGUIButtonType();
-
-        GUILayout.Space(10f);
-    }
-
-    private void SetGUIButtonType()
-    {
-        GUILayout.BeginHorizontal();
-
-        for (int i = 0; i < m_Choice.Count; i++)
-        {
-            if (i < m_Choice.Count - 1)
-            {
-                if (m_Choice[i].Equals(m_ChoiceCurrent))
-                {
-                    string m_ButtonText = "[ " + m_Choice[i] + " ]";
-
-                    GUILayout.Button(m_ButtonText, GUILayout.Width(position.width / m_Choice.Count));
-                }
-                else
-                {
-                    if (GUILayout.Button(m_Choice[i], GUILayout.Width(position.width / m_Choice.Count)))
-                    {
-                        m_ChoiceCurrent = m_Choice[i];
-                    }
-                }
-            }
-            else
-            {
-                if (m_Choice[i].Equals(m_ChoiceCurrent))
-                {
-                    string m_ButtonText = "[ " + m_Choice[i] + " ]";
-
-                    GUILayout.Button(m_ButtonText);
-                }
-                else
-                {
-                    if (GUILayout.Button(m_Choice[i]))
-                    {
-                        m_ChoiceCurrent = m_Choice[i];
-                    }
-                }
-            }
-        }
-
-        GUILayout.EndHorizontal();
-    }
-
-    #endregion
-
     #region Ref
+
+    private readonly string[] m_Choice = { "String", "Int", "Float" };
+    private int m_TypeChoiceIndex = 0;
 
     private string m_Name = "";
 
@@ -119,6 +45,18 @@ public class UnityToolRef : EditorWindow
 
         GUILayout.Label("REF", m_StyleLabel);
 
+        //Type
+
+        GUILayout.BeginHorizontal();
+
+        GUILayout.Label("Type", m_Style, GUILayout.Width(position.width / 5));
+
+        m_TypeChoiceIndex = EditorGUILayout.Popup("", m_TypeChoiceIndex, m_Choice);
+
+        GUILayout.EndHorizontal();
+
+        //Name
+
         GUILayout.BeginHorizontal();
 
         GUILayout.Label("Name", m_Style, GUILayout.Width(position.width / 5));
@@ -126,6 +64,8 @@ public class UnityToolRef : EditorWindow
         m_Name = EditorGUILayout.TextField("", m_Name);
 
         GUILayout.EndHorizontal();
+
+        //Value
 
         GUILayout.BeginHorizontal();
 
@@ -141,6 +81,8 @@ public class UnityToolRef : EditorWindow
     #endregion
 
     #region Option
+
+    private const int m_ButtonMainHorizontalCount = 4;
 
     private void SetGUIOption()
     {
@@ -163,10 +105,6 @@ public class UnityToolRef : EditorWindow
 
         SetGUIButtonGet();
 
-        GUILayout.EndHorizontal();
-
-        GUILayout.BeginHorizontal();
-
         SetGUIButtonClear();
 
         SetGUIButtonClearAll();
@@ -180,29 +118,19 @@ public class UnityToolRef : EditorWindow
     {
         if (GUILayout.Button("Set", GUILayout.Width(position.width / m_ButtonMainHorizontalCount)))
         {
-            if (m_Name.Equals(""))
+            if (!m_Name.Equals("") && !m_Value.Equals(""))
             {
-                Debug.LogWarning("Tool: Name Ref is Emty!");
-            }
-            else
-            if (m_Value.Equals(""))
-            {
-                Debug.LogWarning("Tool: Value Ref is Emty!");
-            }
-            else
-            if (m_ChoiceCurrent == m_Choice[0])
-            {
-                GitPlayerPref.SetPlayerPrefs(m_Name, m_Value);
-            }
-            else
-                if (m_ChoiceCurrent == m_Choice[1])
-            {
-                GitPlayerPref.SetPlayerPrefs(m_Name, int.Parse(m_Value));
-            }
-            else
-                if (m_ChoiceCurrent == m_Choice[2])
-            {
-                GitPlayerPref.SetPlayerPrefs(m_Name, float.Parse(m_Value));
+                if (m_Choice[m_TypeChoiceIndex] == m_Choice[0])
+                    //String
+                    GitPlayerPref.SetPlayerPrefs(m_Name, m_Value);
+                else
+                if (m_Choice[m_TypeChoiceIndex] == m_Choice[1])
+                    //Int
+                    GitPlayerPref.SetPlayerPrefs(m_Name, int.Parse(m_Value));
+                else
+                if (m_Choice[m_TypeChoiceIndex] == m_Choice[2])
+                    //Float
+                    GitPlayerPref.SetPlayerPrefs(m_Name, float.Parse(m_Value));
             }
         }
     }
@@ -211,48 +139,19 @@ public class UnityToolRef : EditorWindow
     {
         if (GUILayout.Button("Get"))
         {
-            if (m_Name.Equals(""))
+            if (!m_Name.Equals("") && !m_Value.Equals(""))
             {
-                Debug.LogError("Tool: Name is Emty!");
-            }
-            else
-            if (m_ChoiceCurrent == m_Choice[0])
-            {
-                if (GitPlayerPref.GetPlayerPrefsExist(m_Name))
-                {
+                if (m_Choice[m_TypeChoiceIndex] == m_Choice[0])
+                    //String
                     m_Value = GitPlayerPref.GetPlayerPrefsString(m_Name);
-                }
                 else
-                {
-                    Debug.LogWarning("Tool: Not found Value!");
-                    m_Value = "";
-                }
-            }
-            else
-            if (m_ChoiceCurrent == m_Choice[1])
-            {
-                if (GitPlayerPref.GetPlayerPrefsExist(m_Name))
-                {
+                if (m_Choice[m_TypeChoiceIndex] == m_Choice[1])
+                    //Int
                     m_Value = GitPlayerPref.GetPlayerPrefsInt(m_Name).ToString();
-                }
                 else
-                {
-                    Debug.LogWarning("Tool: Not found Value!");
-                    m_Value = "";
-                }
-            }
-            else
-            if (m_ChoiceCurrent == m_Choice[2])
-            {
-                if (GitPlayerPref.GetPlayerPrefsExist(m_Name))
-                {
+                if (m_Choice[m_TypeChoiceIndex] == m_Choice[2])
+                    //Float
                     m_Value = GitPlayerPref.GetPlayerPrefsFloat(m_Name).ToString();
-                }
-                else
-                {
-                    Debug.LogWarning("Tool: Not found Value!");
-                    m_Value = "";
-                }
             }
         }
     }
@@ -260,27 +159,13 @@ public class UnityToolRef : EditorWindow
     private void SetGUIButtonClear()
     {
         if (GUILayout.Button("Clear", GUILayout.Width(position.width / m_ButtonMainHorizontalCount)))
-        {
-            Debug.LogWarningFormat("Tool: Clear {0} = {1} Value!", m_Name, m_Value);
-
             GitPlayerPref.SetPlayerPrefsClear(m_Name);
-
-            //m_Name = "";
-            //m_Value = "";
-        }
     }
 
     private void SetGUIButtonClearAll()
     {
         if (GUILayout.Button("Clear All"))
-        {
-            Debug.LogWarning("Tool: Clear all Value!");
-
             GitPlayerPref.SetPlayerPrefsClearAll();
-
-            //m_Name = "";
-            //m_Value = "";
-        }
     }
 
     #endregion
@@ -349,6 +234,8 @@ public class UnityToolRef : EditorWindow
 
         if (GUILayout.Button("Refresh")) SetGUIListDataRead();
 
+        GUILayout.Space(10f);
+
         SetGUIListMemory();
 
         GUILayout.Space(10f);
@@ -373,20 +260,7 @@ public class UnityToolRef : EditorWindow
 
             if (i < m_Refs.Count)
             {
-                GUILayout.Label(m_Refs[i], m_StyleLabel);
-
-                if (GUILayout.Button("Set", GUILayout.Width(position.width / m_ButtonListHorizontalCount)))
-                {
-                    if (m_Name != "")
-                    {
-                        m_Refs[i] = m_Name;
-                        SetGUIListDataSave();
-                    }
-                    else
-                        Debug.LogWarning("Tool: Name Ref is Emty!");
-                }
-
-                if (GUILayout.Button("Get", GUILayout.Width(position.width / m_ButtonListHorizontalCount)))
+                if (GUILayout.Button(m_Refs[i]))
                 {
                     m_Name = m_Refs[i];
                 }
@@ -401,9 +275,7 @@ public class UnityToolRef : EditorWindow
             }
             else
             {
-                GUILayout.Label("", m_StyleLabel);
-
-                if (GUILayout.Button("Set", GUILayout.Width(position.width / m_ButtonListHorizontalCount)))
+                if (GUILayout.Button("[New]"))
                 {
                     if (m_Name != "")
                     {
@@ -414,7 +286,6 @@ public class UnityToolRef : EditorWindow
                         Debug.LogWarning("Tool: Name Ref is Emty!");
                 }
 
-                GUILayout.Button("", GUILayout.Width(position.width / m_ButtonListHorizontalCount));
                 GUILayout.Button("", GUILayout.Width(position.width / m_ButtonListHorizontalCount));
             }
 

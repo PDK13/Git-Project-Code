@@ -15,10 +15,10 @@ public class UnityToolIsoEditor : EditorWindow
 
     private IsoWorldManager m_IsoWorldManager;
 
-    [MenuItem("Git-Project-Script Tools/Iso-Map Tool")]
+    [MenuItem("Tool/ISO-MAP")]
     public static void Init()
     {
-        GetWindow<UnityToolIsoEditor>("[!] Iso-Map Tool");
+        GetWindow<UnityToolIsoEditor>("ISO-MAP");
     }
 
     private void Update()
