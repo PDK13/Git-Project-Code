@@ -198,6 +198,8 @@ public class GitVector
 
     public static float GetDegOnRotationXZ(Transform m_TransformMain, Transform m_TransformTarket)
     {
+        //Use for aiming on tarket in XZ surface!!
+
         float m_Distance = Vector3.Distance(m_TransformMain.transform.position, m_TransformTarket.position);
         float m_Deg = GetRotationQuaternionToEuler(m_TransformMain.transform.rotation).y;
 
