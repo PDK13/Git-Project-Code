@@ -178,6 +178,11 @@ public class UnityToolIsoEditor : EditorWindow
 
     private void SetGUITypeChoice()
     {
+        GUIStyle m_Style = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+        };
+
         GUIStyle m_StyleLabel = new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
@@ -185,27 +190,37 @@ public class UnityToolIsoEditor : EditorWindow
 
         float m_Width = position.width / c_BlockHorizontalMax - 4f;
 
+        //GUILayout.BeginHorizontal();
+        //if (GUILayout.Button("Prev", GUILayout.Width(m_Width)))
+        //{
+        //    m_BlocksPage = 0;
+        //    m_BlockChoiceIndex = 0;
+
+        //    m_TypeChoiceIndex--;
+        //    if (m_TypeChoiceIndex < 0)
+        //        m_TypeChoiceIndex = GitEnum.GetEnumList<IsoType>().Count - 1;
+
+        //}
+        //GUILayout.Label(GitEnum.GetEnumList<IsoType>()[m_TypeChoiceIndex], m_StyleLabel);
+        //if (GUILayout.Button("Next", GUILayout.Width(m_Width)))
+        //{
+        //    m_BlocksPage = 0;
+        //    m_BlockChoiceIndex = 0;
+
+        //    m_TypeChoiceIndex++;
+        //    if (m_TypeChoiceIndex > GitEnum.GetEnumList<IsoType>().Count - 1)
+        //        m_TypeChoiceIndex = 0;
+        //}
+        //GUILayout.EndHorizontal();
+
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Prev", GUILayout.Width(m_Width)))
-        {
-            m_BlocksPage = 0;
-            m_BlockChoiceIndex = 0;
 
-            m_TypeChoiceIndex--;
-            if (m_TypeChoiceIndex < 0)
-                m_TypeChoiceIndex = GitEnum.GetEnumList<IsoType>().Count - 1;
+        GUILayout.Label("Type", m_Style, GUILayout.Width(position.width / 5));
 
-        }
-        GUILayout.Label(GitEnum.GetEnumList<IsoType>()[m_TypeChoiceIndex], m_StyleLabel);
-        if (GUILayout.Button("Next", GUILayout.Width(m_Width)))
-        {
-            m_BlocksPage = 0;
-            m_BlockChoiceIndex = 0;
+        string[] m_Choice = GitEnum.GetEnumList<IsoType>().ToArray();
 
-            m_TypeChoiceIndex++;
-            if (m_TypeChoiceIndex > GitEnum.GetEnumList<IsoType>().Count - 1)
-                m_TypeChoiceIndex = 0;
-        }
+        m_TypeChoiceIndex = EditorGUILayout.Popup("", m_TypeChoiceIndex, m_Choice);
+
         GUILayout.EndHorizontal();
     }
 

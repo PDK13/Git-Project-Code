@@ -172,13 +172,15 @@ public class UnityToolRef : EditorWindow
 
     #region List
 
+    private const string LIST_FILE_NAME = "Ref-Data.txt";
+
     private const int m_ButtonListHorizontalCount = 6;
 
     private List<string> m_Refs = new List<string>();
 
     private string GetGUIListPath()
     {
-        return GitFile.GetPath(GitFile.Path.Assets, "Ref-Data.txt", @"/..");
+        return GitFile.GetPath(GitFile.Path.Assets, LIST_FILE_NAME, @"/..");
     }
 
     private void SetGUIListDataRead()
