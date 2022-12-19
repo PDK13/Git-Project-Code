@@ -127,6 +127,20 @@ public class GitVector
 
     #region Transform & Rotation & Quaternion
 
+    //New Code (Should use)!!
+
+    public static void SetRotate(Transform m_Transform, Vector3 m_RotateDeg, bool m_RotateWorld = true)
+    {
+        if (m_RotateWorld)
+            m_Transform.eulerAngles = m_RotateDeg;
+        else
+            m_Transform.localEulerAngles = m_RotateDeg;
+    }
+
+    //New Code (Should use)!!
+
+    //Old Code (Should delete)!!
+
     public static void SetRotationXY(Transform m_Transform, float m_Rotation)
     {
         m_Transform.rotation = GetRotationEulerToQuaternion(0, 0, m_Rotation);
@@ -165,6 +179,8 @@ public class GitVector
         Vector3 m_EulerRotation = m_QuaternionRotation.eulerAngles;
         return m_EulerRotation;
     }
+
+    //Old Code (Should delete)!!
 
     #endregion
 
