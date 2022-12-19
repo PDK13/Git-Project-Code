@@ -137,6 +137,16 @@ public class GitVector
             m_Transform.localEulerAngles = m_RotateDeg;
     }
 
+    public static Vector3 GetRotate(Transform m_Transform, bool m_RotateWorld = true)
+    {
+        if (m_RotateWorld)
+            return m_Transform.eulerAngles;
+        else
+            return m_Transform.localEulerAngles;
+    }
+
+
+
     //New Code (Should use)!!
 
     //Old Code (Should delete)!!
