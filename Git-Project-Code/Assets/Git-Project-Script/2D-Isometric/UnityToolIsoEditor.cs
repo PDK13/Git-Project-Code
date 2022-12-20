@@ -188,31 +188,6 @@ public class UnityToolIsoEditor : EditorWindow
             alignment = TextAnchor.MiddleCenter,
         };
 
-        float m_Width = position.width / c_BlockHorizontalMax - 4f;
-
-        //GUILayout.BeginHorizontal();
-        //if (GUILayout.Button("Prev", GUILayout.Width(m_Width)))
-        //{
-        //    m_BlocksPage = 0;
-        //    m_BlockChoiceIndex = 0;
-
-        //    m_TypeChoiceIndex--;
-        //    if (m_TypeChoiceIndex < 0)
-        //        m_TypeChoiceIndex = GitEnum.GetEnumList<IsoType>().Count - 1;
-
-        //}
-        //GUILayout.Label(GitEnum.GetEnumList<IsoType>()[m_TypeChoiceIndex], m_StyleLabel);
-        //if (GUILayout.Button("Next", GUILayout.Width(m_Width)))
-        //{
-        //    m_BlocksPage = 0;
-        //    m_BlockChoiceIndex = 0;
-
-        //    m_TypeChoiceIndex++;
-        //    if (m_TypeChoiceIndex > GitEnum.GetEnumList<IsoType>().Count - 1)
-        //        m_TypeChoiceIndex = 0;
-        //}
-        //GUILayout.EndHorizontal();
-
         GUILayout.BeginHorizontal();
 
         GUILayout.Label("Type", m_Style, GUILayout.Width(position.width / 5));
@@ -230,7 +205,7 @@ public class UnityToolIsoEditor : EditorWindow
 
     private const int c_BlockHorizontalMax = 4;
 
-    private const int c_BlockVerticallMax = 4;
+    private const int c_BlockVerticallMax = 2;
 
     private int m_BlocksPage = 0;
 
@@ -282,9 +257,16 @@ public class UnityToolIsoEditor : EditorWindow
         GUI.backgroundColor = Color.white;
 
         GUILayout.BeginHorizontal();
-        GUILayout.Button("Prev", GUILayout.Width(m_Width));
-        GUILayout.Label(string.Format("Page {0}", m_BlocksPage), m_StyleLabel);
-        GUILayout.Button("Next", GUILayout.Width(m_Width));
+        int m_PageMax = m_BlockListByType.Count / (c_BlockHorizontalMax * c_BlockVerticallMax);
+        if (GUILayout.Button("Prev", GUILayout.Width(m_Width)))
+        {
+            if (m_BlocksPage > 0) m_BlocksPage--;
+        }
+        GUILayout.Label(string.Format("Page {0}/{1}", m_BlocksPage, m_PageMax), m_StyleLabel);
+        if (GUILayout.Button("Next", GUILayout.Width(m_Width)))
+        {
+            if (m_BlocksPage < m_PageMax) m_BlocksPage++;
+        }
         GUILayout.EndHorizontal();
         //Blocks
 
@@ -418,22 +400,6 @@ public class UnityToolIsoEditor : EditorWindow
     #endregion
 
     #region Input Keyboard
-
-    private string m_KeyboardCode = "";
-    private string m_KeyboardCodeLast;
-
-    private const string KEY_U = "w";
-    private const string KEY_D = "s";
-    private const string KEY_L = "a";
-    private const string KEY_R = "d";
-    private const string KEY_T = "r";
-    private const string KEY_B = "f";
-
-    private const string KEY_ADD = "j";
-    private const string KEY_DEL = "k";
-
-    private const string KEY_LOCK = "l";
-    private bool m_Lock = false;
 
     private void SetGUIKeyboard()
     {
