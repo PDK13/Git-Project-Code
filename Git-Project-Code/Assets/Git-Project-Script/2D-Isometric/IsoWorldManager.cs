@@ -13,7 +13,7 @@ public class IsoWorldManager : MonoBehaviour
 
     public static IsoVector Scale { get => m_This.m_Scale; }
 
-    //[SerializeField]
+    [SerializeField]
     private List<IsoWorldBlockFloor> m_WorldBlock = new List<IsoWorldBlockFloor>() { new IsoWorldBlockFloor(0) };
 
     public static List<IsoWorldBlockFloor> WorldBlock
@@ -21,15 +21,15 @@ public class IsoWorldManager : MonoBehaviour
         get => m_This.m_WorldBlock;
     }
 
-    //[SerializeField]
+    [SerializeField]
     private List<GameObject> m_WorldPlayer = new List<GameObject>();
-    //[SerializeField]
+    [SerializeField]
     private List<GameObject> m_WorldFriend = new List<GameObject>();
-    //[SerializeField]
+    [SerializeField]
     private List<GameObject> m_WorldNeutral = new List<GameObject>();
-    //[SerializeField]
+    [SerializeField]
     private List<GameObject> m_WorldEnermy = new List<GameObject>();
-    //[SerializeField]
+    [SerializeField]
     private List<GameObject> m_WorldObject = new List<GameObject>();
 
     public static List<GameObject> WorldPlayer
@@ -80,7 +80,7 @@ public class IsoWorldManager : MonoBehaviour
 
     [Header("Block(s) Manager")]
 
-    //[SerializeField]
+    [SerializeField]
     private List<GameObject> m_Blocks;
 
     public static List<GameObject> Blocks
