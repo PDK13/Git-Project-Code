@@ -351,16 +351,6 @@ public class UnityToolIsoEditor : EditorWindow
 
     private void SetGUIFile()
     {
-        if (IsoWorldManager.Blocks == null)
-        {
-            return;
-        }
-
-        if (IsoWorldManager.Blocks.Count == 0)
-        {
-            return;
-        }
-
         GUIStyle m_Style = new GUIStyle(GUI.skin.label)
         {
             alignment = TextAnchor.MiddleCenter,
