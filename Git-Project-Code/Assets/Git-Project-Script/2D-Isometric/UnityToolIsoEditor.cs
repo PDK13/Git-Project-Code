@@ -8,7 +8,6 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEditor;
 
-[ExecuteAlways]
 public class UnityToolIsoEditor : EditorWindow
 {
     private GameObject m_IsoWorldManagerGameObject;
@@ -76,6 +75,8 @@ public class UnityToolIsoEditor : EditorWindow
                 SetGUIKeyboard();
 
                 SetGUICurson();
+
+                SetGUICurrent();
             }
             else
             {
@@ -395,6 +396,8 @@ public class UnityToolIsoEditor : EditorWindow
             //...
         }
         GUILayout.EndHorizontal();
+
+        GUILayout.Space(10);
     }
 
     #endregion
@@ -412,31 +415,6 @@ public class UnityToolIsoEditor : EditorWindow
         {
             return;
         }
-
-        GUIStyle m_StyleLabel = new GUIStyle(GUI.skin.label)
-        {
-            alignment = TextAnchor.MiddleCenter,
-            fontStyle = FontStyle.Bold,
-        };
-
-        GUIStyle m_Style = new GUIStyle(GUI.skin.label)
-        {
-            alignment = TextAnchor.MiddleCenter,
-        };
-
-        GUIStyle m_StyleInstrctionL = new GUIStyle(GUI.skin.label)
-        {
-            alignment = TextAnchor.MiddleRight,
-        };
-
-        GUIStyle m_StyleInstrctionR = new GUIStyle(GUI.skin.label)
-        {
-            alignment = TextAnchor.MiddleLeft,
-        };
-
-        GUILayout.Space(10);
-
-        GUILayout.Label("KEYBOARD", m_Style);
 
         //Event Keyboard when Tool on focus!!
         Event e = Event.current;
@@ -463,6 +441,14 @@ public class UnityToolIsoEditor : EditorWindow
                             m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Right;
                             e.Use();
                             break;
+                        case KeyCode.PageUp:
+                            m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Top;
+                            e.Use();
+                            break;
+                        case KeyCode.PageDown:
+                            m_Curson.GetComponent<IsoBlock>().Pos += IsoVector.Bot;
+                            e.Use();
+                            break;
                         //Block Curson!!
                         case KeyCode.Insert:
                             IsoWorldManager.SetWorldCreate(m_Curson.GetComponent<IsoBlock>().Pos, m_BlockListByType[m_BlockChoiceIndex], null);
@@ -475,6 +461,97 @@ public class UnityToolIsoEditor : EditorWindow
                 break;
         }
         //Event Keyboard when Tool on focus!!
+    }
+
+    #endregion
+
+    #region Current Pos
+
+    private void SetGUICurrent()
+    {
+        GUIStyle m_Style = new GUIStyle(GUI.skin.label)
+        {
+            alignment = TextAnchor.MiddleCenter,
+        };
+
+        float m_Width = position.width / c_BlockHorizontalMax - 4f;
+        float m_Height = m_Width;
+
+        GUILayout.Label("CURRENT", m_Style);
+
+        GUILayout.BeginHorizontal();
+        //Block Image!!
+        GameObject m_BlockCurrent = IsoWorldManager.GetWorldBlock(m_Curson.GetComponent<IsoBlock>().PosMatrix);
+        if (m_BlockCurrent != null)
+        {
+            Sprite m_Sprite = m_BlockCurrent.GetComponent<SpriteRenderer>().sprite;
+
+            Texture2D m_Texture = GitSprite.GetTextureConvert(m_Sprite);
+
+            GUIContent m_Content = new GUIContent("", (Texture)m_Texture);
+
+            GUI.backgroundColor = Color.white;
+            GUILayout.Button(m_Content, GUILayout.Width(m_Width), GUILayout.Height(m_Height));
+        }
+        else
+        {
+            GUI.backgroundColor = Color.clear;
+            GUILayout.Button("", GUILayout.Width(m_Width), GUILayout.Height(m_Height));
+        }
+        //Block Image!!
+        //Block Imformation!!
+        GUI.backgroundColor = Color.clear;
+        GUILayout.BeginVertical();
+        if (m_BlockCurrent != null)
+        {
+            //Pos
+            GUILayout.BeginHorizontal();
+            IsoVector m_Pos = m_BlockCurrent.GetComponent<IsoBlock>().Pos;
+            GUILayout.Button("Pos: ", GUILayout.Width(position.width / 5));
+            GUILayout.Button(string.Format("[{0};{1};{2}]", m_Pos.X_UD, m_Pos.Y_LR, m_Pos.H_TB));
+            GUILayout.EndHorizontal();
+            //Name
+            GUILayout.BeginHorizontal();
+            GUILayout.Button("Name: ", GUILayout.Width(position.width / 5));
+            GUILayout.Button(m_BlockCurrent.name);
+            GUILayout.EndHorizontal();
+            //Type
+            GUILayout.BeginHorizontal();
+            GUILayout.Button("Type: ", GUILayout.Width(position.width / 5));
+            GUILayout.Button(m_BlockCurrent.GetComponent<IsoBlock>().Type.ToString());
+            GUILayout.EndHorizontal();
+            //...
+            GUILayout.BeginHorizontal();
+            GUILayout.Button("...", GUILayout.Width(position.width / 5));
+            GUILayout.Button("...");
+            GUILayout.EndHorizontal();
+        }
+        else
+        {
+            //Pos
+            GUILayout.BeginHorizontal();
+            GUILayout.Button("Pos: ", GUILayout.Width(position.width / 5));
+            GUILayout.Button("...");
+            GUILayout.EndHorizontal();
+            //Name
+            GUILayout.BeginHorizontal();
+            GUILayout.Button("Name: ", GUILayout.Width(position.width / 5));
+            GUILayout.Button("...");
+            GUILayout.EndHorizontal();
+            //Type
+            GUILayout.BeginHorizontal();
+            GUILayout.Button("Type: ", GUILayout.Width(position.width / 5));
+            GUILayout.Button("...");
+            GUILayout.EndHorizontal();
+            //...
+            GUILayout.BeginHorizontal();
+            GUILayout.Button("...", GUILayout.Width(position.width / 5));
+            GUILayout.Button("...");
+            GUILayout.EndHorizontal();
+        }
+        GUILayout.EndVertical();
+        //Block Imformatiohn
+        GUILayout.EndHorizontal();
     }
 
     #endregion
