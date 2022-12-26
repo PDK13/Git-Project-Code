@@ -70,7 +70,7 @@ public class UnityToolIsoEditor : EditorWindow
 
                 SetGUIBlocks();
 
-                SetGUIFile();
+                //SetGUIFile();
 
                 SetGUIKeyboard();
 
@@ -440,10 +440,10 @@ public class UnityToolIsoEditor : EditorWindow
                             e.Use();
                             break;
                         //Block Curson!!
-                        case KeyCode.Insert:
+                        case KeyCode.Home:
                             IsoWorldManager.SetWorldCreate(m_Curson.GetComponent<IsoBlock>().Pos, m_BlockListByType[m_BlockChoiceIndex], null);
                             break;
-                        case KeyCode.Delete:
+                        case KeyCode.End:
                             IsoWorldManager.SetWorldRemove(m_Curson.GetComponent<IsoBlock>().Pos, m_BlockListByType[m_BlockChoiceIndex].GetComponent<IsoBlock>().Type);
                             break;
                     }
