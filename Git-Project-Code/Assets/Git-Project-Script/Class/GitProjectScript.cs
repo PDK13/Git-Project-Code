@@ -408,6 +408,62 @@ public class GitCast
         return null;
     }
 
+    public static GameObject GetOverlapCircle2D(Vector3 m_PosStart, float m_Radius)
+    {
+        Collider2D m_ColliderHit = new Collider2D();
+
+        m_ColliderHit = Physics2D.OverlapCircle(m_PosStart, m_Radius);
+
+        if (m_ColliderHit != null) return m_ColliderHit.gameObject;
+
+        return null;
+    }
+
+    public static List<GameObject> GetOverlapCircleAll2D(Vector3 m_PosStart, float m_Radius)
+    {
+        Collider2D[] m_ColliderHit = Physics2D.OverlapCircleAll(m_PosStart, m_Radius);
+
+        if (m_ColliderHit != null)
+        {
+            List<GameObject> m_Collider = new List<GameObject>();
+
+            for (int i = 0; i < m_ColliderHit.Length; i++)
+                m_Collider.Add(m_ColliderHit[i].gameObject);
+
+            return m_Collider;
+        }
+
+        return null;
+    }
+
+    public static GameObject GetOverlapBox2D(Vector3 m_PosStart, Vector3 m_Size, float m_Rotation)
+    {
+        Collider2D m_ColliderHit = new Collider2D();
+
+        m_ColliderHit = Physics2D.OverlapBox(m_PosStart, m_Size, m_Rotation);
+
+        if (m_ColliderHit != null) return m_ColliderHit.gameObject;
+
+        return null;
+    }
+
+    public static List<GameObject> GetOverlapBoxAll2D(Vector3 m_PosStart, Vector3 m_Size, float m_Rotation)
+    {
+        Collider2D[] m_ColliderHit = Physics2D.OverlapBoxAll(m_PosStart, m_Size, m_Rotation);
+
+        if (m_ColliderHit != null)
+        {
+            List<GameObject> m_Collider = new List<GameObject>();
+
+            for (int i = 0; i < m_ColliderHit.Length; i++)
+                m_Collider.Add(m_ColliderHit[i].gameObject);
+
+            return m_Collider;
+        }
+
+        return null;
+    }
+
     //LayerMask
 
     public static GameObject GetLineCast2D(Vector3 m_PosStart, Vector3 m_PosEnd, LayerMask m_Tarket)
@@ -453,6 +509,28 @@ public class GitCast
         m_RaycastHit = Physics2D.CircleCast(m_PosStart, m_Radius / 2, m_Forward, m_Distance, m_Tarket);
 
         if (m_RaycastHit.collider != null) return m_RaycastHit.collider.gameObject;
+
+        return null;
+    }
+
+    public static GameObject GetOverlapCircle2D(Vector3 m_PosStart, float m_Radius, LayerMask m_Tarket)
+    {
+        Collider2D m_ColliderHit = new Collider2D();
+
+        m_ColliderHit = Physics2D.OverlapCircle(m_PosStart, m_Radius, m_Tarket);
+
+        if (m_ColliderHit != null) return m_ColliderHit.gameObject;
+
+        return null;
+    }
+
+    public static GameObject GetOverlapBox2D(Vector3 m_PosStart, Vector3 m_Size, float m_Rotation, LayerMask m_Tarket)
+    {
+        Collider2D m_ColliderHit = new Collider2D();
+
+        m_ColliderHit = Physics2D.OverlapBox(m_PosStart, m_Size, m_Rotation, m_Tarket);
+
+        if (m_ColliderHit != null) return m_ColliderHit.gameObject;
 
         return null;
     }
