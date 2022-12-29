@@ -464,11 +464,9 @@ public class GitCast
     {
         Collider2D m_ColliderHit = Physics2D.OverlapBox(m_PosStart, m_Size, m_Rotation);
 
-        if (m_ColliderHit != null) return m_ColliderHit.gameObject;
-
         if (m_ColliderHit == null) return null;
 
-        return null;
+        return m_ColliderHit.gameObject;
     }
 
     public static List<GameObject> GetOverlapBoxAll2D(Vector3 m_PosStart, Vector3 m_Size, float m_Rotation)
