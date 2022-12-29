@@ -258,6 +258,8 @@ public class GitCast
         RaycastHit m_RaycastHit = new RaycastHit();
         Physics.Linecast(m_PosStart, m_PosEnd, out m_RaycastHit);
 
+        if (m_RaycastHit.collider == null) return null;
+
         return m_RaycastHit.collider.gameObject;
     }
 
@@ -267,6 +269,8 @@ public class GitCast
 
         RaycastHit m_RaycastHit = new RaycastHit();
         Physics.Raycast(m_PosStart, m_Forward, out m_RaycastHit, m_Distance);
+
+        if (m_RaycastHit.collider == null) return null;
 
         return m_RaycastHit.collider.gameObject;
     }
@@ -279,6 +283,8 @@ public class GitCast
         RaycastHit m_RaycastHit = new RaycastHit();
         Physics.BoxCast(m_PosStart, m_Size, m_Forward, out m_RaycastHit, m_Quaternion, m_Distance);
 
+        if (m_RaycastHit.collider == null) return null;
+
         return m_RaycastHit.collider.gameObject;
     }
 
@@ -288,6 +294,8 @@ public class GitCast
 
         RaycastHit m_RaycastHit = new RaycastHit();
         Physics.SphereCast(m_PosStart, m_Radius / 2, m_Forward, out m_RaycastHit, m_Distance);
+
+        if (m_RaycastHit.collider == null) return null;
 
         return m_RaycastHit.collider.gameObject;
     }
@@ -321,6 +329,8 @@ public class GitCast
 
         Physics.Linecast(m_PosStart, m_PosEnd, out m_RaycastHit, m_Tarket);
 
+        if (m_RaycastHit.collider == null) return null;
+
         return m_RaycastHit.collider.gameObject;
     }
 
@@ -330,6 +340,8 @@ public class GitCast
 
         RaycastHit m_RaycastHit = new RaycastHit();
         Physics.Raycast(m_PosStart, m_Forward, out m_RaycastHit, m_Distance, m_Tarket);
+
+        if (m_RaycastHit.collider == null) return null;
 
         return m_RaycastHit.collider.gameObject;
     }
@@ -342,6 +354,8 @@ public class GitCast
         RaycastHit m_RaycastHit = new RaycastHit();
         Physics.BoxCast(m_PosStart, m_Size, m_Forward, out m_RaycastHit, m_Quaternion, m_Distance, m_Tarket);
 
+        if (m_RaycastHit.collider == null) return null;
+
         return m_RaycastHit.collider.gameObject;
     }
 
@@ -351,6 +365,8 @@ public class GitCast
 
         RaycastHit m_RaycastHit = new RaycastHit();
         Physics.SphereCast(m_PosStart, m_Radius / 2, m_Forward, out m_RaycastHit, m_Distance, m_Tarket);
+
+        if (m_RaycastHit.collider == null) return null;
 
         return m_RaycastHit.collider.gameObject;
     }
@@ -387,6 +403,8 @@ public class GitCast
     {
         RaycastHit2D m_RaycastHit = Physics2D.Linecast(m_PosStart, m_PosEnd);
 
+        if (m_RaycastHit.collider == null) return null;
+
         return m_RaycastHit.collider.gameObject;
     }
 
@@ -395,6 +413,8 @@ public class GitCast
         Vector3 m_Forward = (m_PosEnd - m_PosStart).normalized;
 
         RaycastHit2D m_RaycastHit = Physics2D.Raycast(m_PosStart, m_Forward, m_Distance);
+
+        if (m_RaycastHit.collider == null) return null;
 
         return m_RaycastHit.collider.gameObject;
     }
@@ -405,6 +425,8 @@ public class GitCast
 
         RaycastHit2D m_RaycastHit = Physics2D.BoxCast(m_PosStart, m_Size, m_Rotation, m_Forward, m_Distance);
 
+        if (m_RaycastHit.collider == null) return null;
+
         return m_RaycastHit.collider.gameObject;
     }
 
@@ -414,12 +436,16 @@ public class GitCast
 
         RaycastHit2D m_RaycastHit = Physics2D.CircleCast(m_PosStart, m_Radius / 2, m_Forward, m_Distance);
 
+        if (m_RaycastHit.collider == null) return null;
+
         return m_RaycastHit.collider.gameObject;
     }
 
     public static GameObject GetOverlapCircle2D(Vector3 m_PosStart, float m_Radius)
     {
         Collider2D m_ColliderHit = Physics2D.OverlapCircle(m_PosStart, m_Radius);
+
+        if (m_ColliderHit == null) return null;
 
         return m_ColliderHit.gameObject;
     }
@@ -428,10 +454,10 @@ public class GitCast
     {
         Collider2D[] m_ColliderHit = Physics2D.OverlapCircleAll(m_PosStart, m_Radius);
 
-        List<GameObject> m_Collider = new List<GameObject>();
-        for (int i = 0; i < m_ColliderHit.Length; i++) m_Collider.Add(m_ColliderHit[i].gameObject);
+        List<GameObject> m_ColliderHitList = new List<GameObject>();
+        for (int i = 0; i < m_ColliderHit.Length; i++) m_ColliderHitList.Add(m_ColliderHit[i].gameObject);
 
-        return null;
+        return m_ColliderHitList;
     }
 
     public static GameObject GetOverlapBox2D(Vector3 m_PosStart, Vector3 m_Size, float m_Rotation)
@@ -440,6 +466,8 @@ public class GitCast
 
         if (m_ColliderHit != null) return m_ColliderHit.gameObject;
 
+        if (m_ColliderHit == null) return null;
+
         return null;
     }
 
@@ -447,10 +475,10 @@ public class GitCast
     {
         Collider2D[] m_ColliderHit = Physics2D.OverlapBoxAll(m_PosStart, m_Size, m_Rotation);
 
-        List<GameObject> m_Collider = new List<GameObject>();
-        for (int i = 0; i < m_ColliderHit.Length; i++) m_Collider.Add(m_ColliderHit[i].gameObject);
+        List<GameObject> m_ColliderHitList = new List<GameObject>();
+        for (int i = 0; i < m_ColliderHit.Length; i++) m_ColliderHitList.Add(m_ColliderHit[i].gameObject);
 
-        return null;
+        return m_ColliderHitList;
     }
 
     //LayerMask
@@ -458,6 +486,8 @@ public class GitCast
     public static GameObject GetLineCast2D(Vector3 m_PosStart, Vector3 m_PosEnd, LayerMask m_Tarket)
     {
         RaycastHit2D m_RaycastHit = Physics2D.Linecast(m_PosStart, m_PosEnd, m_Tarket);
+
+        if (m_RaycastHit.collider == null) return null;
 
         return m_RaycastHit.collider.gameObject;
     }
@@ -468,6 +498,8 @@ public class GitCast
 
         RaycastHit2D m_RaycastHit = Physics2D.Raycast(m_PosStart, m_Forward, m_Distance, m_Tarket);
 
+        if (m_RaycastHit.collider == null) return null;
+
         return m_RaycastHit.collider.gameObject;
     }
 
@@ -476,6 +508,8 @@ public class GitCast
         Vector3 m_Forward = (m_PosEnd - m_PosStart).normalized;
 
         RaycastHit2D m_RaycastHit = Physics2D.BoxCast(m_PosStart, m_Size, m_Rotation, m_Forward, m_Distance, m_Tarket);
+
+        if (m_RaycastHit.collider == null) return null;
 
         return m_RaycastHit.collider.gameObject;
     }
@@ -486,12 +520,16 @@ public class GitCast
 
         RaycastHit2D m_RaycastHit = Physics2D.CircleCast(m_PosStart, m_Radius / 2, m_Forward, m_Distance, m_Tarket);
 
+        if (m_RaycastHit.collider == null) return null;
+
         return m_RaycastHit.collider.gameObject;
     }
 
     public static GameObject GetOverlapCircle2D(Vector3 m_PosStart, float m_Radius, LayerMask m_Tarket)
     {
         Collider2D m_ColliderHit = Physics2D.OverlapCircle(m_PosStart, m_Radius, m_Tarket);
+
+        if (m_ColliderHit == null) return null;
 
         return m_ColliderHit.gameObject;
     }
@@ -500,15 +538,17 @@ public class GitCast
     {
         Collider2D[] m_ColliderHit = Physics2D.OverlapCircleAll(m_PosStart, m_Radius, m_Tarket);
 
-        List<GameObject> m_Collider = new List<GameObject>();
-        for (int i = 0; i < m_ColliderHit.Length; i++) m_Collider.Add(m_ColliderHit[i].gameObject);
+        List<GameObject> m_ColliderHitList = new List<GameObject>();
+        for (int i = 0; i < m_ColliderHit.Length; i++) m_ColliderHitList.Add(m_ColliderHit[i].gameObject);
 
-        return null;
+        return m_ColliderHitList;
     }
 
     public static GameObject GetOverlapBox2D(Vector3 m_PosStart, Vector3 m_Size, float m_Rotation, LayerMask m_Tarket)
     {
         Collider2D m_ColliderHit = Physics2D.OverlapBox(m_PosStart, m_Size, m_Rotation, m_Tarket);
+
+        if (m_ColliderHit == null) return null;
 
         return m_ColliderHit.gameObject;
     }
@@ -517,10 +557,10 @@ public class GitCast
     {
         Collider2D[] m_ColliderHit = Physics2D.OverlapBoxAll(m_PosStart, m_Size, m_Rotation, m_Tarket);
 
-        List<GameObject> m_Collider = new List<GameObject>();
-        for (int i = 0; i < m_ColliderHit.Length; i++) m_Collider.Add(m_ColliderHit[i].gameObject);
+        List<GameObject> m_ColliderHitList = new List<GameObject>();
+        for (int i = 0; i < m_ColliderHit.Length; i++) m_ColliderHitList.Add(m_ColliderHit[i].gameObject);
 
-        return null;
+        return m_ColliderHitList;
     }
 
     #endregion
