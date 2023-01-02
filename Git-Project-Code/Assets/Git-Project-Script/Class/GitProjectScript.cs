@@ -1872,6 +1872,10 @@ public class GitEmail
 
 //=================================================== Enum
 
-public enum GitOpption { Yes = 1, No = -1 }
+public enum GitOpption { Yes = 1, No = 0 }
 
-public enum GitDirection { Up = 1, Down = -1, Left = -1, Right = 1 }
+public enum GitDirection { Up, Down, Left, Right }
+
+public enum GitDirectionX { Left = -1, Right = 1 }
+
+public enum GitDirectionY { Up = 1, Down = -1 }
