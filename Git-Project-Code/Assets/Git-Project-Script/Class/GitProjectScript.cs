@@ -568,12 +568,22 @@ public class GitCast
 
 public class GitScene
 {
-    public static void SetChanceScene(string m_SceneName, LoadSceneMode enumLoadSceneMode = LoadSceneMode.Single)
+    public static void SetSceneChance(string m_SceneName, LoadSceneMode enumLoadSceneMode = LoadSceneMode.Single)
     {
         SceneManager.LoadScene(m_SceneName, enumLoadSceneMode);
     }
 
-    public static int GetSceneBuildIndex()
+    public static (int Index, string Name) GetSceneCurrent()
+    {
+        return (GetSceneCurrentBuildIndex(), GetSceneCurrentName());
+    }
+
+    public static string GetSceneCurrentName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
+    public static int GetSceneCurrentBuildIndex()
     {
         return SceneManager.GetActiveScene().buildIndex;
     }

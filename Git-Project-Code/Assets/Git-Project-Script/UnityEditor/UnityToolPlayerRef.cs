@@ -139,7 +139,7 @@ public class UnityToolRef : EditorWindow
     {
         if (GUILayout.Button("Get"))
         {
-            if (!m_Name.Equals("") && !m_Value.Equals(""))
+            if (!m_Name.Equals(""))
             {
                 if (m_Choice[m_TypeChoiceIndex] == m_Choice[0])
                     //String
@@ -172,15 +172,13 @@ public class UnityToolRef : EditorWindow
 
     #region List
 
-    private const string LIST_FILE_NAME = "Ref-Data.txt";
-
     private const int m_ButtonListHorizontalCount = 6;
 
     private List<string> m_Refs = new List<string>();
 
     private string GetGUIListPath()
     {
-        return GitFile.GetPath(GitFile.Path.Assets, LIST_FILE_NAME, @"/..");
+        return GitFile.GetPath(GitFile.Path.Assets, "Ref-Data.txt", @"/..");
     }
 
     private void SetGUIListDataRead()
